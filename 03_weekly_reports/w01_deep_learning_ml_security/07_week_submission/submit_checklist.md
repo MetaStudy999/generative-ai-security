@@ -11,7 +11,7 @@
 | Research Track 확인 | 완료 | 위협모형, 평가방법, 오픈문제 포함 |
 | 실험 설계 확인 | 완료 | `04_experiment/experiment_report.md` |
 | 실험 결과 확인 | 완료 | `04_experiment/outputs/run_log.md` |
-| 발표자료 확인 | 완료 | `09_presentation/w01_presentation_slides.md`, `09_presentation/w01_presentation.html` |
+| 발표자료 확인 | 완료 | `09_presentation/presentation_report.md`, `presentation_report.html`, `presentation_slides.md`, `presentation_slides.html` |
 | AI 활용기록 확인 | 완료 | `05_ai_worklog/` |
 | 기말논문 연결 확인 | 완료 | `08_final_paper_bridge/` |
 | 파일명 확인 | 완료 | 영문, 숫자, 언더바 중심 |

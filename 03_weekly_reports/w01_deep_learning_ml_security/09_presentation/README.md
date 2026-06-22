@@ -4,6 +4,10 @@
 
 | 파일 | 용도 |
 |---|---|
+| `presentation_report.md` | 공통지침 파일명의 발표용 보고서 |
+| `presentation_report.html` | 공통지침 파일명의 브라우저 발표용 보고서 |
+| `presentation_slides.md` | 공통지침 파일명의 발표 슬라이드 원본 |
+| `presentation_slides.html` | 공통지침 파일명의 브라우저 발표용 슬라이드 |
 | `w01_presentation_slides.md` | 발표 슬라이드 원본 |
 | `w01_presentation.html` | 브라우저에서 바로 열 수 있는 발표용 HTML |
 | `speaker_notes.md` | 슬라이드별 발표자 대본 |
@@ -18,6 +22,7 @@
 
 ## 사용 방법
 
-1. `w01_presentation.html`을 브라우저로 연다.
-2. 키보드 방향키, PageUp/PageDown, Home/End로 슬라이드를 이동한다.
-3. 인쇄 또는 PDF 저장이 필요하면 브라우저 인쇄 기능을 사용한다.
+1. 공통지침 기준 제출 확인은 `presentation_report.html`과 `presentation_slides.html`을 사용한다.
+2. 주차명 파일을 직접 열 경우 `w01_presentation.html`을 브라우저로 연다.
+3. 키보드 방향키, PageUp/PageDown, Home/End로 슬라이드를 이동한다.
+4. 인쇄 또는 PDF 저장이 필요하면 브라우저 인쇄 기능을 사용한다.

@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>W01 딥러닝 패러다임 & ML 보안 분류학</title>
+  <style>
+    :root {
+      --bg: #f6f7f9;
+      --paper: #ffffff;
+      --ink: #17212b;
+      --muted: #5d6b78;
+      --line: #d9e0e7;
+      --accent: #126a73;
+      --accent-2: #b9473f;
+      --accent-3: #6d5aa8;
+      --soft: #e7f3f4;
+      --warn: #f8e7e3;
+      --code: #10232a;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR", Arial, sans-serif;
+      line-height: 1.5;
+    }
+
+    main {
+      width: min(1180px, 100vw);
+      margin: 0 auto;
+    }
+
+    .slide {
+      min-height: 100vh;
+      display: none;
+      padding: 56px 64px 72px;
+      background: var(--paper);
+      border-left: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+    }
+
+    .slide.active {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .slide-header {
+      color: var(--accent);
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0 0 22px;
+      font-size: 46px;
+      line-height: 1.18;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin: 0 0 18px;
+      font-size: 36px;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    p {
+      margin: 0 0 16px;
+      font-size: 23px;
+      color: var(--ink);
+    }
+
+    .subtitle {
+      max-width: 920px;
+      color: var(--muted);
+      font-size: 25px;
+    }
+
+    .meta {
+      margin-top: 34px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      background: var(--soft);
+      border-radius: 4px;
+      font-size: 16px;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    ul, ol {
+      margin: 8px 0 0;
+      padding-left: 28px;
+    }
+
+    li {
+      margin: 10px 0;
+      font-size: 24px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 18px;
+      font-size: 18px;
+    }
+
+    th, td {
+      border: 1px solid var(--line);
+      padding: 12px 14px;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background: #eef2f6;
+      color: #1f2a35;
+      font-weight: 800;
+    }
+
+    td.num {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 20px;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 18px;
+      background: #fbfcfd;
+    }
+
+    .panel strong {
+      display: block;
+      color: var(--accent);
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    .panel span {
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .diagram {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .stage {
+      min-height: 132px;
+      border: 1px solid var(--line);
+      background: #fbfcfd;
+      border-radius: 6px;
+      padding: 14px;
+      position: relative;
+    }
+
+    .stage b {
+      display: block;
+      color: var(--accent);
+      margin-bottom: 9px;
+      font-size: 18px;
+    }
+
+    .stage small {
+      display: block;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
+    .callout {
+      margin-top: 24px;
+      padding: 18px 20px;
+      border-left: 5px solid var(--accent);
+      background: var(--soft);
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .warning {
+      border-left-color: var(--accent-2);
+      background: var(--warn);
+    }
+
+    .codebox {
+      margin-top: 22px;
+      background: var(--code);
+      color: #f3fbff;
+      padding: 18px 20px;
+      border-radius: 6px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 20px;
+      white-space: pre-wrap;
+    }
+
+    .footer {
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      width: min(1052px, calc(100vw - 64px));
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 14px;
+      pointer-events: none;
+    }
+
+    .counter {
+      color: var(--accent);
+      font-weight: 800;
+    }
+
+    .controls {
+      position: fixed;
+      right: 18px;
+      top: 18px;
+      display: flex;
+      gap: 8px;
+    }
+
+    button {
+      min-width: 40px;
+      height: 36px;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      color: var(--ink);
+      border-radius: 4px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    @media (max-width: 760px) {
+      .slide {
+        padding: 72px 24px 70px;
+      }
+
+      h1 {
+        font-size: 34px;
+      }
+
+      h2 {
+        font-size: 28px;
+      }
+
+      p, li {
+        font-size: 19px;
+      }
+
+      .subtitle {
+        font-size: 20px;
+      }
+
+      .grid, .diagram {
+        grid-template-columns: 1fr;
+      }
+
+      table {
+        font-size: 14px;
+      }
+
+      th, td {
+        padding: 8px;
+      }
+    }
+
+    @media print {
+      body {
+        background: white;
+      }
+
+      .slide {
+        display: flex !important;
+        min-height: 100vh;
+        page-break-after: always;
+        border: 0;
+      }
+
+      .controls, .footer {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="controls" aria-label="슬라이드 이동">
+    <button type="button" id="prev" title="이전 슬라이드">‹</button>
+    <button type="button" id="next" title="다음 슬라이드">›</button>
+  </div>
+
+  <main>
+    <section class="slide active">
+      <div class="slide-header">W01 Presentation</div>
+      <h1>딥러닝 패러다임 &<br>ML 보안 분류학</h1>
+      <p class="subtitle">딥러닝을 정확도 모델이 아니라 보안 평가가 필요한 ML 시스템으로 읽기</p>
+      <div class="meta">
+        <span class="pill">AI 원리 70%</span>
+        <span class="pill">보안 이슈 30%</span>
+        <span class="pill">논문 5편</span>
+        <span class="pill">safe toy evaluation</span>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">1 / 기준 주차</div>
+      <h2>왜 W01이 중요한가</h2>
+      <ul>
+        <li>이후 주차의 공격과 방어를 읽기 위한 공통 언어를 만든다.</li>
+        <li>성능 중심 질문을 보안성 중심 질문으로 바꾼다.</li>
+        <li>핵심 질문: 모델이 잘 맞는다는 말은 보안적으로 충분한가?</li>
+      </ul>
+      <div class="callout">W01의 목표는 딥러닝 원리를 ML 시스템 보안 평가 프레임으로 바꾸는 것이다.</div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">2 / Roadmap</div>
+      <h2>발표 흐름</h2>
+      <ol>
+        <li>딥러닝 원리 70%</li>
+        <li>보안 이슈 30%</li>
+        <li>논문 5편의 역할</li>
+        <li>ML 생명주기 위협모형</li>
+        <li>평가 프레임과 실습 결과</li>
+        <li>한계와 기말논문 연결</li>
+      </ol>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">3 / AI Principle</div>
+      <h2>딥러닝 원리 70%</h2>
+      <div class="grid">
+        <div class="panel"><strong>표현학습</strong><span>원시 입력에서 과제에 유용한 특징을 모델이 직접 학습한다.</span></div>
+        <div class="panel"><strong>역전파</strong><span>손실함수의 gradient를 이용해 파라미터를 갱신한다.</span></div>
+        <div class="panel"><strong>일반화</strong><span>학습 데이터 밖에서도 성능이 유지되는 성질이다.</span></div>
+        <div class="panel"><strong>과적합</strong><span>성능 문제이면서 privacy leakage의 위험 신호가 될 수 있다.</span></div>
+      </div>
+      <div class="callout">공격자는 입력만 바꾸는 것이 아니라 내부 표현과 decision boundary를 흔든다.</div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">4 / Security Issue</div>
+      <h2>보안 이슈 30%</h2>
+      <table>
+        <thead>
+          <tr><th>보안 속성</th><th>ML 보안 문제</th><th>대표 예</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Confidentiality</td><td>학습 데이터와 민감 정보 노출</td><td>membership inference, model inversion</td></tr>
+          <tr><td>Integrity</td><td>예측 결과 조작</td><td>adversarial example, poisoning</td></tr>
+          <tr><td>Availability</td><td>탐지 실패 또는 오탐 폭증</td><td>IDS 미탐, 오탐 비용 증가</td></tr>
+          <tr><td>Accountability</td><td>결과 재현과 책임 추적 실패</td><td>seed, config, 로그 누락</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">5 / Paper Map</div>
+      <h2>논문 5편의 역할</h2>
+      <table>
+        <thead>
+          <tr><th>ID</th><th>중심 역할</th><th>W01 활용</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>P01</td><td>딥러닝 원리</td><td>표현학습, 역전파, 일반화</td></tr>
+          <tr><td>P02</td><td>ML 생명주기 보증</td><td>데이터-학습-검증-배포 증거</td></tr>
+          <tr><td>P03</td><td>침입탐지 ML</td><td>오탐, 미탐, 평가 지표</td></tr>
+          <tr><td>P04</td><td>대적 공격과 방어</td><td>robust accuracy, attack success rate</td></tr>
+          <tr><td>P05</td><td>프라이버시 공격</td><td>leakage risk, 공격자 지식</td></tr>
+        </tbody>
+      </table>
+      <div class="callout">단일 accuracy 표가 아니라 위협가정, 지표, 재현성 증거를 함께 기록해야 한다.</div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">6 / Lifecycle Threat Model</div>
+      <h2>ML 생명주기 위협모형</h2>
+      <div class="diagram">
+        <div class="stage"><b>Data</b><small>라벨 품질<br>편향<br>민감정보 노출</small></div>
+        <div class="stage"><b>Training</b><small>poisoning<br>overfitting<br>memorization</small></div>
+        <div class="stage"><b>Validation</b><small>robust 평가 누락<br>leakage 평가 누락</small></div>
+        <div class="stage"><b>Deployment</b><small>evasion<br>model extraction<br>drift</small></div>
+        <div class="stage"><b>Monitoring</b><small>incident log<br>재현성<br>운영 추적</small></div>
+      </div>
+      <p class="subtitle">평가 단위는 모델 하나가 아니라 전체 ML 생명주기다.</p>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">7 / Evaluation Frame</div>
+      <h2>평가 프레임</h2>
+      <table>
+        <thead>
+          <tr><th>평가축</th><th>질문</th><th>대표 지표</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Clean performance</td><td>정상 조건에서 잘 맞는가</td><td>accuracy, precision, recall, F1</td></tr>
+          <tr><td>Robust performance</td><td>교란 조건에서도 유지되는가</td><td>robust accuracy, attack impact</td></tr>
+          <tr><td>Privacy leakage</td><td>민감 정보가 새는가</td><td>leakage risk, attack advantage</td></tr>
+          <tr><td>Reproducibility</td><td>결과를 다시 만들 수 있는가</td><td>seed, config, code, logs</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">8 / Experiment Design</div>
+      <h2>실습 설계</h2>
+      <ul>
+        <li>데이터: synthetic binary classification data</li>
+        <li>모델: 표준 라이브러리 기반 toy logistic regression</li>
+        <li>조건: clean baseline, label-noise training, toy feature perturbation</li>
+        <li>점검: privacy-safe overfitting/confidence audit</li>
+      </ul>
+      <div class="callout warning">안전 범위: 개인정보, 실제 서비스 질의, 무단 접근, 악성코드 실행 없음.</div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">9 / Experiment Result</div>
+      <h2>실습 결과</h2>
+      <table>
+        <thead>
+          <tr><th>조건</th><th>Accuracy</th><th>Precision</th><th>Recall</th><th>F1</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Clean baseline</td><td class="num">0.869444</td><td class="num">0.867403</td><td class="num">0.872222</td><td class="num">0.869806</td></tr>
+          <tr><td>Label-noise training</td><td class="num">0.838889</td><td class="num">0.827957</td><td class="num">0.855556</td><td class="num">0.841530</td></tr>
+          <tr><td>Toy feature perturbation</td><td class="num">0.844444</td><td class="num">0.848315</td><td class="num">0.838889</td><td class="num">0.843575</td></tr>
+        </tbody>
+      </table>
+      <div class="callout">정상 조건 성능만으로는 라벨 품질 저하나 입력 교란 취약성을 설명할 수 없다.</div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">10 / Privacy-Safe Audit</div>
+      <h2>Privacy-safe audit</h2>
+      <div class="grid">
+        <div class="panel"><strong>Train accuracy</strong><span>0.857143</span></div>
+        <div class="panel"><strong>Test accuracy</strong><span>0.869444</span></div>
+        <div class="panel"><strong>Train-test gap</strong><span>-0.012301</span></div>
+        <div class="panel"><strong>Risk label</strong><span>low_overfitting_signal</span></div>
+      </div>
+      <div class="callout warning">이 결과는 실제 데이터 대상 membership inference 공격 결과가 아니다.</div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">11 / Limits</div>
+      <h2>한계와 오픈 문제</h2>
+      <ul>
+        <li>Synthetic toy evaluation은 실제 운영망의 공격 표면을 대표하지 않는다.</li>
+        <li>Survey taxonomy를 실제 평가로 연결하려면 데이터셋과 공격자 지식이 필요하다.</li>
+        <li>Privacy risk는 단일 수치로 요약하기 어렵다.</li>
+        <li>재현성 증거는 보안 주장을 검토할 수 있게 하는 최소 조건이다.</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">12 / Conclusion</div>
+      <h2>결론과 기말논문 연결</h2>
+      <ul>
+        <li>딥러닝 원리는 보안 취약성의 기술적 배경이다.</li>
+        <li>ML 보안은 생명주기 전체에서 평가해야 한다.</li>
+        <li>clean, robust, privacy, reproducibility를 분리해 기록해야 한다.</li>
+      </ul>
+      <div class="callout">기말논문 후보: ML 생명주기 기반 AI 보안 평가 프레임워크</div>
+    </section>
+  </main>
+
+  <div class="footer">
+    <span>W01 딥러닝 패러다임 & ML 보안 분류학</span>
+    <span class="counter" id="counter">1 / 13</span>
+  </div>
+
+  <script>
+    const slides = Array.from(document.querySelectorAll(".slide"));
+    const counter = document.getElementById("counter");
+    let index = 0;
+
+    function showSlide(nextIndex) {
+      index = Math.max(0, Math.min(slides.length - 1, nextIndex));
+      slides.forEach((slide, slideIndex) => {
+        slide.classList.toggle("active", slideIndex === index);
+      });
+      counter.textContent = `${index + 1} / ${slides.length}`;
+      document.title = `W01 발표자료 (${index + 1}/${slides.length})`;
+    }
+
+    document.getElementById("prev").addEventListener("click", () => showSlide(index - 1));
+    document.getElementById("next").addEventListener("click", () => showSlide(index + 1));
+
+    document.addEventListener("keydown", (event) => {
+      if (["ArrowRight", "PageDown", " "].includes(event.key)) {
+        event.preventDefault();
+        showSlide(index + 1);
+      }
+      if (["ArrowLeft", "PageUp"].includes(event.key)) {
+        event.preventDefault();
+        showSlide(index - 1);
+      }
+      if (event.key === "Home") {
+        showSlide(0);
+      }
+      if (event.key === "End") {
+        showSlide(slides.length - 1);
+      }
+    });
+  </script>
+</body>
+</html>

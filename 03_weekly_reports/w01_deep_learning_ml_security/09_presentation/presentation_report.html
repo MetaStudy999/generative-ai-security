@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>W01 발표용 보고서</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR", sans-serif; line-height: 1.65; margin: 40px auto; max-width: 1040px; padding: 0 20px; color: #1f2937; }
+    h1, h2 { color: #111827; }
+    table { border-collapse: collapse; width: 100%; margin: 16px 0 28px; font-size: 14px; }
+    th, td { border: 1px solid #d1d5db; padding: 8px 10px; vertical-align: top; }
+    th { background: #f3f4f6; }
+    code { background: #f3f4f6; padding: 2px 4px; border-radius: 4px; }
+    ol, ul { padding-left: 24px; }
+  </style>
+</head>
+<body>
+  <h1>W01 발표용 보고서</h1>
+
+  <h2>발표 메타정보</h2>
+  <table>
+    <tr><th>항목</th><th>내용</th></tr>
+    <tr><td>주차</td><td>W01</td></tr>
+    <tr><td>주제</td><td>딥러닝 패러다임 &amp; ML 보안 분류학</td></tr>
+    <tr><td>발표 시간</td><td>8-10분</td></tr>
+    <tr><td>권장 슬라이드 수</td><td>10-13장</td></tr>
+    <tr><td>핵심 메시지</td><td>딥러닝 모델의 보안 평가는 clean 성능, robust 성능, privacy leakage, reproducibility evidence를 분리해서 기록해야 한다.</td></tr>
+    <tr><td>발표 근거</td><td><code>06_report/final/integrated_report_final.md</code>, <code>04_experiment/outputs/run_log.md</code></td></tr>
+  </table>
+
+  <h2>한 문장 요약</h2>
+  <p>W01은 딥러닝을 정확도 중심 모델이 아니라 데이터, 학습, 검증, 배포, 모니터링이 연결된 ML 시스템으로 보고, 이후 주차의 공격과 방어를 해석할 공통 보안 평가 프레임을 만든다.</p>
+
+  <h2>발표 흐름</h2>
+  <table>
+    <tr><th>순서</th><th>슬라이드 주제</th><th>핵심 내용</th><th>시간</th></tr>
+    <tr><td>1</td><td>표지와 핵심 메시지</td><td>W01의 기준 주차 역할</td><td>0:40</td></tr>
+    <tr><td>2</td><td>왜 중요한가</td><td>잘 맞는 모델과 보안적으로 충분한 모델의 차이</td><td>1:00</td></tr>
+    <tr><td>3</td><td>AI 원리 70%</td><td>표현학습, 역전파, 일반화, 과적합</td><td>1:30</td></tr>
+    <tr><td>4</td><td>보안 이슈 30%</td><td>CIA, accountability, ML 생명주기 위험</td><td>1:20</td></tr>
+    <tr><td>5</td><td>논문 5편의 역할</td><td>원리, 생명주기, IDS, 대적 공격, 프라이버시 공격 연결</td><td>1:20</td></tr>
+    <tr><td>6</td><td>위협모형</td><td>Data, training, validation, deployment, monitoring 단계별 위협</td><td>1:00</td></tr>
+    <tr><td>7</td><td>평가 프레임</td><td>clean, robust, privacy, reproducibility 평가축</td><td>1:00</td></tr>
+    <tr><td>8-10</td><td>Toy 실험과 audit</td><td>safe synthetic 평가, 실험 결과, privacy-safe audit</td><td>2:30</td></tr>
+    <tr><td>11-12</td><td>한계와 기말 연결</td><td>일반화 금지와 평가 프레임워크 확장</td><td>1:20</td></tr>
+  </table>
+
+  <h2>논문 5편의 발표 역할</h2>
+  <table>
+    <tr><th>ID</th><th>논문</th><th>발표에서 맡는 역할</th><th>DOI/URL 상태</th></tr>
+    <tr><td>P01</td><td>Deep learning</td><td>딥러닝의 표현학습, 역전파, 일반화 배경 설명</td><td>확인</td></tr>
+    <tr><td>P02</td><td>Assuring the Machine Learning Lifecycle</td><td>ML 생명주기 보증과 증거 기반 평가의 필요성</td><td>확인</td></tr>
+    <tr><td>P03</td><td>A Survey of Data Mining and Machine Learning Methods for Cyber Security Intrusion Detection</td><td>보안 탐지에서 accuracy, false positive, false negative 분리</td><td>확인</td></tr>
+    <tr><td>P04</td><td>Adversarial Attacks and Defenses in Machine Learning-Powered Networks</td><td>robust 성능과 공격자 가정의 필요성</td><td>확인</td></tr>
+    <tr><td>P05</td><td>A Survey of Privacy Attacks in Machine Learning</td><td>privacy leakage와 공격자 지식 분류</td><td>확인</td></tr>
+  </table>
+
+  <h2>AI 원리와 보안 이슈</h2>
+  <table>
+    <tr><th>구분</th><th>발표 내용</th></tr>
+    <tr><td>AI 원리</td><td>표현학습, 역전파, 일반화, 과적합을 보안 취약성의 기술적 배경으로 설명한다.</td></tr>
+    <tr><td>Confidentiality</td><td>membership inference, model inversion 등으로 학습 데이터와 민감 정보가 노출될 수 있다.</td></tr>
+    <tr><td>Integrity</td><td>adversarial example, poisoning, label noise는 모델 판단을 조작한다.</td></tr>
+    <tr><td>Availability</td><td>IDS 미탐, 오탐 폭증, drift 미탐은 운영 가능성을 낮춘다.</td></tr>
+    <tr><td>Accountability</td><td>seed, config, 로그가 없으면 보안 주장을 재검토하기 어렵다.</td></tr>
+  </table>
+
+  <h2>실습/실험 결과</h2>
+  <p>정량값은 <code>04_experiment/outputs/run_log.md</code> 기준이다.</p>
+  <table>
+    <tr><th>조건</th><th>Accuracy</th><th>Precision</th><th>Recall</th><th>F1</th><th>보안 해석</th></tr>
+    <tr><td>Clean baseline</td><td>0.869444</td><td>0.867403</td><td>0.872222</td><td>0.869806</td><td>정상 synthetic test split 기준</td></tr>
+    <tr><td>Label-noise training</td><td>0.838889</td><td>0.827957</td><td>0.855556</td><td>0.841530</td><td>training label 126개 flip 후 성능 저하</td></tr>
+    <tr><td>Toy feature perturbation</td><td>0.844444</td><td>0.848315</td><td>0.838889</td><td>0.843575</td><td>Gaussian feature noise 조건에서 성능 저하</td></tr>
+  </table>
+  <p>Privacy-safe audit 결과 train accuracy는 0.857143, test accuracy는 0.869444, train-test gap은 -0.012301이며 risk label은 <code>low_overfitting_signal</code>이다. 이 결과는 synthetic data의 과적합 신호 점검이며 실제 데이터 대상 membership inference 공격 결과가 아니다.</p>
+
+  <h2>기말논문 연결</h2>
+  <table>
+    <tr><th>기말논문 장</th><th>발표에서 연결할 내용</th></tr>
+    <tr><td>서론</td><td>ML 시스템 보안 평가는 정확도만으로 충분하지 않다는 문제 제기</td></tr>
+    <tr><td>관련연구</td><td>딥러닝 원리, ML lifecycle assurance, adversarial ML, privacy attack survey</td></tr>
+    <tr><td>연구문제</td><td>clean, robust, privacy, reproducibility를 통합한 평가 프레임</td></tr>
+    <tr><td>연구방법</td><td>문헌 매트릭스, 위협모형, safe toy evaluation, 재현성 체크리스트</td></tr>
+    <tr><td>분석/실험</td><td>label noise, feature perturbation, privacy-safe audit</td></tr>
+  </table>
+
+  <h2>결론 메시지</h2>
+  <ol>
+    <li>딥러닝 원리는 보안 취약성의 기술적 배경이다.</li>
+    <li>ML 보안 평가는 모델 하나가 아니라 생명주기 전체를 대상으로 해야 한다.</li>
+    <li>clean 성능, robust 성능, privacy leakage, reproducibility evidence를 분리해야 한다.</li>
+    <li>실험 수치는 실행 로그와 CSV/JSON 근거가 있을 때만 주장한다.</li>
+  </ol>
+
+  <h2>예상 질문과 답변</h2>
+  <table>
+    <tr><th>질문</th><th>답변 요지</th><th>근거 파일</th></tr>
+    <tr><td>왜 실제 보안 데이터셋을 쓰지 않았나?</td><td>W01의 목표는 공격 성능 경쟁이 아니라 안전한 toy 환경에서 평가축을 설명하는 것이다.</td><td><code>04_experiment/experiment_report.md</code></td></tr>
+    <tr><td>label-noise 결과가 poisoning 공격을 증명하나?</td><td>아니다. 데이터 품질 저하가 성능에 영향을 줄 수 있음을 보여주는 축소 실험이다.</td><td><code>04_experiment/outputs/run_log.md</code></td></tr>
+    <tr><td>privacy-safe audit은 membership inference 공격인가?</td><td>아니다. synthetic data에서 과적합과 confidence 신호를 점검한 것이다.</td><td><code>04_experiment/outputs/results.json</code></td></tr>
+    <tr><td>DOI/URL 검증은 어디에 있는가?</td><td>P01-P05의 DOI/URL과 검증 근거를 별도 표로 정리했다.</td><td><code>01_papers/doi_check.md</code></td></tr>
+  </table>
+</body>
+</html>

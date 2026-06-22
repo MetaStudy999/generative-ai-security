@@ -12,6 +12,13 @@
 | 방어자 가정 | client sampling, update validation, secure aggregation, robust aggregation, audit log 가능 |
 | 제외 범위 | 실제 개인정보 데이터 사용, 실제 분산 시스템 침해, 무단 클라이언트 접속, 운영 FL 서비스 공격 |
 
+## Secure aggregation과 robust aggregation 구분
+
+| 구분 | 주된 보안 속성 | 목적 | W10에서의 취급 |
+|---|---|---|---|
+| Secure aggregation | Confidentiality | 서버가 개별 client update를 직접 보지 못하게 하여 update 노출을 줄인다. | 실제 cryptographic secure aggregation은 구현하지 않는다. |
+| Robust aggregation | Integrity | 악성 또는 이상 update가 global model에 미치는 영향을 줄인다. | coordinate median을 synthetic toy 조건에서 비교한다. |
+
 ## 연구문제 후보
 
 RQ1. 연합학습 환경에서 malicious client 비율은 global model의 성능과 backdoor 공격 성공률에 어떤 영향을 미치는가?
@@ -23,3 +30,5 @@ RQ3. FL 보안 평가에는 privacy leakage, robustness, utility, communication 
 ## W10 toy threat model
 
 본 주차 실험은 실제 FL 서비스가 아니라 synthetic binary classification 환경이다. 공격자는 10개 client 중 일부로만 모의하며, class 0 sample 일부에 toy trigger를 더하고 target class 1로 학습시키는 제한된 poisoned update만 사용한다. 이 설정은 악용 가능한 절차가 아니라 ASR, clean accuracy, aggregation type을 기록하기 위한 안전한 교육용 모의환경이다.
+
+실제 개인정보, 실제 FL 서비스 침해, 무단 클라이언트 접속, 실제 공격 payload, 실제 gradient inversion, 실제 membership inference 공격 절차는 포함하지 않는다. Privacy Leakage Proxy는 update norm 기반 대용 지표일 뿐 실제 privacy attack 성공률이 아니다.

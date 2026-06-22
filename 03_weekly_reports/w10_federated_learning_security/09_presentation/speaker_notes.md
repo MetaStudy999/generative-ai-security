@@ -16,4 +16,5 @@
 
 - Privacy Leakage Proxy는 실제 gradient inversion 성공률이 아니라고 명확히 말한다.
 - 모든 수치는 `04_experiment/outputs/run_log.md` 기준이라고 밝힌다.
-- P03/P05 출판 DOI는 최종 확인 필요 상태라고 말한다.
+- P03/P05 출판 DOI는 확인했지만, 최종 제출 전 DOI landing page를 사람이 다시 확인한다고 말한다.
+- P01은 수업자료의 ACM Computing Surveys 표기와 공식 TIST DOI 메타데이터 차이가 있음을 짧게 언급한다.

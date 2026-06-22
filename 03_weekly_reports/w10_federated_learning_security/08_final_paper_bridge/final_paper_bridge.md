@@ -8,6 +8,13 @@
 | 2 | FL 보안 평가를 위한 utility-privacy-robustness 통합 지표 연구 | FL 시스템 | Gradient leakage, privacy attack, poisoned update | 평가 프레임워크 설계 | 높음 |
 | 3 | Robust aggregation이 ASR과 clean accuracy에 미치는 영향 비교 | FL 모델 | Backdoor, malicious client | FedAvg와 coordinate median 비교 | 높음 |
 
+## 1.1 KCI/SCI 확장 후보
+
+| 구분 | 제목 후보 | 확장 방향 |
+|---|---|---|
+| KCI | 연합학습 환경에서 악성 클라이언트 비율과 집계 방식이 Backdoor ASR에 미치는 영향 분석 | 국내 연구 배경, 국문 초록, 국내 참고문헌 보완 |
+| SCI | A Multi-Metric Evaluation Framework for Backdoor Robustness and Privacy Exposure in Federated Learning Under Malicious Client Participation | 복수 seed, 실제 FL framework, DP/secure aggregation, non-IID benchmark 확장 |
+
 ## 2. 기말 논문에 반영할 내용
 
 | 논문 장 | 반영 가능 내용 |
@@ -24,6 +31,8 @@
 
 W10 toy 실험에서 20% poisoned FedAvg는 global accuracy 0.950000을 유지했지만 ASR 0.496835를 보였다. 같은 악성 client 비율에서 coordinate median은 ASR을 0.237342로 낮췄다. 이 결과는 AI 보안 평가에서 일반 성능과 공격 성공률을 함께 기록해야 한다는 기말 논문의 핵심 논지로 연결된다.
 
+Privacy Leakage Proxy는 실제 gradient inversion 또는 membership inference 성공률이 아니라 update norm 기반 대용 지표다. 따라서 기말논문에는 실제 privacy attack 결과가 아니라 privacy exposure proxy로만 표기한다.
+
 ## 4. 사용 시 주의
 
-본 결과는 synthetic toy logistic regression에 한정된다. 기말논문에 직접 실험 결과로 사용하려면 복수 seed, 다양한 non-IID split, 다른 aggregation rule, privacy attack 지표를 추가해야 한다.
+본 결과는 synthetic toy logistic regression에 한정된다. 기말논문에 직접 실험 결과로 사용하려면 복수 seed, 다양한 non-IID split, 다른 aggregation rule, privacy attack 지표를 추가해야 한다. 실제 FL 서비스, 실제 개인정보, 실제 공격 payload는 연구윤리와 안전 심사 없이 포함하지 않는다.

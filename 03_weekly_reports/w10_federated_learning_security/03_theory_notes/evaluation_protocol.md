@@ -10,6 +10,28 @@
 | Communication Cost | Communication bytes | round, client 수, parameter 수 기준 계산 | training config | 운영 비용 |
 | Reproducibility | Seed/config/log | config, run log, CSV, JSON 보존 여부 확인 | `04_experiment/outputs/` | 재현성 |
 
+## 그림 1. 연합학습 보안 평가 흐름
+
+```text
+Client Local Data
+        ↓
+Local Training / Local Update
+        ↓
+Aggregation Server
+        ↓
+FedAvg or Coordinate Median
+        ↓
+Global Model
+        ↓
+Clean Evaluation --> Global Accuracy, Global F1
+        ↓
+Triggered Evaluation --> ASR
+        ↓
+Update Exposure Check --> Privacy Leakage Proxy
+        ↓
+Reproducibility Evidence --> seed, config, outputs, run_log
+```
+
 ## 실행 결과 요약
 
 | 조건 | Malicious Client Rate | Aggregation | Global Accuracy | Global F1 | ASR | Privacy Leakage Proxy |
@@ -28,5 +50,7 @@
 - 실행 코드: `04_experiment/src/run_experiment.py`
 
 ## 해석 제한
+
+이 결과는 synthetic federated binary classification 기반 toy 실험의 평가 형식 검증용 수치이며, 실제 FL framework, 실제 secure aggregation, differential privacy, gradient inversion, membership inference, 실제 서비스 보안성으로 일반화하지 않는다.
 
 Privacy Leakage Proxy는 실제 gradient inversion 또는 membership inference 성공률이 아니다. 본 실험은 안전한 synthetic update의 노출 위험 대용 지표만 기록한다.

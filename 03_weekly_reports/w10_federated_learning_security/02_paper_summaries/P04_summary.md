@@ -1,4 +1,4 @@
-# 논문 요약
+# P04 논문 요약
 
 ## 1. 서지정보
 
@@ -6,19 +6,18 @@
 |---|---|
 | 논문 제목 | The Federation Strikes Back: A Survey of Federated Learning Privacy Attacks, Defenses, Applications, and Policy Landscape |
 | 저자 | Joshua C. Zhao et al. |
-| 학술지/학회 | ACM Computing Surveys |
-| 연도 | 2025 |
-| DOI/URL | 10.1145/3724113 |
+| 공식 출판 정보 | ACM Computing Surveys, 57(9), pp. 1-37, 2025 |
+| DOI/URL | https://doi.org/10.1145/3724113 |
 | PDF 파일명 | 04_Zhao_et_al_2025_Federation_Strikes_Back.pdf |
-| 검증 상태 | 로컬 PDF에서 제목과 DOI 확인 |
+| 검증 상태 | DOI 메타데이터 기준 제목, 학술지, volume, issue, page 확인. Article 번호는 추가 확인 필요 |
 
 ## 2. 한 문장 요약
 
-> 이 논문은 FL privacy attack, defense, application, policy landscape를 함께 검토하며, 모델 업데이트 공유가 항상 privacy-preserving이라는 전제가 깨질 수 있음을 정리한다.
+이 논문은 FL privacy attack, defense, application, policy landscape를 함께 검토하며, 모델 업데이트 공유가 항상 privacy-preserving이라는 전제가 깨질 수 있음을 정리한다[4].
 
 ## 3. 연구문제
 
-이 논문에서 기말 연구와 연결되는 질문은 FL 모델 업데이트에서 어떤 privacy attack이 가능한지, 어떤 방어와 정책 조건이 필요한지다. W10에서는 privacy leakage를 실제 gradient inversion이 아니라 update exposure proxy로 제한해 기록한다.
+FL 모델 업데이트에서 어떤 privacy attack이 가능한지, 어떤 방어와 정책 조건이 필요한지를 다룬다. W10에서는 privacy leakage를 실제 gradient inversion이 아니라 update exposure proxy로 제한해 기록한다.
 
 ## 4. 핵심 개념
 
@@ -31,20 +30,18 @@
 
 ## 5. 방법론
 
-이 문헌은 privacy attack과 defense를 문헌 기반으로 정리하고, 실제 적용과 정책 환경까지 연결한다. 본 보고서는 이를 privacy 지표를 독립 항목으로 분리해야 하는 근거로 사용한다.
+이 문헌은 privacy attack과 defense를 문헌 기반으로 정리하고, 실제 적용과 정책 환경까지 연결한다. W10 보고서는 이를 privacy 지표를 독립 항목으로 분리해야 하는 근거로 사용한다.
 
-## 6. 주요 결과
+## 6. 보안 관점 분석
 
-FL의 privacy 전제는 업데이트가 private data를 역추론할 수 없을 때만 성립한다. W10 실험은 실제 역추론을 수행하지 않고, update norm 기반 proxy로 위험 신호만 기록한다.
+P04는 secure aggregation, DP, privacy attack, policy landscape를 연결한다. W10의 Privacy Leakage Proxy는 실제 gradient inversion이나 membership inference 성공률이 아니라 update norm 기반 대용 지표이며, policy discussion을 위한 위험 신호로만 해석한다.
 
-## 7. 보안 관점 분석
+## 7. 한계와 확인 필요
 
-이 논문은 Gradient leakage, poisoning, backdoor, privacy attack을 이해하기 위한 배경 문헌으로 활용된다. 공격자의 능력, 방어자의 관측 가능성, 평가 데이터의 한계, 재현성 조건을 함께 정리해야 실제 보안 연구로 이어질 수 있다.
+- DOI 등록 메타데이터에서는 pages 1-37이 확인되었으나 별도 Article 번호는 확인되지 않았다.
+- 수업자료에는 P04가 Article 230으로 적혀 있으므로 최종 제출 전 ACM 페이지에서 Article 번호를 사람이 확인해야 한다.
+- 로컬 PDF는 `Manuscript submitted to ACM CSUR` 성격을 포함하므로 최종 참고문헌에는 DOI 메타데이터를 우선 사용한다.
 
-## 8. 한계와 오픈문제
+## 8. 기말 논문에 반영할 부분
 
-원문 정밀 독해 전에는 세부 실험 설정, 데이터셋, DOI, 인용 관계를 확정할 수 없다. 또한 survey 성격의 문헌은 실제 재현 실험보다는 분류체계와 연구 공백 파악에 더 적합하므로, 기말 논문에서는 별도 평가 프로토콜로 보완해야 한다.
-
-## 9. 기말 논문에 반영할 부분
-
-P04는 FL privacy와 policy landscape를 기말 논문의 보안적 함의 장에 연결한다. 특히 기술적 방어만으로 부족하고 규제·책임성·검증 로그가 함께 필요하다는 논거가 된다.
+P04는 FL privacy와 policy landscape를 기말 논문의 보안적 함의 장에 연결한다. 기술적 방어만으로 부족하고 규제·책임성·검증 로그가 함께 필요하다는 논거가 된다.

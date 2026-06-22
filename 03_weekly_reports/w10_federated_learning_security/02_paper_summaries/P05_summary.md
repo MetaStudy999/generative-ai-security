@@ -1,26 +1,31 @@
-# 논문 요약
+# P05 논문 요약
 
 ## 1. 서지정보
 
 | 항목 | 내용 |
 |---|---|
 | 논문 제목 | Backdoor attacks and defenses in federated learning: Survey, challenges and future research directions |
-| 저자 | Thuy Dung Nguyen et al. |
-| 학술지/학회 | Engineering Applications of Artificial Intelligence |
-| 연도 | 2024 |
-| DOI/URL | arXiv:2303.02213, 출판사 DOI 확인 필요 |
+| 저자 | Thuy Dung Nguyen, Tuan Nguyen, Phi Le Nguyen, Hieu H. Pham, Khoa D. Doan, Kok-Seng Wong |
+| 공식 출판 정보 | Engineering Applications of Artificial Intelligence, 127, Article 107166, 2024 |
+| DOI/URL | https://doi.org/10.1016/j.engappai.2023.107166; https://arxiv.org/abs/2303.02213 |
 | PDF 파일명 | 05_Nguyen_et_al_2024_FL_Backdoor_Attacks_Defenses.pdf |
-| 검증 상태 | 로컬 PDF 첫 페이지에서 arXiv preprint 확인, 출판본 DOI는 최종 대조 필요 |
+| 검증 상태 | arXiv preprint와 EAAI 출판 DOI 확인 |
 
-## 2. 한 문장 요약
+## 2. arXiv판과 출판판 차이 메모
 
-> 이 논문은 FL backdoor attack과 defense 연구를 survey하며, 악성 클라이언트 업데이트가 글로벌 모델의 특정 입력 행동을 바꿀 수 있는 위험과 방어 과제를 정리한다.
+- arXiv:2303.02213은 2023-03-03 제출본이다.
+- Crossref 기준 출판본은 2024년 Engineering Applications of Artificial Intelligence volume 127, Article 107166이다.
+- 제목과 저자 구성은 실질적으로 동일하며, 최종 참고문헌에는 DOI 10.1016/j.engappai.2023.107166을 우선 사용한다.
 
-## 3. 연구문제
+## 3. 한 문장 요약
 
-이 논문에서 기말 연구와 연결되는 질문은 FL에서 backdoor가 왜 중앙집중 학습보다 검증하기 어려운지, 방어는 clean accuracy와 ASR을 어떻게 동시에 평가해야 하는지다. W10 toy 실험의 ASR 지표는 이 문헌을 직접 반영한다.
+이 논문은 FL backdoor attack과 defense 연구를 survey하며, 악성 클라이언트 업데이트가 글로벌 모델의 특정 입력 행동을 바꿀 수 있는 위험과 방어 과제를 정리한다[5].
 
-## 4. 핵심 개념
+## 4. 연구문제
+
+FL에서 backdoor가 왜 중앙집중 학습보다 검증하기 어려운지, 방어는 clean accuracy와 ASR을 어떻게 동시에 평가해야 하는지 다룬다. W10 toy 실험의 ASR 지표는 이 문헌을 직접 반영한다.
+
+## 5. 핵심 개념
 
 | 개념 | 설명 | 기말 논문 연결 |
 |---|---|---|
@@ -29,22 +34,15 @@
 | Stealthiness | clean 성능을 크게 떨어뜨리지 않으면서 backdoor를 유지하는 특성 | clean accuracy와 ASR 동시 해석 |
 | Backdoor defense | robust aggregation, update inspection 등 | coordinate median 비교 |
 
-## 5. 방법론
+## 6. 보안 관점 분석
 
-이 문헌은 FL backdoor 공격과 방어를 survey하고, 악성 클라이언트, non-IID 분포, 서버 검증 한계를 함께 논의한다. 본 보고서에서는 악용 가능한 세부 절차 대신 synthetic trigger와 지표 정의만 사용한다.
+P05는 backdoor 평가에서 clean accuracy와 ASR을 분리해야 한다는 근거를 제공한다. W10 실험에서 20% poisoned FedAvg는 clean accuracy 0.950000을 유지하면서 ASR 0.496835를 보였고, coordinate median은 같은 20% 조건에서 ASR을 0.237342로 낮췄다. 단, 이 수치는 synthetic toy protocol 결과이며 실제 FL 제품 공격 성공률이 아니다.
 
-## 6. 주요 결과
+## 7. 한계와 확인 필요
 
-Backdoor 위험은 clean accuracy만으로 드러나지 않는다. W10 실험에서 20% poisoned FedAvg의 clean accuracy는 0.950000으로 비교적 높지만 ASR은 0.496835로 상승한다는 점이 이 문헌의 문제의식과 맞닿아 있다.
+- P05 출판 DOI는 확인되었지만, 최종 제출 전 DOI landing page와 수업자료의 DOI 표기를 사람이 한 번 더 육안 확인하는 것이 좋다.
+- W10은 실제 backdoor payload나 실제 FL 서비스 공격 절차를 포함하지 않는다.
 
-## 7. 보안 관점 분석
+## 8. 기말 논문에 반영할 부분
 
-이 논문은 Gradient leakage, poisoning, backdoor, privacy attack을 이해하기 위한 배경 문헌으로 활용된다. 공격자의 능력, 방어자의 관측 가능성, 평가 데이터의 한계, 재현성 조건을 함께 정리해야 실제 보안 연구로 이어질 수 있다.
-
-## 8. 한계와 오픈문제
-
-원문 정밀 독해 전에는 세부 실험 설정, 데이터셋, DOI, 인용 관계를 확정할 수 없다. 또한 survey 성격의 문헌은 실제 재현 실험보다는 분류체계와 연구 공백 파악에 더 적합하므로, 기말 논문에서는 별도 평가 프로토콜로 보완해야 한다.
-
-## 9. 기말 논문에 반영할 부분
-
-P05는 backdoor threat model과 ASR 평가 지표를 기말 논문의 방법론 장에 연결한다. 특히 defense 비교에서는 clean accuracy만이 아니라 ASR 감소를 함께 기록해야 한다는 근거로 사용한다.
+P05는 backdoor threat model과 ASR 평가 지표를 기말 논문의 방법론 장에 연결한다. 방어 비교에서는 clean accuracy만이 아니라 ASR 감소를 함께 기록해야 한다는 근거로 사용한다.

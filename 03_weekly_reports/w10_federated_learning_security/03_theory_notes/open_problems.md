@@ -2,8 +2,9 @@
 
 ## 1. 문헌 검증 한계
 
-- P01, P02, P04는 로컬 PDF에서 DOI를 확인했다.
-- P03, P05는 로컬 PDF가 arXiv/preprint 표기를 포함하므로 최종 출판본 DOI와 페이지 정보를 재확인해야 한다.
+- P01-P05의 DOI/URL을 대조했다.
+- P01은 수업자료의 `ACM Computing Surveys` 표기와 DOI 메타데이터의 `ACM Transactions on Intelligent Systems and Technology` 표기 차이를 최종 제출 전 사람이 확인해야 한다.
+- P04는 DOI를 확인했지만 Article 번호는 추가 확인이 필요하다.
 - survey 문헌의 세부 실험 설정과 수치는 원문 정밀 독해 후 필요한 부분만 반영한다.
 
 ## 2. 실험 한계

@@ -36,12 +36,12 @@ FL의 보안 이슈는 gradient leakage, membership inference, poisoning, model 
 
 ## 6. 실습/실험 실행 상태와 결과 근거
 
-| 조건 | Malicious Client Rate | Aggregation | Global Accuracy | ASR | 해석 |
-|---|---:|---|---:|---:|---|
-| Clean FL | 0% | fedavg | 0.960000 | 0.136076 | 기준 조건 |
-| Poisoned FL 10% | 10% | fedavg | 0.953333 | 0.297468 | ASR 상승 시작 |
-| Poisoned FL 20% | 20% | fedavg | 0.950000 | 0.496835 | clean 성능은 유지되나 ASR 크게 상승 |
-| Robust aggregation 20% | 20% | coordinate_median | 0.955000 | 0.237342 | ASR 완화, 완전 제거는 아님 |
+| 조건 | Malicious Client Rate | Aggregation | Global Accuracy | Global F1 | ASR | Privacy Leakage Proxy | 해석 |
+|---|---:|---|---:|---:|---:|---:|---|
+| Clean FL | 0% | fedavg | 0.960000 | 0.958042 | 0.136076 | 0.442597 | 기준 조건 |
+| Poisoned FL 10% | 10% | fedavg | 0.953333 | 0.951557 | 0.297468 | 0.428377 | ASR 상승 시작 |
+| Poisoned FL 20% | 20% | fedavg | 0.950000 | 0.948630 | 0.496835 | 0.486591 | clean 성능은 유지되나 ASR 크게 상승 |
+| Robust aggregation 20% | 20% | coordinate_median | 0.955000 | 0.953368 | 0.237342 | 0.439875 | ASR 완화, 완전 제거는 아님 |
 
 모든 실험은 synthetic toy data만 사용했다. Privacy Leakage Proxy는 실제 gradient inversion 성공률이 아니라 update norm 기반 대용 지표다.
 

@@ -7,6 +7,10 @@
 - `experiment_report.md`: 실습 목표, 평가 설계, 결과 기록 위치
 - `src/run_experiment.py`: synthetic toy 비전 대적공격 실험 실행 스크립트
 - `outputs/`: CSV, JSON, Markdown 실행 로그, PGM 예시 이미지
+- `data/`: 현재는 synthetic 데이터를 런타임 생성하므로 원본 데이터 없음
+- `logs/`: 별도 터미널/디버깅 로그 보관 위치
+- `results/`: 추가 분석표와 그림 보관 위치
+- `docker/`: 추가 Docker 보조 스크립트 보관 위치
 - `Dockerfile`: 재현 가능한 Python 실행 환경
 - `docker-compose.yml`: 로컬 컨테이너 실행 예시
 - `pyproject.toml`: uv sync용 주차별 Python 의존성

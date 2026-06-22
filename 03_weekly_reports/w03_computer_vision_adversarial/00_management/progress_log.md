@@ -8,3 +8,4 @@
 | 2026-06-22 | W03 제출용/발표용 HTML 작성 | `w03_submission_report.html`, `presentation_report.html` 생성 | 최종 제출 전 브라우저 인쇄 확인 |
 | 2026-06-22 | W03 발표용 슬라이드 작성 | `presentation_slides.md`, `presentation_slides.html` 생성 | 발표 전 브라우저 넘김 확인 |
 | 2026-06-22 | W03 발표 보조자료 작성 | `speaker_notes.md`, `qna.md`, `one_page_handout.md` 생성 | 발표 전 시간 배분과 예상 질문 점검 |
+| 2026-06-22 | W03 완성도 점검 및 보완 | 공통지침 기준 상태표 정리, 보조 README 추가, 실험 산출물 보존 대상 확인 | DOI/URL 공식 출처 대조 |

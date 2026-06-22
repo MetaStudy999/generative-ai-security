@@ -3,7 +3,7 @@
 | 항목 | 상태 | 비고 |
 |---|---|---|
 | 최종 보고서 확인 | 완료 | `06_report/final/integrated_report_final.md` |
-| 참고문헌 확인 | 진행 | DOI/URL 최종 확인 필요 |
+| 참고문헌 확인 | 보류 | DOI/URL은 임의 생성하지 않고 `확인 필요`로 유지 |
 | AI 활용기록 확인 | 완료 | `05_ai_worklog/` |
 | 파일명 확인 | 완료 | 영문, 숫자, 언더바 중심 |
 | 실험 결과 확인 | 완료 | `04_experiment/outputs/run_log.md` 기준 정량값 기록 |
@@ -13,3 +13,4 @@
 | 제출용 보고서 확인 | 완료 | `07_week_submission/w03_submission_report.md` |
 | 제출용 HTML 확인 | 완료 | `07_week_submission/w03_submission_report.html` |
 | 발표용 HTML 확인 | 완료 | `09_presentation/presentation_report.html` |
+| 실험 산출물 보존 | 완료 | `04_experiment/outputs/metrics_summary.csv`, `results.json`, `run_log.md`, PGM 예시 이미지 |

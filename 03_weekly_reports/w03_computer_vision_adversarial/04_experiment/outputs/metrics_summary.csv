@@ -1,0 +1,7 @@
+condition,epsilon,defense,n_samples,accuracy,precision_macro,recall_macro,f1_macro,attack_success_rate,robust_drop,confusion_matrix
+clean_baseline,0.0,none,120,1.0,1.0,1.0,1.0,,0.0,"[[60, 0], [0, 60]]"
+centroid_direction_linf,0.05,none,120,1.0,1.0,1.0,1.0,0.0,0.0,"[[60, 0], [0, 60]]"
+centroid_direction_linf,0.15,none,120,1.0,1.0,1.0,1.0,0.0,0.0,"[[60, 0], [0, 60]]"
+centroid_direction_linf,0.3,none,120,1.0,1.0,1.0,1.0,0.0,0.0,"[[60, 0], [0, 60]]"
+centroid_direction_linf,0.45,none,120,0.0,0.0,0.0,0.0,1.0,1.0,"[[0, 60], [60, 0]]"
+adversarial_with_feature_squeeze,0.3,feature_squeeze_2_levels,120,1.0,1.0,1.0,1.0,0.0,0.0,"[[60, 0], [0, 60]]"

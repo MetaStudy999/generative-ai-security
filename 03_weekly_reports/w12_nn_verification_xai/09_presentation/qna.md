@@ -6,7 +6,7 @@
 
 ## Q2. Certified rate를 formal verification 결과로 말해도 되나요?
 
-본 실습에서는 그렇게 말하면 안 됩니다. Certified rate는 선형 toy logistic classifier에서 계산한 L-infinity bound proxy입니다. 실제 대규모 DNN의 formal verification은 별도 verifier, 명세, bound 방법, 검증 로그가 필요합니다.
+본 실습에서는 그렇게 말하면 안 됩니다. Certified rate는 synthetic binary classification 기반 toy logistic classifier에서 계산한 L-infinity bound proxy입니다. 실제 대규모 DNN의 formal verification은 별도 verifier, 명세, bound 방법, 검증 로그가 필요합니다.
 
 ## Q3. XAI stability가 높으면 설명을 신뢰해도 되나요?
 
@@ -19,3 +19,7 @@
 ## Q5. 이 실험을 실제 안전중요 시스템 평가로 확장할 수 있나요?
 
 직접 확장할 수는 없습니다. 실제 시스템에서는 데이터 특성, 모델 구조, 위협모형, 검증 명세, 책임 소재가 모두 달라지므로 별도 승인된 평가 환경과 엄격한 안전 절차가 필요합니다.
+
+## Q6. 참고문헌과 PDF는 그대로 제출해도 되나요?
+
+아직 그대로 확정하면 안 됩니다. P01, P03, P04, P05는 로컬 PDF가 지정 논문과 다르거나 `SUBSTITUTE` 상태이고, P02도 원문 대조가 필요합니다. 공개 저장소에 학술 PDF를 포함하기 전 저작권과 공개 범위도 확인해야 합니다.

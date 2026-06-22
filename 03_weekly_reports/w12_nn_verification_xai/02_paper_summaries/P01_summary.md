@@ -1,50 +1,40 @@
-# 논문 요약
+# P01 논문 요약
 
-## 1. 서지정보
+## 1. 서지와 검증 상태
 
 | 항목 | 내용 |
 |---|---|
-| 논문 제목 | A Review of Abstraction Methods Toward Verifying Neural Networks |
-| 저자 | Boudardara et al. |
-| 학술지/학회 | ACM Computing Surveys |
-| 연도 | 2024 |
-| DOI/URL | 확인 필요 |
-| PDF 파일명 | 01_SUBSTITUTE_Meng_et_al_2022_DNN_Robustness_Formal_Verification.pdf |
-| 검증 상태 | 로컬 PDF가 대체 논문 파일명으로 보임, 프롬프트 지정 논문과 대체 여부 최종 확인 필요 |
+| 강의 지정 제목 | A Review of Abstraction Methods Toward Verifying Neural Networks |
+| 강의 지정 저자 | Boudardara et al. |
+| 공식 DOI 후보 | `10.1145/3617508` |
+| 공식 URL | https://doi.org/10.1145/3617508 |
+| 공식 메타데이터 확인 | title과 Boudardara et al.는 일치하나, Crossref 기준 매체는 ACM Transactions on Embedded Computing Systems, Vol. 23, Issue 4, pp. 1-19, 2024 |
+| 강의 표기와 차이 | 강의자료의 ACM Computing Surveys 56(7), Article 151 표기와 충돌 |
+| 로컬 PDF | `01_SUBSTITUTE_Meng_et_al_2022_DNN_Robustness_Formal_Verification.pdf` |
+| 로컬 PDF 상태 | Meng et al. 2022 arXiv formal verification survey. 지정 논문 원문 아님 |
 
-## 2. 한 문장 요약
+주의: W12의 P01은 지정 논문과 로컬 PDF가 불일치한다. 현재 로컬 PDF는 Meng et al. 2022 formal verification 관련 대체 문헌이므로, 최종 제출 전 Boudardara et al. 지정 논문 원문 PDF 또는 공식 출판 페이지를 확보해야 한다.
 
-> 이 논문은 Neural network verification, abstraction, formal methods, robustness proof의 핵심 원리와 적용 범위 문제를 문헌조사와 분류체계 정리 방법으로 다루며, 기말 연구의 배경 이론과 평가축을 기말 연구에 반영할 수 있게 해준다.
+## 2. 핵심 연구문제
 
-## 3. 연구문제
+P01은 신경망 검증에서 abstraction method가 어떤 역할을 하는지 정리하는 문헌이다[1]. 신경망은 안전중요 시스템에서 점점 많이 쓰이지만, 네트워크 규모와 비선형성 때문에 모든 입력 영역을 직접 검증하기 어렵다. Abstraction은 세부 계산을 검증 가능한 추상 모델이나 bound로 바꾸어 reachability, specification satisfaction, verification cost를 다룰 수 있게 한다.
 
-이 논문에서 기말 연구와 연결되는 질문은 신경망 검증/정형방법 및 대적방어/XAI/강건성 트레이드오프 영역에서 어떤 개념, 공격면, 평가 기준을 우선적으로 정리해야 하는가이다. 특히 신경망 검증의 기본 개념, 정형검증과 경험적 평가의 차이, Abstraction method와 대적공격과 대적방어, Certified robustness, Empirical robustness와 formal robustness의 차이가 서로 만나는 지점을 확인하는 데 초점을 둔다.
+## 3. W12에서의 역할
 
-## 4. 핵심 개념
+| 관점 | 요약 |
+|---|---|
+| AI 원리 | abstraction, reachability, bound propagation, formal specification |
+| 보안 연결 | 검증되지 않은 robustness claim, 안전중요 시스템 배치 전 보증 부족 |
+| 평가 지표 | certified robustness, specification satisfaction, verification cost |
+| 한계 | 현재 로컬 PDF가 지정 논문 원문이 아니므로 세부 taxonomy와 권호 정보는 최종 대조 필요 |
+| 내 논문 활용 | empirical robust accuracy와 formal verification certificate의 차이를 설명하는 배경 |
 
-| 개념 | 설명 | 기말 논문 연결 |
-|---|---|---|
-| 신경망 검증의 기본 개념 | 주차 AI 원리의 출발점이며 모델 또는 시스템을 이해하는 기본 단위이다. | 배경 이론 |
-| 정형검증과 경험적 평가의 차이 | 성능, 일반화, 효율 또는 신뢰성을 설명하는 보조 축이다. | 분석 기준 |
-| 대적공격과 대적방어 | 보안 위협을 식별하기 위한 대표 공격면이다. | 위협모형 |
-| Certified robustness | 방어와 평가 프로토콜을 설계할 때 비교해야 하는 요소이다. | 평가방법 |
+## 4. 실습 연결
 
-## 5. 방법론
+W12 실험의 `certified_rate`는 P01식 formal verification 결과가 아니다. 현재 실험은 toy logistic classifier의 선형 margin bound proxy를 계산한다. 따라서 `certified_rate`는 verification pipeline을 흉내 낸 보고 형식 검증용 지표로만 해석한다.
 
-이 문헌은 문헌조사와 분류체계 정리을 통해 기존 연구를 묶어 읽을 수 있게 한다. 본 보고서에서는 논문 제목, 프롬프트의 논문 패킷 정보, 로컬 PDF 존재 여부를 기준으로 요약했으며, 세부 실험값이나 DOI는 최종 원문 대조 단계에서 확인한다.
+## 5. 최종 제출 전 확인 항목
 
-## 6. 주요 결과
-
-핵심 개념, 공격면, 평가 기준, 향후 연구과제를 체계화한다. 수치 결과를 새로 만들지 않기 위해 본 요약에서는 정량값을 적지 않았고, 원문에서 직접 확인되는 항목만 최종 보고서에 반영하도록 남겨 둔다.
-
-## 7. 보안 관점 분석
-
-이 논문은 대적방어, XAI 공격면, robustness-accuracy-fairness trade-off을 이해하기 위한 배경 문헌으로 활용된다. 공격자의 능력, 방어자의 관측 가능성, 평가 데이터의 한계, 재현성 조건을 함께 정리해야 실제 보안 연구로 이어질 수 있다.
-
-## 8. 한계와 오픈문제
-
-원문 정밀 독해 전에는 세부 실험 설정, 데이터셋, DOI, 인용 관계를 확정할 수 없다. 또한 survey 성격의 문헌은 실제 재현 실험보다는 분류체계와 연구 공백 파악에 더 적합하므로, 기말 논문에서는 별도 평가 프로토콜로 보완해야 한다.
-
-## 9. 기말 논문에 반영할 부분
-
-P01는 신경망 검증/정형방법 및 대적방어/XAI/강건성 트레이드오프 연구에서 개념 정의, 위협 분류, 평가 지표 후보를 정리하는 근거로 반영한다. 특히 기말 연구의 배경 이론과 평가축을 관련연구와 연구방법 장에 연결한다.
+- ACM/DOI 페이지에서 매체명, 권호, Article 번호, 페이지를 사람이 최종 확인한다.
+- 강의계획서의 ACM Computing Surveys 표기가 맞는지 재확인한다.
+- 로컬 SUBSTITUTE PDF를 지정 논문 원문처럼 인용하지 않는다.

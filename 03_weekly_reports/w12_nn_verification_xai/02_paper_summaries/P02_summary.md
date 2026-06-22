@@ -1,50 +1,40 @@
-# 논문 요약
+# P02 논문 요약
 
-## 1. 서지정보
+## 1. 서지와 검증 상태
 
 | 항목 | 내용 |
 |---|---|
-| 논문 제목 | Adversarial Attacks and Defenses in Deep Learning |
-| 저자 | Sen Zhou et al. |
-| 학술지/학회 | ACM Computing Surveys |
-| 연도 | 2022 |
-| DOI/URL | 확인 필요 |
-| PDF 파일명 | 02_Ren_et_al_2020_Adversarial_Attacks_Defenses_Deep_Learning.pdf |
-| 검증 상태 | 로컬 PDF 파일명 확인, DOI/URL과 원문 세부 내용은 최종 대조 필요 |
+| 강의 지정 제목 | Adversarial Attacks and Defenses in Deep Learning |
+| 강의 지정 저자 | Sen Zhou et al. |
+| 공식 DOI 후보 | `10.1145/3547330` |
+| 공식 URL | https://doi.org/10.1145/3547330 |
+| 공식 후보 메타데이터 | Shuai Zhou et al., "Adversarial Attacks and Defenses in Deep Learning: From a Perspective of Cybersecurity", ACM Computing Surveys, Vol. 55, Issue 8, pp. 1-39, published 2022-12-23 |
+| 강의 표기와 차이 | Sen/Shuai 저자 표기, 제목 subtitle, 권호/Article 정보 대조 필요 |
+| 로컬 PDF | `02_Ren_et_al_2020_Adversarial_Attacks_Defenses_Deep_Learning.pdf` |
+| 로컬 PDF 상태 | Kui Ren et al., Engineering 6, 2020, DOI `10.1016/j.eng.2019.12.012` |
 
-## 2. 한 문장 요약
+주의: W12의 P02는 지정 논문명과 로컬 PDF 파일명·저자명이 다르므로, 동일 논문 여부와 최종 DOI를 확인 필요 상태로 유지한다.
 
-> 이 논문은 대적방어, XAI 공격면, robustness-accuracy-fairness trade-off와 관련된 위협 분류 문제를 개념 분석과 사례 중심 정리 방법으로 다루며, 공격-방어-평가 관점을 연결하는 보안 분석 틀을 기말 연구에 반영할 수 있게 해준다.
+## 2. 핵심 연구문제
 
-## 3. 연구문제
+P02는 deep learning 대적공격과 방어를 분류하고, 공격자 지식, 공격 시점, perturbation 제약, 방어 방식, 평가 지표를 taxonomy로 정리하는 문헌 축이다[2]. W12에서는 clean accuracy와 robust accuracy를 분리해서 보고해야 하는 이유를 설명하는 근거로 활용한다.
 
-이 논문에서 기말 연구와 연결되는 질문은 신경망 검증/정형방법 및 대적방어/XAI/강건성 트레이드오프 영역에서 어떤 개념, 공격면, 평가 기준을 우선적으로 정리해야 하는가이다. 특히 신경망 검증의 기본 개념, 정형검증과 경험적 평가의 차이, Abstraction method와 대적공격과 대적방어, Certified robustness, Empirical robustness와 formal robustness의 차이가 서로 만나는 지점을 확인하는 데 초점을 둔다.
+## 3. W12에서의 역할
 
-## 4. 핵심 개념
+| 관점 | 요약 |
+|---|---|
+| AI 원리 | adversarial example, perturbation budget, robust training, evaluation protocol |
+| 보안 연결 | prediction integrity attack, adaptive attack, weak evaluation risk |
+| 평가 지표 | clean accuracy, robust accuracy, attack success rate, defense success |
+| 한계 | 로컬 PDF는 Kui Ren et al. 2020 Engineering 논문이므로 지정 Zhou 논문과 동일하게 인용하면 안 됨 |
+| 내 논문 활용 | 공격·방어 평가축의 보안 근거와 threat model 분류 |
 
-| 개념 | 설명 | 기말 논문 연결 |
-|---|---|---|
-| 신경망 검증의 기본 개념 | 주차 AI 원리의 출발점이며 모델 또는 시스템을 이해하는 기본 단위이다. | 배경 이론 |
-| 정형검증과 경험적 평가의 차이 | 성능, 일반화, 효율 또는 신뢰성을 설명하는 보조 축이다. | 분석 기준 |
-| 대적공격과 대적방어 | 보안 위협을 식별하기 위한 대표 공격면이다. | 위협모형 |
-| Certified robustness | 방어와 평가 프로토콜을 설계할 때 비교해야 하는 요소이다. | 평가방법 |
+## 4. 실습 연결
 
-## 5. 방법론
+W12의 `adversarial_features()`는 실제 FGSM/PGD가 아니라 선형 가중치 부호를 이용한 toy perturbation proxy다. 따라서 `Adversarial input` 조건은 실제 공격 절차 재현이 아니라 평가표를 안전하게 구성하기 위한 synthetic 조건이다.
 
-이 문헌은 개념 분석과 사례 중심 정리을 통해 기존 연구를 묶어 읽을 수 있게 한다. 본 보고서에서는 논문 제목, 프롬프트의 논문 패킷 정보, 로컬 PDF 존재 여부를 기준으로 요약했으며, 세부 실험값이나 DOI는 최종 원문 대조 단계에서 확인한다.
+## 5. 최종 제출 전 확인 항목
 
-## 6. 주요 결과
-
-해당 영역의 대표 문제와 연구 설계 기준을 제시한다. 수치 결과를 새로 만들지 않기 위해 본 요약에서는 정량값을 적지 않았고, 원문에서 직접 확인되는 항목만 최종 보고서에 반영하도록 남겨 둔다.
-
-## 7. 보안 관점 분석
-
-이 논문은 대적방어, XAI 공격면, robustness-accuracy-fairness trade-off을 이해하기 위한 배경 문헌으로 활용된다. 공격자의 능력, 방어자의 관측 가능성, 평가 데이터의 한계, 재현성 조건을 함께 정리해야 실제 보안 연구로 이어질 수 있다.
-
-## 8. 한계와 오픈문제
-
-원문 정밀 독해 전에는 세부 실험 설정, 데이터셋, DOI, 인용 관계를 확정할 수 없다. 또한 survey 성격의 문헌은 실제 재현 실험보다는 분류체계와 연구 공백 파악에 더 적합하므로, 기말 논문에서는 별도 평가 프로토콜로 보완해야 한다.
-
-## 9. 기말 논문에 반영할 부분
-
-P02는 신경망 검증/정형방법 및 대적방어/XAI/강건성 트레이드오프 연구에서 개념 정의, 위협 분류, 평가 지표 후보를 정리하는 근거로 반영한다. 특히 공격-방어-평가 관점을 연결하는 보안 분석 틀을 관련연구와 연구방법 장에 연결한다.
+- 강의계획서의 `Sen Zhou` 표기가 `Shuai Zhou`의 오기인지 확인한다.
+- ACM Computing Surveys article 번호와 권호를 공식 페이지에서 확인한다.
+- 로컬 Kui Ren PDF를 P02 지정 논문 원문처럼 인용하지 않는다.

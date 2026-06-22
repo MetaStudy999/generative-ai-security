@@ -1,50 +1,40 @@
-# 논문 요약
+# P04 논문 요약
 
-## 1. 서지정보
+## 1. 서지와 검증 상태
 
 | 항목 | 내용 |
 |---|---|
-| 논문 제목 | Adversarial Robustness of Neural Networks from Lipschitz Regularization: A Survey |
-| 저자 | Inaki Pérez et al. |
-| 학술지/학회 | ACM Computing Surveys |
-| 연도 | 2024 |
-| DOI/URL | 확인 필요 |
-| PDF 파일명 | 04_SUBSTITUTE_Finlay_et_al_2018_Lipschitz_Adversarial_Robustness.pdf |
-| 검증 상태 | 로컬 PDF가 대체 논문 파일명으로 보임, 프롬프트 지정 논문과 대체 여부 최종 확인 필요 |
+| 강의 지정 제목 | Adversarial Robustness of Neural Networks from Lipschitz Regularization: A Survey |
+| 강의 지정 저자 | Inaki Pérez et al. |
+| 공식 DOI 후보 | 확인 필요 |
+| 유사 공식 후보 | `10.1145/3648351`, "Adversarial Robustness of Neural Networks from the Perspective of Lipschitz Calculus: A Survey" |
+| 유사 후보 메타데이터 | Monty-Maximilian Zühlke and Daniel Kudenko, ACM Computing Surveys, Vol. 57, Issue 6, pp. 1-41, published 2025-02-10 |
+| 강의 표기와 차이 | 저자, 제목, 연도가 지정 P04와 일치하지 않아 DOI 확정 금지 |
+| 로컬 PDF | `04_SUBSTITUTE_Finlay_et_al_2018_Lipschitz_Adversarial_Robustness.pdf` |
+| 로컬 PDF 상태 | Finlay et al. 2018/2019 Lipschitz regularized DNN paper. 지정 논문 원문 아님 |
 
-## 2. 한 문장 요약
+주의: W12의 P04는 지정 논문과 로컬 PDF가 불일치한다. 현재 로컬 PDF는 Finlay et al. 2018 Lipschitz robustness 관련 대체 문헌이므로, 최종 제출 전 Inaki Pérez et al. 지정 논문 원문 PDF 또는 공식 출판 페이지를 확보해야 한다.
 
-> 이 논문은 Neural network verification, abstraction, formal methods, robustness proof의 핵심 원리와 적용 범위 문제를 문헌조사와 분류체계 정리 방법으로 다루며, 기말 연구의 배경 이론과 평가축을 기말 연구에 반영할 수 있게 해준다.
+## 2. 핵심 연구문제
 
-## 3. 연구문제
+P04는 Lipschitz regularization이 adversarial robustness를 어떻게 설명하는지 다루는 문헌 축이다[4]. 핵심은 입력 변화가 출력 변화로 얼마나 증폭될 수 있는지 bound로 제한하고, margin, certified radius, robust accuracy를 함께 해석하는 것이다.
 
-이 논문에서 기말 연구와 연결되는 질문은 신경망 검증/정형방법 및 대적방어/XAI/강건성 트레이드오프 영역에서 어떤 개념, 공격면, 평가 기준을 우선적으로 정리해야 하는가이다. 특히 신경망 검증의 기본 개념, 정형검증과 경험적 평가의 차이, Abstraction method와 대적공격과 대적방어, Certified robustness, Empirical robustness와 formal robustness의 차이가 서로 만나는 지점을 확인하는 데 초점을 둔다.
+## 3. W12에서의 역할
 
-## 4. 핵심 개념
+| 관점 | 요약 |
+|---|---|
+| AI 원리 | Lipschitz constant, margin, regularization, certified radius |
+| 보안 연결 | perturbation amplification, robustness overclaim |
+| 평가 지표 | robust accuracy, Lipschitz bound, certified rate |
+| 한계 | 지정 P04 공식 DOI는 확인 필요. 로컬 PDF는 Finlay 대체 문헌 |
+| 내 논문 활용 | toy certified rate proxy의 이론적 배경과 한계 설명 |
 
-| 개념 | 설명 | 기말 논문 연결 |
-|---|---|---|
-| 신경망 검증의 기본 개념 | 주차 AI 원리의 출발점이며 모델 또는 시스템을 이해하는 기본 단위이다. | 배경 이론 |
-| 정형검증과 경험적 평가의 차이 | 성능, 일반화, 효율 또는 신뢰성을 설명하는 보조 축이다. | 분석 기준 |
-| 대적공격과 대적방어 | 보안 위협을 식별하기 위한 대표 공격면이다. | 위협모형 |
-| Certified robustness | 방어와 평가 프로토콜을 설계할 때 비교해야 하는 요소이다. | 평가방법 |
+## 4. 실습 연결
 
-## 5. 방법론
+W12의 `certified_rate`는 `signed_margin - epsilon * ||w||_1 > 0` 형태의 선형 모델 bound proxy다. 이 값은 formal verifier가 발급한 DNN certificate가 아니며, Lipschitz/regularization 개념을 교육용으로 연결하기 위한 최소 지표다.
 
-이 문헌은 문헌조사와 분류체계 정리을 통해 기존 연구를 묶어 읽을 수 있게 한다. 본 보고서에서는 논문 제목, 프롬프트의 논문 패킷 정보, 로컬 PDF 존재 여부를 기준으로 요약했으며, 세부 실험값이나 DOI는 최종 원문 대조 단계에서 확인한다.
+## 5. 최종 제출 전 확인 항목
 
-## 6. 주요 결과
-
-핵심 개념, 공격면, 평가 기준, 향후 연구과제를 체계화한다. 수치 결과를 새로 만들지 않기 위해 본 요약에서는 정량값을 적지 않았고, 원문에서 직접 확인되는 항목만 최종 보고서에 반영하도록 남겨 둔다.
-
-## 7. 보안 관점 분석
-
-이 논문은 대적방어, XAI 공격면, robustness-accuracy-fairness trade-off을 이해하기 위한 배경 문헌으로 활용된다. 공격자의 능력, 방어자의 관측 가능성, 평가 데이터의 한계, 재현성 조건을 함께 정리해야 실제 보안 연구로 이어질 수 있다.
-
-## 8. 한계와 오픈문제
-
-원문 정밀 독해 전에는 세부 실험 설정, 데이터셋, DOI, 인용 관계를 확정할 수 없다. 또한 survey 성격의 문헌은 실제 재현 실험보다는 분류체계와 연구 공백 파악에 더 적합하므로, 기말 논문에서는 별도 평가 프로토콜로 보완해야 한다.
-
-## 9. 기말 논문에 반영할 부분
-
-P04는 신경망 검증/정형방법 및 대적방어/XAI/강건성 트레이드오프 연구에서 개념 정의, 위협 분류, 평가 지표 후보를 정리하는 근거로 반영한다. 특히 기말 연구의 배경 이론과 평가축을 관련연구와 연구방법 장에 연결한다.
+- Inaki Pérez et al. 지정 논문 공식 DOI를 재검색한다.
+- 유사 후보 DOI `10.1145/3648351`을 P04로 확정하지 않는다.
+- Finlay PDF는 대체 문헌으로만 관리한다.

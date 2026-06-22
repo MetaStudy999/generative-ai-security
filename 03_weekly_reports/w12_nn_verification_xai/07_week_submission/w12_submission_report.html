@@ -22,38 +22,42 @@
   <h1>W12 제출용 보고서</h1>
   <p>신경망 검증·정형방법 &amp; 대적방어·XAI·강건성 트레이드오프</p>
 
-  <h2>표지</h2>
+  <h2>0. 메타정보</h2>
   <table>
     <tr><th>항목</th><th>내용</th></tr>
     <tr><td>주차</td><td>W12</td></tr>
     <tr><td>작성일</td><td>2026-06-22</td></tr>
-    <tr><td>문서 상태</td><td>제출용 통합본</td></tr>
+    <tr><td>문서 상태</td><td>제출용 최종 초안. 최종 제출 확정 아님</td></tr>
     <tr><td>관련 산출물</td><td><code>03_weekly_reports/w12_nn_verification_xai/</code></td></tr>
-    <tr><td>실험 근거</td><td><code>04_experiment/outputs/run_log.md</code></td></tr>
+    <tr><td>실험 근거</td><td><code>04_experiment/outputs/run_log.md</code>, <code>metrics_summary.csv</code>, <code>results.json</code></td></tr>
   </table>
 
   <h2>초록</h2>
-  <p>본 보고서는 신경망 검증, abstraction, formal methods, robustness certificate를 AI 원리 관점에서 정리하고, 대적방어, XAI 공격면, robustness-accuracy-fairness trade-off를 보안 관점에서 분석한다. Synthetic toy 실험에서 clean model 기준 clean accuracy 0.818750, robust accuracy 0.543750, explanation stability 0.927782, certified rate 0.543750을 기록했다.</p>
+  <p>본 보고서는 신경망 검증, abstraction, formal methods, robustness certificate를 AI 원리 관점에서 정리하고, 대적방어, XAI 공격면, robustness-accuracy-fairness trade-off를 보안 관점에서 분석한다. 실습은 실제 시스템이나 개인정보 없이 synthetic binary classification 기반 안전 toy 실험으로 수행했으며, clean accuracy, robust accuracy, explanation stability, certified rate, fairness gap, verification cost를 함께 기록했다.</p>
   <p class="note">Certified rate는 toy 선형 모델의 bound proxy이며, 대규모 DNN의 완전한 formal verification 결과가 아니다.</p>
 
-  <h2>AI 원리와 보안 이슈</h2>
+  <h2>1. 한 문장 요약</h2>
+  <p>W12는 정확도 중심 평가에서 벗어나 신경망 검증, 대적 강건성, XAI 설명 안정성, 공정성, 검증 비용을 함께 보고하는 AI 보안 평가 주차이다.</p>
+
+  <h2>2. AI 원리와 보안 이슈</h2>
   <table>
     <tr><th>구분</th><th>핵심 내용</th></tr>
-    <tr><td>AI 원리 70%</td><td>신경망 검증, abstraction, reachability, Lipschitz regularization, robustness certificate, XAI 안정성</td></tr>
+    <tr><td>AI 원리 70%</td><td>신경망 검증, abstraction, reachability, Lipschitz regularization, robustness certificate, XAI stability</td></tr>
     <tr><td>보안 이슈 30%</td><td>Adversarial input, explanation manipulation, verification scalability failure, robustness-accuracy-fairness trade-off</td></tr>
   </table>
 
-  <h2>문헌 요약</h2>
+  <h2>3. 문헌 5편 요약</h2>
   <table>
     <tr><th>ID</th><th>문헌</th><th>상태</th><th>활용</th></tr>
-    <tr><td>P01</td><td>A Review of Abstraction Methods Toward Verifying Neural Networks</td><td>확인 필요, SUBSTITUTE</td><td>verification abstraction</td></tr>
-    <tr><td>P02</td><td>Adversarial Attacks and Defenses in Deep Learning</td><td>확인 필요</td><td>공격·방어 taxonomy</td></tr>
-    <tr><td>P03</td><td>Adversarial machine learning attacks against explainable artificial intelligence</td><td>확인 필요, SUBSTITUTE</td><td>XAI 공격면</td></tr>
-    <tr><td>P04</td><td>Adversarial Robustness of Neural Networks from Lipschitz Regularization</td><td>확인 필요, SUBSTITUTE</td><td>Lipschitz robustness</td></tr>
-    <tr><td>P05</td><td>The Triangular Trade-off between Robustness, Accuracy, and Fairness</td><td>확인 필요, SUBSTITUTE</td><td>trade-off 분석</td></tr>
+    <tr><td>P01</td><td>A Review of Abstraction Methods Toward Verifying Neural Networks</td><td>부분 검증, 로컬 PDF는 SUBSTITUTE</td><td>verification abstraction</td></tr>
+    <tr><td>P02</td><td>Adversarial Attacks and Defenses in Deep Learning</td><td>부분 검증, 로컬 PDF 대조 필요</td><td>공격·방어 taxonomy</td></tr>
+    <tr><td>P03</td><td>Adversarial Attacks in Explainable Machine Learning</td><td>부분 검증, 로컬 PDF는 SUBSTITUTE</td><td>XAI 공격면</td></tr>
+    <tr><td>P04</td><td>Adversarial Robustness of Neural Networks from Lipschitz Regularization</td><td>확인 필요, 유사 DOI만 확인</td><td>Lipschitz robustness</td></tr>
+    <tr><td>P05</td><td>The Triangular Trade-off between Robustness, Accuracy, and Fairness</td><td>확인 필요, 유사 DOI만 확인</td><td>trade-off 분석</td></tr>
   </table>
+  <p class="note">P01, P03, P04, P05는 지정 논문과 로컬 PDF가 불일치하거나 SUBSTITUTE 파일이다. 공개 저장소에 상용 학술 PDF를 포함하기 전 저작권과 공개 범위를 사람이 확인해야 한다.</p>
 
-  <h2>Research Track</h2>
+  <h2>4. Research Track</h2>
   <table>
     <tr><th>항목</th><th>내용</th></tr>
     <tr><td>연구문제</td><td>검증, XAI 안정성, robustness-accuracy-fairness trade-off를 하나의 보안 평가표로 보고하는 방법</td></tr>
@@ -63,17 +67,33 @@
     <tr><td>제외 범위</td><td>실제 안전중요 시스템 공격, 운영 모델 침해, 개인정보 기반 평가</td></tr>
   </table>
 
-  <h2>실험 결과</h2>
+  <h2>5. 실험 결과</h2>
   <table>
     <tr><th>조건</th><th>Clean Acc.</th><th>Robust Acc.</th><th>Explanation Stability</th><th>Certified Rate</th><th>Fairness Gap</th><th>Cost ms</th></tr>
-    <tr><td>Clean model</td><td>0.818750</td><td>0.543750</td><td>0.927782</td><td>0.543750</td><td>0.039141</td><td>0.184215</td></tr>
-    <tr><td>Adversarial input</td><td>0.818750</td><td>0.543750</td><td>0.862321</td><td>0.340625</td><td>0.039141</td><td>0.176522</td></tr>
-    <tr><td>Robust defense</td><td>0.815625</td><td>0.543750</td><td>0.927152</td><td>0.543750</td><td>0.044823</td><td>0.151595</td></tr>
-    <tr><td>XAI stability check</td><td>0.815625</td><td>0.696875</td><td>0.976252</td><td>0.696875</td><td>0.044823</td><td>0.148367</td></tr>
+    <tr><td>Clean model</td><td>0.818750</td><td>0.543750</td><td>0.927782</td><td>0.543750</td><td>0.039141</td><td>0.223524</td></tr>
+    <tr><td>Adversarial input</td><td>0.818750</td><td>0.543750</td><td>0.862321</td><td>0.340625</td><td>0.039141</td><td>0.190324</td></tr>
+    <tr><td>Robust defense</td><td>0.815625</td><td>0.543750</td><td>0.927152</td><td>0.543750</td><td>0.044823</td><td>0.191790</td></tr>
+    <tr><td>XAI stability check</td><td>0.815625</td><td>0.696875</td><td>0.976252</td><td>0.696875</td><td>0.044823</td><td>0.193048</td></tr>
+  </table>
+  <p>그림 1. W12 평가 흐름: literature review -> threat model -> synthetic binary classification toy experiment -> multi-metric report -> final paper bridge.</p>
+
+  <h2>6. KCI/SCI 전환과 기말논문 연결</h2>
+  <table>
+    <tr><th>구분</th><th>초안</th></tr>
+    <tr><td>KCI</td><td>신경망 검증과 XAI 안정성을 고려한 AI 보안 다중지표 평가 프레임워크</td></tr>
+    <tr><td>SCI</td><td>A Multi-Metric Security Evaluation Framework for Neural Network Verification and XAI Stability</td></tr>
+    <tr><td>한계</td><td>toy certified rate proxy이며 실제 대규모 DNN formal verification certificate가 아님</td></tr>
   </table>
 
-  <h2>기말논문 연결과 AI 활용 고지</h2>
-  <p>W12는 기말논문의 관련연구, 위협모형, 평가방법, 보안적 함의에 연결된다. Codex를 사용해 폴더 점검, 실험 코드 작성과 실행, 보고서 구조화를 수행했으며 정량값은 <code>outputs/</code> 산출물과 일치하는 값만 반영했다.</p>
+  <h2>7. AI 활용 고지와 자기 점검</h2>
+  <p>Codex와 ChatGPT를 사용해 폴더 점검, DOI/URL 검증 보조, SUBSTITUTE PDF 표시, toy 실험 코드 작성, 보고서·발표자료·KCI/SCI 섹션 보완을 수행했다. 최종 제출자는 DOI, 저자, 학술지, 실험 수치, PDF 저작권 상태를 직접 확인해야 한다.</p>
+  <table>
+    <tr><th>점검 항목</th><th>상태</th></tr>
+    <tr><td>16장 구조</td><td>Markdown 제출본에 반영</td></tr>
+    <tr><td>실험 수치 일치</td><td>최신 outputs 기준</td></tr>
+    <tr><td>DOI/PDF 검증</td><td>부분 완료, 사람 재확인 필요</td></tr>
+    <tr><td>공개 PDF 저작권 위험</td><td>확인 필요</td></tr>
+  </table>
 </main>
 </body>
 </html>

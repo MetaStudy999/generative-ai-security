@@ -2,20 +2,23 @@
 
 | 항목 | 내용 |
 |---|---|
-| 대상 시스템 | 신경망 검증/정형방법 및 대적방어/XAI/강건성 트레이드오프를 사용하는 ML/AI 시스템 |
-| 보호 자산 | 학습데이터, 모델 파라미터, 입력 컨텍스트, 출력 결과, 평가 로그, 사용자 정보 |
-| 공격자 | 외부 공격자, 악의적 데이터 제공자, 내부자, API 남용자, 공급망 참여자 중 주차 주제에 해당하는 행위자 |
-| 공격자의 지식 | White-box, Gray-box, Black-box 조건을 구분 |
-| 공격자의 능력 | 대적공격과 대적방어, Certified robustness, Empirical robustness와 formal robustness의 차이, XAI 공격, Explanation manipulation |
-| 공격 경로 | 데이터 수집, 학습, 평가, 배포, 추론, 모니터링, 재학습 단계 |
-| 공격 성공 조건 | 성능 저하, 오분류, 민감정보 노출, 평가 왜곡, 보안 정책 우회 |
-| 방어자 가정 | 입력/데이터 검증, 로그 기록, 설정 파일 보존, 재현 가능한 평가 실행 가능 |
-| 제외 범위 | 실제 서비스 침해, 실제 개인정보 사용, 무단 API 대량 질의, 악용 가능한 공격 절차 |
+| 대상 시스템 | deep learning classifier, XAI explanation module, neural network verification pipeline |
+| 보호 자산 | model prediction, robustness certificate, explanation output, fairness metric, verification log |
+| 공격자 지식 | white-box, gray-box, black-box를 구분하되 W12 실험은 실제 공격 수행이 아니라 toy proxy만 사용 |
+| 공격자 능력 | input perturbation, explanation manipulation, evaluation setting manipulation |
+| 공격 경로 | 입력 데이터, 설명 모듈, 검증 설정, 평가 로그, 보고서 해석 |
+| 공격 성공 조건 | 예측 변화, 설명 변화, robustness 과장, fairness gap 증가, 검증 누락 |
+| 방어/점검 | robust training proxy, XAI stability check, bound-based certified-rate proxy, fairness-gap reporting, reproducibility evidence |
+| 제외 범위 | actual safety-critical system attack, production model compromise, personal data evaluation, operational adversarial testing, unauthorized probing |
 
 ## 연구문제 후보
 
-RQ1. 신경망 검증/정형방법 및 대적방어/XAI/강건성 트레이드오프 생명주기에서 가장 우선적으로 보증해야 할 자산은 무엇인가?
+RQ1. AI 보안 평가에서 clean accuracy, robust accuracy, certified rate, explanation stability를 함께 보고해야 하는 이유는 무엇인가?
 
-RQ2. 대적공격과 대적방어, Certified robustness는 어느 단계에서 발생하며 어떤 지표로 측정할 수 있는가?
+RQ2. Robust defense 조건은 clean accuracy, robust accuracy, certified rate, fairness gap에 어떤 trade-off를 만드는가?
 
-RQ3. 성능, 보안성, 재현성을 함께 평가하기 위한 최소 실험 프로토콜은 어떻게 설계할 수 있는가?
+RQ3. XAI stability check는 모델의 accountability 평가에 어떤 추가 정보를 제공하는가?
+
+## 해석 주의
+
+W12 실험의 adversarial input은 실제 공격 절차가 아니다. `certified_rate`도 toy 선형 모델의 bound proxy이며 formal DNN verification으로 해석하지 않는다.

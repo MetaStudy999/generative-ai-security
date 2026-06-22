@@ -9,12 +9,12 @@
     body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #111820; color: #f7fafc; }
     .slide { display: none; min-height: 100vh; box-sizing: border-box; padding: 8vh 8vw; align-items: center; }
     .slide.active { display: flex; }
-    .content { max-width: 1040px; width: 100%; }
+    .content { max-width: 1120px; width: 100%; }
     h1 { font-size: clamp(2.3rem, 5vw, 4.8rem); line-height: 1.08; margin: 0 0 1.2rem; }
     h2 { font-size: clamp(2rem, 4vw, 3.4rem); line-height: 1.12; margin: 0 0 1.4rem; }
     p, li { font-size: clamp(1.15rem, 2vw, 1.75rem); }
-    table { width: 100%; border-collapse: collapse; font-size: clamp(0.92rem, 1.5vw, 1.18rem); background: #182330; }
-    th, td { border: 1px solid #385064; padding: 0.6rem 0.72rem; }
+    table { width: 100%; border-collapse: collapse; font-size: clamp(0.82rem, 1.25vw, 1.08rem); background: #182330; }
+    th, td { border: 1px solid #385064; padding: 0.5rem 0.6rem; }
     th { background: #223247; text-align: left; }
     .muted { color: #b9c6d4; }
     .progress { position: fixed; right: 22px; bottom: 18px; color: #b9c6d4; font-size: 0.95rem; }
@@ -23,12 +23,12 @@
 <body>
   <section class="slide active"><div class="content"><h1>W12 신경망 검증·XAI·강건성 Trade-off</h1><p class="muted">안전한 AI 평가는 정확도 하나로 끝나지 않는다.</p></div></section>
   <section class="slide"><div class="content"><h2>오늘의 질문</h2><ul><li>모델이 clean test에서 잘 맞으면 충분한가?</li><li>작은 입력 변화에도 예측과 설명이 안정적인가?</li><li>검증 비용과 공정성 영향까지 같이 보고했는가?</li></ul></div></section>
-  <section class="slide"><div class="content"><h2>문헌 5편의 역할</h2><table><tr><th>문헌</th><th>발표 역할</th></tr><tr><td>P01</td><td>verification abstraction</td></tr><tr><td>P02</td><td>adversarial attack/defense</td></tr><tr><td>P03</td><td>adversarial XAI</td></tr><tr><td>P04</td><td>Lipschitz robustness</td></tr><tr><td>P05</td><td>robustness-accuracy-fairness trade-off</td></tr></table></div></section>
+  <section class="slide"><div class="content"><h2>문헌 5편의 역할</h2><table><tr><th>문헌</th><th>발표 역할</th></tr><tr><td>P01</td><td>verification abstraction, 로컬 PDF는 SUBSTITUTE</td></tr><tr><td>P02</td><td>adversarial attack/defense, DOI/원문 대조 필요</td></tr><tr><td>P03</td><td>adversarial XAI, 로컬 PDF는 SUBSTITUTE</td></tr><tr><td>P04</td><td>Lipschitz robustness, 지정 DOI 확인 필요</td></tr><tr><td>P05</td><td>robustness-accuracy-fairness trade-off, 지정 DOI 확인 필요</td></tr></table></div></section>
   <section class="slide"><div class="content"><h2>AI 원리 70%</h2><ul><li>Neural network verification</li><li>Abstraction and reachability</li><li>Formal robustness certificate</li><li>Lipschitz regularization</li><li>XAI explanation stability</li></ul></div></section>
   <section class="slide"><div class="content"><h2>보안 이슈 30%</h2><ul><li>Adversarial input은 예측 무결성을 흔든다.</li><li>Explanation manipulation은 검토자 판단을 흔든다.</li><li>Verification scalability failure는 검증 생략으로 이어진다.</li><li>Robustness, accuracy, fairness는 trade-off를 만들 수 있다.</li></ul></div></section>
   <section class="slide"><div class="content"><h2>Toy 실험 설계</h2><table><tr><th>항목</th><th>설정</th></tr><tr><td>데이터</td><td>synthetic binary classification</td></tr><tr><td>모델</td><td>toy logistic classifier</td></tr><tr><td>Seed</td><td>42</td></tr><tr><td>Perturbation</td><td>L-infinity epsilon 0.35 proxy</td></tr><tr><td>제외</td><td>실제 시스템 공격, 개인정보</td></tr></table></div></section>
-  <section class="slide"><div class="content"><h2>실험 결과</h2><table><tr><th>조건</th><th>Clean</th><th>Robust</th><th>XAI</th><th>Certified</th></tr><tr><td>Clean model</td><td>0.818750</td><td>0.543750</td><td>0.927782</td><td>0.543750</td></tr><tr><td>Adversarial input</td><td>0.818750</td><td>0.543750</td><td>0.862321</td><td>0.340625</td></tr><tr><td>Robust defense</td><td>0.815625</td><td>0.543750</td><td>0.927152</td><td>0.543750</td></tr><tr><td>XAI stability check</td><td>0.815625</td><td>0.696875</td><td>0.976252</td><td>0.696875</td></tr></table></div></section>
-  <section class="slide"><div class="content"><h2>해석</h2><p>Clean accuracy가 높아도 robust accuracy는 낮아질 수 있다.</p><p>Certified rate와 explanation stability는 보증의 일부만 보여준다.</p></div></section>
+  <section class="slide"><div class="content"><h2>실험 결과</h2><table><tr><th>조건</th><th>Clean</th><th>Robust</th><th>XAI</th><th>Certified</th><th>Fairness</th><th>Cost ms</th></tr><tr><td>Clean model</td><td>0.818750</td><td>0.543750</td><td>0.927782</td><td>0.543750</td><td>0.039141</td><td>0.223524</td></tr><tr><td>Adversarial input</td><td>0.818750</td><td>0.543750</td><td>0.862321</td><td>0.340625</td><td>0.039141</td><td>0.190324</td></tr><tr><td>Robust defense</td><td>0.815625</td><td>0.543750</td><td>0.927152</td><td>0.543750</td><td>0.044823</td><td>0.191790</td></tr><tr><td>XAI stability check</td><td>0.815625</td><td>0.696875</td><td>0.976252</td><td>0.696875</td><td>0.044823</td><td>0.193048</td></tr></table></div></section>
+  <section class="slide"><div class="content"><h2>해석</h2><p>Clean accuracy가 높아도 robust accuracy는 낮아질 수 있다.</p><p>Certified rate는 toy 선형 모델의 bound proxy이며 실제 DNN formal verification certificate가 아니다.</p><p>공개 PDF와 DOI/원문 불일치는 최종 제출 전 사람이 재확인해야 한다.</p></div></section>
   <section class="slide"><div class="content"><h2>기말논문 연결</h2><ul><li>성능·강건성·설명안정성·공정성·재현성 통합 평가표</li><li>위협모형과 평가 프로토콜의 연결</li><li>실행 로그 기반 연구윤리와 재현성 관리</li></ul></div></section>
   <section class="slide"><div class="content"><h2>결론</h2><p>W12의 핵심은 정확도 중심 보고에서 보증 가능한 다중지표 보고로 관점을 바꾸는 것이다.</p></div></section>
   <div class="progress" id="progress">1 / 10</div>

@@ -15,6 +15,7 @@
     th { background: #e9eff5; text-align: left; }
     code { background: #edf2f7; padding: 0.1rem 0.28rem; border-radius: 4px; }
     .callout { background: #eaf7f0; border-left: 4px solid #2f9e62; padding: 0.8rem 1rem; }
+    .warn { background: #fff7df; border-left: 4px solid #d89d18; padding: 0.8rem 1rem; }
   </style>
 </head>
 <body>
@@ -23,17 +24,25 @@
   <p>신경망 검증·정형방법 &amp; 대적방어·XAI·강건성 트레이드오프</p>
   <div class="callout">핵심 메시지: 안전한 AI 평가는 정확도 하나가 아니라 강건성, 설명 안정성, 공정성, 검증 비용, 재현성을 함께 보고해야 한다.</div>
 
+  <h2>발표 메타정보</h2>
+  <table>
+    <tr><th>항목</th><th>내용</th></tr>
+    <tr><td>발표 시간</td><td>8-10분</td></tr>
+    <tr><td>실험 근거</td><td><code>../04_experiment/outputs/run_log.md</code></td></tr>
+    <tr><td>문서 상태</td><td>발표용 최종 초안. 최종 제출 확정 아님</td></tr>
+  </table>
+
   <h2>발표 흐름</h2>
-  <p>문제 제기, 문헌 역할, AI 원리, 보안 이슈, toy 실험 결과, 기말논문 연결 순서로 8-10분 발표를 구성한다.</p>
+  <p>문제 제기, 문헌 역할, AI 원리, 보안 이슈, toy 실험 결과, 기말논문 연결 순서로 발표를 구성한다.</p>
 
   <h2>문헌 5편의 역할</h2>
   <table>
     <tr><th>ID</th><th>역할</th></tr>
-    <tr><td>P01</td><td>Abstraction 기반 신경망 검증의 배경</td></tr>
-    <tr><td>P02</td><td>대적공격과 방어 taxonomy</td></tr>
-    <tr><td>P03</td><td>XAI 설명 결과의 공격면</td></tr>
-    <tr><td>P04</td><td>Lipschitz regularization과 robustness certificate</td></tr>
-    <tr><td>P05</td><td>Robustness, accuracy, fairness trade-off</td></tr>
+    <tr><td>P01</td><td>Abstraction 기반 신경망 검증의 배경. 로컬 PDF는 SUBSTITUTE</td></tr>
+    <tr><td>P02</td><td>대적공격과 방어 taxonomy. DOI/원문 대조 필요</td></tr>
+    <tr><td>P03</td><td>XAI 설명 결과의 공격면. 로컬 PDF는 SUBSTITUTE</td></tr>
+    <tr><td>P04</td><td>Lipschitz regularization과 robustness certificate. 지정 DOI 확인 필요</td></tr>
+    <tr><td>P05</td><td>Robustness, accuracy, fairness trade-off. 지정 DOI 확인 필요</td></tr>
   </table>
 
   <h2>AI 원리와 보안 이슈</h2>
@@ -41,15 +50,16 @@
 
   <h2>실험 결과</h2>
   <table>
-    <tr><th>조건</th><th>Clean Acc.</th><th>Robust Acc.</th><th>XAI Stability</th><th>Certified</th></tr>
-    <tr><td>Clean model</td><td>0.818750</td><td>0.543750</td><td>0.927782</td><td>0.543750</td></tr>
-    <tr><td>Adversarial input</td><td>0.818750</td><td>0.543750</td><td>0.862321</td><td>0.340625</td></tr>
-    <tr><td>Robust defense</td><td>0.815625</td><td>0.543750</td><td>0.927152</td><td>0.543750</td></tr>
-    <tr><td>XAI stability check</td><td>0.815625</td><td>0.696875</td><td>0.976252</td><td>0.696875</td></tr>
+    <tr><th>조건</th><th>Clean</th><th>Robust</th><th>XAI</th><th>Certified</th><th>Fairness</th><th>Cost ms</th></tr>
+    <tr><td>Clean model</td><td>0.818750</td><td>0.543750</td><td>0.927782</td><td>0.543750</td><td>0.039141</td><td>0.223524</td></tr>
+    <tr><td>Adversarial input</td><td>0.818750</td><td>0.543750</td><td>0.862321</td><td>0.340625</td><td>0.039141</td><td>0.190324</td></tr>
+    <tr><td>Robust defense</td><td>0.815625</td><td>0.543750</td><td>0.927152</td><td>0.543750</td><td>0.044823</td><td>0.191790</td></tr>
+    <tr><td>XAI stability check</td><td>0.815625</td><td>0.696875</td><td>0.976252</td><td>0.696875</td><td>0.044823</td><td>0.193048</td></tr>
   </table>
 
   <h2>해석과 한계</h2>
-  <p>Clean accuracy가 높아도 robust accuracy는 낮아질 수 있다. Certified rate는 선형 toy 모델의 bound proxy이며 대규모 DNN 검증 결과가 아니다.</p>
+  <p>Clean accuracy가 높아도 robust accuracy는 낮아질 수 있다. Certified rate는 synthetic binary classification 기반 toy 선형 모델의 bound proxy이며 대규모 DNN 검증 결과가 아니다.</p>
+  <div class="warn">P01, P03, P04, P05는 로컬 PDF가 지정 논문과 다르거나 SUBSTITUTE 상태다. P02도 최종 제출 전 공식 출판 페이지와 원문 PDF를 사람이 재확인해야 한다. 공개 저장소에 학술 PDF를 포함하기 전 저작권과 공개 범위를 별도로 점검한다.</div>
 
   <h2>예상 질문</h2>
   <table>

@@ -1,16 +1,18 @@
 # 평가방법
 
-| 평가 항목 | 지표 | 측정 방법 | 필요한 데이터 | W12 실행 상태 |
-|---|---|---|---|---|
-| Clean Performance | Clean Accuracy | 정상 조건에서 기준 모델 평가 | synthetic test data | 완료, 0.818750 |
-| Robust Performance | Robust Accuracy | perturbation 조건에서 정확도 측정 | perturbed test data | 완료, 0.543750 |
-| Certified Robustness | Certified Rate / bound margin | 선형 모델 L-infinity bound proxy | model weights, specification | 완료, 0.543750 |
-| Explanation Stability | Attribution cosine similarity | 입력 변조 전후 feature attribution 비교 | clean/perturbed samples | 완료, 0.927782 |
-| Fairness Impact | Group accuracy gap | synthetic group별 accuracy gap | group-labeled synthetic data | 완료, 0.039141 |
-| Verification Cost | Runtime ms | bound 계산 시간 측정 | verification logs | 완료, 0.184215 ms |
-| Reproducibility | Seed/config/log completeness | seed, config, Docker, 결과표 보존 여부 점검 | 실행 로그 | 완료 |
-| Human Review | 검토 완료 여부 | 원문, DOI, 수치, 인용을 사람이 재검토 | 체크리스트 | DOI/원문 대조 남음 |
+| 평가 항목 | 지표 | 측정 방법 | W12 outputs 기준 상태 |
+|---|---|---|---|
+| Clean Performance | Clean Accuracy | 정상 synthetic test data에서 기준 모델 평가 | Clean model 0.818750 |
+| Robust Performance | Robust Accuracy | toy perturbation proxy 조건에서 정확도 측정 | Clean model 0.543750 |
+| Certified Robustness Proxy | Certified Rate / mean bound margin | 선형 모델 margin bound proxy | Clean model 0.543750, mean bound margin 0.194462 |
+| Explanation Stability | Attribution cosine similarity | 입력 변화 전후 feature attribution 비교 | Clean model 0.927782 |
+| Fairness Impact | Group accuracy gap | synthetic group별 accuracy gap | Clean model 0.039141 |
+| Verification Cost | Runtime ms | bound proxy 계산 시간 측정 | Clean model 0.223524 ms |
+| Reproducibility | Seed/config/log completeness | seed, config, Docker, CSV/JSON/run_log 보존 | 완료 |
+| Human Review | 원문·DOI·인용 검토 | 출판사/DOI/로컬 PDF 대조 | P01~P05 일부 확인 필요 |
 
 ## 실행 전제와 해석 범위
 
-실험 결과는 `04_experiment/outputs/run_log.md`, `metrics_summary.csv`, `results.json`이 생성된 뒤에만 보고서에 반영한다. W12의 정량값은 synthetic toy classification에서 산출한 교육용 결과이며, certified rate는 대규모 DNN의 완전한 formal verification 결과가 아니라 선형 모델 bound proxy다.
+실험 결과는 `04_experiment/outputs/metrics_summary.csv`, `outputs/results.json`, `outputs/run_log.md`가 생성된 뒤에만 보고서에 반영한다. W12의 정량값은 synthetic binary classification 기반 안전 toy 실험에서 산출한 교육용 결과이며, certified rate는 대규모 DNN의 완전한 formal verification 결과가 아니라 선형 모델 bound proxy다.
+
+이 결과는 synthetic binary classification 기반 toy 실험의 평가 형식 검증용 수치이며, 실제 대규모 DNN formal verification, 실제 안전중요 시스템 보증, 실제 운영 모델의 강건성 또는 XAI 안정성으로 일반화하지 않는다.

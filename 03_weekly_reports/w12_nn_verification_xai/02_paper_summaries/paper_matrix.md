@@ -1,27 +1,19 @@
 # W12 논문 5편 비교표
 
-| 논문 | 연구문제 | 핵심 방법 | 데이터/실험 | 보안 위협 | 평가 지표 | 한계 | 내 논문 활용 |
-|---|---|---|---|---|---|---|---|
-| P01 | Neural network verification, abstraction, formal methods, robustness proof의 핵심 원리와 적용 범위 | 문헌조사와 분류체계 정리 | 문헌조사 중심, 세부 실험값 대조 필요 | 대적공격과 대적방어 | 개념 분류, 위협 범위, 평가축 | 원문 세부 수치 확인 전 | 기말 연구의 배경 이론과 평가축 |
-| P02 | 대적방어, XAI 공격면, robustness-accuracy-fairness trade-off와 관련된 위협 분류 | 개념 분석과 사례 중심 정리 | 문헌조사 중심, 세부 실험값 대조 필요 | 대적공격과 대적방어 | 개념 분류, 위협 범위, 평가축 | 원문 세부 수치 확인 전 | 공격-방어-평가 관점을 연결하는 보안 분석 틀 |
-| P03 | 대적방어, XAI 공격면, robustness-accuracy-fairness trade-off와 관련된 위협 분류 | 문헌조사와 분류체계 정리 | 문헌조사 중심, 세부 실험값 대조 필요 | 대적공격과 대적방어 | 개념 분류, 위협 범위, 평가축 | 원문 세부 수치 확인 전 | 공격-방어-평가 관점을 연결하는 보안 분석 틀 |
-| P04 | Neural network verification, abstraction, formal methods, robustness proof의 핵심 원리와 적용 범위 | 문헌조사와 분류체계 정리 | 문헌조사 중심, 세부 실험값 대조 필요 | 대적공격과 대적방어 | 개념 분류, 위협 범위, 평가축 | 원문 세부 수치 확인 전 | 기말 연구의 배경 이론과 평가축 |
-| P05 | Neural network verification, abstraction, formal methods, robustness proof의 핵심 원리와 적용 범위 | 개념 분석과 사례 중심 정리 | 문헌조사 중심, 세부 실험값 대조 필요 | 대적공격과 대적방어 | 개념 분류, 위협 범위, 평가축 | 원문 세부 수치 확인 전 | 기말 연구의 배경 이론과 평가축 |
+| 논문 | 연구문제 | 핵심 방법 | 데이터/실험 | AI 원리 기여 | 보안 위협 연결 | 평가 지표 | 한계 | 내 논문 활용 |
+|---|---|---|---|---|---|---|---|---|
+| P01 | 신경망 검증에서 abstraction method는 어떤 역할을 하는가 | abstraction, reachability, bound propagation, formal specification survey | 지정 논문 원문 확인 필요, 현재 로컬 PDF는 Meng et al. 2022 대체 문헌 | empirical evaluation과 formal verification 차이 설명 | 검증되지 않은 robust claim, scalability failure | certified robustness, verification cost, specification satisfaction | `SUBSTITUTE` PDF 상태, 강의 표기 매체와 공식 DOI 메타데이터 충돌 | verification pipeline과 formal-bound 개념 배경 |
+| P02 | Deep learning 대적공격과 방어는 어떻게 분류되는가 | adversarial attack/defense taxonomy | 지정 논문과 로컬 Ren et al. 2020 PDF 동일 여부 확인 필요 | adversarial example, perturbation budget, robust training 개념 | prediction integrity attack, adaptive attack | clean accuracy, robust accuracy, ASR, defense success | 저자 Sen/Shuai, subtitle, 권호/DOI 대조 필요 | 공격·방어 평가축의 보안 근거 |
+| P03 | XAI 설명은 대적 조작에 얼마나 취약한가 | adversarial XAI survey, explanation manipulation taxonomy | 지정 논문 원문 확인 필요, 현재 로컬 PDF는 Baniecki/Biecek 대체 문헌 | feature attribution, saliency, explanation stability 개념 | misleading explanation, accountability failure | explanation stability, attribution similarity, explanation robustness | `SUBSTITUTE` PDF 상태, 공식 published title과 강의 표기 차이 | XAI stability와 accountability 지표 |
+| P04 | Lipschitz regularization은 adversarial robustness를 어떻게 설명하는가 | Lipschitz bound, regularization, robustness survey | 지정 논문 원문 확인 필요, 현재 로컬 PDF는 Finlay et al. 대체 문헌 | Lipschitz constant, margin, certified radius 개념 | perturbation amplification, robustness overclaim | robust accuracy, Lipschitz bound, certified rate | `SUBSTITUTE` PDF 상태, Inaki Pérez 지정 DOI 미확인 | toy certified rate proxy의 이론 배경 |
+| P05 | Robustness, accuracy, fairness는 어떤 trade-off를 갖는가 | triangular trade-off analysis | 지정 논문 원문 확인 필요, 현재 로컬 PDF는 Singh et al. 대체 문헌 | multi-objective evaluation 관점 | robustness 개선이 fairness/accuracy에 미치는 영향 | clean accuracy, robust accuracy, fairness gap | `SUBSTITUTE` PDF 상태, Chih-Hsiang Cheng 지정 DOI 미확인 | multi-metric 보안 평가표의 근거 |
 
 ## 종합 비교
 
-### 1. 공통적으로 다루는 문제
+1. P01은 신경망 검증과 abstraction 기반 formal method 문헌 축이다.
+2. P02는 adversarial attack/defense taxonomy 문헌 축이다.
+3. P03은 adversarial XAI와 explanation manipulation 문헌 축이다.
+4. P04는 Lipschitz regularization과 certified robustness 문헌 축이다.
+5. P05는 robustness-accuracy-fairness trade-off 문헌 축이다.
 
-다섯 편은 모두 신경망 검증/정형방법 및 대적방어/XAI/강건성 트레이드오프를 이해하기 위한 핵심 원리, 적용 범위, 평가 기준을 제공한다. AI 원리 측면에서는 신경망 검증의 기본 개념, 정형검증과 경험적 평가의 차이, Abstraction method, Reachability analysis가 반복적으로 등장하고, 보안 측면에서는 대적공격과 대적방어, Certified robustness, Empirical robustness와 formal robustness의 차이, XAI 공격가 공통 축으로 묶인다.
-
-### 2. 논문 간 차이점
-
-AI 원리 중심 논문은 모델 구조와 학습/평가 원리를 설명하는 데 강하고, 보안 중심 논문은 공격자 능력, 방어 방법, 실패 조건을 더 직접적으로 다룬다. 따라서 기말 논문에서는 두 축을 분리하지 않고 생명주기 기반 평가표로 통합하는 편이 적절하다.
-
-### 3. 아직 해결되지 않은 문제
-
-원문별 데이터셋, 실험 설정, DOI/URL 검증이 남아 있다. 또한 survey 문헌의 분류체계가 실제 재현 실험과 어떻게 연결되는지는 별도 프로토콜로 보완해야 한다.
-
-### 4. 기말 논문 주제로 발전 가능한 연결부
-
-W12는 신경망 검증/정형방법 및 대적방어/XAI/강건성 트레이드오프를 대상으로 한 위협모형, 평가방법, 재현성 체크리스트를 만들기 위한 기반 주차로 활용할 수 있다.
+W12의 핵심 연결부는 clean accuracy, robust accuracy, explanation stability, certified rate, fairness gap, verification cost를 함께 보고하는 것이다. `certified rate`는 현재 toy 선형 모델의 bound proxy이며 실제 DNN formal verification certificate가 아니다. 또한 `SUBSTITUTE` PDF는 지정 논문과 구분하여 관리해야 하며, DOI/URL과 원문 PDF가 최종 확인되기 전까지 지정 논문 원문처럼 인용하지 않는다.

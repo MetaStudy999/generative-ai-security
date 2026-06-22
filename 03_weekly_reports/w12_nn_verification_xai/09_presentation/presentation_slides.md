@@ -16,11 +16,11 @@
 
 | 문헌 | 발표 역할 |
 |---|---|
-| P01 | verification abstraction |
-| P02 | adversarial attack/defense |
-| P03 | adversarial XAI |
-| P04 | Lipschitz robustness |
-| P05 | robustness-accuracy-fairness trade-off |
+| P01 | verification abstraction, 로컬 PDF는 SUBSTITUTE |
+| P02 | adversarial attack/defense, DOI/원문 대조 필요 |
+| P03 | adversarial XAI, 로컬 PDF는 SUBSTITUTE |
+| P04 | Lipschitz robustness, 지정 DOI 확인 필요 |
+| P05 | robustness-accuracy-fairness trade-off, 지정 DOI 확인 필요 |
 
 ---
 
@@ -57,12 +57,12 @@
 
 ## 실험 결과
 
-| 조건 | Clean Acc. | Robust Acc. | XAI Stability | Certified |
-|---|---:|---:|---:|---:|
-| Clean model | 0.818750 | 0.543750 | 0.927782 | 0.543750 |
-| Adversarial input | 0.818750 | 0.543750 | 0.862321 | 0.340625 |
-| Robust defense | 0.815625 | 0.543750 | 0.927152 | 0.543750 |
-| XAI stability check | 0.815625 | 0.696875 | 0.976252 | 0.696875 |
+| 조건 | Clean | Robust | XAI | Certified | Fairness | Cost ms |
+|---|---:|---:|---:|---:|---:|---:|
+| Clean model | 0.818750 | 0.543750 | 0.927782 | 0.543750 | 0.039141 | 0.223524 |
+| Adversarial input | 0.818750 | 0.543750 | 0.862321 | 0.340625 | 0.039141 | 0.190324 |
+| Robust defense | 0.815625 | 0.543750 | 0.927152 | 0.543750 | 0.044823 | 0.191790 |
+| XAI stability check | 0.815625 | 0.696875 | 0.976252 | 0.696875 | 0.044823 | 0.193048 |
 
 ---
 
@@ -70,7 +70,9 @@
 
 Clean accuracy가 높아도 robust accuracy는 낮아질 수 있다.
 
-Certified rate와 explanation stability는 보증의 일부만 보여준다.
+Certified rate는 toy 선형 모델의 bound proxy이며 실제 DNN formal verification certificate가 아니다.
+
+공개 PDF와 DOI/원문 불일치는 최종 제출 전 사람이 재확인해야 한다.
 
 ---
 

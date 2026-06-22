@@ -145,12 +145,19 @@ def fmt(value: Any) -> str:
     return str(value)
 
 
-def generate_dataset(count: int, feature_count: int, noise: float, rng: random.Random) -> list[Sample]:
+def generate_dataset(
+    count: int,
+    feature_count: int,
+    noise: float,
+    fairness_group_feature: int,
+    rng: random.Random,
+) -> list[Sample]:
     true_weights = [1.15, -0.80, 0.55, -0.35][:feature_count]
+    group_index = max(0, min(fairness_group_feature, feature_count - 1))
     samples: list[Sample] = []
     for _ in range(count):
         features = [rng.gauss(0.0, 1.0) for _ in range(feature_count)]
-        group = 1 if features[2 if feature_count > 2 else 0] >= 0 else 0
+        group = 1 if features[group_index] >= 0 else 0
         latent = dot(true_weights, features) + 0.25 * group + rng.gauss(0.0, noise)
         label = 1 if latent >= 0 else 0
         samples.append((features, label, group))
@@ -347,7 +354,7 @@ def write_outputs(config: dict[str, Any], rows: list[dict[str, Any]], output_dir
             "## 해석 주의",
             "",
             "- 이 결과는 synthetic toy classification에서 얻은 교육용 수치다.",
-            "- certified rate는 선형 로지스틱 모델의 L-infinity bound proxy이며, 대규모 DNN의 완전한 formal verification 결과가 아니다.",
+            "- certified rate는 synthetic binary classification 기반 toy logistic classifier의 L-infinity bound proxy이며, 대규모 DNN의 완전한 formal verification 결과가 아니다.",
             "- 실제 안전중요 시스템 공격, 운영 모델 침해, 개인정보 기반 평가는 수행하지 않았다.",
         ]
     )
@@ -355,21 +362,27 @@ def write_outputs(config: dict[str, Any], rows: list[dict[str, Any]], output_dir
 
 
 def run(config: dict[str, Any]) -> list[dict[str, Any]]:
+    if config["experiment"].get("model") != "toy_logistic_classifier":
+        raise ValueError("W12 only implements experiment.model=toy_logistic_classifier")
+
     seed = int(config["seed"])
     train_rng = random.Random(seed)
     model_rng = random.Random(seed + 1)
     robust_rng = random.Random(seed + 2)
     feature_count = int(config["data"]["features"])
+    fairness_group_feature = int(config["data"]["fairness_group_feature"])
     train = generate_dataset(
         int(config["data"]["train_samples"]),
         feature_count,
         float(config["data"]["noise"]),
+        fairness_group_feature,
         train_rng,
     )
     test = generate_dataset(
         int(config["data"]["test_samples"]),
         feature_count,
         float(config["data"]["noise"]),
+        fairness_group_feature,
         random.Random(seed + 99),
     )
     epsilon = float(config["experiment"]["epsilon"])

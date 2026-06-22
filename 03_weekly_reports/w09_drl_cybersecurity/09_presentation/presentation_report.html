@@ -23,9 +23,10 @@
   <h2>발표 흐름</h2>
   <ol><li>DRL 원리: state-action-reward-policy</li><li>사이버보안 적용: cyber-defense agent</li><li>보상조작 위협: reward hacking과 unsafe response</li><li>toy 실험: normal/manipulated/robust reward 비교</li><li>기말논문 연결: 안전성 평가 프레임워크</li></ol>
   <h2>논문 5편의 역할</h2>
-  <table><tr><th>ID</th><th>발표 역할</th></tr><tr><td>P01</td><td>DRL 알고리즘 원리와 MDP 배경</td></tr><tr><td>P02</td><td>안전중요 자동화와 validation 필요성</td></tr><tr><td>P03</td><td>DRL cyber defense 적용 영역</td></tr><tr><td>P04</td><td>IDS/IPS, IoT, IAM 평가 지표</td></tr><tr><td>P05</td><td>DRL verification과 safety specification</td></tr></table>
+  <table><tr><th>ID</th><th>발표 역할</th></tr><tr><td>P01</td><td>DRL 알고리즘 원리와 MDP 배경</td></tr><tr><td>P02</td><td>안전중요 자동화와 validation 필요성</td></tr><tr><td>P03</td><td>DRL cyber defense 적용 영역</td></tr><tr><td>P04</td><td>IDS/IPS, IoT, IAM 평가 지표</td></tr><tr><td>P05</td><td>DRL verification과 safety specification, 단 강의계획서 H. Yan et al. 표기와 현재 PDF Landers/Doryab 표기 차이 확인 필요</td></tr></table>
   <h2>실험 결과</h2>
   <table><tr><th>조건</th><th>Average Reward</th><th>Detection F1</th><th>Safety Violation Rate</th><th>Policy Robustness</th></tr><tr><td>Normal reward</td><td>1.085250</td><td>0.840206</td><td>0.011667</td><td>0.838417</td></tr><tr><td>Manipulated reward</td><td>0.521167</td><td>0.617512</td><td>0.195000</td><td>0.325000</td></tr><tr><td>Robust reward design</td><td>0.910833</td><td>0.780952</td><td>0.000000</td><td>0.709583</td></tr></table>
+  <p>이 결과는 synthetic toy cyber-defense state/action/reward simulation의 평가 형식 검증용 수치이며, 실제 IDS/IPS 제품, 실제 운영망, 실제 neural DRL policy의 보안 성능으로 일반화하지 않는다.</p>
   <h2>기말논문 연결</h2>
   <p>기말논문 후보는 “DRL 기반 사이버 방어 에이전트의 보상조작 위협과 안전성 평가 프레임워크”이다.</p>
   <h2>예상 질문</h2>

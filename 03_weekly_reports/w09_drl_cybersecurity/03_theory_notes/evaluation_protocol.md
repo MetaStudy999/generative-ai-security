@@ -19,8 +19,18 @@
 | Manipulated reward | 0.521167 | 0.617512 | 0.195000 | 0.325000 | 조작 보상은 true reward와 robustness를 크게 낮췄다. |
 | Robust reward design | 0.910833 | 0.780952 | 0.000000 | 0.709583 | 안전 위반을 제거했지만 오탐 비용으로 F1/보상이 일부 감소했다. |
 
+## Outputs 정합성
+
+| 파일 | 존재 여부 | 정합성 |
+|---|---|---|
+| `04_experiment/outputs/metrics_summary.csv` | 존재 | `results.json`, `run_log.md`, 보고서 수치와 일치 |
+| `04_experiment/outputs/results.json` | 존재 | config, 조건, metrics, Q-table, sample log 포함 |
+| `04_experiment/outputs/run_log.md` | 존재 | 발표자료/보고서 인용용 표와 일치 |
+
 ## 실행 전제
 
 - 모든 입력은 synthetic toy cyber-defense state이다.
 - 실제 네트워크 트래픽, 실제 공격 payload, 개인정보는 사용하지 않는다.
 - 결과 재생성 명령은 `python3 src/run_experiment.py --config configs/config.yaml`이다.
+- Docker 재현 명령은 `docker compose run --rm w09-drl-cybersecurity python3 src/run_experiment.py --config configs/config.yaml`이다.
+- 이 결과는 synthetic toy cyber-defense state/action/reward simulation의 평가 형식 검증용 수치이며, 실제 IDS/IPS 제품, 실제 운영망, 실제 neural DRL policy의 보안 성능으로 일반화하지 않는다.

@@ -4,13 +4,14 @@
 
 | 항목 | 내용 |
 |---|---|
-| 논문 제목 | A Brief Survey of Deep Reinforcement Learning |
+| 논문 제목 | Deep Reinforcement Learning: A Brief Survey |
+| 로컬 PDF 제목 | A Brief Survey of Deep Reinforcement Learning |
 | 저자 | Kai Arulkumaran; Marc Peter Deisenroth; Miles Brundage; Anil Anthony Bharath |
-| 학술지/학회 | IEEE Signal Processing Magazine |
+| 학술지/학회 | IEEE Signal Processing Magazine, Vol. 34, No. 6, pp. 26-38 |
 | 연도 | 2017 |
 | DOI/URL | https://doi.org/10.1109/MSP.2017.2743240 |
 | PDF 파일명 | 01_Arulkumaran_et_al_2017_Deep_Reinforcement_Learning_Survey.pdf |
-| 검증 상태 | 로컬 PDF 확인, DOI 확인 |
+| 검증 상태 | 부분 검증: DOI/Crossref 기준 공식 제목은 `Deep Reinforcement Learning: A Brief Survey`, 로컬 PDF는 arXiv extended version |
 
 ## 2. 한 문장 요약
 
@@ -44,7 +45,7 @@ DRL 보안에서는 보상과 상태 관측이 공격면이 된다. 공격자가
 
 ## 8. 한계와 오픈문제
 
-일반 DRL survey이므로 사이버보안 데이터셋이나 공격자 모형은 직접 다루지 않는다. W09에서는 P03/P04의 cyber-defense 문헌과 결합해 보안 평가 항목을 보완해야 한다.
+일반 DRL survey이므로 사이버보안 데이터셋이나 공격자 모형은 직접 다루지 않는다. W09에서는 P03/P04의 cyber-defense 문헌과 결합해 보안 평가 항목을 보완해야 한다. 또한 로컬 PDF는 arXiv extended version이므로, 제출 참고문헌에는 IEEE 출판판 제목, 권호, 페이지, DOI를 우선 사용한다.
 
 ## 9. 기말 논문에 반영할 부분
 

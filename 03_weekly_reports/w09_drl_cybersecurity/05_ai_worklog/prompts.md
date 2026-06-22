@@ -21,5 +21,5 @@ DRL 기반 사이버 방어 에이전트의 reward manipulation을 실제 공격
 ## 4. 검증 프롬프트
 
 ```text
-로컬 PDF 첫 페이지와 DOI 표를 대조하고, P05처럼 프롬프트와 PDF가 충돌하는 항목은 PDF 기준으로 보정하라. 보고서와 HTML의 수치가 outputs/run_log.md와 일치하는지 확인하라.
+로컬 PDF 첫 페이지와 DOI 표를 대조하고, P03/P04/P05처럼 강의계획서와 PDF/DOI 메타데이터가 충돌하는 항목은 임의 확정하지 말고 확인 필요로 표시하라. 보고서와 HTML의 수치가 outputs/run_log.md와 일치하는지 확인하라.
 ```

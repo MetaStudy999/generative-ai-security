@@ -27,7 +27,7 @@ DRL cyber-defense에서 reward가 흔들리면 높은 점수 뒤에 안전하지
 
 ## 4. 문헌의 역할
 
-P01은 DRL 원리, P02는 안전중요 자동화, P03/P04는 cyber-defense 적용, P05는 DRL verification을 담당한다.
+P01은 DRL 원리, P02는 안전중요 자동화, P03/P04는 cyber-defense 적용, P05는 DRL verification을 담당한다. P05는 강의계획서 저자명과 현재 PDF 저자명이 달라 확인 필요다.
 
 ---
 
@@ -69,6 +69,7 @@ State observation -> Policy decision -> Automated response
 - Manipulated reward는 observed reward와 true security objective를 분리시킨다.
 - Robust reward는 safety violation을 0으로 낮췄지만 false positive 비용을 만든다.
 - 따라서 F1 하나만으로 자동 대응 정책을 평가하기 어렵다.
+- 이 수치는 toy protocol 결과이며 실제 IDS/IPS 성능이 아니다.
 
 ---
 

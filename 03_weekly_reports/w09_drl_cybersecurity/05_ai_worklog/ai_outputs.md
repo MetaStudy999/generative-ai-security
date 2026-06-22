@@ -2,7 +2,7 @@
 
 | 산출물 | 내용 | 반영 위치 |
 |---|---|---|
-| 서지 보정 | P01-P05 DOI 정리, P05 저자명 보정 | `01_papers/`, `02_paper_summaries/` |
+| 서지 검증 | P01-P05 DOI 정리, P03/P04/P05 강의계획서 저자명 차이 확인 필요 표시 | `01_papers/`, `02_paper_summaries/` |
 | 논문 요약 | 5편 요약과 비교표 | `02_paper_summaries/` |
 | 이론/보안 노트 | MDP, Q-learning, DRL verification, reward manipulation | `03_theory_notes/` |
 | 실험 코드 | tabular Q-learning synthetic toy cyber-defense | `04_experiment/src/run_experiment.py` |

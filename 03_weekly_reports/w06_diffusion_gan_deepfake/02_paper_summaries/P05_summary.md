@@ -7,10 +7,11 @@
 | 논문 제목 | Deepfake Detection: A Comprehensive Survey from the Reliability Perspective |
 | 저자 | Tianyi Wang, Xin Liao, Kam Pui Chow, Xiaodong Lin, Yinglong Wang |
 | 학술지/학회 | ACM Computing Surveys |
-| 연도 | 2024 |
+| 출판 정보 | Vol. 57, No. 3, pages 1-35, online 2024-11-11, print issue 2025-03-31 |
+| 연도 | 2024 online / 2025 print issue |
 | DOI/URL | https://doi.org/10.1145/3699710, https://arxiv.org/abs/2211.10881 |
 | PDF 파일명 | 05_Wang_et_al_2024_Deepfake_Detection_Reliability_Survey.pdf |
-| 검증 상태 | DOI/URL 확인 |
+| 검증 상태 | DOI/URL 확인, 강의계획서 `J. Wang et al.` 표기 대응 확인 필요 |
 
 ## 2. 한 문장 요약
 
@@ -45,6 +46,8 @@ P05는 W06 실험 설계와 가장 직접적으로 연결된다. cross-domain re
 ## 8. 한계와 오픈문제
 
 본 보고서의 실험은 실제 deepfake benchmark가 아닌 synthetic score 분포다. 따라서 P05의 reliability 개념을 설명하는 데만 사용하며, 실제 법적·포렌식 증거능력을 주장하지 않는다.
+
+출판사 기준 첫 저자는 `Tianyi Wang`으로 확인된다. 강의계획서의 `J. Wang et al.` 표기는 현재 확인된 출판사 메타데이터와 다르므로 최종 제출 전 강의계획서 표기와 매칭 여부를 확인한다.
 
 ## 9. 기말 논문에 반영할 부분
 

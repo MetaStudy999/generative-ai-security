@@ -1,27 +1,23 @@
 # W06 논문 5편 비교표
 
-| 논문 | 연구문제 | 핵심 방법 | 데이터/실험 | 보안 위협 | 평가 지표 | 한계 | 내 논문 활용 |
-|---|---|---|---|---|---|---|---|
-| P01 | Diffusion model 방법군과 적용 범위 정리 | diffusion taxonomy, sampling/likelihood/application 분류 | survey 중심 | 조건부 생성과 고품질 synthetic media 확산 | sampling cost, 생성 품질, 적용 범위 | 탐지 신뢰성 실험은 직접 수행하지 않음 | diffusion 원리와 조건부 생성 배경 |
-| P02 | Video diffusion model의 생성·편집·이해 과제 정리 | video generation/editing taxonomy | survey 중심 | temporal synthetic media와 비디오 딥페이크 | temporal consistency, video quality, domain shift | ACM DOI 미확인, 실제 detector 검증 아님 | 비디오 도메인 이동과 압축 후처리 위험 |
-| P03 | GAN의 computer vision taxonomy와 안정성 문제 정리 | architecture/loss variant survey | survey 중심 | GAN 기반 얼굴 합성·조작 | 품질, 다양성, 안정성, FID/IS 한계 | 최신 diffusion 기반 생성까지는 부족 | GAN 원리와 생성 품질 지표의 한계 |
-| P04 | Deepfake 생성과 탐지 방법을 함께 정리 | creation/detection survey | survey 중심 | 허위정보, 사칭, 명예훼손, 증거 조작 | FPR/FNR, 일반화, 조작 유형별 탐지 | 최신 video diffusion까지는 제한적 | 딥페이크 위협모형과 피해 시나리오 |
-| P05 | Deepfake detection reliability 정의 | transferability/interpretability/robustness taxonomy | survey와 case 중심 | 탐지기의 실제 적용 실패와 포렌식 신뢰성 | transferability, robustness, reliability | 실제 법적 증거능력은 별도 검토 필요 | W06 toy 실험의 직접 근거 |
+| 논문 | 연구문제 | 핵심 방법 | 데이터/실험 | AI 원리 기여 | 보안 위협 연결 | 평가 지표 | 한계 | 내 논문 활용 |
+|---|---|---|---|---|---|---|---|---|
+| P01 | Diffusion model의 방법군과 응용은 어떻게 분류되는가 | forward/reverse process, score-based model, sampling, conditional generation survey | 이미지·음성·텍스트 등 생성 응용 문헌 | diffusion/score-based 생성 원리 | 고품질 synthetic media 생성 가능성, 탐지기 우회 위험 | sampling cost, generation quality, likelihood, FID 등 원문 확인 | detector reliability 직접 실험은 아님 | diffusion 원리와 조건부 생성 배경 |
+| P02 | Video diffusion model은 시간 일관성과 조건부 생성을 어떻게 다루는가 | video generation/editing/prediction taxonomy | video generation 문헌 조사 | temporal consistency와 video diffusion 구조 | 영상 딥페이크, temporal artifact, compression/platform shift | temporal consistency, video quality, FVD 등 원문 확인 | ACM DOI는 확인됐지만 강의계획서 지정 논문과 동일 여부 확인 필요 | cross-domain video deepfake 위험 |
+| P03 | GAN은 computer vision에서 어떤 구조와 loss로 발전했는가 | GAN architecture, loss, taxonomy survey | image synthesis/computer vision 문헌 조사 | generator-discriminator 경쟁 구조 | GAN 기반 얼굴 합성·조작, 생성 품질 지표 한계 | FID, IS, diversity, stability 등 원문 확인 | 강의계획서 저자명과 현재 저자명 차이 확인 필요 | GAN 원리와 생성 품질-탐지 신뢰성 분리 |
+| P04 | Deepfake 생성과 탐지는 어떻게 발전했는가 | creation/detection survey | face/video manipulation 문헌 | deepfake 생성·탐지 방법 연결 | 허위정보, 사칭, 명예훼손, 증거 조작 | FPR, FNR, detector accuracy, robustness | 최신 diffusion/video generation까지는 제한적 | deepfake threat model 핵심 근거 |
+| P05 | Deepfake detection reliability는 어떤 요소로 평가해야 하는가 | reliability, transferability, interpretability, robustness survey | deepfake detector 문헌 | detector 평가 신뢰성 관점 | domain shift, compression, unknown generator, calibration failure | AUROC, ECE, FPR/FNR, cross-domain performance | 실제 법적 포렌식 증거능력은 별도 검토 필요 | W06 실험과 KCI/SCI 주제의 직접 근거 |
 
 ## 종합 비교
 
-### 1. 공통적으로 다루는 문제
+P01-P03은 생성모형 원리와 생성 품질 평가 문헌이다. P01은 diffusion과 score-based model의 확률적 생성 원리, P02는 video diffusion의 temporal consistency, P03은 GAN의 generator-discriminator 경쟁 구조와 생성 품질 지표를 다룬다.
 
-다섯 편은 모두 생성 품질과 탐지 신뢰성이 같은 문제가 아니라는 점을 보여준다. P01-P03은 diffusion, video diffusion, GAN의 생성 원리를 설명하고, P04-P05는 deepfake creation/detection과 reliability 문제를 보안 평가로 연결한다.
+P04-P05는 deepfake threat model과 detection reliability 문헌이다. P04는 생성과 탐지의 공격·방어 지형을 연결하고, P05는 transferability, robustness, interpretability, calibration 관점에서 실제 탐지 신뢰성을 재정리한다.
 
-### 2. 논문 간 차이점
+W06의 핵심 연결부는 “생성 품질”과 “포렌식 탐지 신뢰성”을 구분하는 것이다. 고품질 sample 생성, FID/IS, video quality 지표가 높다고 해서 detector의 FPR, FNR, calibration, cross-domain robustness가 자동으로 보장되지는 않는다.
 
-P01-P03은 모델 구조, sampling, generation, quality metric을 다루는 반면 P04-P05는 피해 시나리오, 탐지 실패, reliability를 다룬다. 따라서 W06 보고서는 생성모형 원리와 forensic detector 평가를 구분하되, 기말 논문에서는 생명주기 기반 평가표로 통합한다.
+딥페이크 탐지 평가는 accuracy 하나가 아니라 FPR, FNR, AUROC, ECE, review rate, auto coverage를 함께 봐야 한다. 특히 FPR은 무고한 사람을 의심하게 만드는 위험이고, FNR은 실제 조작물을 놓치는 위험이므로 사회적·법적 피해가 서로 다르다.
 
-### 3. 아직 해결되지 않은 문제
+W06 toy 실험은 실제 deepfake detector 평가가 아니라 reliability metric reporting 구조를 설명하는 synthetic score 실험이다. 실험 수치는 실제 딥페이크 데이터셋, 실제 탐지 모델, 법적 포렌식 증거능력, 운영 서비스의 보안 성능으로 일반화하지 않는다.
 
-P02와 P03의 최종 ACM DOI는 확인하지 못했다. 또한 실제 딥페이크 benchmark 없이 survey taxonomy만으로 탐지 신뢰성을 주장할 수 없으므로, 본 주차에서는 synthetic detector score 실험으로 FPR/FNR, AUROC, ECE, review rate 기록 구조를 보완했다.
-
-### 4. 기말 논문 주제로 발전 가능한 연결부
-
-W06는 “생성모형 자체의 품질 평가”와 “합성미디어 탐지기의 신뢰성 평가”를 구분하는 기말 논문 장으로 발전시킬 수 있다. 특히 cross-domain reliability와 human review routing을 포함한 최소 평가표가 핵심 연결부다.
+P02/P03은 ACM DOI가 확인되었지만 강의계획서의 P02 저자·제목 표기와 P03 저자명 표기가 현재 로컬 PDF/출판사 메타데이터와 다르므로 최종 제출 전까지 `부분 검증` 상태를 유지한다.

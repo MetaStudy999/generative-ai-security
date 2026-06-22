@@ -1,50 +1,42 @@
-# 논문 요약
+# P01 논문 요약
 
 ## 1. 서지정보
 
 | 항목 | 내용 |
 |---|---|
-| 논문 제목 | A Survey on Self-supervised Learning: Algorithms, Applications, and Future Trends |
-| 저자 | Jie Gui et al. |
-| 학술지/학회 | IEEE TPAMI |
-| 연도 | 2024 |
-| DOI/URL | `10.48550/arXiv.2301.05712`, https://arxiv.org/abs/2301.05712 |
-| PDF 파일명 | 01_Gui_et_al_2024_Self_Supervised_Learning_Survey.pdf |
-| 검증 상태 | PDF 첫 페이지와 arXiv DOI/URL 확인, IEEE TPAMI 출판 DOI는 추가 확인 필요 |
+| 정식 제목 | A Survey on Self-Supervised Learning: Algorithms, Applications, and Future Trends |
+| 저자 | Jie Gui, Tuo Chen, Jing Zhang, Qiong Cao, Zhenan Sun, Hao Luo, Dacheng Tao |
+| 출판 정보 | IEEE Transactions on Pattern Analysis and Machine Intelligence, 46(12), 9052-9071, 2024 |
+| DOI/URL | `10.1109/TPAMI.2024.3415112`; arXiv `10.48550/arXiv.2301.05712`; https://arxiv.org/abs/2301.05712 |
+| 로컬 PDF | `01_Gui_et_al_2024_Self_Supervised_Learning_Survey.pdf` |
+| 검증 상태 | TPAMI DOI와 arXiv DOI 확인. 강의계획서의 `Yan Gui` 표기는 `Jie Gui`와 다른 표기이므로 확인 필요 |
 
 ## 2. 한 문장 요약
 
-> 이 논문은 자기지도학습, contrastive learning, masked modeling, representation learning의 핵심 원리와 적용 범위 문제를 개념 분석과 사례 중심 정리 방법으로 다루며, 기말 연구의 배경 이론과 평가축을 기말 연구에 반영할 수 있게 해준다.
+이 논문은 contrastive, generative, predictive 계열을 포함해 자기지도학습 알고리즘과 응용을 넓게 분류하며, W05에서 SSL/foundation model 원리 배경을 제공한다[1].
 
-## 3. 연구문제
+## 3. 핵심 연구문제
 
-이 논문에서 기말 연구와 연결되는 질문은 자기지도학습/파운데이션 모델 및 Poisoning/Backdoor 영역에서 어떤 개념, 공격면, 평가 기준을 우선적으로 정리해야 하는가이다. 특히 자기지도학습의 정의, Contrastive learning, Masked modeling와 Self-supervised pretraining 단계의 공격면, 데이터 오염과 표현공간 왜곡, Poisoning attack가 서로 만나는 지점을 확인하는 데 초점을 둔다.
+라벨 없이 생성되는 pretext task와 representation learning 구조가 어떻게 발전했으며, 다양한 응용 도메인에서 어떤 공통 원리와 한계를 갖는지 정리한다.
 
-## 4. 핵심 개념
+## 4. 핵심 기여
 
-| 개념 | 설명 | 기말 논문 연결 |
-|---|---|---|
-| 자기지도학습의 정의 | 주차 AI 원리의 출발점이며 모델 또는 시스템을 이해하는 기본 단위이다. | 배경 이론 |
-| Contrastive learning | 성능, 일반화, 효율 또는 신뢰성을 설명하는 보조 축이다. | 분석 기준 |
-| Self-supervised pretraining 단계의 공격면 | 보안 위협을 식별하기 위한 대표 공격면이다. | 위협모형 |
-| 데이터 오염과 표현공간 왜곡 | 방어와 평가 프로토콜을 설계할 때 비교해야 하는 요소이다. | 평가방법 |
+| 구분 | 내용 |
+|---|---|
+| Taxonomy | SSL 알고리즘을 contrastive, generative, predictive/context 기반 관점으로 정리한다 |
+| 응용 범위 | 이미지, 비전, 텍스트 등 다양한 downstream task와 transfer 구조를 연결한다 |
+| W05 연결 | pretraining representation이 downstream task로 전이되는 구조를 보안 자산으로 해석할 수 있게 한다 |
 
-## 5. 방법론
+## 5. 보안 관점
 
-이 문헌은 개념 분석과 사례 중심 정리를 통해 기존 연구를 묶어 읽을 수 있게 한다. 본 보고서에서는 논문 제목, 프롬프트의 논문 패킷 정보, 로컬 PDF 존재 여부, arXiv URL을 기준으로 요약했으며, 세부 실험값은 최종 원문 대조 단계에서 확인한다.
+P01은 직접적인 poisoning/backdoor 방어 논문은 아니다. 다만 self-supervised pretraining에서 데이터 수집, augmentation, positive/negative pair, corpus curation이 모델 표현을 결정하므로, 이 단계가 공격면이 될 수 있음을 설명하는 배경 문헌으로 활용한다.
 
-## 6. 주요 결과
+## 6. 한계와 확인 필요
 
-해당 영역의 대표 문제와 연구 설계 기준을 제시한다. 수치 결과를 새로 만들지 않기 위해 본 요약에서는 정량값을 적지 않았고, 원문에서 직접 확인되는 항목만 최종 보고서에 반영하도록 남겨 둔다.
+- 로컬 PDF는 arXiv v4 첫 페이지를 포함하며 TPAMI 최종판과 세부 편집 차이가 있을 수 있다.
+- 강의계획서의 `Yan Gui` 표기가 출판사 기준 `Jie Gui`와 동일 인물 표기 오류인지 사람 검토가 필요하다.
+- 본 보고서는 수식을 설명용으로 사용하며, 원문 수식·그림 번호 직접 인용은 최종 제출 전 원문 페이지 대조가 필요하다.
 
-## 7. 보안 관점 분석
+## 7. 기말 논문 활용
 
-이 논문은 표현공간 오염, poisoning, backdoor, 데이터 거버넌스을 이해하기 위한 배경 문헌으로 활용된다. 공격자의 능력, 방어자의 관측 가능성, 평가 데이터의 한계, 재현성 조건을 함께 정리해야 실제 보안 연구로 이어질 수 있다.
-
-## 8. 한계와 오픈문제
-
-원문 정밀 독해 전에는 세부 실험 설정, 데이터셋, DOI, 인용 관계를 확정할 수 없다. 또한 survey 성격의 문헌은 실제 재현 실험보다는 분류체계와 연구 공백 파악에 더 적합하므로, 기말 논문에서는 별도 평가 프로토콜로 보완해야 한다.
-
-## 9. 기말 논문에 반영할 부분
-
-P01는 자기지도학습/파운데이션 모델 및 Poisoning/Backdoor 연구에서 개념 정의, 위협 분류, 평가 지표 후보를 정리하는 근거로 반영한다. 특히 기말 연구의 배경 이론과 평가축을 관련연구와 연구방법 장에 연결한다.
+기말논문의 배경 이론과 관련연구 장에서 SSL pretraining, representation learning, transfer evaluation의 기본 taxonomy로 활용한다.

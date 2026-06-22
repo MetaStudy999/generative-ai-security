@@ -1,15 +1,18 @@
 # W06 논문 목록
 
-| ID | 논문 제목 | 저자 | 연도 | 학술지/학회 | 로컬 PDF | 검증 상태 |
+| ID | 논문 제목 | 저자 | 출판 정보 | DOI/URL | 로컬 PDF | 검증 상태 |
 |---|---|---|---|---|---|---|
-| P01 | Diffusion Models: A Comprehensive Survey of Methods and Applications | Ling Yang et al. | 2023 | ACM Computing Surveys | 01_Yang_et_al_2023_Diffusion_Models_Comprehensive_Survey.pdf | DOI 확인 |
-| P02 | A Survey on Video Diffusion Models | Zhen Xing et al. | 2024 | arXiv preprint / ACM-formatted preprint | 02_Xing_et_al_2024_Video_Diffusion_Models_Survey.pdf | arXiv DOI 확인, ACM DOI 미확인 |
-| P03 | Generative Adversarial Networks in Computer Vision: A Survey and Taxonomy | Zhengwei Wang, Qi She, Tomas E. Ward | 2020 | arXiv preprint, ACM Computing Surveys accepted | 03_Wang_She_Ward_2021_GANs_Computer_Vision_Survey.pdf | arXiv DOI 확인, ACM DOI 미확인 |
-| P04 | The Creation and Detection of Deepfakes: A Survey | Yisroel Mirsky, Wenke Lee | 2021 | ACM Computing Surveys | 04_Mirsky_Lee_2021_Creation_Detection_Deepfakes.pdf | DOI 확인 |
-| P05 | Deepfake Detection: A Comprehensive Survey from the Reliability Perspective | Tianyi Wang et al. | 2024 | ACM Computing Surveys | 05_Wang_et_al_2024_Deepfake_Detection_Reliability_Survey.pdf | DOI 확인 |
+| P01 | Diffusion Models: A Comprehensive Survey of Methods and Applications | Ling Yang, Zhilong Zhang, Yang Song, Shenda Hong, Runsheng Xu, Yue Zhao, Wentao Zhang, Bin Cui, Ming-Hsuan Yang | ACM Computing Surveys, Vol. 56, No. 4, Article 105, online 2023-11-09, print issue 2024-04-30 | DOI `10.1145/3626235`, arXiv `2209.00796` | `01_Yang_et_al_2023_Diffusion_Models_Comprehensive_Survey.pdf` | DOI/URL 확인 |
+| P02 | A Survey on Video Diffusion Models | Zhen Xing, Qijun Feng, Haoran Chen, Qi Dai, Han Hu, Hang Xu, Zuxuan Wu, Yu-Gang Jiang | ACM Computing Surveys, Vol. 57, No. 2, pages 1-42, online 2024-11-07, print issue 2025-02-28 | DOI `10.1145/3696415`, arXiv `2310.10647` | `02_Xing_et_al_2024_Video_Diffusion_Models_Survey.pdf` | 출판 DOI 확인, 강의계획서 지정 P02 동일 여부와 Article 번호 확인 필요 |
+| P03 | Generative Adversarial Networks in Computer Vision: A Survey and Taxonomy | Zhengwei Wang, Qi She, Tomas E. Ward | ACM Computing Surveys, Vol. 54, No. 2, Article 37, published 2021-02-09, print issue 2022-03-31 | DOI `10.1145/3439723`, arXiv `1906.01529` | `03_Wang_She_Ward_2021_GANs_Computer_Vision_Survey.pdf` | 출판 DOI 확인, 강의계획서 저자명과 차이 확인 필요 |
+| P04 | The Creation and Detection of Deepfakes: A Survey | Yisroel Mirsky, Wenke Lee | ACM Computing Surveys, Vol. 54, No. 1, pages 1-41, online 2021-01-02, print issue 2022-01-31 | DOI `10.1145/3425780`, arXiv `2004.11138` | `04_Mirsky_Lee_2021_Creation_Detection_Deepfakes.pdf` | DOI/URL 확인, Article 번호 확인 필요 |
+| P05 | Deepfake Detection: A Comprehensive Survey from the Reliability Perspective | Tianyi Wang, Xin Liao, Kam Pui Chow, Xiaodong Lin, Yinglong Wang | ACM Computing Surveys, Vol. 57, No. 3, pages 1-35, online 2024-11-11, print issue 2025-03-31 | DOI `10.1145/3699710`, arXiv `2211.10881` | `05_Wang_et_al_2024_Deepfake_Detection_Reliability_Survey.pdf` | DOI/URL 확인, Article 번호 확인 필요 |
 
 ## 검수 메모
 
-- 위 목록은 `01_codex_prompts`의 W06 프롬프트, 로컬 PDF 첫 페이지, arXiv/DOI 공개 페이지를 대조해 정리했다.
-- P02는 프롬프트 저자명과 로컬 PDF/arXiv 저자명이 달라 실제 PDF 기준인 Zhen Xing et al.로 정정했다.
-- P03은 ACM Computing Surveys accepted 상태는 확인되지만 최종 ACM DOI는 로컬 PDF와 arXiv에서 확인되지 않아 arXiv DOI를 우선 기록했다.
+- P01은 로컬 PDF 첫 페이지에서 ACM Computing Surveys Vol. 56, No. 4, Article 105와 DOI `10.1145/3626235`를 확인했다.
+- P02는 로컬 PDF/arXiv 제목과 저자가 `Zhen Xing et al., A Survey on Video Diffusion Models`이며, Crossref 기준 ACM DOI `10.1145/3696415`가 확인된다. 다만 Article 번호는 확인하지 못했고, 강의계획서 지정 항목 `Ananya Högele et al., "Video Diffusion Models: A Survey"`와 제목·저자 표기가 달라 최종 제출 전 교수자 확인이 필요하다.
+- P03은 로컬 PDF/arXiv/ACM DOI 페이지 기준 `Zhengwei Wang, Qi She, Tomas E. Ward` 논문이며 ACM DOI `10.1145/3439723`, Article 37이 확인된다. 강의계획서의 `Tianqi Wang et al.` 표기와 달라 동일성 검토 메모를 유지한다.
+- P04는 DOI `10.1145/3425780`이 확인되지만 로컬 PDF는 arXiv/ACM 양식 preprint로 DOI placeholder가 남아 있다. 참고문헌에는 ACM DOI를 우선 사용한다.
+- P05는 출판사 기준 저자명이 `Tianyi Wang et al.`이며 강의계획서의 `J. Wang et al.` 표기는 축약 또는 오기 가능성이 있어 확인 필요로 남긴다.
+- `01_papers/pdf/` 아래 PDF 원문 5개는 git 추적 대상이다. public GitHub 저장소에서는 저작권 위험이 있으므로 DOI/URL과 요약만 남기고 PDF 원문 삭제를 사람이 별도 검토해야 한다.

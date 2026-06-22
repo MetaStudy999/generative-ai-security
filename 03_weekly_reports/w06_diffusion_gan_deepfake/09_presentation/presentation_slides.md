@@ -61,8 +61,8 @@
 | ID | 중심 역할 | W06 활용 |
 |---|---|---|
 | P01 | diffusion survey | forward/reverse, sampling |
-| P02 | video diffusion survey | temporal consistency |
-| P03 | GAN survey | generator-discriminator, metric 한계 |
+| P02 | video diffusion survey | temporal consistency, 강의계획서 동일 여부 확인 필요 |
+| P03 | GAN survey | generator-discriminator, 저자명 표기 확인 필요 |
 | P04 | deepfake creation/detection | 위협모형 |
 | P05 | detection reliability | transferability, robustness |
 

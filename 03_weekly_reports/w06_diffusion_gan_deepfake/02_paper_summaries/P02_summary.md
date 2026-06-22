@@ -6,11 +6,12 @@
 |---|---|
 | 논문 제목 | A Survey on Video Diffusion Models |
 | 저자 | Zhen Xing, Qijun Feng, Haoran Chen, Qi Dai, Han Hu, Hang Xu, Zuxuan Wu, Yu-Gang Jiang |
-| 학술지/학회 | arXiv preprint / ACM-formatted preprint |
-| 연도 | 2024 |
-| DOI/URL | https://doi.org/10.48550/arXiv.2310.10647, https://arxiv.org/abs/2310.10647 |
+| 학술지/학회 | ACM Computing Surveys |
+| 출판 정보 | Vol. 57, No. 2, pages 1-42, online 2024-11-07, print issue 2025-02-28, Article 번호 확인 필요 |
+| 연도 | 2024 online / 2025 print issue |
+| DOI/URL | https://doi.org/10.1145/3696415, https://doi.org/10.48550/arXiv.2310.10647, https://arxiv.org/abs/2310.10647 |
 | PDF 파일명 | 02_Xing_et_al_2024_Video_Diffusion_Models_Survey.pdf |
-| 검증 상태 | arXiv DOI 확인, ACM DOI 미확인 |
+| 검증 상태 | ACM/arXiv DOI 확인, 강의계획서 지정 P02 동일 여부와 Article 번호 확인 필요 |
 
 ## 2. 한 문장 요약
 
@@ -44,7 +45,9 @@ Video diffusion은 이미지 생성보다 더 큰 계산 비용과 temporal cohe
 
 ## 8. 한계와 오픈문제
 
-로컬 PDF의 ACM DOI 필드는 임시값으로 남아 있어 최종 ACM DOI는 확인하지 못했다. 또한 survey는 실제 forensic detector의 법적 신뢰성을 직접 보장하지 않는다.
+ACM DOI `10.1145/3696415`는 확인되었지만, 강의계획서 지정 P02는 `Ananya Högele et al., "Video Diffusion Models: A Survey"`로 되어 있어 현재 로컬 PDF와 제목·저자 표기가 다르다. 동일 논문인지 확인되지 않으면 현재 P02는 대체 문헌으로 보아야 한다. 또한 survey는 실제 forensic detector의 법적 신뢰성을 직접 보장하지 않는다.
+
+주의: W06의 P02는 강의계획서 지정 논문인 Ananya Högele et al., "Video Diffusion Models: A Survey"와 현재 로컬 PDF "A Survey on Video Diffusion Models"의 동일 여부를 최종 확인해야 한다. 동일하지 않다면 현재 P02는 대체 문헌으로 사용한 것이며, 최종 제출 전 교수자 확인이 필요하다.
 
 ## 9. 기말 논문에 반영할 부분
 

@@ -35,7 +35,7 @@ Toy source-class test embedding 16개가 trigger vector 적용 후 모두 target
 
 ## Q5. P02, P03, P04의 제목 차이는 문제가 되지 않나요?
 
-최종 인용 전 반드시 대조해야 합니다. 현재 보고서에는 프롬프트 제목과 로컬 PDF/공개 URL 제목의 차이를 `doi_check.md` 비고에 기록했습니다. 확정 인용에서는 원문 제목을 기준으로 정리해야 합니다.
+최종 인용 전 반드시 대조해야 합니다. P01 TPAMI DOI는 확인했지만, P02는 현재 로컬 PDF가 추천 시스템 SSL survey라 지정 일반 SSL survey와 동일 여부가 남아 있습니다. P03/P04는 강의계획서 제목과 출판사 기준 제목 차이를 `doi_check.md`에 기록했고, 확정 인용에서는 출판사 기준 정식 제목을 우선해야 합니다.
 
 근거 파일: `01_papers/doi_check.md`
 

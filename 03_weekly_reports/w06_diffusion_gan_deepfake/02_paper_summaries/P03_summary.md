@@ -6,11 +6,12 @@
 |---|---|
 | 논문 제목 | Generative Adversarial Networks in Computer Vision: A Survey and Taxonomy |
 | 저자 | Zhengwei Wang, Qi She, Tomas E. Ward |
-| 학술지/학회 | arXiv preprint, ACM Computing Surveys accepted |
-| 연도 | 2020 |
-| DOI/URL | https://doi.org/10.48550/arXiv.1906.01529, https://arxiv.org/abs/1906.01529 |
+| 학술지/학회 | ACM Computing Surveys |
+| 출판 정보 | Vol. 54, No. 2, Article 37, published 2021-02-09, print issue 2022-03-31 |
+| 연도 | 2021 online / 2022 print issue |
+| DOI/URL | https://doi.org/10.1145/3439723, https://doi.org/10.48550/arXiv.1906.01529, https://arxiv.org/abs/1906.01529 |
 | PDF 파일명 | 03_Wang_She_Ward_2021_GANs_Computer_Vision_Survey.pdf |
-| 검증 상태 | arXiv DOI 확인, ACM DOI 미확인 |
+| 검증 상태 | ACM/arXiv DOI 확인, 강의계획서 저자명 차이 확인 필요 |
 
 ## 2. 한 문장 요약
 
@@ -44,7 +45,9 @@ GAN discriminator는 탐지기처럼 보이지만 연구 목적의 discriminator
 
 ## 8. 한계와 오픈문제
 
-최종 ACM DOI는 로컬 PDF와 arXiv에서 확인되지 않았다. 또한 GAN survey만으로 최신 diffusion 기반 딥페이크를 설명하기에는 부족하므로 P01/P02와 함께 읽어야 한다.
+ACM DOI `10.1145/3439723`와 Article 37은 확인되었다. 다만 강의계획서에는 `Tianqi Wang et al.`로 표기되어 있고, 로컬 PDF/arXiv/ACM 출판 정보는 `Zhengwei Wang, Qi She, Tomas E. Ward`로 되어 있어 표기 차이를 최종 확인해야 한다. 또한 GAN survey만으로 최신 diffusion 기반 딥페이크를 설명하기에는 부족하므로 P01/P02와 함께 읽어야 한다.
+
+주의: W06의 P03은 강의계획서 지정 저자명과 현재 로컬 PDF/arXiv 저자명이 다르므로, 동일 논문 여부와 강의계획서 표기 오류 가능성을 확인 필요 상태로 유지한다.
 
 ## 9. 기말 논문에 반영할 부분
 

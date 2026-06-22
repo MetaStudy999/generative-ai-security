@@ -22,7 +22,7 @@ Poisoning은 학습 데이터나 pretraining corpus를 오염시키는 공격입
 
 ## 6. 논문 5편의 역할
 
-P01-P03은 자기지도학습과 video/recommendation 도메인의 표현학습 원리를 맡고, P04-P05는 poisoning과 backdoor의 공격·방어 taxonomy를 맡습니다. 원리 문헌과 보안 문헌을 연결해야 연구문제가 선명해집니다.
+P01-P03은 자기지도학습과 video/recommendation 도메인의 표현학습 원리를 맡고, P04-P05는 poisoning과 backdoor의 공격·방어 taxonomy를 맡습니다. 단, P02는 강의계획서 지정 일반 SSL survey와 동일 여부가 남아 있으므로 발표에서는 recommendation SSL survey로 조심스럽게 표현합니다.
 
 ## 7. 위협모형
 

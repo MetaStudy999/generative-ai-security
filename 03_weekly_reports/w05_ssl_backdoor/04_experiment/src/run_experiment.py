@@ -322,7 +322,7 @@ python3 src/run_experiment.py --config configs/config.yaml
 
 ## 한계
 
-이 결과는 자기지도 표현공간 오염과 backdoor 평가 지표를 설명하기 위한 synthetic toy 실험이다. 실제 SSL 모델, foundation model, 운영 데이터, 상용 서비스의 보안 성능으로 일반화하지 않는다.
+이 결과는 synthetic 2D representation toy 실험의 평가 형식 검증용 수치이며, 실제 SSL 모델, foundation model, 상용 시스템의 poisoning/backdoor 보안 성능으로 일반화하지 않는다.
 """,
         encoding="utf-8",
     )

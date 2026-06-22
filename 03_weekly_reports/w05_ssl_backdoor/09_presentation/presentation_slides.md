@@ -60,8 +60,8 @@
 
 | ID | 중심 역할 | W05 활용 |
 |---|---|---|
-| P01 | SSL 알고리즘 survey | 원리 taxonomy |
-| P02 | SSL for recommendation | 응용 도메인과 SSL objective |
+| P01 | SSL 알고리즘 survey | 원리 taxonomy, TPAMI DOI 확인 |
+| P02 | SSL for recommendation | 지정 일반 SSL survey 동일 여부 확인 필요 |
 | P03 | Video SSL survey | temporal/cross-modal representation |
 | P04 | Poisoning survey | 공격·방어 taxonomy |
 | P05 | Backdoor survey | DNN-LLM backdoor 연결 |

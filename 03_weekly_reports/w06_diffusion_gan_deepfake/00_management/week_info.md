@@ -7,4 +7,6 @@
 | AI 원리 | Diffusion, Score-based model, GAN, 조건부 생성 |
 | 보안 이슈 | 딥페이크, 합성미디어, 포렌식, 신뢰성 평가 |
 | 논문 패킷 | 5편 |
-| 산출물 상태 | 제출본·발표자료·synthetic toy 실험 완료, P02/P03 최종 ACM DOI는 부분 검증 상태 |
+| 산출물 상태 | 제출용 최종 초안·발표자료·synthetic toy 실험 완료, P02/P03 ACM DOI는 확인했으나 강의계획서 지정 논문 동일 여부는 부분 검증 상태 |
+| 최종 제출 확정 | 미확정, 사람 검토 필요 |
+| 저작권 점검 | PDF 원문 5개 git 추적 중, public GitHub 보관 위험 확인 |

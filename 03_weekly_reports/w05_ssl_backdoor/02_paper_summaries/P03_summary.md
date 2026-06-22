@@ -1,50 +1,42 @@
-# 논문 요약
+# P03 논문 요약
 
 ## 1. 서지정보
 
 | 항목 | 내용 |
 |---|---|
-| 논문 제목 | Self-Supervised Learning for Videos: A Survey |
-| 저자 | Madeline C. Schiappa et al. |
-| 학술지/학회 | ACM Computing Surveys |
-| 연도 | 2023 |
-| DOI/URL | `10.1145/3577925`, https://doi.org/10.1145/3577925; arXiv: https://arxiv.org/abs/2207.00419 |
-| PDF 파일명 | 03_Schiappa_Rawat_Shah_2023_Self_Supervised_Learning_Videos.pdf |
-| 검증 상태 | PDF 메타데이터/첫 페이지, 출판 DOI 및 arXiv URL 확인 |
+| 강의계획서 표기 | Self-Supervised Learning of Video Representations: A Survey |
+| 정식 제목 | Self-Supervised Learning for Videos: A Survey |
+| 저자 | Madeline C. Schiappa, Yogesh S. Rawat, Mubarak Shah |
+| 출판 정보 | ACM Computing Surveys, 55(13s), 1-37, 2023 |
+| DOI/URL | `10.1145/3577925`; https://doi.org/10.1145/3577925; https://arxiv.org/abs/2207.00419 |
+| 로컬 PDF | `03_Schiappa_Rawat_Shah_2023_Self_Supervised_Learning_Videos.pdf` |
+| 검증 상태 | DOI/URL 확인. Article 번호는 Crossref에서 확인되지 않아 확인 필요 |
 
-## 2. 한 문장 요약
+## 2. 제목 차이 메모
 
-> 이 논문은 자기지도학습, contrastive learning, masked modeling, representation learning의 핵심 원리와 적용 범위 문제를 문헌조사와 분류체계 정리 방법으로 다루며, 기말 연구의 배경 이론과 평가축을 기말 연구에 반영할 수 있게 해준다.
+강의계획서 제목은 `Self-Supervised Learning of Video Representations: A Survey`이고, ACM/Crossref 및 로컬 PDF 기준 제목은 `Self-Supervised Learning for Videos: A Survey`다. 저자와 주제는 대응되지만 최종 참고문헌에는 출판사 기준 정식 제목을 사용한다.
 
-## 3. 연구문제
+## 3. 한 문장 요약
 
-이 논문에서 기말 연구와 연결되는 질문은 자기지도학습/파운데이션 모델 및 Poisoning/Backdoor 영역에서 어떤 개념, 공격면, 평가 기준을 우선적으로 정리해야 하는가이다. 특히 자기지도학습의 정의, Contrastive learning, Masked modeling와 Self-supervised pretraining 단계의 공격면, 데이터 오염과 표현공간 왜곡, Poisoning attack가 서로 만나는 지점을 확인하는 데 초점을 둔다.
+이 논문은 비디오 표현학습에서 pretext task, generative learning, contrastive learning, cross-modal agreement를 정리하며, W05에서 temporal representation과 video SSL 평가 구조를 설명한다[3].
 
-## 4. 핵심 개념
+## 4. 핵심 기여
 
-| 개념 | 설명 | 기말 논문 연결 |
-|---|---|---|
-| 자기지도학습의 정의 | 주차 AI 원리의 출발점이며 모델 또는 시스템을 이해하는 기본 단위이다. | 배경 이론 |
-| Contrastive learning | 성능, 일반화, 효율 또는 신뢰성을 설명하는 보조 축이다. | 분석 기준 |
-| Self-supervised pretraining 단계의 공격면 | 보안 위협을 식별하기 위한 대표 공격면이다. | 위협모형 |
-| 데이터 오염과 표현공간 왜곡 | 방어와 평가 프로토콜을 설계할 때 비교해야 하는 요소이다. | 평가방법 |
+| 구분 | 내용 |
+|---|---|
+| Video-specific SSL | 이미지 SSL과 달리 시간축, motion, temporal consistency를 핵심 변수로 다룬다 |
+| Cross-modal signal | video-audio-text 신호를 이용한 multimodal/self-supervised representation을 포함한다 |
+| 평가 구조 | action recognition, retrieval, downstream transfer 평가를 연결한다 |
 
-## 5. 방법론
+## 5. 보안 관점
 
-이 문헌은 문헌조사와 분류체계 정리를 통해 기존 연구를 묶어 읽을 수 있게 한다. 본 보고서에서는 논문 제목, 프롬프트의 논문 패킷 정보, 로컬 PDF 존재 여부, arXiv URL을 기준으로 요약했으며, 세부 실험값은 최종 원문 대조 단계에서 확인한다.
+비디오 SSL은 시간적 순서, 프레임 sampling, augmentation, cross-modal alignment에 의존한다. 따라서 temporal trigger, frame-level poisoning, modality mismatch, augmentation poisoning이 representation shift를 만들 수 있다. W05에서는 실제 공격 재현이 아니라 평가 지표와 위협면 도출에 활용한다.
 
-## 6. 주요 결과
+## 6. 한계와 확인 필요
 
-핵심 개념, 공격면, 평가 기준, 향후 연구과제를 체계화한다. 수치 결과를 새로 만들지 않기 위해 본 요약에서는 정량값을 적지 않았고, 원문에서 직접 확인되는 항목만 최종 보고서에 반영하도록 남겨 둔다.
+- 로컬 PDF는 arXiv판이며 ACM 최종 PDF의 Article 번호는 확인 필요다.
+- 직접 보안 논문은 아니므로 poisoning/backdoor 성능 주장을 이 문헌에서 끌어오지 않는다.
 
-## 7. 보안 관점 분석
+## 7. 기말 논문 활용
 
-이 논문은 표현공간 오염, poisoning, backdoor, 데이터 거버넌스을 이해하기 위한 배경 문헌으로 활용된다. 공격자의 능력, 방어자의 관측 가능성, 평가 데이터의 한계, 재현성 조건을 함께 정리해야 실제 보안 연구로 이어질 수 있다.
-
-## 8. 한계와 오픈문제
-
-원문 정밀 독해 전에는 세부 실험 설정, 데이터셋, DOI, 인용 관계를 확정할 수 없다. 또한 survey 성격의 문헌은 실제 재현 실험보다는 분류체계와 연구 공백 파악에 더 적합하므로, 기말 논문에서는 별도 평가 프로토콜로 보완해야 한다.
-
-## 9. 기말 논문에 반영할 부분
-
-P03는 자기지도학습/파운데이션 모델 및 Poisoning/Backdoor 연구에서 개념 정의, 위협 분류, 평가 지표 후보를 정리하는 근거로 반영한다. 특히 기말 연구의 배경 이론과 평가축을 관련연구와 연구방법 장에 연결한다.
+비디오 SSL 확장 장에서 temporal representation, cross-modal agreement, downstream transfer가 보안 평가축과 어떻게 연결되는지 설명하는 근거로 활용한다.

@@ -24,6 +24,8 @@ GAN은 generator와 discriminator가 경쟁합니다. Discriminator가 real/fake
 
 P01-P03은 diffusion, video diffusion, GAN 원리를 맡고, P04-P05는 딥페이크 생성·탐지와 reliability를 맡습니다. 이 다섯 편을 연결하면 생성모형 평가와 탐지 신뢰성 평가를 분리할 수 있습니다.
 
+다만 P02와 P03은 발표에서 주의해서 말해야 합니다. DOI는 확인했지만, P02는 강의계획서의 지정 저자·제목과 현재 로컬 PDF가 같은지 확인이 필요하고, P03은 강의계획서 저자명과 출판사 저자명이 다릅니다.
+
 ## 7. 위협모형
 
 흐름은 synthetic media가 detector score로 들어가고, threshold decision을 거쳐 review workflow로 이어지는 구조입니다. 공격 절차를 재현하지 않고, score가 이동했을 때 판단이 어떻게 흔들리는지만 봅니다.

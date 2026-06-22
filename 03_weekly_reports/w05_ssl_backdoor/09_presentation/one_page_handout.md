@@ -48,11 +48,11 @@
 
 | ID | 상태 |
 |---|---|
-| P01 | arXiv DOI 확인, 출판 DOI 미확인 |
-| P02 | DOI 확인, PDF 첫 페이지 제목 반영 |
-| P03 | DOI 확인, arXiv URL 확인, 제목 차이 기록 |
-| P04 | DOI 확인, PDF 첫 페이지 제목 반영 |
-| P05 | DOI 확인 |
+| P01 | TPAMI DOI `10.1109/TPAMI.2024.3415112` 확인, 강의계획서 저자 표기 확인 필요 |
+| P02 | DOI 확인, 현재 PDF는 recommendation survey이므로 지정 일반 SSL survey 동일 여부 확인 필요 |
+| P03 | DOI 확인, arXiv URL 확인, 제목 차이와 Article 번호 확인 필요 |
+| P04 | DOI 확인, 강의계획서 제목/저자 표기 차이 확인 필요 |
+| P05 | DOI 확인, 강의계획서 저자 표기 확인 필요 |
 
 ## 관련 산출물
 

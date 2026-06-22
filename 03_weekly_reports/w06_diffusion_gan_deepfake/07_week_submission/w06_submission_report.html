@@ -22,12 +22,13 @@
     <tr><td>주차</td><td>W06</td></tr>
     <tr><td>보고서 제목</td><td>확률생성모형(Diffusion/GAN) &amp; 딥페이크 검출</td></tr>
     <tr><td>작성일</td><td>2026-06-22</td></tr>
-    <tr><td>문서 상태</td><td>제출용 통합본</td></tr>
+    <tr><td>문서 상태</td><td>제출용 최종 초안, 사람 검토 필요</td></tr>
+    <tr><td>최종 제출 확정 여부</td><td>미확정</td></tr>
     <tr><td>관련 산출물 위치</td><td><code>03_weekly_reports/w06_diffusion_gan_deepfake/</code></td></tr>
   </table>
 
   <h2>초록과 키워드</h2>
-  <p>본 보고서는 diffusion model, score-based model, GAN, 조건부 생성의 원리를 정리하고 딥페이크 탐지 모델의 신뢰성 문제를 보안 평가 관점에서 분석한다. synthetic detector score 실험에서 in-domain accuracy는 1.000000이었지만 cross-domain accuracy는 0.816667로 낮아지고 FNR은 0.200000으로 증가했다.</p>
+  <p>본 보고서는 diffusion model, video diffusion, GAN의 생성 원리와 딥페이크 탐지 신뢰성 문제를 구분해 분석한다. 실제 딥페이크 생성 없이 synthetic real/fake detector score 분포 기반 안전 toy 실험으로 in-domain baseline, cross-domain reliability stress, review-band triage를 비교했다. In-domain accuracy는 1.000000이었지만 cross-domain accuracy는 0.816667로 낮아지고 FNR은 0.200000으로 증가했다.</p>
   <p><strong>키워드:</strong> diffusion model, GAN, deepfake detection, reliability, FPR, FNR, human review</p>
 
   <h2>AI 원리와 보안 이슈</h2>
@@ -38,8 +39,8 @@
   <table>
     <tr><th>ID</th><th>문헌</th><th>DOI/URL 상태</th><th>활용</th></tr>
     <tr><td>P01</td><td>Diffusion Models: A Comprehensive Survey of Methods and Applications</td><td>DOI <code>10.1145/3626235</code></td><td>diffusion 원리와 조건부 생성</td></tr>
-    <tr><td>P02</td><td>A Survey on Video Diffusion Models</td><td>arXiv DOI <code>10.48550/arXiv.2310.10647</code></td><td>video diffusion과 temporal consistency</td></tr>
-    <tr><td>P03</td><td>Generative Adversarial Networks in Computer Vision</td><td>arXiv DOI <code>10.48550/arXiv.1906.01529</code></td><td>GAN taxonomy와 생성 품질 지표 한계</td></tr>
+    <tr><td>P02</td><td>A Survey on Video Diffusion Models</td><td>DOI <code>10.1145/3696415</code>, arXiv <code>2310.10647</code>; 강의계획서 동일 여부 확인 필요</td><td>video diffusion과 temporal consistency</td></tr>
+    <tr><td>P03</td><td>Generative Adversarial Networks in Computer Vision: A Survey and Taxonomy</td><td>DOI <code>10.1145/3439723</code>, arXiv <code>1906.01529</code>; 강의계획서 저자명 차이 확인 필요</td><td>GAN taxonomy와 생성 품질 지표 한계</td></tr>
     <tr><td>P04</td><td>The Creation and Detection of Deepfakes</td><td>DOI <code>10.1145/3425780</code></td><td>딥페이크 생성·탐지 위협모형</td></tr>
     <tr><td>P05</td><td>Deepfake Detection from the Reliability Perspective</td><td>DOI <code>10.1145/3699710</code></td><td>transferability, interpretability, robustness</td></tr>
   </table>
@@ -60,7 +61,7 @@
     <tr><td>Cross-domain reliability stress</td><td>0.816667</td><td>0.813559</td><td>0.166667</td><td>0.200000</td><td>0.899722</td><td>0.147949</td><td>해당 없음</td><td>해당 없음</td></tr>
     <tr><td>Review-band triage</td><td>0.909091</td><td>0.901408</td><td>0.050000</td><td>0.135135</td><td>0.962162</td><td>0.174872</td><td>0.641667</td><td>0.358333</td></tr>
   </table>
-  <p class="note">정량값은 <code>04_experiment/outputs/run_log.md</code>, <code>metrics_summary.csv</code>, <code>results.json</code>과 일치한다. 이 결과는 synthetic toy 실험이며 실제 포렌식 성능으로 일반화하지 않는다.</p>
+  <p class="note">정량값은 <code>04_experiment/outputs/run_log.md</code>, <code>metrics_summary.csv</code>, <code>results.json</code>과 일치한다. 이 결과는 synthetic detector score toy 실험의 평가 형식 검증용 수치이며, 실제 딥페이크 데이터셋, 실제 탐지 모델, 법적 포렌식 증거능력, 운영 서비스의 보안 성능으로 일반화하지 않는다.</p>
 
   <h2>기말논문 연결</h2>
   <p>추천 주제는 “딥페이크 탐지기의 cross-domain reliability 평가 프레임워크”이다. 핵심 기여는 FPR/FNR 중심 평가표, review-band triage, seed/config/output 기반 재현성 기록이다.</p>

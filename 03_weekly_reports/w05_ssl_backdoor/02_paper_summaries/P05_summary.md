@@ -1,50 +1,41 @@
-# 논문 요약
+# P05 논문 요약
 
 ## 1. 서지정보
 
 | 항목 | 내용 |
 |---|---|
-| 논문 제목 | A survey of backdoor attacks and defences: From deep neural networks to large language models |
-| 저자 | Ling-Xin Jin et al. |
-| 학술지/학회 | Journal of Electronic Science and Technology |
-| 연도 | 2025 |
-| DOI/URL | `10.1016/j.jnlest.2025.100326`, https://doi.org/10.1016/j.jnlest.2025.100326 |
-| PDF 파일명 | 05_Jin_et_al_2025_Backdoor_Attacks_and_Defences_Survey.pdf |
-| 검증 상태 | PDF 메타데이터 DOI/Crossmark 링크 확인 |
+| 정식 제목 | A survey of backdoor attacks and defences: From deep neural networks to large language models |
+| 저자 | Ling-Xin Jin, Wei Jiang, Xiang-Yu Wen, Mei-Yu Lin, Jin-Yu Zhan, Xing-Zhi Zhou, Maregu Assefa Habtie, Naoufel Werghi |
+| 출판 정보 | Journal of Electronic Science and Technology, 23(3), Article 100326, 2025 |
+| DOI/URL | `10.1016/j.jnlest.2025.100326`; https://doi.org/10.1016/j.jnlest.2025.100326 |
+| 로컬 PDF | `05_Jin_et_al_2025_Backdoor_Attacks_and_Defences_Survey.pdf` |
+| 검증 상태 | DOI, 제목, 저자, 학술지 확인. 강의계획서의 `Z. Jin et al.` 표기는 확인 필요 |
 
-## 2. 한 문장 요약
+## 2. 저자 표기 메모
 
-> 이 논문은 표현공간 오염, poisoning, backdoor, 데이터 거버넌스와 관련된 위협 분류 문제를 문헌조사와 분류체계 정리 방법으로 다루며, 공격-방어-평가 관점을 연결하는 보안 분석 틀을 기말 연구에 반영할 수 있게 해준다.
+출판사 기준 첫 저자는 Ling-Xin Jin이다. 강의계획서의 `Z. Jin et al.`은 본 논문 제목과는 대응되지만 첫 저자명과 다르므로 최종 제출 전 수업자료 원본 또는 교수자 지정 목록을 확인한다.
 
-## 3. 연구문제
+## 3. 한 문장 요약
 
-이 논문에서 기말 연구와 연결되는 질문은 자기지도학습/파운데이션 모델 및 Poisoning/Backdoor 영역에서 어떤 개념, 공격면, 평가 기준을 우선적으로 정리해야 하는가이다. 특히 자기지도학습의 정의, Contrastive learning, Masked modeling와 Self-supervised pretraining 단계의 공격면, 데이터 오염과 표현공간 왜곡, Poisoning attack가 서로 만나는 지점을 확인하는 데 초점을 둔다.
+이 논문은 DNN부터 LLM까지 backdoor attack, detection, removal, defense를 정리하며, W05에서 clean accuracy와 ASR을 분리해야 하는 근거를 제공한다[5].
 
-## 4. 핵심 개념
+## 4. 핵심 기여
 
-| 개념 | 설명 | 기말 논문 연결 |
-|---|---|---|
-| 자기지도학습의 정의 | 주차 AI 원리의 출발점이며 모델 또는 시스템을 이해하는 기본 단위이다. | 배경 이론 |
-| Contrastive learning | 성능, 일반화, 효율 또는 신뢰성을 설명하는 보조 축이다. | 분석 기준 |
-| Self-supervised pretraining 단계의 공격면 | 보안 위협을 식별하기 위한 대표 공격면이다. | 위협모형 |
-| 데이터 오염과 표현공간 왜곡 | 방어와 평가 프로토콜을 설계할 때 비교해야 하는 요소이다. | 평가방법 |
+| 구분 | 내용 |
+|---|---|
+| Backdoor 범위 | vision/NLP/DNN backdoor에서 LLM backdoor까지 발전 흐름을 정리한다 |
+| 평가축 | clean accuracy, attack success rate, stealthiness, defense success를 구분한다 |
+| W05 연결 | toy 실험의 ASR, ASR after defense, detection rate, clean FPR 분리 보고의 근거가 된다 |
 
-## 5. 방법론
+## 5. 보안 관점
 
-이 문헌은 문헌조사와 분류체계 정리를 통해 기존 연구를 묶어 읽을 수 있게 한다. 본 보고서에서는 논문 제목, 프롬프트의 논문 패킷 정보, 로컬 PDF 존재 여부, 로컬 PDF DOI 링크를 기준으로 요약했으며, 세부 실험값은 최종 원문 대조 단계에서 확인한다.
+Backdoor는 정상 입력에서는 높은 clean performance를 유지하면서 trigger 조건에서 target behavior가 나타나는 위험이다. 따라서 clean accuracy만으로는 안전성을 판단할 수 없고, ASR, representation shift, detection rate, clean false positive rate를 함께 기록해야 한다.
 
-## 6. 주요 결과
+## 6. 한계와 확인 필요
 
-핵심 개념, 공격면, 평가 기준, 향후 연구과제를 체계화한다. 수치 결과를 새로 만들지 않기 위해 본 요약에서는 정량값을 적지 않았고, 원문에서 직접 확인되는 항목만 최종 보고서에 반영하도록 남겨 둔다.
+- 2025년 최신 survey이므로 LLM backdoor 문헌은 계속 갱신될 수 있다.
+- 본 보고서는 공격 절차를 악용 가능한 단계로 상세화하지 않고, 평가 지표와 방어 검증 관점만 사용한다.
 
-## 7. 보안 관점 분석
+## 7. 기말 논문 활용
 
-이 논문은 표현공간 오염, poisoning, backdoor, 데이터 거버넌스을 이해하기 위한 배경 문헌으로 활용된다. 공격자의 능력, 방어자의 관측 가능성, 평가 데이터의 한계, 재현성 조건을 함께 정리해야 실제 보안 연구로 이어질 수 있다.
-
-## 8. 한계와 오픈문제
-
-원문 정밀 독해 전에는 세부 실험 설정, 데이터셋, DOI, 인용 관계를 확정할 수 없다. 또한 survey 성격의 문헌은 실제 재현 실험보다는 분류체계와 연구 공백 파악에 더 적합하므로, 기말 논문에서는 별도 평가 프로토콜로 보완해야 한다.
-
-## 9. 기말 논문에 반영할 부분
-
-P05는 자기지도학습/파운데이션 모델 및 Poisoning/Backdoor 연구에서 개념 정의, 위협 분류, 평가 지표 후보를 정리하는 근거로 반영한다. 특히 공격-방어-평가 관점을 연결하는 보안 분석 틀을 관련연구와 연구방법 장에 연결한다.
+foundation model/LLM backdoor까지 확장 가능한 평가표와 한계 분석, AI 안전성 함의 장에 활용한다.

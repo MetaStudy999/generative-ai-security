@@ -1,50 +1,47 @@
-# 논문 요약
+# P02 논문 요약
 
 ## 1. 서지정보
 
 | 항목 | 내용 |
 |---|---|
-| 논문 제목 | A Comprehensive Survey on Self-Supervised Learning for Recommendation |
-| 저자 | Xubin Ren et al. |
-| 학술지/학회 | ACM Computing Surveys |
-| 연도 | 2025 |
-| DOI/URL | `10.1145/3746280`, https://doi.org/10.1145/3746280 |
-| PDF 파일명 | 02_Ren_et_al_2025_Self_Supervised_Learning_for_Recommendation.pdf |
-| 검증 상태 | PDF 메타데이터/첫 페이지 DOI 링크 확인 |
+| 강의계획서 표기 | H. Ren et al., "A Comprehensive Survey on Self-Supervised Learning", ACM Computing Surveys, 2025 |
+| 현재 로컬 PDF 제목 | A Comprehensive Survey on Self-Supervised Learning for Recommendation |
+| 저자 | Xubin Ren, Wei Wei, Lianghao Xia, Chao Huang |
+| 출판 정보 | ACM Computing Surveys, 58(1), Article 22, 1-38, online 2025 |
+| DOI/URL | `10.1145/3746280`; https://doi.org/10.1145/3746280 |
+| 로컬 PDF | `02_Ren_et_al_2025_Self_Supervised_Learning_for_Recommendation.pdf` |
+| 검증 상태 | DOI와 로컬 PDF 제목 확인. 강의계획서 지정 일반 SSL survey와 동일 여부 확인 필요 |
 
-## 2. 한 문장 요약
+## 2. 주의 문구
 
-> 이 논문은 자기지도학습, contrastive learning, masked modeling, representation learning의 핵심 원리와 적용 범위 문제를 문헌조사와 분류체계 정리 방법으로 다루며, 기말 연구의 배경 이론과 평가축을 기말 연구에 반영할 수 있게 해준다.
+주의: W05의 P02는 강의계획서 지정 일반 자기지도학습 종합 서베이와 동일 여부를 최종 확인해야 한다. 현재 로컬 PDF는 추천 시스템 분야의 Self-Supervised Learning survey로 범위가 좁으므로, 최종 제출 전 대체 문헌 사용 여부를 확인한다.
 
-## 3. 연구문제
+## 3. 한 문장 요약
 
-이 논문에서 기말 연구와 연결되는 질문은 자기지도학습/파운데이션 모델 및 Poisoning/Backdoor 영역에서 어떤 개념, 공격면, 평가 기준을 우선적으로 정리해야 하는가이다. 특히 자기지도학습의 정의, Contrastive learning, Masked modeling와 Self-supervised pretraining 단계의 공격면, 데이터 오염과 표현공간 왜곡, Poisoning attack가 서로 만나는 지점을 확인하는 데 초점을 둔다.
+현재 로컬 P02는 추천 시스템 맥락에서 contrastive, generative, adversarial SSL을 정리하는 도메인 특화 survey이며, W05에서는 사용자-아이템 표현과 데이터 거버넌스 위험을 설명하는 대체 또는 보조 문헌으로 쓰인다[2].
 
-## 4. 핵심 개념
+## 4. 핵심 연구문제
 
-| 개념 | 설명 | 기말 논문 연결 |
-|---|---|---|
-| 자기지도학습의 정의 | 주차 AI 원리의 출발점이며 모델 또는 시스템을 이해하는 기본 단위이다. | 배경 이론 |
-| Contrastive learning | 성능, 일반화, 효율 또는 신뢰성을 설명하는 보조 축이다. | 분석 기준 |
-| Self-supervised pretraining 단계의 공격면 | 보안 위협을 식별하기 위한 대표 공격면이다. | 위협모형 |
-| 데이터 오염과 표현공간 왜곡 | 방어와 평가 프로토콜을 설계할 때 비교해야 하는 요소이다. | 평가방법 |
+추천 시스템에서 데이터 희소성, 사용자-아이템 상호작용, 순차 추천, 그래프 구조를 활용해 어떻게 self-supervised signal을 만들고 추천 성능을 개선할 수 있는지 정리한다.
 
-## 5. 방법론
+## 5. 핵심 기여
 
-이 문헌은 문헌조사와 분류체계 정리를 통해 기존 연구를 묶어 읽을 수 있게 한다. 본 보고서에서는 논문 제목, 프롬프트의 논문 패킷 정보, 로컬 PDF 존재 여부, 로컬 PDF DOI 링크를 기준으로 요약했으며, 세부 실험값은 최종 원문 대조 단계에서 확인한다.
+| 구분 | 내용 |
+|---|---|
+| Domain | 일반 SSL 전체가 아니라 recommender systems에 초점을 둔다 |
+| 방법 축 | contrastive learning, generative learning, adversarial learning을 추천 시나리오별로 분류한다 |
+| W05 연결 | 사용자-아이템 표현 오염, 추천 편향, 데이터 출처 관리, graph/user behavior augmentation 위험을 논의할 수 있다 |
 
-## 6. 주요 결과
+## 6. 보안 관점
 
-핵심 개념, 공격면, 평가 기준, 향후 연구과제를 체계화한다. 수치 결과를 새로 만들지 않기 위해 본 요약에서는 정량값을 적지 않았고, 원문에서 직접 확인되는 항목만 최종 보고서에 반영하도록 남겨 둔다.
+추천 시스템 SSL은 user-item graph, sequential behavior, item metadata, multimodal preference signal을 이용한다. 따라서 poisoned interaction, fake user behavior, graph augmentation 조작은 downstream ranking과 user representation을 왜곡할 수 있다. W05에서는 실제 추천 공격 절차가 아니라 데이터 거버넌스와 평가축 연결에만 활용한다.
 
-## 7. 보안 관점 분석
+## 7. 한계와 확인 필요
 
-이 논문은 표현공간 오염, poisoning, backdoor, 데이터 거버넌스을 이해하기 위한 배경 문헌으로 활용된다. 공격자의 능력, 방어자의 관측 가능성, 평가 데이터의 한계, 재현성 조건을 함께 정리해야 실제 보안 연구로 이어질 수 있다.
+- 강의계획서 지정 제목에는 `for Recommendation`이 없으므로 현재 PDF를 지정 논문으로 확정하지 않는다.
+- Crossref 검색에서 현재 DOI는 추천 SSL survey로 확인되었으나, 일반 SSL survey가 별도로 지정되었는지는 수업자료 원본 대조가 필요하다.
+- 최종 제출 전 P02를 대체 문헌으로 유지할지, 지정 일반 SSL survey를 새로 확보할지 결정해야 한다.
 
-## 8. 한계와 오픈문제
+## 8. 기말 논문 활용
 
-원문 정밀 독해 전에는 세부 실험 설정, 데이터셋, DOI, 인용 관계를 확정할 수 없다. 또한 survey 성격의 문헌은 실제 재현 실험보다는 분류체계와 연구 공백 파악에 더 적합하므로, 기말 논문에서는 별도 평가 프로토콜로 보완해야 한다.
-
-## 9. 기말 논문에 반영할 부분
-
-P02는 자기지도학습/파운데이션 모델 및 Poisoning/Backdoor 연구에서 개념 정의, 위협 분류, 평가 지표 후보를 정리하는 근거로 반영한다. 특히 기말 연구의 배경 이론과 평가축을 관련연구와 연구방법 장에 연결한다.
+기말논문에서 domain-specific SSL이 데이터 품질, 사용자 표현, 추천 편향, poisoned interaction 위험과 만나는 사례로 활용한다.

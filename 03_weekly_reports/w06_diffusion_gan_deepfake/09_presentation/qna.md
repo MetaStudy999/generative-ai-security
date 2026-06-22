@@ -41,7 +41,7 @@
 
 ## Q6. P02와 P03의 DOI 상태는 왜 부분 검증인가요?
 
-P02는 로컬 PDF의 ACM DOI가 임시값이었고, P03은 arXiv에서 ACM Computing Surveys accepted로 확인되지만 최종 ACM DOI는 확인하지 못했습니다. 그래서 arXiv DOI를 우선 기록하고 ACM DOI는 미확인으로 남겼습니다.
+P02의 ACM DOI `10.1145/3696415`와 P03의 ACM DOI `10.1145/3439723`은 확인했습니다. 다만 P02는 강의계획서의 `Ananya Högele et al., "Video Diffusion Models: A Survey"`와 현재 로컬 PDF `A Survey on Video Diffusion Models`의 동일 여부가 남아 있고, P03은 강의계획서의 `Tianqi Wang et al.` 표기와 출판사 저자명 `Zhengwei Wang et al.`이 달라 부분 검증으로 둡니다.
 
 근거 파일: `01_papers/doi_check.md`
 

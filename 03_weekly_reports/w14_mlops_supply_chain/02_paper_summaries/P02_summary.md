@@ -4,47 +4,47 @@
 
 | 항목 | 내용 |
 |---|---|
-| 논문 제목 | Challenges in Deploying Machine Learning: A Survey of Case Studies |
-| 저자 | Andrei Paleyes et al. |
+| 논문 제목 | Challenges in Deploying Machine Learning: a Survey of Case Studies |
+| 저자 | Andrei Paleyes, Raoul-Gabriel Urma, Neil D. Lawrence |
 | 학술지/학회 | ACM Computing Surveys |
 | 연도 | 2022 |
-| DOI/URL | 확인 필요 |
+| DOI/URL | https://doi.org/10.1145/3533378 |
 | PDF 파일명 | 02_Paleyes_Urma_Lawrence_2022_ML_Deployment_Challenges.pdf |
-| 검증 상태 | 로컬 PDF 파일명 확인, DOI/URL과 원문 세부 내용은 최종 대조 필요 |
+| 검증 상태 | DOI가 로컬 PDF 첫 페이지와 수업자료에서 일치 |
 
 ## 2. 한 문장 요약
 
-> 이 논문은 MLOps, DevOps, data/model pipeline, monitoring, drift의 핵심 원리와 적용 범위 문제를 문헌조사와 분류체계 정리 방법으로 다루며, 기말 연구의 배경 이론과 평가축을 기말 연구에 반영할 수 있게 해준다.
+> 이 논문은 ML 모델 배포 과정에서 실제 사례들이 겪는 workflow별 난점을 survey로 정리하며, 연구용 모델과 운영용 서비스 사이의 평가·운영 격차를 보여준다.
 
 ## 3. 연구문제
 
-이 논문에서 기말 연구와 연결되는 질문은 MLOps/DevOps/데이터/모델 파이프라인/공급망 보안 영역에서 어떤 개념, 공격면, 평가 기준을 우선적으로 정리해야 하는가이다. 특히 MLOps의 기본 개념, DevOps와 MLOps의 차이, ML lifecycle와 ML supply chain risk, 데이터 파이프라인 오염, 모델 아티팩트 변조가 서로 만나는 지점을 확인하는 데 초점을 둔다.
+학술 연구에서 잘 동작한 ML 모델이 production workflow로 이동할 때 어떤 단계에서 실패하거나 병목을 만든다는 질문을 다룬다. W14에서는 이 질문을 보안 관점으로 확장해 배포 workflow의 각 단계가 어떤 공격면과 감사 요구사항을 갖는지 살핀다.
 
 ## 4. 핵심 개념
 
 | 개념 | 설명 | 기말 논문 연결 |
 |---|---|---|
-| MLOps의 기본 개념 | 주차 AI 원리의 출발점이며 모델 또는 시스템을 이해하는 기본 단위이다. | 배경 이론 |
-| DevOps와 MLOps의 차이 | 성능, 일반화, 효율 또는 신뢰성을 설명하는 보조 축이다. | 분석 기준 |
-| ML supply chain risk | 보안 위협을 식별하기 위한 대표 공격면이다. | 위협모형 |
-| 데이터 파이프라인 오염 | 방어와 평가 프로토콜을 설계할 때 비교해야 하는 요소이다. | 평가방법 |
+| ML deployment workflow | 문제 정의, 데이터 준비, 학습, 검증, 통합, 배포, 모니터링의 흐름 | 평가 프로토콜 구조 |
+| Production gap | 연구 환경의 성능과 운영 환경의 요구사항 사이 차이 | 연구 배경 |
+| Case-study survey | 실제 배포 사례에서 반복되는 문제를 수집 | 운영 위험 근거 |
+| Monitoring need | 배포 이후 입력/출력/성능 변화를 추적해야 함 | drift score와 audit log 연결 |
 
 ## 5. 방법론
 
-이 문헌은 문헌조사와 분류체계 정리을 통해 기존 연구를 묶어 읽을 수 있게 한다. 본 보고서에서는 논문 제목, 프롬프트의 논문 패킷 정보, 로컬 PDF 존재 여부를 기준으로 요약했으며, 세부 실험값이나 DOI는 최종 원문 대조 단계에서 확인한다.
+논문은 published deployment case를 수집하고 ML deployment workflow 단계에 mapping한다. 본 요약은 PDF 첫 페이지와 수업자료 DOI를 대조한 뒤, 세부 사례별 통계는 원문 정밀 확인 대상으로 남겼다.
 
 ## 6. 주요 결과
 
-핵심 개념, 공격면, 평가 기준, 향후 연구과제를 체계화한다. 수치 결과를 새로 만들지 않기 위해 본 요약에서는 정량값을 적지 않았고, 원문에서 직접 확인되는 항목만 최종 보고서에 반영하도록 남겨 둔다.
+배포 난점은 모델 학습 이후에만 생기지 않는다. 데이터 수집과 품질, 시스템 통합, 인프라, 운영 모니터링, 조직 협업 등 workflow 전반에서 반복된다. 따라서 ML 보안 평가도 모델 파일 하나가 아니라 pipeline 전체를 대상으로 해야 한다.
 
 ## 7. 보안 관점 분석
 
-이 논문은 ML supply chain, deployment/update/logging attack surface을 이해하기 위한 배경 문헌으로 활용된다. 공격자의 능력, 방어자의 관측 가능성, 평가 데이터의 한계, 재현성 조건을 함께 정리해야 실제 보안 연구로 이어질 수 있다.
+배포 workflow의 취약점은 공급망 보안 문제와 자연스럽게 이어진다. 데이터 준비 단계에서는 오염과 provenance 부재, 학습/평가 단계에서는 config와 seed 누락, 배포 단계에서는 artifact 변조와 rollback 실패, 운영 단계에서는 drift 미탐지와 로그 누락이 문제가 된다.
 
 ## 8. 한계와 오픈문제
 
-원문 정밀 독해 전에는 세부 실험 설정, 데이터셋, DOI, 인용 관계를 확정할 수 없다. 또한 survey 성격의 문헌은 실제 재현 실험보다는 분류체계와 연구 공백 파악에 더 적합하므로, 기말 논문에서는 별도 평가 프로토콜로 보완해야 한다.
+Case-study survey는 현실성을 제공하지만 각 사례의 보안 통제 수준을 동일 지표로 비교하기 어렵다. 기말 논문에서는 이를 보완하기 위해 hash, drift score, audit coverage처럼 최소 공통 지표를 정의할 필요가 있다.
 
 ## 9. 기말 논문에 반영할 부분
 
-P02는 MLOps/DevOps/데이터/모델 파이프라인/공급망 보안 연구에서 개념 정의, 위협 분류, 평가 지표 후보를 정리하는 근거로 반영한다. 특히 기말 연구의 배경 이론과 평가축을 관련연구와 연구방법 장에 연결한다.
+P02는 연구용 ML 실험과 운영용 ML 시스템 사이의 보안·재현성 격차를 설명하는 배경 문헌으로 쓴다. W14 실습의 `re-run consistency`, `audit coverage`, `artifact inventory`가 그 격차를 줄이는 최소 기록이라는 논리를 뒷받침한다.

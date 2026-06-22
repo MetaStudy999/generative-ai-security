@@ -8,91 +8,117 @@
 | 주제 | 모델 지식재산(IP)·모델 도난·모델 추출 위협 |
 | AI 원리 | Model IP, model stealing, model extraction |
 | 보안 이슈 | Watermarking, fingerprinting, model extraction defense |
-| 문서 상태 | 최종본 초안 |
+| 작성일 | 2026-06-22 |
+| 문서 상태 | 최종본 |
+| 실험 근거 | `04_experiment/outputs/run_log.md` |
 
 ## 1. 한 문장 요약
 
-W13는 모델 지식재산(IP)/모델 도난/모델 추출 위협를 중심으로 AI 원리와 보안 위협을 함께 정리하고, 기말 논문의 위협모형·평가방법·재현성 설계로 연결한다.
+W13는 query-response 기반 모델 추출 위험과 워터마크 기반 소유권 검증을 함께 다루며, 실험 결과는 검출률뿐 아니라 false positive와 utility를 함께 보고해야 함을 보여준다.
 
 ## 2. AI 원리 70% 정리
 
-Model IP, model stealing, model extraction를 이해하기 위해 모델 지식재산권의 개념, 모델 도난과 모델 추출의 차이, 공개 API 기반 모델 추출 구조, Query-response 기반 대체 모델 학습, Model fingerprinting, Model watermarking를 핵심 개념으로 정리했다. 이 원리들은 모델 또는 시스템이 어떤 입력과 학습 구조를 갖고 어떤 기준으로 평가되는지 설명한다.
+모델 IP는 파라미터, 구조, 학습 데이터, 출력 행동, 생성물 출처에 축적된 기술적·경제적 가치다. 모델 도난은 이 가치를 무단으로 획득하거나 복제하는 넓은 공격군이고, 모델 추출은 공개 API 또는 black-box 출력에서 query-response 쌍을 모아 대체 모델을 학습하거나 원 모델 속성을 추정하는 절차다.
+
+핵심 원리는 query budget, 출력 정보량, fidelity, substitute learning, watermark/fingerprint, utility-protection trade-off다. 워터마크는 모델 또는 생성물에 소유권 검증 신호를 남기지만, 모델 품질 저하와 오탐 문제가 함께 관리되어야 한다.
 
 ## 3. 보안 이슈 30% 정리
 
-Watermarking, fingerprinting, model extraction defense를 중심으로 Model stealing, Model extraction, API query abuse, Substitute model training, Watermark removal, Watermark forgery를 정리했다. 보안 분석은 공격 절차 자체보다 보호 자산, 공격자 능력, 방어자 가정, 평가 지표를 명확히 하는 방향으로 작성했다.
+| 관점 | 관련 위협 | 평가 연결 |
+|---|---|---|
+| Confidentiality | 모델 행동·결정경계 유출 | extraction fidelity |
+| Integrity | watermark removal/forgery | watermark detection |
+| Availability | query abuse/API cost exhaustion | query budget |
+| Privacy | 도난 모델을 통한 학습 데이터 추론 가능성 | 제외 범위와 안전 한계 |
+| Safety | 도난 생성모형 오용 | 생성물 추적과 책임성 |
+| Accountability | ownership verification failure | false positive/false negative |
 
 ## 4. 논문 5편 요약
 
-| ID | 논문 | 저자 | 연도 | 검증 상태 |
-|---|---|---|---|---|
-| P01 | I Know What You Trained Last Summer: A Survey on Stealing Machine Learning Models and Defences | Daria Oliynyk et al. | 2023 | 원문 세부 대조 필요 |
-| P02 | A Survey of Watermarking and Fingerprinting Techniques for Deep Learning Models | Y. Ye et al. | 2024 | 원문 세부 대조 필요 |
-| P03 | Deep neural network watermarking: Techniques and challenges | Feng Li et al. | 2021 | 원문 세부 대조 필요 |
-| P04 | ModelShield: Adaptive and Robust Watermark Against Model Extraction Attack | Kaiyi Pang et al. | 2025 | 원문 세부 대조 필요 |
-| P05 | Generative Adversarial Networks: A Survey on Attack and Defense | Cheng Zhang et al. | 2023 | 원문 세부 대조 필요 |
+| ID | 문헌 | 역할 | 검증 상태 |
+|---|---|---|---|
+| P01 | I Know What You Trained Last Summer | model stealing/extraction taxonomy와 방어 선택 기준 | PDF DOI 표기 확인, 공식 페이지 대조 필요 |
+| P02 | Watermarking Techniques for Large Language Models: A Survey | LLM watermarking, traceability, semantic invariance | 대체 PDF, 프롬프트 지정 문헌과 불일치 |
+| P03 | A Survey of Deep Neural Network Watermarking Techniques | fidelity-robustness-capacity, static/dynamic watermarking | DOI/URL 확인 필요 |
+| P04 | ModelShield | extraction 이후 watermark ownership check | arXiv 표기 확인, 출판 정보 대조 필요 |
+| P05 | Generative Adversarial Networks: A Survey Towards Private and Secure Applications | 생성모형 privacy/security 보조 배경 | 대체 PDF, 프롬프트 지정 문헌과 불일치 |
 
 ## 5. 논문 5편 비교
 
-다섯 편은 AI 원리 문헌과 보안 문헌을 함께 포함한다. 기말 논문에서는 개별 문헌의 세부 수치보다 분류체계, 위협모형, 평가 프로토콜의 연결 관계를 우선 반영한다.
+P01은 모델 도난 taxonomy, P03은 DNN watermarking 이론, P04는 extraction 이후 소유권 검증을 담당한다. P02와 P05는 로컬 PDF가 프롬프트 지정 문헌과 달라 보조 문헌으로만 사용했다. 공통 결론은 모델 IP 보호가 fidelity, detection, false positive, utility, robustness, 재현성을 함께 요구한다는 점이다.
 
 ## 6. Research Track
 
 ### 6.1 연구문제
 
-RQ1. 모델 지식재산(IP)/모델 도난/모델 추출 위협의 생명주기에서 보안 보증을 위해 어떤 평가 항목이 필요한가?
+RQ1. 공개 API 기반 모델 서비스에서 query-response 정보만으로 모델 도난 위험을 어떻게 정량화할 수 있는가?
 
-RQ2. Model stealing, Model extraction는 어느 단계에서 발생하며 어떤 조건에서 성공하는가?
+RQ2. 모델 워터마킹은 모델 추출 공격 이후에도 소유권 검증을 얼마나 안정적으로 수행할 수 있는가?
 
-RQ3. 성능, 보안성, 재현성을 함께 평가하려면 어떤 최소 프로토콜이 필요한가?
+RQ3. 워터마킹 방어는 모델 품질, 탐지율, 위양성, 강건성 사이에서 어떤 trade-off를 만드는가?
 
 ### 6.2 위협모형
 
-대상 시스템은 모델 지식재산(IP)/모델 도난/모델 추출 위협 기반 AI/ML 시스템이며, 보호 자산은 데이터, 모델, 입력/컨텍스트, 출력, 로그, 평가셋이다. 공격자는 외부 공격자, 내부자, 데이터 제공자, API 남용자 등으로 나뉜다.
+대상 시스템은 공개 API 또는 제한된 인터페이스로 제공되는 ML/LLM/생성모형 서비스다. 보호 자산은 모델 파라미터, 모델 행동, 학습된 결정경계, 워터마크, fingerprint, 생성물 출처, API 로그다. 공격자는 반복 질의와 입력-출력 쌍 수집으로 substitute model을 만들 수 있으나, 본 보고서는 실제 상용 API 공격과 무단 대량 질의를 제외한다.
 
 ### 6.3 평가방법
 
-Clean performance, attack impact, robust performance, privacy/leakage, reproducibility, human review를 기본 평가 항목으로 둔다.
+| 평가 항목 | 지표 | W13 사용값 |
+|---|---|---|
+| Extraction Fidelity | victim/substitute 출력 일치율 | 0.864000, 0.920000, 0.902000 |
+| Substitute Accuracy | true label 기준 대체 모델 정확도 | 0.812000, 0.840000, 0.822000 |
+| Query Cost | query budget | 100, 500, 1000 |
+| Watermark Detection | trigger signature 일치율 | 0.700000, 1.000000, 1.000000 |
+| False Positive Rate | clean control trigger 일치율 | 0.600000 |
+| Utility Accuracy | victim clean accuracy | 0.868000 |
 
 ### 6.4 재현성
 
-Docker, pyproject.toml/uv sync, config, seed, 로그, PDF/DOI 검증표를 함께 보존한다. 실제 실행 전 결과값은 작성하지 않는다.
+실험은 seed 42, synthetic binary classification, `configs/config.yaml`, `src/run_experiment.py`로 실행했다. 결과는 `outputs/metrics_summary.csv`, `outputs/results.json`, `outputs/run_log.md`에 저장했다.
 
 ### 6.5 한계와 오픈문제
 
-DOI/URL, 원문 세부 수치, 대체 PDF 여부는 최종 확인이 필요하다. 또한 survey 문헌의 분류체계를 toy 실험과 어떻게 연결할지 추가 검토가 필요하다.
+본 실험은 실제 API나 실제 LLM이 아닌 toy classifier 평가다. false positive proxy가 0.600000으로 높아 trigger-set ownership check만으로 강한 소유권 주장을 할 수 없다. P02/P05 대체 PDF와 DOI/URL 공식 검증도 남아 있다.
 
 ## 7. 실습 요약
 
-실습은 안전한 공개 데이터 또는 synthetic data 기반으로 설계한다. 실제 개인정보, 실제 서비스 침해, 무단 질의, 악용 가능한 절차는 포함하지 않는다.
+| 조건 | Query Budget | Extraction Fidelity | Substitute Accuracy | Watermark Detection | False Positive Rate | Utility Accuracy |
+|---|---:|---:|---:|---:|---:|---:|
+| Baseline victim model | 0 | 1.000000 | 0.868000 | 1.000000 | 0.600000 | 0.868000 |
+| Substitute query 100 | 100 | 0.864000 | 0.812000 | 0.700000 | 0.600000 |  |
+| Substitute query 500 | 500 | 0.920000 | 0.840000 | 1.000000 | 0.600000 |  |
+| Substitute query 1000 | 1000 | 0.902000 | 0.822000 | 1.000000 | 0.600000 |  |
+| Watermarked ownership check | 0 | 1.000000 | 0.868000 | 1.000000 | 0.600000 | 0.868000 |
 
 ## 8. AI 활용 기록 요약
 
-Codex를 사용해 구조화 초안을 만들었다. AI 산출물은 사람 검토와 원문 대조를 거쳐 최종본에 반영한다.
+Codex를 사용해 공통 지침 확인, 문헌 요약 보완, toy 실험 코드 작성·실행, 통합보고서·제출본·발표자료 작성을 수행했다. AI 활용 내역은 `05_ai_worklog/`에 기록했으며, 실험 수치는 outputs와 일치하는 값만 반영했다.
 
 ## 9. 토론 질문
 
-1. 모델 지식재산(IP)/모델 도난/모델 추출 위협에서 가장 중요한 보호 자산은 무엇인가?
-2. 공격 성공률과 일반 성능을 함께 볼 때 어떤 지표가 가장 설득력 있는가?
-3. 원문 검증과 재현성 기록을 어느 수준까지 제출물에 포함해야 하는가?
+1. watermark detection이 1.000000이어도 false positive가 높다면 소유권 검증 기준은 어떻게 정해야 하는가?
+2. query budget과 fidelity를 보고할 때 공격 재현성과 악용 방지 사이의 균형은 어디에 둘 것인가?
+3. 프롬프트 지정 문헌과 로컬 PDF가 다를 때 제출물에서 어떻게 투명하게 표시할 것인가?
 
 ## 10. 기말 논문 연결
 
-W13는 기말 논문의 관련연구, 위협모형, 평가방법, 보안적 함의 장에 연결된다.
+W13는 기말 논문의 관련연구, 위협모형, 평가방법, 보안적 함의 장에 연결된다. 특히 “모델 추출 이후 소유권 검증을 위한 다중지표 평가 프레임워크” 주제로 발전시키기 좋다.
 
 ## 11. 참고문헌 검증표
 
-참고문헌은 `01_papers/doi_check.md`에서 DOI/URL 확인 상태를 관리한다.
+참고문헌 검증 상태는 `01_papers/doi_check.md`에서 관리한다. P02/P05는 대체 PDF이며, 최종 인용 전 원문 교체 또는 대체 사유 명시가 필요하다.
 
 ## 12. 자기 점검
 
 | 항목 | 상태 |
 |---|---|
-| 논문 5편 요약 | 작성 |
-| 비교표 | 작성 |
-| AI 원리 70% | 작성 |
-| 보안 이슈 30% | 작성 |
-| Research Track | 작성 |
-| 실험 결과 조작 방지 | 실제 실행 전으로 표시 |
-| DOI 임의 생성 방지 | 확인 필요로 유지 |
-| AI 사용 은폐 방지 | AI 활용 고지서 작성 |
+| 논문 5편 요약 | 완료 |
+| 비교표 | 완료 |
+| AI 원리 70% | 완료 |
+| 보안 이슈 30% | 완료 |
+| Research Track | 완료 |
+| 실험 코드/결과 | 완료 |
+| 제출용 보고서 | 완료 |
+| 발표자료 | 완료 |
+| DOI 임의 생성 방지 | 확인 필요 유지 |
+| AI 활용 고지 | 완료 |

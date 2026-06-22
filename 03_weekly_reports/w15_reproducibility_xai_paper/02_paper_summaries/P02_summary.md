@@ -5,46 +5,46 @@
 | 항목 | 내용 |
 |---|---|
 | 논문 제목 | Assuring the Machine Learning Lifecycle: Desiderata, Methods, and Challenges |
-| 저자 | R. Ashmore et al. |
+| 저자 | Rob Ashmore, Radu Calinescu, Colin Paterson |
 | 학술지/학회 | ACM Computing Surveys |
 | 연도 | 2021 |
-| DOI/URL | 확인 필요 |
-| PDF 파일명 | 02_Ashmore_Calinescu_Paterson_2021_Assuring_ML_Lifecycle.pdf |
-| 검증 상태 | 로컬 PDF 파일명 확인, DOI/URL과 원문 세부 내용은 최종 대조 필요 |
+| DOI/URL | `https://doi.org/10.1145/3453444` |
+| PDF 파일명 | `02_Ashmore_Calinescu_Paterson_2021_Assuring_ML_Lifecycle.pdf` |
+| 검증 상태 | White Rose accepted version 표지에서 DOI 확인 |
 
 ## 2. 한 문장 요약
 
-> 이 논문은 Evaluation, reproducibility, XAI, paper structure의 핵심 원리와 적용 범위 문제를 개념 분석과 사례 중심 정리 방법으로 다루며, 기말 연구의 배경 이론과 평가축을 기말 연구에 반영할 수 있게 해준다.
+> 이 논문은 ML 생명주기의 data management, model learning, model verification, model deployment 단계별 보증 요구와 방법을 정리하며, AI 보안 연구에서 재현성 기록을 안전성 증거로 다루는 근거를 제공한다.
 
 ## 3. 연구문제
 
-이 논문에서 기말 연구와 연결되는 질문은 연구평가/재현성/설명가능성(XAI)/논문 구성 영역에서 어떤 개념, 공격면, 평가 기준을 우선적으로 정리해야 하는가이다. 특히 LLM 평가 프레임워크, Benchmark contamination, Evaluation leakage와 Benchmark contamination, Hidden test leakage, Evaluation reproducibility failure가 서로 만나는 지점을 확인하는 데 초점을 둔다.
+안전중요 ML 시스템에서 모델이 의도한 사용 환경에 충분히 안전하다는 증거를 어떻게 만들고 유지할 것인가가 핵심 질문이다. 기말논문에서는 이 질문을 LLM/RAG 연구의 데이터, 프롬프트, 평가셋, 로그, 제출물 단계로 옮겨 재현성 체크리스트를 구성한다.
 
 ## 4. 핵심 개념
 
 | 개념 | 설명 | 기말 논문 연결 |
 |---|---|---|
-| LLM 평가 프레임워크 | 주차 AI 원리의 출발점이며 모델 또는 시스템을 이해하는 기본 단위이다. | 배경 이론 |
-| Benchmark contamination | 성능, 일반화, 효율 또는 신뢰성을 설명하는 보조 축이다. | 분석 기준 |
-| Benchmark contamination | 보안 위협을 식별하기 위한 대표 공격면이다. | 위협모형 |
-| Hidden test leakage | 방어와 평가 프로토콜을 설계할 때 비교해야 하는 요소이다. | 평가방법 |
+| ML lifecycle | 데이터 관리부터 배포까지 이어지는 반복 과정 | 생명주기 기반 위협모형 |
+| Assurance evidence | 안전 주장을 뒷받침하는 검증 가능한 증거 | config, seed, logs, outputs 보존 |
+| Verification and validation | 요구사항 충족과 실제 사용 적합성 확인 | toy evaluation 설계 |
+| Deployment assurance | 운영 환경 통합 후 감시와 갱신 관리 | MLOps 공급망 보안 연결 |
 
 ## 5. 방법론
 
-이 문헌은 개념 분석과 사례 중심 정리을 통해 기존 연구를 묶어 읽을 수 있게 한다. 본 보고서에서는 논문 제목, 프롬프트의 논문 패킷 정보, 로컬 PDF 존재 여부를 기준으로 요약했으며, 세부 실험값이나 DOI는 최종 원문 대조 단계에서 확인한다.
+기존 ML 보증 방법을 생명주기 단계별 desiderata, 방법, 한계, open challenge로 정리한다. 본 보고서에서는 이 구조를 W15의 연구평가와 기말논문 제출 전 점검표로 전환했다.
 
 ## 6. 주요 결과
 
-해당 영역의 대표 문제와 연구 설계 기준을 제시한다. 수치 결과를 새로 만들지 않기 위해 본 요약에서는 정량값을 적지 않았고, 원문에서 직접 확인되는 항목만 최종 보고서에 반영하도록 남겨 둔다.
+ML 보증은 모델 학습 후 성능만 확인하는 절차가 아니라 데이터 준비, 학습, 검증, 배포의 각 단계에서 근거를 축적하는 과정이다. 재현성은 부가 문서가 아니라 안전 주장과 책임성의 일부가 된다.
 
 ## 7. 보안 관점 분석
 
-이 논문은 Benchmark contamination, model leakage, policy/ethics risk을 이해하기 위한 배경 문헌으로 활용된다. 공격자의 능력, 방어자의 관측 가능성, 평가 데이터의 한계, 재현성 조건을 함께 정리해야 실제 보안 연구로 이어질 수 있다.
+데이터 출처 불명, seed/config 누락, 검증 로그 부재, 배포 후 모니터링 실패는 보안 연구에서도 재현성 실패와 연구 무결성 훼손으로 이어진다. 따라서 실험 결과를 주장할 때는 산출물과 로그를 함께 남겨야 한다.
 
 ## 8. 한계와 오픈문제
 
-원문 정밀 독해 전에는 세부 실험 설정, 데이터셋, DOI, 인용 관계를 확정할 수 없다. 또한 survey 성격의 문헌은 실제 재현 실험보다는 분류체계와 연구 공백 파악에 더 적합하므로, 기말 논문에서는 별도 평가 프로토콜로 보완해야 한다.
+논문은 ML 전반의 assurance survey이므로 생성형 AI 특유의 prompt injection, RAG 문서 오염, benchmark leakage는 별도 보완이 필요하다.
 
 ## 9. 기말 논문에 반영할 부분
 
-P02는 연구평가/재현성/설명가능성(XAI)/논문 구성 연구에서 개념 정의, 위협 분류, 평가 지표 후보를 정리하는 근거로 반영한다. 특히 기말 연구의 배경 이론과 평가축을 관련연구와 연구방법 장에 연결한다.
+기말논문의 연구방법과 부록에서 `config -> seed -> outputs -> run_log -> reference verification -> AI disclosure`로 이어지는 evidence chain을 설계하는 근거로 사용한다.

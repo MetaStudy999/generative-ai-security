@@ -5,37 +5,37 @@
 | 항목 | 내용 |
 |---|---|
 | 논문 제목 | Backdoor attacks and defenses in federated learning: Survey, challenges and future research directions |
-| 저자 | T. D. Nguyen et al. |
+| 저자 | Thuy Dung Nguyen et al. |
 | 학술지/학회 | Engineering Applications of Artificial Intelligence |
 | 연도 | 2024 |
-| DOI/URL | 확인 필요 |
+| DOI/URL | arXiv:2303.02213, 출판사 DOI 확인 필요 |
 | PDF 파일명 | 05_Nguyen_et_al_2024_FL_Backdoor_Attacks_Defenses.pdf |
-| 검증 상태 | 로컬 PDF 파일명 확인, DOI/URL과 원문 세부 내용은 최종 대조 필요 |
+| 검증 상태 | 로컬 PDF 첫 페이지에서 arXiv preprint 확인, 출판본 DOI는 최종 대조 필요 |
 
 ## 2. 한 문장 요약
 
-> 이 논문은 Gradient leakage, poisoning, backdoor, privacy attack와 관련된 위협 분류 문제를 문헌조사와 분류체계 정리 방법으로 다루며, 공격-방어-평가 관점을 연결하는 보안 분석 틀을 기말 연구에 반영할 수 있게 해준다.
+> 이 논문은 FL backdoor attack과 defense 연구를 survey하며, 악성 클라이언트 업데이트가 글로벌 모델의 특정 입력 행동을 바꿀 수 있는 위험과 방어 과제를 정리한다.
 
 ## 3. 연구문제
 
-이 논문에서 기말 연구와 연결되는 질문은 연합학습(FL) 및 FL 위협/방어/정책 영역에서 어떤 개념, 공격면, 평가 기준을 우선적으로 정리해야 하는가이다. 특히 연합학습의 기본 구조, Client, server, aggregation의 역할, FedAvg의 기본 원리와 Gradient leakage, Membership inference in FL, Poisoning attack가 서로 만나는 지점을 확인하는 데 초점을 둔다.
+이 논문에서 기말 연구와 연결되는 질문은 FL에서 backdoor가 왜 중앙집중 학습보다 검증하기 어려운지, 방어는 clean accuracy와 ASR을 어떻게 동시에 평가해야 하는지다. W10 toy 실험의 ASR 지표는 이 문헌을 직접 반영한다.
 
 ## 4. 핵심 개념
 
 | 개념 | 설명 | 기말 논문 연결 |
 |---|---|---|
-| 연합학습의 기본 구조 | 주차 AI 원리의 출발점이며 모델 또는 시스템을 이해하는 기본 단위이다. | 배경 이론 |
-| Client, server, aggregation의 역할 | 성능, 일반화, 효율 또는 신뢰성을 설명하는 보조 축이다. | 분석 기준 |
-| Gradient leakage | 보안 위협을 식별하기 위한 대표 공격면이다. | 위협모형 |
-| Membership inference in FL | 방어와 평가 프로토콜을 설계할 때 비교해야 하는 요소이다. | 평가방법 |
+| Backdoor attack | 특정 trigger 입력에서 목표 오동작을 유도하는 공격 | ASR 지표 |
+| Malicious client | poisoned update를 제출하는 FL 참여자 | 악성 비율 실험 |
+| Stealthiness | clean 성능을 크게 떨어뜨리지 않으면서 backdoor를 유지하는 특성 | clean accuracy와 ASR 동시 해석 |
+| Backdoor defense | robust aggregation, update inspection 등 | coordinate median 비교 |
 
 ## 5. 방법론
 
-이 문헌은 문헌조사와 분류체계 정리을 통해 기존 연구를 묶어 읽을 수 있게 한다. 본 보고서에서는 논문 제목, 프롬프트의 논문 패킷 정보, 로컬 PDF 존재 여부를 기준으로 요약했으며, 세부 실험값이나 DOI는 최종 원문 대조 단계에서 확인한다.
+이 문헌은 FL backdoor 공격과 방어를 survey하고, 악성 클라이언트, non-IID 분포, 서버 검증 한계를 함께 논의한다. 본 보고서에서는 악용 가능한 세부 절차 대신 synthetic trigger와 지표 정의만 사용한다.
 
 ## 6. 주요 결과
 
-핵심 개념, 공격면, 평가 기준, 향후 연구과제를 체계화한다. 수치 결과를 새로 만들지 않기 위해 본 요약에서는 정량값을 적지 않았고, 원문에서 직접 확인되는 항목만 최종 보고서에 반영하도록 남겨 둔다.
+Backdoor 위험은 clean accuracy만으로 드러나지 않는다. W10 실험에서 20% poisoned FedAvg의 clean accuracy는 0.950000으로 비교적 높지만 ASR은 0.496835로 상승한다는 점이 이 문헌의 문제의식과 맞닿아 있다.
 
 ## 7. 보안 관점 분석
 
@@ -47,4 +47,4 @@
 
 ## 9. 기말 논문에 반영할 부분
 
-P05는 연합학습(FL) 및 FL 위협/방어/정책 연구에서 개념 정의, 위협 분류, 평가 지표 후보를 정리하는 근거로 반영한다. 특히 공격-방어-평가 관점을 연결하는 보안 분석 틀을 관련연구와 연구방법 장에 연결한다.
+P05는 backdoor threat model과 ASR 평가 지표를 기말 논문의 방법론 장에 연결한다. 특히 defense 비교에서는 clean accuracy만이 아니라 ASR 감소를 함께 기록해야 한다는 근거로 사용한다.

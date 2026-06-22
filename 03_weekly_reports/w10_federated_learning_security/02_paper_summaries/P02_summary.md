@@ -8,34 +8,34 @@
 | 저자 | Viraaji Mothukuri et al. |
 | 학술지/학회 | Future Generation Computer Systems |
 | 연도 | 2021 |
-| DOI/URL | 확인 필요 |
+| DOI/URL | 10.1016/j.future.2020.10.007 |
 | PDF 파일명 | 02_Mothukuri_et_al_2021_FL_Security_Privacy_Survey.pdf |
-| 검증 상태 | 로컬 PDF 파일명 확인, DOI/URL과 원문 세부 내용은 최종 대조 필요 |
+| 검증 상태 | 로컬 PDF 첫 페이지에서 제목, 학술지, DOI 확인 |
 
 ## 2. 한 문장 요약
 
-> 이 논문은 Gradient leakage, poisoning, backdoor, privacy attack와 관련된 위협 분류 문제를 문헌조사와 분류체계 정리 방법으로 다루며, 공격-방어-평가 관점을 연결하는 보안 분석 틀을 기말 연구에 반영할 수 있게 해준다.
+> 이 논문은 FL의 security/privacy 위험을 체계적으로 검토하며, poisoning·backdoor·communication bottleneck·inference attack을 FL 채택 전 평가해야 할 핵심 위험으로 정리한다.
 
 ## 3. 연구문제
 
-이 논문에서 기말 연구와 연결되는 질문은 연합학습(FL) 및 FL 위협/방어/정책 영역에서 어떤 개념, 공격면, 평가 기준을 우선적으로 정리해야 하는가이다. 특히 연합학습의 기본 구조, Client, server, aggregation의 역할, FedAvg의 기본 원리와 Gradient leakage, Membership inference in FL, Poisoning attack가 서로 만나는 지점을 확인하는 데 초점을 둔다.
+이 논문에서 기말 연구와 연결되는 질문은 FL이 raw data를 중앙 서버로 보내지 않아도 왜 보안·프라이버시 위험에서 자유롭지 않은가이다. 특히 security threat와 privacy threat를 분리해 threat model과 평가 지표를 설계하는 근거가 된다.
 
 ## 4. 핵심 개념
 
 | 개념 | 설명 | 기말 논문 연결 |
 |---|---|---|
-| 연합학습의 기본 구조 | 주차 AI 원리의 출발점이며 모델 또는 시스템을 이해하는 기본 단위이다. | 배경 이론 |
-| Client, server, aggregation의 역할 | 성능, 일반화, 효율 또는 신뢰성을 설명하는 보조 축이다. | 분석 기준 |
-| Gradient leakage | 보안 위협을 식별하기 위한 대표 공격면이다. | 위협모형 |
-| Membership inference in FL | 방어와 평가 프로토콜을 설계할 때 비교해야 하는 요소이다. | 평가방법 |
+| Security threat | poisoning, backdoor, communication bottleneck 등 무결성과 가용성을 해치는 위험 | 보안 이슈 30% |
+| Privacy threat | inference 기반 공격과 업데이트 노출 위험 | leakage proxy 설계 |
+| Edge/on-device learning | 데이터가 클라이언트에 남는 FL 운영 구조 | 보호 자산 정의 |
+| Mass adoption barrier | 신뢰 부족과 위험 문서화 미비 | 정책·책임성 논의 |
 
 ## 5. 방법론
 
-이 문헌은 문헌조사와 분류체계 정리을 통해 기존 연구를 묶어 읽을 수 있게 한다. 본 보고서에서는 논문 제목, 프롬프트의 논문 패킷 정보, 로컬 PDF 존재 여부를 기준으로 요약했으며, 세부 실험값이나 DOI는 최종 원문 대조 단계에서 확인한다.
+이 문헌은 FL 보안·프라이버시 문헌을 survey 형식으로 묶고, 접근 방식, 구현 스타일, 위험요인을 설명한다. 본 보고서는 이를 W10 위협모형의 confidentiality, integrity, privacy 항목으로 전환한다.
 
 ## 6. 주요 결과
 
-핵심 개념, 공격면, 평가 기준, 향후 연구과제를 체계화한다. 수치 결과를 새로 만들지 않기 위해 본 요약에서는 정량값을 적지 않았고, 원문에서 직접 확인되는 항목만 최종 보고서에 반영하도록 남겨 둔다.
+로컬 PDF 초록 기준, 보안 위협으로 communication bottleneck, poisoning, backdoor가 두드러지고 privacy 위협으로 inference-based attack이 중요하다고 정리한다. W10 실험은 이 중 poisoning/backdoor 계열을 toy 조건으로만 축소해 다룬다.
 
 ## 7. 보안 관점 분석
 
@@ -47,4 +47,4 @@
 
 ## 9. 기말 논문에 반영할 부분
 
-P02는 연합학습(FL) 및 FL 위협/방어/정책 연구에서 개념 정의, 위협 분류, 평가 지표 후보를 정리하는 근거로 반영한다. 특히 공격-방어-평가 관점을 연결하는 보안 분석 틀을 관련연구와 연구방법 장에 연결한다.
+P02는 FL security/privacy threat taxonomy의 기본 관련연구로 반영한다. 기말 논문에서는 raw data 비공유가 곧 완전한 privacy 보증이 아니라는 문제 제기에 사용한다.

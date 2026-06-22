@@ -1,50 +1,51 @@
-# 논문 요약
+# P03 논문 요약
 
 ## 1. 서지정보
 
 | 항목 | 내용 |
 |---|---|
-| 논문 제목 | Differential Privacy in Deep Learning: A Literature Survey |
-| 저자 | Zizheng Pan et al. |
-| 학술지/학회 | Neurocomputing |
-| 연도 | 2024 |
-| DOI/URL | 확인 필요 |
-| PDF 파일명 | 03_SUBSTITUTE_Fu_et_al_2024_Differentially_Private_FL_Review.pdf |
-| 검증 상태 | 로컬 PDF가 대체 논문 파일명으로 보임, 프롬프트 지정 논문과 대체 여부 최종 확인 필요 |
+| 지정 논문 제목 | Differential Privacy in Deep Learning: A Literature Survey |
+| 지정 논문 저자 | Zizheng Pan et al. |
+| 지정 논문 학술지 | Neurocomputing |
+| 지정 논문 DOI | `10.1016/j.neucom.2024.127663` |
+| 로컬 PDF 제목 | Differentially Private Federated Learning: A Systematic Review |
+| 로컬 PDF 저자 | Jie Fu, Yuan Hong, Xinpeng Ling, Leixia Wang, Xun Ran, Zhiyu Sun, Wendy Hui Wang, Zhili Chen, Yang Cao |
+| PDF 파일명 | `03_SUBSTITUTE_Fu_et_al_2024_Differentially_Private_FL_Review.pdf` |
+| 검증 상태 | 지정 논문과 로컬 PDF 불일치. 제출본에서는 대체 문헌으로 명시 |
 
 ## 2. 한 문장 요약
 
-> 이 논문은 Membership inference, privacy leakage, utility trade-off와 관련된 위협 분류 문제를 문헌조사와 분류체계 정리 방법으로 다루며, 공격-방어-평가 관점을 연결하는 보안 분석 틀을 기말 연구에 반영할 수 있게 해준다.
+> 지정 논문은 deep learning 전반의 DP 적용을 다루는 문헌으로 쓰고, 현재 로컬 대체 PDF는 FL에서 DP model, 보호 대상, privacy level을 구분하는 보완 문헌으로 사용한다.
 
 ## 3. 연구문제
 
-이 논문에서 기말 연구와 연결되는 질문은 차등프라이버시(DP) 및 멤버십 추론 공격/방어 영역에서 어떤 개념, 공격면, 평가 기준을 우선적으로 정리해야 하는가이다. 특히 차등프라이버시의 기본 정의, Privacy budget, epsilon, delta, Local DP와 central DP의 차이와 Membership inference attack, Training data leakage, Model memorization가 서로 만나는 지점을 확인하는 데 초점을 둔다.
+딥러닝 또는 연합학습에서 DP가 어느 지점의 정보를 보호하는지, central DP/local DP/shuffle model의 차이가 threat model과 평가 지표에 어떤 차이를 만드는지를 묻는다.
 
 ## 4. 핵심 개념
 
 | 개념 | 설명 | 기말 논문 연결 |
 |---|---|---|
-| 차등프라이버시의 기본 정의 | 주차 AI 원리의 출발점이며 모델 또는 시스템을 이해하는 기본 단위이다. | 배경 이론 |
-| Privacy budget, epsilon, delta | 성능, 일반화, 효율 또는 신뢰성을 설명하는 보조 축이다. | 분석 기준 |
-| Membership inference attack | 보안 위협을 식별하기 위한 대표 공격면이다. | 위협모형 |
-| Training data leakage | 방어와 평가 프로토콜을 설계할 때 비교해야 하는 요소이다. | 평가방법 |
+| Central DP | 신뢰 가능한 중앙 주체가 noise/accounting을 관리하는 가정 | 중앙 학습 위협모형 |
+| Local DP | 데이터 제공자 쪽에서 randomization을 수행하는 가정 | 사용자 단말 보호 |
+| Shuffle model | local randomization과 중앙 분석 사이의 중간 모델 | 시스템 설계 대안 |
+| FL privacy object | sample, client, update 등 보호 대상의 층위 구분 | W10/W11 연결 |
 
 ## 5. 방법론
 
-이 문헌은 문헌조사와 분류체계 정리을 통해 기존 연구를 묶어 읽을 수 있게 한다. 본 보고서에서는 논문 제목, 프롬프트의 논문 패킷 정보, 로컬 PDF 존재 여부를 기준으로 요약했으며, 세부 실험값이나 DOI는 최종 원문 대조 단계에서 확인한다.
+지정 논문은 deep learning DP survey로 다루고, 로컬 대체 PDF는 DP-FL systematic review로 별도 표시한다. 본 보고서에서는 대체 PDF의 내용을 FL 확장 한계와 privacy object 분류에만 제한적으로 사용한다.
 
 ## 6. 주요 결과
 
-핵심 개념, 공격면, 평가 기준, 향후 연구과제를 체계화한다. 수치 결과를 새로 만들지 않기 위해 본 요약에서는 정량값을 적지 않았고, 원문에서 직접 확인되는 항목만 최종 보고서에 반영하도록 남겨 둔다.
+DP는 적용 위치와 공격자 가정에 따라 의미가 달라진다. 같은 epsilon이라도 중앙 학습, local collection, federated update 보호에서 해석과 유틸리티 손실이 달라질 수 있다.
 
 ## 7. 보안 관점 분석
 
-이 논문은 Membership inference, privacy leakage, utility trade-off을 이해하기 위한 배경 문헌으로 활용된다. 공격자의 능력, 방어자의 관측 가능성, 평가 데이터의 한계, 재현성 조건을 함께 정리해야 실제 보안 연구로 이어질 수 있다.
+P03은 W11을 W10 연합학습 보안과 연결한다. membership inference risk는 학습 완료 후 model output뿐 아니라 FL training update에서도 고려될 수 있으므로 보호 자산을 명확히 적어야 한다.
 
 ## 8. 한계와 오픈문제
 
-원문 정밀 독해 전에는 세부 실험 설정, 데이터셋, DOI, 인용 관계를 확정할 수 없다. 또한 survey 성격의 문헌은 실제 재현 실험보다는 분류체계와 연구 공백 파악에 더 적합하므로, 기말 논문에서는 별도 평가 프로토콜로 보완해야 한다.
+현재 로컬 PDF가 지정 논문과 다르다. 최종 제출이나 기말논문 인용에서는 Neurocomputing 지정 논문 원문을 확보하고, Fu et al. 대체 문헌은 FL 보완 참고문헌으로 분리해야 한다.
 
 ## 9. 기말 논문에 반영할 부분
 
-P03는 차등프라이버시(DP) 및 멤버십 추론 공격/방어 연구에서 개념 정의, 위협 분류, 평가 지표 후보를 정리하는 근거로 반영한다. 특히 공격-방어-평가 관점을 연결하는 보안 분석 틀을 관련연구와 연구방법 장에 연결한다.
+DP 평가표에 `보호 대상`, `적용 위치`, `공격자 관측 가능성`, `accounting 단위`를 추가하는 근거로 사용한다.

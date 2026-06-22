@@ -1,11 +1,17 @@
-# 할 일 체크리스트
+# W15 작업 체크리스트
 
-| 작업 | 상태 | 비고 |
+| 항목 | 상태 | 비고 |
 |---|---|---|
-| 논문 PDF 확인 | 진행 | 로컬 파일명 확인, 원문 세부 대조 필요 |
-| DOI/URL 검증 | 남음 | 임의 생성 금지 |
-| 논문요약 작성 | 완료 | 5편 작성 |
-| 이론정리 작성 | 완료 | AI 원리 70%, 보안 이슈 30% |
-| 실습 기록 작성 | 완료 | 설계 초안, 결과 실행 전 |
-| AI 활용기록 작성 | 완료 | 고지서 포함 |
-| 통합보고서 작성 | 완료 | draft/final/review 생성 |
+| 논문 5편 목록 정리 | 완료 | P03 대체 PDF, P05 부분 확인 표시 |
+| 논문 5편 요약 | 완료 | `02_paper_summaries/` |
+| 논문 비교표 작성 | 완료 | `paper_matrix.md` |
+| AI 원리 70% 정리 | 완료 | `03_theory_notes/ai_principle_70.md` |
+| 보안 이슈 30% 정리 | 완료 | `03_theory_notes/security_issue_30.md` |
+| Research Track 작성 | 완료 | 위협모형, 평가방법, 오픈문제 |
+| 로컬 감사 실습 실행 | 완료 | `04_experiment/outputs/` |
+| AI 활용기록 작성 | 완료 | `05_ai_worklog/` |
+| 통합보고서 최종본 | 완료 | `06_report/final/integrated_report_final.md` |
+| 제출용 보고서 Markdown/HTML | 완료 | `07_week_submission/w15_submission_report.*` |
+| 발표 패키지 | 완료 | `09_presentation/` |
+| 기말논문 연결 | 완료 | `08_final_paper_bridge/`, `04_final_paper/` 일부 보완 |
+| 최종 확인 필요 | 진행 | P03 원문, P05 DOI, 국내 문헌, 표/그림 |

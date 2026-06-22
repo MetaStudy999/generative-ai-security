@@ -7,4 +7,5 @@
 | AI 원리 | Model IP, model stealing, model extraction |
 | 보안 이슈 | Watermarking, fingerprinting, model extraction defense |
 | 논문 패킷 | 5편 |
-| 산출물 상태 | 프롬프트 구조 적용 완료, DOI/원문 세부 확인 필요 |
+| 산출물 상태 | 보고서·실험·제출본·발표본 작성 완료, DOI/대체 PDF 최종 확인 필요 |
+| 실험 상태 | synthetic toy 실험 실행 완료, `04_experiment/outputs/` 기준 수치 반영 |

@@ -2,18 +2,27 @@
 
 ## 1. 문헌 검증 한계
 
-논문 제목과 로컬 PDF 파일명은 정리했지만 DOI/URL과 원문 세부 수치는 최종 대조가 필요하다. `SUBSTITUTE` PDF가 있는 주차는 프롬프트 지정 문헌과 실제 확보 문헌의 차이를 확인해야 한다.
+- P01, P02, P04는 로컬 PDF에서 DOI를 확인했다.
+- P03, P05는 로컬 PDF가 arXiv/preprint 표기를 포함하므로 최종 출판본 DOI와 페이지 정보를 재확인해야 한다.
+- survey 문헌의 세부 실험 설정과 수치는 원문 정밀 독해 후 필요한 부분만 반영한다.
 
-## 2. 방법론 한계
+## 2. 실험 한계
 
-연합학습(FL) 및 FL 위협/방어/정책는 연합학습의 기본 구조, Client, server, aggregation의 역할, FedAvg의 기본 원리와 Gradient leakage, Membership inference in FL, Poisoning attack가 동시에 얽힌다. 단일 지표만으로 성능과 보안성을 판단하면 연구 결론이 과도하게 단순화될 수 있다.
+- W10 실험은 synthetic 2차원 binary classification과 toy logistic regression만 사용한다.
+- 실제 FL framework, 실제 의료·금융·모바일 데이터, 실제 secure aggregation protocol은 사용하지 않았다.
+- Backdoor trigger는 교육용 toy feature shift이며 실제 공격 payload가 아니다.
+- Privacy Leakage Proxy는 update norm 기반 대용 지표이며 실제 데이터 복원 성공률이 아니다.
 
-## 3. 재현성 한계
+## 3. 연구 오픈문제
 
-Docker, seed, config, 데이터 버전, 실행 로그가 모두 보존되어야 한다. 현재 보고서는 실험 설계 초안이므로 실제 결과값은 아직 확정하지 않는다.
+| 오픈문제 | 설명 | 후속 작업 |
+|---|---|---|
+| Utility-security trade-off | robust aggregation이 ASR을 낮추더라도 clean accuracy, convergence, communication cost와 충돌할 수 있다. | 복수 seed와 여러 aggregation rule 비교 |
+| Secure aggregation과 검증 충돌 | update privacy를 높이면 악성 update 탐지가 어려워질 수 있다. | secure aggregation 조건의 audit 가능성 검토 |
+| Non-IID robustness | client별 데이터 분포 차이가 공격과 방어 효과를 모두 바꾼다. | Dirichlet split 등 다양한 non-IID 설정 추가 |
+| Privacy metric 정교화 | proxy 지표만으로 실제 leakage를 설명하기 어렵다. | DP, membership inference, gradient inversion 별도 실험 설계 |
+| 정책·책임성 | FL 운영자는 client 동의, 로그, 사고 대응 책임을 함께 다뤄야 한다. | P04 기반 정책 체크리스트 작성 |
 
-## 4. 기말 논문으로 남길 질문
+## 4. 기말 논문 연결
 
-1. 어떤 위협을 기말 논문의 중심 사례로 삼을 것인가?
-2. 문헌분석과 toy 실험을 어떻게 연결할 것인가?
-3. 보안성, 설명가능성, 재현성을 하나의 평가표로 통합할 수 있는가?
+기말 논문에서는 W10을 핵심 실험 주차로 쓰기보다 W11, W14와 연결해 "분산/프라이버시 보존형 AI 시스템의 보안 평가표"를 구성하는 보조 근거로 활용한다.

@@ -2,48 +2,46 @@
 
 ## 1. 핵심 이론
 
-W11의 AI 원리는 Differential Privacy, privacy budget, DP-SGD, privacy accounting이다. 이 주차에서는 보안 이슈를 먼저 끌어오지 않고, 모델 또는 시스템이 어떤 학습 구조와 평가 구조를 갖는지 이해하는 데 70%의 비중을 둔다.
+W11의 중심 원리는 차등프라이버시(DP), privacy budget, DP-SGD, privacy accounting이다. DP는 한 개인 레코드가 데이터셋에 포함되었는지 여부가 모델 출력 또는 통계 결과에 과도하게 드러나지 않도록 확률적 경계를 두는 방식이다.
 
-핵심 항목은 다음과 같다.
-
-- 차등프라이버시의 기본 정의
-- Privacy budget, epsilon, delta
-- Local DP와 central DP의 차이
-- DP-SGD의 기본 구조
-- Gradient clipping과 noise injection
-- Privacy accounting
-- Utility-privacy trade-off
-- Deep learning에서 DP 적용의 어려움
-- FL, LLM 환경에서 DP 적용 한계
-- DP 오용과 잘못된 해석 사례
+딥러닝에서는 DP-SGD가 대표 구현이다. 각 sample 또는 mini-batch gradient를 clipping하고 noise를 더한 뒤, 여러 학습 step에 걸친 privacy loss를 accountant로 추적한다. 이때 noise를 많이 넣으면 privacy risk가 낮아질 수 있지만 accuracy와 convergence가 나빠질 수 있다. 반대로 utility를 우선하면 DP 보장이 느슨해질 수 있다.
 
 ## 2. 핵심 개념표
 
 | 개념 | 정의 | 직관적 설명 | 관련 논문 |
 |---|---|---|---|
-| 차등프라이버시의 기본 정의 | 차등프라이버시(DP) & 멤버십 추론 공격·방어에서 핵심이 되는 AI 원리 | 모델을 이해하기 위한 1번째 관찰 지점 | P01 |
-| Privacy budget, epsilon, delta | 차등프라이버시(DP) & 멤버십 추론 공격·방어에서 핵심이 되는 AI 원리 | 모델을 이해하기 위한 2번째 관찰 지점 | P02 |
-| Local DP와 central DP의 차이 | 차등프라이버시(DP) & 멤버십 추론 공격·방어에서 핵심이 되는 AI 원리 | 모델을 이해하기 위한 3번째 관찰 지점 | P03 |
-| DP-SGD의 기본 구조 | 차등프라이버시(DP) & 멤버십 추론 공격·방어에서 핵심이 되는 AI 원리 | 모델을 이해하기 위한 4번째 관찰 지점 | P04 |
-| Gradient clipping과 noise injection | 차등프라이버시(DP) & 멤버십 추론 공격·방어에서 핵심이 되는 AI 원리 | 모델을 이해하기 위한 5번째 관찰 지점 | P05 |
-| Privacy accounting | 차등프라이버시(DP) & 멤버십 추론 공격·방어에서 핵심이 되는 AI 원리 | 모델을 이해하기 위한 6번째 관찰 지점 | P05 |
-| Utility-privacy trade-off | 차등프라이버시(DP) & 멤버십 추론 공격·방어에서 핵심이 되는 AI 원리 | 모델을 이해하기 위한 7번째 관찰 지점 | P05 |
-| Deep learning에서 DP 적용의 어려움 | 차등프라이버시(DP) & 멤버십 추론 공격·방어에서 핵심이 되는 AI 원리 | 모델을 이해하기 위한 8번째 관찰 지점 | P05 |
-| FL, LLM 환경에서 DP 적용 한계 | 차등프라이버시(DP) & 멤버십 추론 공격·방어에서 핵심이 되는 AI 원리 | 모델을 이해하기 위한 9번째 관찰 지점 | P05 |
-| DP 오용과 잘못된 해석 사례 | 차등프라이버시(DP) & 멤버십 추론 공격·방어에서 핵심이 되는 AI 원리 | 모델을 이해하기 위한 10번째 관찰 지점 | P05 |
+| Differential Privacy | 인접 데이터셋의 출력 분포 차이를 제한하는 privacy 정의 | 한 사람의 데이터가 들어갔는지 출력만 보고 알아차리기 어렵게 함 | P01, P02, P03 |
+| Privacy Budget | 허용되는 privacy loss의 총량 | 예산이 작을수록 보호는 강하지만 utility 비용이 커질 수 있음 | P01, P02 |
+| Epsilon | DP 보장에서 출력 분포 차이를 조절하는 핵심 매개변수 | 작은 epsilon은 강한 보호, 큰 epsilon은 약한 보호로 해석 | P01, P03 |
+| Delta | 순수 DP가 아닌 approximate DP에서 허용하는 작은 실패확률 | 아주 드문 privacy guarantee 실패 여지 | P02, P03 |
+| DP-SGD | gradient clipping과 noise injection을 결합한 SGD 변형 | 학습 업데이트가 개별 sample을 과도하게 반영하지 않게 함 | P02, P03 |
+| Privacy Accounting | 여러 학습 step의 privacy loss를 누적 계산 | “총 privacy budget을 얼마나 썼는가”를 추적 | P02 |
+| Utility-Privacy Trade-off | privacy 보호와 모델 성능 사이의 상충관계 | noise가 커지면 leakage는 줄 수 있지만 accuracy도 흔들릴 수 있음 | P01, P05 |
 
 ## 3. 수식 또는 알고리즘
 
 ```text
-입력/데이터 정의 -> 차등프라이버시의 기본 정의 -> Privacy budget, epsilon, delta -> Local DP와 central DP의 차이 -> DP-SGD의 기본 구조 -> 모델 또는 시스템 출력 -> 평가 지표 산출
+데이터 준비
+-> sample/gradient별 clipping
+-> noise injection
+-> model update
+-> privacy accounting
+-> accuracy, MI risk, leakage, utility drop 동시 평가
 ```
 
-수식 수준에서는 학습 목적함수, 평가 지표, 일반화 또는 효율성 조건을 분리해 기록한다. 세부 수식은 원문 확인 후 최종 논문에 필요한 것만 엄선한다.
+DP claim은 다음 네 가지를 함께 적어야 해석 가능하다.
+
+| 항목 | 보고 이유 |
+|---|---|
+| epsilon/delta | privacy guarantee의 수치적 조건 |
+| accountant | 여러 step의 privacy loss 계산 방식 |
+| clipping/noise 설정 | DP-SGD 구현의 핵심 조절값 |
+| utility/leakage 지표 | 실제 모델 효용과 privacy risk 확인 |
 
 ## 4. 초보자용 설명
 
-차등프라이버시(DP) 및 멤버십 추론 공격/방어를 공부할 때 먼저 볼 것은 "모델이 무엇을 입력으로 받고, 무엇을 학습하며, 어떤 기준으로 성공을 판단하는가"이다. 이 구조를 이해해야 공격자가 어느 지점을 건드릴 수 있는지도 보인다.
+DP는 “데이터 하나가 들어가도 모델이 너무 달라지지 않게 만드는 약속”이다. 하지만 약속이 있으려면 수학적 조건, 구현 설정, 누적 계산이 모두 맞아야 한다. 단순히 noise를 넣었다고 DP가 되는 것은 아니다.
 
 ## 5. 보안 연구와의 연결
 
-AI 원리의 취약 지점은 곧 보안 평가 항목이 된다. 차등프라이버시의 기본 정의, Privacy budget, epsilon, delta, Local DP와 central DP의 차이를 이해하면 Membership inference attack, Training data leakage, Model memorization가 왜 발생하는지 설명할 수 있다.
+Membership inference는 DP가 막고자 하는 대표 privacy risk 중 하나다. 공격자가 confidence나 loss를 보고 “이 sample이 학습에 있었나”를 맞히려 할 때, DP와 regularization은 train/test 신호 차이를 줄이는 방어로 해석할 수 있다. 따라서 W11의 실험도 accuracy만 보지 않고 `MI Attack Accuracy`, `Privacy Leakage Score`, `Utility Drop`을 함께 기록한다.

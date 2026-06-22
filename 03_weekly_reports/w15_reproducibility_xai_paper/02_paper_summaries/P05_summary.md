@@ -5,46 +5,46 @@
 | 항목 | 내용 |
 |---|---|
 | 논문 제목 | Concept-based Explainable Artificial Intelligence: A Survey |
-| 저자 | K. D. et al. |
-| 학술지/학회 | ACM Computing Surveys |
-| 연도 | 2025 |
-| DOI/URL | 확인 필요 |
-| PDF 파일명 | 05_Poeta_et_al_2025_Concept_Based_XAI_Survey.pdf |
-| 검증 상태 | 로컬 PDF 파일명 확인, DOI/URL과 원문 세부 내용은 최종 대조 필요 |
+| 저자 | Eleonora Poeta, Gabriele Ciravegna, Eliana Pastor, Tania Cerquitelli, Elena Baralis |
+| 학술지/학회 | arXiv preprint, ACM 최종 출판 여부 확인 필요 |
+| 연도 | 2023/2025 확인 필요 |
+| DOI/URL | `https://arxiv.org/abs/2312.12936` |
+| PDF 파일명 | `05_Poeta_et_al_2025_Concept_Based_XAI_Survey.pdf` |
+| 검증 상태 | 로컬 PDF 첫 페이지에서 arXiv identifier 확인, 최종 DOI 확인 필요 |
 
 ## 2. 한 문장 요약
 
-> 이 논문은 Evaluation, reproducibility, XAI, paper structure의 신뢰성 및 보증 문제 문제를 문헌조사와 분류체계 정리 방법으로 다루며, 원리와 보안 보증 사이의 연결을 기말 연구에 반영할 수 있게 해준다.
+> 이 논문은 feature-level 설명의 한계를 보완하기 위해 concept-based XAI 방법을 정의·분류하고, 개념 기반 설명의 평가 지표와 활용 지침을 제시한다.
 
 ## 3. 연구문제
 
-이 논문에서 기말 연구와 연결되는 질문은 연구평가/재현성/설명가능성(XAI)/논문 구성 영역에서 어떤 개념, 공격면, 평가 기준을 우선적으로 정리해야 하는가이다. 특히 LLM 평가 프레임워크, Benchmark contamination, Evaluation leakage와 Benchmark contamination, Hidden test leakage, Evaluation reproducibility failure가 서로 만나는 지점을 확인하는 데 초점을 둔다.
+사람이 이해 가능한 concept를 모델 설명의 기본 단위로 사용할 때 어떤 concept 유형, 설명 유형, 학습 방식, 평가 지표가 필요한가가 핵심 질문이다. 기말논문에서는 XAI 설명을 보안 평가 증거로 사용할 때 concept-level 안정성과 정보노출 위험을 함께 점검한다.
 
 ## 4. 핵심 개념
 
 | 개념 | 설명 | 기말 논문 연결 |
 |---|---|---|
-| LLM 평가 프레임워크 | 주차 AI 원리의 출발점이며 모델 또는 시스템을 이해하는 기본 단위이다. | 배경 이론 |
-| Benchmark contamination | 성능, 일반화, 효율 또는 신뢰성을 설명하는 보조 축이다. | 분석 기준 |
-| Benchmark contamination | 보안 위협을 식별하기 위한 대표 공격면이다. | 위협모형 |
-| Hidden test leakage | 방어와 평가 프로토콜을 설계할 때 비교해야 하는 요소이다. | 평가방법 |
+| Concept | 색, 객체, 속성, 텍스트 개념처럼 사람이 해석 가능한 추상화 | human review |
+| C-XAI | concept를 이용해 모델 결정이나 내부 표현을 설명하는 방법 | XAI 평가축 |
+| Concept bottleneck | concept layer를 통해 예측을 구성하는 explainable-by-design 접근 | 설명-성능 trade-off |
+| Concept intervention | concept 값을 수정해 예측 변화를 확인하는 평가 방식 | 안정성·안전성 분석 |
 
 ## 5. 방법론
 
-이 문헌은 문헌조사와 분류체계 정리을 통해 기존 연구를 묶어 읽을 수 있게 한다. 본 보고서에서는 논문 제목, 프롬프트의 논문 패킷 정보, 로컬 PDF 존재 여부를 기준으로 요약했으며, 세부 실험값이나 DOI는 최종 원문 대조 단계에서 확인한다.
+Concept-based XAI 문헌을 정리해 concept 유형, explanation 유형, post-hoc/설계기반 접근, taxonomy, 평가 지표, human evaluation, dataset 사용을 비교한다.
 
 ## 6. 주요 결과
 
-핵심 개념, 공격면, 평가 기준, 향후 연구과제를 체계화한다. 수치 결과를 새로 만들지 않기 위해 본 요약에서는 정량값을 적지 않았고, 원문에서 직접 확인되는 항목만 최종 보고서에 반영하도록 남겨 둔다.
+Concept-based explanation은 pixel/feature 수준보다 사용자 이해에 가까운 설명을 제공할 수 있다. 하지만 concept 정의, annotation, concept completeness, concept leakage, human evaluation 비용이 중요한 한계로 남는다.
 
 ## 7. 보안 관점 분석
 
-이 논문은 Benchmark contamination, model leakage, policy/ethics risk을 이해하기 위한 배경 문헌으로 활용된다. 공격자의 능력, 방어자의 관측 가능성, 평가 데이터의 한계, 재현성 조건을 함께 정리해야 실제 보안 연구로 이어질 수 있다.
+Concept는 설명을 쉽게 만들지만, 공격자가 어떤 concept가 의사결정에 중요한지 알면 우회나 조작에 활용할 수 있다. 반대로 concept drift와 spurious concept를 탐지하면 모델 오동작과 편향을 조기에 발견할 수 있다.
 
 ## 8. 한계와 오픈문제
 
-원문 정밀 독해 전에는 세부 실험 설정, 데이터셋, DOI, 인용 관계를 확정할 수 없다. 또한 survey 성격의 문헌은 실제 재현 실험보다는 분류체계와 연구 공백 파악에 더 적합하므로, 기말 논문에서는 별도 평가 프로토콜로 보완해야 한다.
+로컬 PDF는 arXiv preprint 기준이므로 최종 출판 정보와 DOI가 필요하다. Concept annotation과 human evaluation은 비용이 크고, 보안 도메인에서는 concept 공개 범위가 민감할 수 있다.
 
 ## 9. 기말 논문에 반영할 부분
 
-P05는 연구평가/재현성/설명가능성(XAI)/논문 구성 연구에서 개념 정의, 위협 분류, 평가 지표 후보를 정리하는 근거로 반영한다. 특히 원리와 보안 보증 사이의 연결을 관련연구와 연구방법 장에 연결한다.
+기말논문의 XAI 평가 항목에 explanation stability, concept completeness, disclosure risk를 포함하는 근거로 활용한다. 최종 참고문헌에는 DOI 검증 후 반영한다.

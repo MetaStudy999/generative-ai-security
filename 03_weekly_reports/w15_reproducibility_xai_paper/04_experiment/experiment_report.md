@@ -2,44 +2,58 @@
 
 ## 1. 실험 목표
 
-W15 실습은 연구평가/재현성/설명가능성(XAI)/논문 구성의 보안 평가를 안전한 toy 환경에서 설계하는 것이다. 실제 시스템 침해나 실제 개인정보 사용은 제외한다.
+W15 실습은 모델을 학습하거나 공격을 실행하는 실험이 아니라, 기말논문 제출 직전의 재현성·참고문헌·AI 활용 고지·발표/제출 산출물 준비 상태를 감사하는 안전한 로컬 점검이다.
 
 ## 2. 환경
 
 | 항목 | 내용 |
 |---|---|
 | OS | Ubuntu 24.04 기준 |
-| Container | Docker |
-| Python | 3.x |
+| Container | Docker 지원, 로컬 감사 스크립트는 Python 표준 라이브러리만 사용 |
+| Python | 3.11 |
 | Seed | 42 |
-| 데이터 | 공개 데이터 또는 synthetic data |
-| 결과 상태 | 실제 실행 전 |
+| 데이터 | 로컬 repository metadata |
+| 결과 상태 | 실행 완료 |
 
 ## 3. 실행 절차
 
-| 단계 | 설계 내용 | 결과 기록 |
-|---|---|---|
-| 전체 주차 보고서에서 기말 논문 후보 주제 선별 | 설계 완료 | 실제 실행 결과는 실행 후 기록 |
-| 참고문헌 DOI/URL 검증표 작성 | 설계 완료 | 실제 실행 결과는 실행 후 기록 |
-| 실험이 있는 경우 config, seed, results, logs 확인 | 설계 완료 | 실제 실행 결과는 실행 후 기록 |
-| 최종 논문 contribution 문장 1~2개 확정 | 설계 완료 | 실제 실행 결과는 실행 후 기록 |
-| 결과는 실제 확인 전까지 빈칸으로 둔다. | 설계 완료 | 실제 실행 결과는 실행 후 기록 |
+```bash
+cd 03_weekly_reports/w15_reproducibility_xai_paper/04_experiment
+python src/run_experiment.py --config configs/config.yaml
+```
 
-## 4. 결과
+Docker 환경에서 실행할 경우:
 
-| 조건 | 주요 지표 | 결과 |
-|---|---|---|
-| Clean baseline | Accuracy/F1/Task score | 실행 전 |
-| Security scenario | Attack impact/Risk score | 실행 전 |
-| Defense/check | Robust score/Leakage score | 실행 전 |
-| Reproducibility | Seed/config/log 확인 | 실행 전 |
+```bash
+docker build -t w15-aisec .
+docker run --rm -it -v "$(pwd)":/workspace w15-aisec bash
+python src/run_experiment.py --config configs/config.yaml
+```
 
-## 5. 재현성 점검
+## 4. 기말 논문 준비 점검 결과
 
-- `configs/config.yaml`에 seed, 데이터, 실험 조건을 기록한다.
-- Dockerfile 내부 uv sync와 pyproject.toml로 실행 환경을 고정한다.
-- 결과값은 실제 실행 로그가 있을 때만 채운다.
+| 점검 항목 | 상태 | 근거 파일 | 보완 필요 |
+|---|---|---|---|
+| 주차별 보고서 2개 이상 반영 | 완료 | `04_final_paper/02_weekly_reflection/weekly_reflection_table.md` | 없음 |
+| 참고문헌 DOI/URL 검증 | 부분 완료 | `01_papers/doi_check.md` | P03 지정 논문, P05 최종 DOI |
+| AI 활용 고지서 작성 | 완료 | `05_ai_worklog/ai_disclosure_draft.md` | 최종 제출 전 사용자 확인 |
+| 실험 재현성 기록 | 완료 | `configs/config.yaml`, `outputs/run_log.md` | 모델 성능 실험 아님을 명시 |
+| Contribution 문장 확정 | 완료 | `08_final_paper_bridge/contribution_candidates.md`, `04_final_paper/01_planning/contribution.md` | 최종 원고 반영 |
+| 표 1개 이상 준비 | 완료 | `02_paper_summaries/paper_matrix.md`, `04_final_paper/03_related_work/literature_matrix.md` | 논문 본문 삽입 |
+| 그림 1개 이상 준비 | 준비 필요 | `04_final_paper/05_draft/paper_draft.md` | 프레임워크 그림 실제 작성 |
 
-## 6. 한계
+## 5. 실행 산출물
 
-본 실습은 학습 목적의 설계 초안이다. 실제 서비스, 실제 개인정보, 무단 공격 절차는 포함하지 않는다.
+| 파일 | 내용 |
+|---|---|
+| `outputs/metrics_summary.csv` | 감사 항목별 지표, 상태, 근거 파일 |
+| `outputs/results.json` | 실행 메타데이터와 원시 감사 결과 |
+| `outputs/run_log.md` | 사람이 읽을 수 있는 실행 로그 |
+
+## 6. 결과 해석
+
+W15 감사는 개인정보를 사용하지 않았고 실제 공격을 수행하지 않았다. 결과는 산출물 존재 여부와 검증 상태만 나타내며, LLM 또는 XAI 모델의 성능을 주장하지 않는다. 참고문헌 검증은 P01, P02, P04는 확인, P05는 부분 확인, P03은 대체 PDF로 인한 미검증 상태다.
+
+## 7. 한계
+
+이 실습은 제출 준비 상태를 점검하는 감사이며, benchmark contamination이나 XAI stability를 실제 모델 출력으로 측정하지 않았다. 최종 기말논문에는 확인된 DOI와 실행 로그가 있는 값만 반영해야 한다.

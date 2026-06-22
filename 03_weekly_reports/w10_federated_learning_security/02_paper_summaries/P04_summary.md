@@ -4,38 +4,38 @@
 
 | 항목 | 내용 |
 |---|---|
-| 논문 제목 | A Survey of Federated Learning Privacy Attacks, Defenses, Applications, and Policy Landscape |
-| 저자 | J. Zhao et al. |
+| 논문 제목 | The Federation Strikes Back: A Survey of Federated Learning Privacy Attacks, Defenses, Applications, and Policy Landscape |
+| 저자 | Joshua C. Zhao et al. |
 | 학술지/학회 | ACM Computing Surveys |
 | 연도 | 2025 |
-| DOI/URL | 확인 필요 |
+| DOI/URL | 10.1145/3724113 |
 | PDF 파일명 | 04_Zhao_et_al_2025_Federation_Strikes_Back.pdf |
-| 검증 상태 | 로컬 PDF 파일명 확인, DOI/URL과 원문 세부 내용은 최종 대조 필요 |
+| 검증 상태 | 로컬 PDF에서 제목과 DOI 확인 |
 
 ## 2. 한 문장 요약
 
-> 이 논문은 Gradient leakage, poisoning, backdoor, privacy attack와 관련된 위협 분류 문제를 문헌조사와 분류체계 정리 방법으로 다루며, 공격-방어-평가 관점을 연결하는 보안 분석 틀을 기말 연구에 반영할 수 있게 해준다.
+> 이 논문은 FL privacy attack, defense, application, policy landscape를 함께 검토하며, 모델 업데이트 공유가 항상 privacy-preserving이라는 전제가 깨질 수 있음을 정리한다.
 
 ## 3. 연구문제
 
-이 논문에서 기말 연구와 연결되는 질문은 연합학습(FL) 및 FL 위협/방어/정책 영역에서 어떤 개념, 공격면, 평가 기준을 우선적으로 정리해야 하는가이다. 특히 연합학습의 기본 구조, Client, server, aggregation의 역할, FedAvg의 기본 원리와 Gradient leakage, Membership inference in FL, Poisoning attack가 서로 만나는 지점을 확인하는 데 초점을 둔다.
+이 논문에서 기말 연구와 연결되는 질문은 FL 모델 업데이트에서 어떤 privacy attack이 가능한지, 어떤 방어와 정책 조건이 필요한지다. W10에서는 privacy leakage를 실제 gradient inversion이 아니라 update exposure proxy로 제한해 기록한다.
 
 ## 4. 핵심 개념
 
 | 개념 | 설명 | 기말 논문 연결 |
 |---|---|---|
-| 연합학습의 기본 구조 | 주차 AI 원리의 출발점이며 모델 또는 시스템을 이해하는 기본 단위이다. | 배경 이론 |
-| Client, server, aggregation의 역할 | 성능, 일반화, 효율 또는 신뢰성을 설명하는 보조 축이다. | 분석 기준 |
-| Gradient leakage | 보안 위협을 식별하기 위한 대표 공격면이다. | 위협모형 |
-| Membership inference in FL | 방어와 평가 프로토콜을 설계할 때 비교해야 하는 요소이다. | 평가방법 |
+| Privacy attack | 모델 업데이트에서 학습 데이터 단서를 추론하는 위협 | privacy leakage proxy |
+| Defense method | 업데이트 보호, secure aggregation, DP 등 | 방어 비교 |
+| Application lesson | 실제 산업 적용에서 얻은 운영상 제약 | 정책·운영 함의 |
+| Policy landscape | 개인정보 보호 규제와 FL 운영 책임 | 기말 논문 보안 함의 |
 
 ## 5. 방법론
 
-이 문헌은 문헌조사와 분류체계 정리을 통해 기존 연구를 묶어 읽을 수 있게 한다. 본 보고서에서는 논문 제목, 프롬프트의 논문 패킷 정보, 로컬 PDF 존재 여부를 기준으로 요약했으며, 세부 실험값이나 DOI는 최종 원문 대조 단계에서 확인한다.
+이 문헌은 privacy attack과 defense를 문헌 기반으로 정리하고, 실제 적용과 정책 환경까지 연결한다. 본 보고서는 이를 privacy 지표를 독립 항목으로 분리해야 하는 근거로 사용한다.
 
 ## 6. 주요 결과
 
-핵심 개념, 공격면, 평가 기준, 향후 연구과제를 체계화한다. 수치 결과를 새로 만들지 않기 위해 본 요약에서는 정량값을 적지 않았고, 원문에서 직접 확인되는 항목만 최종 보고서에 반영하도록 남겨 둔다.
+FL의 privacy 전제는 업데이트가 private data를 역추론할 수 없을 때만 성립한다. W10 실험은 실제 역추론을 수행하지 않고, update norm 기반 proxy로 위험 신호만 기록한다.
 
 ## 7. 보안 관점 분석
 
@@ -47,4 +47,4 @@
 
 ## 9. 기말 논문에 반영할 부분
 
-P04는 연합학습(FL) 및 FL 위협/방어/정책 연구에서 개념 정의, 위협 분류, 평가 지표 후보를 정리하는 근거로 반영한다. 특히 공격-방어-평가 관점을 연결하는 보안 분석 틀을 관련연구와 연구방법 장에 연결한다.
+P04는 FL privacy와 policy landscape를 기말 논문의 보안적 함의 장에 연결한다. 특히 기술적 방어만으로 부족하고 규제·책임성·검증 로그가 함께 필요하다는 논거가 된다.

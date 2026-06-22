@@ -3,7 +3,8 @@
 | 항목 | 내용 |
 |---|---|
 | 주차 | W10 |
-| 핵심 학습 | 연합학습의 기본 구조, Client, server, aggregation의 역할, FedAvg의 기본 원리, Aggregation technique taxonomy |
-| 보안 연결 | Gradient leakage, Membership inference in FL, Poisoning attack, Model poisoning |
-| 기말논문 연결 | 연합학습(FL) 및 FL 위협/방어/정책를 생명주기 기반 AI 보안 평가 프레임워크의 사례로 활용 |
-| 남은 확인 | DOI/URL, 원문 세부 수치, 대체 PDF 여부 |
+| 핵심 학습 | FL 구조, FedAvg, aggregation taxonomy, robust aggregation, Non-IID/heterogeneity |
+| 보안 연결 | Gradient leakage, membership inference, poisoning, backdoor, malicious client |
+| 실험 성찰 | 20% poisoned FedAvg는 accuracy 0.950000을 유지했지만 ASR 0.496835로 상승했다. coordinate median은 ASR 0.237342로 낮췄다. |
+| 기말논문 연결 | FL을 utility-security-privacy 통합 평가 프레임워크의 사례로 활용 |
+| 남은 확인 | P03/P05 출판본 DOI, 복수 seed, 실제 FL framework 확장 가능성 |

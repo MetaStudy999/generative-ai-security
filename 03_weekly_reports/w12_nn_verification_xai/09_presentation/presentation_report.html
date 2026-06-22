@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>W12 발표용 보고서</title>
+  <style>
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #172026; background: #f6f8fa; line-height: 1.6; }
+    main { max-width: 980px; margin: 0 auto; padding: 38px 22px 64px; }
+    h1, h2 { color: #102033; }
+    h1 { font-size: 2rem; margin-bottom: 0.2rem; }
+    h2 { margin-top: 2rem; border-bottom: 2px solid #d8e0e8; padding-bottom: 0.3rem; font-size: 1.25rem; }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0; background: #fff; }
+    th, td { border: 1px solid #d6dee6; padding: 0.58rem 0.68rem; vertical-align: top; }
+    th { background: #e9eff5; text-align: left; }
+    code { background: #edf2f7; padding: 0.1rem 0.28rem; border-radius: 4px; }
+    .callout { background: #eaf7f0; border-left: 4px solid #2f9e62; padding: 0.8rem 1rem; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>W12 발표용 보고서</h1>
+  <p>신경망 검증·정형방법 &amp; 대적방어·XAI·강건성 트레이드오프</p>
+  <div class="callout">핵심 메시지: 안전한 AI 평가는 정확도 하나가 아니라 강건성, 설명 안정성, 공정성, 검증 비용, 재현성을 함께 보고해야 한다.</div>
+
+  <h2>발표 흐름</h2>
+  <p>문제 제기, 문헌 역할, AI 원리, 보안 이슈, toy 실험 결과, 기말논문 연결 순서로 8-10분 발표를 구성한다.</p>
+
+  <h2>문헌 5편의 역할</h2>
+  <table>
+    <tr><th>ID</th><th>역할</th></tr>
+    <tr><td>P01</td><td>Abstraction 기반 신경망 검증의 배경</td></tr>
+    <tr><td>P02</td><td>대적공격과 방어 taxonomy</td></tr>
+    <tr><td>P03</td><td>XAI 설명 결과의 공격면</td></tr>
+    <tr><td>P04</td><td>Lipschitz regularization과 robustness certificate</td></tr>
+    <tr><td>P05</td><td>Robustness, accuracy, fairness trade-off</td></tr>
+  </table>
+
+  <h2>AI 원리와 보안 이슈</h2>
+  <p>신경망 검증은 입력 perturbation 범위에서 모델 출력이 명세를 만족하는지 확인한다. 보안 관점에서는 adversarial input, explanation manipulation, verification scalability failure를 함께 고려해야 한다.</p>
+
+  <h2>실험 결과</h2>
+  <table>
+    <tr><th>조건</th><th>Clean Acc.</th><th>Robust Acc.</th><th>XAI Stability</th><th>Certified</th></tr>
+    <tr><td>Clean model</td><td>0.818750</td><td>0.543750</td><td>0.927782</td><td>0.543750</td></tr>
+    <tr><td>Adversarial input</td><td>0.818750</td><td>0.543750</td><td>0.862321</td><td>0.340625</td></tr>
+    <tr><td>Robust defense</td><td>0.815625</td><td>0.543750</td><td>0.927152</td><td>0.543750</td></tr>
+    <tr><td>XAI stability check</td><td>0.815625</td><td>0.696875</td><td>0.976252</td><td>0.696875</td></tr>
+  </table>
+
+  <h2>해석과 한계</h2>
+  <p>Clean accuracy가 높아도 robust accuracy는 낮아질 수 있다. Certified rate는 선형 toy 모델의 bound proxy이며 대규모 DNN 검증 결과가 아니다.</p>
+
+  <h2>예상 질문</h2>
+  <table>
+    <tr><th>질문</th><th>답변</th></tr>
+    <tr><td>Clean accuracy만으로 충분한가?</td><td>아니다. perturbation 조건 성능과 설명 안정성을 분리해서 보고해야 한다.</td></tr>
+    <tr><td>Certified rate를 보증으로 봐도 되는가?</td><td>본 실습에서는 toy proxy로만 해석한다.</td></tr>
+    <tr><td>XAI stability가 높으면 안전한가?</td><td>필요한 지표 중 하나이며 robustness, fairness, cost와 함께 봐야 한다.</td></tr>
+  </table>
+</main>
+</body>
+</html>

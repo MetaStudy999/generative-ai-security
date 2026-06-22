@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>W14 제출용 보고서</title>
+  <style>
+    body { margin: 0; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #1f252c; background: #f7f8fa; line-height: 1.65; }
+    main { max-width: 1040px; margin: 0 auto; padding: 44px 28px 72px; background: #ffffff; }
+    h1 { font-size: 34px; margin: 0 0 24px; }
+    h2 { font-size: 24px; margin: 34px 0 12px; border-bottom: 2px solid #d8dee8; padding-bottom: 6px; }
+    p, li { font-size: 16px; }
+    table { border-collapse: collapse; width: 100%; margin: 14px 0 22px; font-size: 15px; }
+    th, td { border: 1px solid #c7d0dc; padding: 9px 10px; vertical-align: top; }
+    th { background: #eef2f6; }
+    code { background: #eef2f6; padding: 1px 4px; border-radius: 4px; }
+    @media (max-width: 720px) {
+      main { padding: 28px 16px 56px; }
+      h1 { font-size: 28px; }
+      h2 { font-size: 21px; }
+      table { display: block; overflow-x: auto; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <h1>W14 제출용 보고서</h1>
+  <h2>1. 표지</h2>
+  <table><tr><th>항목</th><th>내용</th></tr><tr><td>주차</td><td>W14</td></tr><tr><td>보고서 제목</td><td>MLOps/DevOps·데이터/모델 파이프라인·공급망 보안</td></tr><tr><td>작성일</td><td>2026-06-22</td></tr><tr><td>문서 상태</td><td>제출용 통합본</td></tr><tr><td>최종 보고서</td><td><code>06_report/final/integrated_report_final.md</code></td></tr><tr><td>실험 근거</td><td><code>04_experiment/outputs/run_log.md</code></td></tr><tr><td>발표자료</td><td><code>09_presentation/</code></td></tr></table>
+  <h2>2. 초록과 키워드</h2>
+  <p>본 보고서는 MLOps/DevOps, data/model pipeline, monitoring, drift detection을 AI 원리로 정리하고, ML supply chain, artifact tampering, logging/update attack surface를 보안 이슈로 분석한다. Synthetic toy MLOps pipeline 실험에서는 dataset hash, model hash, config hash, re-run consistency, drift score, audit coverage, artifact inventory를 산출했다. 실행 결과 baseline accuracy는 0.925000, F1은 0.923077, drift score는 0.307626, audit coverage와 inventory coverage는 각각 1.000000이었다.</p>
+  <p><strong>키워드:</strong> MLOps, ML Supply Chain, Artifact Integrity, Drift Monitoring, Auditability, AI BOM</p>
+  <h2>3. AI 원리 70%와 보안 이슈 30%</h2>
+  <table><tr><th>구분</th><th>핵심 내용</th></tr><tr><td>AI 원리 70%</td><td>MLOps lifecycle, DevOps와 MLOps의 차이, data/model pipeline, model registry, monitoring, drift detection, AIOps, edge deployment</td></tr><tr><td>보안 이슈 30%</td><td>data pipeline poisoning, model artifact tampering, dependency risk, unsafe update, log leakage, drift 미탐지, audit trail 부재</td></tr></table>
+  <p>MLOps 보안 평가는 모델 성능만으로 충분하지 않다. 어떤 데이터와 config에서 모델이 만들어졌는지, 모델 artifact가 바뀌지 않았는지, 운영 입력 분포가 달라졌는지, 사고 후 추적 가능한 로그가 있는지를 함께 봐야 한다.</p>
+  <h2>4. 논문 5편 요약과 검증 상태</h2>
+  <table><tr><th>ID</th><th>논문</th><th>핵심 역할</th><th>DOI/URL 상태</th></tr><tr><td>P01</td><td>A Multivocal Review of MLOps Practices, Challenges and Open Issues</td><td>MLOps practice와 challenge taxonomy</td><td>부분 확인</td></tr><tr><td>P02</td><td>Challenges in Deploying Machine Learning: a Survey of Case Studies</td><td>production deployment workflow의 난점</td><td>확인</td></tr><tr><td>P03</td><td>A Systematic Survey on MLOps and AIOps: Taxonomy, Challenges, and Future Directions</td><td>AIOps와 monitoring/incident response</td><td>부분 확인, 로컬 PDF 대체</td></tr><tr><td>P04</td><td>Deep Learning with Edge Computing: A Review</td><td>edge deployment의 운영 제약</td><td>부분 확인, 로컬 PDF 대체</td></tr><tr><td>P05</td><td>Deep Learning for Software Engineering: A Survey</td><td>AI-assisted software engineering과 pipeline 보안</td><td>부분 확인, 로컬 PDF 대체</td></tr></table>
+  <p>P03/P04/P05는 수업자료 DOI를 기록했지만 로컬 PDF가 대체문헌이므로 최종 논문 인용 전 공식 원문 확인이 필요하다.</p>
+  <h2>5. Research Track</h2>
+  <table><tr><th>항목</th><th>내용</th></tr><tr><td>연구문제</td><td>MLOps 파이프라인에서 보안 위협을 어떻게 분류하고, 어떤 evidence로 재현성과 책임성을 보장할 것인가</td></tr><tr><td>대상 시스템</td><td>MLOps 기반 ML 서비스 파이프라인</td></tr><tr><td>보호 자산</td><td>학습 데이터, feature pipeline, config, seed, model artifact, registry, 배포 설정, 로그, 모니터링 데이터</td></tr><tr><td>공격자</td><td>내부자, 외부 공격자, 공급망 공격자, 악성 패키지 제공자</td></tr><tr><td>평가 지표</td><td>Accuracy, F1, dataset hash, model hash match, re-run consistency, drift score, audit coverage, inventory coverage</td></tr><tr><td>재현성</td><td>seed 42, config, run log, CSV, JSON, artifact inventory 보존</td></tr><tr><td>제외 범위</td><td>실제 개인정보, 실제 운영 서비스 침해, 무단 시스템 접근, 실제 악성 패키지 배포</td></tr></table>
+  <h2>6. 실습/실험 실행 상태와 결과표</h2>
+  <p>실험은 실행 완료 상태이며, 모든 수치는 <code>04_experiment/outputs/run_log.md</code>와 일치한다.</p>
+  <table><tr><th>점검 항목</th><th>측정 지표</th><th>결과</th><th>보안 의미</th></tr><tr><td>Baseline model</td><td>Accuracy</td><td>0.925000</td><td>정상 조건 기준 성능</td></tr><tr><td>Baseline model</td><td>F1</td><td>0.923077</td><td>정상 조건 분류 균형</td></tr><tr><td>Data versioning</td><td>Dataset hash</td><td><code>sha256:b9e597bccdbde442</code></td><td>데이터 무결성 기준점</td></tr><tr><td>Model artifact verification</td><td>Model hash match</td><td>true</td><td>모델 아티팩트 변조 탐지 기준</td></tr><tr><td>Re-run consistency</td><td>Model/data hash match</td><td>true</td><td>동일 config/seed 재실행 가능성</td></tr><tr><td>Drift monitoring</td><td>Mean standardized feature shift</td><td>0.307626</td><td>입력 분포 변화 감시</td></tr><tr><td>Drifted model</td><td>Accuracy under drift</td><td>0.925000</td><td>분포 변화 조건 성능</td></tr><tr><td>Log audit</td><td>Audit coverage</td><td>1.000000</td><td>책임추적 로그 완전성</td></tr><tr><td>Artifact inventory</td><td>Inventory coverage</td><td>1.000000</td><td>AI BOM/ML artifact inventory 최소 항목 충족</td></tr></table>
+  <h2>7. 발표용 보고서 위치</h2>
+  <p>발표자료는 <code>09_presentation/</code>에 있다. 최종 발표본은 <code>presentation_slides.html</code>이며, 발표 보고서, speaker notes, Q&amp;A, one-page handout을 함께 작성했다.</p>
+  <h2>8. 기말논문 연결</h2>
+  <p>W14는 기말논문에서 운영형 AI 시스템의 보안·재현성 보증을 위한 evidence set으로 활용할 수 있다. Dataset hash, model hash, config hash, drift score, audit coverage, artifact inventory를 최소 지표로 제안한다.</p>
+  <h2>9. AI 활용 고지</h2>
+  <p>Codex를 사용해 공통 지침 확인, 로컬 PDF 메타데이터 대조, synthetic toy 실험 코드 작성과 실행, 보고서·제출본·발표자료 작성을 수행했다. 최종 내용, 인용, 실험결과, 연구윤리 책임은 작성자에게 있다.</p>
+  <h2>10. 제출 전 점검</h2>
+  <table><tr><th>점검 항목</th><th>상태</th></tr><tr><td>실험 수치와 outputs 일치</td><td>완료</td></tr><tr><td>개인정보 사용 없음</td><td>완료</td></tr><tr><td>실제 서비스 공격 없음</td><td>완료</td></tr><tr><td>DOI 임의 생성 없음</td><td>완료</td></tr><tr><td>대체 PDF 상태 표시</td><td>완료</td></tr><tr><td>AI 활용 고지 포함</td><td>완료</td></tr><tr><td>P03/P04/P05 공식 원문 확인</td><td>확인 필요</td></tr></table>
+</main>
+</body>
+</html>

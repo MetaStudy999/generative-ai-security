@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>W13 발표용 보고서</title>
+  <style>
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f7f9fb; color: #17202a; line-height: 1.65; }
+    main { max-width: 980px; margin: 0 auto; padding: 42px 28px 70px; background: #fff; }
+    h1 { margin-top: 0; font-size: 2rem; }
+    h2 { margin-top: 2rem; padding-bottom: .35rem; border-bottom: 2px solid #d8dee4; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .95rem; }
+    th, td { border: 1px solid #d8dee4; padding: .55rem .65rem; vertical-align: top; }
+    th { background: #eef3f8; text-align: left; }
+    code { background: #eef1f4; padding: .1rem .25rem; border-radius: 4px; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>W13 발표용 보고서</h1>
+  <h2>발표 메타정보</h2>
+  <table><tr><th>항목</th><th>내용</th></tr><tr><td>주차</td><td>W13</td></tr><tr><td>주제</td><td>모델 지식재산(IP)·모델 도난·모델 추출 위협</td></tr><tr><td>발표 시간</td><td>8-10분</td></tr><tr><td>핵심 메시지</td><td>모델 추출 위험은 fidelity로, 소유권 검증은 detection과 false positive를 함께 보고해야 한다.</td></tr><tr><td>실험 근거</td><td><code>../04_experiment/outputs/run_log.md</code></td></tr></table>
+  <h2>발표 흐름</h2>
+  <p>문제 제기, 문헌 역할, AI 원리, 보안 이슈, toy 실험 결과, 한계, 기말논문 연결 순서로 발표한다.</p>
+  <h2>문헌 5편의 역할</h2>
+  <table><tr><th>ID</th><th>역할</th></tr><tr><td>P01</td><td>model stealing/extraction taxonomy와 query budget 관점</td></tr><tr><td>P02</td><td>LLM watermarking 보조 배경, 대체 PDF 상태</td></tr><tr><td>P03</td><td>DNN watermarking trade-off</td></tr><tr><td>P04</td><td>ModelShield와 extraction 이후 ownership check</td></tr><tr><td>P05</td><td>GAN privacy/security 보조 배경, 대체 PDF 상태</td></tr></table>
+  <h2>AI 원리와 보안 이슈</h2>
+  <p>모델 IP는 파라미터뿐 아니라 출력 행동과 생성물 출처까지 포함한다. 모델 추출은 query-response 쌍으로 substitute model을 학습하는 절차이며, 워터마킹은 소유권 검증을 돕지만 false positive와 utility degradation을 함께 관리해야 한다.</p>
+  <h2>실험 결과</h2>
+  <table><tr><th>조건</th><th>Query</th><th>Fidelity</th><th>Accuracy</th><th>Detection</th><th>FPR</th></tr><tr><td>Substitute query 100</td><td>100</td><td>0.864000</td><td>0.812000</td><td>0.700000</td><td>0.600000</td></tr><tr><td>Substitute query 500</td><td>500</td><td>0.920000</td><td>0.840000</td><td>1.000000</td><td>0.600000</td></tr><tr><td>Substitute query 1000</td><td>1000</td><td>0.902000</td><td>0.822000</td><td>1.000000</td><td>0.600000</td></tr></table>
+  <p>Baseline victim model의 utility accuracy는 0.868000이다. 본 결과는 synthetic toy 실험이며 실제 API 또는 실제 LLM 결과가 아니다.</p>
+  <h2>기말논문 연결</h2>
+  <p>기말논문 주제는 “모델 추출 이후 소유권 검증을 위한 다중지표 평가 프레임워크”로 발전시킬 수 있다.</p>
+  <h2>예상 질문</h2>
+  <table><tr><th>질문</th><th>답변</th></tr><tr><td>detection이 1.000000이면 성공인가?</td><td>false positive가 0.600000이므로 단독 증거로는 약하다.</td></tr><tr><td>query 1000이 query 500보다 낮은 이유는?</td><td>1NN toy substitute라 query 분포에 따라 단조 증가가 보장되지 않는다.</td></tr><tr><td>실제 API 공격인가?</td><td>아니다. synthetic local toy 실험이다.</td></tr></table>
+</main>
+</body>
+</html>

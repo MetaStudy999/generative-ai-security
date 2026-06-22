@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>W10 제출용 보고서</title>
+  <style>
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.65; margin: 40px auto; max-width: 960px; padding: 0 24px; color: #20242a; }
+    h1, h2 { line-height: 1.25; }
+    h1 { border-bottom: 3px solid #20242a; padding-bottom: 12px; }
+    table { border-collapse: collapse; width: 100%; margin: 16px 0 28px; font-size: 14px; }
+    th, td { border: 1px solid #c9ced6; padding: 8px 10px; vertical-align: top; }
+    th { background: #eef2f6; text-align: left; }
+    code { background: #f4f6f8; padding: 2px 4px; border-radius: 4px; }
+    .note { border-left: 4px solid #3b6ea8; padding: 10px 14px; background: #f4f8fc; }
+  </style>
+</head>
+<body>
+  <h1>W10 제출용 보고서</h1>
+  <h2>1. 표지</h2>
+  <table><tr><th>항목</th><th>내용</th></tr><tr><td>주차</td><td>W10</td></tr><tr><td>보고서 제목</td><td>연합학습(FL) &amp; FL 위협·방어·정책</td></tr><tr><td>작성일</td><td>2026-06-22</td></tr><tr><td>문서 상태</td><td>제출용 통합본</td></tr><tr><td>실험 근거</td><td><code>04_experiment/outputs/run_log.md</code></td></tr></table>
+  <h2>2. 초록과 키워드</h2>
+  <p>본 보고서는 연합학습의 client-server-aggregation 구조와 FedAvg, robust aggregation의 원리를 정리하고, gradient leakage, poisoning, backdoor, privacy attack을 위협모형과 평가방법으로 연결한다. Synthetic toy FL 실험에서는 20% poisoned FedAvg의 ASR이 0.496835였고, 같은 조건에서 coordinate median은 ASR을 0.237342로 낮췄다.</p>
+  <p><strong>키워드:</strong> Federated Learning, FedAvg, Robust Aggregation, Poisoning, Backdoor, Privacy Leakage</p>
+  <h2>3. 원리와 보안 이슈</h2>
+  <table><tr><th>구분</th><th>핵심 내용</th></tr><tr><td>AI 원리 70%</td><td>FL 구조, client/server 역할, FedAvg, aggregation taxonomy, personalization, Non-IID data, communication cost, robust aggregation</td></tr><tr><td>보안 이슈 30%</td><td>gradient leakage, membership inference, poisoning, model poisoning, backdoor, malicious/byzantine client, secure aggregation, privacy policy</td></tr></table>
+  <h2>4. 논문 5편 요약</h2>
+  <table><tr><th>ID</th><th>핵심 역할</th><th>DOI/URL 상태</th></tr><tr><td>P01</td><td>aggregation taxonomy</td><td>DOI 확인</td></tr><tr><td>P02</td><td>FL security/privacy survey</td><td>DOI 확인</td></tr><tr><td>P03</td><td>attack-defense taxonomy</td><td>arXiv 확인, 출판 DOI 확인 필요</td></tr><tr><td>P04</td><td>privacy attack와 policy</td><td>DOI 확인</td></tr><tr><td>P05</td><td>backdoor와 ASR 평가</td><td>arXiv 확인, 출판 DOI 확인 필요</td></tr></table>
+  <h2>5. Research Track</h2>
+  <table><tr><th>항목</th><th>내용</th></tr><tr><td>연구문제</td><td>malicious client 비율과 aggregation rule이 clean utility와 ASR에 미치는 영향</td></tr><tr><td>대상 시스템</td><td>FL 기반 분산 학습 시스템</td></tr><tr><td>평가 지표</td><td>Global Accuracy, Global F1, ASR, Privacy Leakage Proxy, Communication Bytes</td></tr><tr><td>제외 범위</td><td>실제 개인정보, 실제 FL 서비스 침해, 무단 클라이언트 접속, 실제 공격 payload</td></tr></table>
+  <h2>6. 실험 결과</h2>
+  <table><tr><th>조건</th><th>Malicious Client Rate</th><th>Aggregation</th><th>Global Accuracy</th><th>Global F1</th><th>ASR</th><th>Privacy Leakage Proxy</th></tr><tr><td>Clean FL</td><td>0%</td><td>fedavg</td><td>0.960000</td><td>0.958042</td><td>0.136076</td><td>0.442597</td></tr><tr><td>Poisoned FL 10%</td><td>10%</td><td>fedavg</td><td>0.953333</td><td>0.951557</td><td>0.297468</td><td>0.428377</td></tr><tr><td>Poisoned FL 20%</td><td>20%</td><td>fedavg</td><td>0.950000</td><td>0.948630</td><td>0.496835</td><td>0.486591</td></tr><tr><td>Robust aggregation 20%</td><td>20%</td><td>coordinate_median</td><td>0.955000</td><td>0.953368</td><td>0.237342</td><td>0.439875</td></tr></table>
+  <p class="note">모든 수치는 <code>04_experiment/outputs/run_log.md</code>, <code>metrics_summary.csv</code>, <code>results.json</code> 기준이다. Privacy Leakage Proxy는 실제 gradient inversion 성공률이 아니다.</p>
+  <h2>7. 기말논문 연결과 AI 활용 고지</h2>
+  <p>W10는 분산 AI 학습의 보안 평가 프레임워크를 설명하는 보조 근거로 활용할 수 있다. Codex를 사용해 공통 지침 확인, PDF 메타데이터 확인, synthetic toy 실험 코드 작성과 실행, 보고서·제출본·발표자료 작성을 수행했다. 최종 책임은 작성자에게 있다.</p>
+</body>
+</html>

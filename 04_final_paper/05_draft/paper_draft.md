@@ -123,7 +123,9 @@ Clean performance, attack impact, privacy leakage, utility, cost, reproducibilit
 
 ### 5.2 실험 또는 사례분석 결과
 
-실제 정량 실험은 아직 수행하지 않았으므로 결과값은 작성하지 않는다. 주차별 toy 실험 결과를 반영할 경우 각 주차 `04_experiment/outputs/run_log.md`, `metrics_summary.csv`, `results.json`과 대조 가능한 값만 사용한다. 사례분석 결과는 LLM/RAG 보안 평가에서 입력·검색 문서·평가셋·로그가 모두 보호 자산이 된다는 점을 보여준다. 특히 RAG 문서 오염은 prompt injection과 결합되고, benchmark contamination은 평가 재현성을 훼손한다.
+모델 성능 정량 실험은 아직 수행하지 않았으므로 accuracy, F1, attack success rate는 작성하지 않는다. 다만 W15에서는 기말논문 제출 준비를 위한 로컬 재현성·참고문헌·AI 활용 고지 감사를 실행했으며, W15 필수 산출물 47/47, 기말논문 연결 파일 9/9, 로컬 PDF 5개, 가중 참고문헌 검증률 0.70, AI 활용 고지 완성도 9/9를 `04_experiment/outputs/run_log.md`에 기록했다. 이 값은 모델 성능이 아니라 제출 준비 상태를 나타내는 감사 지표다.
+
+사례분석 결과는 LLM/RAG 보안 평가에서 입력·검색 문서·평가셋·로그가 모두 보호 자산이 된다는 점을 보여준다. 특히 RAG 문서 오염은 prompt injection과 결합되고, benchmark contamination은 평가 재현성을 훼손한다.
 
 ### 5.3 결과 해석
 
@@ -174,7 +176,7 @@ privacy leakage와 membership inference 위험은 실제 개인정보가 아닌 
 
 ### 7.3 연구 한계
 
-본 초안은 문헌분석과 설계 중심이며, 실제 실험 결과는 실행 로그와 CSV/JSON 산출물 대조 후 최종 제출 전 보완해야 한다. DOI/URL 검증도 최종 제출 전 확정한다.
+본 초안은 문헌분석과 설계 중심이며, 모델 성능 실험 결과는 실행 로그와 CSV/JSON 산출물 대조 후 최종 제출 전 보완해야 한다. DOI/URL 검증도 최종 제출 전 확정한다. 현재 W15 기준 P01, P02, P04는 DOI 확인, P05는 부분 확인, P03은 지정 논문 원문 미확보 상태다.
 
 ### 7.4 후속 연구
 

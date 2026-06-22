@@ -5,46 +5,46 @@
 | 항목 | 내용 |
 |---|---|
 | 논문 제목 | A Survey on Evaluation of Large Language Models |
-| 저자 | J. Chang et al. |
-| 학술지/학회 | ACM Computing Surveys |
+| 저자 | Yupeng Chang, Xu Wang, Jindong Wang, Yuan Wu, Linyi Yang, Kaijie Zhu, Hao Chen, Xiaoyuan Yi, Cunxiang Wang, Yidong Wang, Wei Ye, Yue Zhang, Yi Chang, Philip S. Yu, Qiang Yang, Xing Xie |
+| 학술지/학회 | ACM Transactions on Intelligent Systems and Technology |
 | 연도 | 2024 |
-| DOI/URL | 확인 필요 |
-| PDF 파일명 | 01_Chang_et_al_2024_Evaluation_of_LLMs_Survey.pdf |
-| 검증 상태 | 로컬 PDF 파일명 확인, DOI/URL과 원문 세부 내용은 최종 대조 필요 |
+| DOI/URL | `https://doi.org/10.1145/3641289` |
+| PDF 파일명 | `01_Chang_et_al_2024_Evaluation_of_LLMs_Survey.pdf` |
+| 검증 상태 | 로컬 PDF 첫 페이지에서 DOI와 ACM reference format 확인 |
 
 ## 2. 한 문장 요약
 
-> 이 논문은 Evaluation, reproducibility, XAI, paper structure의 핵심 원리와 적용 범위 문제를 문헌조사와 분류체계 정리 방법으로 다루며, 기말 연구의 배경 이론과 평가축을 기말 연구에 반영할 수 있게 해준다.
+> 이 논문은 LLM을 무엇을 평가할지, 어디서 평가할지, 어떻게 평가할지의 세 축으로 정리하며, LLM 보안 연구에서 평가오염과 재현성 위험을 별도 평가 항목으로 다루어야 한다는 근거를 제공한다.
 
 ## 3. 연구문제
 
-이 논문에서 기말 연구와 연결되는 질문은 연구평가/재현성/설명가능성(XAI)/논문 구성 영역에서 어떤 개념, 공격면, 평가 기준을 우선적으로 정리해야 하는가이다. 특히 LLM 평가 프레임워크, Benchmark contamination, Evaluation leakage와 Benchmark contamination, Hidden test leakage, Evaluation reproducibility failure가 서로 만나는 지점을 확인하는 데 초점을 둔다.
+LLM의 능력과 위험을 task-level 평가만으로 판단하기 어렵기 때문에, 일반 NLP, 추론, 의료, 윤리, 교육, 과학, agent 응용 등 다양한 평가 영역을 체계화하는 것이 핵심 연구문제다. 기말논문 관점에서는 benchmark contamination, hidden test leakage, 평가 프로토콜 불일치가 성능 과대평가로 이어지는 지점을 확인하는 데 활용한다.
 
 ## 4. 핵심 개념
 
 | 개념 | 설명 | 기말 논문 연결 |
 |---|---|---|
-| LLM 평가 프레임워크 | 주차 AI 원리의 출발점이며 모델 또는 시스템을 이해하는 기본 단위이다. | 배경 이론 |
-| Benchmark contamination | 성능, 일반화, 효율 또는 신뢰성을 설명하는 보조 축이다. | 분석 기준 |
-| Benchmark contamination | 보안 위협을 식별하기 위한 대표 공격면이다. | 위협모형 |
-| Hidden test leakage | 방어와 평가 프로토콜을 설계할 때 비교해야 하는 요소이다. | 평가방법 |
+| What to evaluate | 능력, 안전성, 도메인별 task 등 평가 대상 정의 | 평가 항목 설계 |
+| Where to evaluate | benchmark, 데이터셋, 평가 환경 선택 | benchmark contamination 점검 |
+| How to evaluate | 자동 지표, human evaluation, leaderboards, 실패 사례 분석 | 재현성 프로토콜 |
+| Evaluation risk | 평가셋 노출, 벤치마크 과적합, 측정 기준 불일치 | 보안 위협모형 |
 
 ## 5. 방법론
 
-이 문헌은 문헌조사와 분류체계 정리을 통해 기존 연구를 묶어 읽을 수 있게 한다. 본 보고서에서는 논문 제목, 프롬프트의 논문 패킷 정보, 로컬 PDF 존재 여부를 기준으로 요약했으며, 세부 실험값이나 DOI는 최종 원문 대조 단계에서 확인한다.
+대규모 문헌조사와 분류체계를 통해 LLM 평가 영역, benchmark, 평가 방법, 성공/실패 사례, 향후 과제를 정리한다. 본 보고서에서는 세부 benchmark 수치를 새로 인용하지 않고, 평가 프레임워크의 구조를 기말논문 평가축으로 전환한다.
 
 ## 6. 주요 결과
 
-핵심 개념, 공격면, 평가 기준, 향후 연구과제를 체계화한다. 수치 결과를 새로 만들지 않기 위해 본 요약에서는 정량값을 적지 않았고, 원문에서 직접 확인되는 항목만 최종 보고서에 반영하도록 남겨 둔다.
+LLM 평가는 단일 accuracy나 leaderboard 순위가 아니라 평가 대상, 데이터 출처, 측정 방식, 사회적 위험을 함께 다루어야 한다. 특히 평가 데이터가 학습 또는 튜닝 과정에 노출되면 성능 수치가 실제 일반화 능력을 반영하지 못할 수 있다.
 
 ## 7. 보안 관점 분석
 
-이 논문은 Benchmark contamination, model leakage, policy/ethics risk을 이해하기 위한 배경 문헌으로 활용된다. 공격자의 능력, 방어자의 관측 가능성, 평가 데이터의 한계, 재현성 조건을 함께 정리해야 실제 보안 연구로 이어질 수 있다.
+평가 데이터는 보안 자산이다. 공격자 또는 모델 개발자가 benchmark 정보를 사전에 알거나 반복 질의로 hidden test 특성을 추론하면 무결성 문제가 발생한다. 따라서 평가셋 출처, 중복 검사, 로그, 모델 버전, prompt/template 정보를 보존해야 한다.
 
 ## 8. 한계와 오픈문제
 
-원문 정밀 독해 전에는 세부 실험 설정, 데이터셋, DOI, 인용 관계를 확정할 수 없다. 또한 survey 성격의 문헌은 실제 재현 실험보다는 분류체계와 연구 공백 파악에 더 적합하므로, 기말 논문에서는 별도 평가 프로토콜로 보완해야 한다.
+Survey 논문이므로 특정 보안 실험의 재현 코드를 제공하지 않는다. 최신 LLM 평가 benchmark는 빠르게 바뀌므로 최종 논문에서는 사용 시점, 모델 버전, 데이터 누수 점검 절차를 별도로 명시해야 한다.
 
 ## 9. 기말 논문에 반영할 부분
 
-P01는 연구평가/재현성/설명가능성(XAI)/논문 구성 연구에서 개념 정의, 위협 분류, 평가 지표 후보를 정리하는 근거로 반영한다. 특히 기말 연구의 배경 이론과 평가축을 관련연구와 연구방법 장에 연결한다.
+기말논문의 평가방법 장에서 clean performance, attack impact, leakage, reproducibility를 분리하고, benchmark contamination을 별도 위협으로 정의하는 근거로 활용한다.

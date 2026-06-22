@@ -9,42 +9,42 @@
 | 학술지/학회 | ACM Computing Surveys |
 | 연도 | 2023 |
 | DOI/URL | 확인 필요 |
-| PDF 파일명 | 03_SUBSTITUTE_Mersha_et_al_2024_Explainable_AI_Survey.pdf |
-| 검증 상태 | 로컬 PDF가 대체 논문 파일명으로 보임, 프롬프트 지정 논문과 대체 여부 최종 확인 필요 |
+| PDF 파일명 | `03_SUBSTITUTE_Mersha_et_al_2024_Explainable_AI_Survey.pdf` |
+| 검증 상태 | 로컬 PDF는 Mersha et al., "Explainable Artificial Intelligence: A Survey of Needs, Techniques, Applications, and Future Direction" arXiv:2409.00265 대체 파일이다. 지정 논문 원문 확보 필요 |
 
 ## 2. 한 문장 요약
 
-> 이 논문은 Evaluation, reproducibility, XAI, paper structure의 신뢰성 및 보증 문제 문제를 개념 분석과 사례 중심 정리 방법으로 다루며, 원리와 보안 보증 사이의 연결을 기말 연구에 반영할 수 있게 해준다.
+> 지정 논문은 XAI의 핵심 아이디어와 기법을 정리하는 문헌으로 활용할 예정이며, 현재 로컬 대체 PDF는 XAI의 필요성, 기법 분류, 적용 영역, 평가 방법을 보완적으로 설명한다.
 
 ## 3. 연구문제
 
-이 논문에서 기말 연구와 연결되는 질문은 연구평가/재현성/설명가능성(XAI)/논문 구성 영역에서 어떤 개념, 공격면, 평가 기준을 우선적으로 정리해야 하는가이다. 특히 LLM 평가 프레임워크, Benchmark contamination, Evaluation leakage와 Benchmark contamination, Hidden test leakage, Evaluation reproducibility failure가 서로 만나는 지점을 확인하는 데 초점을 둔다.
+XAI가 어떤 사용자의 어떤 의사결정 문제를 설명해야 하는지, feature attribution, surrogate model, example-based explanation, visualization, human-grounded evaluation을 어떻게 구분할지 정리하는 것이 핵심이다. 현재 로컬 PDF는 안전중요 도메인에서 투명성, 책임성, 공정성이 필요한 이유를 잘 보완한다.
 
 ## 4. 핵심 개념
 
 | 개념 | 설명 | 기말 논문 연결 |
 |---|---|---|
-| LLM 평가 프레임워크 | 주차 AI 원리의 출발점이며 모델 또는 시스템을 이해하는 기본 단위이다. | 배경 이론 |
-| Benchmark contamination | 성능, 일반화, 효율 또는 신뢰성을 설명하는 보조 축이다. | 분석 기준 |
-| Benchmark contamination | 보안 위협을 식별하기 위한 대표 공격면이다. | 위협모형 |
-| Hidden test leakage | 방어와 평가 프로토콜을 설계할 때 비교해야 하는 요소이다. | 평가방법 |
+| Explainability need | black-box 모델을 안전중요 의사결정에 쓰기 위한 설명 요구 | 책임성·안전성 장 |
+| XAI technique taxonomy | feature, example, model-specific, model-agnostic 설명 방식 분류 | 관련연구 비교 |
+| XAI evaluation | 설명의 충실도, 안정성, 사용자 이해도 평가 | 평가방법 후보 |
+| Stakeholder alignment | 개발자, 도메인 전문가, 규제자, 사용자별 설명 요구 차이 | AI 활용 고지와 human review |
 
 ## 5. 방법론
 
-이 문헌은 개념 분석과 사례 중심 정리을 통해 기존 연구를 묶어 읽을 수 있게 한다. 본 보고서에서는 논문 제목, 프롬프트의 논문 패킷 정보, 로컬 PDF 존재 여부를 기준으로 요약했으며, 세부 실험값이나 DOI는 최종 원문 대조 단계에서 확인한다.
+지정 논문은 출판사 원문 확보 후 최종 요약을 확정한다. 현재 단계에서는 대체 PDF의 arXiv 첫 페이지와 본문 목차를 바탕으로 XAI survey의 공통 구조를 정리하되, DOI와 세부 인용은 확정하지 않는다.
 
 ## 6. 주요 결과
 
-해당 영역의 대표 문제와 연구 설계 기준을 제시한다. 수치 결과를 새로 만들지 않기 위해 본 요약에서는 정량값을 적지 않았고, 원문에서 직접 확인되는 항목만 최종 보고서에 반영하도록 남겨 둔다.
+XAI는 단순히 모델 내부를 보여주는 기능이 아니라 신뢰, 책임성, 공정성, 오류 발견, 규제 대응을 위한 평가 대상이다. 설명 품질은 모델 성능과 별도로 측정해야 하며, 설명이 그럴듯해도 실제 모델 원인과 맞지 않을 수 있다.
 
 ## 7. 보안 관점 분석
 
-이 논문은 Benchmark contamination, model leakage, policy/ethics risk을 이해하기 위한 배경 문헌으로 활용된다. 공격자의 능력, 방어자의 관측 가능성, 평가 데이터의 한계, 재현성 조건을 함께 정리해야 실제 보안 연구로 이어질 수 있다.
+설명은 방어 도구이면서 공격면이다. 과도한 설명은 민감 feature, training sample, decision boundary를 노출할 수 있고, 부정확한 설명은 사용자의 과신을 유도할 수 있다. 따라서 XAI 결과도 leakage, stability, fidelity 관점에서 점검해야 한다.
 
 ## 8. 한계와 오픈문제
 
-원문 정밀 독해 전에는 세부 실험 설정, 데이터셋, DOI, 인용 관계를 확정할 수 없다. 또한 survey 성격의 문헌은 실제 재현 실험보다는 분류체계와 연구 공백 파악에 더 적합하므로, 기말 논문에서는 별도 평가 프로토콜로 보완해야 한다.
+현재 로컬 PDF가 지정 논문과 일치하지 않으므로 최종 참고문헌으로 확정할 수 없다. 제출 전 Dwivedi et al. 원문을 확보하고 DOI, 권호, article number를 확인해야 한다.
 
 ## 9. 기말 논문에 반영할 부분
 
-P03는 연구평가/재현성/설명가능성(XAI)/논문 구성 연구에서 개념 정의, 위협 분류, 평가 지표 후보를 정리하는 근거로 반영한다. 특히 원리와 보안 보증 사이의 연결을 관련연구와 연구방법 장에 연결한다.
+XAI를 보안 평가의 증거로 사용할 때 설명 충실도와 정보노출 위험을 함께 봐야 한다는 논거를 제공한다. 단, 최종 인용은 지정 논문 검증 후 반영한다.

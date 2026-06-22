@@ -2,8 +2,10 @@
 
 | 산출물 | 요약 |
 |---|---|
-| 논문 요약 | MLOps/DevOps·데이터/모델 파이프라인·공급망 보안 관련 5편을 서지정보, 연구문제, 방법론, 보안 관점으로 정리 |
-| 이론노트 | MLOps, DevOps, data/model pipeline, monitoring, drift 중심의 AI 원리 정리 |
-| 보안노트 | ML supply chain, deployment/update/logging attack surface 중심의 위협·방어·평가 정리 |
-| 실험 설계 | Docker 기반 안전한 toy evaluation 초안 |
-| 기말 연결 | 기말 논문 주제 후보와 contribution 후보 도출 |
+| 논문 요약 | W14 5편을 MLOps practice, ML deployment, AIOps, edge deployment, DL for SE 역할로 분리 정리 |
+| 이론노트 | MLOps lifecycle과 data/model/config/log traceability를 중심으로 AI 원리 70% 정리 |
+| 보안노트 | ML supply chain, data poisoning, artifact tampering, drift 미탐지, audit gap을 CIA+privacy+safety+accountability 관점으로 정리 |
+| 실험 코드 | Synthetic toy MLOps pipeline, hash 검증, drift score, audit coverage, artifact inventory 생성 |
+| 실험 결과 | accuracy 0.925000, F1 0.923077, drift score 0.307626, re-run consistency true |
+| 제출·발표자료 | `w14_submission_report.md/html`, 발표 보고서, 슬라이드, speaker notes, Q&A, handout 작성 |
+| 기말 연결 | MLOps evidence set과 AI assurance case 주제 후보 도출 |

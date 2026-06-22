@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>W11 Slides</title>
+  <style>
+    html { scroll-behavior: smooth; scroll-snap-type: y mandatory; }
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #10201d; color: #f8fafc; }
+    section { min-height: 100vh; box-sizing: border-box; padding: 8vh 8vw 14vh; display: flex; flex-direction: column; justify-content: center; border-bottom: 1px solid #31524b; scroll-snap-align: start; }
+    h1 { font-size: clamp(2rem, 5vw, 4.2rem); margin: 0 0 24px; line-height: 1.1; }
+    h2 { font-size: clamp(1.6rem, 3vw, 2.7rem); margin: 0 0 20px; color: #99f6e4; }
+    p, li { font-size: clamp(1.05rem, 1.8vw, 1.55rem); }
+    table { border-collapse: collapse; width: 100%; background: #17352f; font-size: clamp(0.8rem, 1.25vw, 1.1rem); }
+    th, td { border: 1px solid #47766c; padding: 10px; vertical-align: top; }
+    th { background: #0f766e; }
+    code, pre { background: #06211d; color: #ccfbf1; padding: 2px 5px; border-radius: 4px; }
+    .muted { color: #cbd5e1; }
+    .slide-nav { position: fixed; right: 24px; bottom: 24px; display: flex; align-items: center; gap: 10px; padding: 10px; background: rgba(255, 255, 255, 0.92); border: 1px solid #d1d5db; border-radius: 999px; box-shadow: 0 10px 30px rgba(17, 24, 39, 0.16); z-index: 20; backdrop-filter: blur(8px); }
+    .slide-nav button { width: 44px; height: 44px; border: 1px solid #9ca3af; border-radius: 50%; background: #111827; color: white; font-size: 26px; line-height: 1; cursor: pointer; }
+    .slide-nav button:disabled { cursor: not-allowed; opacity: 0.35; }
+    .slide-counter { min-width: 62px; text-align: center; font-size: 16px; font-weight: 700; color: #111827; }
+    @media (max-width: 720px) { section { padding: 6vh 5vw 16vh; } .slide-nav { right: 12px; bottom: 12px; } }
+    @media print { .slide-nav { display: none; } }
+  </style>
+</head>
+<body>
+  <section><h1>W11 차등프라이버시(DP) &amp; 멤버십 추론 공격·방어</h1><p>DP 보장은 선언이 아니라 accounting, utility, MI risk, leakage, 재현성 로그로 검증해야 한다.</p></section>
+  <section><h2>1. 왜 중요한가</h2><ul><li>학습 데이터 포함 여부 자체가 민감정보가 될 수 있다.</li><li>DP를 적용했다고 해도 accountant와 평가 로그가 없으면 해석이 어렵다.</li><li>Accuracy만 보면 privacy leakage를 놓친다.</li></ul></section>
+  <section><h2>2. 발표 로드맵</h2><ol><li>AI 원리</li><li>보안 이슈</li><li>논문 5편의 역할</li><li>위협모형과 평가방법</li><li>synthetic toy 실험</li><li>기말논문 연결</li></ol></section>
+  <section><h2>3. AI 원리 70%</h2><table><tr><th>개념</th><th>핵심</th></tr><tr><td>Differential Privacy</td><td>인접 데이터셋의 출력 분포 차이 제한</td></tr><tr><td>DP-SGD</td><td>gradient clipping + noise injection + accounting</td></tr><tr><td>Privacy budget</td><td>epsilon/delta와 utility의 trade-off</td></tr></table></section>
+  <section><h2>4. 보안 이슈 30%</h2><table><tr><th>위협</th><th>공격자 가정</th><th>대표 지표</th></tr><tr><td>Membership inference</td><td>confidence/loss 관찰</td><td>MI Attack Accuracy</td></tr><tr><td>Privacy leakage</td><td>member/non-member 신호 차이</td><td>Leakage Score</td></tr><tr><td>DP misuse</td><td>accountant 누락</td><td>Reference/config check</td></tr></table></section>
+  <section><h2>5. 논문 5편의 역할</h2><table><tr><th>ID</th><th>중심 역할</th><th>발표 활용</th></tr><tr><td>P01</td><td>DP misuse</td><td>reporting 책임</td></tr><tr><td>P02</td><td>DP-DL survey</td><td>auditing/evaluation</td></tr><tr><td>P03</td><td>DP 적용 위치</td><td>DL/FL 연결</td></tr><tr><td>P04</td><td>MI taxonomy</td><td>위협모형</td></tr><tr><td>P05</td><td>MI defense</td><td>trade-off</td></tr></table></section>
+  <section><h2>6. 위협모형</h2><table><tr><th>항목</th><th>내용</th></tr><tr><td>보호 자산</td><td>membership information, confidence score, output, log</td></tr><tr><td>공격자</td><td>외부 질의자, 모델 사용자, 내부 평가자</td></tr><tr><td>공격 경로</td><td>API output, confidence, evaluation log</td></tr><tr><td>제외 범위</td><td>실제 개인정보, 실제 개인 대상 추론, 무단 API</td></tr></table></section>
+  <section><h2>7. 평가 프로토콜</h2><table><tr><th>평가 항목</th><th>지표</th><th>기록 방법</th></tr><tr><td>Utility</td><td>Accuracy, Utility Drop</td><td>CSV/JSON/log</td></tr><tr><td>Membership risk</td><td>MI Attack Accuracy</td><td>synthetic split</td></tr><tr><td>Leakage</td><td>Privacy Leakage Score</td><td>confidence gap</td></tr><tr><td>Reproducibility</td><td>seed, config, outputs</td><td>run log</td></tr></table></section>
+  <section><h2>8. 실험 설계</h2><ul><li>Synthetic binary classification</li><li>Toy logistic regression</li><li>Non-DP baseline vs DP-like noise low/medium/high</li><li><code>epsilon_proxy</code>는 정식 DP accountant 값이 아님</li></ul></section>
+  <section><h2>9. 결과</h2><table><tr><th>조건</th><th>Accuracy</th><th>MI Acc.</th><th>Eps. proxy</th><th>Leakage</th></tr><tr><td>Non-DP</td><td>0.956250</td><td>0.515625</td><td>해당 없음</td><td>0.014833</td></tr><tr><td>Low</td><td>0.956250</td><td>0.515625</td><td>8.000000</td><td>0.014494</td></tr><tr><td>Medium</td><td>0.962500</td><td>0.512500</td><td>3.000000</td><td>0.011769</td></tr><tr><td>High</td><td>0.950000</td><td>0.521875</td><td>1.000000</td><td>0.016482</td></tr></table></section>
+  <section><h2>10. 해석</h2><ul><li>Medium noise에서 leakage proxy가 가장 낮았다.</li><li>High noise는 utility drop이 생겼지만 MI risk가 단조롭게 낮아지지는 않았다.</li><li>DP claim은 accountant와 반복 평가 없이는 확정할 수 없다.</li></ul></section>
+  <section><h2>11. 기말논문 연결</h2><table><tr><th>기말논문 장</th><th>연결 내용</th></tr><tr><td>관련연구</td><td>DP misuse, DP-DL, MI survey</td></tr><tr><td>위협모형</td><td>membership information 보호</td></tr><tr><td>평가방법</td><td>utility + MI risk + leakage + logs</td></tr><tr><td>보안적 함의</td><td>privacy claim accountability</td></tr></table></section>
+  <section><h2>12. 결론</h2><ul><li>DP는 구현 설정과 accounting까지 함께 보고해야 한다.</li><li>MI 위험은 별도 보안 지표로 평가해야 한다.</li><li>수치는 <code>outputs/</code> 로그가 있을 때만 주장한다.</li></ul></section>
+  <nav class="slide-nav" aria-label="슬라이드 이동">
+    <button id="prevSlide" type="button" title="이전 슬라이드" aria-label="이전 슬라이드">‹</button>
+    <span id="slideCounter" class="slide-counter" aria-live="polite">1 / 1</span>
+    <button id="nextSlide" type="button" title="다음 슬라이드" aria-label="다음 슬라이드">›</button>
+  </nav>
+  <script>
+    const slides = Array.from(document.querySelectorAll("section"));
+    const prevButton = document.getElementById("prevSlide");
+    const nextButton = document.getElementById("nextSlide");
+    const counter = document.getElementById("slideCounter");
+    let currentIndex = 0;
+    function updateNav(index) {
+      currentIndex = Math.max(0, Math.min(index, slides.length - 1));
+      counter.textContent = `${currentIndex + 1} / ${slides.length}`;
+      prevButton.disabled = currentIndex === 0;
+      nextButton.disabled = currentIndex === slides.length - 1;
+    }
+    function goToSlide(index) {
+      const nextIndex = Math.max(0, Math.min(index, slides.length - 1));
+      slides[nextIndex].scrollIntoView({ behavior: "smooth", block: "start" });
+      updateNav(nextIndex);
+    }
+    prevButton.addEventListener("click", () => goToSlide(currentIndex - 1));
+    nextButton.addEventListener("click", () => goToSlide(currentIndex + 1));
+    document.addEventListener("keydown", (event) => {
+      if (["ArrowRight", "PageDown", " "].includes(event.key)) { event.preventDefault(); goToSlide(currentIndex + 1); }
+      if (["ArrowLeft", "PageUp"].includes(event.key)) { event.preventDefault(); goToSlide(currentIndex - 1); }
+      if (event.key === "Home") { event.preventDefault(); goToSlide(0); }
+      if (event.key === "End") { event.preventDefault(); goToSlide(slides.length - 1); }
+    });
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries.filter((entry) => entry.isIntersecting).sort((left, right) => right.intersectionRatio - left.intersectionRatio)[0];
+      if (visible) updateNav(slides.indexOf(visible.target));
+    }, { threshold: [0.55] });
+    slides.forEach((slide) => observer.observe(slide));
+    updateNav(0);
+  </script>
+</body>
+</html>

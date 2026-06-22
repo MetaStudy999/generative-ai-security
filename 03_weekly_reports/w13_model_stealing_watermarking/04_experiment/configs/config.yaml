@@ -1,13 +1,28 @@
 week: "W13"
 topic: "모델 지식재산(IP)·모델 도난·모델 추출 위협"
 seed: 42
-status: "design_only"
+run_date: "2026-06-22"
+status: "executed"
 data:
-  type: "public_or_synthetic"
+  type: "synthetic_binary_classification"
   personal_data: false
+  train_samples: 1400
+  test_samples: 500
+  query_pool_samples: 1800
+  features: 4
+  noise: 0.75
 experiment:
-  results_recorded: false
-  notes: "실제 실행 전까지 결과값은 기록하지 않는다."
+  results_recorded: true
+  victim_model: "toy_logistic_classifier_with_watermark_trigger_set"
+  substitute_model: "query_response_1nn_classifier"
+  epochs: 70
+  learning_rate: 0.055
+  regularization: 0.002
+  query_budgets: [100, 500, 1000]
+  watermark_triggers: 20
+  watermark_fraction: 0.05
+  trigger_radius: 0.03
+  notes: "로컬 synthetic toy 데이터에서만 모델 추출 유사도와 워터마크 검출률을 측정한다."
 security_scope:
-  allowed: "toy evaluation and literature-based risk analysis"
-  disallowed: "actual system compromise, personal data use, unauthorized attack"
+  allowed: "local synthetic toy evaluation and literature-based risk analysis"
+  disallowed: "actual API probing, commercial model extraction, personal data use, unauthorized attack"

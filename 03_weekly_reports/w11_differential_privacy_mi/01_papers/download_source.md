@@ -1,14 +1,15 @@
 # W11 다운로드 출처 기록
 
-| ID | 논문 제목 | 확보 방식 | 파일명 | 비고 |
+| ID | 로컬 PDF | 확인한 출처/식별자 | 상태 | 비고 |
 |---|---|---|---|---|
-| P01 | A Critical Review on the Use (and Misuse) of Differential Privacy in Machine Learning | 로컬 PDF | 01_Blanco_Justicia_et_al_2022_Differential_Privacy_Critical_Review.pdf | 출처 URL 확인 필요 |
-| P02 | Differential Privacy in Centralized Deep Learning: A Survey | 로컬 PDF | 02_Demelius_et_al_2025_Centralized_Deep_Learning_DP_Survey.pdf | 출처 URL 확인 필요 |
-| P03 | Differential Privacy in Deep Learning: A Literature Survey | 로컬 PDF | 03_SUBSTITUTE_Fu_et_al_2024_Differentially_Private_FL_Review.pdf | 출처 URL 확인 필요 |
-| P04 | Membership inference attacks on machine learning: a survey | 로컬 PDF | 04_Hu_et_al_2022_Membership_Inference_Attacks_Survey.pdf | 출처 URL 확인 필요 |
-| P05 | Defenses to Membership Inference Attacks: A Survey | 로컬 PDF | 05_SUBSTITUTE_Bai_et_al_2024_MIA_Attacks_Defenses_FL_Survey.pdf | 출처 URL 확인 필요 |
+| P01 | `pdf/01_Blanco_Justicia_et_al_2022_Differential_Privacy_Critical_Review.pdf` | arXiv `2206.04621` | 로컬 PDF 확인 | 강의자료의 ACM CS 항목과 DOI 최종 대조 필요 |
+| P02 | `pdf/02_Demelius_et_al_2025_Centralized_Deep_Learning_DP_Survey.pdf` | arXiv `2309.16398` | 로컬 PDF 확인 | 파일명은 2025 ACM CS 항목을 가리키지만 PDF 본문은 2023 arXiv preprint |
+| P03 | `pdf/03_SUBSTITUTE_Fu_et_al_2024_Differentially_Private_FL_Review.pdf` | arXiv `2405.08299` | 대체 PDF | 지정 논문 Pan et al. Neurocomputing DOI `10.1016/j.neucom.2024.127663`과 불일치 |
+| P04 | `pdf/04_Hu_et_al_2022_Membership_Inference_Attacks_Survey.pdf` | arXiv `2103.07853` | 로컬 PDF 확인 | PDF metadata DOI가 placeholder라 ACM DOI 확인 필요 |
+| P05 | `pdf/05_SUBSTITUTE_Bai_et_al_2024_MIA_Attacks_Defenses_FL_Survey.pdf` | arXiv `2412.06157` | 대체 PDF | 지정 논문 Hu et al. defenses survey DOI `10.1145/3620667`과 불일치 |
 
-## 관리 메모
+## 관리 원칙
 
-- 현재 기록은 로컬 파일 존재 여부 중심이다.
-- 저작권과 인용 정확성을 위해 공식 출판사, 저자 페이지, arXiv 등 공개 경로를 최종 확인한다.
+- 로컬 PDF와 지정 논문이 다르면 제출본에 `대체 PDF`로 명시한다.
+- DOI/URL은 확인된 근거를 함께 적고, 모르는 DOI는 임의 생성하지 않는다.
+- 기말논문 참고문헌에는 최종 원문 PDF와 공식 DOI가 확인된 항목만 확정 인용한다.

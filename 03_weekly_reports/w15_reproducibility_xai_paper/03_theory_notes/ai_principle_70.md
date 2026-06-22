@@ -2,46 +2,53 @@
 
 ## 1. 핵심 이론
 
-W15의 AI 원리는 Evaluation, reproducibility, XAI, paper structure이다. 이 주차에서는 보안 이슈를 먼저 끌어오지 않고, 모델 또는 시스템이 어떤 학습 구조와 평가 구조를 갖는지 이해하는 데 70%의 비중을 둔다.
+W15의 AI 원리는 평가, 재현성, 설명가능성, 논문 구성이다. 핵심은 모델 성능을 하나의 숫자로 보는 것이 아니라, 평가 대상, 데이터 출처, 측정 방식, 설명 방식, 실험 증거, 연구윤리 고지를 하나의 연구 산출물로 묶는 데 있다.
 
-핵심 항목은 다음과 같다.
-
-- LLM 평가 프레임워크
-- Benchmark contamination
-- Evaluation leakage
-- Reproducibility의 의미
-- ML lifecycle assurance
-- XAI의 핵심 개념
-- Feature-based explanation
-- Concept-based explanation
-- Responsible AI와 XAI의 관계
+LLM 평가는 "무엇을 평가할 것인가", "어디서 평가할 것인가", "어떻게 평가할 것인가"를 먼저 정해야 한다. 재현성은 동일 config, seed, 데이터, 코드, 로그로 같은 결론을 검토할 수 있게 하는 조건이다. XAI는 모델의 내부 또는 결정 근거를 사람이 이해 가능한 형태로 제공하지만, 설명 자체도 충실도와 안정성을 평가해야 한다.
 
 ## 2. 핵심 개념표
 
 | 개념 | 정의 | 직관적 설명 | 관련 논문 |
 |---|---|---|---|
-| LLM 평가 프레임워크 | 연구평가·재현성·설명가능성(XAI)·논문 구성에서 핵심이 되는 AI 원리 | 모델을 이해하기 위한 1번째 관찰 지점 | P01 |
-| Benchmark contamination | 연구평가·재현성·설명가능성(XAI)·논문 구성에서 핵심이 되는 AI 원리 | 모델을 이해하기 위한 2번째 관찰 지점 | P02 |
-| Evaluation leakage | 연구평가·재현성·설명가능성(XAI)·논문 구성에서 핵심이 되는 AI 원리 | 모델을 이해하기 위한 3번째 관찰 지점 | P03 |
-| Reproducibility의 의미 | 연구평가·재현성·설명가능성(XAI)·논문 구성에서 핵심이 되는 AI 원리 | 모델을 이해하기 위한 4번째 관찰 지점 | P04 |
-| ML lifecycle assurance | 연구평가·재현성·설명가능성(XAI)·논문 구성에서 핵심이 되는 AI 원리 | 모델을 이해하기 위한 5번째 관찰 지점 | P05 |
-| XAI의 핵심 개념 | 연구평가·재현성·설명가능성(XAI)·논문 구성에서 핵심이 되는 AI 원리 | 모델을 이해하기 위한 6번째 관찰 지점 | P05 |
-| Feature-based explanation | 연구평가·재현성·설명가능성(XAI)·논문 구성에서 핵심이 되는 AI 원리 | 모델을 이해하기 위한 7번째 관찰 지점 | P05 |
-| Concept-based explanation | 연구평가·재현성·설명가능성(XAI)·논문 구성에서 핵심이 되는 AI 원리 | 모델을 이해하기 위한 8번째 관찰 지점 | P05 |
-| Responsible AI와 XAI의 관계 | 연구평가·재현성·설명가능성(XAI)·논문 구성에서 핵심이 되는 AI 원리 | 모델을 이해하기 위한 9번째 관찰 지점 | P05 |
+| Evaluation | 모델 또는 시스템의 능력과 위험을 정해진 기준으로 측정하는 절차 | 시험 문제, 채점 기준, 채점 환경을 함께 정하는 일 | P01 |
+| Benchmark Contamination | 평가 데이터가 학습·튜닝·프롬프트 설계에 노출되어 평가가 오염되는 현상 | 시험 문제가 미리 유출된 상태 | P01 |
+| Evaluation Leakage | hidden test, 정답, benchmark 패턴이 간접적으로 새어 평가가 과대평가되는 현상 | 정답은 안 봤지만 출제 경향을 알아버린 상태 | P01 |
+| Reproducibility | 같은 조건에서 결과와 결론을 다시 검토할 수 있는 성질 | config, seed, 로그가 남아 다시 확인 가능한 상태 | P01, P02 |
+| ML Lifecycle Assurance | 데이터 관리, 학습, 검증, 배포 전 과정에서 안전성 증거를 축적하는 접근 | 모델 파일만 보는 것이 아니라 생산 이력을 보는 일 | P02 |
+| XAI | 모델 판단 근거를 사람이 이해 가능한 형태로 설명하는 방법과 연구 분야 | 모델에게 왜 그렇게 판단했는지 묻는 장치 | P03, P04, P05 |
+| Feature-based Explanation | 입력 feature나 token의 중요도를 중심으로 설명하는 방식 | 어느 단어/픽셀이 결정에 영향을 줬는지 표시 | P03, P04 |
+| Concept-based XAI | 사람이 이해 가능한 concept를 설명 단위로 쓰는 방식 | "부리", "위험 신호", "민감 속성" 같은 개념으로 설명 | P05 |
+| Contribution | 논문이 기존 연구에 새로 더하는 명확한 기여 | 이 논문이 없으면 비어 있던 한 문장 | 전체 |
+| Limitation | 연구가 다루지 못한 범위와 해석상의 주의점 | 어디까지 믿고 어디부터 조심해야 하는지 | 전체 |
 
 ## 3. 수식 또는 알고리즘
 
+### 3.1 평가 신뢰성 점검 흐름
+
 ```text
-입력/데이터 정의 -> LLM 평가 프레임워크 -> Benchmark contamination -> Evaluation leakage -> Reproducibility의 의미 -> 모델 또는 시스템 출력 -> 평가 지표 산출
+평가목표 정의
+-> benchmark/data provenance 확인
+-> 중복·오염·hidden test leakage 점검
+-> model/version/prompt/config 기록
+-> 결과 지표 산출
+-> 재현성 로그와 한계 작성
 ```
 
-수식 수준에서는 학습 목적함수, 평가 지표, 일반화 또는 효율성 조건을 분리해 기록한다. 세부 수식은 원문 확인 후 최종 논문에 필요한 것만 엄선한다.
+### 3.2 설명 신뢰성 점검 흐름
+
+```text
+입력 x, 모델 f, 설명기 E
+prediction = f(x)
+explanation = E(f, x)
+검토항목 = {fidelity, stability, completeness, leakage risk, human usefulness}
+```
+
+XAI 설명은 모델의 실제 원인과 완전히 같다고 가정하지 않는다. 따라서 설명이 모델 예측과 얼마나 충실하게 연결되는지, 작은 입력 변화에 과도하게 흔들리지 않는지, 민감정보나 업무 규칙을 노출하지 않는지 별도로 점검한다.
 
 ## 4. 초보자용 설명
 
-연구평가/재현성/설명가능성(XAI)/논문 구성를 공부할 때 먼저 볼 것은 "모델이 무엇을 입력으로 받고, 무엇을 학습하며, 어떤 기준으로 성공을 판단하는가"이다. 이 구조를 이해해야 공격자가 어느 지점을 건드릴 수 있는지도 보인다.
+좋은 AI 보안 논문은 "모델이 잘 됐다"에서 끝나지 않는다. 어떤 데이터로 평가했는지, 그 데이터가 모델에게 미리 노출되지 않았는지, 같은 환경에서 다시 확인할 수 있는지, 설명 결과가 실제로 믿을 만한지, AI 도구를 어디에 썼는지까지 함께 남겨야 한다.
 
 ## 5. 보안 연구와의 연결
 
-AI 원리의 취약 지점은 곧 보안 평가 항목이 된다. LLM 평가 프레임워크, Benchmark contamination, Evaluation leakage를 이해하면 Benchmark contamination, Hidden test leakage, Evaluation reproducibility failure가 왜 발생하는지 설명할 수 있다.
+평가와 설명은 보안 연구의 증거가 되지만, 동시에 공격면이 될 수 있다. benchmark가 오염되면 무결성이 깨지고, 설명 결과가 민감 feature를 드러내면 기밀성과 프라이버시가 약해진다. 재현성 기록과 AI 활용 고지는 연구자가 어떤 결론을 어떤 근거로 냈는지 추적하게 해 책임성을 높인다.

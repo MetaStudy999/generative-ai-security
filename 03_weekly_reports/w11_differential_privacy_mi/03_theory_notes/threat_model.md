@@ -2,20 +2,20 @@
 
 | 항목 | 내용 |
 |---|---|
-| 대상 시스템 | 차등프라이버시(DP) 및 멤버십 추론 공격/방어를 사용하는 ML/AI 시스템 |
-| 보호 자산 | 학습데이터, 모델 파라미터, 입력 컨텍스트, 출력 결과, 평가 로그, 사용자 정보 |
-| 공격자 | 외부 공격자, 악의적 데이터 제공자, 내부자, API 남용자, 공급망 참여자 중 주차 주제에 해당하는 행위자 |
-| 공격자의 지식 | White-box, Gray-box, Black-box 조건을 구분 |
-| 공격자의 능력 | Membership inference attack, Training data leakage, Model memorization, Overfitting과 privacy leakage의 관계, Shadow model 기반 MI 공격 개념 |
-| 공격 경로 | 데이터 수집, 학습, 평가, 배포, 추론, 모니터링, 재학습 단계 |
-| 공격 성공 조건 | 성능 저하, 오분류, 민감정보 노출, 평가 왜곡, 보안 정책 우회 |
-| 방어자 가정 | 입력/데이터 검증, 로그 기록, 설정 파일 보존, 재현 가능한 평가 실행 가능 |
-| 제외 범위 | 실제 서비스 침해, 실제 개인정보 사용, 무단 API 대량 질의, 악용 가능한 공격 절차 |
+| 대상 시스템 | 개인정보가 포함될 수 있는 ML/DL 학습 시스템과 DP 적용 모델 |
+| 보호 자산 | 학습 데이터 포함 여부, 개인 레코드, confidence score, loss 신호, 모델 출력, 평가 로그 |
+| 공격자 | 외부 질의자, 모델 사용자, API 접근자, 내부 평가자 |
+| 공격자의 지식 | Black-box 출력 관찰부터 gray-box 평가 로그 접근까지 구분 |
+| 공격자의 능력 | 모델 질의, confidence score 관찰, synthetic member/non-member 평가, 출력 비교 |
+| 공격 경로 | 모델 API, 예측 확률, 학습 결과, 평가 로그, FL update |
+| 공격 성공 조건 | 특정 데이터가 학습에 사용되었는지 통계적으로 우연 이상으로 구분 |
+| 방어자 가정 | DP-SGD 또는 DP-like noise, output restriction, calibration, regularization, privacy accounting 가능 |
+| 제외 범위 | 실제 개인정보 데이터 사용, 실제 개인 대상 추론, 무단 API 대량 질의, 운영 시스템 공격 |
 
 ## 연구문제 후보
 
-RQ1. 차등프라이버시(DP) 및 멤버십 추론 공격/방어 생명주기에서 가장 우선적으로 보증해야 할 자산은 무엇인가?
+RQ1. DP-SGD 또는 DP-like noise의 강도 변화는 모델 accuracy와 membership inference risk 사이에 어떤 trade-off를 만드는가?
 
-RQ2. Membership inference attack, Training data leakage는 어느 단계에서 발생하며 어떤 지표로 측정할 수 있는가?
+RQ2. Membership inference 위험은 overfitting, confidence score, 학습/평가 데이터 분포 차이에 따라 어떻게 달라지는가?
 
-RQ3. 성능, 보안성, 재현성을 함께 평가하기 위한 최소 실험 프로토콜은 어떻게 설계할 수 있는가?
+RQ3. AI 보안 연구에서 DP를 주장할 때 privacy accounting, utility, attack evaluation, reproducibility log를 어떤 최소 항목으로 함께 보고해야 하는가?

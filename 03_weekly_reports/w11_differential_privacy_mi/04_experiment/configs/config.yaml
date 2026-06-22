@@ -1,13 +1,39 @@
 week: "W11"
 topic: "차등프라이버시(DP) & 멤버십 추론 공격·방어"
 seed: 42
-status: "design_only"
+run_date: "2026-06-22"
+status: "executed"
 data:
-  type: "public_or_synthetic"
+  type: "synthetic_binary_classification"
   personal_data: false
+  train_samples: 320
+  test_samples: 320
+  features: 3
+  train_noise: 0.85
+  test_noise: 0.90
 experiment:
-  results_recorded: false
-  notes: "실제 실행 전까지 결과값은 기록하지 않는다."
+  model: "toy_logistic_regression"
+  epochs: 60
+  learning_rate: 0.08
+  regularization: 0.001
+  membership_threshold: 0.94
+  conditions:
+    - key: "non_dp_baseline"
+      label: "Non-DP baseline"
+      noise_multiplier: 0.00
+      epsilon_proxy: "not_applicable"
+    - key: "dp_like_low"
+      label: "DP-like noise low"
+      noise_multiplier: 0.10
+      epsilon_proxy: 8.0
+    - key: "dp_like_medium"
+      label: "DP-like noise medium"
+      noise_multiplier: 0.45
+      epsilon_proxy: 3.0
+    - key: "dp_like_high"
+      label: "DP-like noise high"
+      noise_multiplier: 1.20
+      epsilon_proxy: 1.0
 security_scope:
-  allowed: "toy evaluation and literature-based risk analysis"
-  disallowed: "actual system compromise, personal data use, unauthorized attack"
+  allowed: "synthetic toy evaluation and literature-based privacy-risk analysis"
+  disallowed: "actual personal data, production model probing, unauthorized API queries, real-person membership inference"

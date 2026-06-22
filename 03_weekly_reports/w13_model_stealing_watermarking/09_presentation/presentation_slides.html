@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>W13 발표 슬라이드</title>
+  <style>
+    :root { color-scheme: light; }
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #121820; color: #f7fafc; }
+    .slide { display: none; min-height: 100vh; box-sizing: border-box; padding: 8vh 8vw 12vh; align-items: center; }
+    .slide.active { display: flex; }
+    .content { max-width: 1080px; width: 100%; }
+    h1 { font-size: clamp(2.25rem, 5vw, 4.8rem); line-height: 1.08; margin: 0 0 1.2rem; }
+    h2 { font-size: clamp(2rem, 4vw, 3.4rem); line-height: 1.12; margin: 0 0 1.4rem; }
+    p, li { font-size: clamp(1.15rem, 2vw, 1.7rem); }
+    table { width: 100%; border-collapse: collapse; font-size: clamp(.9rem, 1.45vw, 1.18rem); background: #182330; }
+    th, td { border: 1px solid #385064; padding: .62rem .72rem; }
+    th { background: #223247; text-align: left; }
+    .muted { color: #b9c6d4; }
+    .controls { position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%); display: flex; align-items: center; gap: 10px; }
+    button { border: 1px solid #476177; background: #1e2b38; color: #f7fafc; border-radius: 6px; padding: .55rem .8rem; font-size: .95rem; cursor: pointer; }
+    button:hover { background: #2a3b4d; }
+    .progress { color: #b9c6d4; font-size: .95rem; min-width: 54px; text-align: center; }
+  </style>
+</head>
+<body>
+  <section class="slide active"><div class="content"><h1>W13 모델 지식재산·모델 추출 위협</h1><p class="muted">Fidelity와 false positive를 함께 보는 소유권 검증</p></div></section>
+  <section class="slide"><div class="content"><h2>오늘의 질문</h2><ul><li>API 뒤에 있는 모델도 훔쳐질 수 있는가?</li><li>query-response만으로 얼마나 비슷한 모델을 만들 수 있는가?</li><li>워터마크 검출률이 높으면 충분한가?</li></ul></div></section>
+  <section class="slide"><div class="content"><h2>문헌 5편의 역할</h2><table><tr><th>문헌</th><th>역할</th></tr><tr><td>P01</td><td>model stealing taxonomy</td></tr><tr><td>P02</td><td>LLM watermarking, 대체 PDF</td></tr><tr><td>P03</td><td>DNN watermarking trade-off</td></tr><tr><td>P04</td><td>ModelShield ownership check</td></tr><tr><td>P05</td><td>GAN privacy/security, 대체 PDF</td></tr></table></div></section>
+  <section class="slide"><div class="content"><h2>AI 원리 70%</h2><ul><li>Model IP는 파라미터, 행동, 생성물 출처를 포함한다.</li><li>Model extraction은 query-response로 substitute model을 학습한다.</li><li>Fidelity는 victim과 substitute의 출력 일치율이다.</li><li>Watermark/fingerprint는 소유권 검증 신호다.</li></ul></div></section>
+  <section class="slide"><div class="content"><h2>보안 이슈 30%</h2><ul><li>Confidentiality: 모델 행동 유출</li><li>Integrity: 워터마크 제거·위조</li><li>Availability: query abuse</li><li>Accountability: false positive/false negative</li></ul></div></section>
+  <section class="slide"><div class="content"><h2>Toy 실험 설계</h2><table><tr><th>항목</th><th>설정</th></tr><tr><td>데이터</td><td>synthetic binary classification</td></tr><tr><td>Victim</td><td>toy logistic classifier</td></tr><tr><td>Substitute</td><td>query-response 1NN classifier</td></tr><tr><td>Query budgets</td><td>100, 500, 1000</td></tr><tr><td>Watermark</td><td>20개 trigger-set signature</td></tr></table></div></section>
+  <section class="slide"><div class="content"><h2>실험 결과</h2><table><tr><th>조건</th><th>Fidelity</th><th>Accuracy</th><th>Detection</th><th>FPR</th></tr><tr><td>Query 100</td><td>0.864000</td><td>0.812000</td><td>0.700000</td><td>0.600000</td></tr><tr><td>Query 500</td><td>0.920000</td><td>0.840000</td><td>1.000000</td><td>0.600000</td></tr><tr><td>Query 1000</td><td>0.902000</td><td>0.822000</td><td>1.000000</td><td>0.600000</td></tr></table></div></section>
+  <section class="slide"><div class="content"><h2>해석</h2><ul><li>query-response만으로 victim behavior에 접근할 수 있다.</li><li>detection이 높아도 false positive가 높으면 증거력이 약하다.</li><li>본 결과는 실제 API가 아닌 synthetic toy 평가다.</li></ul></div></section>
+  <section class="slide"><div class="content"><h2>기말논문 연결</h2><ul><li>모델 추출 이후 소유권 검증을 위한 다중지표 평가 프레임워크</li><li>fidelity, query cost, detection, FPR, utility, reproducibility</li><li>운영 로그와 연구윤리까지 확장</li></ul></div></section>
+  <section class="slide"><div class="content"><h2>결론</h2><p>모델 IP 보호 평가는 공격 성공률 하나로 끝나지 않는다.</p><p>fidelity, detection, false positive, utility, 재현성을 함께 보고해야 한다.</p></div></section>
+  <div class="controls"><button id="prev">이전</button><span class="progress" id="progress">1 / 10</span><button id="next">다음</button></div>
+  <script>
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const progress = document.getElementById('progress');
+    let index = 0;
+    function show(next) {
+      index = Math.max(0, Math.min(slides.length - 1, next));
+      slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
+      progress.textContent = `${index + 1} / ${slides.length}`;
+    }
+    document.getElementById('prev').addEventListener('click', () => show(index - 1));
+    document.getElementById('next').addEventListener('click', () => show(index + 1));
+    document.addEventListener('keydown', (event) => {
+      if (['ArrowRight', 'PageDown', ' '].includes(event.key)) show(index + 1);
+      if (['ArrowLeft', 'PageUp'].includes(event.key)) show(index - 1);
+      if (event.key === 'Home') show(0);
+      if (event.key === 'End') show(slides.length - 1);
+    });
+  </script>
+</body>
+</html>

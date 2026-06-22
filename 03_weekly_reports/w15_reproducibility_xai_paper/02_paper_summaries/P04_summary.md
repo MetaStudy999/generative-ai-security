@@ -5,46 +5,46 @@
 | 항목 | 내용 |
 |---|---|
 | 논문 제목 | Explainable Artificial Intelligence (XAI): Concepts, Taxonomies, Opportunities and Challenges toward Responsible AI |
-| 저자 | A. B. Arrieta et al. |
+| 저자 | Alejandro Barredo Arrieta, Natalia Díaz-Rodríguez, Javier Del Ser, Adrien Bennetot, Siham Tabik, Alberto Barbado, Salvador Garcia, Sergio Gil-Lopez, Daniel Molina, Richard Benjamins, Raja Chatila, Francisco Herrera |
 | 학술지/학회 | Information Fusion |
 | 연도 | 2020 |
-| DOI/URL | 확인 필요 |
-| PDF 파일명 | 04_Arrieta_et_al_2020_Explainable_AI_Concepts_Taxonomies.pdf |
-| 검증 상태 | 로컬 PDF 파일명 확인, DOI/URL과 원문 세부 내용은 최종 대조 필요 |
+| DOI/URL | `https://doi.org/10.1016/j.inffus.2019.12.012` |
+| PDF 파일명 | `04_Arrieta_et_al_2020_Explainable_AI_Concepts_Taxonomies.pdf` |
+| 검증 상태 | 로컬 arXiv preprint와 ScienceDirect DOI 확인 |
 
 ## 2. 한 문장 요약
 
-> 이 논문은 Evaluation, reproducibility, XAI, paper structure의 신뢰성 및 보증 문제 문제를 개념 분석과 사례 중심 정리 방법으로 다루며, 원리와 보안 보증 사이의 연결을 기말 연구에 반영할 수 있게 해준다.
+> 이 논문은 XAI의 개념, taxonomy, 책임 있는 AI와의 관계를 체계화하며, 설명가능성이 보안·프라이버시·공정성·책임성 문제와 동시에 연결된다는 점을 보여준다.
 
 ## 3. 연구문제
 
-이 논문에서 기말 연구와 연결되는 질문은 연구평가/재현성/설명가능성(XAI)/논문 구성 영역에서 어떤 개념, 공격면, 평가 기준을 우선적으로 정리해야 하는가이다. 특히 LLM 평가 프레임워크, Benchmark contamination, Evaluation leakage와 Benchmark contamination, Hidden test leakage, Evaluation reproducibility failure가 서로 만나는 지점을 확인하는 데 초점을 둔다.
+black-box ML 모델을 실제 조직과 안전중요 도메인에 배포하려면 어떤 수준의 설명가능성, 투명성, 공정성, 책임성이 필요한가가 핵심 질문이다. 기말논문에서는 XAI를 단순한 시각화가 아니라 연구 책임성과 보안 평가의 한 축으로 다룬다.
 
 ## 4. 핵심 개념
 
 | 개념 | 설명 | 기말 논문 연결 |
 |---|---|---|
-| LLM 평가 프레임워크 | 주차 AI 원리의 출발점이며 모델 또는 시스템을 이해하는 기본 단위이다. | 배경 이론 |
-| Benchmark contamination | 성능, 일반화, 효율 또는 신뢰성을 설명하는 보조 축이다. | 분석 기준 |
-| Benchmark contamination | 보안 위협을 식별하기 위한 대표 공격면이다. | 위협모형 |
-| Hidden test leakage | 방어와 평가 프로토콜을 설계할 때 비교해야 하는 요소이다. | 평가방법 |
+| Interpretability | 모델 또는 의사결정 과정을 사람이 이해할 수 있는 정도 | XAI 평가 기준 |
+| Transparency | 모델 자체가 이해 가능한 구조인지 여부 | 설명 방식 분류 |
+| Post-hoc explanation | 학습된 black-box 모델의 결정을 사후 설명 | explanation misuse 위험 |
+| Responsible AI | fairness, accountability, privacy, explainability를 함께 요구하는 접근 | 보안적 함의 |
 
 ## 5. 방법론
 
-이 문헌은 개념 분석과 사례 중심 정리을 통해 기존 연구를 묶어 읽을 수 있게 한다. 본 보고서에서는 논문 제목, 프롬프트의 논문 패킷 정보, 로컬 PDF 존재 여부를 기준으로 요약했으며, 세부 실험값이나 DOI는 최종 원문 대조 단계에서 확인한다.
+약 400개 XAI 기여를 검토하고, transparent model과 post-hoc explanation, deep learning explanation taxonomy를 정리한다. 또한 Responsible AI 관점에서 XAI의 사회적·윤리적 역할을 논의한다.
 
 ## 6. 주요 결과
 
-해당 영역의 대표 문제와 연구 설계 기준을 제시한다. 수치 결과를 새로 만들지 않기 위해 본 요약에서는 정량값을 적지 않았고, 원문에서 직접 확인되는 항목만 최종 보고서에 반영하도록 남겨 둔다.
+설명가능성은 모델의 신뢰를 높일 수 있지만, 설명의 대상 audience와 목적을 명확히 하지 않으면 잘못된 신뢰를 만들 수 있다. XAI는 privacy, confidentiality, robustness, fairness와 충돌하거나 보완될 수 있으므로 평가 프로토콜에 함께 포함해야 한다.
 
 ## 7. 보안 관점 분석
 
-이 논문은 Benchmark contamination, model leakage, policy/ethics risk을 이해하기 위한 배경 문헌으로 활용된다. 공격자의 능력, 방어자의 관측 가능성, 평가 데이터의 한계, 재현성 조건을 함께 정리해야 실제 보안 연구로 이어질 수 있다.
+XAI는 adversarial perturbation, bias, spurious correlation을 발견하는 데 도움을 주지만, 동시에 모델 내부 단서나 민감정보를 노출할 수 있다. 따라서 설명을 공개할 범위, 설명 로그 보관, human review 절차가 필요하다.
 
 ## 8. 한계와 오픈문제
 
-원문 정밀 독해 전에는 세부 실험 설정, 데이터셋, DOI, 인용 관계를 확정할 수 없다. 또한 survey 성격의 문헌은 실제 재현 실험보다는 분류체계와 연구 공백 파악에 더 적합하므로, 기말 논문에서는 별도 평가 프로토콜로 보완해야 한다.
+논문은 2020년 기준 taxonomy라 LLM/RAG 및 최신 agent 기반 시스템의 설명 문제는 별도 보완이 필요하다. 또한 설명 품질을 계량화하는 공통 지표는 아직 합의가 제한적이다.
 
 ## 9. 기말 논문에 반영할 부분
 
-P04는 연구평가/재현성/설명가능성(XAI)/논문 구성 연구에서 개념 정의, 위협 분류, 평가 지표 후보를 정리하는 근거로 반영한다. 특히 원리와 보안 보증 사이의 연결을 관련연구와 연구방법 장에 연결한다.
+보안적 함의 장에서 XAI를 privacy, fairness, accountability와 함께 다루고, explanation stability와 disclosure scope를 평가 항목에 포함하는 근거로 활용한다.

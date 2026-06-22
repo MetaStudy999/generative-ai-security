@@ -2,18 +2,23 @@
 
 ## 1. 문헌 검증 한계
 
-논문 제목과 로컬 PDF 파일명은 정리했지만 DOI/URL과 원문 세부 수치는 최종 대조가 필요하다. `SUBSTITUTE` PDF가 있는 주차는 프롬프트 지정 문헌과 실제 확보 문헌의 차이를 확인해야 한다.
+P02와 P05는 프롬프트 지정 논문과 로컬 PDF가 다르다. 최종 제출 전 지정 문헌을 확보할지, 대체 문헌으로 유지할지 결정해야 한다. DOI/URL도 일부는 PDF 표기만 확인했으므로 공식 출판사 또는 arXiv 페이지 대조가 필요하다.
 
 ## 2. 방법론 한계
 
-모델 지식재산(IP)/모델 도난/모델 추출 위협는 모델 지식재산권의 개념, 모델 도난과 모델 추출의 차이, 공개 API 기반 모델 추출 구조와 Model stealing, Model extraction, API query abuse가 동시에 얽힌다. 단일 지표만으로 성능과 보안성을 판단하면 연구 결론이 과도하게 단순화될 수 있다.
+모델 추출 위험은 query budget, 출력 정보량, 공격자의 데이터 분포, 대상 모델 복잡도에 크게 의존한다. W13 실험은 synthetic binary classifier와 1-nearest-neighbor substitute만 사용했으므로 실제 MLaaS/LLM extraction을 대표하지 않는다.
 
-## 3. 재현성 한계
+## 3. 워터마크 검증 한계
 
-Docker, seed, config, 데이터 버전, 실행 로그가 모두 보존되어야 한다. 현재 보고서는 실험 설계 초안이므로 실제 결과값은 아직 확정하지 않는다.
+toy trigger-set에서 watermark detection은 1.000000까지 올라갔지만 false positive proxy도 0.600000이다. 따라서 단순 trigger 일치만으로 소유권을 강하게 주장할 수 없으며, 무관 모델군, 통계적 유의성, adaptive removal, legal evidentiary 기준이 추가되어야 한다.
 
-## 4. 기말 논문으로 남길 질문
+## 4. 재현성 한계
 
-1. 어떤 위협을 기말 논문의 중심 사례로 삼을 것인가?
-2. 문헌분석과 toy 실험을 어떻게 연결할 것인가?
-3. 보안성, 설명가능성, 재현성을 하나의 평가표로 통합할 수 있는가?
+실험 산출물은 `outputs/metrics_summary.csv`, `results.json`, `run_log.md`에 남겼다. 다만 `outputs/`가 저장소 정책상 추적되지 않을 수 있으므로 최종 제출 압축본에는 산출물 포함 여부를 별도 확인해야 한다.
+
+## 5. 기말 논문으로 남길 질문
+
+1. 모델 IP 보호 평가에서 false positive 허용 기준은 어떻게 정할 것인가?
+2. 워터마크 검출과 모델 utility 사이의 trade-off를 어떤 표준 지표로 보고할 것인가?
+3. 실제 API 공격 절차를 배제하면서도 학술적으로 유효한 toy evaluation을 어떻게 설계할 것인가?
+4. 프롬프트 지정 문헌과 로컬 PDF 불일치를 참고문헌 검증표에서 어떻게 투명하게 처리할 것인가?

@@ -8,34 +8,34 @@
 | 저자 | Nuria Rodríguez-Barroso et al. |
 | 학술지/학회 | Information Fusion |
 | 연도 | 2023 |
-| DOI/URL | 확인 필요 |
+| DOI/URL | arXiv:2201.08135, 출판사 DOI 확인 필요 |
 | PDF 파일명 | 03_Rodriguez_Barroso_et_al_2023_FL_Threats_Survey.pdf |
-| 검증 상태 | 로컬 PDF 파일명 확인, DOI/URL과 원문 세부 내용은 최종 대조 필요 |
+| 검증 상태 | 로컬 PDF 첫 페이지에서 arXiv preprint 확인, Information Fusion 출판 DOI는 최종 대조 필요 |
 
 ## 2. 한 문장 요약
 
-> 이 논문은 Gradient leakage, poisoning, backdoor, privacy attack와 관련된 위협 분류 문제를 문헌조사와 분류체계 정리 방법으로 다루며, 공격-방어-평가 관점을 연결하는 보안 분석 틀을 기말 연구에 반영할 수 있게 해준다.
+> 이 논문은 FL adversarial threat와 defense taxonomy를 정리하고 실험 연구를 포함해, 공격 유형별 방어 선택 기준과 남은 과제를 제시한다.
 
 ## 3. 연구문제
 
-이 논문에서 기말 연구와 연결되는 질문은 연합학습(FL) 및 FL 위협/방어/정책 영역에서 어떤 개념, 공격면, 평가 기준을 우선적으로 정리해야 하는가이다. 특히 연합학습의 기본 구조, Client, server, aggregation의 역할, FedAvg의 기본 원리와 Gradient leakage, Membership inference in FL, Poisoning attack가 서로 만나는 지점을 확인하는 데 초점을 둔다.
+이 논문에서 기말 연구와 연결되는 질문은 FL에서 adversarial attack과 defense를 어떤 taxonomy로 짝지을 것인가이다. W10 실험에서는 이 논문을 근거로 malicious client rate, defense type, clean utility, ASR을 분리해 기록한다.
 
 ## 4. 핵심 개념
 
 | 개념 | 설명 | 기말 논문 연결 |
 |---|---|---|
-| 연합학습의 기본 구조 | 주차 AI 원리의 출발점이며 모델 또는 시스템을 이해하는 기본 단위이다. | 배경 이론 |
-| Client, server, aggregation의 역할 | 성능, 일반화, 효율 또는 신뢰성을 설명하는 보조 축이다. | 분석 기준 |
-| Gradient leakage | 보안 위협을 식별하기 위한 대표 공격면이다. | 위협모형 |
-| Membership inference in FL | 방어와 평가 프로토콜을 설계할 때 비교해야 하는 요소이다. | 평가방법 |
+| Attack taxonomy | FL privacy/integrity attack을 분류하는 체계 | threat model |
+| Defense taxonomy | 공격 범주에 대응하는 방어법 분류 | evaluation protocol |
+| Model integrity | 악성 업데이트가 글로벌 모델을 왜곡하는 위험 | poisoning 실험 |
+| Data privacy | 분산 구조에서도 local data 단서가 노출될 수 있는 위험 | leakage proxy |
 
 ## 5. 방법론
 
-이 문헌은 문헌조사와 분류체계 정리을 통해 기존 연구를 묶어 읽을 수 있게 한다. 본 보고서에서는 논문 제목, 프롬프트의 논문 패킷 정보, 로컬 PDF 존재 여부를 기준으로 요약했으며, 세부 실험값이나 DOI는 최종 원문 대조 단계에서 확인한다.
+이 문헌은 공격과 방어 taxonomy를 함께 제시하고, 공격 범주별 적절한 방어 선택을 논의한다. 본 보고서는 실제 공격 재현 대신 toy malicious update와 coordinate median 방어 비교로 축소한다.
 
 ## 6. 주요 결과
 
-핵심 개념, 공격면, 평가 기준, 향후 연구과제를 체계화한다. 수치 결과를 새로 만들지 않기 위해 본 요약에서는 정량값을 적지 않았고, 원문에서 직접 확인되는 항목만 최종 보고서에 반영하도록 남겨 둔다.
+FL에서는 데이터가 보이지 않는다는 특징 때문에 서버가 로컬 업데이트의 무결성을 검증하기 어렵다. 이 한계가 W10 실험에서 malicious client rate를 독립변수로 둔 이유다.
 
 ## 7. 보안 관점 분석
 
@@ -47,4 +47,4 @@
 
 ## 9. 기말 논문에 반영할 부분
 
-P03는 연합학습(FL) 및 FL 위협/방어/정책 연구에서 개념 정의, 위협 분류, 평가 지표 후보를 정리하는 근거로 반영한다. 특히 공격-방어-평가 관점을 연결하는 보안 분석 틀을 관련연구와 연구방법 장에 연결한다.
+P03는 공격-방어 taxonomy와 평가 프로토콜의 중심 문헌으로 반영한다. 특히 clean utility와 attack impact를 동시에 기록해야 한다는 근거로 사용한다.

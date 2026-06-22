@@ -1,13 +1,26 @@
 week: "W12"
 topic: "신경망 검증·정형방법 & 대적방어·XAI·강건성 트레이드오프"
 seed: 42
-status: "design_only"
+run_date: "2026-06-22"
+status: "executed"
 data:
-  type: "public_or_synthetic"
+  type: "synthetic_binary_classification"
   personal_data: false
+  train_samples: 420
+  test_samples: 320
+  features: 4
+  noise: 0.95
+  fairness_group_feature: 2
 experiment:
-  results_recorded: false
-  notes: "실제 실행 전까지 결과값은 기록하지 않는다."
+  model: "toy_logistic_classifier"
+  epochs: 90
+  learning_rate: 0.06
+  regularization: 0.002
+  robust_regularization: 0.010
+  epsilon: 0.35
+  robust_augmentation_copies: 1
+  results_recorded: true
+  notes: "실행 결과는 outputs/metrics_summary.csv, outputs/results.json, outputs/run_log.md에 기록한다."
 security_scope:
-  allowed: "toy evaluation and literature-based risk analysis"
-  disallowed: "actual system compromise, personal data use, unauthorized attack"
+  allowed: "synthetic toy robustness/XAI evaluation and formal-bound proxy"
+  disallowed: "actual safety-critical system attack, production model probing, personal data use"

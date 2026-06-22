@@ -2,26 +2,26 @@
 
 | 논문 | 연구문제 | 핵심 방법 | 데이터/실험 | 보안 위협 | 평가 지표 | 한계 | 내 논문 활용 |
 |---|---|---|---|---|---|---|---|
-| P01 | Watermarking, fingerprinting, model extraction defense와 관련된 위협 분류 | 문헌조사와 분류체계 정리 | 문헌조사 중심, 세부 실험값 대조 필요 | Model stealing | 개념 분류, 위협 범위, 평가축 | 원문 세부 수치 확인 전 | 공격-방어-평가 관점을 연결하는 보안 분석 틀 |
-| P02 | Watermarking, fingerprinting, model extraction defense와 관련된 위협 분류 | 문헌조사와 분류체계 정리 | 문헌조사 중심, 세부 실험값 대조 필요 | Model stealing | 개념 분류, 위협 범위, 평가축 | 원문 세부 수치 확인 전 | 공격-방어-평가 관점을 연결하는 보안 분석 틀 |
-| P03 | Watermarking, fingerprinting, model extraction defense와 관련된 위협 분류 | 개념 분석과 사례 중심 정리 | 문헌조사 중심, 세부 실험값 대조 필요 | Model stealing | 개념 분류, 위협 범위, 평가축 | 원문 세부 수치 확인 전 | 공격-방어-평가 관점을 연결하는 보안 분석 틀 |
-| P04 | Watermarking, fingerprinting, model extraction defense와 관련된 위협 분류 | 개념 분석과 사례 중심 정리 | 문헌조사 중심, 세부 실험값 대조 필요 | Model stealing | 개념 분류, 위협 범위, 평가축 | 원문 세부 수치 확인 전 | 공격-방어-평가 관점을 연결하는 보안 분석 틀 |
-| P05 | Watermarking, fingerprinting, model extraction defense와 관련된 위협 분류 | 문헌조사와 분류체계 정리 | 문헌조사 중심, 세부 실험값 대조 필요 | Model stealing | 개념 분류, 위협 범위, 평가축 | 원문 세부 수치 확인 전 | 공격-방어-평가 관점을 연결하는 보안 분석 틀 |
+| P01 | 모델 도난/추출 공격과 방어를 어떻게 체계화할 것인가 | model stealing taxonomy, attack/defense guideline | 문헌조사, 원문 세부 표 대조 필요 | model stealing, model extraction | fidelity, query cost, attack goal, defense coverage | 최신 LLM 방어는 추가 문헌 필요 | 위협모형과 query budget 지표 |
+| P02 | LLM 생성물과 모델 IP를 watermarking으로 어떻게 추적할 것인가 | LLM watermarking survey, modality/function 분류 | 문헌조사, 대체 PDF | watermark removal, paraphrasing, semantic shift | detection, robustness, quality, system cost | 프롬프트 지정 P02와 로컬 PDF 불일치 | LLM watermarking 보조 배경 |
+| P03 | DNN watermarking의 요구조건과 taxonomy는 무엇인가 | fidelity-robustness-capacity trade-off, static/dynamic 분류 | 문헌조사 | watermark removal, forgery, false positive | fidelity, robustness, capacity, detection reliability | LLM extraction 방어는 추가 문헌 필요 | 워터마크 평가 지표 정의 |
+| P04 | 모델 추출 이후에도 LLM 소유권 신호를 검출할 수 있는가 | ModelShield, self-watermarking, robust detection | PDF 기준 LLM/QA 벤치마크 실험, 수치 원문 대조 필요 | imitation/model extraction | watermark detection, robustness, quality degradation | 법적 증거력과 adaptive removal 기준 필요 | toy trigger-set 실험의 직접 배경 |
+| P05 | 생성모형을 privacy/security 관점에서 어떻게 분류할 것인가 | GAN privacy/security survey | 문헌조사, 대체 PDF | 생성모형 오용, 데이터 누출 | 적용 영역별 위험/효용 | 프롬프트 지정 P05와 로컬 PDF 불일치 | 생성모형 보호 자산 보조 배경 |
 
 ## 종합 비교
 
 ### 1. 공통적으로 다루는 문제
 
-다섯 편은 모두 모델 지식재산(IP)/모델 도난/모델 추출 위협를 이해하기 위한 핵심 원리, 적용 범위, 평가 기준을 제공한다. AI 원리 측면에서는 모델 지식재산권의 개념, 모델 도난과 모델 추출의 차이, 공개 API 기반 모델 추출 구조, Query-response 기반 대체 모델 학습가 반복적으로 등장하고, 보안 측면에서는 Model stealing, Model extraction, API query abuse, Substitute model training가 공통 축으로 묶인다.
+다섯 문헌은 모델이 단순한 파일이 아니라 학습 데이터, 파라미터, 출력 행동, 생성물, 운영 로그가 결합된 지식재산이라는 점을 공유한다. 공격자는 query-response 쌍을 모아 모델 행동을 모방하거나, 워터마크를 제거·희석하거나, 생성물을 오용할 수 있다.
 
 ### 2. 논문 간 차이점
 
-AI 원리 중심 논문은 모델 구조와 학습/평가 원리를 설명하는 데 강하고, 보안 중심 논문은 공격자 능력, 방어 방법, 실패 조건을 더 직접적으로 다룬다. 따라서 기말 논문에서는 두 축을 분리하지 않고 생명주기 기반 평가표로 통합하는 편이 적절하다.
+P01은 모델 도난 공격과 방어 taxonomy, P03은 DNN 워터마킹 이론, P04는 LLM extraction 이후 소유권 검출이라는 실전형 방어를 담당한다. P02와 P05는 로컬 확보본이 프롬프트 지정 문헌과 달라 LLM watermarking과 GAN privacy/security의 보조 문헌으로만 사용한다.
 
 ### 3. 아직 해결되지 않은 문제
 
-원문별 데이터셋, 실험 설정, DOI/URL 검증이 남아 있다. 또한 survey 문헌의 분류체계가 실제 재현 실험과 어떻게 연결되는지는 별도 프로토콜로 보완해야 한다.
+워터마크 검출률이 높아도 false positive가 높으면 소유권 주장의 신뢰도가 약하다. 또한 watermarking은 모델 품질, 의미 보존, robustness, 운영 비용 사이의 trade-off를 만든다. 프롬프트 지정 문헌과 로컬 PDF 불일치도 최종 제출 전 해결해야 한다.
 
 ### 4. 기말 논문 주제로 발전 가능한 연결부
 
-W13는 모델 지식재산(IP)/모델 도난/모델 추출 위협를 대상으로 한 위협모형, 평가방법, 재현성 체크리스트를 만들기 위한 기반 주차로 활용할 수 있다.
+W13는 “query budget, extraction fidelity, watermark detection, false positive, utility loss를 함께 보고하는 모델 IP 보호 평가표”로 발전시키기 좋다. 실제 공격 절차는 배제하고 synthetic toy 실험과 문헌 기반 threat model로 제한한다.

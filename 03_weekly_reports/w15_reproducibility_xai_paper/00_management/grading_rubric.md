@@ -1,10 +1,17 @@
-# 채점 루브릭
+# W15 자체 채점 루브릭
 
-| 항목 | 기준 | 상태 |
-|---|---|---|
-| 논문 이해 | 5편의 핵심 문제와 방법을 구분했는가 | 작성 |
-| AI 원리 | Evaluation, reproducibility, XAI, paper structure를 70% 비중으로 설명했는가 | 작성 |
-| 보안 이슈 | Benchmark contamination, model leakage, policy/ethics risk를 위협모형과 연결했는가 | 작성 |
-| Research Track | 연구문제, 위협모형, 평가방법, 오픈문제를 포함했는가 | 작성 |
-| 재현성 | Docker, seed, config, 검증표를 포함했는가 | 작성 |
-| 연구윤리 | DOI/실험값을 임의 생성하지 않았는가 | 작성 |
+| 평가 항목 | 배점 | 자체 점검 | 근거 |
+|---|---:|---|---|
+| 논문 5편 요약과 비교 | 20 | 충족 | `02_paper_summaries/` |
+| AI 원리 70% 정리 | 15 | 충족 | `03_theory_notes/ai_principle_70.md` |
+| 보안 이슈 30% 정리 | 15 | 충족 | `03_theory_notes/security_issue_30.md` |
+| Research Track | 15 | 충족 | 위협모형, 평가방법, 오픈문제 |
+| 실습/재현성 산출물 | 15 | 충족 | `04_experiment/outputs/` |
+| AI 활용기록과 윤리 고지 | 10 | 충족 | `05_ai_worklog/` |
+| 제출·발표 패키지 | 10 | 충족 | `07_week_submission/`, `09_presentation/` |
+
+## 감점 가능 리스크
+
+- P03 지정 논문 원문 미확보
+- P05 최종 DOI 미확인
+- 기말논문 국내 문헌과 표/그림 미완성

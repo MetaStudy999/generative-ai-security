@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>W15 Reproducibility XAI Slides</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f4f6f8; color: #1f252c; }
+    .slide { min-height: 100vh; display: none; align-items: center; justify-content: center; padding: 64px 72px 96px; }
+    .slide.active { display: flex; }
+    .content { width: min(1060px, 100%); }
+    h1 { font-size: 46px; line-height: 1.18; margin: 0 0 28px; }
+    h2 { font-size: 38px; line-height: 1.22; margin: 0 0 24px; }
+    p, li { font-size: 24px; line-height: 1.55; }
+    ul { padding-left: 28px; }
+    table { border-collapse: collapse; width: 100%; margin-top: 22px; font-size: 22px; }
+    th, td { border: 1px solid #b9c2cf; padding: 12px 14px; text-align: left; }
+    th { background: #e7edf4; }
+    .controls { position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%); display: flex; align-items: center; gap: 10px; background: #ffffff; border: 1px solid #c7d0dc; padding: 8px 10px; border-radius: 8px; box-shadow: 0 8px 24px rgba(29, 43, 58, 0.14); }
+    button { min-width: 72px; height: 36px; border: 1px solid #9aa8b8; background: #eef2f6; color: #1f252c; border-radius: 6px; font-size: 15px; cursor: pointer; }
+    button:hover { background: #dfe7f0; }
+    #counter { min-width: 64px; text-align: center; font-size: 15px; }
+    @media (max-width: 720px) {
+      .slide { padding: 48px 24px 88px; }
+      h1 { font-size: 33px; }
+      h2 { font-size: 29px; }
+      p, li, table { font-size: 18px; }
+      table { display: block; overflow-x: auto; }
+    }
+  </style>
+</head>
+<body>
+  <section class="slide active"><div class="content"><h1>W15 연구평가·재현성·XAI·논문 구성</h1><p>AI 보안 연구의 신뢰성은 성능 수치보다 evidence chain에서 나온다.</p></div></section>
+  <section class="slide"><div class="content"><h2>오늘의 질문</h2><ul><li>평가 데이터는 오염되지 않았는가?</li><li>같은 조건에서 결과를 다시 확인할 수 있는가?</li><li>XAI 설명은 믿을 만한가, 아니면 새 공격면인가?</li><li>참고문헌과 AI 활용 고지는 검증 가능한가?</li></ul></div></section>
+  <section class="slide"><div class="content"><h2>논문 패킷 역할</h2><table><tr><th>논문</th><th>역할</th></tr><tr><td>P01</td><td>LLM evaluation과 benchmark contamination</td></tr><tr><td>P02</td><td>ML lifecycle assurance와 재현성 증거</td></tr><tr><td>P03</td><td>XAI 핵심 문헌, 대체 PDF 검증 이슈</td></tr><tr><td>P04</td><td>XAI taxonomy와 Responsible AI</td></tr><tr><td>P05</td><td>concept-based XAI와 설명 안정성</td></tr></table></div></section>
+  <section class="slide"><div class="content"><h2>AI 원리 70%</h2><ul><li>Evaluation: 무엇을, 어디서, 어떻게 평가할지 정한다.</li><li>Reproducibility: config, seed, log, outputs가 결론의 근거가 된다.</li><li>XAI: 설명도 fidelity, stability, leakage risk를 평가해야 한다.</li><li>Paper structure: contribution과 limitation이 연구 신뢰성을 만든다.</li></ul></div></section>
+  <section class="slide"><div class="content"><h2>보안 이슈 30%</h2><table><tr><th>자산</th><th>위협</th></tr><tr><td>Benchmark</td><td>contamination, hidden test leakage</td></tr><tr><td>Model/explanation</td><td>model leakage, explanation gaming</td></tr><tr><td>Paper</td><td>fabricated citation, unverifiable DOI</td></tr><tr><td>AI worklog</td><td>missing disclosure, 책임 추적 실패</td></tr></table></div></section>
+  <section class="slide"><div class="content"><h2>로컬 감사 결과</h2><table><tr><th>항목</th><th>결과</th></tr><tr><td>W15 필수 산출물</td><td>47/47</td></tr><tr><td>기말논문 연결 파일</td><td>9/9</td></tr><tr><td>로컬 PDF</td><td>5</td></tr><tr><td>가중 참고문헌 검증률</td><td>0.70</td></tr><tr><td>AI 활용 고지 완성도</td><td>9/9</td></tr></table></div></section>
+  <section class="slide"><div class="content"><h2>확인 필요 항목</h2><ul><li>P03: 지정 논문 원문과 로컬 PDF 불일치</li><li>P05: arXiv는 확인, 최종 DOI 필요</li><li>기말논문: 국내 문헌 3편 이상 검증 필요</li><li>최종본: 표와 그림 실제 삽입 필요</li></ul></div></section>
+  <section class="slide"><div class="content"><h2>기말논문 연결</h2><p>최종 주제: AI 보안 연구의 재현 가능한 생명주기 기반 평가 프레임워크</p><ul><li>prompt injection</li><li>benchmark contamination</li><li>privacy leakage</li><li>reproducibility failure</li></ul></div></section>
+  <section class="slide"><div class="content"><h2>최종 Contribution</h2><p>본 연구는 LLM/RAG 기반 AI 시스템의 데이터·평가·프롬프트 생명주기에서 prompt injection, benchmark contamination, privacy leakage 위협을 분석하고, 재현성 중심의 보안 평가 체크리스트를 제안한다.</p></div></section>
+  <section class="slide"><div class="content"><h2>결론</h2><p>평가와 설명은 결과가 아니라 증거다. 증거는 DOI, config, seed, log, output, AI disclosure와 함께 남을 때 신뢰할 수 있다.</p></div></section>
+  <div class="controls"><button id="prev" type="button">이전</button><span id="counter">1/10</span><button id="next" type="button">다음</button></div>
+  <script>
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const counter = document.querySelector('#counter');
+    let index = 0;
+    function show(nextIndex) {
+      index = Math.max(0, Math.min(slides.length - 1, nextIndex));
+      slides.forEach((slide, slideIndex) => slide.classList.toggle('active', slideIndex === index));
+      counter.textContent = `${index + 1}/${slides.length}`;
+    }
+    document.querySelector('#prev').addEventListener('click', () => show(index - 1));
+    document.querySelector('#next').addEventListener('click', () => show(index + 1));
+    document.addEventListener('keydown', (event) => {
+      if (['ArrowRight', 'PageDown', ' '].includes(event.key)) show(index + 1);
+      if (['ArrowLeft', 'PageUp'].includes(event.key)) show(index - 1);
+      if (event.key === 'Home') show(0);
+      if (event.key === 'End') show(slides.length - 1);
+    });
+  </script>
+</body>
+</html>

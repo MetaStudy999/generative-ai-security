@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>W14 MLOps Supply Chain Slides</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f4f6f8; color: #1f252c; }
+    .slide { min-height: 100vh; display: none; align-items: center; justify-content: center; padding: 64px 72px 96px; }
+    .slide.active { display: flex; }
+    .content { width: min(1060px, 100%); }
+    h1 { font-size: 46px; line-height: 1.18; margin: 0 0 28px; }
+    h2 { font-size: 38px; line-height: 1.22; margin: 0 0 24px; }
+    p, li { font-size: 24px; line-height: 1.55; }
+    ul { padding-left: 28px; }
+    table { border-collapse: collapse; width: 100%; margin-top: 22px; font-size: 22px; }
+    th, td { border: 1px solid #b9c2cf; padding: 12px 14px; text-align: left; }
+    th { background: #e7edf4; }
+    .controls { position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%); display: flex; align-items: center; gap: 10px; background: #ffffff; border: 1px solid #c7d0dc; padding: 8px 10px; border-radius: 8px; box-shadow: 0 8px 24px rgba(29, 43, 58, 0.14); }
+    button { min-width: 72px; height: 36px; border: 1px solid #9aa8b8; background: #eef2f6; color: #1f252c; border-radius: 6px; font-size: 15px; cursor: pointer; }
+    button:hover { background: #dfe7f0; }
+    #counter { min-width: 64px; text-align: center; font-size: 15px; }
+    @media (max-width: 720px) {
+      .slide { padding: 48px 24px 88px; }
+      h1 { font-size: 33px; }
+      h2 { font-size: 29px; }
+      p, li, table { font-size: 18px; }
+      table { display: block; overflow-x: auto; }
+    }
+  </style>
+</head>
+<body>
+  <section class="slide active"><div class="content"><h1>W14 MLOps/DevOps·데이터/모델 파이프라인·공급망 보안</h1><p>운영형 AI 시스템 보안은 accuracy가 아니라 evidence를 요구한다.</p></div></section>
+  <section class="slide"><div class="content"><h2>오늘의 질문</h2><ul><li>모델은 어떤 데이터와 config에서 만들어졌는가?</li><li>배포된 model artifact는 바뀌지 않았는가?</li><li>운영 입력 분포가 변했는가?</li><li>사고 후 로그로 추적할 수 있는가?</li></ul></div></section>
+  <section class="slide"><div class="content"><h2>MLOps 원리</h2><ul><li>MLOps는 ML, software engineering, data engineering, operations의 결합이다.</li><li>DevOps보다 dataset, feature, model, monitoring, retraining 변수를 더 많이 가진다.</li><li>핵심 단위는 모델 파일이 아니라 lifecycle이다.</li></ul></div></section>
+  <section class="slide"><div class="content"><h2>공급망 보안 위협</h2><table><tr><th>자산</th><th>위협</th></tr><tr><td>Data pipeline</td><td>poisoning, provenance loss</td></tr><tr><td>Model artifact</td><td>tampering, unauthorized update</td></tr><tr><td>Config/seed</td><td>irreproducible result</td></tr><tr><td>Logs/monitoring</td><td>leakage, missing audit trail</td></tr></table></div></section>
+  <section class="slide"><div class="content"><h2>논문 패킷 역할</h2><p>P01은 MLOps practice, P02는 deployment challenge, P03은 AIOps monitoring, P04는 edge deployment, P05는 DL for SE와 software pipeline을 맡는다.</p><p>P03/P04/P05는 로컬 PDF가 대체문헌이므로 공식 원문 확인이 필요하다.</p></div></section>
+  <section class="slide"><div class="content"><h2>Toy Pipeline 설계</h2><ul><li>Synthetic binary classification</li><li>Seed 42, train/test 320/160</li><li>Toy logistic regression</li><li>Dataset/config/model hash 기록</li><li>Drift score, audit coverage, artifact inventory 생성</li></ul></div></section>
+  <section class="slide"><div class="content"><h2>실행 결과</h2><table><tr><th>항목</th><th>값</th></tr><tr><td>Accuracy</td><td>0.925000</td></tr><tr><td>F1</td><td>0.923077</td></tr><tr><td>Drift score</td><td>0.307626</td></tr><tr><td>Audit coverage</td><td>1.000000</td></tr><tr><td>Inventory coverage</td><td>1.000000</td></tr></table></div></section>
+  <section class="slide"><div class="content"><h2>해석</h2><p>Drift score 0.307626은 threshold 0.25를 넘었다. 이는 공격 단정이 아니라 운영 감시 경보이며, 원인 분석과 human review가 필요하다.</p></div></section>
+  <section class="slide"><div class="content"><h2>기말논문 연결</h2><p>W14는 운영형 AI 시스템의 보안·재현성 보증을 위한 evidence set으로 연결된다.</p><p>최소 지표: dataset hash, model hash, config hash, drift score, audit coverage, artifact inventory.</p></div></section>
+  <section class="slide"><div class="content"><h2>결론</h2><p>MLOps 공급망 보안은 모델 성능을 넘어 데이터, 모델, config, 로그, 모니터링, 검증 절차를 함께 남기는 문제다.</p></div></section>
+  <div class="controls"><button id="prev" type="button">이전</button><span id="counter">1/10</span><button id="next" type="button">다음</button></div>
+  <script>
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const counter = document.querySelector('#counter');
+    let index = 0;
+    function show(nextIndex) {
+      index = Math.max(0, Math.min(slides.length - 1, nextIndex));
+      slides.forEach((slide, slideIndex) => slide.classList.toggle('active', slideIndex === index));
+      counter.textContent = `${index + 1}/${slides.length}`;
+    }
+    document.querySelector('#prev').addEventListener('click', () => show(index - 1));
+    document.querySelector('#next').addEventListener('click', () => show(index + 1));
+    document.addEventListener('keydown', (event) => {
+      if (['ArrowRight', 'PageDown', ' '].includes(event.key)) show(index + 1);
+      if (['ArrowLeft', 'PageUp'].includes(event.key)) show(index - 1);
+      if (event.key === 'Home') show(0);
+      if (event.key === 'End') show(slides.length - 1);
+    });
+  </script>
+</body>
+</html>

@@ -1,13 +1,27 @@
 week: "W10"
 topic: "연합학습(FL) & FL 위협·방어·정책"
 seed: 42
-status: "design_only"
+run_date: "2026-06-22"
+status: "executed"
 data:
-  type: "public_or_synthetic"
+  type: "synthetic_federated_binary_classification"
   personal_data: false
+  clients: 10
+  samples_per_client: 80
+  test_samples: 600
+  non_iid_skew: 0.70
 experiment:
-  results_recorded: false
-  notes: "실제 실행 전까지 결과값은 기록하지 않는다."
+  model: "toy_logistic_regression"
+  rounds: 25
+  local_epochs: 3
+  learning_rate: 0.08
+  malicious_client_rates:
+    - 0.0
+    - 0.1
+    - 0.2
+  robust_aggregation_rate: 0.2
+  results_recorded: true
+  notes: "Synthetic toy FL 실행 결과를 outputs/에 기록한다."
 security_scope:
   allowed: "toy evaluation and literature-based risk analysis"
   disallowed: "actual system compromise, personal data use, unauthorized attack"

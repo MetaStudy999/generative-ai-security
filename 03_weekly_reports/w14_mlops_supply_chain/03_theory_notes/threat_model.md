@@ -2,20 +2,34 @@
 
 | 항목 | 내용 |
 |---|---|
-| 대상 시스템 | MLOps/DevOps/데이터/모델 파이프라인/공급망 보안를 사용하는 ML/AI 시스템 |
-| 보호 자산 | 학습데이터, 모델 파라미터, 입력 컨텍스트, 출력 결과, 평가 로그, 사용자 정보 |
-| 공격자 | 외부 공격자, 악의적 데이터 제공자, 내부자, API 남용자, 공급망 참여자 중 주차 주제에 해당하는 행위자 |
-| 공격자의 지식 | White-box, Gray-box, Black-box 조건을 구분 |
-| 공격자의 능력 | ML supply chain risk, 데이터 파이프라인 오염, 모델 아티팩트 변조, 의존성 패키지 취약점, 모델 배포 취약점 |
-| 공격 경로 | 데이터 수집, 학습, 평가, 배포, 추론, 모니터링, 재학습 단계 |
-| 공격 성공 조건 | 성능 저하, 오분류, 민감정보 노출, 평가 왜곡, 보안 정책 우회 |
-| 방어자 가정 | 입력/데이터 검증, 로그 기록, 설정 파일 보존, 재현 가능한 평가 실행 가능 |
-| 제외 범위 | 실제 서비스 침해, 실제 개인정보 사용, 무단 API 대량 질의, 악용 가능한 공격 절차 |
+| 대상 시스템 | MLOps 기반 ML 서비스 파이프라인 |
+| 보호 자산 | 학습 데이터, feature pipeline, 학습 코드, config, seed, model artifact, model registry, 배포 설정, 로그, 모니터링 데이터 |
+| 공격자 | 내부자, 외부 공격자, 공급망 공격자, 악성 패키지 제공자, 권한을 오남용하는 운영 참여자 |
+| 공격자의 지식 | White-box, Gray-box, Black-box 조건을 구분하되 본 주차 실습은 공격 재현이 아니라 통제항목 점검에 한정 |
+| 공격자의 능력 | 데이터 오염, 코드 변경, 의존성 조작, 모델 artifact 변조, 배포 설정 변경, 로그 삭제 또는 누락 유도 |
+| 공격 경로 | 데이터 파이프라인, Git/CI, 학습 job, artifact registry, deployment manifest, serving endpoint, monitoring/logging 시스템 |
+| 공격 성공 조건 | 오염된 모델 배포, hash 불일치 미탐지, drift 미탐지, rollback 불가, 감사 로그 부재, 서비스 장애 |
+| 방어자 가정 | 버전관리, 접근통제, hash 검증, artifact inventory, audit log, drift monitoring, human approval gate를 적용할 수 있음 |
+| 제외 범위 | 실제 운영 서비스 침해, 무단 시스템 접근, 실제 악성 패키지 배포, 실제 개인정보 사용, 공격 payload 제공 |
 
 ## 연구문제 후보
 
-RQ1. MLOps/DevOps/데이터/모델 파이프라인/공급망 보안 생명주기에서 가장 우선적으로 보증해야 할 자산은 무엇인가?
+RQ1. MLOps 파이프라인의 데이터 수집, 학습, 배포, 모니터링 단계에서 발생하는 보안 위협은 어떻게 분류할 수 있는가?
 
-RQ2. ML supply chain risk, 데이터 파이프라인 오염는 어느 단계에서 발생하며 어떤 지표로 측정할 수 있는가?
+RQ2. 연구용 ML 실험과 운영용 ML 시스템 사이의 보안·재현성·평가 격차는 어떤 방식으로 줄일 수 있는가?
 
-RQ3. 성능, 보안성, 재현성을 함께 평가하기 위한 최소 실험 프로토콜은 어떻게 설계할 수 있는가?
+RQ3. ML 공급망 보안을 위해 어떤 로그, 메타데이터, 검증 절차, assurance case가 필요한가?
+
+## W14 toy 실험에서의 제한된 구현
+
+| 통제항목 | 구현 방식 | 결과 |
+|---|---|---|
+| 데이터 무결성 | synthetic train/test/drift dataset hash 계산 | `sha256:b9e597bccdbde442` |
+| 모델 무결성 | model artifact payload hash 계산 | model hash match true |
+| 재현성 | 동일 config/seed 재실행 후 hash 비교 | re-run consistency true |
+| Drift 감시 | 평균 표준화 feature shift 계산 | drift score 0.307626, threshold 0.25 초과 |
+| 감사 가능성 | 필수 감사 필드 10개 기록 여부 점검 | audit coverage 1.000000 |
+
+## 안전 경계
+
+이 위협모형은 교육용 보안 평가 설계다. 실제 시스템 침해 절차, 무단 접근 방법, 악성 패키지 배포 방법, 실제 개인정보 처리 절차는 포함하지 않는다.

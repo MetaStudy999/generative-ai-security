@@ -5,9 +5,9 @@
 | 사용한 AI 도구명 | Codex |
 | 사용 일자 | 2026-06-22 |
 | 사용 목적 | 번역 / 수식 설명 / 개념 설명 / 문장 교정 / 제목 후보 / 코드 점검 / 기타: 보고서 구조화 및 기말논문 초안 작성 |
-| 주요 프롬프트 | W01~W15 보고서 적용, W15 기말논문 연결 보완, `99_write_final_paper.md` 세부 양식 반영 |
-| AI 산출물 반영 위치 | `03_weekly_reports/`, `04_final_paper/01_planning/`, `04_final_paper/05_draft/`, `04_final_paper/06_appendices/` |
-| 본인 수정 내용 | DOI/URL, 국내 문헌, 실험 결과는 최종 검증 전 확정하지 않도록 표시하고, 제출 전 사람이 검토할 항목을 분리함 |
+| 주요 프롬프트 | W01~W15 보고서 적용, W15 기말논문 연결 보완, 로컬 재현성·제출 준비 감사 실행, `99_write_final_paper.md` 세부 양식 반영 |
+| AI 산출물 반영 위치 | `03_weekly_reports/`, `04_final_paper/01_planning/`, `04_final_paper/03_related_work/`, `04_final_paper/05_draft/`, `04_final_paper/06_appendices/` |
+| 본인 수정 내용 | DOI/URL, 국내 문헌, 실험 결과는 최종 검증 전 확정하지 않도록 표시하고, W15 감사 결과와 미검증 항목을 분리함 |
 | 사실관계 검증 방법 | 로컬 PDF, 공식 출판사 페이지, DOI 검색, KCI/DBpia/RISS/Google Scholar, 수업 자료 대조 |
 | 참고문헌 검증 방법 | 제목, 저자, 연도, 학술지, DOI/URL, 본문 인용 위치, 참고문헌 목록 대응 여부 확인 |
 | 최종 책임 확인 | 본인은 최종 원고의 내용, 인용, 실험결과, 연구윤리 책임이 본인에게 있음을 확인합니다. |

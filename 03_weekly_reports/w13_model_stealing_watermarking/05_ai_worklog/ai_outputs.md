@@ -1,9 +1,10 @@
 # AI 출력물 요약
 
-| 산출물 | 요약 |
-|---|---|
-| 논문 요약 | 모델 지식재산(IP)·모델 도난·모델 추출 위협 관련 5편을 서지정보, 연구문제, 방법론, 보안 관점으로 정리 |
-| 이론노트 | Model IP, model stealing, model extraction 중심의 AI 원리 정리 |
-| 보안노트 | Watermarking, fingerprinting, model extraction defense 중심의 위협·방어·평가 정리 |
-| 실험 설계 | Docker 기반 안전한 toy evaluation 초안 |
-| 기말 연결 | 기말 논문 주제 후보와 contribution 후보 도출 |
+| 산출물 | 요약 | 검토 상태 |
+|---|---|---|
+| 논문 요약 | 모델 도난, DNN/LLM 워터마킹, ModelShield, GAN privacy/security 문헌을 W13 관점으로 정리 | P02/P05 대체 PDF 명시 |
+| 이론노트 | Model IP, model extraction, query-response substitute learning, watermark trade-off 정리 | 실험 지표와 연결 |
+| 보안노트 | CIA, query abuse, watermark removal/forgery, false positive 문제 정리 | safe scope 확인 |
+| 실험 코드 | synthetic toy victim model, 1NN substitute model, trigger-set detection 구현 | `py_compile` 및 실행 완료 |
+| 실험 산출물 | `metrics_summary.csv`, `results.json`, `run_log.md` 생성 | 수치 동기화 완료 |
+| 제출/발표자료 | 제출용 Markdown/HTML, 발표 보고서, 슬라이드, 대본, Q&A, handout 작성 | 최종 검토 필요 |

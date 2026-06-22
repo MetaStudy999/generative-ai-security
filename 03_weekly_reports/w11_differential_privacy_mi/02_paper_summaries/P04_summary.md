@@ -1,50 +1,50 @@
-# 논문 요약
+# P04 논문 요약
 
 ## 1. 서지정보
 
 | 항목 | 내용 |
 |---|---|
-| 논문 제목 | Membership inference attacks on machine learning: a survey |
-| 저자 | Hongsheng Hu et al. |
-| 학술지/학회 | ACM Computing Surveys |
+| 논문 제목 | Membership Inference Attacks on Machine Learning: A Survey |
+| 저자 | Hongsheng Hu, Zoran Salcic, Lichao Sun, Gillian Dobbie, Philip S. Yu, Xuyun Zhang |
+| 학술지/학회 | 강의자료: ACM Computing Surveys 54(11s), Article 235; 로컬 PDF: arXiv/ACM preprint |
 | 연도 | 2022 |
-| DOI/URL | 확인 필요 |
-| PDF 파일명 | 04_Hu_et_al_2022_Membership_Inference_Attacks_Survey.pdf |
-| 검증 상태 | 로컬 PDF 파일명 확인, DOI/URL과 원문 세부 내용은 최종 대조 필요 |
+| DOI/URL | arXiv `2103.07853`; ACM DOI 공식 확인 필요 |
+| PDF 파일명 | `04_Hu_et_al_2022_Membership_Inference_Attacks_Survey.pdf` |
+| 검증 상태 | 로컬 PDF 첫 페이지 확인, DOI 공식 대조 필요 |
 
 ## 2. 한 문장 요약
 
-> 이 논문은 Membership inference, privacy leakage, utility trade-off와 관련된 위협 분류 문제를 문헌조사와 분류체계 정리 방법으로 다루며, 공격-방어-평가 관점을 연결하는 보안 분석 틀을 기말 연구에 반영할 수 있게 해준다.
+> 이 논문은 membership inference attack의 목표, 접근 지식, 대상 모델, 방어전략을 체계화하고 MI를 confidentiality/privacy violation 관점에서 설명한다.
 
 ## 3. 연구문제
 
-이 논문에서 기말 연구와 연결되는 질문은 차등프라이버시(DP) 및 멤버십 추론 공격/방어 영역에서 어떤 개념, 공격면, 평가 기준을 우선적으로 정리해야 하는가이다. 특히 차등프라이버시의 기본 정의, Privacy budget, epsilon, delta, Local DP와 central DP의 차이와 Membership inference attack, Training data leakage, Model memorization가 서로 만나는 지점을 확인하는 데 초점을 둔다.
+공격자가 모델 출력, confidence, loss, gradient, 보조 데이터 등을 이용할 때 특정 레코드가 학습에 포함되었는지 얼마나 추론할 수 있는가를 묻는다.
 
 ## 4. 핵심 개념
 
 | 개념 | 설명 | 기말 논문 연결 |
 |---|---|---|
-| 차등프라이버시의 기본 정의 | 주차 AI 원리의 출발점이며 모델 또는 시스템을 이해하는 기본 단위이다. | 배경 이론 |
-| Privacy budget, epsilon, delta | 성능, 일반화, 효율 또는 신뢰성을 설명하는 보조 축이다. | 분석 기준 |
-| Membership inference attack | 보안 위협을 식별하기 위한 대표 공격면이다. | 위협모형 |
-| Training data leakage | 방어와 평가 프로토콜을 설계할 때 비교해야 하는 요소이다. | 평가방법 |
+| Membership inference | 특정 sample이 학습 데이터였는지 추론하는 privacy attack | W11 보안 핵심 |
+| Black-box access | 모델 출력이나 confidence만 관찰하는 조건 | 안전한 toy 평가 |
+| Overfitting gap | train/test confidence 차이가 leakage proxy가 될 수 있음 | 실험 지표 |
+| Defense taxonomy | regularization, output restriction, DP 등 방어 범주 | 보안적 함의 |
 
 ## 5. 방법론
 
-이 문헌은 문헌조사와 분류체계 정리을 통해 기존 연구를 묶어 읽을 수 있게 한다. 본 보고서에서는 논문 제목, 프롬프트의 논문 패킷 정보, 로컬 PDF 존재 여부를 기준으로 요약했으며, 세부 실험값이나 DOI는 최종 원문 대조 단계에서 확인한다.
+MI 공격과 방어를 모델 유형, 공격자 지식, 관측 정보, 방어 전략에 따라 분류한다. W11에서는 공격 절차를 악용 가능하게 재현하지 않고, synthetic confidence score 기반 위험 지표로만 축약한다.
 
 ## 6. 주요 결과
 
-핵심 개념, 공격면, 평가 기준, 향후 연구과제를 체계화한다. 수치 결과를 새로 만들지 않기 위해 본 요약에서는 정량값을 적지 않았고, 원문에서 직접 확인되는 항목만 최종 보고서에 반영하도록 남겨 둔다.
+MI 위험은 모델의 과적합, confidence 노출, 데이터 분포, 공격자 보조 지식에 영향을 받는다. 따라서 accuracy만 보고 privacy risk를 판단하면 부족하다.
 
 ## 7. 보안 관점 분석
 
-이 논문은 Membership inference, privacy leakage, utility trade-off을 이해하기 위한 배경 문헌으로 활용된다. 공격자의 능력, 방어자의 관측 가능성, 평가 데이터의 한계, 재현성 조건을 함께 정리해야 실제 보안 연구로 이어질 수 있다.
+P04는 W11 threat model의 중심 문헌이다. 보호 자산은 단순 데이터 원문이 아니라 “학습 포함 여부”라는 메타정보이며, 이는 의료·위치·민감 도메인에서 privacy breach가 될 수 있다.
 
 ## 8. 한계와 오픈문제
 
-원문 정밀 독해 전에는 세부 실험 설정, 데이터셋, DOI, 인용 관계를 확정할 수 없다. 또한 survey 성격의 문헌은 실제 재현 실험보다는 분류체계와 연구 공백 파악에 더 적합하므로, 기말 논문에서는 별도 평가 프로토콜로 보완해야 한다.
+Survey 문헌이므로 최신 LLM/FL 특화 MI와 실제 구현별 privacy accounting은 추가 문헌이 필요하다. 본 보고서의 toy 실험은 P04의 개념을 설명하는 모의 평가일 뿐 실제 공격 성능이 아니다.
 
 ## 9. 기말 논문에 반영할 부분
 
-P04는 차등프라이버시(DP) 및 멤버십 추론 공격/방어 연구에서 개념 정의, 위협 분류, 평가 지표 후보를 정리하는 근거로 반영한다. 특히 공격-방어-평가 관점을 연결하는 보안 분석 틀을 관련연구와 연구방법 장에 연결한다.
+기말 논문 위협모형에서 `보호 자산: membership information`, `공격자 관측: output confidence/loss proxy`, `지표: MI attack accuracy`를 정의하는 근거로 사용한다.

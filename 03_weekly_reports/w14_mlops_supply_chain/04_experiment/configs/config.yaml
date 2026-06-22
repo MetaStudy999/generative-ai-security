@@ -1,13 +1,35 @@
 week: "W14"
 topic: "MLOps/DevOps·데이터/모델 파이프라인·공급망 보안"
 seed: 42
-status: "design_only"
+run_date: "2026-06-22"
+status: "executed"
 data:
-  type: "public_or_synthetic"
+  type: "synthetic_mlops_binary_classification"
   personal_data: false
+  train_samples: 320
+  test_samples: 160
+  feature_count: 5
+  drift_shift: 0.60
 experiment:
-  results_recorded: false
-  notes: "실제 실행 전까지 결과값은 기록하지 않는다."
+  model: "toy_logistic_regression"
+  epochs: 160
+  learning_rate: 0.08
+  l2: 0.001
+  drift_threshold: 0.25
+  results_recorded: true
+  notes: "2026-06-22 local synthetic toy pipeline 실행 완료. 결과값은 outputs/run_log.md, metrics_summary.csv, results.json 기준으로만 사용한다."
 security_scope:
   allowed: "toy evaluation and literature-based risk analysis"
   disallowed: "actual system compromise, personal data use, unauthorized attack"
+audit:
+  required_fields:
+    - run_date
+    - seed
+    - config_hash
+    - dataset_hash
+    - model_hash
+    - baseline_accuracy
+    - drift_score
+    - artifact_inventory
+    - reproducibility_check
+    - security_scope

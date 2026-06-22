@@ -1,9 +1,10 @@
 # AI 출력물 요약
 
-| 산출물 | 요약 |
-|---|---|
-| 논문 요약 | 차등프라이버시(DP) & 멤버십 추론 공격·방어 관련 5편을 서지정보, 연구문제, 방법론, 보안 관점으로 정리 |
-| 이론노트 | Differential Privacy, privacy budget, DP-SGD, privacy accounting 중심의 AI 원리 정리 |
-| 보안노트 | Membership inference, privacy leakage, utility trade-off 중심의 위협·방어·평가 정리 |
-| 실험 설계 | Docker 기반 안전한 toy evaluation 초안 |
-| 기말 연결 | 기말 논문 주제 후보와 contribution 후보 도출 |
+| 산출물 | 요약 | 검증 상태 |
+|---|---|---|
+| 논문 요약 | DP misuse, DP-DL, DP 적용 위치, MI taxonomy, MI defense 역할로 5편 재정리 | P03/P05 대체 PDF 표시 |
+| 이론노트 | Differential Privacy, privacy budget, DP-SGD, privacy accounting 중심 정리 | 통합보고서 반영 |
+| 보안노트 | membership inference, confidence leakage, utility-privacy trade-off 정리 | 안전 범위 명시 |
+| 실험 코드 | 표준 라이브러리 기반 synthetic toy logistic regression | 실행 완료 |
+| 실험 결과 | Accuracy, MI Attack Accuracy, Epsilon Proxy, Utility Drop, Leakage Score 기록 | `outputs/`와 일치 |
+| 제출/발표자료 | 제출용 MD/HTML, 발표 보고서, 슬라이드, 대본, Q&A, handout 작성 | 완료 |

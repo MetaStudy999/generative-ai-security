@@ -9,6 +9,10 @@
 - `docker-compose.yml`: 로컬 컨테이너 실행 예시
 - `pyproject.toml`: uv sync용 주차별 Python 의존성
 - `configs/config.yaml`: seed, 데이터, 보안 범위, 결과 기록 상태
+- `src/run_experiment.py`: synthetic FL toy 실험 실행 코드
+- `outputs/metrics_summary.csv`: 조건별 정량 지표
+- `outputs/results.json`: 설정, 결과, round log 원본
+- `outputs/run_log.md`: 사람이 읽는 실행 로그
 
 ## 의존성 설치 원칙
 
@@ -16,4 +20,4 @@ WSL 호스트에는 uv를 설치하지 않는다. Dockerfile은 `python:3.11-sli
 
 ## 원칙
 
-실제 실행 전에는 결과값을 작성하지 않는다. 실행 후에는 `outputs/metrics_summary.csv`, `outputs/results.json`, `outputs/run_log.md`를 보존하고, 실험보고서·통합보고서·제출 체크리스트·AI 활용기록을 함께 갱신한다. DOI, URL, 원문 세부 수치, 실험 결과는 최종 검증 자료가 있을 때만 확정한다.
+본 주차 실험은 2026-06-22에 synthetic toy data로 실행 완료했다. 결과값은 `outputs/metrics_summary.csv`, `outputs/results.json`, `outputs/run_log.md`를 근거로만 작성한다. DOI, URL, 원문 세부 수치, 실험 결과는 최종 검증 자료가 있을 때만 확정한다.

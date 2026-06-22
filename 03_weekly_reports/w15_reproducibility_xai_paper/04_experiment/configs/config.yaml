@@ -1,13 +1,14 @@
 week: "W15"
 topic: "연구평가·재현성·설명가능성(XAI)·논문 구성"
 seed: 42
-status: "design_only"
+status: "executed"
 data:
-  type: "public_or_synthetic"
+  type: "local_repository_metadata"
   personal_data: false
 experiment:
-  results_recorded: false
-  notes: "실제 실행 전까지 결과값은 기록하지 않는다."
+  type: "reproducibility_and_submission_readiness_audit"
+  results_recorded: true
+  notes: "모델 성능 실험이 아니라 로컬 산출물 존재, DOI/URL 검증 상태, AI 고지, 제출/발표 패키지를 점검하는 안전한 감사 실습이다."
 security_scope:
-  allowed: "toy evaluation and literature-based risk analysis"
+  allowed: "local file audit, literature-based risk analysis, reference verification status check"
   disallowed: "actual system compromise, personal data use, unauthorized attack"

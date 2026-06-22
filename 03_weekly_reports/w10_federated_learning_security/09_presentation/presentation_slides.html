@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>W10 FL Security Slides</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f5f7fa; color: #1f252c; }
+    .slide { min-height: 100vh; display: none; align-items: center; justify-content: center; padding: 64px 72px 96px; }
+    .slide.active { display: flex; }
+    .content { width: min(1040px, 100%); }
+    h1 { font-size: 48px; line-height: 1.18; margin: 0 0 28px; }
+    h2 { font-size: 38px; line-height: 1.22; margin: 0 0 24px; }
+    p, li { font-size: 24px; line-height: 1.55; }
+    ul { padding-left: 28px; }
+    table { border-collapse: collapse; width: 100%; margin-top: 22px; font-size: 22px; }
+    th, td { border: 1px solid #b9c2cf; padding: 12px 14px; text-align: left; }
+    th { background: #e7edf4; }
+    .controls { position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%); display: flex; align-items: center; gap: 10px; background: #ffffff; border: 1px solid #c7d0dc; padding: 8px 10px; border-radius: 8px; box-shadow: 0 8px 24px rgba(29, 43, 58, 0.14); }
+    button { min-width: 72px; height: 36px; border: 1px solid #9aa8b8; background: #eef2f6; color: #1f252c; border-radius: 6px; font-size: 15px; cursor: pointer; }
+    button:hover { background: #dfe7f0; }
+    #counter { min-width: 64px; text-align: center; font-size: 15px; }
+    @media (max-width: 720px) {
+      .slide { padding: 48px 24px 88px; }
+      h1 { font-size: 34px; }
+      h2 { font-size: 29px; }
+      p, li, table { font-size: 18px; }
+      table { display: block; overflow-x: auto; }
+    }
+  </style>
+</head>
+<body>
+  <section class="slide active"><div class="content"><h1>W10 연합학습(FL) &amp; FL 위협·방어·정책</h1><p>FL 보안 평가는 clean accuracy만으로 충분하지 않다.</p></div></section>
+  <section class="slide"><div class="content"><h2>FL 원리</h2><ul><li>Client는 local data로 update를 계산한다.</li><li>Server는 update를 모아 global model을 갱신한다.</li><li>Aggregation rule이 성능과 보안성을 함께 좌우한다.</li></ul></div></section>
+  <section class="slide"><div class="content"><h2>위협모형</h2><table><tr><th>자산</th><th>위협</th></tr><tr><td>local update</td><td>gradient leakage, membership inference</td></tr><tr><td>global model</td><td>poisoning, backdoor</td></tr><tr><td>aggregation result</td><td>malicious/byzantine client 영향</td></tr><tr><td>training log</td><td>재현성·책임성 근거</td></tr></table></div></section>
+  <section class="slide"><div class="content"><h2>논문 패킷 역할</h2><p>P01은 aggregation taxonomy, P02/P03은 security/privacy taxonomy, P04는 privacy와 policy, P05는 backdoor와 ASR 평가를 담당한다.</p></div></section>
+  <section class="slide"><div class="content"><h2>Toy 실험 설계</h2><ul><li>Synthetic binary classification</li><li>10 clients, client별 80 samples</li><li>25 FL rounds, seed 42</li><li>Clean, poisoned 10%, poisoned 20%, robust aggregation 20%</li></ul></div></section>
+  <section class="slide"><div class="content"><h2>실험 결과</h2><table><tr><th>조건</th><th>Accuracy</th><th>ASR</th></tr><tr><td>Clean FL</td><td>0.960000</td><td>0.136076</td></tr><tr><td>Poisoned FL 10%</td><td>0.953333</td><td>0.297468</td></tr><tr><td>Poisoned FL 20%</td><td>0.950000</td><td>0.496835</td></tr><tr><td>Robust aggregation 20%</td><td>0.955000</td><td>0.237342</td></tr></table></div></section>
+  <section class="slide"><div class="content"><h2>해석</h2><p>20% poisoned FedAvg는 clean accuracy를 크게 떨어뜨리지 않지만 ASR을 크게 올렸다. Coordinate median은 ASR을 낮췄지만 완전히 제거하지는 못했다.</p></div></section>
+  <section class="slide"><div class="content"><h2>기말논문 연결</h2><p>W10는 utility, ASR, privacy leakage proxy, reproducibility를 함께 기록하는 AI 보안 평가표의 근거가 된다.</p></div></section>
+  <section class="slide"><div class="content"><h2>결론</h2><p>FL 보안 평가는 "데이터를 보내지 않는다"는 구조 설명을 넘어 update, aggregation, attack success, 로그 재현성을 함께 검토해야 한다.</p></div></section>
+  <div class="controls"><button id="prev" type="button">이전</button><span id="counter">1/9</span><button id="next" type="button">다음</button></div>
+  <script>
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const counter = document.querySelector('#counter');
+    let index = 0;
+    function show(nextIndex) {
+      index = Math.max(0, Math.min(slides.length - 1, nextIndex));
+      slides.forEach((slide, slideIndex) => slide.classList.toggle('active', slideIndex === index));
+      counter.textContent = `${index + 1}/${slides.length}`;
+    }
+    document.querySelector('#prev').addEventListener('click', () => show(index - 1));
+    document.querySelector('#next').addEventListener('click', () => show(index + 1));
+    document.addEventListener('keydown', (event) => {
+      if (['ArrowRight', 'PageDown', ' '].includes(event.key)) show(index + 1);
+      if (['ArrowLeft', 'PageUp'].includes(event.key)) show(index - 1);
+      if (event.key === 'Home') show(0);
+      if (event.key === 'End') show(slides.length - 1);
+    });
+  </script>
+</body>
+</html>

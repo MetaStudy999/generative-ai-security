@@ -2,46 +2,71 @@
 
 ## 1. 실험 목표
 
-W10 실습은 연합학습(FL) 및 FL 위협/방어/정책의 보안 평가를 안전한 toy 환경에서 설계하는 것이다. 실제 시스템 침해나 실제 개인정보 사용은 제외한다.
+W10 실습은 연합학습(FL)에서 malicious client 비율과 aggregation rule이 global utility와 backdoor-style ASR에 미치는 영향을 안전한 synthetic toy 환경에서 확인하는 것이다. 실제 개인정보, 실제 FL 서비스, 무단 클라이언트 접속, 운영 시스템 공격은 포함하지 않는다.
 
 ## 2. 환경
 
 | 항목 | 내용 |
 |---|---|
 | OS | Ubuntu 24.04 기준 |
-| Container | Docker |
-| Python | 3.x |
+| Container | Dockerfile 제공, 로컬 실행은 Python 3.11 호환 코드 |
+| Python | 3.11 기준 |
 | Seed | 42 |
-| 데이터 | 공개 데이터 또는 synthetic data |
-| 결과 상태 | 실제 실행 전 |
+| 데이터 | synthetic federated binary classification |
+| Client 수 | 10 |
+| Client별 샘플 | 80 |
+| Test sample | 600 |
+| 모델 | toy logistic regression |
+| 라운드 | 25 |
+| 로컬 epoch | 3 |
+| 결과 상태 | 실행 완료 |
 
 ## 3. 실행 절차
 
-| 단계 | 설계 내용 | 결과 기록 |
-|---|---|---|
-| 간단한 FL 구조도 작성 | 설계 완료 | 실제 실행 결과는 실행 후 기록 |
-| Client-server-aggregation 흐름 정리 | 설계 완료 | 실제 실행 결과는 실행 후 기록 |
-| malicious client 비율에 따른 위험 설계 | 설계 완료 | 실제 실행 결과는 실행 후 기록 |
-| poisoning 또는 backdoor update 개념 설명 | 설계 완료 | 실제 실행 결과는 실행 후 기록 |
-| secure aggregation과 robust aggregation 차이 비교 | 설계 완료 | 실제 실행 결과는 실행 후 기록 |
-| 실제 개인정보 데이터는 사용하지 않는다. | 설계 완료 | 실제 실행 결과는 실행 후 기록 |
-| 결과는 실제 실행 전까지 빈칸으로 둔다. | 설계 완료 | 실제 실행 결과는 실행 후 기록 |
+```bash
+python3 03_weekly_reports/w10_federated_learning_security/04_experiment/src/run_experiment.py --config 03_weekly_reports/w10_federated_learning_security/04_experiment/configs/config.yaml
+```
 
-## 4. 결과
+Docker 사용 시에는 `04_experiment/`에서 다음 절차를 따른다.
 
-| 조건 | 주요 지표 | 결과 |
-|---|---|---|
-| Clean baseline | Accuracy/F1/Task score | 실행 전 |
-| Security scenario | Attack impact/Risk score | 실행 전 |
-| Defense/check | Robust score/Leakage score | 실행 전 |
-| Reproducibility | Seed/config/log 확인 | 실행 전 |
+```bash
+docker build -t w10-aisec .
+docker run --rm -it -v "$(pwd):/workspace" w10-aisec bash
+python src/run_experiment.py --config configs/config.yaml
+```
 
-## 5. 재현성 점검
+## 4. 실험 조건
 
-- `configs/config.yaml`에 seed, 데이터, 실험 조건을 기록한다.
-- Dockerfile 내부 uv sync와 pyproject.toml로 실행 환경을 고정한다.
-- 결과값은 실제 실행 로그가 있을 때만 채운다.
+| 조건 | Malicious Client Rate | Aggregation | 설명 |
+|---|---:|---|---|
+| Clean FL | 0% | fedavg | 악성 client 없는 기준 조건 |
+| Poisoned FL 10% | 10% | fedavg | 10% client가 synthetic toy poisoned update 제출 |
+| Poisoned FL 20% | 20% | fedavg | 20% client가 synthetic toy poisoned update 제출 |
+| Robust aggregation 20% | 20% | coordinate_median | 같은 20% 조건에서 median 기반 robust aggregation 적용 |
 
-## 6. 한계
+## 5. 결과
 
-본 실습은 학습 목적의 설계 초안이다. 실제 서비스, 실제 개인정보, 무단 공격 절차는 포함하지 않는다.
+| 조건 | Malicious Client Rate | Global Accuracy | Global F1 | ASR | Privacy Leakage Proxy | 해석 |
+|---|---:|---:|---:|---:|---:|---|
+| Clean FL | 0% | 0.960000 | 0.958042 | 0.136076 | 0.442597 | 기준 FedAvg 조건 |
+| Poisoned FL | 10% | 0.953333 | 0.951557 | 0.297468 | 0.428377 | clean 성능은 유지되지만 ASR 상승 |
+| Poisoned FL | 20% | 0.950000 | 0.948630 | 0.496835 | 0.486591 | 악성 client 비율 증가에 따라 ASR 크게 상승 |
+| Robust aggregation | 20% | 0.955000 | 0.953368 | 0.237342 | 0.439875 | coordinate median이 ASR을 낮췄지만 완전 제거는 아님 |
+
+## 6. 결과 파일
+
+| 파일 | 내용 |
+|---|---|
+| `outputs/run_log.md` | 사람이 읽는 실행 로그와 지표 요약 |
+| `outputs/metrics_summary.csv` | 조건별 정량 지표 |
+| `outputs/results.json` | config, 원시 결과, round log |
+
+## 7. 재현성 점검
+
+- `configs/config.yaml`에 seed, 데이터, 실험 조건을 기록했다.
+- `src/run_experiment.py`는 synthetic data만 생성하며 외부 네트워크나 실제 개인정보를 사용하지 않는다.
+- 결과값은 `outputs/run_log.md`, `metrics_summary.csv`, `results.json`과 보고서 표가 일치해야 한다.
+
+## 8. 한계
+
+본 실습은 학습 목적의 toy simulation이다. 실제 FL framework, 실제 secure aggregation, differential privacy, gradient inversion, membership inference를 구현하지 않았다. Privacy Leakage Proxy는 실제 privacy attack 성공률이 아니라 update 노출 위험을 설명하기 위한 대용 지표다.

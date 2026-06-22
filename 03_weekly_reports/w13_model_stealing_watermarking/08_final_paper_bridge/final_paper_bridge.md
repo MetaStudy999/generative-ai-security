@@ -4,18 +4,26 @@
 
 | 번호 | 주제 후보 | 대상 시스템 | 보안 위협 | 방법론 | 기여 가능성 |
 |---:|---|---|---|---|---|
-| 1 | 모델 지식재산(IP)/모델 도난/모델 추출 위협 생명주기 보안 평가 프레임워크 | AI/ML 시스템 | Model stealing, Model extraction | 문헌분석 및 체크리스트 | 높음 |
-| 2 | 모델 지식재산(IP)/모델 도난/모델 추출 위협 환경의 공격-방어-평가 분류체계 | 모델/데이터/평가 파이프라인 | Watermarking, fingerprinting, model extraction defense | 비교분석 | 높음 |
-| 3 | 모델 지식재산권의 개념, 모델 도난과 모델 추출의 차이 기반 보안 재현성 평가 연구 | 공개 또는 synthetic 실험 | Model stealing, Model extraction | toy 실험 설계 | 보통 |
+| 1 | 공개 API 기반 AI 모델의 모델 추출 위협모형과 방어 평가 연구 | ML/LLM API 서비스 | Model extraction, query abuse | 문헌분석 + synthetic toy evaluation | 높음 |
+| 2 | 딥러닝 모델 워터마킹의 탐지율·위양성·품질저하 평가 기준 연구 | DNN/LLM 모델 | Watermark removal, forgery, false positive | 평가 프로토콜 설계 | 높음 |
+| 3 | 생성형 AI 모델의 지식재산 보호를 위한 워터마킹·핑거프린팅 프레임워크 연구 | 생성모형/LLM | Model stealing, output misuse | 문헌분석 + 책임성 체크리스트 | 높음 |
 
 ## 2. 기말 논문에 반영할 내용
 
 | 논문 장 | 반영 가능 내용 |
 |---|---|
-| 서론 | 모델 지식재산(IP)/모델 도난/모델 추출 위협의 보안 평가 필요성 |
-| 관련연구 | Model IP, model stealing, model extraction 및 Watermarking, fingerprinting, model extraction defense 문헌 정리 |
-| 연구문제 | 생명주기 기반 위협모형과 평가방법 필요성 |
-| 연구방법 | 문헌 비교표, 위협모형, 평가 프로토콜 |
-| 분석/실험 | 안전한 toy 실험 또는 체크리스트 기반 평가 |
-| 보안적 함의 | CIA, Privacy, Safety, Accountability 관점 |
-| 결론 | 재현 가능한 AI 보안 평가체계 제안 |
+| 서론 | AI 모델의 경제적 가치와 지식재산 보호 필요성 |
+| 관련연구 | model stealing, model extraction, DNN/LLM watermarking, fingerprinting |
+| 연구문제 | query-response 정보만으로 모델 행동이 얼마나 모방되는가와 소유권 검증은 얼마나 신뢰할 수 있는가 |
+| 연구방법 | synthetic toy model 기반 query budget 비교, trigger-set ownership check, false positive proxy |
+| 분석/실험 | extraction fidelity 0.864000/0.920000/0.902000, watermark detection 0.700000/1.000000/1.000000 |
+| 보안적 함의 | detection rate뿐 아니라 false positive 0.600000과 utility 0.868000을 함께 보고해야 함 |
+| 결론 | 모델 IP 보호 평가에서 성능·소유권·위양성·재현성을 함께 기록하는 프레임워크 제안 |
+
+## 3. 가장 적합한 발전 방향
+
+가장 적합한 주제는 “모델 추출 이후 소유권 검증을 위한 다중지표 평가 프레임워크”이다. W13 실험은 실제 API 공격을 배제하면서도 query budget, fidelity, detection, false positive, utility를 같은 표에서 관리할 수 있음을 보여준다.
+
+## 4. 후속 주차 연결 방식
+
+W14의 MLOps/supply-chain 보안과 연결하면 모델 배포, API 로그, 질의 제한, 워터마크 검증 절차를 운영 통제 관점으로 확장할 수 있다. W15의 재현성/XAI 주제와 연결하면 DOI 검증, 대체 PDF 표시, AI 활용 고지, 실행 로그 보존을 연구윤리 장으로 묶을 수 있다.

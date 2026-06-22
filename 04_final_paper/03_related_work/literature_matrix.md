@@ -5,11 +5,14 @@
 | 1 | 국내 | AI 보안 평가·개인정보보호 관련 국내 문헌 최종 선별 예정 | 확인 필요 | 0 | 국내 규제와 AI 보안 평가 맥락 | KCI/DBpia/RISS 검색 예정 | 허위 인용 방지를 위해 확정 전 | 국내 맥락 보완 | 확인 필요 |
 | 2 | 국내 | RAG/LLM 보안 또는 정보보호 정책 관련 국내 문헌 최종 선별 예정 | 확인 필요 | 0 | 국내 적용 가능성 | KCI/DBpia/RISS 검색 예정 | DOI/URL 검증 전 | 국내 정책·운영 관점 보완 | 확인 필요 |
 | 3 | 국내 | AI 연구윤리·재현성 관련 국내 문헌 최종 선별 예정 | 확인 필요 | 0 | 연구윤리 검증 | KCI/DBpia/RISS 검색 예정 | 세부 서지 미확정 | 연구윤리 장 보완 | 확인 필요 |
-| 4 | 해외 | A Survey on Evaluation of Large Language Models | J. Chang et al. | 2024 | LLM 평가 체계 | Survey | 평가 재현성과 오염 위험 별도 정교화 필요 | benchmark contamination을 평가축으로 반영 | 확인 필요 |
+| 4 | 해외 | A Survey on Evaluation of Large Language Models | Yupeng Chang et al. | 2024 | LLM 평가 체계 | Survey | 평가 재현성과 오염 위험 별도 정교화 필요 | benchmark contamination을 평가축으로 반영 | DOI 확인: `10.1145/3641289` |
 | 5 | 해외 | Security and Privacy Challenges of Large Language Models: A Survey | Ankur Das et al. | 2025 | LLM 보안·프라이버시 위협 | Survey | 실제 실험 프로토콜은 별도 설계 필요 | 위협모형 기반 분류에 활용 | 확인 필요 |
 | 6 | 해외 | Prompt Injection Attacks on Large Language Models: A Survey of Attack Methods, Root Causes, and Defense Strategies | Tianlei Geng et al. | 2026 | 프롬프트 인젝션 원인과 방어 | Survey | 안전한 모의평가로 제한 필요 | RAG/agent 공격면 분석에 활용 | 확인 필요 |
 | 7 | 해외 | Membership inference attacks on machine learning: a survey | Hongsheng Hu et al. | 2022 | 멤버십 추론 위협 | Survey | 실제 개인정보 사용 불가 | privacy leakage 평가축에 활용 | 확인 필요 |
 | 8 | 해외 | A Multivocal Literature Review of MLOps Practices | Bayram Eken et al. | 2025 | MLOps 실무와 연구공백 | Multivocal review | 보안 체크리스트와 추가 연결 필요 | 재현성·artifact 관리 기준에 활용 | 확인 필요 |
+| 9 | 해외 | Assuring the Machine Learning Lifecycle: Desiderata, Methods, and Challenges | Rob Ashmore, Radu Calinescu, Colin Paterson | 2021 | ML lifecycle assurance | Survey | 생성형 AI 특화 위협은 별도 보완 필요 | config, seed, log, outputs 기반 evidence chain 근거 | DOI 확인: `10.1145/3453444` |
+| 10 | 해외 | Explainable Artificial Intelligence (XAI): Concepts, Taxonomies, Opportunities and Challenges toward Responsible AI | Alejandro Barredo Arrieta et al. | 2020 | XAI taxonomy와 Responsible AI | Survey | LLM/RAG 최신 설명 문제는 별도 보완 필요 | XAI 설명 신뢰성과 disclosure risk 평가축 | DOI 확인: `10.1016/j.inffus.2019.12.012` |
+| 11 | 해외 | Concept-based Explainable Artificial Intelligence: A Survey | Eleonora Poeta et al. | 2023/2025 확인 필요 | Concept-based XAI | Survey | 최종 DOI/권호 확인 필요 | concept completeness, explanation stability 평가축 | 부분 확인: arXiv `2312.12936` |
 
 ## 종합 분석
 
@@ -19,7 +22,7 @@
 
 ### 2. 해외 연구의 경향
 
-해외 연구는 LLM 평가, LLM 보안·프라이버시, 프롬프트 인젝션, 멤버십 추론, MLOps 재현성 문헌을 중심으로 축적되어 있다. 각 문헌은 위협 분류에는 강하지만 제출 가능한 재현성·연구윤리 체크리스트까지 통합하지는 않는다.
+해외 연구는 LLM 평가, LLM 보안·프라이버시, 프롬프트 인젝션, 멤버십 추론, MLOps 재현성, XAI 문헌을 중심으로 축적되어 있다. 각 문헌은 위협 분류와 평가 방법에는 강하지만 제출 가능한 재현성·연구윤리 체크리스트까지 통합하지는 않는다.
 
 ### 3. 기존 연구의 한계
 

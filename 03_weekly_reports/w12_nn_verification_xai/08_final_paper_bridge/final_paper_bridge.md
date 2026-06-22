@@ -4,18 +4,23 @@
 
 | 번호 | 주제 후보 | 대상 시스템 | 보안 위협 | 방법론 | 기여 가능성 |
 |---:|---|---|---|---|---|
-| 1 | 신경망 검증/정형방법 및 대적방어/XAI/강건성 트레이드오프 생명주기 보안 평가 프레임워크 | AI/ML 시스템 | 대적공격과 대적방어, Certified robustness | 문헌분석 및 체크리스트 | 높음 |
-| 2 | 신경망 검증/정형방법 및 대적방어/XAI/강건성 트레이드오프 환경의 공격-방어-평가 분류체계 | 모델/데이터/평가 파이프라인 | 대적방어, XAI 공격면, robustness-accuracy-fairness trade-off | 비교분석 | 높음 |
-| 3 | 신경망 검증의 기본 개념, 정형검증과 경험적 평가의 차이 기반 보안 재현성 평가 연구 | 공개 또는 synthetic 실험 | 대적공격과 대적방어, Certified robustness | toy 실험 설계 | 보통 |
+| 1 | 강건성·설명안정성·공정성·재현성을 함께 보고하는 AI 보안 평가 프레임워크 | AI/ML 평가 파이프라인 | 대적 입력, 설명 조작, 검증 누락 | 문헌분석, 체크리스트, toy 실험 | 높음 |
+| 2 | XAI 기반 설명 결과의 대적공격 취약성 평가 연구 | XAI 설명 시스템 | explanation manipulation, saliency/attribution instability | synthetic perturbation 실험, 사례분석 | 높음 |
+| 3 | 대규모 AI 모델의 위험기반 부분검증 프로토콜 연구 | 신경망 검증 파이프라인 | verification scalability failure | 프레임워크 설계, 비용 지표 | 높음 |
+| 4 | Robustness-accuracy-fairness trade-off 보고 양식 연구 | AI 보안 연구 보고서 | 단일 지표 과신, 공정성 영향 은폐 | 평가표 설계, 재현성 로그 | 보통 |
 
 ## 2. 기말 논문에 반영할 내용
 
 | 논문 장 | 반영 가능 내용 |
 |---|---|
-| 서론 | 신경망 검증/정형방법 및 대적방어/XAI/강건성 트레이드오프의 보안 평가 필요성 |
-| 관련연구 | Neural network verification, abstraction, formal methods, robustness proof 및 대적방어, XAI 공격면, robustness-accuracy-fairness trade-off 문헌 정리 |
-| 연구문제 | 생명주기 기반 위협모형과 평가방법 필요성 |
-| 연구방법 | 문헌 비교표, 위협모형, 평가 프로토콜 |
-| 분석/실험 | 안전한 toy 실험 또는 체크리스트 기반 평가 |
-| 보안적 함의 | CIA, Privacy, Safety, Accountability 관점 |
-| 결론 | 재현 가능한 AI 보안 평가체계 제안 |
+| 서론 | AI 모델 강건성과 설명가능성 검증의 필요성 |
+| 관련연구 | 신경망 검증, 대적방어, XAI 공격, trade-off survey |
+| 연구문제 | 강건성·정확도·공정성·설명안정성 통합 평가 |
+| 연구방법 | 문헌분석, synthetic toy 실험, 체크리스트 설계 |
+| 분석/실험 | clean accuracy 0.818750, robust accuracy 0.543750, explanation stability 0.927782를 예시로 다중지표 보고 |
+| 보안적 함의 | 무결성, 안전성, 책임성, 공정성 관점 |
+| 결론 | 위험기반 AI 검증·XAI 보안 평가체계 제안 |
+
+## 3. 최종 주제 추천
+
+가장 적합한 연결 주제는 "강건성·설명안정성·공정성·재현성을 함께 보고하는 AI 보안 평가 프레임워크"이다. W12의 문헌 비교와 toy 실험은 기말논문에서 보안 평가표와 재현성 절차를 설명하는 근거로 활용하기 좋다.

@@ -4,47 +4,47 @@
 
 | 항목 | 내용 |
 |---|---|
-| 논문 제목 | ModelShield: Adaptive and Robust Watermark Against Model Extraction Attack |
-| 저자 | Kaiyi Pang et al. |
-| 학술지/학회 | IEEE Transactions on Information Forensics and Security |
+| 논문 제목 | ModelShield: Adaptive and Robust Watermark against Model Extraction Attack |
+| 저자 | Kaiyi Pang, Tao Qi, Chuhan Wu, Minhao Bai, Minghu Jiang, Yongfeng Huang |
+| 학술지/학회 | IEEE Transactions on Information Forensics and Security로 확인 필요 |
 | 연도 | 2025 |
-| DOI/URL | 확인 필요 |
+| DOI/URL | PDF 표기 arXiv:2405.02365v4, DOI/출판사 URL 확인 필요 |
 | PDF 파일명 | 04_Pang_et_al_2025_ModelShield.pdf |
-| 검증 상태 | 로컬 PDF 파일명 확인, DOI/URL과 원문 세부 내용은 최종 대조 필요 |
+| 검증 상태 | 로컬 PDF 제목/초록 확인, 최종 출판 정보 대조 필요 |
 
 ## 2. 한 문장 요약
 
-> 이 논문은 Watermarking, fingerprinting, model extraction defense와 관련된 위협 분류 문제를 개념 분석과 사례 중심 정리 방법으로 다루며, 공격-방어-평가 관점을 연결하는 보안 분석 틀을 기말 연구에 반영할 수 있게 해준다.
+> 이 논문은 LLM model extraction으로 생성된 imitation model에 워터마크 신호가 남도록 self-watermarking과 robust detection을 결합한 ModelShield를 제안하며, 워터마크 품질 저하와 adaptive 공격을 동시에 다루려 한다.
 
 ## 3. 연구문제
 
-이 논문에서 기말 연구와 연결되는 질문은 모델 지식재산(IP)/모델 도난/모델 추출 위협 영역에서 어떤 개념, 공격면, 평가 기준을 우선적으로 정리해야 하는가이다. 특히 모델 지식재산권의 개념, 모델 도난과 모델 추출의 차이, 공개 API 기반 모델 추출 구조와 Model stealing, Model extraction, API query abuse가 서로 만나는 지점을 확인하는 데 초점을 둔다.
+LMaaS 환경에서 공격자가 victim LLM의 출력을 모아 imitation model을 학습할 때, 원 모델의 IP 침해를 나중에 어떻게 검출할 수 있는가가 중심 질문이다. 또한 워터마크가 생성 품질을 떨어뜨리지 않고 adversarial editing/dilution에도 남는지가 중요하다.
 
 ## 4. 핵심 개념
 
 | 개념 | 설명 | 기말 논문 연결 |
 |---|---|---|
-| 모델 지식재산권의 개념 | 주차 AI 원리의 출발점이며 모델 또는 시스템을 이해하는 기본 단위이다. | 배경 이론 |
-| 모델 도난과 모델 추출의 차이 | 성능, 일반화, 효율 또는 신뢰성을 설명하는 보조 축이다. | 분석 기준 |
-| Model stealing | 보안 위협을 식별하기 위한 대표 공격면이다. | 위협모형 |
-| Model extraction | 방어와 평가 프로토콜을 설계할 때 비교해야 하는 요소이다. | 평가방법 |
+| Model extraction attack | victim 출력으로 imitation model을 학습하는 공격 | W13 실험의 query-response 학습 |
+| Self-watermarking | LLM이 출력 생성 과정에서 watermark를 자체 삽입하도록 유도 | adaptive watermark 배경 |
+| Robust detection | 편집·희석 공격 후에도 신호를 탐지하는 검출 | detection after attack 지표 |
+| Plug-and-play defense | 추가 학습 없이 적용 가능한 방어 설계 | 운영 적용성 논의 |
 
 ## 5. 방법론
 
-이 문헌은 개념 분석과 사례 중심 정리을 통해 기존 연구를 묶어 읽을 수 있게 한다. 본 보고서에서는 논문 제목, 프롬프트의 논문 패킷 정보, 로컬 PDF 존재 여부를 기준으로 요약했으며, 세부 실험값이나 DOI는 최종 원문 대조 단계에서 확인한다.
+victim LLM의 응답에 워터마크 신호를 삽입하고, 이 응답으로 학습된 imitation model의 출력에서 watermark strength를 측정하는 구조다. 본 보고서의 toy 실험은 이 아이디어를 binary trigger-set ownership check로 단순화한다.
 
 ## 6. 주요 결과
 
-해당 영역의 대표 문제와 연구 설계 기준을 제시한다. 수치 결과를 새로 만들지 않기 위해 본 요약에서는 정량값을 적지 않았고, 원문에서 직접 확인되는 항목만 최종 보고서에 반영하도록 남겨 둔다.
+PDF 초록 기준으로 ModelShield는 기존 heuristic watermarking보다 생성 품질 저하를 줄이고, 다양한 adversarial strategy 아래에서도 watermark detection을 유지하는 것을 목표로 한다. 본 보고서는 원문 수치를 새로 주장하지 않고, 실험 수치는 로컬 toy 결과만 사용한다.
 
 ## 7. 보안 관점 분석
 
-이 논문은 Watermarking, fingerprinting, model extraction defense을 이해하기 위한 배경 문헌으로 활용된다. 공격자의 능력, 방어자의 관측 가능성, 평가 데이터의 한계, 재현성 조건을 함께 정리해야 실제 보안 연구로 이어질 수 있다.
+ModelShield는 model extraction defense를 “공격을 완전히 막는 것”이 아니라 “도난 이후 소유권 신호를 검출하는 것”으로 확장한다. 이는 W13의 accountability와 ownership verification 항목에 직접 연결된다.
 
 ## 8. 한계와 오픈문제
 
-원문 정밀 독해 전에는 세부 실험 설정, 데이터셋, DOI, 인용 관계를 확정할 수 없다. 또한 survey 성격의 문헌은 실제 재현 실험보다는 분류체계와 연구 공백 파악에 더 적합하므로, 기말 논문에서는 별도 평가 프로토콜로 보완해야 한다.
+LLM 워터마크가 실제 법적 증거로 충분한지, 공격자가 워터마크 신호를 의도적으로 제거하거나 희석할 때 검출 기준을 어떻게 정할지는 계속 남는 문제다. 본 보고서의 toy 실험도 이 점을 반영해 false positive를 별도 표기한다.
 
 ## 9. 기말 논문에 반영할 부분
 
-P04는 모델 지식재산(IP)/모델 도난/모델 추출 위협 연구에서 개념 정의, 위협 분류, 평가 지표 후보를 정리하는 근거로 반영한다. 특히 공격-방어-평가 관점을 연결하는 보안 분석 틀을 관련연구와 연구방법 장에 연결한다.
+model extraction 이후 ownership check를 수행하는 평가 절차, watermark detection, false positive, query budget의 관계를 연구방법 장에 반영한다.

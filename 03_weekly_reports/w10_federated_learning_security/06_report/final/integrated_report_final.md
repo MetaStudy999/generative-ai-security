@@ -6,93 +6,110 @@
 |---|---|
 | 주차 | W10 |
 | 주제 | 연합학습(FL) & FL 위협·방어·정책 |
-| AI 원리 | Federated Learning, aggregation, personalization, robustness |
+| AI 원리 | Federated Learning, FedAvg, aggregation, personalization, robustness |
 | 보안 이슈 | Gradient leakage, poisoning, backdoor, privacy attack |
-| 문서 상태 | 최종본 초안 |
+| 문서 상태 | 최종본 |
+| 실험 근거 | `04_experiment/outputs/run_log.md` |
 
 ## 1. 한 문장 요약
 
-W10는 연합학습(FL) 및 FL 위협/방어/정책를 중심으로 AI 원리와 보안 위협을 함께 정리하고, 기말 논문의 위협모형·평가방법·재현성 설계로 연결한다.
+W10는 FL이 raw data를 중앙 서버로 모으지 않는다는 장점에도 불구하고, model update와 aggregation 단계에서 privacy·integrity 위험이 남으며 clean accuracy와 ASR을 함께 봐야 함을 보여준다.
 
 ## 2. AI 원리 70% 정리
 
-Federated Learning, aggregation, personalization, robustness를 이해하기 위해 연합학습의 기본 구조, Client, server, aggregation의 역할, FedAvg의 기본 원리, Aggregation technique taxonomy, Personalized federated learning, Non-IID data 문제를 핵심 개념으로 정리했다. 이 원리들은 모델 또는 시스템이 어떤 입력과 학습 구조를 갖고 어떤 기준으로 평가되는지 설명한다.
+FL은 client가 local data로 update를 계산하고 server가 aggregation으로 global model을 갱신하는 구조다. FedAvg는 가장 기본적인 평균 집계이며, robust aggregation은 이상 update의 영향을 줄이기 위해 median, trimmed mean 같은 규칙을 사용할 수 있다. Non-IID data, personalization, communication cost는 FL 성능과 운영 가능성을 동시에 좌우한다.
 
 ## 3. 보안 이슈 30% 정리
 
-Gradient leakage, poisoning, backdoor, privacy attack를 중심으로 Gradient leakage, Membership inference in FL, Poisoning attack, Model poisoning, Backdoor attack in FL, Malicious client를 정리했다. 보안 분석은 공격 절차 자체보다 보호 자산, 공격자 능력, 방어자 가정, 평가 지표를 명확히 하는 방향으로 작성했다.
+FL의 주요 위험은 gradient leakage, membership inference, poisoning, model poisoning, backdoor, malicious/byzantine client다. Secure aggregation은 confidentiality에는 도움이 될 수 있지만 악성 update 검증을 어렵게 만들 수 있고, robust aggregation은 integrity 방어에 유용하지만 privacy 보장을 직접 제공하지는 않는다.
 
 ## 4. 논문 5편 요약
 
-| ID | 논문 | 저자 | 연도 | 검증 상태 |
-|---|---|---|---|---|
-| P01 | Federated Learning Survey: A Multi-Level Taxonomy of Aggregation Techniques, Experimental Insights and Future Frontiers | M. Arbaoui et al. | 2024 | 원문 세부 대조 필요 |
-| P02 | A survey on security and privacy of federated learning | Viraaji Mothukuri et al. | 2021 | 원문 세부 대조 필요 |
-| P03 | Survey on federated learning threats: Concepts, taxonomy on attacks and defences, experimental study and challenges | Nuria Rodríguez-Barroso et al. | 2023 | 원문 세부 대조 필요 |
-| P04 | A Survey of Federated Learning Privacy Attacks, Defenses, Applications, and Policy Landscape | J. Zhao et al. | 2025 | 원문 세부 대조 필요 |
-| P05 | Backdoor attacks and defenses in federated learning: Survey, challenges and future research directions | T. D. Nguyen et al. | 2024 | 원문 세부 대조 필요 |
+| ID | 논문 | 역할 | 검증 상태 |
+|---|---|---|---|
+| P01 | Federated Learning Survey: A Multi-Level Taxonomy of Aggregation Techniques, Experimental Insights, and Future Frontiers | aggregation taxonomy와 robust aggregation 배경 | DOI 확인 |
+| P02 | A survey on security and privacy of federated learning | FL security/privacy threat taxonomy | DOI 확인 |
+| P03 | Survey on federated learning threats: Concepts, taxonomy on attacks and defences, experimental study and challenges | 공격-방어 taxonomy와 평가 기준 | arXiv 확인, 출판 DOI 확인 필요 |
+| P04 | The Federation Strikes Back: A Survey of Federated Learning Privacy Attacks, Defenses, Applications, and Policy Landscape | privacy attack, defense, policy landscape | DOI 확인 |
+| P05 | Backdoor attacks and defenses in federated learning: Survey, challenges and future research directions | backdoor threat와 ASR 평가 근거 | arXiv 확인, 출판 DOI 확인 필요 |
 
 ## 5. 논문 5편 비교
 
-다섯 편은 AI 원리 문헌과 보안 문헌을 함께 포함한다. 기말 논문에서는 개별 문헌의 세부 수치보다 분류체계, 위협모형, 평가 프로토콜의 연결 관계를 우선 반영한다.
+P01은 AI 원리와 aggregation 설계축, P02/P03은 security/privacy taxonomy, P04는 privacy와 정책, P05는 backdoor 평가에 강하다. 다섯 편을 합치면 FL 보안 평가는 utility, ASR, privacy leakage, aggregation type, reproducibility를 함께 기록해야 한다는 결론으로 이어진다.
 
 ## 6. Research Track
 
 ### 6.1 연구문제
 
-RQ1. 연합학습(FL) 및 FL 위협/방어/정책의 생명주기에서 보안 보증을 위해 어떤 평가 항목이 필요한가?
+RQ1. 연합학습 환경에서 malicious client 비율은 global model의 clean 성능과 backdoor ASR에 어떤 영향을 미치는가?
 
-RQ2. Gradient leakage, Membership inference in FL는 어느 단계에서 발생하며 어떤 조건에서 성공하는가?
+RQ2. Robust aggregation은 poisoned update의 영향을 줄일 수 있는가, 그리고 clean utility와 어떤 trade-off를 갖는가?
 
-RQ3. 성능, 보안성, 재현성을 함께 평가하려면 어떤 최소 프로토콜이 필요한가?
+RQ3. FL 보안 평가에는 privacy leakage, robustness, utility, communication cost를 어떻게 결합해야 하는가?
 
 ### 6.2 위협모형
 
-대상 시스템은 연합학습(FL) 및 FL 위협/방어/정책 기반 AI/ML 시스템이며, 보호 자산은 데이터, 모델, 입력/컨텍스트, 출력, 로그, 평가셋이다. 공격자는 외부 공격자, 내부자, 데이터 제공자, API 남용자 등으로 나뉜다.
+대상 시스템은 FL 기반 분산 학습 시스템이다. 보호 자산은 client data, local update, global model, aggregation result, training log다. 공격자는 악성 client로 참여해 poisoned update를 제출하거나, update 관찰을 통해 privacy 단서를 추론할 수 있다. 본 주차 실험은 실제 시스템 침해나 실제 개인정보 사용을 제외한다.
 
 ### 6.3 평가방법
 
-Clean performance, attack impact, robust performance, privacy/leakage, reproducibility, human review를 기본 평가 항목으로 둔다.
+| 평가 항목 | 지표 | 근거 |
+|---|---|---|
+| Global utility | Global Accuracy, Global F1 | clean synthetic test set |
+| Backdoor success | ASR | triggered synthetic test set |
+| Privacy exposure | Privacy Leakage Proxy | update norm과 다양성 기반 대용 지표 |
+| Robustness | 20% poisoned FedAvg와 coordinate median 비교 | `metrics_summary.csv` |
+| Reproducibility | seed, config, run log, JSON | `outputs/` |
 
 ### 6.4 재현성
 
-Docker, pyproject.toml/uv sync, config, seed, 로그, PDF/DOI 검증표를 함께 보존한다. 실제 실행 전 결과값은 작성하지 않는다.
+실험은 seed 42, 10 clients, client별 80 samples, test samples 600, 25 rounds, local epochs 3으로 실행했다. 산출물은 `run_log.md`, `metrics_summary.csv`, `results.json`에 보존했다.
 
 ### 6.5 한계와 오픈문제
 
-DOI/URL, 원문 세부 수치, 대체 PDF 여부는 최종 확인이 필요하다. 또한 survey 문헌의 분류체계를 toy 실험과 어떻게 연결할지 추가 검토가 필요하다.
+본 실험은 synthetic toy logistic regression이며 실제 FL framework, secure aggregation, differential privacy, gradient inversion을 구현하지 않았다. P03, P05의 출판본 DOI는 최종 참고문헌 작성 시 추가 확인해야 한다.
 
 ## 7. 실습 요약
 
-실습은 안전한 공개 데이터 또는 synthetic data 기반으로 설계한다. 실제 개인정보, 실제 서비스 침해, 무단 질의, 악용 가능한 절차는 포함하지 않는다.
+| 조건 | Malicious Client Rate | Aggregation | Global Accuracy | Global F1 | ASR | Privacy Leakage Proxy |
+|---|---:|---|---:|---:|---:|---:|
+| Clean FL | 0% | fedavg | 0.960000 | 0.958042 | 0.136076 | 0.442597 |
+| Poisoned FL 10% | 10% | fedavg | 0.953333 | 0.951557 | 0.297468 | 0.428377 |
+| Poisoned FL 20% | 20% | fedavg | 0.950000 | 0.948630 | 0.496835 | 0.486591 |
+| Robust aggregation 20% | 20% | coordinate_median | 0.955000 | 0.953368 | 0.237342 | 0.439875 |
+
+Clean FL 대비 20% poisoned FedAvg는 accuracy가 0.010000p 낮아지는 수준이지만 ASR은 0.136076에서 0.496835로 크게 상승했다. 같은 20% 조건에서 coordinate median은 ASR을 0.237342로 낮췄다.
 
 ## 8. AI 활용 기록 요약
 
-Codex를 사용해 구조화 초안을 만들었다. AI 산출물은 사람 검토와 원문 대조를 거쳐 최종본에 반영한다.
+Codex를 사용해 공통 지침 확인, W10 프롬프트 확인, 로컬 PDF 첫 페이지 메타데이터 대조, synthetic toy 실험 코드 작성·실행, 결과 로그 기반 보고서·제출본·발표자료 작성을 수행했다. DOI와 출판 정보는 확인된 항목만 확정하고 나머지는 확인 필요로 남겼다.
 
 ## 9. 토론 질문
 
-1. 연합학습(FL) 및 FL 위협/방어/정책에서 가장 중요한 보호 자산은 무엇인가?
-2. 공격 성공률과 일반 성능을 함께 볼 때 어떤 지표가 가장 설득력 있는가?
-3. 원문 검증과 재현성 기록을 어느 수준까지 제출물에 포함해야 하는가?
+1. FL에서 secure aggregation과 robust aggregation은 서로 보완적인가, 충돌하는가?
+2. Clean accuracy가 유지되는 backdoor 위험을 운영 환경에서 어떻게 발견할 수 있는가?
+3. Privacy leakage proxy를 실제 membership inference 또는 gradient inversion 평가로 확장하려면 어떤 통제가 필요한가?
 
 ## 10. 기말 논문 연결
 
-W10는 기말 논문의 관련연구, 위협모형, 평가방법, 보안적 함의 장에 연결된다.
+W10는 기말 논문의 관련연구, 위협모형, 평가방법, 보안적 함의 장에 연결된다. 특히 "AI 보안 평가는 일반 성능, 공격 성공률, 프라이버시 노출, 재현성 로그를 동시에 요구한다"는 주장에 활용할 수 있다.
 
 ## 11. 참고문헌 검증표
 
-참고문헌은 `01_papers/doi_check.md`에서 DOI/URL 확인 상태를 관리한다.
+참고문헌 검증 상태는 `01_papers/doi_check.md`에 기록했다. P01, P02, P04는 DOI를 확인했고, P03과 P05는 arXiv/preprint 확인 상태로 두었다.
 
 ## 12. 자기 점검
 
 | 항목 | 상태 |
 |---|---|
-| 논문 5편 요약 | 작성 |
-| 비교표 | 작성 |
-| AI 원리 70% | 작성 |
-| 보안 이슈 30% | 작성 |
-| Research Track | 작성 |
-| 실험 결과 조작 방지 | 실제 실행 전으로 표시 |
-| DOI 임의 생성 방지 | 확인 필요로 유지 |
-| AI 사용 은폐 방지 | AI 활용 고지서 작성 |
+| 논문 5편 요약 | 완료 |
+| 비교표 | 완료 |
+| AI 원리 70% | 완료 |
+| 보안 이슈 30% | 완료 |
+| Research Track | 완료 |
+| 실험 실행 | 완료 |
+| 실행 로그/CSV/JSON | 완료 |
+| 제출용 보고서 | 완료 |
+| 발표자료 | 완료 |
+| AI 활용 고지 | 완료 |
+| DOI 임의 생성 방지 | 확인 필요 항목 유지 |

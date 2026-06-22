@@ -1,19 +1,21 @@
 # 자기 점검
 
-| 점검 항목 | 상태 | 메모 |
+| 항목 | 상태 | 비고 |
 |---|---|---|
-| 프롬프트 산출물 구조 | 완료 | W01~W15 공통 구조 적용 |
-| 논문 요약 5편 | 완료 | 원문 세부 수치와 DOI는 최종 확인 필요 |
-| 논문 비교표 | 완료 | 기말 논문 활용 관점 포함 |
-| AI 원리 70% | 완료 | 주차별 핵심 개념 반영 |
-| 보안 이슈 30% | 완료 | 위협·방어·평가 관점 반영 |
-| Research Track | 완료 | 연구문제, 위협모형, 평가방법, 오픈문제 포함 |
-| 실험 보고서 | 완료 | 실제 결과값은 실행 전으로 표시 |
-| AI 활용 기록 | 완료 | 고지서 초안 포함 |
-| 기말논문 연결 | 완료 | 주제 후보와 contribution 후보 작성 |
+| 공통 지침 확인 | 완료 | `README.md`, `03_weekly_reports/README.md`, W10 프롬프트 확인 |
+| 논문 요약 5편 | 완료 | P03/P05 출판본 DOI는 확인 필요 |
+| 논문 비교표 | 완료 | 실험 결과와 기말 논문 연결 반영 |
+| AI 원리 70% | 완료 | FL 구조, FedAvg, robust aggregation 정리 |
+| 보안 이슈 30% | 완료 | privacy, poisoning, backdoor, policy 정리 |
+| 실험 코드 | 완료 | `04_experiment/src/run_experiment.py` |
+| 실험 실행 | 완료 | `outputs/run_log.md` 생성 |
+| 수치 일관성 | 완료 | 보고서 표와 CSV/JSON 대조 필요 항목 없음 |
+| 제출본 | 완료 | Markdown/HTML 작성 |
+| 발표자료 | 완료 | 발표보고서, 슬라이드, 노트, Q&A, handout 작성 |
+| AI 활용 고지 | 완료 | `05_ai_worklog/` 갱신 |
 
-## 남은 일
+## 남은 확인 필요
 
-- DOI/URL 공식 확인
-- PDF 원문과 요약문 최종 대조
-- 실제 실험을 수행할 경우 결과표와 로그 추가
+- P03 출판본 DOI와 페이지 정보
+- P05 Engineering Applications of Artificial Intelligence 출판본 DOI
+- 최종 제출 전 DOI landing page 접속 확인

@@ -42,7 +42,7 @@ Clean prompts의 utility는 0.866746이고 answer rate는 1.000000입니다. Pro
 
 ## 11. 해석
 
-Code security prompts에서는 code vulnerability rate가 0.200000이고 over-refusal이 0.350000입니다. 이 값은 실제 코드 모델 성능이 아니라 “취약 코드 위험과 과차단을 한 표에 같이 기록해야 한다”는 구조를 보여주는 toy 결과입니다.
+Code security prompts에서는 code vulnerability rate가 0.200000이고 over-refusal이 0.350000입니다. 이 값은 실제 코드 모델 성능이 아니라 “취약 코드 위험과 과차단을 한 표에 같이 기록해야 한다”는 구조를 보여주는 toy 결과입니다. 모든 수치는 outputs 파일 기준입니다.
 
 ## 12. 기말논문 연결
 

@@ -63,12 +63,12 @@ W07는 LLM의 학습·정렬·평가 원리를 보안 평가 항목으로 바꾸
 
 정량값은 `04_experiment/outputs/run_log.md` 기준이다.
 
-| 조건 | Utility | Answer rate | ASR | Privacy Leakage | Refusal Quality | Code vuln. rate |
-|---|---:|---:|---:|---:|---:|---:|
-| Clean prompts | 0.866746 | 1.000000 | 0.000000 | 0.000000 | 해당 없음 | 0.000000 |
-| Prompt attack simulation | 0.400908 | 0.150000 | 0.150000 | 0.000000 | 0.850000 | 0.000000 |
-| Privacy-risk prompts | 0.392926 | 0.100000 | 0.100000 | 0.025000 | 0.900000 | 0.000000 |
-| Code security prompts | 0.678267 | 0.650000 | 0.000000 | 0.000000 | 해당 없음 | 0.200000 |
+| 조건 | Utility | Answer rate | ASR | Privacy Leakage | Refusal Quality | Over-refusal | Code vuln. rate |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Clean prompts | 0.866746 | 1.000000 | 0.000000 | 0.000000 | 해당 없음 | 0.000000 | 0.000000 |
+| Prompt attack simulation | 0.400908 | 0.150000 | 0.150000 | 0.000000 | 0.850000 | 0.000000 | 0.000000 |
+| Privacy-risk prompts | 0.392926 | 0.100000 | 0.100000 | 0.025000 | 0.900000 | 0.000000 | 0.000000 |
+| Code security prompts | 0.678267 | 0.650000 | 0.000000 | 0.000000 | 해당 없음 | 0.350000 | 0.200000 |
 
 ## 8. 기말논문 연결
 

@@ -1,14 +1,16 @@
 # W07 다운로드 출처 기록
 
-| ID | 논문 제목 | 확보 방식 | 파일명 | 비고 |
+| ID | 파일명 | 확인 URL | 보관 상태 | 공개 저장소 위험 |
 |---|---|---|---|---|
-| P01 | A Survey on Evaluation of Large Language Models | 로컬 PDF / DOI 페이지 | 01_Chang_et_al_2024_Evaluation_of_LLMs_Survey.pdf | `https://doi.org/10.1145/3641289` |
-| P02 | Security and Privacy Challenges of Large Language Models: A Survey | 로컬 PDF / arXiv | 02_Das_et_al_2025_LLM_Security_Privacy_Challenges.pdf | `https://arxiv.org/abs/2402.00888`, 출판사 DOI 재검증 필요 |
-| P03 | A Survey on Large Language Model (LLM) Security and Privacy: The Good, the Bad, and the Ugly | 로컬 PDF / arXiv | 03_Yao_et_al_2024_LLM_Security_Privacy_Good_Bad_Ugly.pdf | `https://arxiv.org/abs/2312.02003`, 출판정보 재검증 필요 |
-| P04 | A Survey on Multimodal Large Language Models | 로컬 PDF / arXiv | 04_Yin_et_al_2024_Multimodal_LLMs_Survey.pdf | `https://arxiv.org/abs/2306.13549`, 공식 권호/DOI 재검증 필요 |
-| P05 | When Software Security Meets Large Language Models: A Survey | 로컬 PDF / DOI 페이지 | 05_Zhu_et_al_2025_Software_Security_Meets_LLMs.pdf | `https://doi.org/10.1109/JAS.2024.124971` |
+| P01 | `01_Chang_et_al_2024_Evaluation_of_LLMs_Survey.pdf` | `https://doi.org/10.1145/3641289` | 로컬 PDF 존재, git 추적 중 | ACM 출판사 PDF일 수 있어 public GitHub 업로드 위험 |
+| P02 | `02_Das_et_al_2025_LLM_Security_Privacy_Challenges.pdf` | `https://doi.org/10.1145/3712001`, `https://arxiv.org/abs/2402.00888` | 로컬 PDF 존재, git 추적 중 | ACM/arXiv 판본 구분 필요. public GitHub에는 DOI/URL 권장 |
+| P03 | `03_Yao_et_al_2024_LLM_Security_Privacy_Good_Bad_Ugly.pdf` | `https://doi.org/10.1016/j.hcc.2024.100211`, `https://arxiv.org/abs/2312.02003` | 로컬 PDF 존재, git 추적 중 | Elsevier/출판사 PDF일 수 있어 public GitHub 업로드 위험 |
+| P04 | `04_Yin_et_al_2024_Multimodal_LLMs_Survey.pdf` | `https://doi.org/10.1093/nsr/nwae403`, `https://arxiv.org/abs/2306.13549` | 로컬 PDF 존재, git 추적 중 | OUP/NSR PDF일 수 있어 public GitHub 업로드 위험 |
+| P05 | `05_Zhu_et_al_2025_Software_Security_Meets_LLMs.pdf` | `https://doi.org/10.1109/JAS.2024.124971` | 로컬 PDF 존재, git 추적 중 | IEEE/CAA PDF일 수 있어 public GitHub 업로드 위험 |
 
 ## 관리 메모
 
-- 현재 기록은 로컬 PDF 텍스트 추출과 PDF 내부 DOI/arXiv 표기 중심이다.
-- 저작권과 인용 정확성을 위해 최종 제출 전 공식 출판사 페이지와 arXiv 최신 메타데이터를 다시 확인한다.
+- 루트 `.gitignore`에는 `03_weekly_reports/**/01_papers/pdf/*.pdf`가 이미 포함되어 있다.
+- 이미 커밋 또는 추적 중인 PDF는 `.gitignore`만으로 제거되지 않는다.
+- 삭제나 이력 정리는 사용자의 명시 승인 후 수행해야 한다.
+- 공개 저장소 제출본에는 PDF 원문 대신 DOI/URL, 서지정보, 요약, 검증표를 남기는 것을 권장한다.

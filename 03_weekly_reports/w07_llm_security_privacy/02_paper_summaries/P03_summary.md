@@ -1,50 +1,37 @@
-# 논문 요약
+# 논문 요약: P03
 
 ## 1. 서지정보
 
 | 항목 | 내용 |
 |---|---|
-| 논문 제목 | A Survey on Large Language Model (LLM) Security and Privacy: The Good, the Bad, and the Ugly |
-| 저자 | Yifan Yao et al. |
-| 학술지/학회 | arXiv preprint / Elsevier 제출 원고 |
-| 연도 | 2024 |
-| DOI/URL | `https://arxiv.org/abs/2312.02003` |
-| PDF 파일명 | 03_Yao_et_al_2024_LLM_Security_Privacy_Good_Bad_Ugly.pdf |
-| 검증 상태 | 로컬 PDF 기준 arXiv 식별자 확인, 공식 출판정보와 DOI 재검증 필요 |
+| 강의계획서 지정 논문 | Mingzhe Yao et al., *A survey on large language model security and privacy: problems, methods, and opportunities*, AI Open, 2024 |
+| 로컬/공식 확인 논문 | Yifan Yao et al., *A survey on large language model (LLM) security and privacy: The Good, The Bad, and The Ugly* |
+| 출판정보 | High-Confidence Computing, 4(2), Article 100211, 2024 |
+| DOI/URL | `https://doi.org/10.1016/j.hcc.2024.100211`; arXiv `https://arxiv.org/abs/2312.02003` |
+| 검증 상태 | 로컬 PDF 논문은 DOI 확인. 강의계획서 지정 AI Open 논문과 동일 여부는 확인 필요 |
 
 ## 2. 한 문장 요약
 
-> 이 논문은 데이터 추출, 프롬프트 기반 공격, 소프트웨어 보안 접점와 관련된 위협 분류 문제를 문헌조사와 분류체계 정리 방법으로 다루며, 공격-방어-평가 관점을 연결하는 보안 분석 틀을 기말 연구에 반영할 수 있게 해준다.
+LLM은 보안 방어 도구가 될 수도 있지만 공격 자동화, 취약성 확대, prompt/context 위험의 원인이 될 수도 있으므로 good, bad, ugly 관점으로 함께 평가해야 한다[3].
 
 ## 3. 연구문제
 
-이 논문에서 기말 연구와 연결되는 질문은 LLM 학습/정렬/평가 및 LLM 보안/프라이버시 영역에서 어떤 개념, 공격면, 평가 기준을 우선적으로 정리해야 하는가이다. 특히 LLM의 기본 구조, Pretraining, instruction tuning, alignment, RLHF와 preference optimization 개념와 LLM 보안·프라이버시 위협, Training data extraction, Prompt injection가 서로 만나는 지점을 확인하는 데 초점을 둔다.
+LLM이 보안과 프라이버시에 긍정적으로 기여하는 경우, 공격적으로 악용되는 경우, 모델 자체 취약성을 드러내는 경우를 어떻게 나눌 수 있는가를 다룬다.
 
 ## 4. 핵심 개념
 
-| 개념 | 설명 | 기말 논문 연결 |
-|---|---|---|
-| LLM의 기본 구조 | 주차 AI 원리의 출발점이며 모델 또는 시스템을 이해하는 기본 단위이다. | 배경 이론 |
-| Pretraining, instruction tuning, alignment | 성능, 일반화, 효율 또는 신뢰성을 설명하는 보조 축이다. | 분석 기준 |
-| LLM 보안·프라이버시 위협 | 보안 위협을 식별하기 위한 대표 공격면이다. | 위협모형 |
-| Training data extraction | 방어와 평가 프로토콜을 설계할 때 비교해야 하는 요소이다. | 평가방법 |
+- The Good: vulnerability detection, secure coding support, privacy-preserving assistance.
+- The Bad: phishing, social engineering, 공격 자동화 등 악용 가능성.
+- The Ugly: prompt injection, data extraction, model extraction, inherent vulnerability.
 
-## 5. 방법론
+## 5. 보안 관점 분석
 
-이 문헌은 문헌조사와 분류체계 정리을 통해 기존 연구를 묶어 읽을 수 있게 한다. 본 보고서에서는 논문 제목, 프롬프트의 논문 패킷 정보, 로컬 PDF 존재 여부를 기준으로 요약했으며, 세부 실험값이나 DOI는 최종 원문 대조 단계에서 확인한다.
+P03은 LLM 보안 논의를 “보안 도구로서의 LLM”과 “공격면으로서의 LLM” 양쪽으로 확장한다. W07에서는 이 관점을 ASR, refusal quality, privacy leakage, code vulnerability rate를 동시에 기록해야 하는 이유로 연결한다.
 
-## 6. 주요 결과
+## 6. 검증 메모
 
-핵심 개념, 공격면, 평가 기준, 향후 연구과제를 체계화한다. 수치 결과를 새로 만들지 않기 위해 본 요약에서는 정량값을 적지 않았고, 원문에서 직접 확인되는 항목만 최종 보고서에 반영하도록 남겨 둔다.
+주의: W07의 P03은 현재 arXiv/PDF 기준 논문과 강의계획서 지정 AI Open 논문의 제목·저자 표기가 다르므로, 동일 논문 여부와 공식 출판정보를 확인 필요 상태로 유지한다.
 
-## 7. 보안 관점 분석
+## 7. 기말 논문 활용
 
-이 논문은 데이터 추출, 프롬프트 기반 공격, 소프트웨어 보안 접점을 이해하기 위한 배경 문헌으로 활용된다. 공격자의 능력, 방어자의 관측 가능성, 평가 데이터의 한계, 재현성 조건을 함께 정리해야 실제 보안 연구로 이어질 수 있다.
-
-## 8. 한계와 오픈문제
-
-원문 정밀 독해 전에는 세부 실험 설정, 데이터셋, DOI, 인용 관계를 확정할 수 없다. 또한 survey 성격의 문헌은 실제 재현 실험보다는 분류체계와 연구 공백 파악에 더 적합하므로, 기말 논문에서는 별도 평가 프로토콜로 보완해야 한다.
-
-## 9. 기말 논문에 반영할 부분
-
-P03는 LLM 학습/정렬/평가 및 LLM 보안/프라이버시 연구에서 개념 정의, 위협 분류, 평가 지표 후보를 정리하는 근거로 반영한다. 특히 공격-방어-평가 관점을 연결하는 보안 분석 틀을 관련연구와 연구방법 장에 연결한다.
+공격-방어-평가 연결표를 만들 때 LLM의 양면성, 특히 보안 자동화와 오용 가능성을 동시에 설명하는 근거로 활용한다.

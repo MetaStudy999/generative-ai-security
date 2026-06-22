@@ -1,50 +1,33 @@
-# 논문 요약
+# 논문 요약: P01
 
 ## 1. 서지정보
 
 | 항목 | 내용 |
 |---|---|
-| 논문 제목 | A Survey on Evaluation of Large Language Models |
-| 저자 | Yupeng Chang et al. |
-| 학술지/학회 | ACM Transactions on Intelligent Systems and Technology |
-| 연도 | 2024 |
+| 논문명 | A Survey on Evaluation of Large Language Models |
+| 저자 | Yupeng Chang, Xu Wang, Jindong Wang, Yuan Wu, Linyi Yang, Kaijie Zhu, Hao Chen, Xiaoyuan Yi, Cunxiang Wang, Yidong Wang, Wei Ye, Yue Zhang, Yi Chang, Philip S. Yu, Qiang Yang, Xing Xie |
+| 출판정보 | ACM Transactions on Intelligent Systems and Technology, 15(3), Article 39, pp. 1-45, 2024 |
 | DOI/URL | `https://doi.org/10.1145/3641289` |
-| PDF 파일명 | 01_Chang_et_al_2024_Evaluation_of_LLMs_Survey.pdf |
-| 검증 상태 | 로컬 PDF 기준 DOI와 서지정보 확인, 세부 인용은 최종 원문 대조 필요 |
+| 검증 상태 | DOI, 권호, Article 번호, 쪽수 확인. 강의계획서의 ACM Computing Surveys 표기는 실제 출판지와 다름 |
 
 ## 2. 한 문장 요약
 
-> 이 논문은 LLM 학습, 추론, 정렬, 평가 프레임워크의 핵심 원리와 적용 범위 문제를 문헌조사와 분류체계 정리 방법으로 다루며, 기말 연구의 배경 이론과 평가축을 기말 연구에 반영할 수 있게 해준다.
+LLM 평가는 task score만이 아니라 task coverage, benchmark 구성, human evaluation, contamination risk, social risk를 함께 다루는 평가 discipline으로 이해해야 한다[1].
 
 ## 3. 연구문제
 
-이 논문에서 기말 연구와 연결되는 질문은 LLM 학습/정렬/평가 및 LLM 보안/프라이버시 영역에서 어떤 개념, 공격면, 평가 기준을 우선적으로 정리해야 하는가이다. 특히 LLM의 기본 구조, Pretraining, instruction tuning, alignment, RLHF와 preference optimization 개념와 LLM 보안·프라이버시 위협, Training data extraction, Prompt injection가 서로 만나는 지점을 확인하는 데 초점을 둔다.
+이 논문은 LLM을 무엇으로 평가할 것인가, 어디에서 평가할 것인가, 어떤 방식으로 평가할 것인가를 체계적으로 분류한다. W07에서는 이 관점을 LLM/RAG 보안 평가의 기본 축으로 사용한다.
 
 ## 4. 핵심 개념
 
-| 개념 | 설명 | 기말 논문 연결 |
-|---|---|---|
-| LLM의 기본 구조 | 주차 AI 원리의 출발점이며 모델 또는 시스템을 이해하는 기본 단위이다. | 배경 이론 |
-| Pretraining, instruction tuning, alignment | 성능, 일반화, 효율 또는 신뢰성을 설명하는 보조 축이다. | 분석 기준 |
-| LLM 보안·프라이버시 위협 | 보안 위협을 식별하기 위한 대표 공격면이다. | 위협모형 |
-| Training data extraction | 방어와 평가 프로토콜을 설계할 때 비교해야 하는 요소이다. | 평가방법 |
+- Evaluation task: 일반 NLP, reasoning, code, medical, ethics, education, agent task 등.
+- Benchmark discipline: benchmark coverage, hidden test leakage, data contamination, prompt sensitivity.
+- Evaluation method: automatic metric, human evaluation, model-as-judge, risk-oriented evaluation.
 
-## 5. 방법론
+## 5. 보안 관점 분석
 
-이 문헌은 문헌조사와 분류체계 정리을 통해 기존 연구를 묶어 읽을 수 있게 한다. 본 보고서에서는 논문 제목, 프롬프트의 논문 패킷 정보, 로컬 PDF 존재 여부를 기준으로 요약했으며, 세부 실험값이나 DOI는 최종 원문 대조 단계에서 확인한다.
+P01은 직접적인 공격 논문은 아니지만, 보안 평가의 기준선을 제공한다. benchmark contamination, evaluation leakage, capability-risk mismatch가 발생하면 모델의 실제 안전성 판단이 왜곡될 수 있다. 따라서 W07 실험은 utility와 answer rate만 보지 않고 ASR, privacy leakage, refusal quality, over-refusal, code vulnerability rate를 함께 기록한다.
 
-## 6. 주요 결과
+## 6. 기말 논문 활용
 
-핵심 개념, 공격면, 평가 기준, 향후 연구과제를 체계화한다. 수치 결과를 새로 만들지 않기 위해 본 요약에서는 정량값을 적지 않았고, 원문에서 직접 확인되는 항목만 최종 보고서에 반영하도록 남겨 둔다.
-
-## 7. 보안 관점 분석
-
-이 논문은 데이터 추출, 프롬프트 기반 공격, 소프트웨어 보안 접점을 이해하기 위한 배경 문헌으로 활용된다. 공격자의 능력, 방어자의 관측 가능성, 평가 데이터의 한계, 재현성 조건을 함께 정리해야 실제 보안 연구로 이어질 수 있다.
-
-## 8. 한계와 오픈문제
-
-원문 정밀 독해 전에는 세부 실험 설정, 데이터셋, DOI, 인용 관계를 확정할 수 없다. 또한 survey 성격의 문헌은 실제 재현 실험보다는 분류체계와 연구 공백 파악에 더 적합하므로, 기말 논문에서는 별도 평가 프로토콜로 보완해야 한다.
-
-## 9. 기말 논문에 반영할 부분
-
-P01는 LLM 학습/정렬/평가 및 LLM 보안/프라이버시 연구에서 개념 정의, 위협 분류, 평가 지표 후보를 정리하는 근거로 반영한다. 특히 기말 연구의 배경 이론과 평가축을 관련연구와 연구방법 장에 연결한다.
+LLM/RAG 보안 평가 프레임워크에서 “평가축을 먼저 정의한 뒤 지표를 기록한다”는 기본 논리의 근거로 활용한다.

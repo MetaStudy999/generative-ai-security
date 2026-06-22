@@ -288,7 +288,7 @@ python3 src/run_experiment.py --config configs/config.yaml
 
 ## 한계
 
-이 결과는 LLM 보안 평가 프로토콜의 지표와 재현성 기록 구조를 설명하기 위한 synthetic toy 실험이다. 실제 LLM의 보안 성능, 실제 prompt-injection 성공률, 실제 개인정보 누출 가능성, 실제 코드 보안 품질로 일반화하지 않는다.
+이 결과는 synthetic prompt category와 rule-based toy guard score simulator를 사용한 평가 형식 검증용 수치이며, 실제 LLM의 보안 성능, 실제 jailbreak 성공률, 실제 개인정보 누출 가능성, 실제 코드 보안 품질로 일반화하지 않는다.
 """,
         encoding="utf-8",
     )

@@ -107,12 +107,12 @@ User prompt -> Context window -> LLM response -> Logs / Code / Benchmark
 
 # 10. 실험 결과
 
-| 조건 | Utility | ASR | Leakage | Refusal | Code risk |
-|---|---:|---:|---:|---:|---:|
-| Clean | 0.866746 | 0.000000 | 0.000000 | 해당 없음 | 0.000000 |
-| Prompt attack | 0.400908 | 0.150000 | 0.000000 | 0.850000 | 0.000000 |
-| Privacy-risk | 0.392926 | 0.100000 | 0.025000 | 0.900000 | 0.000000 |
-| Code security | 0.678267 | 0.000000 | 0.000000 | 해당 없음 | 0.200000 |
+| 조건 | Utility | Answer | ASR | Leakage | Refusal | Over-refusal | Code risk |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Clean | 0.866746 | 1.000000 | 0.000000 | 0.000000 | 해당 없음 | 0.000000 | 0.000000 |
+| Prompt attack | 0.400908 | 0.150000 | 0.150000 | 0.000000 | 0.850000 | 0.000000 | 0.000000 |
+| Privacy-risk | 0.392926 | 0.100000 | 0.100000 | 0.025000 | 0.900000 | 0.000000 | 0.000000 |
+| Code security | 0.678267 | 0.650000 | 0.000000 | 0.000000 | 해당 없음 | 0.350000 | 0.200000 |
 
 정량값은 `04_experiment/outputs/run_log.md` 기준이다.
 
@@ -121,9 +121,10 @@ User prompt -> Context window -> LLM response -> Logs / Code / Benchmark
 # 11. 결과 해석
 
 - Clean utility 0.866746은 정상 질의 지원성을 보여준다.
-- Prompt attack simulation의 ASR 0.150000은 toy guard가 일부 위험 조건을 놓친다는 뜻이다.
+- Prompt attack simulation의 ASR 0.150000은 toy guard가 일부 synthetic 위험 조건을 놓친다는 뜻이다.
 - Privacy-risk leakage 0.025000은 평가표에 privacy 항목을 분리해야 함을 보여준다.
 - Code security의 over-refusal 0.350000과 code risk 0.200000은 함께 봐야 한다.
+- 이 수치는 실제 LLM의 보안 성능이나 실제 jailbreak 성공률이 아니다.
 
 ---
 

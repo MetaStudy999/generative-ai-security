@@ -1,50 +1,37 @@
-# 논문 요약
+# 논문 요약: P02
 
 ## 1. 서지정보
 
 | 항목 | 내용 |
 |---|---|
-| 논문 제목 | Security and Privacy Challenges of Large Language Models: A Survey |
+| 논문명 | Security and Privacy Challenges of Large Language Models: A Survey |
 | 저자 | Badhan Chandra Das, M. Hadi Amini, Yanzhao Wu |
-| 학술지/학회 | arXiv preprint; 로컬 PDF의 ACM DOI는 임시값 |
-| 연도 | 2024 |
-| DOI/URL | `https://arxiv.org/abs/2402.00888` |
-| PDF 파일명 | 02_Das_et_al_2025_LLM_Security_Privacy_Challenges.pdf |
-| 검증 상태 | 로컬 PDF 기준 arXiv 식별자 확인, 공식 출판정보와 DOI 재검증 필요 |
+| 출판정보 | ACM Computing Surveys, 57(6), pp. 1-39, 2025 |
+| DOI/URL | `https://doi.org/10.1145/3712001`; arXiv `https://arxiv.org/abs/2402.00888` |
+| 검증 상태 | ACM CSUR 2025 출판판 확인. 강의계획서의 `Ankur Das et al.` 표기는 공식 저자명과 불일치하여 확인 필요 |
 
 ## 2. 한 문장 요약
 
-> 이 논문은 데이터 추출, 프롬프트 기반 공격, 소프트웨어 보안 접점와 관련된 위협 분류 문제를 문헌조사와 분류체계 정리 방법으로 다루며, 공격-방어-평가 관점을 연결하는 보안 분석 틀을 기말 연구에 반영할 수 있게 해준다.
+LLM 보안·프라이버시 연구는 jailbreak, prompt injection, data poisoning, PII leakage, privacy attack, 방어 메커니즘을 학습·추론·응용 단계별로 분류한다[2].
 
 ## 3. 연구문제
 
-이 논문에서 기말 연구와 연결되는 질문은 LLM 학습/정렬/평가 및 LLM 보안/프라이버시 영역에서 어떤 개념, 공격면, 평가 기준을 우선적으로 정리해야 하는가이다. 특히 LLM의 기본 구조, Pretraining, instruction tuning, alignment, RLHF와 preference optimization 개념와 LLM 보안·프라이버시 위협, Training data extraction, Prompt injection가 서로 만나는 지점을 확인하는 데 초점을 둔다.
+LLM이 보편적 인터페이스가 되면서 어떤 보안·프라이버시 취약성이 발생하고, 이를 어떤 공격과 방어 범주로 체계화할 수 있는가를 다룬다.
 
 ## 4. 핵심 개념
 
-| 개념 | 설명 | 기말 논문 연결 |
-|---|---|---|
-| LLM의 기본 구조 | 주차 AI 원리의 출발점이며 모델 또는 시스템을 이해하는 기본 단위이다. | 배경 이론 |
-| Pretraining, instruction tuning, alignment | 성능, 일반화, 효율 또는 신뢰성을 설명하는 보조 축이다. | 분석 기준 |
-| LLM 보안·프라이버시 위협 | 보안 위협을 식별하기 위한 대표 공격면이다. | 위협모형 |
-| Training data extraction | 방어와 평가 프로토콜을 설계할 때 비교해야 하는 요소이다. | 평가방법 |
+- Security challenge: jailbreak, prompt injection, data poisoning, model misuse.
+- Privacy challenge: PII leakage, memorization, membership inference, training data exposure.
+- Defense mechanism: filtering, alignment, privacy-preserving learning, monitoring, governance.
 
-## 5. 방법론
+## 5. 보안 관점 분석
 
-이 문헌은 문헌조사와 분류체계 정리을 통해 기존 연구를 묶어 읽을 수 있게 한다. 본 보고서에서는 논문 제목, 프롬프트의 논문 패킷 정보, 로컬 PDF 존재 여부를 기준으로 요약했으며, 세부 실험값이나 DOI는 최종 원문 대조 단계에서 확인한다.
+P02는 W07 위협모형에서 protected assets와 attack category를 정리하는 핵심 근거다. 다만 공격 절차를 재현하지 않고, 보고서에서는 synthetic prompt category와 추상 지표로만 ASR, privacy leakage, refusal quality를 설명한다.
 
-## 6. 주요 결과
+## 6. 검증 메모
 
-핵심 개념, 공격면, 평가 기준, 향후 연구과제를 체계화한다. 수치 결과를 새로 만들지 않기 위해 본 요약에서는 정량값을 적지 않았고, 원문에서 직접 확인되는 항목만 최종 보고서에 반영하도록 남겨 둔다.
+현재 P02는 arXiv:2402.00888 및 ACM CSUR DOI `10.1145/3712001` 기준으로 확인했다. 강의계획서의 `Ankur Das et al.` 표기는 공식 메타데이터의 `Badhan Chandra Das et al.`과 다르므로 최종 제출 전 확인 필요 상태를 유지한다.
 
-## 7. 보안 관점 분석
+## 7. 기말 논문 활용
 
-이 논문은 데이터 추출, 프롬프트 기반 공격, 소프트웨어 보안 접점을 이해하기 위한 배경 문헌으로 활용된다. 공격자의 능력, 방어자의 관측 가능성, 평가 데이터의 한계, 재현성 조건을 함께 정리해야 실제 보안 연구로 이어질 수 있다.
-
-## 8. 한계와 오픈문제
-
-원문 정밀 독해 전에는 세부 실험 설정, 데이터셋, DOI, 인용 관계를 확정할 수 없다. 또한 survey 성격의 문헌은 실제 재현 실험보다는 분류체계와 연구 공백 파악에 더 적합하므로, 기말 논문에서는 별도 평가 프로토콜로 보완해야 한다.
-
-## 9. 기말 논문에 반영할 부분
-
-P02는 LLM 학습/정렬/평가 및 LLM 보안/프라이버시 연구에서 개념 정의, 위협 분류, 평가 지표 후보를 정리하는 근거로 반영한다. 특히 공격-방어-평가 관점을 연결하는 보안 분석 틀을 관련연구와 연구방법 장에 연결한다.
+LLM/RAG 시스템의 threat taxonomy, privacy leakage 평가축, defense category를 설계할 때 기본 분류표로 활용한다.

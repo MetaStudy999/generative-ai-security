@@ -1,21 +1,28 @@
-# 위협모형
+# W07 위협모형
 
 | 항목 | 내용 |
 |---|---|
-| 대상 시스템 | LLM 학습/정렬/평가 및 LLM 보안/프라이버시를 사용하는 ML/AI 시스템 |
-| 보호 자산 | 학습데이터, 모델 파라미터, 입력 컨텍스트, 출력 결과, 평가 로그, 사용자 정보 |
-| 공격자 | 외부 공격자, 악의적 데이터 제공자, 내부자, API 남용자, 공급망 참여자 중 주차 주제에 해당하는 행위자 |
-| 공격자의 지식 | White-box, Gray-box, Black-box 조건을 구분 |
-| 공격자의 능력 | LLM 보안·프라이버시 위협, Training data extraction, Prompt injection, Jailbreak, System prompt leakage |
-| 공격 경로 | 데이터 수집, 학습, 평가, 배포, 추론, 모니터링, 재학습 단계 |
-| 공격 성공 조건 | 성능 저하, 오분류, 민감정보 노출, 평가 왜곡, 보안 정책 우회 |
-| 방어자 가정 | 입력/데이터 검증, 로그 기록, 설정 파일 보존, 재현 가능한 평가 실행 가능 |
-| 제외 범위 | 실제 서비스 침해, 실제 개인정보 사용, 무단 API 대량 질의, 악용 가능한 공격 절차 |
+| 대상 시스템 | LLM 기반 QA, RAG 시스템, code generation LLM, multimodal LLM |
+| 보호 자산 | training data, system prompt, user prompt, retrieval context, model output, code artifact, logs, benchmark set |
+| 공격자 | 외부 사용자, 악의적 문서 제공자, prompt/context 관찰자, log 관찰자, 내부자, 공급망 참여자 |
+| 공격자의 지식 | black-box, gray-box, prompt observer, log observer 조건을 구분 |
+| 공격자의 능력 | prompt manipulation, context injection, repeated queries, sensitive request formulation, unsafe code request |
+| 공격 경로 | 데이터 수집, pretraining, instruction tuning, alignment, retrieval, inference, code generation, logging, benchmark evaluation |
+| 공격 성공 조건 | unsafe answer, privacy leakage, prompt leakage, insecure code generation, benchmark contamination, audit failure |
+| 방어/점검 | refusal policy, input/output filtering, code review, log audit, evaluation dataset governance, seed/config/output 보존 |
+| 제외 범위 | actual jailbreak reproduction, personal data extraction, unauthorized service probing, exploit instruction generation |
+
+## W07 안전 범위
+
+- 실제 LLM/API 호출은 수행하지 않는다.
+- 실제 개인정보 추출, 실제 jailbreak 재현, 무단 서비스 질의, exploit instruction은 포함하지 않는다.
+- 실험은 synthetic prompt category와 rule-based toy guard score simulator로 평가 형식만 검증한다.
+- ASR, privacy leakage, code vulnerability rate는 실제 공격 성공률이나 실제 모델 위험 확률이 아니라 toy score 기반 기록값이다.
 
 ## 연구문제 후보
 
-RQ1. LLM 학습/정렬/평가 및 LLM 보안/프라이버시 생명주기에서 가장 우선적으로 보증해야 할 자산은 무엇인가?
+RQ1. LLM/RAG 기반 AI 시스템에서 prompt, context, output, code artifact, log, benchmark를 보호 자산으로 함께 볼 때 최소 위협모형은 어떻게 구성되는가?
 
-RQ2. LLM 보안·프라이버시 위협, Training data extraction는 어느 단계에서 발생하며 어떤 지표로 측정할 수 있는가?
+RQ2. Prompt attack simulation과 privacy-risk prompt 조건에서 ASR, privacy leakage, refusal quality는 어떤 trade-off를 보이는가?
 
-RQ3. 성능, 보안성, 재현성을 함께 평가하기 위한 최소 실험 프로토콜은 어떻게 설계할 수 있는가?
+RQ3. Code security prompts에서 code vulnerability rate와 over-refusal을 동시에 기록해야 하는 이유는 무엇인가?

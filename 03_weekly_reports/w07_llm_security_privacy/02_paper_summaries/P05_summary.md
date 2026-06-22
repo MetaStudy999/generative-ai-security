@@ -1,50 +1,37 @@
-# 논문 요약
+# 논문 요약: P05
 
 ## 1. 서지정보
 
 | 항목 | 내용 |
 |---|---|
-| 논문 제목 | When Software Security Meets Large Language Models: A Survey |
-| 저자 | Xiaogang Zhu et al. |
-| 학술지/학회 | IEEE/CAA Journal of Automatica Sinica |
-| 연도 | 2025 |
-| DOI/URL | `https://doi.org/10.1109/JAS.2024.124971` |
-| PDF 파일명 | 05_Zhu_et_al_2025_Software_Security_Meets_LLMs.pdf |
-| 검증 상태 | 로컬 PDF 기준 DOI와 서지정보 확인, 세부 인용은 최종 원문 대조 필요 |
+| 논문명 | When Software Security Meets Large Language Models: A Survey |
+| 저자 | Xiaogang Zhu, Wei Zhou, Qing-Long Han, Wanlun Ma, Sheng Wen, Yang Xiang |
+| 출판정보 | IEEE/CAA Journal of Automatica Sinica, 12(2), pp. 317-334, 2025 |
+| DOI/URL | `https://doi.org/10.1109/JAS.2024.124971`; IEEE Xplore `https://ieeexplore.ieee.org/document/10846956/` |
+| 검증 상태 | DOI, 권호, 호수, 쪽수, 출판연도 확인. 강의계획서의 `Shujun Li et al.` 표기는 공식 저자 목록과 불일치하여 확인 필요 |
 
 ## 2. 한 문장 요약
 
-> 이 논문은 데이터 추출, 프롬프트 기반 공격, 소프트웨어 보안 접점와 관련된 위협 분류 문제를 문헌조사와 분류체계 정리 방법으로 다루며, 공격-방어-평가 관점을 연결하는 보안 분석 틀을 기말 연구에 반영할 수 있게 해준다.
+Code LLM은 fuzzing, unit test, program repair, bug detection, bug triage를 지원하지만 insecure code generation과 flawed repair 위험도 함께 평가해야 한다[5].
 
 ## 3. 연구문제
 
-이 논문에서 기말 연구와 연결되는 질문은 LLM 학습/정렬/평가 및 LLM 보안/프라이버시 영역에서 어떤 개념, 공격면, 평가 기준을 우선적으로 정리해야 하는가이다. 특히 LLM의 기본 구조, Pretraining, instruction tuning, alignment, RLHF와 preference optimization 개념와 LLM 보안·프라이버시 위협, Training data extraction, Prompt injection가 서로 만나는 지점을 확인하는 데 초점을 둔다.
+LLM을 software security workflow에 어떻게 통합할 수 있으며, 각 단계에서 어떤 자동화 가능성과 보안 위험이 생기는가를 다룬다.
 
 ## 4. 핵심 개념
 
-| 개념 | 설명 | 기말 논문 연결 |
-|---|---|---|
-| LLM의 기본 구조 | 주차 AI 원리의 출발점이며 모델 또는 시스템을 이해하는 기본 단위이다. | 배경 이론 |
-| Pretraining, instruction tuning, alignment | 성능, 일반화, 효율 또는 신뢰성을 설명하는 보조 축이다. | 분석 기준 |
-| LLM 보안·프라이버시 위협 | 보안 위협을 식별하기 위한 대표 공격면이다. | 위협모형 |
-| Training data extraction | 방어와 평가 프로토콜을 설계할 때 비교해야 하는 요소이다. | 평가방법 |
+- Software testing: fuzzing, unit test generation, bug reproduction.
+- Software analysis: bug detection, bug triage, program repair.
+- Code LLM risk: insecure code generation, vulnerable patch, false sense of security, prompt-dependent repair.
 
-## 5. 방법론
+## 5. 보안 관점 분석
 
-이 문헌은 문헌조사와 분류체계 정리을 통해 기존 연구를 묶어 읽을 수 있게 한다. 본 보고서에서는 논문 제목, 프롬프트의 논문 패킷 정보, 로컬 PDF 존재 여부를 기준으로 요약했으며, 세부 실험값이나 DOI는 최종 원문 대조 단계에서 확인한다.
+P05는 W07 실험의 code security prompts 조건과 직접 연결된다. code vulnerability rate만 낮추는 것이 아니라 정상 보안 코딩 지원을 과도하게 거절하는 over-refusal도 함께 기록해야 한다.
 
-## 6. 주요 결과
+## 6. 검증 메모
 
-핵심 개념, 공격면, 평가 기준, 향후 연구과제를 체계화한다. 수치 결과를 새로 만들지 않기 위해 본 요약에서는 정량값을 적지 않았고, 원문에서 직접 확인되는 항목만 최종 보고서에 반영하도록 남겨 둔다.
+공식 DOI 기준 저자 목록은 Xiaogang Zhu, Wei Zhou, Qing-Long Han, Wanlun Ma, Sheng Wen, Yang Xiang이다. 강의계획서의 Shujun Li 표기는 현재 확인 자료와 대응되지 않으므로 확인 필요로 유지한다.
 
-## 7. 보안 관점 분석
+## 7. 기말 논문 활용
 
-이 논문은 데이터 추출, 프롬프트 기반 공격, 소프트웨어 보안 접점을 이해하기 위한 배경 문헌으로 활용된다. 공격자의 능력, 방어자의 관측 가능성, 평가 데이터의 한계, 재현성 조건을 함께 정리해야 실제 보안 연구로 이어질 수 있다.
-
-## 8. 한계와 오픈문제
-
-원문 정밀 독해 전에는 세부 실험 설정, 데이터셋, DOI, 인용 관계를 확정할 수 없다. 또한 survey 성격의 문헌은 실제 재현 실험보다는 분류체계와 연구 공백 파악에 더 적합하므로, 기말 논문에서는 별도 평가 프로토콜로 보완해야 한다.
-
-## 9. 기말 논문에 반영할 부분
-
-P05는 LLM 학습/정렬/평가 및 LLM 보안/프라이버시 연구에서 개념 정의, 위협 분류, 평가 지표 후보를 정리하는 근거로 반영한다. 특히 공격-방어-평가 관점을 연결하는 보안 분석 틀을 관련연구와 연구방법 장에 연결한다.
+Code LLM 보안 평가에서 취약 코드 생성률, 수정 품질, bug triage 품질, refusal/over-refusal을 함께 보는 평가표 설계에 활용한다.

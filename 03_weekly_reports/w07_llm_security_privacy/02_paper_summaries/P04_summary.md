@@ -1,50 +1,38 @@
-# 논문 요약
+# 논문 요약: P04
 
 ## 1. 서지정보
 
 | 항목 | 내용 |
 |---|---|
-| 논문 제목 | A survey on multimodal large language models |
-| 저자 | Shukang Yin et al. |
-| 학술지/학회 | IEEE Transactions on Pattern Analysis and Machine Intelligence 표기 원고 / arXiv |
-| 연도 | 2024 |
-| DOI/URL | `https://arxiv.org/abs/2306.13549` |
-| PDF 파일명 | 04_Yin_et_al_2024_Multimodal_LLMs_Survey.pdf |
-| 검증 상태 | 로컬 PDF 기준 arXiv 식별자 확인, 공식 권호/DOI 재검증 필요 |
+| 논문명 | A survey on multimodal large language models |
+| 저자 | Shukang Yin, Chaoyou Fu, Sirui Zhao, Ke Li, Xing Sun, Tong Xu, Enhong Chen |
+| 출판정보 | National Science Review, 11(12), Article nwae403, 2024 |
+| DOI/URL | `https://doi.org/10.1093/nsr/nwae403`; arXiv `https://arxiv.org/abs/2306.13549` |
+| 검증 상태 | NSR 2024 공식판 확인. 강의계획서의 `Yongtao Yin et al.` 표기는 공식 저자 목록과 불일치하여 확인 필요 |
 
 ## 2. 한 문장 요약
 
-> 이 논문은 LLM 학습, 추론, 정렬, 평가 프레임워크의 핵심 원리와 적용 범위 문제를 문헌조사와 분류체계 정리 방법으로 다루며, 기말 연구의 배경 이론과 평가축을 기말 연구에 반영할 수 있게 해준다.
+Multimodal LLM은 image-text alignment, instruction tuning, multimodal benchmark, hallucination 문제가 결합되어 텍스트 LLM보다 더 넓은 공격면을 갖는다[4].
 
 ## 3. 연구문제
 
-이 논문에서 기말 연구와 연결되는 질문은 LLM 학습/정렬/평가 및 LLM 보안/프라이버시 영역에서 어떤 개념, 공격면, 평가 기준을 우선적으로 정리해야 하는가이다. 특히 LLM의 기본 구조, Pretraining, instruction tuning, alignment, RLHF와 preference optimization 개념와 LLM 보안·프라이버시 위협, Training data extraction, Prompt injection가 서로 만나는 지점을 확인하는 데 초점을 둔다.
+MLLM의 구조, 학습 전략, 평가 방법, multimodal hallucination, multimodal reasoning 기술을 어떻게 체계화할 수 있는가를 다룬다.
 
 ## 4. 핵심 개념
 
-| 개념 | 설명 | 기말 논문 연결 |
-|---|---|---|
-| LLM의 기본 구조 | 주차 AI 원리의 출발점이며 모델 또는 시스템을 이해하는 기본 단위이다. | 배경 이론 |
-| Pretraining, instruction tuning, alignment | 성능, 일반화, 효율 또는 신뢰성을 설명하는 보조 축이다. | 분석 기준 |
-| LLM 보안·프라이버시 위협 | 보안 위협을 식별하기 위한 대표 공격면이다. | 위협모형 |
-| Training data extraction | 방어와 평가 프로토콜을 설계할 때 비교해야 하는 요소이다. | 평가방법 |
+- Architecture: modality encoder, connector, LLM, optional generator.
+- Training: alignment pretraining, instruction tuning, multimodal data construction.
+- Evaluation: visual QA, hallucination benchmark, multimodal robustness.
+- Risk: multimodal prompt injection, visual context leakage, hallucination-driven unsafe answer.
 
-## 5. 방법론
+## 5. 보안 관점 분석
 
-이 문헌은 문헌조사와 분류체계 정리을 통해 기존 연구를 묶어 읽을 수 있게 한다. 본 보고서에서는 논문 제목, 프롬프트의 논문 패킷 정보, 로컬 PDF 존재 여부를 기준으로 요약했으며, 세부 실험값이나 DOI는 최종 원문 대조 단계에서 확인한다.
+P04는 W07의 LLM 보안 평가를 RAG와 multimodal context로 확장하는 연결부다. 이미지, 문서, OCR, GUI context가 prompt와 결합되면 기존 text-only prompt injection보다 검증과 logging이 어려워진다.
 
-## 6. 주요 결과
+## 6. 검증 메모
 
-핵심 개념, 공격면, 평가 기준, 향후 연구과제를 체계화한다. 수치 결과를 새로 만들지 않기 위해 본 요약에서는 정량값을 적지 않았고, 원문에서 직접 확인되는 항목만 최종 보고서에 반영하도록 남겨 둔다.
+로컬 PDF 첫 페이지에는 IEEE TPAMI 표기 원고/arXiv가 포함되어 있으나, DOI 기준 공식 출판판은 National Science Review 11(12), Article nwae403이다. `Yongtao Yin` 표기는 확인되지 않았으므로 최종 제출 전 강의계획서 원문 확인이 필요하다.
 
-## 7. 보안 관점 분석
+## 7. 기말 논문 활용
 
-이 논문은 데이터 추출, 프롬프트 기반 공격, 소프트웨어 보안 접점을 이해하기 위한 배경 문헌으로 활용된다. 공격자의 능력, 방어자의 관측 가능성, 평가 데이터의 한계, 재현성 조건을 함께 정리해야 실제 보안 연구로 이어질 수 있다.
-
-## 8. 한계와 오픈문제
-
-원문 정밀 독해 전에는 세부 실험 설정, 데이터셋, DOI, 인용 관계를 확정할 수 없다. 또한 survey 성격의 문헌은 실제 재현 실험보다는 분류체계와 연구 공백 파악에 더 적합하므로, 기말 논문에서는 별도 평가 프로토콜로 보완해야 한다.
-
-## 9. 기말 논문에 반영할 부분
-
-P04는 LLM 학습/정렬/평가 및 LLM 보안/프라이버시 연구에서 개념 정의, 위협 분류, 평가 지표 후보를 정리하는 근거로 반영한다. 특히 기말 연구의 배경 이론과 평가축을 관련연구와 연구방법 장에 연결한다.
+RAG 문서뿐 아니라 이미지·문서·GUI context가 들어오는 AI 시스템의 privacy leakage, hallucination, context injection 위험을 설명할 때 활용한다.

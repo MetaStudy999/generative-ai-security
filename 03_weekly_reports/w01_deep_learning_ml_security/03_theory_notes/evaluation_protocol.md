@@ -39,3 +39,15 @@ W01 평가방법은 정상 성능, 보안 강건성, 프라이버시 위험, 재
 - Clean 성능이 높아도 robust 성능이 낮으면 보안성 주장은 제한한다.
 - Robust 성능이 좋아도 privacy leakage가 크면 기밀성 관점의 위험을 별도로 적는다.
 - 실험값이 없으면 “실행 전”으로 표시하고, 문헌 기반 분석과 정량 실험을 혼동하지 않는다.
+- P04는 현재 arXiv 논문 기준으로 정리되어 있으므로, 강의계획서 지정 IEEE Communications Surveys & Tutorials 논문과 동일 여부를 최종 제출 전 확인한다.
+- 공개 GitHub 저장소에서는 출판사 PDF 원문 대신 DOI/URL, 서지정보, 요약만 남기는 것을 원칙으로 한다.
+
+## 6. W01 outputs 기준 결과
+
+| 조건 | Accuracy | Precision | Recall | F1 | 비고 |
+|---|---:|---:|---:|---:|---|
+| Clean baseline | 0.869444 | 0.867403 | 0.872222 | 0.869806 | `metrics_summary.csv` 기준 |
+| Label-noise training | 0.838889 | 0.827957 | 0.855556 | 0.841530 | 126개 training label flip |
+| Toy feature perturbation | 0.844444 | 0.848315 | 0.838889 | 0.843575 | Gaussian feature noise |
+
+Privacy-safe audit은 train accuracy 0.857143, test accuracy 0.869444, train-test gap -0.012301, risk label `low_overfitting_signal`로 기록되었다. 이는 synthetic data의 과적합/confidence 신호 점검이며 실제 membership inference 공격 결과가 아니다.

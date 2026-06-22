@@ -26,7 +26,18 @@
 2. Robustness와 privacy는 서로 다른 보안 축이므로 한 지표로 합치면 안 된다.
 3. Survey 기반 주차라도 DOI, PDF, config, seed, 결과표 상태를 보존하면 재현성 기여를 만들 수 있다.
 4. 악용 가능성이 있는 공격은 toy/public data와 방어 중심 평가로 제한해야 한다.
+5. P04는 현재 arXiv 대체 논문 기준이므로 최종 논문에서는 강의계획서 지정 IEEE COMST 논문과 동일 여부를 먼저 확정해야 한다.
 
 ## 4. 후속 주차 연결 방식
 
 W02 이후 논문은 W01의 생명주기 표에 계속 매핑한다. 예를 들어 data poisoning은 데이터/학습 단계, adversarial vision은 추론/검증 단계, federated learning은 학습/통신 단계, model stealing은 배포/API 단계에 배치한다.
+
+## 5. KCI/SCI 전환 메모
+
+| 구분 | 후보 |
+|---|---|
+| KCI 국문 제목 | ML 생명주기 기반 AI 보안 평가 프레임워크 연구 |
+| KCI 영문 제목 | A Study on an AI Security Evaluation Framework Based on the ML Lifecycle |
+| SCI 제목 | A Lifecycle-Based Evaluation Framework for AI Security: Integrating Clean Performance, Robustness, Privacy Leakage, and Reproducibility Evidence |
+| 핵심 contribution | clean performance, robust performance, privacy leakage, reproducibility evidence를 분리한 생명주기 기반 평가 구조 |
+| 확인 필요 | P04 최종 출판정보, 국내 참고문헌 3편 이상, 공개 저장소 PDF 보관 정책 |

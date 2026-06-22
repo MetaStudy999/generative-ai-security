@@ -5,7 +5,7 @@
 | P01 | Deep learning | Yann LeCun, Yoshua Bengio, Geoffrey Hinton | 2015 | Nature | https://doi.org/10.1038/nature14539 | 01_LeCun_Bengio_Hinton_2015_Deep_Learning.pdf | DOI/출판정보 확인 |
 | P02 | Assuring the Machine Learning Lifecycle: Desiderata, Methods, and Challenges | Rob Ashmore, Radu Calinescu, Colin Paterson | 2021 | ACM Computing Surveys | https://doi.org/10.1145/3453444 | 02_Ashmore_Calinescu_Paterson_2021_Assuring_ML_Lifecycle.pdf | DOI는 PDF 메타데이터와 DOI 링크로 확인 |
 | P03 | A Survey of Data Mining and Machine Learning Methods for Cyber Security Intrusion Detection | Anna L. Buczak, Erhan Guven | 2016 | IEEE Communications Surveys & Tutorials | https://doi.org/10.1109/COMST.2015.2494502 | 03_Buczak_Guven_2016_ML_Methods_for_Cyber_Security_Intrusion_Detection.pdf | DOI는 PDF 메타데이터로 확인 |
-| P04 | Adversarial Attacks and Defenses in Machine Learning-Powered Networks: A Contemporary Survey | Yulong Wang, Tong Sun, Shenghong Li, Xin Yuan, Wei Ni, Ekram Hossain, H. Vincent Poor | 2023 | arXiv preprint | https://doi.org/10.48550/arXiv.2303.06302 | 04_Wang_et_al_2023_Adversarial_Attacks_and_Defenses.pdf | arXiv DOI 확인, 출판사 DOI는 로컬 PDF에서 미확인 |
+| P04 | Adversarial Attacks and Defenses in Machine Learning-Powered Networks: A Contemporary Survey | Yulong Wang, Tong Sun, Shenghong Li, Xin Yuan, Wei Ni, Ekram Hossain, H. Vincent Poor | 2023 | arXiv preprint | https://doi.org/10.48550/arXiv.2303.06302 | 04_Wang_et_al_2023_Adversarial_Attacks_and_Defenses.pdf | arXiv DOI 확인. 강의계획서 지정 IEEE COMST 논문과 동일 여부 확인 필요 |
 | P05 | A Survey of Privacy Attacks in Machine Learning | Maria Rigaki, Sebastian Garcia | 2023 | ACM Computing Surveys | https://doi.org/10.1145/3624010 | 05_Rigaki_Garcia_2023_Survey_of_Privacy_Attacks_in_ML.pdf | arXiv와 관련 DOI 확인 |
 
 ## 논문 패킷 역할
@@ -21,5 +21,7 @@
 ## 검수 메모
 
 - P04는 프롬프트의 축약 제목과 로컬 파일명이 실제 arXiv 제목보다 짧다. 본 보고서에서는 arXiv 제목을 기준으로 정리했다.
+- 주의: 본 W01 보고서의 P04는 강의계획서 지정 IEEE Communications Surveys & Tutorials 논문과 동일 여부를 최종 확인하지 못했거나, 대체 arXiv 논문으로 정리되었다. 최종 제출 전 강의계획서 지정 논문으로 교체하거나, 대체 논문 사용 사유를 교수자에게 설명해야 한다.
 - DOI/URL은 확인 가능한 범위에서만 입력했다. 출판사 페이지 접근이 제한된 항목은 로컬 PDF 메타데이터 또는 arXiv의 DOI 정보를 검증 근거로 남겼다.
 - `SUBSTITUTE`가 포함된 PDF는 W01 폴더에는 없다.
+- PDF 원문 5개가 Git 추적 대상에 포함되어 있어 공개 저장소에서는 저작권 위험이 있다. 공개 제출 전 DOI/URL과 서지정보만 남기고 PDF 삭제 또는 비공개 보관을 검토해야 한다.

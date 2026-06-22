@@ -1,22 +1,29 @@
 # 제출 체크리스트
 
-| 항목 | 상태 | 비고 |
+## 최종 자기 점검표
+
+| 점검 항목 | 상태 | 비고 |
 |---|---|---|
-| 제출용 보고서 확인 | 완료 | `07_week_submission/w01_submission_report.md`, `07_week_submission/w01_submission_report.html` |
-| 최종 보고서 확인 | 완료 | `06_report/final/integrated_report_final.md` |
-| 논문 요약 5편 확인 | 완료 | `02_paper_summaries/P01_summary.md`-`P05_summary.md` |
-| 논문 비교표 확인 | 완료 | `02_paper_summaries/paper_matrix.md` |
-| 참고문헌 DOI/URL 확인 | 완료 | `01_papers/doi_check.md` |
-| AI 원리/보안 이슈 확인 | 완료 | `03_theory_notes/` |
-| Research Track 확인 | 완료 | 위협모형, 평가방법, 오픈문제 포함 |
-| 실험 설계 확인 | 완료 | `04_experiment/experiment_report.md` |
-| 실험 결과 확인 | 완료 | `04_experiment/outputs/run_log.md` |
-| 발표자료 확인 | 완료 | `09_presentation/presentation_report.md`, `presentation_report.html`, `presentation_slides.md`, `presentation_slides.html` |
-| AI 활용기록 확인 | 완료 | `05_ai_worklog/` |
-| 기말논문 연결 확인 | 완료 | `08_final_paper_bridge/` |
-| 파일명 확인 | 완료 | 영문, 숫자, 언더바 중심 |
+| 1장 한 문장 요약 작성 | 완료 |  |
+| 2장 학습 배경과 주차 목표 작성 | 완료 |  |
+| AI 원리 70% 정리 | 완료 |  |
+| 보안 이슈 30% 정리 | 완료 |  |
+| 논문 5편 요약 | 완료 |  |
+| 논문 5편 비교표 | 완료 |  |
+| Research Track 5요소 작성 | 완료 | 연구문제, 위협모형, 평가방법, 재현성, 오픈문제 |
+| P04 논문 지정 여부 검증 | 확인 필요 | arXiv P04와 강의계획서 지정 IEEE COMST 논문 동일 여부 미확정 |
+| 실험 outputs 파일 존재 확인 | 완료 | `metrics_summary.csv`, `results.json`, `run_log.md` 존재 |
+| 실험 결과와 보고서 수치 일치 | 완료 | outputs 기준으로 보고서 수치 반영 |
+| KCI 논문 형식 전환 작성 | 완료 |  |
+| SCI 논문 형식 전환 작성 | 완료 |  |
+| 본문 인용과 참고문헌 대응 | 완료 / 확인 필요 | P04 최종 출판정보 확인 필요 |
+| 표·그림 번호 정리 | 완료 | 표 1-7, 그림 1 |
+| AI 활용 고지 작성 | 완료 | `05_ai_worklog/ai_disclosure_draft.md` |
+| PDF 저작권 위험 점검 | 완료 / 조치 필요 | PDF 원문 5개가 Git 추적 중 |
+| 최종 사람이 검토할 항목 표시 | 완료 | P04, PDF, 국내 참고문헌, 작성일 |
 
 ## 제출 메모
 
-- W01은 문헌 기반 보고서와 safe toy evaluation 설계까지 완료했다.
-- 정량 실험 결과는 synthetic toy evaluation 기준이며 실제 시스템 성능으로 일반화하지 않는다.
+- W01은 문헌 기반 보고서와 synthetic 기반 안전 모의실험 설계까지 완료했다.
+- 정량 실험 결과는 outputs 파일 기준이며 실제 시스템 성능으로 일반화하지 않는다.
+- 최종 제출 확정 전 P04 지정 논문 동일 여부, 국내 참고문헌 보강, PDF 원문 공개 저장소 보관 여부를 사람이 검토해야 한다.

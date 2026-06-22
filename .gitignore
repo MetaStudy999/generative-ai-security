@@ -43,6 +43,7 @@ htmlcov/
 !**/outputs/
 !**/outputs/.gitkeep
 !**/outputs/README.md
+03_weekly_reports/**/01_papers/pdf/*.pdf
 **/results/*
 !**/results/
 !**/results/.gitkeep

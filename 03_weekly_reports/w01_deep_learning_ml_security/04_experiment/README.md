@@ -14,6 +14,10 @@
 - `configs/config.yaml`: seed, 데이터, 보안 범위, 결과 기록 상태
 - `outputs/`: 실행 후 결과 파일 저장 위치
 
+## config/code 정합성 메모
+
+`configs/config.yaml`의 `data.synthetic.n_redundant`와 `data.synthetic.n_classes`는 현재 버전에서는 기록용 필드다. `src/run_experiment.py`는 `n_samples`, `n_features`, `n_informative`, `class_sep`, `test_size`를 실제 synthetic data 생성에 사용하고, binary label은 score의 median threshold로 만든다. 결과 수치 변경을 피하기 위해 이번 보완에서는 실행 코드 로직을 바꾸지 않았다.
+
 ## 의존성 설치 원칙
 
 WSL 호스트에는 uv를 설치하지 않는다. Dockerfile은 `python:3.11-slim` 기반에서 `COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/`로 uv를 포함하고, 주차별 Python 패키지는 컨테이너 내부에서 `uv sync`로 설치한다. W01은 별도 서드파티 패키지가 없으므로 `pyproject.toml`의 의존성 배열을 비워 둔다.

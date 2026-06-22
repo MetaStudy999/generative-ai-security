@@ -44,7 +44,7 @@ W01 실습의 목표는 딥러닝/ML 보안 평가에서 어떤 지표를 기록
 
 ## 6. 실행 결과
 
-실행 로그는 `outputs/run_log.md`에 저장했다.
+실행 로그는 `outputs/run_log.md`에 저장했다. `outputs/metrics_summary.csv`, `outputs/results.json`, `outputs/run_log.md` 세 파일이 존재하며, 아래 수치는 outputs 파일 기준으로 확인했다.
 
 | 조건 | Accuracy | Precision | Recall | F1 | 보안 지표 | 메모 |
 |---|---:|---:|---:|---:|---:|---|
@@ -56,6 +56,7 @@ W01 실습의 목표는 딥러닝/ML 보안 평가에서 어떤 지표를 기록
 ## 7. 재현성 점검
 
 - `configs/config.yaml`에 seed, 데이터 유형, 안전 범위, 결과 기록 상태를 둔다.
+- `configs/config.yaml`의 `n_redundant`, `n_classes`는 현재 버전에서는 기록용 필드이며 실행 코드의 데이터 생성 로직에는 직접 반영되지 않는다.
 - Dockerfile 내부 uv sync와 pyproject.toml로 실행 환경을 고정한다.
 - 결과값은 `outputs/metrics_summary.csv`, `outputs/results.json`, `outputs/run_log.md`에 보존한다.
 - 실행 소스는 외부 패키지 없이 재실행 가능하도록 표준 라이브러리만 사용한다.

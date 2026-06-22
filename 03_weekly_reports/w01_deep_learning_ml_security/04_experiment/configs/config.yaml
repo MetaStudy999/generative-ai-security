@@ -11,7 +11,9 @@ data:
     n_samples: 1200
     n_features: 20
     n_informative: 8
+    # 기록용 필드: 현재 run_experiment.py는 n_redundant를 생성 로직에 직접 반영하지 않는다.
     n_redundant: 4
+    # 기록용 필드: 현재 run_experiment.py는 median threshold로 binary label을 만들며 n_classes를 직접 반영하지 않는다.
     n_classes: 2
     class_sep: 1.2
     test_size: 0.3

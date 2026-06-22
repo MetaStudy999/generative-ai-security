@@ -3,10 +3,10 @@
 | ID | 논문 제목 | DOI | URL | 상태 | 검증 근거 |
 |---|---|---|---|---|---|
 | P01 | Deep learning | 10.1038/nature14539 | https://doi.org/10.1038/nature14539 | 확인 | Nature DOI 랜딩 페이지에서 제목, 저자, 권호, 페이지 확인 |
-| P02 | Assuring the Machine Learning Lifecycle: Desiderata, Methods, and Challenges | 10.1145/3453444 | https://doi.org/10.1145/3453444 | 확인 | 로컬 PDF 내부 DOI 링크 및 ACM CSUR 논문 메타데이터 확인 |
+| P02 | Assuring the Machine Learning Lifecycle: Desiderata, Methods, and Challenges | 10.1145/3453444 | https://doi.org/10.1145/3453444 | 부분 확인 | 로컬 accepted version PDF 내부 DOI 확인. 출판사 랜딩 페이지 재확인 필요 |
 | P03 | A Survey of Data Mining and Machine Learning Methods for Cyber Security Intrusion Detection | 10.1109/COMST.2015.2494502 | https://doi.org/10.1109/COMST.2015.2494502 | 확인 | 로컬 PDF XMP 메타데이터에 IEEE COMST, 18(2), 1153-1176 및 DOI 확인 |
-| P04 | Adversarial Attacks and Defenses in Machine Learning-Powered Networks: A Contemporary Survey | 10.48550/arXiv.2303.06302 | https://arxiv.org/abs/2303.06302 | 확인 | arXiv 제목, 저자, 제출일, arXiv DOI 확인 |
-| P05 | A Survey of Privacy Attacks in Machine Learning | 10.1145/3624010 | https://doi.org/10.1145/3624010 | 확인 | arXiv v3의 related DOI와 ACM CSUR accepted note 확인 |
+| P04 | Adversarial Attacks and Defenses in Machine Learning-Powered Networks: A Contemporary Survey | 10.48550/arXiv.2303.06302 | https://arxiv.org/abs/2303.06302 | arXiv 확인, 강의계획서 지정 논문 동일 여부 확인 필요 | arXiv 제목, 저자, 제출일, arXiv DOI 확인. IEEE COMST 25(4), 2245-2298 논문과 동일 여부는 미확정 |
+| P05 | A Survey of Privacy Attacks in Machine Learning | 10.1145/3624010 | https://doi.org/10.1145/3624010 | 부분 확인 | 로컬 arXiv v3/ACM 양식 PDF 확인. 출판사 랜딩 페이지 재확인 필요 |
 
 ## 검증 원칙
 
@@ -14,3 +14,11 @@
 2. 프롬프트 제목과 원문 제목이 다를 경우 원문 제목을 우선하고, 차이는 검수 메모에 남긴다.
 3. 실험값, 데이터셋별 수치, 인용 횟수는 이번 주차 보고서에서 새로 만들지 않는다.
 4. 최종 논문 작성 시에는 참고문헌 형식을 학과 또는 제출 저널 양식에 맞춰 다시 정리한다.
+5. 공개 GitHub 저장소에는 출판사 PDF 원문 대신 DOI/URL, 서지정보, 요약을 남기는 것을 원칙으로 한다.
+
+## P04 동일 여부 검증 메모
+
+- 강의계획서 지정 정보: Y. Wang et al., "Adversarial Attacks and Defenses in Machine Learning: A Survey", IEEE Communications Surveys & Tutorials, 25(4), 2023, pp. 2245-2298.
+- 현재 W01 P04 정보: Yulong Wang et al., "Adversarial Attacks and Defenses in Machine Learning-Powered Networks: A Contemporary Survey", arXiv:2303.06302, DOI 10.48550/arXiv.2303.06302.
+- 로컬 P04 PDF 첫 페이지와 arXiv 페이지는 현재 W01 P04 제목, 저자, arXiv 번호를 확인시켜 준다.
+- IEEE COMST 최종 출판 정보, DOI, 권호, 페이지는 현재 로컬 PDF와 접근 가능한 공개 페이지에서 확인하지 못했으므로 `확인 필요`로 남긴다.

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>W09 제출용 보고서</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.65; margin: 0; color: #172033; background: #f6f7f9; }
+    main { max-width: 1040px; margin: 0 auto; padding: 40px 20px 72px; background: #fff; }
+    h1 { font-size: 2.1rem; margin: 0 0 24px; }
+    h2 { margin-top: 36px; border-bottom: 2px solid #d8dee9; padding-bottom: 6px; }
+    table { border-collapse: collapse; width: 100%; margin: 14px 0 22px; font-size: 0.95rem; }
+    th, td { border: 1px solid #cfd6e4; padding: 9px 10px; vertical-align: top; }
+    th { background: #eaf0f8; }
+    code { background: #eef2f7; padding: 1px 4px; border-radius: 4px; }
+    .note { background: #f2f6ff; border-left: 4px solid #3867d6; padding: 12px 14px; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>W09 제출용 보고서</h1>
+  <h2>표지</h2>
+  <table><tr><th>항목</th><th>내용</th></tr><tr><td>주차</td><td>W09</td></tr><tr><td>보고서 제목</td><td>심층강화학습(DRL) &amp; 사이버보안 적용·보상조작</td></tr><tr><td>작성일</td><td>2026-06-22</td></tr><tr><td>문서 상태</td><td>제출용 통합본</td></tr><tr><td>실험 근거</td><td><code>04_experiment/outputs/run_log.md</code></td></tr></table>
+  <h2>초록</h2>
+  <p>본 보고서는 DRL의 MDP, Q-function, DQN, policy gradient, actor-critic, verification 개념을 정리하고, 이를 DRL 기반 사이버 방어 에이전트의 상태·행동·보상 설계 문제로 연결한다. synthetic toy cyber-defense 환경에서 tabular Q-learning을 실행한 결과, Manipulated reward 조건은 Average Reward 0.521167, Detection F1 0.617512, Safety Violation Rate 0.195000으로 기준 조건보다 나빠졌다.</p>
+  <p><strong>키워드:</strong> DRL, cyber defense, reward manipulation, reward hacking, safety violation, policy robustness</p>
+  <h2>AI 원리 70%와 보안 이슈 30%</h2>
+  <p>강화학습은 agent가 state를 관측하고 action을 선택한 뒤 reward를 받아 policy를 개선하는 순차 의사결정이다. 보안 관점에서는 reward manipulation, state poisoning, unsafe automated response가 핵심 위험이다.</p>
+  <table><tr><th>관점</th><th>관련 위협</th><th>W09 평가 연결</th></tr><tr><td>Integrity</td><td>reward manipulation, state poisoning</td><td>observed reward와 true reward 비교</td></tr><tr><td>Availability</td><td>정상 이벤트 과잉 격리</td><td>Safety Violation Rate</td></tr><tr><td>Safety</td><td>공격 이벤트 미대응</td><td>Detection F1, violation rate</td></tr><tr><td>Accountability</td><td>설명 불가능한 자동 대응</td><td>config, seed, run log</td></tr></table>
+  <h2>문헌 요약</h2>
+  <table><tr><th>ID</th><th>문헌</th><th>DOI/URL 상태</th><th>활용</th></tr><tr><td>P01</td><td>Arulkumaran et al., A Brief Survey of Deep Reinforcement Learning</td><td>10.1109/MSP.2017.2743240</td><td>DRL 원리</td></tr><tr><td>P02</td><td>Kiran et al., Deep Reinforcement Learning for Autonomous Driving</td><td>10.1109/TITS.2021.3054625</td><td>안전중요 자동화</td></tr><tr><td>P03</td><td>Nguyen and Reddi, Deep Reinforcement Learning for Cyber Security</td><td>10.1109/TNNLS.2021.3121870</td><td>cyber-defense 적용</td></tr><tr><td>P04</td><td>Adawadkar and Kulkarni, Cyber-security and reinforcement learning</td><td>10.1016/j.engappai.2022.105116</td><td>IDS/IPS, IoT, IAM 평가</td></tr><tr><td>P05</td><td>Landers and Doryab, Deep Reinforcement Learning Verification</td><td>10.1145/3596444</td><td>DRL verification</td></tr></table>
+  <h2>Research Track</h2>
+  <table><tr><th>항목</th><th>내용</th></tr><tr><td>연구문제</td><td>DRL 사이버 방어 에이전트의 보상조작은 방어 성능과 안전성에 어떤 영향을 미치는가</td></tr><tr><td>대상 시스템</td><td>DRL 기반 사이버 방어 에이전트</td></tr><tr><td>위협</td><td>reward manipulation, state observation manipulation, unsafe automated response</td></tr><tr><td>평가 지표</td><td>Average Reward, Detection F1, Safety Violation Rate, Policy Robustness</td></tr><tr><td>제외 범위</td><td>실제 시스템 침해, 실제 네트워크 공격, 개인정보, 무단 스캔, exploit 실행</td></tr></table>
+  <h2>실습/실험 결과</h2>
+  <table><tr><th>조건</th><th>Average Reward</th><th>Detection F1</th><th>Safety Violation Rate</th><th>Policy Robustness</th><th>해석</th></tr><tr><td>Normal reward</td><td>1.085250</td><td>0.840206</td><td>0.011667</td><td>0.838417</td><td>기준 조건</td></tr><tr><td>Manipulated reward</td><td>0.521167</td><td>0.617512</td><td>0.195000</td><td>0.325000</td><td>보상조작으로 true utility와 안전성 악화</td></tr><tr><td>Robust reward design</td><td>0.910833</td><td>0.780952</td><td>0.000000</td><td>0.709583</td><td>안전 위반 제거, 오탐 비용 증가</td></tr></table>
+  <p class="note">이 결과는 synthetic toy 실험의 평가 형식 검증용 수치다. 실제 IDS/IPS 제품, 실제 운영망, 실제 DRL neural policy 성능으로 일반화하지 않는다.</p>
+  <h2>기말논문 연결</h2>
+  <p>추천 주제는 “DRL 기반 사이버 방어 에이전트의 보상조작 위협과 안전성 평가 프레임워크”이다.</p>
+  <h2>AI 활용 고지</h2>
+  <p>Codex를 사용해 공통 지침 확인, 로컬 파일 점검, PDF 기반 서지 보정, synthetic toy 실험 코드 작성과 실행, 제출용 보고서 및 발표자료 작성을 수행했다. 정량값은 실행 로그, CSV, JSON과 일치하는 값만 사용했다.</p>
+  <h2>제출 전 점검표</h2>
+  <table><tr><th>점검 항목</th><th>상태</th></tr><tr><td>논문 요약 5편</td><td>완료</td></tr><tr><td>논문 비교표</td><td>완료</td></tr><tr><td>AI 원리/보안 이슈</td><td>완료</td></tr><tr><td>Research Track</td><td>완료</td></tr><tr><td>실험 코드/결과</td><td>완료</td></tr><tr><td>발표자료</td><td>완료</td></tr></table>
+</main>
+</body>
+</html>

@@ -1,0 +1,70 @@
+week: "W01"
+topic: "딥러닝 패러다임 & ML 보안 분류학"
+seed: 42
+status: "source_ready_results_recorded"
+
+data:
+  type: "public_or_synthetic"
+  personal_data: false
+  external_service_logs: false
+  synthetic:
+    n_samples: 1200
+    n_features: 20
+    n_informative: 8
+    n_redundant: 4
+    n_classes: 2
+    class_sep: 1.2
+    test_size: 0.3
+
+experiment:
+  clean_baseline: true
+  label_noise_or_toy_perturbation: true
+  privacy_safe_audit: true
+  results_recorded: true
+  result_policy: "실제 실행 로그가 있을 때만 정량값을 기록한다."
+  model:
+    type: "logistic_regression"
+    max_iter: 1000
+  label_noise:
+    enabled: true
+    flip_fraction: 0.15
+  toy_perturbation:
+    enabled: true
+    gaussian_noise_std: 0.35
+  privacy_audit:
+    enabled: true
+    train_test_gap_medium: 0.05
+    train_test_gap_high: 0.1
+
+metrics:
+  clean:
+    - accuracy
+    - precision
+    - recall
+    - f1
+  security:
+    - performance_drop
+    - robustness_gap
+    - leakage_risk_label
+  reproducibility:
+    - seed_recorded
+    - config_recorded
+    - docker_environment_recorded
+
+security_scope:
+  allowed:
+    - "toy evaluation"
+    - "literature-based risk analysis"
+    - "public_or_synthetic_data_only"
+  disallowed:
+    - "actual system compromise"
+    - "personal data use"
+    - "unauthorized attack or API querying"
+    - "malware execution"
+
+outputs:
+  directory: "outputs"
+  files:
+    - "metrics_summary.csv"
+    - "results.json"
+    - "run_log.md"

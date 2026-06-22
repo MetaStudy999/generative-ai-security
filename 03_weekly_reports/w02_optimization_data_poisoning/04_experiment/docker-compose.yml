@@ -1,0 +1,7 @@
+services:
+  w02-optimization-data-poisoning:
+    build: .
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+    command: bash

@@ -1,0 +1,9 @@
+[project]
+name = "w08-rag-prompt-injection-experiment"
+version = "0.1.0"
+description = "Week 08 AI security experiment environment"
+requires-python = ">=3.11,<3.12"
+dependencies = []
+
+[tool.uv]
+package = false

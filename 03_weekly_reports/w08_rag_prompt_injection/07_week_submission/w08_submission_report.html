@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>W08 제출용 보고서</title>
+  <style>
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #111827; background: #f8fafc; line-height: 1.65; }
+    main { max-width: 980px; margin: 0 auto; padding: 48px 24px 72px; background: #fff; }
+    h1 { font-size: 2.2rem; margin: 0 0 24px; }
+    h2 { margin-top: 36px; border-bottom: 2px solid #e5e7eb; padding-bottom: 6px; }
+    table { border-collapse: collapse; width: 100%; margin: 14px 0 22px; font-size: 0.94rem; }
+    th, td { border: 1px solid #d1d5db; padding: 8px 10px; vertical-align: top; }
+    th { background: #eff6ff; }
+    code { background: #f3f4f6; padding: 2px 5px; border-radius: 4px; }
+    .note { background: #f9fafb; border-left: 4px solid #2563eb; padding: 12px 14px; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>W08 제출용 보고서</h1>
+  <h2>표지</h2>
+  <table><tr><th>항목</th><th>내용</th></tr><tr><td>주차</td><td>W08</td></tr><tr><td>보고서 제목</td><td>RAG·프롬프팅 프레임워크 &amp; 프롬프트 인젝션</td></tr><tr><td>작성일</td><td>2026-06-22</td></tr><tr><td>문서 상태</td><td>제출용 통합본</td></tr><tr><td>실험 근거</td><td><code>04_experiment/outputs/run_log.md</code></td></tr></table>
+  <h2>초록</h2>
+  <p>본 보고서는 RAG, GraphRAG, prompting framework의 기본 구조를 정리하고 prompt injection, indirect injection, RAG 문서 오염, tool misuse를 분석한다. Synthetic RAG document와 rule-based toy evaluator로 source filter와 human approval gate의 효과를 측정했다. Poisoned document 조건의 ASR은 0.575000이었고 Source filter 적용 후 0.050000, Human approval 적용 후 0.025000으로 낮아졌다.</p>
+  <p><strong>키워드:</strong> RAG, GraphRAG, prompt injection, indirect injection, source verification, tool misuse, human approval</p>
+  <h2>AI 원리 70%와 보안 이슈 30%</h2>
+  <p>RAG는 외부 근거를 검색해 LLM context에 넣고 답변을 생성한다. GraphRAG는 node, edge, path, subgraph 같은 관계 구조를 활용한다. 보안상 핵심 문제는 검색 context와 tool instruction의 trust boundary가 흐려질 때 indirect injection과 tool misuse가 발생한다는 점이다.</p>
+  <table><tr><th>관점</th><th>관련 위협</th><th>평가 연결</th></tr><tr><td>Integrity</td><td>indirect injection, document poisoning</td><td>ASR, faithfulness</td></tr><tr><td>Safety</td><td>unsafe advice in safety-critical domain</td><td>approval gate</td></tr><tr><td>Accountability</td><td>source verification failure</td><td>metadata, run log</td></tr></table>
+  <h2>문헌 요약</h2>
+  <table><tr><th>ID</th><th>문헌</th><th>DOI/URL 상태</th><th>활용</th></tr><tr><td>P01</td><td>Peng et al., Graph Retrieval-Augmented Generation</td><td>arXiv 2408.08921, DOI 미확정</td><td>GraphRAG workflow</td></tr><tr><td>P02</td><td>Zhu et al., Graph-Based Approaches and Functionalities in RAG</td><td>10.1145/3795880</td><td>graph 기능과 provenance</td></tr><tr><td>P03</td><td>Liu et al., Prompting Frameworks for LLMs</td><td>10.1145/3789253</td><td>framework 계층</td></tr><tr><td>P04</td><td>Geng et al., Prompt Injection Attacks on LLMs</td><td>10.32604/cmc.2025.074081</td><td>공격·방어 taxonomy</td></tr><tr><td>P05</td><td>Lee et al., Vulnerability of LLMs to Prompt Injection</td><td>10.1001/jamanetworkopen.2025.49963</td><td>safety-critical 사례</td></tr></table>
+  <h2>Research Track</h2>
+  <table><tr><th>항목</th><th>내용</th></tr><tr><td>연구문제</td><td>source verification과 human approval gate가 RAG indirect injection과 tool misuse를 줄일 수 있는가</td></tr><tr><td>대상 시스템</td><td>RAG, Graph RAG, tool-using agent</td></tr><tr><td>평가 지표</td><td>Retrieval Relevance, ASR, Source Verification, Tool Misuse Rate, Faithfulness, Answer Rate</td></tr><tr><td>제외 범위</td><td>실제 외부 시스템 공격, 실제 개인정보 사용, live tool 호출</td></tr></table>
+  <h2>실험 결과</h2>
+  <table><tr><th>조건</th><th>Retrieval Relevance</th><th>ASR</th><th>Source Verification</th><th>Tool Misuse Rate</th><th>Faithfulness</th><th>Answer Rate</th></tr><tr><td>Clean RAG</td><td>0.907887</td><td>0.000000</td><td>1.000000</td><td>0.000000</td><td>0.907613</td><td>0.950000</td></tr><tr><td>Poisoned document</td><td>0.690091</td><td>0.575000</td><td>0.275000</td><td>0.125000</td><td>0.458069</td><td>0.875000</td></tr><tr><td>Source filter 적용</td><td>0.776926</td><td>0.050000</td><td>1.000000</td><td>0.025000</td><td>0.778693</td><td>0.800000</td></tr><tr><td>Human approval 적용</td><td>0.764926</td><td>0.025000</td><td>1.000000</td><td>0.000000</td><td>0.840805</td><td>0.575000</td></tr></table>
+  <p class="note">이 결과는 synthetic toy 실험의 평가 형식 검증용 수치다. 실제 LLM 보안 성능이나 실제 RAG 제품의 안전성으로 일반화하지 않는다.</p>
+  <h2>기말논문 연결 및 AI 활용 고지</h2>
+  <p>추천 주제는 RAG 기반 생성형 AI 시스템에서 간접 프롬프트 인젝션 대응을 위한 출처 검증·승인 게이트 평가 프레임워크다. Codex를 사용해 공통 지침 확인, PDF 기반 서지 보정, synthetic 실험 코드 작성과 실행, 제출용 보고서 및 발표자료 작성을 수행했으며 정량값은 outputs 3종과 일치하는 값만 사용했다.</p>
+</main>
+</body>
+</html>

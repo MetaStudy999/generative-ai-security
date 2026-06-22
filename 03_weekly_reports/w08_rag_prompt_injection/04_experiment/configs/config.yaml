@@ -1,0 +1,19 @@
+week: "W08"
+topic: "RAG·프롬프팅 프레임워크 & 프롬프트 인젝션"
+seed: 42
+run_date: "2026-06-22"
+status: "executed"
+data:
+  type: "synthetic_rag_documents"
+  personal_data: false
+  n_per_condition: 40
+  top_k: 3
+experiment:
+  results_recorded: true
+  risk_threshold: 0.55
+  source_filter_block_rate: 0.82
+  human_approval_block_rate: 0.92
+  notes: "실제 LLM/API 호출 없이 synthetic RAG 문서와 rule-based evaluator로 실행했다."
+security_scope:
+  allowed: "synthetic RAG prompt-injection evaluation and defense logging"
+  disallowed: "actual system compromise, personal data use, unauthorized attack, live tool invocation"

@@ -1,0 +1,50 @@
+# 논문 요약
+
+## 1. 서지정보
+
+| 항목 | 내용 |
+|---|---|
+| 논문 제목 | Deep Reinforcement Learning for Autonomous Driving: A Survey |
+| 저자 | B. Ravi Kiran; Ibrahim Sobh; Victor Talpaert; Patrick Mannion; Ahmad A. Al Sallab; Senthil Yogamani; Patrick Perez |
+| 학술지/학회 | IEEE Transactions on Intelligent Transportation Systems |
+| 연도 | 2022 |
+| DOI/URL | https://doi.org/10.1109/TITS.2021.3054625 |
+| PDF 파일명 | 02_Kiran_et_al_2022_DRL_Autonomous_Driving_Survey.pdf |
+| 검증 상태 | 로컬 PDF 확인, DOI 확인 |
+
+## 2. 한 문장 요약
+
+> 이 논문은 자율주행에서 DRL 정책을 실제 시스템에 적용할 때의 시뮬레이터, 안전 검증, sim-to-real gap 문제를 정리하며, 사이버 방어 자동화에서도 운영 환경과 학습 환경의 차이를 평가해야 함을 시사한다.
+
+## 3. 연구문제
+
+자율주행은 perception, planning, control이 순차적으로 연결되는 안전중요 시스템이다. 이 문헌은 DRL이 decision and planning, controller learning, trajectory optimization에 어떻게 쓰이며, 실제 배포에서 어떤 검증 문제가 발생하는지를 묻는다.
+
+## 4. 핵심 개념
+
+| 개념 | 설명 | W09 연결 |
+|---|---|---|
+| Simulator | 위험한 실제 환경 대신 학습과 평가를 수행하는 공간이다. | toy cyber-defense 사용 근거 |
+| Safe RL | 보상을 최대화해도 안전 제약을 어기지 않도록 하는 접근이다. | safety violation rate |
+| Validation | 학습 정책이 실제 운용 조건에서 작동하는지 확인한다. | perturbed alert 평가 |
+| Sim-to-real gap | 시뮬레이션에서 좋은 정책이 실제 환경에서 실패하는 차이다. | synthetic 실험 일반화 한계 |
+
+## 5. 방법론
+
+자율주행 파이프라인의 구성 요소와 DRL 알고리즘 적용 영역을 survey 방식으로 정리한다. imitation learning, inverse RL, model-based/model-free RL, safe exploration, validation challenge를 함께 논의한다.
+
+## 6. 주요 결과
+
+DRL은 복잡한 순차 의사결정에 유용하지만, 안전중요 시스템에서는 simulator 품질, validation, safe exploration, credit assignment가 핵심 병목이다. 이는 사이버 방어 에이전트에서도 실제 네트워크가 아니라 synthetic 환경에서 먼저 평가해야 하는 이유가 된다.
+
+## 7. 보안 관점 분석
+
+자율주행의 안전성 논의는 자동화된 사이버 대응의 안전성으로 번역할 수 있다. 잘못된 자동 격리, 잘못된 패치, 과잉 대응은 보안 시스템에서도 availability와 safety 문제를 만든다.
+
+## 8. 한계와 오픈문제
+
+도메인이 자율주행이므로 IDS/IPS, IAM, cyber-defense의 구체적 공격면은 직접 다루지 않는다. W09에서는 이 논문을 안전한 자동화 정책과 검증 필요성의 비유적 근거로 제한해 사용한다.
+
+## 9. 기말 논문에 반영할 부분
+
+기말 논문에서 toy simulation의 한계, 실제 운영 환경 전이 문제, 안전 제약 기반 평가 지표를 설명하는 근거로 반영한다.

@@ -1,0 +1,121 @@
+<!--
+  공통 슬라이드 이동 스니펫
+  사용 위치: presentation_slides.html
+  전제: 각 슬라이드는 <section> 요소로 작성한다.
+-->
+<style>
+  html {
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+  }
+  section {
+    scroll-snap-align: start;
+  }
+  .slide-nav {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid #d1d5db;
+    border-radius: 999px;
+    box-shadow: 0 10px 30px rgba(17, 24, 39, 0.16);
+    z-index: 20;
+    backdrop-filter: blur(8px);
+  }
+  .slide-nav button {
+    width: 44px;
+    height: 44px;
+    border: 1px solid #9ca3af;
+    border-radius: 50%;
+    background: #111827;
+    color: white;
+    font-size: 26px;
+    line-height: 1;
+    cursor: pointer;
+  }
+  .slide-nav button:disabled {
+    cursor: not-allowed;
+    opacity: 0.35;
+  }
+  .slide-counter {
+    min-width: 62px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+    color: #111827;
+  }
+  @media (max-width: 720px) {
+    section { padding-bottom: 14vh; }
+    .slide-nav { right: 12px; bottom: 12px; }
+  }
+  @media print {
+    .slide-nav { display: none; }
+  }
+</style>
+
+<nav class="slide-nav" aria-label="슬라이드 이동">
+  <button id="prevSlide" type="button" title="이전 슬라이드" aria-label="이전 슬라이드">‹</button>
+  <span id="slideCounter" class="slide-counter" aria-live="polite">1 / 1</span>
+  <button id="nextSlide" type="button" title="다음 슬라이드" aria-label="다음 슬라이드">›</button>
+</nav>
+
+<script>
+  const slides = Array.from(document.querySelectorAll("section"));
+  const prevButton = document.getElementById("prevSlide");
+  const nextButton = document.getElementById("nextSlide");
+  const counter = document.getElementById("slideCounter");
+  let currentIndex = 0;
+
+  function updateNav(index) {
+    currentIndex = Math.max(0, Math.min(index, slides.length - 1));
+    counter.textContent = `${currentIndex + 1} / ${slides.length}`;
+    prevButton.disabled = currentIndex === 0;
+    nextButton.disabled = currentIndex === slides.length - 1;
+  }
+
+  function goToSlide(index) {
+    const nextIndex = Math.max(0, Math.min(index, slides.length - 1));
+    slides[nextIndex].scrollIntoView({ behavior: "smooth", block: "start" });
+    updateNav(nextIndex);
+  }
+
+  prevButton.addEventListener("click", () => goToSlide(currentIndex - 1));
+  nextButton.addEventListener("click", () => goToSlide(currentIndex + 1));
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowRight" || event.key === "PageDown" || event.key === " ") {
+      event.preventDefault();
+      goToSlide(currentIndex + 1);
+    }
+    if (event.key === "ArrowLeft" || event.key === "PageUp") {
+      event.preventDefault();
+      goToSlide(currentIndex - 1);
+    }
+    if (event.key === "Home") {
+      event.preventDefault();
+      goToSlide(0);
+    }
+    if (event.key === "End") {
+      event.preventDefault();
+      goToSlide(slides.length - 1);
+    }
+  });
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((left, right) => right.intersectionRatio - left.intersectionRatio)[0];
+      if (visible) {
+        updateNav(slides.indexOf(visible.target));
+      }
+    },
+    { threshold: [0.55] }
+  );
+  slides.forEach((slide) => observer.observe(slide));
+  updateNav(0);
+</script>

@@ -1,0 +1,36 @@
+week: "W03"
+topic: "컴퓨터비전 표현학습 & 비전 대적공격"
+seed: 42
+status: "executed"
+data:
+  type: "synthetic_8x8_bar_images"
+  personal_data: false
+  image_size: 8
+  n_train_per_class: 120
+  n_test_per_class: 60
+  stroke_value: 0.85
+  background_value: 0.15
+  noise_std: 0.06
+model:
+  type: "nearest_centroid"
+experiment:
+  results_recorded: true
+  notes: "표준 라이브러리 기반 synthetic toy 실험을 실행하고 outputs/에 CSV, JSON, 로그, PGM 예시 이미지를 기록했다."
+attack:
+  type: "centroid_direction_linf"
+  epsilons: [0.05, 0.15, 0.30, 0.45]
+defense:
+  type: "feature_squeeze"
+  levels: 2
+  epsilon: 0.30
+outputs:
+  directory: "outputs"
+  metrics_csv: "metrics_summary.csv"
+  results_json: "results.json"
+  run_log: "run_log.md"
+  clean_example: "clean_example.pgm"
+  adversarial_example: "adversarial_eps_0_30.pgm"
+  defense_example: "feature_squeezed_eps_0_30.pgm"
+security_scope:
+  allowed: "toy evaluation and literature-based risk analysis"
+  disallowed: "actual system compromise, personal data use, unauthorized attack"

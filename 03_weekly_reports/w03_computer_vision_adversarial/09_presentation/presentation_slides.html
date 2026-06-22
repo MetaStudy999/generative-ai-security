@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>W03 발표 슬라이드</title>
+  <style>
+    :root {
+      --ink: #1e2630;
+      --muted: #5f6f7c;
+      --paper: #f4f6f8;
+      --line: #d6dee6;
+      --blue: #234f7d;
+      --green: #24745f;
+      --amber: #a15c12;
+      --panel: #ffffff;
+      --soft: #edf5ff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Arial, "Noto Sans KR", sans-serif;
+      letter-spacing: 0;
+    }
+    .deck {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 22px;
+    }
+    .slide {
+      display: none;
+      width: min(1180px, 100%);
+      min-height: min(690px, calc(100vh - 84px));
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 44px 52px;
+      position: relative;
+      box-shadow: 0 18px 55px rgba(31, 41, 51, 0.12);
+      overflow: hidden;
+    }
+    .slide.active { display: flex; flex-direction: column; }
+    .slide-header {
+      color: var(--blue);
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 18px;
+      text-transform: uppercase;
+    }
+    h1, h2 {
+      margin: 0;
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+    h1 {
+      max-width: 980px;
+      font-size: 54px;
+      color: var(--ink);
+    }
+    h2 {
+      font-size: 42px;
+      margin-bottom: 22px;
+    }
+    p, li {
+      font-size: 22px;
+      line-height: 1.52;
+    }
+    p {
+      margin: 14px 0;
+      color: var(--muted);
+    }
+    ul, ol {
+      margin: 8px 0 0;
+      padding-left: 28px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 14px;
+      font-size: 18px;
+    }
+    th, td {
+      border-bottom: 1px solid var(--line);
+      padding: 12px 10px;
+      text-align: left;
+      vertical-align: top;
+      line-height: 1.35;
+    }
+    th {
+      color: var(--blue);
+      font-size: 16px;
+      background: #eef3f8;
+    }
+    .subtitle {
+      max-width: 840px;
+      color: var(--muted);
+      font-size: 25px;
+      margin-top: 22px;
+    }
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      color: var(--green);
+      font-weight: 700;
+      margin-bottom: 16px;
+      font-size: 18px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 16px;
+    }
+    .tile {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      min-height: 124px;
+      background: #fbfdff;
+    }
+    .tile strong {
+      display: block;
+      color: var(--ink);
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+    .tile span {
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.45;
+    }
+    .message {
+      margin-top: auto;
+      border-left: 5px solid var(--amber);
+      padding: 12px 16px;
+      color: var(--ink);
+      background: #fff8eb;
+      font-size: 21px;
+      line-height: 1.45;
+    }
+    .pipeline {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin: 28px 0 18px;
+    }
+    .stage {
+      min-height: 126px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      background: #fbfdff;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .stage b {
+      color: var(--blue);
+      font-size: 17px;
+    }
+    .stage small {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.35;
+    }
+    .bars {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .bar-row {
+      display: grid;
+      grid-template-columns: 210px 1fr 78px;
+      gap: 12px;
+      align-items: center;
+      font-size: 18px;
+    }
+    .bar-track {
+      height: 18px;
+      background: #eef2f7;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: var(--green);
+    }
+    .bar-fill.fail { background: #b91c1c; }
+    .note {
+      color: var(--muted);
+      font-size: 18px;
+      margin-top: 18px;
+    }
+    .controls {
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 12px;
+      box-shadow: 0 8px 24px rgba(31, 41, 51, 0.12);
+    }
+    button {
+      border: 1px solid var(--line);
+      background: white;
+      color: var(--ink);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    #count {
+      min-width: 64px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      background: #f0f3f5;
+      padding: 1px 4px;
+      border-radius: 3px;
+    }
+    @media print {
+      body { background: white; }
+      .deck { display: block; padding: 0; }
+      .slide {
+        display: flex !important;
+        min-height: 180mm;
+        width: auto;
+        margin: 0 0 12mm;
+        box-shadow: none;
+        page-break-after: always;
+      }
+      .controls { display: none; }
+    }
+    @media (max-width: 760px) {
+      .deck { padding: 10px; }
+      .slide { padding: 28px 24px; min-height: calc(100vh - 76px); }
+      h1 { font-size: 36px; }
+      h2 { font-size: 30px; }
+      p, li { font-size: 18px; }
+      table { font-size: 14px; }
+      .grid, .pipeline { grid-template-columns: 1fr; }
+      .bar-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<main class="deck">
+  <section class="slide active">
+    <div class="kicker">W03 AI Security</div>
+    <h1>컴퓨터비전 표현학습 &amp; 비전 대적공격</h1>
+    <p class="subtitle">Clean accuracy, robust accuracy, ASR, 재현성 근거를 분리해 평가한다.</p>
+    <div class="message">좋은 표현학습이 곧 안전한 모델을 의미하지 않는다.</div>
+  </section>
+
+  <section class="slide">
+    <div class="slide-header">Problem</div>
+    <h2>왜 W03가 중요한가</h2>
+    <ul>
+      <li>이미지 모델은 분류, 검색, 인식, 멀티모달 AI의 핵심 구성요소다.</li>
+      <li>정상 테스트셋에서 잘 맞아도 작은 입력 교란에 취약할 수 있다.</li>
+      <li>핵심 질문: “모델이 이미지를 잘 본다”는 말은 보안적으로 충분한가?</li>
+    </ul>
+    <div class="message">성능 중심 비전 이해를 보안성 중심 평가로 확장한다.</div>
+  </section>
+
+  <section class="slide">
+    <div class="slide-header">Roadmap</div>
+    <h2>발표 로드맵</h2>
+    <div class="grid">
+      <div class="tile"><strong>1. 표현학습</strong><span>CNN, ViT, 멀티모달 표현</span></div>
+      <div class="tile"><strong>2. 보안 위협</strong><span>White-box, black-box, transfer attack</span></div>
+      <div class="tile"><strong>3. 평가 지표</strong><span>Clean, robust, ASR, reproducibility</span></div>
+      <div class="tile"><strong>4. Toy 실험</strong><span>synthetic 8x8 bar image 평가</span></div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <div class="slide-header">AI Principle</div>
+    <h2>CNN: 계층적 시각 표현</h2>
+    <ul>
+      <li>지역 receptive field와 convolution으로 이미지 특징을 추출한다.</li>
+      <li>Pooling은 공간 정보를 압축하고 feature map을 안정화한다.</li>
+      <li>얕은 계층은 edge/texture, 깊은 계층은 shape/object 표현을 학습한다.</li>
+    </ul>
+    <div class="message">입력 픽셀의 작은 변화도 feature map과 decision boundary를 바꿀 수 있다.</div>
+  </section>
+
+  <section class="slide">
+    <div class="slide-header">AI Principle</div>
+    <h2>ViT와 멀티모달 표현</h2>
+    <table>
+      <tr><th>개념</th><th>핵심</th><th>보안 연결</th></tr>
+      <tr><td>ViT</td><td>이미지를 patch token으로 처리</td><td>CNN과 다른 취약성 가능</td></tr>
+      <tr><td>Attention</td><td>장거리 의존성 학습</td><td>특정 patch 조작 영향</td></tr>
+      <tr><td>멀티모달 정합</td><td>이미지-텍스트 표현공간 정렬</td><td>입력 조작과 정합 실패</td></tr>
+      <tr><td>표현학습</td><td>과제에 유용한 특징 추출</td><td>특징공간 교란 가능</td></tr>
+    </table>
+  </section>
+
+  <section class="slide">
+    <div class="slide-header">Security</div>
+    <h2>비전 대적공격</h2>
+    <table>
+      <tr><th>위협</th><th>공격자 가정</th><th>대표 지표</th></tr>
+      <tr><td>White-box attack</td><td>모델 구조/gradient 접근</td><td>robust accuracy, ASR</td></tr>
+      <tr><td>Black-box attack</td><td>제한된 질의 또는 transfer</td><td>attack impact</td></tr>
+      <tr><td>Transfer attack</td><td>다른 모델에서 만든 교란 이전</td><td>transfer success</td></tr>
+      <tr><td>2D/3D 조작</td><td>이미지 또는 객체 입력 변화</td><td>safety failure</td></tr>
+    </table>
+  </section>
+
+  <section class="slide">
+    <div class="slide-header">Literature</div>
+    <h2>논문 5편의 역할</h2>
+    <table>
+      <tr><th>ID</th><th>중심 역할</th><th>W03 활용</th></tr>
+      <tr><td>P01</td><td>CNN과 gradient 학습</td><td>비전 표현학습 출발점</td></tr>
+      <tr><td>P02</td><td>컴퓨터비전 딥러닝 리뷰</td><td>원리 배경</td></tr>
+      <tr><td>P03</td><td>멀티모달 transformer</td><td>이미지-텍스트 표현 연결</td></tr>
+      <tr><td>P04</td><td>Vision Transformer survey</td><td>CNN/ViT 비교</td></tr>
+      <tr><td>P05</td><td>2D/3D adversarial robustness</td><td>보안 평가축</td></tr>
+    </table>
+  </section>
+
+  <section class="slide">
+    <div class="slide-header">Threat Model</div>
+    <h2>위협모형</h2>
+    <div class="pipeline">
+      <div class="stage"><b>Image/Data</b><small>input noise<br>perturbation</small></div>
+      <div class="stage"><b>Model</b><small>weights<br>access level</small></div>
+      <div class="stage"><b>Prediction</b><small>wrong label<br>target class</small></div>
+      <div class="stage"><b>Evaluation Log</b><small>seed/config<br>outputs</small></div>
+    </div>
+    <ul>
+      <li>보호 자산: 데이터, 모델 파라미터, 입력 이미지, 출력 라벨, 평가 로그</li>
+      <li>방어자 가정: toy/synthetic 평가와 재현성 기록</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <div class="slide-header">Evaluation</div>
+    <h2>평가 프로토콜</h2>
+    <table>
+      <tr><th>평가 항목</th><th>지표</th><th>기록 방법</th></tr>
+      <tr><td>Clean performance</td><td>accuracy, macro F1</td><td>정상 입력</td></tr>
+      <tr><td>Attack impact</td><td>ASR, robust drop</td><td>교란 입력</td></tr>
+      <tr><td>Robust performance</td><td>robust accuracy</td><td>epsilon별 비교</td></tr>
+      <tr><td>Reproducibility</td><td>seed, config, outputs</td><td>CSV/JSON/run log</td></tr>
+      <tr><td>Human review</td><td>DOI/URL, 원문 대조</td><td>체크리스트</td></tr>
+    </table>
+  </section>
+
+  <section class="slide">
+    <div class="slide-header">Experiment</div>
+    <h2>Toy 실험 설계</h2>
+    <ul>
+      <li>데이터: synthetic 8x8 vertical/horizontal bar image</li>
+      <li>모델: nearest-centroid classifier</li>
+      <li>공격: 반대 클래스 중심점 방향 L-infinity perturbation</li>
+      <li>방어 점검: 2-level feature squeezing</li>
+      <li>출력: CSV, JSON, Markdown run log, PGM 예시 이미지</li>
+    </ul>
+    <div class="message">개인정보, 운영 서비스 이미지, 무단 API 공격은 제외했다.</div>
+  </section>
+
+  <section class="slide">
+    <div class="slide-header">Results</div>
+    <h2>Toy 실험 결과</h2>
+    <table>
+      <tr><th>조건</th><th>Epsilon</th><th>Accuracy</th><th>Macro F1</th><th>ASR</th></tr>
+      <tr><td>Clean baseline</td><td>0.00</td><td>1.000000</td><td>1.000000</td><td>해당 없음</td></tr>
+      <tr><td>Perturbation</td><td>0.30</td><td>1.000000</td><td>1.000000</td><td>0.000000</td></tr>
+      <tr><td>Perturbation</td><td>0.45</td><td>0.000000</td><td>0.000000</td><td>1.000000</td></tr>
+      <tr><td>Feature squeezing</td><td>0.30</td><td>1.000000</td><td>1.000000</td><td>0.000000</td></tr>
+    </table>
+    <p class="note">정량값은 <code>04_experiment/outputs/run_log.md</code> 기준이다.</p>
+  </section>
+
+  <section class="slide">
+    <div class="slide-header">Interpretation</div>
+    <h2>결과 해석과 한계</h2>
+    <div class="bars">
+      <div class="bar-row"><span>Clean baseline</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span>1.00</span></div>
+      <div class="bar-row"><span>Eps 0.30</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span>1.00</span></div>
+      <div class="bar-row"><span>Eps 0.45</span><div class="bar-track"><div class="bar-fill fail" style="width:0%"></div></div><span>0.00</span></div>
+    </div>
+    <ul>
+      <li>Epsilon 0.45에서 결정 경계를 넘어 모든 샘플이 오분류된다.</li>
+      <li>실제 CNN/ViT 강건성으로 일반화하지 않는다.</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <div class="slide-header">Final Paper</div>
+    <h2>기말논문 연결</h2>
+    <table>
+      <tr><th>기말논문 장</th><th>연결 내용</th></tr>
+      <tr><td>관련연구</td><td>CNN/ViT 원리와 adversarial robustness 문헌 연결</td></tr>
+      <tr><td>위협모형</td><td>보호 자산, 공격자 능력, 평가 로그</td></tr>
+      <tr><td>평가방법</td><td>clean, attack impact, reproducibility 분리</td></tr>
+      <tr><td>분석/실험</td><td>synthetic toy 평가를 통한 지표 분리 예시</td></tr>
+    </table>
+    <div class="message">Contribution 후보: 제출 가능한 AI 보안 평가 프레임워크.</div>
+  </section>
+
+  <section class="slide">
+    <div class="slide-header">Closing</div>
+    <h2>결론</h2>
+    <ul>
+      <li>비전 모델의 정상 성능은 보안성을 보장하지 않는다.</li>
+      <li>공격 조건 성능과 ASR을 별도로 기록해야 한다.</li>
+      <li>정량값은 실행 로그, config, seed, CSV/JSON이 있을 때만 주장한다.</li>
+      <li>W03는 재현성 중심 평가 프레임워크를 보강하는 사례다.</li>
+    </ul>
+  </section>
+</main>
+
+<div class="controls" aria-label="slide controls">
+  <button id="prev" type="button">Prev</button>
+  <span id="count">1 / 14</span>
+  <button id="next" type="button">Next</button>
+</div>
+
+<script>
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const count = document.getElementById('count');
+  let index = 0;
+
+  function showSlide(nextIndex) {
+    index = Math.max(0, Math.min(slides.length - 1, nextIndex));
+    slides.forEach((slide, position) => {
+      slide.classList.toggle('active', position === index);
+    });
+    count.textContent = `${index + 1} / ${slides.length}`;
+  }
+
+  document.getElementById('prev').addEventListener('click', () => showSlide(index - 1));
+  document.getElementById('next').addEventListener('click', () => showSlide(index + 1));
+  window.addEventListener('keydown', (event) => {
+    if (['ArrowRight', 'PageDown', ' '].includes(event.key)) {
+      event.preventDefault();
+      showSlide(index + 1);
+    }
+    if (['ArrowLeft', 'PageUp'].includes(event.key)) {
+      event.preventDefault();
+      showSlide(index - 1);
+    }
+    if (event.key === 'Home') showSlide(0);
+    if (event.key === 'End') showSlide(slides.length - 1);
+  });
+  showSlide(0);
+</script>
+</body>
+</html>

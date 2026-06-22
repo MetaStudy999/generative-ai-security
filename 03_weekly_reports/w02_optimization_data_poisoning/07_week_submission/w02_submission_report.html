@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>W02 제출용 보고서</title>
+  <style>
+    :root {
+      --ink: #1d252d;
+      --muted: #5f6f7c;
+      --line: #d8e0e7;
+      --soft: #eef6f6;
+      --accent: #126a73;
+      --paper: #ffffff;
+      --bg: #f6f7f9;
+      --warn: #fff7ed;
+      --warn-line: #c2410c;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR", Arial, sans-serif;
+      line-height: 1.68;
+      letter-spacing: 0;
+    }
+    main {
+      width: min(980px, calc(100% - 32px));
+      margin: 32px auto;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      padding: 48px 56px;
+    }
+    h1 {
+      margin: 0 0 24px;
+      font-size: 34px;
+      line-height: 1.25;
+      color: var(--accent);
+      letter-spacing: 0;
+    }
+    h2 {
+      margin: 34px 0 12px;
+      padding-top: 8px;
+      border-top: 2px solid var(--line);
+      font-size: 24px;
+      letter-spacing: 0;
+    }
+    p {
+      margin: 0 0 12px;
+      font-size: 16px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 18px;
+      font-size: 14px;
+    }
+    th, td {
+      border: 1px solid var(--line);
+      padding: 8px 10px;
+      vertical-align: top;
+      text-align: left;
+    }
+    th {
+      background: #edf2f5;
+    }
+    td.num {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+    .abstract {
+      padding: 16px 18px;
+      background: var(--soft);
+      border-left: 5px solid var(--accent);
+      margin-bottom: 20px;
+    }
+    .notice {
+      padding: 14px 16px;
+      background: var(--warn);
+      border-left: 5px solid var(--warn-line);
+      margin: 14px 0 18px;
+    }
+    ol, ul {
+      padding-left: 24px;
+    }
+    li {
+      margin: 5px 0;
+      font-size: 16px;
+    }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      background: #f0f3f5;
+      padding: 1px 4px;
+      border-radius: 3px;
+    }
+    .small {
+      color: var(--muted);
+      font-size: 14px;
+    }
+    @media print {
+      body { background: white; }
+      main {
+        width: auto;
+        margin: 0;
+        border: 0;
+        padding: 18mm;
+      }
+      h2 { page-break-after: avoid; }
+      table, .abstract, .notice { page-break-inside: avoid; }
+    }
+    @media (max-width: 720px) {
+      main {
+        width: calc(100% - 20px);
+        margin: 10px auto;
+        padding: 28px 22px;
+      }
+      h1 { font-size: 28px; }
+      h2 { font-size: 21px; }
+      table { font-size: 13px; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <h1>W02 제출용 보고서<br>대규모 최적화 & 데이터 오염 위협</h1>
+
+  <h2>표지</h2>
+  <table>
+    <tbody>
+      <tr><th>주차</th><td>W02</td></tr>
+      <tr><th>보고서 제목</th><td>대규모 최적화 & 데이터 오염 위협</td></tr>
+      <tr><th>과목 범위</th><td>AI 보안</td></tr>
+      <tr><th>작성일</th><td>2026-06-22</td></tr>
+      <tr><th>문서 상태</th><td>제출용 통합본</td></tr>
+      <tr><th>관련 산출물 위치</th><td><code>03_weekly_reports/w02_optimization_data_poisoning/</code></td></tr>
+    </tbody>
+  </table>
+
+  <h2>초록</h2>
+  <div class="abstract">
+    <p>본 보고서는 대규모 최적화와 데이터 오염 위협을 연결하여, 학습 데이터가 모델의 최적화 경로와 최종 보안성에 미치는 영향을 분석한다. AI 원리 측면에서는 stochastic gradient descent, 일반화, 효율적 학습, 모델 압축과 경량화를 정리하고, 보안 측면에서는 label-flipping poisoning, training data manipulation, backdoor attack, clean accuracy와 ASR의 차이를 설명한다. 다섯 편의 문헌을 비교하여 최적화 원리 문헌과 poisoning/backdoor 보안 문헌의 역할을 분리했고, scikit-learn digits 기반 Docker toy experiment 설계를 통해 clean baseline, label-flip, toy backdoor 조건을 재현 가능하게 기록했다. 결론적으로 W02는 기말 논문의 “학습 데이터 오염과 backdoor 평가를 위한 다중지표 프레임워크”로 발전 가능하다.</p>
+  </div>
+  <p><strong>키워드:</strong> 대규모 최적화, SGD, 데이터 오염, poisoning, backdoor, ASR, 재현성</p>
+
+  <h2>1. 서론</h2>
+  <p>머신러닝 모델은 데이터와 라벨을 이용해 손실함수를 최소화한다. 따라서 데이터가 오염되면 단순히 입력 하나가 잘못되는 것이 아니라 학습 목적함수와 gradient 방향이 달라진다. W02의 핵심 질문은 “학습 데이터 오염이 모델의 정상 성능과 공격 조건 성능을 어떻게 다르게 만드는가”이다.</p>
+
+  <h2>2. AI 원리</h2>
+  <p>대규모 최적화에서는 전체 데이터의 gradient를 매번 계산하기 어렵기 때문에 stochastic gradient와 mini-batch 학습이 중요하다. 이 방식은 확장성은 높지만 데이터 품질에 민감하다. 또한 효율적 딥러닝은 모델을 작고 빠르게 만들지만, 보안 평가에서는 정확도뿐 아니라 탐지 비용, 재학습 비용, backdoor 잔존 가능성까지 함께 봐야 한다.</p>
+
+  <h2>3. 보안 이슈</h2>
+  <p>Data poisoning은 학습 데이터를 조작해 모델 학습 결과를 바꾸는 공격이다. Label-flipping은 라벨을 변경하는 단순한 오염이고, backdoor는 trigger가 있는 입력에서만 공격자 목표 행동을 유발하는 은닉 공격이다. W02 평가에서는 clean accuracy와 ASR을 반드시 분리한다.</p>
+
+  <h2>4. 문헌 요약</h2>
+  <table>
+    <thead>
+      <tr><th>ID</th><th>문헌</th><th>활용</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>P01</td><td>Optimization Methods for Large-Scale Machine Learning</td><td>최적화와 SGD 배경</td></tr>
+      <tr><td>P02</td><td>Efficient Deep Learning</td><td>효율성, 압축, 비용 지표</td></tr>
+      <tr><td>P03</td><td>A Comprehensive Survey on Poisoning Attacks and Countermeasures in Machine Learning</td><td>poisoning taxonomy</td></tr>
+      <tr><td>P04</td><td>Wild Patterns Reloaded</td><td>training data poisoning threat model</td></tr>
+      <tr><td>P05</td><td>A survey of backdoor attacks and defences</td><td>backdoor, ASR, detection/removal</td></tr>
+    </tbody>
+  </table>
+
+  <h2>5. Research Track</h2>
+  <table>
+    <tbody>
+      <tr><th>연구문제</th><td>오염률과 공격 유형에 따라 clean accuracy, macro F1, ASR이 어떻게 변하는가</td></tr>
+      <tr><th>대상 시스템</th><td>지도학습 기반 분류 모델</td></tr>
+      <tr><th>위협</th><td>label-flipping poisoning, toy backdoor trigger</td></tr>
+      <tr><th>평가 지표</th><td>clean accuracy, macro F1, ASR, stealthiness, reproducibility</td></tr>
+      <tr><th>재현성</th><td>Docker, requirements, config, seed, outputs 로그</td></tr>
+      <tr><th>제외 범위</th><td>실제 개인정보, 실제 서비스, 무단 API, 운영 시스템 공격</td></tr>
+    </tbody>
+  </table>
+
+  <h2>6. 실습 설계</h2>
+  <p>실습 코드는 <code>04_experiment/src/run_experiment.py</code>에 작성했다. Docker 환경에서 <code>python src/run_experiment.py --config configs/config.yaml</code>로 실행했고, 결과는 <code>04_experiment/outputs/</code>에 저장했다.</p>
+  <table>
+    <thead>
+      <tr><th>조건</th><th>오염률</th><th>Clean Accuracy</th><th>Macro F1</th><th>ASR</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Clean baseline</td><td class="num">0%</td><td>0.981481</td><td>0.981443</td><td>해당 없음</td></tr>
+      <tr><td>Label-flip</td><td class="num">5%</td><td>0.918519</td><td>0.918457</td><td>해당 없음</td></tr>
+      <tr><td>Label-flip</td><td class="num">10%</td><td>0.877778</td><td>0.877582</td><td>해당 없음</td></tr>
+      <tr><td>Label-flip</td><td class="num">20%</td><td>0.818519</td><td>0.818134</td><td>해당 없음</td></tr>
+      <tr><td>Toy backdoor</td><td class="num">5%</td><td>0.970370</td><td>0.970359</td><td>0.987654</td></tr>
+    </tbody>
+  </table>
+  <div class="notice">
+    <p><strong>실험 결과 처리:</strong> 정량값은 Docker 실행으로 생성된 <code>04_experiment/outputs/run_log.md</code>를 기준으로 확정했다.</p>
+  </div>
+
+  <h2>7. 기말논문 연결</h2>
+  <p>추천 주제는 “학습 데이터 오염과 backdoor 평가를 위한 다중지표 프레임워크”이다. 기여 후보는 clean accuracy, ASR, stealthiness, detection rate, efficiency cost, reproducibility evidence를 함께 기록하는 평가표다.</p>
+
+  <h2>8. AI 활용 고지</h2>
+  <p>Codex를 사용해 문헌 요약, 이론 정리, 코드 작성, Docker 실행 검증, 보고서 구조화, 발표자료 작성을 수행했다. DOI/URL은 확인 가능한 근거를 기록했고, 정량값은 Docker 실행 로그 기준으로 반영했다. 상세 기록은 <code>05_ai_worklog/</code>에 있다.</p>
+
+  <h2>9. 참고문헌</h2>
+  <ol>
+    <li>Léon Bottou, Frank E. Curtis, Jorge Nocedal, “Optimization Methods for Large-Scale Machine Learning,” SIAM Review, 2018. DOI: <code>10.1137/16M1080173</code>.</li>
+    <li>Gaurav Menghani, “Efficient Deep Learning: A Survey on Making Deep Learning Models Smaller, Faster, and Better,” arXiv: <code>2106.08962</code>.</li>
+    <li>Zhiyi Tian et al., “A Comprehensive Survey on Poisoning Attacks and Countermeasures in Machine Learning,” ACM Computing Surveys. DOI: <code>10.1145/3551636</code>.</li>
+    <li>Antonio Emanuele Cinà et al., “Wild Patterns Reloaded: A Survey of Machine Learning Security against Training Data Poisoning,” arXiv: <code>2205.01992</code>.</li>
+    <li>Ling-Xin Jin et al., “A survey of backdoor attacks and defences: From deep neural networks to large language models,” Journal of Electronic Science and Technology, 2025. DOI: <code>10.1016/j.jnlest.2025.100326</code>.</li>
+  </ol>
+
+  <h2>10. 제출 전 점검표</h2>
+  <table>
+    <thead>
+      <tr><th>점검 항목</th><th>상태</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>논문 요약 5편</td><td>완료</td></tr>
+      <tr><td>논문 비교표</td><td>완료</td></tr>
+      <tr><td>AI 원리/보안 이슈</td><td>완료</td></tr>
+      <tr><td>Research Track</td><td>완료</td></tr>
+      <tr><td>실험 코드</td><td>완료</td></tr>
+      <tr><td>실험 결과</td><td>완료</td></tr>
+      <tr><td>AI 활용 고지</td><td>완료</td></tr>
+      <tr><td>발표자료</td><td>완료</td></tr>
+    </tbody>
+  </table>
+
+  <p class="small">HTML 제출본 위치: <code>03_weekly_reports/w02_optimization_data_poisoning/07_week_submission/w02_submission_report.html</code></p>
+</main>
+</body>
+</html>

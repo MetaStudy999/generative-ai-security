@@ -1,0 +1,17 @@
+week: "W07"
+topic: "LLM 학습·정렬·평가 & LLM 보안·프라이버시"
+seed: 42
+status: "safe_synthetic_run"
+run_date: "2026-06-22"
+data:
+  type: "synthetic_prompt_categories"
+  personal_data: false
+  n_per_condition: 40
+experiment:
+  results_recorded: true
+  guard_threshold: 0.55
+  answer_threshold: 0.50
+  notes: "실제 LLM/API 호출 없이 synthetic prompt category와 toy guard score로 평가 프로토콜만 검증한다."
+security_scope:
+  allowed: "synthetic LLM safety evaluation protocol, checklist scoring, reproducibility logging"
+  disallowed: "actual jailbreak reproduction, personal data use, unauthorized service queries, exploit instructions"

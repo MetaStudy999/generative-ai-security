@@ -1,0 +1,28 @@
+week: "W06"
+topic: "확률생성모형(Diffusion/GAN) & 딥페이크 검출"
+seed: 42
+run_date: "2026-06-22"
+status: "executed_toy"
+data:
+  type: "synthetic_detector_scores"
+  personal_data: false
+  n_per_label: 60
+  domains:
+    in_domain:
+      name: "lab_reference"
+      real_mean: 0.22
+      fake_mean: 0.78
+      std: 0.08
+    cross_domain:
+      name: "compressed_unseen"
+      real_mean: 0.34
+      fake_mean: 0.61
+      std: 0.16
+experiment:
+  detector_threshold: 0.50
+  review_band: [0.40, 0.60]
+  results_recorded: true
+  notes: "실제 딥페이크 생성 없이 synthetic detector score 분포로 신뢰성 지표를 검증한다."
+security_scope:
+  allowed: "toy evaluation and literature-based risk analysis"
+  disallowed: "actual deepfake generation, personal data use, unauthorized attack"

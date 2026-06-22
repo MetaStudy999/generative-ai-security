@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>W09 발표용 보고서</title>
+  <style>
+    body { margin: 0; background: #f5f7fb; color: #172033; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.65; }
+    main { max-width: 980px; margin: 0 auto; padding: 42px 20px 72px; background: #fff; }
+    h1 { margin-top: 0; font-size: 2rem; }
+    h2 { margin-top: 34px; padding-bottom: 6px; border-bottom: 2px solid #d9e0ec; }
+    table { width: 100%; border-collapse: collapse; margin: 14px 0 22px; }
+    th, td { border: 1px solid #cfd6e4; padding: 9px 10px; vertical-align: top; }
+    th { background: #eaf0f8; }
+    code { background: #eef2f7; padding: 1px 4px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>W09 발표용 보고서</h1>
+  <h2>발표 메타정보</h2>
+  <table><tr><th>항목</th><th>내용</th></tr><tr><td>주차</td><td>W09</td></tr><tr><td>주제</td><td>심층강화학습(DRL) &amp; 사이버보안 적용·보상조작</td></tr><tr><td>발표 시간</td><td>8-10분</td></tr><tr><td>핵심 메시지</td><td>DRL cyber-defense에서 reward가 흔들리면 높은 점수 뒤에 안전하지 않은 정책이 숨어 있을 수 있다.</td></tr></table>
+  <h2>발표 흐름</h2>
+  <ol><li>DRL 원리: state-action-reward-policy</li><li>사이버보안 적용: cyber-defense agent</li><li>보상조작 위협: reward hacking과 unsafe response</li><li>toy 실험: normal/manipulated/robust reward 비교</li><li>기말논문 연결: 안전성 평가 프레임워크</li></ol>
+  <h2>논문 5편의 역할</h2>
+  <table><tr><th>ID</th><th>발표 역할</th></tr><tr><td>P01</td><td>DRL 알고리즘 원리와 MDP 배경</td></tr><tr><td>P02</td><td>안전중요 자동화와 validation 필요성</td></tr><tr><td>P03</td><td>DRL cyber defense 적용 영역</td></tr><tr><td>P04</td><td>IDS/IPS, IoT, IAM 평가 지표</td></tr><tr><td>P05</td><td>DRL verification과 safety specification</td></tr></table>
+  <h2>실험 결과</h2>
+  <table><tr><th>조건</th><th>Average Reward</th><th>Detection F1</th><th>Safety Violation Rate</th><th>Policy Robustness</th></tr><tr><td>Normal reward</td><td>1.085250</td><td>0.840206</td><td>0.011667</td><td>0.838417</td></tr><tr><td>Manipulated reward</td><td>0.521167</td><td>0.617512</td><td>0.195000</td><td>0.325000</td></tr><tr><td>Robust reward design</td><td>0.910833</td><td>0.780952</td><td>0.000000</td><td>0.709583</td></tr></table>
+  <h2>기말논문 연결</h2>
+  <p>기말논문 후보는 “DRL 기반 사이버 방어 에이전트의 보상조작 위협과 안전성 평가 프레임워크”이다.</p>
+  <h2>예상 질문</h2>
+  <table><tr><th>질문</th><th>답변 요지</th></tr><tr><td>왜 tabular Q-learning인가?</td><td>reward manipulation 효과를 안전하고 재현 가능하게 설명하기 위한 최소 실험이다.</td></tr><tr><td>Robust reward가 더 좋은가?</td><td>안전 위반을 낮추지만 오탐 비용이 생긴다. trade-off로 해석해야 한다.</td></tr><tr><td>실제 네트워크에 적용 가능한가?</td><td>직접 일반화는 불가하며 공개 benchmark와 추가 검증이 필요하다.</td></tr></table>
+</main>
+</body>
+</html>

@@ -1,0 +1,25 @@
+# W01 논문 목록
+
+| ID | 논문 제목 | 저자 | 연도 | 학술지/학회 | DOI/URL | 로컬 PDF | 검증 상태 |
+|---|---|---:|---:|---|---|---|---|
+| P01 | Deep learning | Yann LeCun, Yoshua Bengio, Geoffrey Hinton | 2015 | Nature | https://doi.org/10.1038/nature14539 | 01_LeCun_Bengio_Hinton_2015_Deep_Learning.pdf | DOI/출판정보 확인 |
+| P02 | Assuring the Machine Learning Lifecycle: Desiderata, Methods, and Challenges | Rob Ashmore, Radu Calinescu, Colin Paterson | 2021 | ACM Computing Surveys | https://doi.org/10.1145/3453444 | 02_Ashmore_Calinescu_Paterson_2021_Assuring_ML_Lifecycle.pdf | DOI는 PDF 메타데이터와 DOI 링크로 확인 |
+| P03 | A Survey of Data Mining and Machine Learning Methods for Cyber Security Intrusion Detection | Anna L. Buczak, Erhan Guven | 2016 | IEEE Communications Surveys & Tutorials | https://doi.org/10.1109/COMST.2015.2494502 | 03_Buczak_Guven_2016_ML_Methods_for_Cyber_Security_Intrusion_Detection.pdf | DOI는 PDF 메타데이터로 확인 |
+| P04 | Adversarial Attacks and Defenses in Machine Learning-Powered Networks: A Contemporary Survey | Yulong Wang, Tong Sun, Shenghong Li, Xin Yuan, Wei Ni, Ekram Hossain, H. Vincent Poor | 2023 | arXiv preprint | https://doi.org/10.48550/arXiv.2303.06302 | 04_Wang_et_al_2023_Adversarial_Attacks_and_Defenses.pdf | arXiv DOI 확인, 출판사 DOI는 로컬 PDF에서 미확인 |
+| P05 | A Survey of Privacy Attacks in Machine Learning | Maria Rigaki, Sebastian Garcia | 2023 | ACM Computing Surveys | https://doi.org/10.1145/3624010 | 05_Rigaki_Garcia_2023_Survey_of_Privacy_Attacks_in_ML.pdf | arXiv와 관련 DOI 확인 |
+
+## 논문 패킷 역할
+
+| ID | W01에서의 역할 | 기말논문 연결 |
+|---|---|---|
+| P01 | 딥러닝의 표현학습, 역전파, CNN/RNN 계열의 기본 원리를 제공한다. | AI 원리와 보안 취약성의 기술적 배경 |
+| P02 | ML 생명주기를 데이터 관리, 모델 학습, 검증, 배포 단계로 나누고 보증 증거를 정리한다. | 위협모형과 평가 프로토콜의 뼈대 |
+| P03 | 침입탐지에서 ML/데이터마이닝 기법이 어떻게 적용되는지 분류한다. | 보안 데이터셋, 탐지 성능, 오탐/미탐 지표 |
+| P04 | 대적 공격과 방어를 공격 원리, 방어 방식, 한계 관점에서 정리한다. | robustness 평가와 공격-방어 분류체계 |
+| P05 | ML 프라이버시 공격을 공격자 지식, 공격 대상 자산, 방어책으로 분류한다. | membership/property/model leakage 평가축 |
+
+## 검수 메모
+
+- P04는 프롬프트의 축약 제목과 로컬 파일명이 실제 arXiv 제목보다 짧다. 본 보고서에서는 arXiv 제목을 기준으로 정리했다.
+- DOI/URL은 확인 가능한 범위에서만 입력했다. 출판사 페이지 접근이 제한된 항목은 로컬 PDF 메타데이터 또는 arXiv의 DOI 정보를 검증 근거로 남겼다.
+- `SUBSTITUTE`가 포함된 PDF는 W01 폴더에는 없다.

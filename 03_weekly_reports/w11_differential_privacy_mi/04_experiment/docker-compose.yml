@@ -1,0 +1,7 @@
+services:
+  w11-differential-privacy-mi:
+    build: .
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+    command: bash

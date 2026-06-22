@@ -1,0 +1,33 @@
+week: "W02"
+topic: "대규모 최적화 & 데이터 오염 위협"
+seed: 42
+status: "ready_to_run_in_docker"
+
+data:
+  name: "sklearn_digits"
+  personal_data: false
+  test_size: 0.3
+
+model:
+  type: "logistic_regression"
+  max_iter: 2000
+
+poisoning:
+  label_flip_rates: [0.05, 0.10, 0.20]
+  label_flip_offset: 1
+
+backdoor:
+  poison_rate: 0.05
+  target_label: 0
+  trigger_value: 16.0
+  trigger_pixels: [54, 55, 62, 63]
+
+outputs:
+  directory: "outputs"
+  metrics_csv: "metrics_summary.csv"
+  results_json: "results.json"
+  run_log: "run_log.md"
+
+security_scope:
+  allowed: "public toy dataset evaluation, label-flip simulation, simple pixel-trigger toy backdoor evaluation"
+  disallowed: "actual system compromise, personal data use, unauthorized API use, malware, operational attack execution"

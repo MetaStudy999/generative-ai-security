@@ -1,0 +1,14 @@
+services:
+  aisec:
+    build: .
+    image: aisec-uv-cuda132:latest
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+    gpus: all
+    environment:
+      NVIDIA_VISIBLE_DEVICES: all
+      NVIDIA_DRIVER_CAPABILITIES: compute,utility
+    command: bash
+    stdin_open: true
+    tty: true

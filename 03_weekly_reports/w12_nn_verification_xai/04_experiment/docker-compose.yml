@@ -1,0 +1,7 @@
+services:
+  w12-nn-verification-xai:
+    build: .
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+    command: bash

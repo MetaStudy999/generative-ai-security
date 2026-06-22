@@ -1,0 +1,7 @@
+services:
+  w01-deep-learning-ml-security:
+    build: .
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+    command: python src/run_experiment.py

@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>W05 Slides</title>
+  <style>
+    :root { color-scheme: light; }
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f8fafc; color: #111827; }
+    main { height: 100vh; overflow: hidden; }
+    section { box-sizing: border-box; min-height: 100vh; padding: 64px 8vw 96px; display: none; align-content: center; }
+    section.active { display: grid; }
+    h1 { font-size: clamp(34px, 5vw, 64px); margin: 0 0 24px; line-height: 1.08; }
+    h2 { font-size: clamp(28px, 4vw, 48px); margin: 0 0 22px; line-height: 1.12; }
+    p, li { font-size: clamp(20px, 2.2vw, 30px); line-height: 1.45; }
+    ul, ol { padding-left: 1.2em; }
+    table { border-collapse: collapse; width: 100%; font-size: clamp(15px, 1.35vw, 21px); background: white; }
+    th, td { border: 1px solid #cbd5e1; padding: 10px 12px; vertical-align: top; }
+    th { background: #e2e8f0; }
+    code, pre { background: #e5e7eb; border-radius: 6px; }
+    pre { padding: 18px; font-size: clamp(17px, 1.7vw, 24px); overflow: auto; }
+    .kicker { text-transform: uppercase; font-size: 16px; letter-spacing: 0.08em; color: #2563eb; font-weight: 700; }
+    .slide-controls {
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.94);
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.14);
+      z-index: 20;
+    }
+    .slide-controls button {
+      min-width: 58px;
+      border: 1px solid #cbd5e1;
+      border-radius: 999px;
+      background: #ffffff;
+      color: #111827;
+      padding: 7px 12px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .slide-controls button:hover:not(:disabled) { background: #e2e8f0; }
+    .slide-controls button:disabled { color: #94a3b8; cursor: not-allowed; background: #f8fafc; }
+    .slide-count { min-width: 58px; text-align: center; color: #64748b; font-size: 14px; font-weight: 700; }
+    @media print {
+      .slide-controls { display: none; }
+      main { height: auto; overflow: visible; }
+      section { display: grid !important; page-break-after: always; }
+    }
+    @media (max-width: 680px) {
+      section { padding: 52px 6vw 84px; }
+      .slide-controls { bottom: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="active">
+      <div>
+        <p class="kicker">W05</p>
+        <h1>자기지도학습·파운데이션 모델 &amp; Poisoning/Backdoor</h1>
+        <p>clean 성능, ASR, representation shift, 재현성 근거를 분리해 평가한다.</p>
+      </div>
+    </section>
+    <section>
+      <div>
+        <h2>왜 중요한가</h2>
+        <ul>
+          <li>Foundation model은 대규모 pretraining 표현을 여러 task에 전이한다.</li>
+          <li>Pretraining 데이터와 augmentation pair가 오염되면 표현공간이 흔들릴 수 있다.</li>
+          <li>핵심 질문은 좋은 representation이 trigger 조건에서도 안전한가이다.</li>
+        </ul>
+      </div>
+    </section>
+    <section>
+      <div>
+        <h2>발표 로드맵</h2>
+        <ol>
+          <li>자기지도학습과 표현학습 원리</li>
+          <li>Contrastive/masked/predictive learning</li>
+          <li>Poisoning과 backdoor 위협</li>
+          <li>Synthetic toy 실험과 결과</li>
+          <li>기말논문 연결</li>
+        </ol>
+      </div>
+    </section>
+    <section>
+      <div>
+        <h2>AI 원리: SSL</h2>
+        <ul>
+          <li>사람이 붙인 라벨 없이 데이터 자체에서 supervision signal을 만든다.</li>
+          <li>목표는 downstream task에 전이 가능한 representation이다.</li>
+          <li>Foundation model은 대규모 pretraining 표현을 여러 task에 재사용한다.</li>
+        </ul>
+      </div>
+    </section>
+    <section>
+      <div>
+        <h2>주요 방법</h2>
+        <table>
+          <tr><th>방법</th><th>핵심</th><th>보안 연결</th></tr>
+          <tr><td>Contrastive</td><td>positive pair와 negative pair 거리 학습</td><td>pair 오염</td></tr>
+          <tr><td>Masked modeling</td><td>입력 일부를 복원</td><td>corpus 오염</td></tr>
+          <tr><td>Predictive</td><td>문맥/미래 상태 예측</td><td>temporal trigger</td></tr>
+          <tr><td>Transfer</td><td>pretraining 표현 전이</td><td>취약성 전파</td></tr>
+        </table>
+      </div>
+    </section>
+    <section>
+      <div>
+        <h2>보안 이슈</h2>
+        <table>
+          <tr><th>위협</th><th>공격자 능력</th><th>대표 지표</th></tr>
+          <tr><td>Poisoning</td><td>pretraining sample 삽입</td><td>clean/poisoned 성능</td></tr>
+          <tr><td>Backdoor</td><td>trigger 조건 target behavior</td><td>ASR</td></tr>
+          <tr><td>Representation shift</td><td>embedding을 target 영역으로 이동</td><td>mean shift</td></tr>
+          <tr><td>Governance gap</td><td>출처·로그 불명확</td><td>reproducibility</td></tr>
+        </table>
+      </div>
+    </section>
+    <section>
+      <div>
+        <h2>논문 5편의 역할</h2>
+        <table>
+          <tr><th>ID</th><th>중심 역할</th><th>W05 활용</th></tr>
+          <tr><td>P01-P03</td><td>SSL/foundation 원리</td><td>표현학습 taxonomy</td></tr>
+          <tr><td>P04</td><td>Poisoning survey</td><td>공격·방어 taxonomy</td></tr>
+          <tr><td>P05</td><td>Backdoor survey</td><td>DNN-LLM backdoor 연결</td></tr>
+        </table>
+      </div>
+    </section>
+    <section>
+      <div>
+        <h2>위협모형</h2>
+        <pre>Pretraining data -> SSL objective -> Embedding space -> Downstream classifier
+       |                 |                 |                  |
+ poisoned sample     poisoned pair      trigger shift      target class</pre>
+      </div>
+    </section>
+    <section>
+      <div>
+        <h2>평가 프로토콜</h2>
+        <table>
+          <tr><th>평가 항목</th><th>지표</th><th>기록</th></tr>
+          <tr><td>Clean performance</td><td>clean accuracy</td><td>정상 synthetic embedding</td></tr>
+          <tr><td>Backdoor impact</td><td>ASR</td><td>trigger 후 target 분류</td></tr>
+          <tr><td>Representation change</td><td>mean shift</td><td>embedding 거리</td></tr>
+          <tr><td>Defense check</td><td>detection rate, clean FPR</td><td>paired-view consistency</td></tr>
+          <tr><td>Reproducibility</td><td>seed, config, outputs</td><td>CSV/JSON/run log</td></tr>
+        </table>
+      </div>
+    </section>
+    <section>
+      <div>
+        <h2>Synthetic Toy 실험</h2>
+        <ul>
+          <li>데이터: synthetic 2D representation clusters</li>
+          <li>분류기: nearest-centroid representation classifier</li>
+          <li>공격: source embedding에 trigger vector를 더해 target centroid 쪽으로 이동</li>
+          <li>방어 점검: paired-view distance threshold</li>
+        </ul>
+      </div>
+    </section>
+    <section>
+      <div>
+        <h2>실험 결과</h2>
+        <table>
+          <tr><th>조건</th><th>Clean</th><th>Poisoned Clean</th><th>ASR</th><th>ASR after defense</th><th>Shift</th></tr>
+          <tr><td>Clean baseline</td><td>1.000000</td><td>해당 없음</td><td>해당 없음</td><td>해당 없음</td><td>해당 없음</td></tr>
+          <tr><td>Backdoor scenario</td><td>해당 없음</td><td>1.000000</td><td>1.000000</td><td>해당 없음</td><td>2.418677</td></tr>
+          <tr><td>Defense check</td><td>해당 없음</td><td>해당 없음</td><td>해당 없음</td><td>0.000000</td><td>0.090597</td></tr>
+        </table>
+      </div>
+    </section>
+    <section>
+      <div>
+        <h2>해석과 한계</h2>
+        <ul>
+          <li>Triggered source embedding은 toy 조건에서 target centroid로 모두 분류됐다.</li>
+          <li>Consistency threshold는 trigger shift를 모두 플래그했고 clean FPR은 0.000000이었다.</li>
+          <li>실제 SSL/foundation model 보안 성능으로 일반화하지 않는다.</li>
+        </ul>
+      </div>
+    </section>
+    <section>
+      <div>
+        <h2>기말논문 연결</h2>
+        <table>
+          <tr><th>장</th><th>연결 내용</th></tr>
+          <tr><td>관련연구</td><td>SSL/foundation survey와 poisoning/backdoor survey</td></tr>
+          <tr><td>위협모형</td><td>pretraining data, embedding, downstream classifier</td></tr>
+          <tr><td>평가방법</td><td>clean, ASR, shift, detection, reproducibility</td></tr>
+          <tr><td>분석/실험</td><td>synthetic toy 평가를 통한 지표 구조 예시</td></tr>
+        </table>
+      </div>
+    </section>
+    <section>
+      <div>
+        <h2>결론</h2>
+        <ul>
+          <li>표현공간은 AI 보안의 핵심 보호 자산이다.</li>
+          <li>Backdoor 평가는 clean 성능과 trigger 조건을 분리해야 한다.</li>
+          <li>Representation shift는 설명 가능한 보안 평가축이다.</li>
+          <li>수치는 실행 근거가 있을 때만 주장해야 한다.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+  <div class="slide-controls" aria-label="슬라이드 이동 버튼">
+    <button type="button" id="prevSlide" aria-label="이전 슬라이드">이전</button>
+    <span class="slide-count"><span id="counter">1</span> / <span id="totalSlides">14</span></span>
+    <button type="button" id="nextSlide" aria-label="다음 슬라이드">다음</button>
+  </div>
+  <script>
+    const slides = [...document.querySelectorAll("section")];
+    const counter = document.getElementById("counter");
+    const totalSlides = document.getElementById("totalSlides");
+    const prevButton = document.getElementById("prevSlide");
+    const nextButton = document.getElementById("nextSlide");
+    let index = 0;
+    totalSlides.textContent = slides.length;
+    function showSlide(nextIndex) {
+      index = Math.max(0, Math.min(slides.length - 1, nextIndex));
+      slides.forEach((slide, slideIndex) => slide.classList.toggle("active", slideIndex === index));
+      counter.textContent = String(index + 1);
+      prevButton.disabled = index === 0;
+      nextButton.disabled = index === slides.length - 1;
+    }
+    prevButton.addEventListener("click", (event) => {
+      event.stopPropagation();
+      showSlide(index - 1);
+    });
+    nextButton.addEventListener("click", (event) => {
+      event.stopPropagation();
+      showSlide(index + 1);
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowRight" || event.key === "PageDown") showSlide(index + 1);
+      if (event.key === "ArrowLeft" || event.key === "PageUp") showSlide(index - 1);
+      if (event.key === "Home") showSlide(0);
+      if (event.key === "End") showSlide(slides.length - 1);
+    });
+    document.addEventListener("click", (event) => {
+      if (!event.target.closest(".slide-controls")) showSlide(index + 1);
+    });
+    showSlide(0);
+  </script>
+</body>
+</html>

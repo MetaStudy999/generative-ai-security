@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>W06 발표용 보고서</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.65; margin: 40px auto; max-width: 1040px; padding: 0 20px; color: #1f2937; }
+    h1, h2 { color: #111827; }
+    table { border-collapse: collapse; width: 100%; margin: 16px 0 28px; font-size: 14px; }
+    th, td { border: 1px solid #d1d5db; padding: 8px 10px; vertical-align: top; }
+    th { background: #f3f4f6; }
+    code { background: #f3f4f6; padding: 2px 4px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <h1>W06 발표용 보고서</h1>
+  <h2>발표 메타정보</h2>
+  <table>
+    <tr><th>항목</th><th>내용</th></tr>
+    <tr><td>주차</td><td>W06</td></tr>
+    <tr><td>주제</td><td>확률생성모형(Diffusion/GAN) &amp; 딥페이크 검출</td></tr>
+    <tr><td>발표 시간</td><td>8-10분</td></tr>
+    <tr><td>핵심 메시지</td><td>딥페이크 탐지 평가는 in-domain accuracy만으로 충분하지 않으며 cross-domain FPR/FNR과 human review routing을 함께 기록해야 한다.</td></tr>
+  </table>
+  <h2>발표 흐름</h2>
+  <ol>
+    <li>Diffusion과 GAN 원리</li>
+    <li>딥페이크 탐지 신뢰성 문제</li>
+    <li>논문 5편의 역할</li>
+    <li>Synthetic toy 실험과 결과</li>
+    <li>기말논문 연결</li>
+  </ol>
+  <h2>실험 결과</h2>
+  <table>
+    <tr><th>조건</th><th>Accuracy</th><th>F1</th><th>FPR</th><th>FNR</th><th>AUROC</th><th>ECE</th><th>Auto coverage</th><th>Review rate</th></tr>
+    <tr><td>In-domain detector baseline</td><td>1.000000</td><td>1.000000</td><td>0.000000</td><td>0.000000</td><td>1.000000</td><td>0.216327</td><td>해당 없음</td><td>해당 없음</td></tr>
+    <tr><td>Cross-domain reliability stress</td><td>0.816667</td><td>0.813559</td><td>0.166667</td><td>0.200000</td><td>0.899722</td><td>0.147949</td><td>해당 없음</td><td>해당 없음</td></tr>
+    <tr><td>Review-band triage</td><td>0.909091</td><td>0.901408</td><td>0.050000</td><td>0.135135</td><td>0.962162</td><td>0.174872</td><td>0.641667</td><td>0.358333</td></tr>
+  </table>
+  <h2>결론</h2>
+  <p>생성모형 품질과 탐지기 신뢰성은 분리해서 평가해야 한다. W06의 synthetic toy 결과는 accuracy 단독 평가의 한계와 review routing 기록의 필요성을 보여준다.</p>
+</body>
+</html>

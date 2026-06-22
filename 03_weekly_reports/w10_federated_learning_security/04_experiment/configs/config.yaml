@@ -1,0 +1,13 @@
+week: "W10"
+topic: "연합학습(FL) & FL 위협·방어·정책"
+seed: 42
+status: "design_only"
+data:
+  type: "public_or_synthetic"
+  personal_data: false
+experiment:
+  results_recorded: false
+  notes: "실제 실행 전까지 결과값은 기록하지 않는다."
+security_scope:
+  allowed: "toy evaluation and literature-based risk analysis"
+  disallowed: "actual system compromise, personal data use, unauthorized attack"

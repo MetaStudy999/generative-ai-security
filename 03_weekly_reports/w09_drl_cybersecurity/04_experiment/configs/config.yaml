@@ -1,0 +1,21 @@
+week: "W09"
+topic: "심층강화학습(DRL) & 사이버보안 적용·보상조작"
+seed: 42
+run_date: "2026-06-22"
+status: "executed"
+data:
+  type: "synthetic_toy_cyber_defense"
+  personal_data: false
+  train_steps: 5000
+  eval_steps: 600
+experiment:
+  algorithm: "tabular_q_learning"
+  learning_rate: 0.18
+  discount: 0.90
+  epsilon_start: 0.35
+  epsilon_end: 0.04
+  results_recorded: true
+  notes: "synthetic toy cyber-defense 환경에서 reward manipulation 조건을 비교한다."
+security_scope:
+  allowed: "toy cyber-defense state/action/reward simulation"
+  disallowed: "actual system compromise, personal data use, live network traffic, unauthorized attack automation"

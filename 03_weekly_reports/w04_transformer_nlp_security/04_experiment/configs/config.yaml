@@ -1,0 +1,17 @@
+week: "W04"
+topic: "Transformer 변형 & NLP 대적공격·프라이버시"
+seed: 42
+status: "executed_toy_experiment"
+run_date: "2026-06-22"
+data:
+  type: "synthetic_privacy_prompts"
+  personal_data: false
+experiment:
+  results_recorded: true
+  classifier: "keyword privacy-risk detector"
+  attack: "word substitution for obfuscated sensitive terms"
+  defense: "regex masking and privacy-preserving prompt wrapper"
+  notes: "Synthetic toy data only. Results are for evaluation-format demonstration, not real NLP model robustness claims."
+security_scope:
+  allowed: "toy evaluation and literature-based risk analysis"
+  disallowed: "actual system compromise, personal data use, unauthorized attack"

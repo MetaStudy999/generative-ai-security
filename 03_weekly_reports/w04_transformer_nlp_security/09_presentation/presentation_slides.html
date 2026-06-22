@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>W04 Slides</title>
+  <style>
+    :root { color-scheme: light; }
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f8fafc; color: #111827; }
+    main { height: 100vh; overflow: hidden; }
+    section { box-sizing: border-box; min-height: 100vh; padding: 64px 8vw 96px; display: none; align-content: center; }
+    section.active { display: grid; }
+    h1 { font-size: clamp(34px, 5vw, 64px); margin: 0 0 24px; line-height: 1.08; }
+    h2 { font-size: clamp(28px, 4vw, 48px); margin: 0 0 22px; line-height: 1.12; }
+    p, li { font-size: clamp(20px, 2.2vw, 30px); line-height: 1.45; }
+    ul, ol { padding-left: 1.2em; }
+    table { border-collapse: collapse; width: 100%; font-size: clamp(16px, 1.5vw, 22px); background: white; }
+    th, td { border: 1px solid #cbd5e1; padding: 10px 12px; vertical-align: top; }
+    th { background: #e2e8f0; }
+    code, pre { background: #e5e7eb; border-radius: 6px; }
+    pre { padding: 18px; font-size: clamp(18px, 1.8vw, 24px); overflow: auto; }
+    .kicker { text-transform: uppercase; font-size: 16px; letter-spacing: 0.08em; color: #2563eb; font-weight: 700; }
+    .slide-controls {
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.94);
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.14);
+      z-index: 20;
+    }
+    .slide-controls button {
+      min-width: 58px;
+      border: 1px solid #cbd5e1;
+      border-radius: 999px;
+      background: #ffffff;
+      color: #111827;
+      padding: 7px 12px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .slide-controls button:hover:not(:disabled) { background: #e2e8f0; }
+    .slide-controls button:disabled {
+      color: #94a3b8;
+      cursor: not-allowed;
+      background: #f8fafc;
+    }
+    .slide-count {
+      min-width: 58px;
+      text-align: center;
+      color: #64748b;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    @media print {
+      .slide-controls { display: none; }
+      main { height: auto; overflow: visible; }
+      section { display: grid !important; page-break-after: always; }
+    }
+    @media (max-width: 680px) {
+      section { padding: 52px 6vw 84px; }
+      .slide-controls { bottom: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="active">
+      <div>
+        <p class="kicker">W04</p>
+        <h1>Transformer 변형 &amp; NLP 대적공격·프라이버시</h1>
+        <p>clean score, ASR, privacy leakage, utility를 분리해 평가한다.</p>
+      </div>
+    </section>
+    <section>
+      <div>
+        <h2>왜 중요한가</h2>
+        <ul>
+          <li>Transformer는 NLP와 LLM 시스템의 기본 구조다.</li>
+          <li>긴 프롬프트와 ICL 예시는 민감정보 노출면도 넓힌다.</li>
+          <li>좋은 입력 처리 능력이 보안성을 자동으로 보장하지 않는다.</li>
+        </ul>
+      </div>
+    </section>
+    <section>
+      <div>
+        <h2>AI 원리: Attention</h2>
+        <ul>
+          <li>Self-attention은 토큰 사이 관계를 계산한다.</li>
+          <li>Q/K/V는 질의, 비교 기준, 전달 정보를 분리한다.</li>
+          <li>Multi-head attention은 여러 관계 패턴을 병렬로 본다.</li>
+        </ul>
+      </div>
+    </section>
+    <section>
+      <div>
+        <h2>Efficient Transformer</h2>
+        <table>
+          <tr><th>접근</th><th>핵심</th><th>보안 연결</th></tr>
+          <tr><td>Sparse attention</td><td>일부 관계만 계산</td><td>긴 프롬프트 평가 비용 절감</td></tr>
+          <tr><td>Low-rank</td><td>attention 행렬 근사</td><td>효율과 정보 손실 trade-off</td></tr>
+          <tr><td>Kernelized</td><td>계산식 변환</td><td>긴 입력 처리 확장</td></tr>
+        </table>
+      </div>
+    </section>
+    <section>
+      <div>
+        <h2>보안 이슈</h2>
+        <table>
+          <tr><th>위협</th><th>공격자 능력</th><th>대표 지표</th></tr>
+          <tr><td>Word substitution</td><td>우회 표현 사용</td><td>ASR</td></tr>
+          <tr><td>Prompt privacy</td><td>민감정보 입력·로그 노출</td><td>privacy leakage</td></tr>
+          <tr><td>ICL leakage</td><td>예시 안의 민감정보 재노출</td><td>masking success</td></tr>
+        </table>
+      </div>
+    </section>
+    <section>
+      <div>
+        <h2>논문 5편의 역할</h2>
+        <table>
+          <tr><th>ID</th><th>역할</th><th>활용</th></tr>
+          <tr><td>P01-P03</td><td>Transformer/X-former 원리</td><td>구조와 효율화 분류</td></tr>
+          <tr><td>P04</td><td>NLP adversarial defenses</td><td>공격/방어 taxonomy</td></tr>
+          <tr><td>P05</td><td>Prompt privacy</td><td>ICL과 prompt protection</td></tr>
+        </table>
+      </div>
+    </section>
+    <section>
+      <div>
+        <h2>위협모형</h2>
+        <pre>User Text / Prompt -> Detector or LLM -> Response -> Log
+        |                  |              |         |
+ word substitution     wrong risk      leakage   audit gap
+ sensitive value       decision        output    missing run</pre>
+      </div>
+    </section>
+    <section>
+      <div>
+        <h2>평가 프로토콜</h2>
+        <table>
+          <tr><th>항목</th><th>지표</th><th>기록</th></tr>
+          <tr><td>Clean performance</td><td>clean score</td><td>정상 synthetic 입력</td></tr>
+          <tr><td>Attack impact</td><td>ASR</td><td>단어 치환 후 오분류</td></tr>
+          <tr><td>Privacy</td><td>privacy leakage</td><td>원시 민감값 잔존 여부</td></tr>
+          <tr><td>Reproducibility</td><td>seed, config, outputs</td><td>CSV/JSON/run log</td></tr>
+        </table>
+      </div>
+    </section>
+    <section>
+      <div>
+        <h2>Synthetic Toy 실험</h2>
+        <ul>
+          <li>데이터: synthetic privacy-risk prompts</li>
+          <li>분류기: keyword privacy-risk detector</li>
+          <li>공격: sensitive keyword 우회 표현 치환</li>
+          <li>방어: regex masking + privacy-preserving prompt wrapper</li>
+        </ul>
+      </div>
+    </section>
+    <section>
+      <div>
+        <h2>실험 결과</h2>
+        <table>
+          <tr><th>조건</th><th>Clean</th><th>ASR</th><th>Leakage</th><th>Utility</th></tr>
+          <tr><td>Clean baseline</td><td>1.000000</td><td>해당 없음</td><td>해당 없음</td><td>1.000000</td></tr>
+          <tr><td>Word substitution</td><td>0.625000</td><td>0.750000</td><td>해당 없음</td><td>1.000000</td></tr>
+          <tr><td>Prompt masking</td><td>해당 없음</td><td>해당 없음</td><td>0.000000</td><td>1.000000</td></tr>
+          <tr><td>Privacy-preserving prompt</td><td>해당 없음</td><td>해당 없음</td><td>0.000000</td><td>1.000000</td></tr>
+        </table>
+      </div>
+    </section>
+    <section>
+      <div>
+        <h2>해석과 한계</h2>
+        <ul>
+          <li>단어 치환 후 위험 입력 4개 중 3개가 benign으로 오분류됐다.</li>
+          <li>마스킹 후 synthetic 원시 민감값 패턴은 남지 않았다.</li>
+          <li>실제 LLM 보안 성능으로 일반화하지 않는다.</li>
+        </ul>
+      </div>
+    </section>
+    <section>
+      <div>
+        <h2>기말논문 연결</h2>
+        <p>프롬프트 기반 AI 시스템의 민감정보 보호 평가체계</p>
+        <ul>
+          <li>관련연구: Transformer 효율화 + prompt privacy</li>
+          <li>위협모형: 입력, ICL 예시, 로그</li>
+          <li>평가방법: clean, ASR, leakage, utility 분리</li>
+        </ul>
+      </div>
+    </section>
+    <section>
+      <div>
+        <h2>결론</h2>
+        <ul>
+          <li>Transformer 효율화는 보안성 보장이 아니다.</li>
+          <li>NLP 공격은 clean 성능과 별도 지표로 봐야 한다.</li>
+          <li>Prompt privacy는 leakage와 utility를 함께 봐야 한다.</li>
+          <li>수치는 seed, config, outputs 근거가 있어야 한다.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+  <div class="slide-controls" aria-label="슬라이드 이동 버튼">
+    <button type="button" id="prevSlide" aria-label="이전 슬라이드">이전</button>
+    <span class="slide-count"><span id="counter">1</span> / <span id="totalSlides">13</span></span>
+    <button type="button" id="nextSlide" aria-label="다음 슬라이드">다음</button>
+  </div>
+  <script>
+    const slides = [...document.querySelectorAll("section")];
+    const counter = document.getElementById("counter");
+    const totalSlides = document.getElementById("totalSlides");
+    const prevSlide = document.getElementById("prevSlide");
+    const nextSlide = document.getElementById("nextSlide");
+    let current = 0;
+    totalSlides.textContent = String(slides.length);
+    function show(index) {
+      current = Math.max(0, Math.min(slides.length - 1, index));
+      slides.forEach((slide, i) => slide.classList.toggle("active", i === current));
+      counter.textContent = String(current + 1);
+      prevSlide.disabled = current === 0;
+      nextSlide.disabled = current === slides.length - 1;
+      document.title = `W04 Slides (${current + 1}/${slides.length})`;
+    }
+    prevSlide.addEventListener("click", (event) => {
+      event.stopPropagation();
+      show(current - 1);
+    });
+    nextSlide.addEventListener("click", (event) => {
+      event.stopPropagation();
+      show(current + 1);
+    });
+    document.addEventListener("keydown", (event) => {
+      if (["ArrowRight", "PageDown", " "].includes(event.key)) {
+        event.preventDefault();
+        show(current + 1);
+      }
+      if (["ArrowLeft", "PageUp", "Backspace"].includes(event.key)) {
+        event.preventDefault();
+        show(current - 1);
+      }
+      if (event.key === "Home") show(0);
+      if (event.key === "End") show(slides.length - 1);
+    });
+    document.addEventListener("click", (event) => {
+      if (event.target.closest(".slide-controls")) return;
+      show(current + 1);
+    });
+    show(0);
+  </script>
+</body>
+</html>

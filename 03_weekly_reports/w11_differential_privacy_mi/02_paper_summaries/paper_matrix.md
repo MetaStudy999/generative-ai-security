@@ -1,0 +1,27 @@
+# W11 논문 5편 비교표
+
+| 논문 | 연구문제 | 핵심 방법 | 데이터/실험 | 보안 위협 | 평가 지표 | 한계 | 내 논문 활용 |
+|---|---|---|---|---|---|---|---|
+| P01 | Membership inference, privacy leakage, utility trade-off와 관련된 위협 분류 | 문헌조사와 분류체계 정리 | 문헌조사 중심, 세부 실험값 대조 필요 | Membership inference attack | 개념 분류, 위협 범위, 평가축 | 원문 세부 수치 확인 전 | 공격-방어-평가 관점을 연결하는 보안 분석 틀 |
+| P02 | Membership inference, privacy leakage, utility trade-off와 관련된 위협 분류 | 문헌조사와 분류체계 정리 | 문헌조사 중심, 세부 실험값 대조 필요 | Membership inference attack | 개념 분류, 위협 범위, 평가축 | 원문 세부 수치 확인 전 | 공격-방어-평가 관점을 연결하는 보안 분석 틀 |
+| P03 | Membership inference, privacy leakage, utility trade-off와 관련된 위협 분류 | 문헌조사와 분류체계 정리 | 문헌조사 중심, 세부 실험값 대조 필요 | Membership inference attack | 개념 분류, 위협 범위, 평가축 | 원문 세부 수치 확인 전 | 공격-방어-평가 관점을 연결하는 보안 분석 틀 |
+| P04 | Membership inference, privacy leakage, utility trade-off와 관련된 위협 분류 | 문헌조사와 분류체계 정리 | 문헌조사 중심, 세부 실험값 대조 필요 | Membership inference attack | 개념 분류, 위협 범위, 평가축 | 원문 세부 수치 확인 전 | 공격-방어-평가 관점을 연결하는 보안 분석 틀 |
+| P05 | Membership inference, privacy leakage, utility trade-off와 관련된 위협 분류 | 문헌조사와 분류체계 정리 | 문헌조사 중심, 세부 실험값 대조 필요 | Membership inference attack | 개념 분류, 위협 범위, 평가축 | 원문 세부 수치 확인 전 | 공격-방어-평가 관점을 연결하는 보안 분석 틀 |
+
+## 종합 비교
+
+### 1. 공통적으로 다루는 문제
+
+다섯 편은 모두 차등프라이버시(DP) 및 멤버십 추론 공격/방어를 이해하기 위한 핵심 원리, 적용 범위, 평가 기준을 제공한다. AI 원리 측면에서는 차등프라이버시의 기본 정의, Privacy budget, epsilon, delta, Local DP와 central DP의 차이, DP-SGD의 기본 구조가 반복적으로 등장하고, 보안 측면에서는 Membership inference attack, Training data leakage, Model memorization, Overfitting과 privacy leakage의 관계가 공통 축으로 묶인다.
+
+### 2. 논문 간 차이점
+
+AI 원리 중심 논문은 모델 구조와 학습/평가 원리를 설명하는 데 강하고, 보안 중심 논문은 공격자 능력, 방어 방법, 실패 조건을 더 직접적으로 다룬다. 따라서 기말 논문에서는 두 축을 분리하지 않고 생명주기 기반 평가표로 통합하는 편이 적절하다.
+
+### 3. 아직 해결되지 않은 문제
+
+원문별 데이터셋, 실험 설정, DOI/URL 검증이 남아 있다. 또한 survey 문헌의 분류체계가 실제 재현 실험과 어떻게 연결되는지는 별도 프로토콜로 보완해야 한다.
+
+### 4. 기말 논문 주제로 발전 가능한 연결부
+
+W11는 차등프라이버시(DP) 및 멤버십 추론 공격/방어를 대상으로 한 위협모형, 평가방법, 재현성 체크리스트를 만들기 위한 기반 주차로 활용할 수 있다.

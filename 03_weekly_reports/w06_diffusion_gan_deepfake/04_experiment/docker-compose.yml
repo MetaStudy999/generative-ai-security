@@ -1,0 +1,7 @@
+services:
+  w06-diffusion-gan-deepfake:
+    build: .
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+    command: bash

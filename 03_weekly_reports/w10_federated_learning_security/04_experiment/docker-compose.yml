@@ -1,0 +1,7 @@
+services:
+  w10-federated-learning-security:
+    build: .
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+    command: bash

@@ -1,0 +1,15 @@
+# 할 일 체크리스트
+
+| 작업 | 상태 | 비고 |
+|---|---|---|
+| 논문 PDF 확인 | 진행 | 로컬 파일명 확인, 원문 세부 대조 필요 |
+| DOI/URL 검증 | 남음 | 임의 생성 금지 |
+| 논문요약 작성 | 완료 | 5편 작성 |
+| 이론정리 작성 | 완료 | AI 원리 70%, 보안 이슈 30% |
+| 실습 기록 작성 | 완료 | synthetic toy 실험 실행, 결과 `outputs/` 기록 |
+| AI 활용기록 작성 | 완료 | 고지서 포함 |
+| 통합보고서 작성 | 완료 | draft/final/review 생성 |
+| 발표용 보고서 작성 | 완료 | `09_presentation/presentation_report.md` 생성 |
+| 발표용 슬라이드 작성 | 완료 | `09_presentation/presentation_slides.md/html` 생성 |
+| 발표 보조자료 작성 | 완료 | `speaker_notes.md`, `qna.md`, `one_page_handout.md` 생성 |
+| 제출용 보고서 작성 | 완료 | `07_week_submission/w03_submission_report.md` 및 HTML 생성 |

@@ -1,0 +1,15 @@
+[project]
+name = "w12-nn-verification-xai-experiment"
+version = "0.1.0"
+description = "Week 12 AI security experiment environment"
+requires-python = ">=3.11,<3.12"
+dependencies = [
+    "numpy",
+    "pandas",
+    "scikit-learn",
+    "matplotlib",
+    "pyyaml",
+]
+
+[tool.uv]
+package = false

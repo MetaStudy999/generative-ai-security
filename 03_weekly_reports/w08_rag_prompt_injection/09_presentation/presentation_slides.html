@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>W08 Slides</title>
+  <style>
+    :root { color-scheme: dark; }
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #0f172a; color: #f8fafc; }
+    .slide { min-height: 100vh; box-sizing: border-box; padding: 8vh 8vw 12vh; display: flex; flex-direction: column; justify-content: center; border-bottom: 1px solid #334155; }
+    h1 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.12; margin: 0 0 24px; }
+    h2 { font-size: clamp(1.6rem, 3vw, 2.7rem); line-height: 1.2; margin: 0 0 20px; color: #93c5fd; }
+    p, li { font-size: clamp(1.05rem, 1.7vw, 1.45rem); }
+    table { border-collapse: collapse; width: 100%; background: #111827; font-size: clamp(0.82rem, 1.2vw, 1.05rem); }
+    th, td { border: 1px solid #475569; padding: 10px; vertical-align: top; }
+    th { background: #075985; color: #f8fafc; }
+    pre { background: #020617; border: 1px solid #334155; padding: 18px; overflow-x: auto; font-size: clamp(0.95rem, 1.5vw, 1.25rem); }
+    .muted { color: #cbd5e1; }
+    .nav { position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%); display: flex; align-items: center; gap: 10px; background: rgba(2, 6, 23, 0.86); border: 1px solid #475569; border-radius: 999px; padding: 8px 10px; z-index: 10; }
+    .nav button { border: 0; border-radius: 999px; background: #2563eb; color: white; padding: 8px 14px; font-size: 0.95rem; cursor: pointer; }
+    .nav button:disabled { background: #475569; cursor: default; }
+    .counter { min-width: 64px; text-align: center; color: #e2e8f0; font-variant-numeric: tabular-nums; }
+  </style>
+</head>
+<body>
+  <section class="slide"><h1>W08 RAG·프롬프팅 프레임워크 &amp; 프롬프트 인젝션</h1><p>LLM이 검색 문서를 읽는 순간, 문서는 근거이면서 동시에 공격면이 된다.</p></section>
+  <section class="slide"><h2>1. 핵심 질문</h2><ul><li>RAG에서 indirect prompt injection은 어디서 들어오는가</li><li>Source verification은 ASR을 낮출 수 있는가</li><li>Human approval gate는 tool misuse를 막을 수 있는가</li></ul></section>
+  <section class="slide"><h2>2. AI 원리 70%</h2><table><tr><th>단계</th><th>역할</th><th>보안 연결</th></tr><tr><td>Retrieval</td><td>관련 문서 검색</td><td>오염 문서 유입</td></tr><tr><td>Reranking</td><td>후보 재정렬</td><td>trust score 필요</td></tr><tr><td>Generation</td><td>context 기반 답변</td><td>context hijacking</td></tr><tr><td>Tool action</td><td>외부 행동</td><td>approval gate</td></tr></table></section>
+  <section class="slide"><h2>3. 문헌의 역할</h2><p>P01/P02는 GraphRAG와 graph 기능, P03은 prompting framework, P04는 prompt injection taxonomy, P05는 safety-critical 취약성 사례를 제공한다.</p></section>
+  <section class="slide"><h2>4. 위협모형</h2><pre>Poisoned document -> Retrieved context -> LLM answer -> Tool action</pre><p class="muted">보호 자산은 검색 문서, vector DB, graph DB, system prompt, user context, tool 권한, audit log다.</p></section>
+  <section class="slide"><h2>5. 실험 설계</h2><ul><li>Synthetic RAG documents</li><li>조건별 40개, 총 160개 sample</li><li>실제 LLM/API 호출 없음</li><li>Seed 42</li><li>지표: Retrieval Relevance, ASR, Source Verification, Tool Misuse Rate, Faithfulness, Answer Rate</li></ul></section>
+  <section class="slide"><h2>6. 실험 결과</h2><table><tr><th>조건</th><th>ASR</th><th>Source Verification</th><th>Tool Misuse</th></tr><tr><td>Clean RAG</td><td>0.000000</td><td>1.000000</td><td>0.000000</td></tr><tr><td>Poisoned document</td><td>0.575000</td><td>0.275000</td><td>0.125000</td></tr><tr><td>Source filter 적용</td><td>0.050000</td><td>1.000000</td><td>0.025000</td></tr><tr><td>Human approval 적용</td><td>0.025000</td><td>1.000000</td><td>0.000000</td></tr></table></section>
+  <section class="slide"><h2>7. 해석</h2><ul><li>Source filter는 ASR을 크게 낮춘다.</li><li>Human approval은 tool misuse를 차단한다.</li><li>단, answer rate가 낮아질 수 있어 사용성 비용을 함께 봐야 한다.</li></ul></section>
+  <section class="slide"><h2>8. 기말논문 연결</h2><p>RAG 기반 생성형 AI 시스템에서 간접 프롬프트 인젝션 대응을 위한 출처 검증·승인 게이트 평가 프레임워크.</p></section>
+  <section class="slide"><h2>9. 결론</h2><ul><li>RAG 보안은 좋은 검색만의 문제가 아니다.</li><li>출처, prompt boundary, tool 권한, 승인 로그를 함께 설계해야 한다.</li><li>수치는 실행 로그와 CSV/JSON에 있을 때만 주장한다.</li></ul></section>
+  <div class="nav" aria-label="슬라이드 이동">
+    <button id="prev" type="button">이전</button>
+    <span id="counter" class="counter">1/9</span>
+    <button id="next" type="button">다음</button>
+  </div>
+  <script>
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const prev = document.getElementById('prev');
+    const next = document.getElementById('next');
+    const counter = document.getElementById('counter');
+    let index = 0;
+    function show(i) {
+      index = Math.max(0, Math.min(slides.length - 1, i));
+      slides[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
+      counter.textContent = `${index + 1}/${slides.length}`;
+      prev.disabled = index === 0;
+      next.disabled = index === slides.length - 1;
+    }
+    prev.addEventListener('click', () => show(index - 1));
+    next.addEventListener('click', () => show(index + 1));
+    window.addEventListener('keydown', (event) => {
+      if (['ArrowRight', 'PageDown', ' '].includes(event.key)) { event.preventDefault(); show(index + 1); }
+      if (['ArrowLeft', 'PageUp'].includes(event.key)) { event.preventDefault(); show(index - 1); }
+      if (event.key === 'Home') { event.preventDefault(); show(0); }
+      if (event.key === 'End') { event.preventDefault(); show(slides.length - 1); }
+    });
+    window.addEventListener('scroll', () => {
+      const nearest = slides.reduce((best, slide, i) => {
+        const distance = Math.abs(slide.getBoundingClientRect().top);
+        return distance < best.distance ? { i, distance } : best;
+      }, { i: 0, distance: Infinity });
+      index = nearest.i;
+      counter.textContent = `${index + 1}/${slides.length}`;
+      prev.disabled = index === 0;
+      next.disabled = index === slides.length - 1;
+    }, { passive: true });
+    show(0);
+  </script>
+</body>
+</html>

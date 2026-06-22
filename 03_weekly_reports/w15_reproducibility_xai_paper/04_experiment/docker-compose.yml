@@ -1,0 +1,7 @@
+services:
+  w15-reproducibility-xai-paper:
+    build: .
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+    command: bash

@@ -1,0 +1,7 @@
+services:
+  w05-ssl-backdoor:
+    build: .
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+    command: bash

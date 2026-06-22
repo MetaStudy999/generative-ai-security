@@ -1,0 +1,7 @@
+services:
+  w07-llm-security-privacy:
+    build: .
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+    command: bash

@@ -1,0 +1,20 @@
+week: "W05"
+topic: "자기지도학습·파운데이션 모델 & Poisoning/Backdoor"
+seed: 42
+run_date: "2026-06-22"
+status: "executed_toy_experiment"
+data:
+  type: "synthetic_2d_representation"
+  personal_data: false
+  train_per_class: 24
+  test_per_class: 16
+  cluster_std: 0.18
+experiment:
+  results_recorded: true
+  poison_rate: 0.20
+  trigger_vector: [2.4, 0.3]
+  defense_threshold: 0.95
+  notes: "synthetic 표현공간에서 backdoor trigger 이동과 consistency 방어 지표를 기록한다."
+security_scope:
+  allowed: "toy evaluation and literature-based risk analysis"
+  disallowed: "actual system compromise, personal data use, unauthorized attack"

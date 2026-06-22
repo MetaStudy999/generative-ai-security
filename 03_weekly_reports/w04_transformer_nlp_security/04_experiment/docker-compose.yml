@@ -1,0 +1,7 @@
+services:
+  w04-transformer-nlp-security:
+    build: .
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+    command: bash

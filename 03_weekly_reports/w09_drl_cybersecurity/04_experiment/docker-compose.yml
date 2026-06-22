@@ -1,0 +1,7 @@
+services:
+  w09-drl-cybersecurity:
+    build: .
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+    command: bash

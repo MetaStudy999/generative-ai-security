@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>W04 제출용 보고서</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.65; margin: 40px auto; max-width: 1040px; padding: 0 20px; color: #1f2937; }
+    h1, h2 { color: #111827; }
+    table { border-collapse: collapse; width: 100%; margin: 16px 0 28px; font-size: 14px; }
+    th, td { border: 1px solid #d1d5db; padding: 8px 10px; vertical-align: top; }
+    th { background: #f3f4f6; }
+    code { background: #f3f4f6; padding: 2px 4px; border-radius: 4px; }
+    .note { border-left: 4px solid #2563eb; padding: 10px 14px; background: #eff6ff; }
+  </style>
+</head>
+<body>
+  <h1>W04 제출용 보고서</h1>
+  <h2>표지</h2>
+  <table>
+    <tr><th>항목</th><th>내용</th></tr>
+    <tr><td>주차</td><td>W04</td></tr>
+    <tr><td>보고서 제목</td><td>Transformer 변형 &amp; NLP 대적공격·프라이버시</td></tr>
+    <tr><td>작성일</td><td>2026-06-22</td></tr>
+    <tr><td>문서 상태</td><td>제출용 통합본</td></tr>
+    <tr><td>관련 산출물 위치</td><td><code>03_weekly_reports/w04_transformer_nlp_security/</code></td></tr>
+  </table>
+
+  <h2>초록과 키워드</h2>
+  <p>본 보고서는 Transformer 변형과 NLP 보안 위협을 함께 다룬다. AI 원리 측면에서는 self-attention, multi-head attention, sparse attention, low-rank approximation, kernelized attention 등 Efficient Transformer 계열의 계산 복잡도 완화 전략을 정리한다. 보안 측면에서는 단어 치환 기반 NLP 대적공격, 프롬프트 프라이버시, ICL 환경의 민감정보 노출, privacy-preserving prompt engineering을 분석한다.</p>
+  <p><strong>키워드:</strong> Transformer, X-former, sparse attention, NLP adversarial attack, prompt privacy, ICL</p>
+
+  <h2>문헌 요약과 DOI/URL 상태</h2>
+  <table>
+    <tr><th>ID</th><th>문헌</th><th>DOI/URL 상태</th><th>활용</th></tr>
+    <tr><td>P01</td><td>Efficient Transformers: A Survey</td><td>arXiv DOI <code>10.48550/arXiv.2009.06732</code></td><td>Efficient Transformer와 X-former 분류</td></tr>
+    <tr><td>P02</td><td>A Practical Survey on Faster and Lighter Transformers</td><td>ACM DOI <code>10.1145/3586074</code></td><td>계산·메모리 효율화 전략</td></tr>
+    <tr><td>P03</td><td>A survey of transformers</td><td>AI Open DOI <code>10.1016/j.aiopen.2022.10.001</code></td><td>Transformer 변형 taxonomy</td></tr>
+    <tr><td>P04</td><td>A Survey of Adversarial Defences and Robustness in NLP</td><td>arXiv DOI <code>10.48550/arXiv.2203.06414</code></td><td>NLP 대적공격 방어 taxonomy</td></tr>
+    <tr><td>P05</td><td>Privacy Preserving Prompt Engineering: A Survey</td><td>arXiv DOI <code>10.48550/arXiv.2404.06001</code></td><td>prompt privacy와 ICL 보호 방법</td></tr>
+  </table>
+
+  <h2>Research Track</h2>
+  <table>
+    <tr><th>항목</th><th>내용</th></tr>
+    <tr><td>연구문제</td><td>프롬프트 기반 NLP 시스템에서 민감정보 보호, 공격 우회, 유용성을 함께 평가하는 최소 지표는 무엇인가</td></tr>
+    <tr><td>대상 시스템</td><td>Transformer 기반 NLP 모델, LLM 프롬프트 시스템, 키워드 기반 프라이버시 탐지기</td></tr>
+    <tr><td>위협</td><td>단어 치환 우회, 프롬프트 민감정보 노출, 로그 잔존 위험</td></tr>
+    <tr><td>평가 지표</td><td>clean score, attack success rate, privacy leakage, utility score, reproducibility</td></tr>
+    <tr><td>제외 범위</td><td>실제 개인정보, 실제 서비스 공격, 무단 API 질의, 운영 시스템 침해</td></tr>
+  </table>
+
+  <h2>실습/실험 결과</h2>
+  <table>
+    <tr><th>조건</th><th>Clean Score</th><th>Attack Success Rate</th><th>Privacy Leakage</th><th>Utility Score</th><th>해석</th></tr>
+    <tr><td>Clean baseline</td><td>1.000000</td><td>해당 없음</td><td>해당 없음</td><td>1.000000</td><td>정상 입력에서 keyword detector가 synthetic 라벨을 모두 맞춤</td></tr>
+    <tr><td>Word substitution</td><td>0.625000</td><td>0.750000</td><td>해당 없음</td><td>1.000000</td><td>민감 키워드 우회로 일부 privacy-risk 입력이 benign으로 오분류</td></tr>
+    <tr><td>Prompt masking</td><td>해당 없음</td><td>해당 없음</td><td>0.000000</td><td>1.000000</td><td>정규식 마스킹 후 synthetic 민감값 노출 없음</td></tr>
+    <tr><td>Privacy-preserving prompt</td><td>해당 없음</td><td>해당 없음</td><td>0.000000</td><td>1.000000</td><td>마스킹과 정책 지시를 결합해 입력 의도만 유지</td></tr>
+  </table>
+  <p class="note">정량값은 <code>04_experiment/outputs/run_log.md</code>, <code>metrics_summary.csv</code>, <code>results.json</code>과 일치한다. 이 결과는 synthetic toy 실험이며 실제 Transformer 또는 LLM 성능 주장으로 일반화하지 않는다.</p>
+
+  <h2>기말논문 연결</h2>
+  <p>추천 주제는 “프롬프트 기반 AI 시스템의 민감정보 보호 평가체계”이다. 기여 후보는 prompt privacy threat model, masking/policy control checklist, clean score와 privacy leakage의 동시 평가표, 실행 로그 기반 재현성 기준이다.</p>
+
+  <h2>AI 활용 고지</h2>
+  <p>Codex를 사용해 문헌 요약 구조화, DOI/URL 검증 보조, synthetic 실험 코드 작성과 실행, 제출용 보고서 및 발표자료 작성을 수행했다. 상세 기록은 <code>05_ai_worklog/</code>에 있다.</p>
+
+  <h2>제출 전 점검표</h2>
+  <table>
+    <tr><th>점검 항목</th><th>상태</th></tr>
+    <tr><td>논문 요약 5편</td><td>완료</td></tr>
+    <tr><td>논문 비교표</td><td>완료</td></tr>
+    <tr><td>AI 원리/보안 이슈</td><td>완료</td></tr>
+    <tr><td>Research Track</td><td>완료</td></tr>
+    <tr><td>실험 코드와 결과</td><td>완료</td></tr>
+    <tr><td>AI 활용 고지</td><td>완료</td></tr>
+    <tr><td>발표자료</td><td>완료</td></tr>
+  </table>
+</body>
+</html>

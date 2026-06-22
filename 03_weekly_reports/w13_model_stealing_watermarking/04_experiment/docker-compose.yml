@@ -1,0 +1,7 @@
+services:
+  w13-model-stealing-watermarking:
+    build: .
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+    command: bash

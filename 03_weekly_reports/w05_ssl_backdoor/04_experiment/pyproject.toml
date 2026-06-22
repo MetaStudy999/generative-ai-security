@@ -1,0 +1,15 @@
+[project]
+name = "w05-ssl-backdoor-experiment"
+version = "0.1.0"
+description = "Week 05 AI security experiment environment"
+requires-python = ">=3.11,<3.12"
+dependencies = [
+    "numpy",
+    "pandas",
+    "scikit-learn",
+    "matplotlib",
+    "pyyaml",
+]
+
+[tool.uv]
+package = false

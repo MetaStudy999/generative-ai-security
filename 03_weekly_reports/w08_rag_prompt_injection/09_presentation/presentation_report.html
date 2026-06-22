@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>W08 발표용 보고서</title>
+  <style>
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f8fafc; color: #111827; line-height: 1.65; }
+    main { max-width: 960px; margin: 0 auto; padding: 48px 24px 72px; background: #fff; }
+    h1 { font-size: 2.1rem; margin: 0 0 24px; }
+    h2 { margin-top: 34px; border-bottom: 2px solid #e5e7eb; padding-bottom: 6px; }
+    table { border-collapse: collapse; width: 100%; margin: 14px 0 22px; font-size: 0.94rem; }
+    th, td { border: 1px solid #d1d5db; padding: 8px 10px; vertical-align: top; }
+    th { background: #ecfdf5; }
+    code { background: #f3f4f6; padding: 2px 5px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>W08 발표용 보고서</h1>
+  <table><tr><th>항목</th><th>내용</th></tr><tr><td>주차</td><td>W08</td></tr><tr><td>주제</td><td>RAG·프롬프팅 프레임워크 &amp; 프롬프트 인젝션</td></tr><tr><td>발표 시간</td><td>8-10분</td></tr><tr><td>핵심 메시지</td><td>RAG 보안은 검색 context, 출처 검증, tool 권한, human approval이 결합된 시스템 보안 문제다.</td></tr></table>
+  <h2>발표 흐름</h2>
+  <p>AI 원리, 보안 이슈, 논문 5편 역할, 실험 결과, 기말논문 연결 순서로 설명한다.</p>
+  <h2>논문 5편의 역할</h2>
+  <table><tr><th>논문</th><th>역할</th></tr><tr><td>P01/P02</td><td>GraphRAG와 graph-based RAG 기능 설명</td></tr><tr><td>P03</td><td>prompting framework 계층과 trust boundary 설명</td></tr><tr><td>P04</td><td>prompt injection 공격·방어 taxonomy 설명</td></tr><tr><td>P05</td><td>safety-critical domain 위험 설명</td></tr></table>
+  <h2>AI 원리와 보안 이슈</h2>
+  <p>RAG는 검색된 근거를 LLM context에 넣어 답변을 생성한다. 보안상 핵심은 retrieved context가 명령처럼 작동해 indirect injection과 tool misuse로 이어질 수 있다는 점이다.</p>
+  <h2>실험 결과</h2>
+  <table><tr><th>조건</th><th>Retrieval Relevance</th><th>ASR</th><th>Source Verification</th><th>Tool Misuse Rate</th><th>Faithfulness</th><th>Answer Rate</th></tr><tr><td>Clean RAG</td><td>0.907887</td><td>0.000000</td><td>1.000000</td><td>0.000000</td><td>0.907613</td><td>0.950000</td></tr><tr><td>Poisoned document</td><td>0.690091</td><td>0.575000</td><td>0.275000</td><td>0.125000</td><td>0.458069</td><td>0.875000</td></tr><tr><td>Source filter 적용</td><td>0.776926</td><td>0.050000</td><td>1.000000</td><td>0.025000</td><td>0.778693</td><td>0.800000</td></tr><tr><td>Human approval 적용</td><td>0.764926</td><td>0.025000</td><td>1.000000</td><td>0.000000</td><td>0.840805</td><td>0.575000</td></tr></table>
+  <h2>기말논문 연결</h2>
+  <p>추천 주제는 RAG 기반 생성형 AI 시스템에서 간접 프롬프트 인젝션 대응을 위한 출처 검증·승인 게이트 평가 프레임워크다.</p>
+</main>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>W05 발표용 보고서</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.65; margin: 40px auto; max-width: 1040px; padding: 0 20px; color: #1f2937; }
+    h1, h2 { color: #111827; }
+    table { border-collapse: collapse; width: 100%; margin: 16px 0 28px; font-size: 14px; }
+    th, td { border: 1px solid #d1d5db; padding: 8px 10px; vertical-align: top; }
+    th { background: #f3f4f6; }
+    code { background: #f3f4f6; padding: 2px 4px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <h1>W05 발표용 보고서</h1>
+
+  <h2>발표 메타정보</h2>
+  <table>
+    <tr><th>항목</th><th>내용</th></tr>
+    <tr><td>주차</td><td>W05</td></tr>
+    <tr><td>주제</td><td>자기지도학습·파운데이션 모델 &amp; Poisoning/Backdoor</td></tr>
+    <tr><td>발표 시간</td><td>8-10분</td></tr>
+    <tr><td>권장 슬라이드 수</td><td>10-14장</td></tr>
+    <tr><td>핵심 메시지</td><td>표현학습 기반 모델의 보안 평가는 clean 성능과 trigger 조건의 ASR, representation shift, 재현성 근거를 분리해야 한다.</td></tr>
+    <tr><td>발표 근거</td><td><code>06_report/final/integrated_report_final.md</code>, <code>04_experiment/outputs/run_log.md</code></td></tr>
+  </table>
+
+  <h2>한 문장 요약</h2>
+  <p>W05는 자기지도학습과 파운데이션 모델의 표현학습 원리를 정리하고, poisoning/backdoor가 표현공간을 어떻게 이동시켜 downstream 판단을 바꿀 수 있는지 synthetic toy 실험으로 분리 평가한다.</p>
+
+  <h2>발표 흐름</h2>
+  <table>
+    <tr><th>순서</th><th>슬라이드 주제</th><th>핵심 내용</th><th>시간</th></tr>
+    <tr><td>1</td><td>표지</td><td>W05 주제와 핵심 질문</td><td>0:30</td></tr>
+    <tr><td>2</td><td>왜 중요한가</td><td>foundation pretraining은 데이터와 표현공간 보안이 핵심</td><td>1:00</td></tr>
+    <tr><td>3-4</td><td>AI 원리</td><td>SSL, contrastive, masked, predictive learning</td><td>2:40</td></tr>
+    <tr><td>5-8</td><td>보안·문헌·평가</td><td>poisoning/backdoor taxonomy와 평가 프로토콜</td><td>4:20</td></tr>
+    <tr><td>9-11</td><td>Toy 실험과 결과</td><td>synthetic representation 실험, 결과, 한계</td><td>2:50</td></tr>
+    <tr><td>12-13</td><td>기말 연결과 결론</td><td>표현학습 보안 평가 프레임워크</td><td>1:00</td></tr>
+  </table>
+
+  <h2>논문 5편의 발표 역할</h2>
+  <table>
+    <tr><th>ID</th><th>논문</th><th>역할</th><th>DOI/URL 상태</th></tr>
+    <tr><td>P01</td><td>A Survey on Self-supervised Learning: Algorithms, Applications, and Future Trends</td><td>SSL 알고리즘과 응용 taxonomy</td><td>arXiv DOI 확인, 출판 DOI 미확인</td></tr>
+    <tr><td>P02</td><td>A Comprehensive Survey on Self-Supervised Learning for Recommendation</td><td>SSL recommendation survey</td><td>DOI 확인</td></tr>
+    <tr><td>P03</td><td>Self-Supervised Learning for Videos: A Survey</td><td>video SSL과 temporal representation</td><td>DOI 확인, arXiv URL 확인</td></tr>
+    <tr><td>P04</td><td>Threats to Training: A Survey of Poisoning Attacks and Defenses on Machine Learning Systems</td><td>poisoning 공격·방어 taxonomy</td><td>DOI 확인</td></tr>
+    <tr><td>P05</td><td>A survey of backdoor attacks and defences</td><td>DNN-LLM backdoor taxonomy</td><td>DOI 확인</td></tr>
+  </table>
+
+  <h2>실습/실험 결과</h2>
+  <table>
+    <tr><th>조건</th><th>Clean Acc.</th><th>Poisoned Clean Acc.</th><th>ASR</th><th>ASR after defense</th><th>Mean Shift</th><th>Detection Rate</th><th>Clean FPR</th></tr>
+    <tr><td>Clean representation baseline</td><td>1.000000</td><td>해당 없음</td><td>해당 없음</td><td>해당 없음</td><td>해당 없음</td><td>해당 없음</td><td>해당 없음</td></tr>
+    <tr><td>Poisoned/backdoor representation</td><td>해당 없음</td><td>1.000000</td><td>1.000000</td><td>해당 없음</td><td>2.418677</td><td>해당 없음</td><td>해당 없음</td></tr>
+    <tr><td>Consistency defense check</td><td>해당 없음</td><td>해당 없음</td><td>해당 없음</td><td>0.000000</td><td>0.090597</td><td>1.000000</td><td>0.000000</td></tr>
+  </table>
+
+  <h2>기말논문 연결</h2>
+  <table>
+    <tr><th>기말논문 장</th><th>연결 내용</th></tr>
+    <tr><td>서론</td><td>foundation pretraining 보안 평가 필요성</td></tr>
+    <tr><td>관련연구</td><td>SSL/foundation model survey와 poisoning/backdoor survey</td></tr>
+    <tr><td>연구문제</td><td>표현공간 오염과 trigger 조건을 함께 평가하는 최소 지표</td></tr>
+    <tr><td>연구방법</td><td>위협모형, synthetic toy 평가, 재현성 체크리스트</td></tr>
+    <tr><td>분석/실험</td><td>clean 성능, ASR, representation shift, defense check 분리</td></tr>
+  </table>
+
+  <h2>결론 메시지</h2>
+  <ol>
+    <li>자기지도학습의 핵심 산출물은 표현공간이며, 이 표현공간도 보안 자산이다.</li>
+    <li>Backdoor 평가는 clean 성능과 trigger 조건 ASR을 반드시 분리해야 한다.</li>
+    <li>Representation shift와 consistency check는 안전한 toy 환경에서 설명 가능한 평가축이다.</li>
+    <li>수치는 실행 로그와 config, CSV/JSON 근거가 있을 때만 주장한다.</li>
+  </ol>
+</body>
+</html>

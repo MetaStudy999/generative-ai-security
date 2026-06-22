@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>W09 Slides</title>
+  <style>
+    :root { color-scheme: dark; }
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #101820; color: #f7fafc; }
+    .slide { min-height: 100vh; box-sizing: border-box; padding: 8vh 8vw 12vh; display: flex; flex-direction: column; justify-content: center; border-bottom: 1px solid #334155; }
+    h1 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.12; margin: 0 0 24px; }
+    h2 { font-size: clamp(1.6rem, 3vw, 2.7rem); line-height: 1.2; margin: 0 0 20px; color: #8bd3dd; }
+    p, li { font-size: clamp(1.05rem, 1.7vw, 1.45rem); }
+    table { border-collapse: collapse; width: 100%; background: #14213d; font-size: clamp(0.82rem, 1.2vw, 1.05rem); }
+    th, td { border: 1px solid #5b6b83; padding: 10px; vertical-align: top; }
+    th { background: #0f766e; color: #f8fafc; }
+    pre { background: #08111d; border: 1px solid #334155; padding: 18px; overflow-x: auto; font-size: clamp(0.95rem, 1.5vw, 1.25rem); }
+    .muted { color: #cbd5e1; }
+    .nav { position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%); display: flex; align-items: center; gap: 10px; background: rgba(8, 17, 29, 0.9); border: 1px solid #5b6b83; border-radius: 999px; padding: 8px 10px; z-index: 10; }
+    .nav button { border: 0; border-radius: 999px; background: #0f766e; color: white; padding: 8px 14px; font-size: 0.95rem; cursor: pointer; }
+    .nav button:disabled { background: #475569; cursor: default; }
+    .counter { min-width: 64px; text-align: center; color: #e2e8f0; font-variant-numeric: tabular-nums; }
+  </style>
+</head>
+<body>
+  <section class="slide"><h1>W09 심층강화학습(DRL) &amp; 사이버보안</h1><p>Reward가 흔들리면 높은 점수 뒤에 안전하지 않은 정책이 숨어 있을 수 있다.</p></section>
+  <section class="slide"><h2>1. 발표 질문</h2><ul><li>DRL 에이전트는 무엇을 보고, 무엇을 선택하고, 무엇을 보상으로 받는가</li><li>reward manipulation은 정책을 어떻게 왜곡하는가</li><li>안전한 자동 대응은 어떤 지표로 평가할 수 있는가</li></ul></section>
+  <section class="slide"><h2>2. AI 원리 70%</h2><table><tr><th>개념</th><th>역할</th></tr><tr><td>State</td><td>alert, 자산 중요도, 취약 여부</td></tr><tr><td>Action</td><td>monitor, isolate, patch, escalate</td></tr><tr><td>Reward</td><td>탐지 성공, 운영 비용, 안전 위반</td></tr><tr><td>Policy</td><td>상태별 대응 전략</td></tr></table></section>
+  <section class="slide"><h2>3. 문헌의 역할</h2><p>P01은 DRL 원리, P02는 안전중요 자동화, P03/P04는 cyber-defense 적용, P05는 DRL verification을 담당한다.</p></section>
+  <section class="slide"><h2>4. 위협모형</h2><pre>State observation -> Policy decision -> Automated response
+        ^                    ^
+        |                    |
+ state manipulation    reward manipulation</pre><p class="muted">보호 자산은 상태 관측값, 보상함수, 정책, 로그, 대응 action이다.</p></section>
+  <section class="slide"><h2>5. 실험 설계</h2><ul><li>Synthetic toy cyber-defense state</li><li>Tabular Q-learning</li><li>Seed 42</li><li>조건: Normal reward, Manipulated reward, Robust reward design</li><li>지표: Average Reward, Detection F1, Safety Violation Rate, Policy Robustness</li></ul></section>
+  <section class="slide"><h2>6. 실험 결과</h2><table><tr><th>조건</th><th>Avg Reward</th><th>F1</th><th>Safety Violation</th><th>Robustness</th></tr><tr><td>Normal</td><td>1.085250</td><td>0.840206</td><td>0.011667</td><td>0.838417</td></tr><tr><td>Manipulated</td><td>0.521167</td><td>0.617512</td><td>0.195000</td><td>0.325000</td></tr><tr><td>Robust</td><td>0.910833</td><td>0.780952</td><td>0.000000</td><td>0.709583</td></tr></table></section>
+  <section class="slide"><h2>7. 해석</h2><ul><li>Manipulated reward는 observed reward와 true security objective를 분리시킨다.</li><li>Robust reward는 safety violation을 0으로 낮췄지만 false positive 비용을 만든다.</li><li>F1 하나만으로 자동 대응 정책을 평가하기 어렵다.</li></ul></section>
+  <section class="slide"><h2>8. 기말논문 연결</h2><p>DRL 기반 사이버 방어 에이전트의 보상조작 위협과 안전성 평가 프레임워크.</p></section>
+  <section class="slide"><h2>9. 결론</h2><ul><li>Reward integrity를 보호해야 한다.</li><li>Detection F1과 Safety Violation Rate를 함께 봐야 한다.</li><li>수치는 실행 로그와 CSV/JSON에 있을 때만 주장한다.</li></ul></section>
+  <div class="nav" aria-label="슬라이드 이동">
+    <button id="prev" type="button">이전</button>
+    <span id="counter" class="counter">1/9</span>
+    <button id="next" type="button">다음</button>
+  </div>
+  <script>
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const prev = document.getElementById('prev');
+    const next = document.getElementById('next');
+    const counter = document.getElementById('counter');
+    let index = 0;
+    function show(i) {
+      index = Math.max(0, Math.min(slides.length - 1, i));
+      slides[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
+      counter.textContent = `${index + 1}/${slides.length}`;
+      prev.disabled = index === 0;
+      next.disabled = index === slides.length - 1;
+    }
+    prev.addEventListener('click', () => show(index - 1));
+    next.addEventListener('click', () => show(index + 1));
+    window.addEventListener('keydown', (event) => {
+      if (['ArrowRight', 'PageDown', ' '].includes(event.key)) { event.preventDefault(); show(index + 1); }
+      if (['ArrowLeft', 'PageUp'].includes(event.key)) { event.preventDefault(); show(index - 1); }
+      if (event.key === 'Home') { event.preventDefault(); show(0); }
+      if (event.key === 'End') { event.preventDefault(); show(slides.length - 1); }
+    });
+    window.addEventListener('scroll', () => {
+      const nearest = slides.reduce((best, slide, i) => {
+        const distance = Math.abs(slide.getBoundingClientRect().top);
+        return distance < best.distance ? { i, distance } : best;
+      }, { i: 0, distance: Infinity });
+      index = nearest.i;
+      counter.textContent = `${index + 1}/${slides.length}`;
+      prev.disabled = index === 0;
+      next.disabled = index === slides.length - 1;
+    }, { passive: true });
+    show(0);
+  </script>
+</body>
+</html>

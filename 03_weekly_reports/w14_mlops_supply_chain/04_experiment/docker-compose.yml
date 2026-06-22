@@ -1,0 +1,7 @@
+services:
+  w14-mlops-supply-chain:
+    build: .
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+    command: bash

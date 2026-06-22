@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>W01 제출용 보고서</title>
+  <style>
+    :root {
+      --ink: #1d252d;
+      --muted: #5f6f7c;
+      --line: #d8e0e7;
+      --soft: #eef6f6;
+      --accent: #126a73;
+      --paper: #ffffff;
+      --bg: #f6f7f9;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR", Arial, sans-serif;
+      line-height: 1.68;
+    }
+    main {
+      width: min(980px, calc(100% - 32px));
+      margin: 32px auto;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      padding: 48px 56px;
+    }
+    h1 {
+      margin: 0 0 24px;
+      font-size: 34px;
+      line-height: 1.25;
+      color: var(--accent);
+      letter-spacing: 0;
+    }
+    h2 {
+      margin: 34px 0 12px;
+      padding-top: 8px;
+      border-top: 2px solid var(--line);
+      font-size: 24px;
+      letter-spacing: 0;
+    }
+    h3 {
+      margin: 24px 0 8px;
+      font-size: 19px;
+    }
+    p {
+      margin: 0 0 12px;
+      font-size: 16px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 18px;
+      font-size: 14px;
+    }
+    th, td {
+      border: 1px solid var(--line);
+      padding: 8px 10px;
+      vertical-align: top;
+      text-align: left;
+    }
+    th {
+      background: #edf2f5;
+    }
+    td.num {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+    .abstract {
+      padding: 16px 18px;
+      background: var(--soft);
+      border-left: 5px solid var(--accent);
+      margin-bottom: 20px;
+    }
+    .figure {
+      padding: 18px;
+      border: 1px solid var(--line);
+      background: #fbfcfd;
+      margin: 14px 0 18px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      white-space: pre-wrap;
+      font-size: 14px;
+    }
+    ol, ul {
+      padding-left: 24px;
+    }
+    li {
+      margin: 5px 0;
+    }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      background: #f0f3f5;
+      padding: 1px 4px;
+      border-radius: 3px;
+    }
+    .notice {
+      color: var(--muted);
+      font-size: 14px;
+    }
+    @media print {
+      body { background: white; }
+      main {
+        width: auto;
+        margin: 0;
+        border: 0;
+        padding: 18mm;
+      }
+      h2 { page-break-after: avoid; }
+      table, .figure { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <h1>W01 제출용 보고서<br>딥러닝 패러다임 & ML 보안 분류학</h1>
+
+  <h2>표지</h2>
+  <table>
+    <tbody>
+      <tr><th>주차</th><td>W01</td></tr>
+      <tr><th>과목 범위</th><td>AI 보안</td></tr>
+      <tr><th>작성자</th><td>박영세</td></tr>
+      <tr><th>학번</th><td>26200122</td></tr>
+      <tr><th>작성일</th><td>W01 주차 일정</td></tr>
+      <tr><th>문서 상태</th><td>제출용 통합본</td></tr>
+    </tbody>
+  </table>
+
+  <h2>초록</h2>
+  <div class="abstract">
+    <p>본 보고서는 딥러닝 패러다임과 ML 보안 분류학을 연결하여, 인공지능 모델을 단순한 정확도 산출 도구가 아니라 데이터, 학습, 검증, 배포, 모니터링이 결합된 ML 시스템으로 해석한다. 딥러닝의 표현학습, 역전파, 일반화, 과적합 개념을 정리하고, ML 생명주기 보증, 침입탐지, 대적 공격, 프라이버시 공격 문헌을 비교하였다. 또한 safe synthetic toy evaluation을 수행하여 clean baseline, label-noise training, feature perturbation 조건에서 성능 변화를 확인하였다.</p>
+  </div>
+  <p><strong>키워드:</strong> 딥러닝, ML 보안, 생명주기 보증, 대적 공격, 프라이버시 공격, 재현성</p>
+
+  <h2>1. 서론</h2>
+  <p>딥러닝은 복잡한 데이터에서 높은 성능을 보이는 핵심 AI 기술이다. 그러나 AI 보안 관점에서 중요한 질문은 단순히 정확도가 높은가가 아니다. 모델이 어떤 데이터로 학습되었는지, 어떤 공격자 가정에서 평가되었는지, 입력 교란이나 라벨 품질 저하에 얼마나 취약한지, 학습 데이터의 민감 정보가 출력이나 모델 파라미터에 반영될 수 있는지까지 함께 검토해야 한다.</p>
+  <p>W01의 목적은 이후 주차의 poisoning, adversarial example, privacy attack, MLOps supply chain 논의를 해석하기 위한 기준 프레임을 만드는 것이다.</p>
+
+  <h2>2. 딥러닝 원리 정리</h2>
+  <p>딥러닝의 핵심은 다층 신경망이 원시 입력에서 계층적 표현을 학습한다는 점이다. 학습은 손실함수를 최소화하는 파라미터를 찾는 과정이며, 일반화는 학습 데이터 밖에서도 성능이 유지되는지를 의미한다. 과적합은 일반적인 성능 저하 문제에 그치지 않고 privacy leakage 위험의 배경이 될 수 있다.</p>
+  <table>
+    <thead><tr><th>핵심 개념</th><th>의미</th><th>보안 연결</th></tr></thead>
+    <tbody>
+      <tr><td>표현학습</td><td>원시 입력에서 유용한 특징을 모델이 직접 학습</td><td>대적 입력이 내부 표현을 왜곡할 수 있음</td></tr>
+      <tr><td>역전파</td><td>gradient를 이용한 파라미터 갱신</td><td>gradient 기반 공격의 기술적 배경</td></tr>
+      <tr><td>일반화</td><td>새 데이터에서도 성능이 유지되는 성질</td><td>clean 성능과 robust 성능의 분리 필요</td></tr>
+      <tr><td>과적합</td><td>학습 데이터에 과도하게 맞는 상태</td><td>privacy leakage 위험 신호</td></tr>
+    </tbody>
+  </table>
+
+  <h2>3. ML 보안 이슈 정리</h2>
+  <table>
+    <thead><tr><th>보안 속성</th><th>ML 보안 문제</th><th>대표 위협</th></tr></thead>
+    <tbody>
+      <tr><td>Confidentiality</td><td>학습 데이터와 민감 정보 노출</td><td>membership inference, model inversion</td></tr>
+      <tr><td>Integrity</td><td>예측 결과 조작</td><td>adversarial example, poisoning</td></tr>
+      <tr><td>Availability</td><td>탐지 실패 또는 오탐 폭증</td><td>IDS 미탐, 오탐 비용 증가</td></tr>
+      <tr><td>Accountability</td><td>결과 재현과 책임 추적 실패</td><td>seed, config, 로그 누락</td></tr>
+    </tbody>
+  </table>
+
+  <h2>4. 관련 문헌 5편 요약</h2>
+  <table>
+    <thead><tr><th>ID</th><th>논문</th><th>핵심 기여</th><th>본 보고서 활용</th></tr></thead>
+    <tbody>
+      <tr><td>P01</td><td>Deep learning</td><td>딥러닝 원리 정리</td><td>AI 원리 배경</td></tr>
+      <tr><td>P02</td><td>Assuring the Machine Learning Lifecycle</td><td>ML 생명주기 보증</td><td>위협모형과 재현성 프레임</td></tr>
+      <tr><td>P03</td><td>ML Methods for Cyber Security Intrusion Detection</td><td>침입탐지 ML 평가</td><td>탐지 지표와 보안 데이터 한계</td></tr>
+      <tr><td>P04</td><td>Adversarial Attacks and Defenses</td><td>대적 공격·방어 taxonomy</td><td>robust 평가 기준</td></tr>
+      <tr><td>P05</td><td>Privacy Attacks in Machine Learning</td><td>프라이버시 공격 taxonomy</td><td>leakage risk 평가축</td></tr>
+    </tbody>
+  </table>
+
+  <h2>5. ML 생명주기 기반 위협모형</h2>
+  <p>대상 시스템은 딥러닝 또는 일반 ML 모델을 포함한 보안 응용 시스템이다. 보호 자산은 학습 데이터, 모델 파라미터, 입력 데이터, 출력 정보, 평가셋, 운영 로그다.</p>
+  <p><strong>그림 1. ML 생명주기 기반 보안 평가 프레임</strong></p>
+  <div class="figure">Data -> Training -> Validation -> Deployment -> Monitoring
+  |        |            |             |             |
+라벨품질   poisoning    robust 평가    evasion       drift
+민감정보   overfitting  leakage 평가   extraction    incident log</div>
+
+  <h2>6. 평가방법</h2>
+  <table>
+    <thead><tr><th>평가축</th><th>질문</th><th>대표 지표 또는 증거</th></tr></thead>
+    <tbody>
+      <tr><td>Clean performance</td><td>정상 조건에서 잘 맞는가</td><td>accuracy, precision, recall, F1</td></tr>
+      <tr><td>Robust performance</td><td>교란 조건에서도 유지되는가</td><td>robust accuracy, attack impact</td></tr>
+      <tr><td>Privacy leakage</td><td>민감 정보가 새는가</td><td>leakage risk, train-test gap</td></tr>
+      <tr><td>Reproducibility</td><td>결과를 다시 만들 수 있는가</td><td>seed, config, code, logs</td></tr>
+    </tbody>
+  </table>
+
+  <h2>7. 실습 설계와 결과</h2>
+  <p>실습은 안전한 synthetic toy evaluation으로 제한하였다. 실제 개인정보, 실제 운영 서비스, 무단 API 질의, 악성코드 실행은 포함하지 않았다. 실습 소스는 <code>04_experiment/src/run_experiment.py</code>에 작성하였다.</p>
+  <table>
+    <thead><tr><th>조건</th><th>Accuracy</th><th>Precision</th><th>Recall</th><th>F1</th><th>보안 해석</th></tr></thead>
+    <tbody>
+      <tr><td>Clean baseline</td><td class="num">0.869444</td><td class="num">0.867403</td><td class="num">0.872222</td><td class="num">0.869806</td><td>정상 synthetic test split 기준</td></tr>
+      <tr><td>Label-noise training</td><td class="num">0.838889</td><td class="num">0.827957</td><td class="num">0.855556</td><td class="num">0.841530</td><td>training label 126개 flip 후 성능 저하</td></tr>
+      <tr><td>Toy feature perturbation</td><td class="num">0.844444</td><td class="num">0.848315</td><td class="num">0.838889</td><td class="num">0.843575</td><td>Gaussian feature noise 조건</td></tr>
+    </tbody>
+  </table>
+  <p>Privacy-safe audit 결과 train accuracy는 0.857143, test accuracy는 0.869444, train-test gap은 -0.012301이며 risk label은 <code>low_overfitting_signal</code>이다. 이는 실제 데이터 대상 membership inference 공격 결과가 아니다.</p>
+
+  <h2>8. 결과 해석과 한계</h2>
+  <p>정상 조건 accuracy만으로는 모델 보안성을 설명할 수 없다. 라벨 노이즈와 feature perturbation 조건에서 성능 저하가 관찰되었으므로 데이터 품질, 입력 안정성, 교란 조건 평가가 별도로 필요하다. 다만 본 실습은 synthetic toy evaluation이므로 실제 운영망 보안성을 직접 대표하지 않는다.</p>
+
+  <h2>9. 기말 논문 연결</h2>
+  <p>W01은 기말 논문의 상위 프레임을 제공한다. 발전 가능한 주제는 “ML 생명주기 기반 AI 보안 평가 프레임워크”이다. 이후 주차의 공격과 방어를 데이터 관리, 모델 학습, 검증, 배포·운영 단계에 매핑할 수 있다.</p>
+
+  <h2>10. AI 활용 고지</h2>
+  <table>
+    <tbody>
+      <tr><th>사용 도구</th><td>Codex</td></tr>
+      <tr><th>사용 목적</th><td>논문 요약 보강, 개념 설명, 보고서 구조화, DOI/URL 검증표 정리, 실습 소스 작성, 제출용 보고서 통합</td></tr>
+      <tr><th>검증 방법</th><td>로컬 PDF 메타데이터, DOI/arXiv 페이지, 실행 로그, 수업 자료와 대조</td></tr>
+      <tr><th>본인 검토 필요</th><td>최종 제출 양식, 원문 세부 수치, 참고문헌 스타일</td></tr>
+    </tbody>
+  </table>
+
+  <h2>11. 참고문헌</h2>
+  <ol>
+    <li>Yann LeCun, Yoshua Bengio, and Geoffrey Hinton, “Deep learning,” Nature, 521, 436-444, 2015. DOI: 10.1038/nature14539.</li>
+    <li>Rob Ashmore, Radu Calinescu, and Colin Paterson, “Assuring the Machine Learning Lifecycle,” ACM Computing Surveys, 54(5), 2021. DOI: 10.1145/3453444.</li>
+    <li>Anna L. Buczak and Erhan Guven, “A Survey of Data Mining and Machine Learning Methods for Cyber Security Intrusion Detection,” IEEE Communications Surveys & Tutorials, 18(2), 1153-1176, 2016. DOI: 10.1109/COMST.2015.2494502.</li>
+    <li>Yulong Wang et al., “Adversarial Attacks and Defenses in Machine Learning-Powered Networks,” arXiv preprint, 2023. DOI: 10.48550/arXiv.2303.06302.</li>
+    <li>Maria Rigaki and Sebastian Garcia, “A Survey of Privacy Attacks in Machine Learning,” ACM Computing Surveys, 2023. DOI: 10.1145/3624010.</li>
+  </ol>
+
+  <h2>12. 제출 전 점검</h2>
+  <p class="notice">PDF가 필요한 경우 브라우저 인쇄 기능에서 PDF로 저장할 수 있다.</p>
+</main>
+</body>
+</html>

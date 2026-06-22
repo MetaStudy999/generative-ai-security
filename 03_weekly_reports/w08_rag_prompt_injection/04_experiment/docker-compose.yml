@@ -1,0 +1,7 @@
+services:
+  w08-rag-prompt-injection:
+    build: .
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+    command: bash

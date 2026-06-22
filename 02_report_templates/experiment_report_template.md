@@ -18,6 +18,7 @@
 | Dataset | 확인 필요 |
 | Seed | 확인 필요 |
 | 결과 상태 | 설계만 완료 / 실행 완료 |
+| Config 상태 | design_only / executed |
 | GPU | Optional |
 
 ---
@@ -117,10 +118,13 @@ python src/run_experiment.py --config configs/config.yaml
 * [ ] Dockerfile 내부 uv 복사 명령 확인
 * [ ] 컨테이너 내부 uv sync 실행
 * [ ] config.yaml 존재
+* [ ] config.yaml 상태와 실제 산출물 상태 일치
 * [ ] seed 고정
+* [ ] Python/package 버전 기록
 * [ ] `outputs/results.json` 저장
 * [ ] `outputs/metrics_summary.csv` 저장
 * [ ] `outputs/run_log.md` 저장
 * [ ] 실행 명령어 기록
 * [ ] 실행 후 통합보고서, 제출 체크리스트, AI 활용기록 갱신
 * [ ] 실행하지 않은 수치를 결과처럼 작성하지 않았음
+* [ ] 실제 개인정보, 운영 서비스, 무단 API 질의, 실행 가능한 공격 절차 제외

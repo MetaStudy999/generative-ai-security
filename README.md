@@ -31,6 +31,20 @@
 
 실험을 실행한 주차는 `04_experiment/experiment_report.md`, `06_report/final/integrated_report_final.md`, `07_week_submission/submit_checklist.md`, `05_ai_worklog/ai_worklog.md`를 함께 갱신한다. 실행하지 않은 주차의 결과값은 임의로 채우지 않는다.
 
+실험 재현성을 위해 실행 명령어, 실행일, seed, Python/package 버전, 주요 config 상태를 기록한다. `config.yaml`의 `design_only` 또는 `executed` 상태는 실제 `outputs/` 산출물 존재 여부와 일치해야 한다.
+
+## 참고문헌 검증 원칙
+
+논문 제목, 저자, 연도, 학술지명, 권호, 페이지, DOI/URL은 임의 생성하지 않는다. 확인하지 못한 항목은 `확인 필요`로 표시하고, 미검증 문헌은 핵심 근거로 사용하지 않는다.
+
+본문에서 인용한 문헌은 참고문헌 목록에 있어야 하며, 참고문헌 목록의 문헌은 본문에서 최소 1회 이상 인용되어야 한다. 기말논문 제출 전에는 국내 문헌 3편 이상, 해외 문헌 5편 이상을 실제 검색과 원문 또는 공식 landing page로 검증한다.
+
+## AI 활용 및 연구윤리 원칙
+
+생성형 AI 도구를 사용한 경우 사용 도구, 사용 목적, 주요 프롬프트, 반영 위치, 사람 검토 및 사실관계 검증 방식을 기록한다. 주차별 작업은 `05_ai_worklog/`에 남기고, 기말논문은 `04_final_paper/06_appendices/ai_disclosure.md`에 최종 고지를 정리한다.
+
+AI 산출물은 초안으로만 사용한다. 최종 원고의 내용, 인용, 해석, 실험 결과, 연구윤리 책임은 작성자에게 있으며, 허위 인용, 표절, 존재하지 않는 DOI, 실행하지 않은 실험 결과 작성은 금지한다.
+
 ## 발표용 보고서 원칙
 
 발표가 필요한 주차는 `09_presentation/` 폴더에 발표용 보고서, 슬라이드, 발표 보조자료를 둔다. 기본 발표 패키지는 `presentation_report.md`, `presentation_report.html`, `presentation_slides.md`, `presentation_slides.html`, `speaker_notes.md`, `qna.md`, `one_page_handout.md`이다.
@@ -44,3 +58,7 @@
 주차별 제출본은 `07_week_submission/`에 Markdown과 HTML을 함께 둔다. 기본 파일명은 `wXX_submission_report.md`와 `wXX_submission_report.html`이다.
 
 제출용 보고서는 통합보고서, 발표용 보고서, 실험 산출물을 제출 형식으로 압축한 문서다. HTML은 Markdown 제출본과 같은 수치, DOI/URL 검증 상태, AI 활용 고지, 실험 한계를 유지해야 한다.
+
+## 기말논문 연결 원칙
+
+기말논문은 한 학기 주차별 보고서 중 최소 2개 이상을 반영하고, `04_final_paper/02_weekly_reflection/` 또는 관련 반영표에 연결 근거를 남긴다. 선택한 국내 학회지 양식, 국문/영문 제목과 초록, 키워드, 표 1개 이상, 그림 1개 이상, 참고문헌 검증표, AI 활용 고지서, 학회지 양식 출처표를 제출 패키지에 포함한다.

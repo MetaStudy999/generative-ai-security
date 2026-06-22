@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>W02 발표용 보고서</title>
+  <style>
+    :root {
+      --ink: #1e2630;
+      --muted: #5f6f7c;
+      --line: #d6dee6;
+      --paper: #ffffff;
+      --bg: #f4f6f8;
+      --accent: #0f766e;
+      --soft: #ecfdf5;
+      --warn: #fff7ed;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR", Arial, sans-serif;
+      line-height: 1.65;
+      letter-spacing: 0;
+    }
+    main {
+      width: min(1040px, calc(100% - 32px));
+      margin: 32px auto;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      padding: 46px 54px;
+    }
+    h1 {
+      margin: 0 0 10px;
+      color: var(--accent);
+      font-size: 36px;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+    .subtitle {
+      margin: 0 0 24px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+    h2 {
+      margin: 34px 0 12px;
+      padding-top: 8px;
+      border-top: 2px solid var(--line);
+      font-size: 24px;
+      letter-spacing: 0;
+    }
+    p, li { font-size: 16px; }
+    p { margin: 0 0 12px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 18px;
+      font-size: 14px;
+    }
+    th, td {
+      border: 1px solid var(--line);
+      padding: 8px 10px;
+      vertical-align: top;
+      text-align: left;
+    }
+    th { background: #edf7f5; }
+    .num { text-align: right; font-variant-numeric: tabular-nums; }
+    .message {
+      background: var(--soft);
+      border-left: 5px solid var(--accent);
+      padding: 16px 18px;
+      margin: 16px 0 22px;
+    }
+    .notice {
+      background: var(--warn);
+      border-left: 5px solid #c2410c;
+      padding: 13px 16px;
+      margin: 14px 0 18px;
+    }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      background: #f0f3f5;
+      padding: 1px 4px;
+      border-radius: 3px;
+    }
+    ul, ol { padding-left: 24px; }
+    @media print {
+      body { background: white; }
+      main { width: auto; margin: 0; border: 0; padding: 18mm; }
+      h2 { page-break-after: avoid; }
+      table, .message, .notice { page-break-inside: avoid; }
+    }
+    @media (max-width: 720px) {
+      main { width: calc(100% - 20px); margin: 10px auto; padding: 28px 22px; }
+      h1 { font-size: 29px; }
+      h2 { font-size: 21px; }
+      table { font-size: 13px; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <h1>W02 발표용 보고서</h1>
+  <p class="subtitle">대규모 최적화 &amp; 데이터 오염 위협</p>
+  <div class="message">
+    <strong>핵심 메시지:</strong> 데이터 오염은 학습 목적함수와 gradient를 바꾸며, backdoor 평가는 clean accuracy와 ASR을 분리해야 한다.
+  </div>
+
+  <h2>1. 발표 메타정보</h2>
+  <table>
+    <tr><th>항목</th><th>내용</th></tr>
+    <tr><td>주차</td><td>W02</td></tr>
+    <tr><td>발표 시간</td><td>8-10분</td></tr>
+    <tr><td>권장 슬라이드 수</td><td>12-14장</td></tr>
+    <tr><td>발표 근거</td><td><code>06_report/final/integrated_report_final.md</code>, <code>04_experiment/outputs/run_log.md</code></td></tr>
+  </table>
+
+  <h2>2. 한 문장 요약</h2>
+  <p>W02는 대규모 최적화와 효율적 학습 원리를 바탕으로, 학습 데이터 일부가 조작될 때 모델의 clean accuracy, macro F1, ASR, 재현성 주장이 어떻게 달라지는지를 toy 실험과 문헌 분석으로 설명한다.</p>
+
+  <h2>3. 발표 흐름</h2>
+  <table>
+    <tr><th>순서</th><th>슬라이드 주제</th><th>핵심 내용</th><th>시간</th></tr>
+    <tr><td class="num">1</td><td>표지</td><td>W02 주제와 핵심 질문</td><td class="num">0:30</td></tr>
+    <tr><td class="num">2</td><td>왜 중요한가</td><td>학습 단계 위협은 최종 모델의 행동을 바꾼다</td><td class="num">1:00</td></tr>
+    <tr><td class="num">3</td><td>AI 원리</td><td>대규모 최적화, SGD, 효율적 학습</td><td class="num">2:00</td></tr>
+    <tr><td class="num">4</td><td>보안 이슈</td><td>label-flipping, poisoning, backdoor</td><td class="num">2:00</td></tr>
+    <tr><td class="num">5</td><td>논문 비교</td><td>최적화/효율화 문헌과 poisoning/backdoor 문헌 연결</td><td class="num">1:30</td></tr>
+    <tr><td class="num">6</td><td>위협모형/평가</td><td>clean accuracy, macro F1, ASR, 재현성 분리</td><td class="num">1:30</td></tr>
+    <tr><td class="num">7</td><td>Toy 실험</td><td>digits 기반 label-flip/backdoor 결과</td><td class="num">1:30</td></tr>
+    <tr><td class="num">8</td><td>기말논문 연결</td><td>데이터 오염 평가 프레임워크로 확장</td><td class="num">0:45</td></tr>
+    <tr><td class="num">9</td><td>결론/Q&amp;A</td><td>실행 로그와 한계를 함께 말하기</td><td class="num">0:45</td></tr>
+  </table>
+
+  <h2>4. 논문 5편의 발표 역할</h2>
+  <table>
+    <tr><th>ID</th><th>논문</th><th>발표에서 맡는 역할</th><th>강조할 한계</th></tr>
+    <tr><td>P01</td><td>Optimization Methods for Large-Scale Machine Learning</td><td>대규모 최적화와 SGD 원리 설명</td><td>보안 공격 문헌은 아니므로 poisoning 평가는 별도 연결 필요</td></tr>
+    <tr><td>P02</td><td>Efficient Deep Learning</td><td>압축, 경량화, 비용-속도-품질 trade-off 설명</td><td>P02/P04는 출판 판본 최종 대조 권장</td></tr>
+    <tr><td>P03</td><td>A Comprehensive Survey on Poisoning Attacks and Countermeasures in Machine Learning</td><td>poisoning 공격과 방어 taxonomy 제공</td><td>survey 기반이므로 특정 실험 수치 일반화 주의</td></tr>
+    <tr><td>P04</td><td>Wild Patterns Reloaded</td><td>training data poisoning threat model과 방어 관점</td><td>로컬 PDF 제목과 출판 판본 대조 필요</td></tr>
+    <tr><td>P05</td><td>A survey of backdoor attacks and defences</td><td>clean accuracy와 ASR 분리의 근거 제공</td><td>LLM backdoor까지 넓게 다루므로 W02 toy 실험은 축소 예시</td></tr>
+  </table>
+
+  <h2>5. AI 원리와 보안 이슈</h2>
+  <ul>
+    <li>대규모 ML 학습은 손실함수를 최소화하는 파라미터를 찾는 최적화 문제다.</li>
+    <li>SGD와 mini-batch 학습은 전체 데이터 대신 일부 샘플로 gradient를 추정해 확장성을 얻는다.</li>
+    <li>데이터나 라벨이 오염되면 empirical risk와 gradient 추정이 바뀌어 decision boundary가 이동할 수 있다.</li>
+    <li>효율적 학습과 모델 경량화는 방어 비용, 재학습 가능성, 탐지 지연시간과도 연결된다.</li>
+  </ul>
+  <table>
+    <tr><th>항목</th><th>발표 내용</th></tr>
+    <tr><td>보호 자산</td><td>학습 데이터, 라벨, 모델 파라미터, 검증셋, 실행 로그</td></tr>
+    <tr><td>공격자 능력</td><td>일부 라벨 조작, 오염 샘플 삽입, toy trigger 삽입</td></tr>
+    <tr><td>평가 지표</td><td>Clean accuracy, macro F1, accuracy drop, ASR, stealthiness, reproducibility</td></tr>
+  </table>
+
+  <h2>6. 실습/실험 결과</h2>
+  <p>정량값은 <code>04_experiment/outputs/run_log.md</code> 기준이다. 이 실험은 scikit-learn digits 공개 데이터셋을 사용한 교육용 toy evaluation이며, 실제 운영 시스템이나 개인정보 데이터는 포함하지 않는다.</p>
+  <table>
+    <tr><th>조건</th><th>Poisoning Rate</th><th>Clean Accuracy</th><th>Macro F1</th><th>ASR</th><th>발표 해석</th></tr>
+    <tr><td>Clean baseline</td><td class="num">0%</td><td class="num">0.981481</td><td class="num">0.981443</td><td>해당 없음</td><td>기준 성능</td></tr>
+    <tr><td>Label-flip</td><td class="num">5%</td><td class="num">0.918519</td><td class="num">0.918457</td><td>해당 없음</td><td>약한 오염에서도 성능 저하 관찰</td></tr>
+    <tr><td>Label-flip</td><td class="num">10%</td><td class="num">0.877778</td><td class="num">0.877582</td><td>해당 없음</td><td>오염률 증가에 따른 추가 저하</td></tr>
+    <tr><td>Label-flip</td><td class="num">20%</td><td class="num">0.818519</td><td class="num">0.818134</td><td>해당 없음</td><td>학습 라벨 품질 저하의 영향 확대</td></tr>
+    <tr><td>Toy backdoor</td><td class="num">5%</td><td class="num">0.970370</td><td class="num">0.970359</td><td class="num">0.987654</td><td>정상 성능을 유지하면서 trigger 조건에서 실패</td></tr>
+  </table>
+  <div class="notice">주의: toy backdoor 결과는 안전한 축소 모형의 지표 분리 예시이며, 실제 공격 성능이나 실서비스 취약성으로 일반화하지 않는다.</div>
+
+  <h2>7. 기말논문 연결</h2>
+  <table>
+    <tr><th>기말논문 장</th><th>발표에서 연결할 내용</th></tr>
+    <tr><td>서론</td><td>학습 데이터 오염이 AI 시스템 신뢰성을 흔드는 이유</td></tr>
+    <tr><td>관련연구</td><td>최적화, 효율학습, poisoning, backdoor survey 연결</td></tr>
+    <tr><td>연구방법</td><td>위협모형, 평가 프로토콜, Docker 실행 로그 기반 검증</td></tr>
+    <tr><td>분석/실험</td><td>label-flip과 toy backdoor를 통한 지표 분리 예시</td></tr>
+  </table>
+
+  <h2>8. 예상 질문과 답변</h2>
+  <table>
+    <tr><th>질문</th><th>답변 요지</th><th>근거 파일</th></tr>
+    <tr><td>왜 최적화 원리를 먼저 설명하는가?</td><td>poisoning은 학습 데이터와 라벨을 바꿔 gradient 추정과 손실함수를 흔드는 공격이므로 최적화 관점이 필요하다.</td><td><code>03_theory_notes/ai_principle_70.md</code></td></tr>
+    <tr><td>Clean accuracy가 높으면 안전한가?</td><td>아니다. backdoor는 정상 입력에서는 높은 성능을 보이면서 trigger 조건에서 높은 ASR을 만들 수 있다.</td><td><code>04_experiment/outputs/run_log.md</code></td></tr>
+    <tr><td>이 실습이 실제 공격 재현인가?</td><td>아니다. 공개 digits 데이터셋에서 수행한 교육용 toy evaluation이며 실제 시스템, 개인정보, 무단 API는 제외한다.</td><td><code>04_experiment/experiment_report.md</code></td></tr>
+    <tr><td>기말논문에는 어떻게 반영되는가?</td><td>학습 데이터 오염과 backdoor 평가를 위한 다중지표 프레임워크의 근거 사례로 반영한다.</td><td><code>08_final_paper_bridge/final_paper_bridge.md</code></td></tr>
+  </table>
+</main>
+</body>
+</html>

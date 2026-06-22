@@ -9,3 +9,4 @@
 | 2026-06-22 | 최종보고서/제출본 작성 | `06_report/`, `07_week_submission/` | 정량 실험값은 실행 후 확정하도록 명시 |
 | 2026-06-22 | 발표자료 작성 | `09_presentation/` | 슬라이드, 발표자 노트, Q&A, 1페이지 요약, HTML |
 | 2026-06-22 | Docker 실습 실행 및 결과 반영 | `04_experiment/outputs/`, `06_report/`, `07_week_submission/` | clean baseline, label-flip, toy backdoor 정량값 확정 |
+| 2026-06-22 | 공통 발표 파일명 보강 | `09_presentation/presentation_report.*`, `presentation_slides.*` | 공통 지침의 발표 패키지 파일명과 W02 별칭 파일을 함께 제공 |

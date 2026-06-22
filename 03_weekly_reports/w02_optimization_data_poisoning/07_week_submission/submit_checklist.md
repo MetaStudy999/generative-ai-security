@@ -11,12 +11,12 @@
 | Research Track 확인 | 완료 | 위협모형, 평가방법, 오픈문제 포함 |
 | 실험 설계/코드 확인 | 완료 | `04_experiment/src/run_experiment.py` |
 | 실험 결과 확인 | 완료 | Docker 실행 완료, `04_experiment/outputs/run_log.md` 생성 |
-| 발표자료 확인 | 완료 | `09_presentation/` |
+| 발표자료 확인 | 완료 | `09_presentation/presentation_report.md`, `presentation_slides.md`, `speaker_notes.md`, `qna.md`, `one_page_handout.md` |
 | AI 활용기록 확인 | 완료 | `05_ai_worklog/` |
 | 기말논문 연결 확인 | 완료 | `08_final_paper_bridge/` |
 | 파일명 확인 | 완료 | 영문, 숫자, 언더바 중심 |
 
 ## 제출 메모
 
-- W02는 문헌 기반 보고서, 실습 코드, 실험 결과, 발표자료까지 작성 완료했다.
+- W02는 문헌 기반 보고서, 실습 코드, 실험 결과, 공통 파일명 기준 발표자료까지 작성 완료했다.
 - 정량 실험 결과는 Docker에서 실행해 `04_experiment/outputs/`에 기록했다.

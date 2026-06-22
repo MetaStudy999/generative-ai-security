@@ -8,6 +8,7 @@
 | 2026-06-22 | Codex | 실험 코드 작성 | 지시서의 scikit-learn digits 실습 요구 | `src/run_experiment.py`, config, README | Docker 실행 검증 | py_compile, 의존성 안내 확인 |
 | 2026-06-22 | Codex | Docker 실습 실행 및 결과 반영 | W02 실험 코드와 config | `outputs/metrics_summary.csv`, `results.json`, `run_log.md`, 보고서 결과표 | 결과 해석 범위 확인 | Docker build/run, 출력 파일 확인 |
 | 2026-06-22 | Codex | 최종보고서/발표자료 작성 | 보강된 주차 산출물 | 통합보고서, 제출용 보고서, 발표자료 | 발표 시간에 맞춘 축약 | 체크리스트 검토 |
+| 2026-06-22 | Codex | 공통 지침 재점검 및 발표 파일명 보강 | 루트 README, W02 지시서, 기존 W02 발표자료 | `presentation_report.*`, `presentation_slides.*`, 체크리스트 갱신 | 기존 W02 별칭 파일과 중복 제공 범위 확인 | 공통 발표 패키지 파일명 대조 |
 
 ## 사용 원칙
 

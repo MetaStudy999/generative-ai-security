@@ -14,4 +14,5 @@
 | AI 활용기록 | 완료 | `05_ai_worklog/` |
 | 통합 최종보고서 | 완료 | `06_report/final/integrated_report_final.md` |
 | 제출용 보고서 | 완료 | `07_week_submission/w02_submission_report.md` |
-| 발표자료 | 완료 | `09_presentation/` |
+| 발표자료 | 완료 | `09_presentation/presentation_report.md`, `presentation_slides.md`, 보조자료 |
+| 공통 발표 파일명 확인 | 완료 | `presentation_report.*`, `presentation_slides.*`와 W02 별칭 파일 병행 제공 |

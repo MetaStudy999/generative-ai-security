@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>W02 발표자료</title>
+  <style>
+    :root {
+      --ink: #1f2933;
+      --muted: #5f6c7b;
+      --paper: #f8fafc;
+      --line: #d8e0e8;
+      --teal: #0f766e;
+      --coral: #c2410c;
+      --amber: #b45309;
+      --green: #15803d;
+      --panel: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Arial, "Noto Sans KR", sans-serif;
+      letter-spacing: 0;
+    }
+
+    .deck {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 22px;
+    }
+
+    .slide {
+      display: none;
+      width: min(1180px, 100%);
+      min-height: min(680px, calc(100vh - 84px));
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 44px 52px;
+      position: relative;
+      box-shadow: 0 18px 55px rgba(31, 41, 51, 0.12);
+      overflow: hidden;
+    }
+
+    .slide.active { display: flex; flex-direction: column; }
+
+    .slide-header {
+      color: var(--teal);
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 18px;
+      text-transform: uppercase;
+    }
+
+    h1, h2 {
+      margin: 0;
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      max-width: 980px;
+      font-size: 54px;
+      color: var(--ink);
+    }
+
+    h2 {
+      font-size: 42px;
+      margin-bottom: 22px;
+    }
+
+    p, li {
+      font-size: 22px;
+      line-height: 1.55;
+    }
+
+    p {
+      margin: 14px 0;
+      color: var(--muted);
+    }
+
+    ul, ol {
+      margin: 8px 0 0;
+      padding-left: 28px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 14px;
+      font-size: 18px;
+    }
+
+    th, td {
+      border-bottom: 1px solid var(--line);
+      padding: 12px 10px;
+      text-align: left;
+      vertical-align: top;
+      line-height: 1.35;
+    }
+
+    th {
+      color: var(--teal);
+      font-size: 16px;
+      background: #eef8f6;
+    }
+
+    .subtitle {
+      max-width: 820px;
+      color: var(--muted);
+      font-size: 25px;
+      margin-top: 22px;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--coral);
+      font-weight: 700;
+      margin-bottom: 16px;
+      font-size: 18px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 16px;
+    }
+
+    .tile {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      min-height: 126px;
+      background: #fbfdff;
+    }
+
+    .tile strong {
+      display: block;
+      color: var(--ink);
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .tile span {
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.45;
+    }
+
+    .message {
+      margin-top: auto;
+      border-left: 5px solid var(--amber);
+      padding: 12px 16px;
+      color: var(--ink);
+      background: #fff8eb;
+      font-size: 21px;
+      line-height: 1.45;
+    }
+
+    .pipeline {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin: 28px 0 18px;
+    }
+
+    .stage {
+      min-height: 120px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      background: #fbfdff;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .stage b {
+      color: var(--teal);
+      font-size: 17px;
+    }
+
+    .stage small {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.35;
+    }
+
+    .bars {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .bar-row {
+      display: grid;
+      grid-template-columns: 190px 1fr 72px;
+      gap: 12px;
+      align-items: center;
+      font-size: 18px;
+    }
+
+    .bar-track {
+      height: 18px;
+      background: #eef2f7;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: var(--teal);
+    }
+
+    .bar-fill.warn { background: var(--coral); }
+    .bar-fill.good { background: var(--green); }
+
+    code, pre {
+      font-family: "SFMono-Regular", Consolas, monospace;
+    }
+
+    pre {
+      background: #182026;
+      color: #ecfeff;
+      padding: 22px;
+      border-radius: 8px;
+      font-size: 18px;
+      line-height: 1.5;
+      overflow: auto;
+    }
+
+    .footer {
+      position: absolute;
+      left: 52px;
+      right: 52px;
+      bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .controls {
+      position: fixed;
+      right: 24px;
+      bottom: 22px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 10;
+    }
+
+    .controls button {
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: white;
+      color: var(--ink);
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    .counter {
+      min-width: 70px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    @media (max-width: 760px) {
+      .deck { padding: 10px; }
+      .slide {
+        min-height: calc(100vh - 62px);
+        padding: 28px 24px 56px;
+      }
+      h1 { font-size: 36px; }
+      h2 { font-size: 30px; }
+      p, li { font-size: 18px; }
+      .subtitle { font-size: 19px; }
+      .grid, .pipeline { grid-template-columns: 1fr; }
+      .bar-row { grid-template-columns: 1fr; }
+      table { font-size: 15px; }
+      th, td { padding: 9px 7px; }
+      .footer { left: 24px; right: 24px; }
+    }
+
+    @media print {
+      body { background: white; }
+      .deck { display: block; padding: 0; }
+      .slide {
+        display: flex !important;
+        width: 100%;
+        min-height: 100vh;
+        page-break-after: always;
+        box-shadow: none;
+        border: 0;
+      }
+      .controls { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="deck">
+    <section class="slide active">
+      <div class="slide-header">W02 Presentation</div>
+      <div class="kicker">AI 원리 70% + 보안 이슈 30%</div>
+      <h1>대규모 최적화 & 데이터 오염 위협</h1>
+      <p class="subtitle">학습은 데이터가 만드는 손실함수를 따라 움직인다. 데이터가 오염되면 gradient, decision boundary, clean accuracy, ASR이 함께 흔들린다.</p>
+      <div class="footer"><span>AI Security Seminar</span><span>W02</span></div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">1 / Why W02 Matters</div>
+      <h2>학습 단계의 위협을 보는 주차</h2>
+      <div class="grid">
+        <div class="tile"><strong>W01</strong><span>ML 보안 평가의 공통 언어: clean, robust, privacy, reproducibility.</span></div>
+        <div class="tile"><strong>W02</strong><span>학습 데이터와 라벨이 최적화 경로를 어떻게 바꾸는지 분석.</span></div>
+        <div class="tile"><strong>핵심 질문</strong><span>데이터 일부가 틀리거나 악의적으로 설계되면 모델은 무엇을 학습하는가?</span></div>
+        <div class="tile"><strong>발표 목표</strong><span>최적화 원리와 poisoning/backdoor 평가 지표를 연결.</span></div>
+      </div>
+      <div class="footer"><span>Data affects optimization</span><span></span></div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">2 / Roadmap</div>
+      <h2>발표 흐름</h2>
+      <ol>
+        <li>대규모 최적화와 SGD 원리</li>
+        <li>효율적 학습과 비용 지표</li>
+        <li>데이터 오염과 backdoor</li>
+        <li>논문 5편의 역할</li>
+        <li>위협모형과 평가 프로토콜</li>
+        <li>실습 설계와 기말논문 연결</li>
+      </ol>
+      <div class="message">핵심은 공격 방법 자체가 아니라 평가 지표와 재현성 구조를 만드는 것이다.</div>
+      <div class="footer"><span>8-10 min</span><span></span></div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">3 / AI Principle</div>
+      <h2>대규모 최적화</h2>
+      <ul>
+        <li>대규모 ML은 손실함수를 최소화하는 파라미터를 찾는 문제다.</li>
+        <li>전체 데이터의 gradient 계산은 비용이 크다.</li>
+        <li>SGD와 mini-batch 학습은 일부 샘플로 방향을 추정한다.</li>
+        <li>오염 샘플은 gradient 추정과 decision boundary를 바꿀 수 있다.</li>
+      </ul>
+      <pre>min_w  1/n * sum_i L(f_w(x_i), y_i) + lambda * R(w)</pre>
+      <div class="footer"><span>P01: optimization methods</span><span></span></div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">4 / Efficiency</div>
+      <h2>효율성은 보안 검증 예산이다</h2>
+      <table>
+        <thead><tr><th>개념</th><th>의미</th><th>보안 연결</th></tr></thead>
+        <tbody>
+          <tr><td>모델 압축</td><td>모델 크기와 연산량 축소</td><td>방어 비용과 pruning 효과</td></tr>
+          <tr><td>경량화</td><td>배포 가능한 추론 구조</td><td>edge 환경의 방어 제약</td></tr>
+          <tr><td>효율적 학습</td><td>학습 시간과 자원 절감</td><td>재학습과 반복 평가 가능성</td></tr>
+          <tr><td>비용 지표</td><td>latency, memory, FLOPs</td><td>accuracy 외 평가축</td></tr>
+        </tbody>
+      </table>
+      <div class="footer"><span>P02: efficient deep learning</span><span></span></div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">5 / Security Issue</div>
+      <h2>데이터 오염과 backdoor</h2>
+      <table>
+        <thead><tr><th>위협</th><th>공격 목표</th><th>대표 지표</th></tr></thead>
+        <tbody>
+          <tr><td>Label-flipping</td><td>라벨 조작으로 성능 저하</td><td>accuracy drop</td></tr>
+          <tr><td>Data poisoning</td><td>학습 데이터 조작</td><td>clean accuracy, macro F1</td></tr>
+          <tr><td>Backdoor</td><td>trigger 조건부 오분류</td><td>ASR</td></tr>
+          <tr><td>Provenance failure</td><td>오염 출처 추적 실패</td><td>로그, 데이터 이력</td></tr>
+        </tbody>
+      </table>
+      <div class="message">정상 성능이 높아도 trigger 조건에서 실패하면 안전한 모델이 아니다.</div>
+      <div class="footer"><span>Integrity and accountability</span><span></span></div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">6 / Metrics</div>
+      <h2>Clean Accuracy와 ASR은 다르다</h2>
+      <div class="bars">
+        <div class="bar-row"><span>정상 모델 clean</span><div class="bar-track"><div class="bar-fill good" style="width: 88%"></div></div><span>높음</span></div>
+        <div class="bar-row"><span>정상 모델 ASR</span><div class="bar-track"><div class="bar-fill good" style="width: 12%"></div></div><span>낮음</span></div>
+        <div class="bar-row"><span>backdoor clean</span><div class="bar-track"><div class="bar-fill" style="width: 86%"></div></div><span>높음</span></div>
+        <div class="bar-row"><span>backdoor ASR</span><div class="bar-track"><div class="bar-fill warn" style="width: 82%"></div></div><span>높음</span></div>
+      </div>
+      <div class="message">은닉형 backdoor는 clean accuracy가 높으면서 ASR도 높은 조건이므로 가장 위험하다.</div>
+      <div class="footer"><span>P05: backdoor survey</span><span></span></div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">7 / Paper Map</div>
+      <h2>논문 5편의 역할</h2>
+      <table>
+        <thead><tr><th>ID</th><th>중심 역할</th><th>W02 활용</th></tr></thead>
+        <tbody>
+          <tr><td>P01</td><td>대규모 최적화</td><td>SGD와 gradient 관점</td></tr>
+          <tr><td>P02</td><td>효율적 딥러닝</td><td>비용, 속도, 압축</td></tr>
+          <tr><td>P03</td><td>Poisoning survey</td><td>공격/방어 taxonomy</td></tr>
+          <tr><td>P04</td><td>Training data poisoning</td><td>threat model과 방어</td></tr>
+          <tr><td>P05</td><td>Backdoor survey</td><td>ASR, 탐지, 제거</td></tr>
+        </tbody>
+      </table>
+      <div class="footer"><span>Principle + threat</span><span></span></div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">8 / Threat Model</div>
+      <h2>학습 파이프라인 위협모형</h2>
+      <div class="pipeline">
+        <div class="stage"><b>Collection</b><small>source risk<br>provenance</small></div>
+        <div class="stage"><b>Labeling</b><small>label flip<br>noisy label</small></div>
+        <div class="stage"><b>Preprocess</b><small>trigger mix<br>hidden pattern</small></div>
+        <div class="stage"><b>Training</b><small>poisoned<br>gradient</small></div>
+        <div class="stage"><b>Validation</b><small>clean-only<br>blind spot</small></div>
+      </div>
+      <ul>
+        <li>보호 자산: 데이터, 라벨, 모델 파라미터, 검증셋, 로그</li>
+        <li>성공 조건: 성능 저하 또는 trigger 조건부 목표 오분류</li>
+      </ul>
+      <div class="footer"><span>Lifecycle view</span><span></span></div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">9 / Evaluation</div>
+      <h2>평가 프로토콜</h2>
+      <table>
+        <thead><tr><th>평가 항목</th><th>지표</th><th>기록 방법</th></tr></thead>
+        <tbody>
+          <tr><td>Clean performance</td><td>accuracy, macro F1</td><td>정상 테스트셋</td></tr>
+          <tr><td>Poisoning impact</td><td>accuracy drop</td><td>오염률별 비교</td></tr>
+          <tr><td>Backdoor effect</td><td>ASR</td><td>trigger 테스트셋</td></tr>
+          <tr><td>Stealthiness</td><td>clean accuracy 유지율</td><td>clean과 ASR 동시 비교</td></tr>
+          <tr><td>Reproducibility</td><td>seed, config, logs</td><td>Docker와 outputs</td></tr>
+        </tbody>
+      </table>
+      <div class="footer"><span>Metrics must be separated</span><span></span></div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">10 / Experiment Design</div>
+      <h2>Digits toy evaluation</h2>
+      <div class="grid">
+        <div class="tile"><strong>Dataset</strong><span>scikit-learn digits public dataset</span></div>
+        <div class="tile"><strong>Model</strong><span>StandardScaler + Logistic Regression</span></div>
+        <div class="tile"><strong>Label flip</strong><span>5%, 10%, 20% training labels</span></div>
+        <div class="tile"><strong>Toy backdoor</strong><span>5% training samples with simple pixel trigger</span></div>
+      </div>
+      <div class="message">Docker 실행으로 CSV, JSON, Markdown 로그를 생성했다.</div>
+      <div class="footer"><span>Safe public toy setting</span><span></span></div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">11 / Result Table</div>
+      <h2>결과 기록 방식</h2>
+      <table>
+        <thead><tr><th>조건</th><th>오염률</th><th>Clean Accuracy</th><th>Macro F1</th><th>ASR</th></tr></thead>
+        <tbody>
+          <tr><td>Clean baseline</td><td>0%</td><td>0.981481</td><td>0.981443</td><td>해당 없음</td></tr>
+          <tr><td>Label-flip</td><td>5%</td><td>0.918519</td><td>0.918457</td><td>해당 없음</td></tr>
+          <tr><td>Label-flip</td><td>10%</td><td>0.877778</td><td>0.877582</td><td>해당 없음</td></tr>
+          <tr><td>Label-flip</td><td>20%</td><td>0.818519</td><td>0.818134</td><td>해당 없음</td></tr>
+          <tr><td>Toy backdoor</td><td>5%</td><td>0.970370</td><td>0.970359</td><td>0.987654</td></tr>
+        </tbody>
+      </table>
+      <div class="message">정량값은 outputs/run_log.md 기준으로 반영했다.</div>
+      <div class="footer"><span>Outputs: CSV, JSON, Markdown log</span><span></span></div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">12 / Limits</div>
+      <h2>한계와 기말논문 연결</h2>
+      <ul>
+        <li>Digits toy experiment는 실제 대규모 모델을 대표하지 않는다.</li>
+        <li>Label-flip은 clean-label poisoning의 은닉성을 충분히 설명하지 못한다.</li>
+        <li>LLM backdoor와 데이터 공급망 위협은 최신 문헌 보강이 필요하다.</li>
+      </ul>
+      <div class="message">기말 주제 후보: 학습 데이터 오염과 backdoor 평가를 위한 다중지표 프레임워크</div>
+      <div class="footer"><span>Final paper bridge</span><span></span></div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">13 / Conclusion</div>
+      <h2>결론</h2>
+      <ul>
+        <li>최적화는 데이터로 움직인다.</li>
+        <li>데이터 오염은 학습 목적함수와 gradient를 흔든다.</li>
+        <li>Backdoor 평가는 clean accuracy와 ASR을 분리해야 한다.</li>
+        <li>안전한 실습은 Docker, config, seed, outputs를 남겨야 한다.</li>
+      </ul>
+      <div class="message">실습 코드, Docker 실행 결과, 제출 문서가 모두 정리되었다.</div>
+      <div class="footer"><span>W02 complete</span><span></span></div>
+    </section>
+  </main>
+
+  <div class="controls" aria-label="slide controls">
+    <button type="button" id="prev" aria-label="previous slide">&lt;</button>
+    <div class="counter" id="counter">1 / 14</div>
+    <button type="button" id="next" aria-label="next slide">&gt;</button>
+  </div>
+
+  <script>
+    const slides = Array.from(document.querySelectorAll(".slide"));
+    const counter = document.getElementById("counter");
+    let index = 0;
+
+    function showSlide(nextIndex) {
+      index = Math.max(0, Math.min(slides.length - 1, nextIndex));
+      slides.forEach((slide, slideIndex) => {
+        slide.classList.toggle("active", slideIndex === index);
+      });
+      counter.textContent = `${index + 1} / ${slides.length}`;
+      document.title = `W02 발표자료 (${index + 1}/${slides.length})`;
+    }
+
+    document.getElementById("prev").addEventListener("click", () => showSlide(index - 1));
+    document.getElementById("next").addEventListener("click", () => showSlide(index + 1));
+
+    document.addEventListener("keydown", (event) => {
+      if (["ArrowRight", "PageDown", " "].includes(event.key)) {
+        event.preventDefault();
+        showSlide(index + 1);
+      }
+      if (["ArrowLeft", "PageUp"].includes(event.key)) {
+        event.preventDefault();
+        showSlide(index - 1);
+      }
+      if (event.key === "Home") showSlide(0);
+      if (event.key === "End") showSlide(slides.length - 1);
+    });
+
+    showSlide(0);
+  </script>
+</body>
+</html>

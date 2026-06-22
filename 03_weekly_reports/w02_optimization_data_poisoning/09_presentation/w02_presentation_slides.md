@@ -127,7 +127,7 @@ Data Collection -> Labeling -> Preprocessing -> Training -> Validation
 - 모델: StandardScaler + Logistic Regression
 - 조건 1: clean baseline
 - 조건 2: label flip 5%, 10%, 20%
-- 조건 3: toy backdoor 5%
+- 조건 3: 안전한 toy backdoor 5%
 - 출력: CSV, JSON, Markdown run log
 
 Docker 실행으로 CSV, JSON, Markdown 로그를 생성했다.
@@ -142,7 +142,7 @@ Docker 실행으로 CSV, JSON, Markdown 로그를 생성했다.
 | Label-flip | 5% | 0.918519 | 0.918457 | 해당 없음 |
 | Label-flip | 10% | 0.877778 | 0.877582 | 해당 없음 |
 | Label-flip | 20% | 0.818519 | 0.818134 | 해당 없음 |
-| Toy backdoor | 5% | 0.970370 | 0.970359 | 0.987654 |
+| Safe toy backdoor | 5% | 0.970370 | 0.970359 | 0.987654 |
 
 정량값은 `outputs/run_log.md` 기준으로 반영했다.
 
@@ -155,6 +155,8 @@ Docker 실행으로 CSV, JSON, Markdown 로그를 생성했다.
 - LLM backdoor와 데이터 공급망 위협은 최신 문헌 보강이 필요하다.
 
 기말 주제 후보: 학습 데이터 오염과 backdoor 평가를 위한 다중지표 프레임워크
+
+문헌 검증 메모: P02 ACM DOI는 확인 완료, P04는 DOI 확인 완료이나 강의계획서 지정 제목과 동일 여부 확인 필요.
 
 ---
 

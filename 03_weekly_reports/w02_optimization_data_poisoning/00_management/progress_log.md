@@ -10,3 +10,4 @@
 | 2026-06-22 | 발표자료 작성 | `09_presentation/` | 슬라이드, 발표자 노트, Q&A, 1페이지 요약, HTML |
 | 2026-06-22 | Docker 실습 실행 및 결과 반영 | `04_experiment/outputs/`, `06_report/`, `07_week_submission/` | clean baseline, label-flip, toy backdoor 정량값 확정 |
 | 2026-06-22 | 공통 발표 파일명 보강 | `09_presentation/presentation_report.*`, `presentation_slides.*` | 공통 지침의 발표 패키지 파일명과 W02 별칭 파일을 함께 제공 |
+| 2026-06-22 | W02 최종 보완 점검 | `01_papers/`, `06_report/final/`, `07_week_submission/`, `05_ai_worklog/` | P02 DOI 확인, P04 제목 불일치 표시, 16장 목차/KCI/SCI/AI 고지/PDF 위험 반영 |

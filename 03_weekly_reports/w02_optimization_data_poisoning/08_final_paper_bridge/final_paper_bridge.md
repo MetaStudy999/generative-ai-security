@@ -24,3 +24,20 @@
 ## 3. 추천 기말 주제
 
 가장 적합한 주제는 “학습 데이터 오염과 backdoor 평가를 위한 다중지표 프레임워크”이다. 이 주제는 W02의 최적화 원리, poisoning taxonomy, backdoor 지표, Docker 실험 설계를 모두 활용할 수 있고, 이후 주차의 adversarial example, LLM security, RAG prompt injection, MLOps supply chain과도 연결하기 쉽다.
+
+## 4. KCI/SCI 전환 메모
+
+| 구분 | 내용 |
+|---|---|
+| KCI형 추천 제목 | 학습 데이터 오염과 백도어 공격 평가를 위한 다중지표 프레임워크 연구 |
+| SCI형 추천 제목 | A Multi-Metric Evaluation Framework for Training Data Poisoning and Backdoor Attacks: Separating Clean Performance, Attack Success Rate, and Reproducibility Evidence |
+| 핵심 연구문제 | 오염률 증가에 따른 clean accuracy/macro F1 변화, toy backdoor 조건의 ASR 분리, 재현성 증거 기록 |
+| 실험 기반 | scikit-learn digits + logistic regression 기반 안전한 toy protocol |
+| 확장 방향 | 딥러닝 모델, self-supervised backdoor, federated poisoning, LLM/RAG 데이터 오염, MLOps 공급망 |
+| 제출 전 보강 | 국내 참고문헌 3편 이상, P04 판본 확인, ACM Article 번호 확인, PDF 저작권 위험 처리 |
+
+## 5. 참고문헌 검증 반영
+
+- P02는 ACM Computing Surveys 최종판 DOI `10.1145/3578938`을 우선 인용한다.
+- P04는 DOI `10.1145/3585385`의 ACM Computing Surveys 논문으로 확인했으나, 강의계획서 지정 제목 "Training Data Poisoning Attacks and Defenses: A Systematic Review"와 현재 로컬 PDF "Wild Patterns Reloaded"의 동일 여부는 최종 확인 필요하다.
+- 실험 수치는 `04_experiment/outputs/metrics_summary.csv`, `results.json`, `run_log.md` 기준으로만 사용한다.

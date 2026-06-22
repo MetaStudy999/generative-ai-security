@@ -9,7 +9,7 @@ W02 실습은 대규모 최적화와 데이터 오염 위협의 연결을 안전
 | 구분 | 허용 | 제외 |
 |---|---|---|
 | 데이터 | scikit-learn digits 공개 데이터셋 | 실제 개인정보, 운영 서비스 로그, 무단 수집 데이터 |
-| 공격 시나리오 | label-flip 시뮬레이션, 단순 픽셀 trigger toy backdoor | 실제 서비스 침해, 악성코드, 무단 API 질의 |
+| 공격 시나리오 | label-flip 시뮬레이션, 단순 픽셀 trigger 기반 안전한 toy backdoor | 실제 서비스 침해, 악성코드, 무단 API 질의 |
 | 결과 기록 | 실행 로그가 있는 정량값, config 기반 재현 정보 | 실행하지 않은 수치, 출처 없는 성능 주장 |
 
 ## 3. 환경
@@ -25,13 +25,15 @@ W02 실습은 대규모 최적화와 데이터 오염 위협의 연결을 안전
 
 ## 4. 실험 설계
 
+본 실습은 실제 공격 재현이 아니라 W02의 핵심인 데이터 오염 평가축을 안전하게 설명하기 위한 최소 toy protocol이다. 따라서 scikit-learn digits와 logistic regression을 사용하되, 평가 구조는 이후 딥러닝 모델과 대규모 모델에도 확장 가능하도록 clean accuracy, macro F1, ASR, reproducibility evidence로 분리하였다.
+
 | 단계 | 설계 내용 | 기록할 지표 | 현재 상태 |
 |---|---|---|---|
 | Clean baseline | 표준화 + Logistic Regression 학습 | accuracy, precision, recall, macro F1 | 실행 완료 |
 | Label-flip 5% | 학습 라벨 5%를 다음 클래스로 변경 | accuracy drop, macro F1 | 실행 완료 |
 | Label-flip 10% | 학습 라벨 10% 변경 | accuracy drop, macro F1 | 실행 완료 |
 | Label-flip 20% | 학습 라벨 20% 변경 | accuracy drop, macro F1 | 실행 완료 |
-| Toy backdoor 5% | 학습 샘플 일부에 하단 픽셀 trigger 삽입 후 target label 부여 | clean accuracy, ASR | 실행 완료 |
+| Safe toy backdoor 5% | 학습 샘플 일부에 하단 픽셀 trigger 삽입 후 target label 부여 | clean accuracy, ASR | 실행 완료 |
 
 ## 5. 실행 소스
 
@@ -46,13 +48,13 @@ W02 실습은 대규모 최적화와 데이터 오염 위협의 연결을 안전
 
 정량값은 Docker 컨테이너에서 실제 실행한 `outputs/run_log.md` 기준으로 기록했다.
 
-| 조건 | Poisoning Rate | Clean Accuracy | Macro F1 | ASR | 해석 |
-|---|---:|---:|---:|---:|---|
-| Clean baseline | 0% | 0.981481 | 0.981443 | 해당 없음 | 기준 성능 |
-| Label-flip | 5% | 0.918519 | 0.918457 | 해당 없음 | 약한 라벨 오염 |
-| Label-flip | 10% | 0.877778 | 0.877582 | 해당 없음 | 중간 라벨 오염 |
-| Label-flip | 20% | 0.818519 | 0.818134 | 해당 없음 | 강한 라벨 오염 |
-| Toy backdoor | 5% | 0.970370 | 0.970359 | 0.987654 | clean 성능과 조건부 오분류 분리 |
+| 조건 | Poisoning Rate | N Poisoned | Clean Accuracy | Macro F1 | ASR | 해석 |
+|---|---:|---:|---:|---:|---:|---|
+| Clean baseline | 0% | 0 | 0.981481 | 0.981443 | 해당 없음 | 기준 성능 |
+| Label-flip | 5% | 63 | 0.918519 | 0.918457 | 해당 없음 | 약한 라벨 오염 |
+| Label-flip | 10% | 126 | 0.877778 | 0.877582 | 해당 없음 | 중간 라벨 오염 |
+| Label-flip | 20% | 251 | 0.818519 | 0.818134 | 해당 없음 | 강한 라벨 오염 |
+| Safe toy backdoor | 5% | 63 | 0.970370 | 0.970359 | 0.987654 | clean 성능과 조건부 오분류 분리 |
 
 ## 7. 재현성 점검
 
@@ -63,7 +65,7 @@ W02 실습은 대규모 최적화와 데이터 오염 위협의 연결을 안전
 
 ## 8. 해석 기준
 
-Label-flip 조건은 오염률이 높아질수록 clean accuracy와 macro F1이 낮아지는지를 확인한다. Toy backdoor 조건은 clean accuracy가 크게 유지되더라도 ASR이 높게 나올 수 있는지를 확인한다. 이 둘을 분리해야 poisoning과 backdoor를 같은 “오염”이라는 이름으로 뭉개지 않고 평가할 수 있다.
+Label-flip 조건은 오염률이 높아질수록 clean accuracy와 macro F1이 낮아지는지를 확인한다. Safe toy backdoor 조건은 clean accuracy가 크게 유지되더라도 ASR이 높게 나올 수 있는지를 확인한다. 이 둘을 분리해야 poisoning과 backdoor를 같은 “오염”이라는 이름으로 뭉개지 않고 평가할 수 있다.
 
 ## 9. 한계
 

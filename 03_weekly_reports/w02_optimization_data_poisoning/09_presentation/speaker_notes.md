@@ -48,11 +48,11 @@ P01은 최적화, P02는 효율적 딥러닝, P03은 poisoning taxonomy, P04는 
 
 ## Slide 11. 실습 설계
 
-실습은 scikit-learn digits 공개 데이터셋을 사용했습니다. clean baseline, label flip 5%, 10%, 20%, toy backdoor 5% 조건을 비교했고, Docker 실행으로 CSV, JSON, Markdown 로그를 생성했습니다.
+실습은 scikit-learn digits 공개 데이터셋을 사용했습니다. clean baseline, label flip 5%, 10%, 20%, 안전한 toy backdoor 5% 조건을 비교했고, Docker 실행으로 CSV, JSON, Markdown 로그를 생성했습니다.
 
 ## Slide 12. 결과 기록 방식
 
-이 슬라이드는 실제 실행 결과를 보여줍니다. clean baseline accuracy는 0.981481이고, label-flip 오염률이 5%, 10%, 20%로 증가할수록 accuracy는 0.918519, 0.877778, 0.818519로 낮아졌습니다. Toy backdoor 조건은 clean accuracy 0.970370을 유지하면서 ASR 0.987654를 보였습니다.
+이 슬라이드는 실제 실행 결과를 보여줍니다. clean baseline accuracy는 0.981481, macro F1은 0.981443입니다. label-flip 오염률이 5%, 10%, 20%로 증가할수록 accuracy는 0.918519, 0.877778, 0.818519로 낮아졌고 macro F1은 0.918457, 0.877582, 0.818134로 낮아졌습니다. 안전한 toy backdoor 조건은 clean accuracy 0.970370, macro F1 0.970359를 유지하면서 ASR 0.987654를 보였습니다.
 
 ## Slide 13. 한계와 기말논문 연결
 

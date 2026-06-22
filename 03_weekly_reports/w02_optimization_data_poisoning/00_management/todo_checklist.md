@@ -16,3 +16,7 @@
 | 제출용 보고서 | 완료 | `07_week_submission/w02_submission_report.md` |
 | 발표자료 | 완료 | `09_presentation/presentation_report.md`, `presentation_slides.md`, 보조자료 |
 | 공통 발표 파일명 확인 | 완료 | `presentation_report.*`, `presentation_slides.*`와 W02 별칭 파일 병행 제공 |
+| P02 최종 출판판 DOI 검증 | 완료 | ACM DOI `10.1145/3578938`; Article 번호 확인 필요 |
+| P04 출판판/판본 검증 | 확인 필요 | DOI `10.1145/3585385`는 확인. 강의계획서 지정 제목과 동일 여부 확인 필요 |
+| PDF 저작권 위험 점검 | 완료 | PDF 5개 Git 추적 중. 사용자 승인 없이 삭제하지 않음 |
+| 16장 최종 목차 반영 | 완료 | `06_report/final/`, `07_week_submission/` |

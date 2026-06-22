@@ -1,16 +1,27 @@
 # W04 DOI/URL 검증표
 
-| ID | 논문 제목 | DOI | URL | 상태 | 비고 |
-|---|---|---|---|---|---|
-| P01 | Efficient Transformers: A Survey | `10.48550/arXiv.2009.06732` | https://arxiv.org/abs/2009.06732 | arXiv DOI/URL 확인 | 공개 arXiv 페이지 기준. 프롬프트의 ACM CSUR 표기는 별도 출판 DOI 미확인 |
-| P02 | A Practical Survey on Faster and Lighter Transformers | `10.1145/3586074` | https://arxiv.org/abs/2103.14636 | 출판 DOI 및 arXiv URL 확인 | arXiv 페이지의 Related DOI와 로컬 PDF 링크 문자열에서 ACM DOI 확인 |
-| P03 | A survey of transformers | `10.1016/j.aiopen.2022.10.001` | https://www.sciencedirect.com/science/article/pii/S2666651022000146 | 출판 DOI/URL 확인 | ScienceDirect의 AI Open 3권, 2022, 111-132쪽 정보와 DOI 확인 |
-| P04 | A Survey on Adversarial Defences and Robustness in NLP | `10.48550/arXiv.2203.06414` | https://arxiv.org/abs/2203.06414 | arXiv DOI/URL 확인 | arXiv 페이지에 ACM Computing Surveys accepted 표기. 출판 DOI는 미확인 |
-| P05 | Privacy Preserving Prompt Engineering: A Survey | `10.48550/arXiv.2404.06001` | https://arxiv.org/abs/2404.06001 | arXiv DOI/URL 확인 | 공개 arXiv 기준 2024년. 프롬프트/파일명의 2025 ACM CSUR 표기는 출판 정보 미확인 |
+검증일: 2026-06-22
+검증 근거: Crossref DOI API, DOI BibTeX content negotiation, arXiv API, ScienceDirect/AI Open 페이지
+
+| ID | 논문 제목 | DOI/URL | 상태 | 남은 검토 사항 |
+|---|---|---|---|---|
+| P01 | Efficient Transformers: A Survey | ACM DOI `10.1145/3530811`; arXiv DOI `10.48550/arXiv.2009.06732`; https://doi.org/10.1145/3530811; https://arxiv.org/abs/2009.06732 | ACM CSUR 출판 DOI 확인 | ACM Article 번호는 Crossref/BibTeX에 미제공. 필요 시 ACM 페이지에서 사람 확인 |
+| P02 | A Practical Survey on Faster and Lighter Transformers | ACM DOI `10.1145/3586074`; https://doi.org/10.1145/3586074; https://arxiv.org/abs/2103.14636 | ACM CSUR 출판 DOI 확인 | ACM Article 번호는 Crossref/BibTeX에 미제공. 필요 시 ACM 페이지에서 사람 확인 |
+| P03 | A survey of transformers | DOI `10.1016/j.aiopen.2022.10.001`; https://www.sciencedirect.com/science/article/pii/S2666651022000146 | AI Open DOI/URL/권호/쪽 확인 | 없음. 최종 제출 전 저널 스타일에 맞춰 대소문자만 재점검 |
+| P04 | A Survey of Adversarial Defenses and Robustness in NLP | ACM DOI `10.1145/3593042`; arXiv DOI `10.48550/arXiv.2203.06414`; https://doi.org/10.1145/3593042; https://arxiv.org/abs/2203.06414 | ACM CSUR 출판 DOI 확인 | `Defences`/`Defenses`, `of`/`on`, `N. Goyal` 표기는 강의자료와 원문 간 차이로 사람 검토 필요 |
+| P05 | Privacy Preserving Prompt Engineering: A Survey | ACM DOI `10.1145/3729219`; arXiv DOI `10.48550/arXiv.2404.06001`; https://doi.org/10.1145/3729219; https://arxiv.org/abs/2404.06001 | ACM CSUR 2025 출판 DOI 확인 | ACM Article 번호는 Crossref/BibTeX에 미제공. 필요 시 ACM 페이지에서 사람 확인 |
+
+## 세부 검증 메모
+
+- P01 Crossref: ACM Computing Surveys, Vol. 55, No. 6, online published 2022-12-07, pp. 1-28.
+- P02 Crossref: ACM Computing Surveys, Vol. 55, No. 14s, online published 2023-07-17, pp. 1-40.
+- P03 ScienceDirect/Crossref: AI Open, Vol. 3, 2022, pp. 111-132.
+- P04 Crossref: ACM Computing Surveys, Vol. 55, No. 14s, online published 2023-07-17, pp. 1-39.
+- P05 Crossref: ACM Computing Surveys, Vol. 57, No. 10, online published 2025-05-06, pp. 1-36.
 
 ## 검증 원칙
 
 1. DOI는 추측해서 적지 않고, 출판 DOI와 arXiv DOI를 구분한다.
-2. PDF 파일명과 프롬프트 논문명이 다를 경우 대체 문헌 여부를 먼저 확인한다.
-3. 최종 논문에는 DOI/URL 검증 근거가 있는 문헌만 확정 인용한다.
-4. P01, P04, P05의 출판사 DOI는 추가 확인 대상이며, 현재 제출본에서는 arXiv DOI/URL만 확정 근거로 사용한다.
+2. ACM Article 번호처럼 확인되지 않은 필드는 `확인 필요`로 남긴다.
+3. 최종 제출 전 사람 검토자가 제목 표기, 저자명, 권호, 쪽, DOI 링크를 한 번 더 대조한다.
+4. 로컬 PDF는 인용 근거가 아니라 독해 편의 자료이며, 공개 저장소 배포 가능성은 별도로 판단한다.

@@ -1,13 +1,9 @@
 [project]
 name = "w04-transformer-nlp-security-experiment"
 version = "0.1.0"
-description = "Week 04 AI security experiment environment"
+description = "Week 04 AI security toy experiment environment"
 requires-python = ">=3.11,<3.12"
 dependencies = [
-    "numpy",
-    "pandas",
-    "scikit-learn",
-    "matplotlib",
     "pyyaml",
 ]
 

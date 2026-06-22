@@ -49,11 +49,11 @@ Transformer 변형 & NLP 대적공격·프라이버시
 
 | ID | 상태 |
 |---|---|
-| P01 | arXiv DOI 확인 |
-| P02 | ACM 출판 DOI 확인 |
+| P01 | ACM DOI `10.1145/3530811` 확인 |
+| P02 | ACM DOI `10.1145/3586074` 확인 |
 | P03 | AI Open 출판 DOI 확인 |
-| P04 | arXiv DOI 확인 |
-| P05 | arXiv DOI 확인 |
+| P04 | ACM DOI `10.1145/3593042` 확인, 강의자료 표기 확인 필요 |
+| P05 | ACM DOI `10.1145/3729219` 확인 |
 
 ## 관련 산출물
 

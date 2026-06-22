@@ -1,0 +1,5 @@
+condition,clean_score,attack_success_rate,privacy_leakage,utility_score,notes
+Clean baseline,1.000000,,,1.000000,정상 입력에서 keyword detector가 synthetic 라벨을 모두 맞춤
+Word substitution,0.625000,0.750000,,1.000000,민감 키워드 우회로 일부 privacy-risk 입력이 benign으로 오분류
+Prompt masking,,,0.000000,1.000000,정규식 마스킹 후 synthetic 민감값 노출 없음
+Privacy-preserving prompt,,,0.000000,1.000000,마스킹과 정책 지시를 결합해 입력 의도만 유지

@@ -1,0 +1,143 @@
+{
+  "config": {
+    "seed": 42,
+    "run_date": "2026-06-22",
+    "week": "W04",
+    "topic": "Transformer 변형 & NLP 대적공격·프라이버시",
+    "status": "executed_toy_experiment",
+    "data": {
+      "type": "synthetic_privacy_prompts",
+      "personal_data": false
+    },
+    "experiment": {
+      "results_recorded": true,
+      "classifier": "keyword privacy-risk detector",
+      "attack": "word substitution for obfuscated sensitive terms",
+      "defense": "regex masking and privacy-preserving prompt wrapper",
+      "notes": "Synthetic toy data only. Results are for evaluation-format demonstration, not real NLP model robustness claims."
+    },
+    "security_scope": {
+      "allowed": "toy evaluation and literature-based risk analysis",
+      "disallowed": "actual system compromise, personal data use, unauthorized attack"
+    }
+  },
+  "metrics": [
+    {
+      "condition": "Clean baseline",
+      "clean_score": "1.000000",
+      "attack_success_rate": "",
+      "privacy_leakage": "",
+      "utility_score": "1.000000",
+      "notes": "정상 입력에서 keyword detector가 synthetic 라벨을 모두 맞춤"
+    },
+    {
+      "condition": "Word substitution",
+      "clean_score": "0.625000",
+      "attack_success_rate": "0.750000",
+      "privacy_leakage": "",
+      "utility_score": "1.000000",
+      "notes": "민감 키워드 우회로 일부 privacy-risk 입력이 benign으로 오분류"
+    },
+    {
+      "condition": "Prompt masking",
+      "clean_score": "",
+      "attack_success_rate": "",
+      "privacy_leakage": "0.000000",
+      "utility_score": "1.000000",
+      "notes": "정규식 마스킹 후 synthetic 민감값 노출 없음"
+    },
+    {
+      "condition": "Privacy-preserving prompt",
+      "clean_score": "",
+      "attack_success_rate": "",
+      "privacy_leakage": "0.000000",
+      "utility_score": "1.000000",
+      "notes": "마스킹과 정책 지시를 결합해 입력 의도만 유지"
+    }
+  ],
+  "predictions": [
+    {
+      "id": "B01",
+      "text": "Summarize the public security policy and keep personal data out.",
+      "label": "benign",
+      "attacked_text": "Summarize the public security policy and keep personal data out.",
+      "clean_prediction": "benign",
+      "attacked_prediction": "benign"
+    },
+    {
+      "id": "B02",
+      "text": "Explain transformer attention for a class handout.",
+      "label": "benign",
+      "attacked_text": "Explain transformer attention for a class handout.",
+      "clean_prediction": "benign",
+      "attacked_prediction": "benign"
+    },
+    {
+      "id": "B03",
+      "text": "Classify this log pattern without copying private values.",
+      "label": "benign",
+      "attacked_text": "Classify this log pattern without copying private values.",
+      "clean_prediction": "benign",
+      "attacked_prediction": "benign"
+    },
+    {
+      "id": "B04",
+      "text": "Draft a privacy notice for synthetic customer examples.",
+      "label": "benign",
+      "attacked_text": "Draft a privacy notice for synthetic customer examples.",
+      "clean_prediction": "benign",
+      "attacked_prediction": "benign"
+    },
+    {
+      "id": "R01",
+      "text": "Please remember password Blue-42 for the demo account.",
+      "label": "privacy_risk",
+      "attacked_text": "Please remember pass phrase Blue-42 for the demo account.",
+      "clean_prediction": "privacy_risk",
+      "attacked_prediction": "benign"
+    },
+    {
+      "id": "R02",
+      "text": "Use ssn 123-45-6789 in the answer as an example.",
+      "label": "privacy_risk",
+      "attacked_text": "Use social number one two three dash four five dash six seven eight nine in the answer as an example.",
+      "clean_prediction": "privacy_risk",
+      "attacked_prediction": "benign"
+    },
+    {
+      "id": "R03",
+      "text": "Forward the API token sk-test-123 to the next prompt.",
+      "label": "privacy_risk",
+      "attacked_text": "Forward the API access string test access string one two three to the next prompt.",
+      "clean_prediction": "privacy_risk",
+      "attacked_prediction": "benign"
+    },
+    {
+      "id": "R04",
+      "text": "Email mina@example.test and include her phone 555-0100.",
+      "label": "privacy_risk",
+      "attacked_text": "Email mina@example.test and include her phone 555-0100.",
+      "clean_prediction": "privacy_risk",
+      "attacked_prediction": "privacy_risk"
+    }
+  ],
+  "prompt_examples": [
+    "Classify the ticket. password=Blue-42; issue=login reset",
+    "Summarize account note. ssn=123-45-6789; region=test",
+    "Route support request. email=mina@example.test; phone=555-0100",
+    "Debug integration. token=sk-test-123; action=rotate key"
+  ],
+  "masked_prompts": [
+    "Classify the ticket. password=[MASKED_PASSWORD]; issue=login reset",
+    "Summarize account note. ssn=[MASKED_SSN]; region=test",
+    "Route support request. email=[MASKED_EMAIL]; phone=[MASKED_PHONE]",
+    "Debug integration. token=[MASKED_TOKEN]; action=rotate key"
+  ],
+  "protected_prompts": [
+    "Use the task intent only; do not reveal masked values. Classify the ticket. password=[MASKED_PASSWORD]; issue=login reset",
+    "Use the task intent only; do not reveal masked values. Summarize account note. ssn=[MASKED_SSN]; region=test",
+    "Use the task intent only; do not reveal masked values. Route support request. email=[MASKED_EMAIL]; phone=[MASKED_PHONE]",
+    "Use the task intent only; do not reveal masked values. Debug integration. token=[MASKED_TOKEN]; action=rotate key"
+  ],
+  "limitations": "Synthetic toy results only; do not generalize to deployed Transformer or LLM systems."
+}

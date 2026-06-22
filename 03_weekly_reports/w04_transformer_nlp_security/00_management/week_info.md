@@ -7,4 +7,5 @@
 | AI 원리 | Transformer, X-formers, 효율화, sparse attention |
 | 보안 이슈 | NLP 대적공격, 프롬프트 프라이버시, ICL 위험 |
 | 논문 패킷 | 5편 |
-| 산출물 상태 | 제출용 보고서, 발표자료, synthetic 실험 outputs, DOI/URL 검증표 작성 완료 |
+| 산출물 상태 | 제출용 최종 초안, 발표자료, synthetic 실험 outputs, DOI/URL 검증표 작성 완료 |
+| 남은 검토 | ACM Article 번호 일부, P04 강의자료 저자 표기, 국내 참고문헌, PDF 공개 저장소 보관 여부 |

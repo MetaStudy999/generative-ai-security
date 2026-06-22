@@ -1,4 +1,4 @@
-# 논문 요약
+# P05 논문 요약
 
 ## 1. 서지정보
 
@@ -6,45 +6,44 @@
 |---|---|
 | 논문 제목 | Privacy Preserving Prompt Engineering: A Survey |
 | 저자 | Kennedy Edemacu, Xintao Wu |
-| 학술지/학회 | arXiv; 2025 ACM CSUR 여부 미확인 |
-| 연도 | 2024 |
-| DOI/URL | `10.48550/arXiv.2404.06001`, https://arxiv.org/abs/2404.06001 |
+| 출판 정보 | ACM Computing Surveys, Vol. 57, No. 10, 2025, pp. 1-36 |
+| DOI/URL | ACM DOI `10.1145/3729219`; arXiv DOI `10.48550/arXiv.2404.06001`; https://arxiv.org/abs/2404.06001 |
 | PDF 파일명 | 05_Edemacu_Wu_2025_Privacy_Preserving_Prompt_Engineering.pdf |
-| 검증 상태 | arXiv DOI/URL 확인, 출판 정보는 추가 확인 필요 |
+| 검증 상태 | ACM CSUR 2025 출판 DOI 확인. Article 번호는 Crossref/BibTeX 응답에 미제공되어 확인 필요 |
 
 ## 2. 한 문장 요약
 
-> 이 논문은 NLP 대적공격, 프롬프트 프라이버시, ICL 위험와 관련된 위협 분류 문제를 문헌조사와 분류체계 정리 방법으로 다루며, 공격-방어-평가 관점을 연결하는 보안 분석 틀을 기말 연구에 반영할 수 있게 해준다.
+P05는 prompting과 in-context learning에서 발생하는 민감정보 노출 위험과 privacy-preserving prompt engineering 방식을 정리한 prompt privacy survey이다.
 
 ## 3. 연구문제
 
-이 논문에서 기말 연구와 연결되는 질문은 Transformer 변형 및 NLP 대적공격/프라이버시 영역에서 어떤 개념, 공격면, 평가 기준을 우선적으로 정리해야 하는가이다. 특히 Transformer 기본 구조, Self-attention과 multi-head attention, Query, Key, Value의 역할와 NLP 대적공격, 단어 치환 공격, 문장 재구성 공격가 서로 만나는 지점을 확인하는 데 초점을 둔다.
+프롬프트 입력, ICL 예시, 모델 출력, 로그, 외부 도구 호출 인자에서 민감정보가 어떻게 노출될 수 있으며, masking, rewriting, policy control, privacy-preserving prompting으로 이를 어떻게 줄일 수 있는가를 묻는다.
 
 ## 4. 핵심 개념
 
-| 개념 | 설명 | 기말 논문 연결 |
+| 개념 | 설명 | W04 연결 |
 |---|---|---|
-| Transformer 기본 구조 | 주차 AI 원리의 출발점이며 모델 또는 시스템을 이해하는 기본 단위이다. | 배경 이론 |
-| Self-attention과 multi-head attention | 성능, 일반화, 효율 또는 신뢰성을 설명하는 보조 축이다. | 분석 기준 |
-| NLP 대적공격 | 보안 위협을 식별하기 위한 대표 공격면이다. | 위협모형 |
-| 단어 치환 공격 | 방어와 평가 프로토콜을 설계할 때 비교해야 하는 요소이다. | 평가방법 |
+| Prompt privacy | 사용자 입력 프롬프트의 민감정보 보호 문제이다. | W04 핵심 보안 주제 |
+| ICL leakage | few-shot 예시나 컨텍스트에 포함된 민감정보가 노출될 수 있다. | W07/W08/W11 연결 |
+| Prompt masking | 민감값을 placeholder로 대체한다. | W04 toy defense |
+| Policy control | 모델 입력과 출력에 개인정보 처리 원칙을 명시한다. | privacy-preserving wrapper |
 
 ## 5. 방법론
 
-이 문헌은 문헌조사와 분류체계 정리을 통해 기존 연구를 묶어 읽을 수 있게 한다. 본 보고서에서는 논문 제목, 프롬프트의 논문 패킷 정보, 로컬 PDF 존재 여부를 기준으로 요약했으며, 세부 실험값이나 DOI는 최종 원문 대조 단계에서 확인한다.
+LLM prompting과 ICL privacy 문헌을 survey한다. 다양한 privacy protection method를 분류하고, 어떤 평가 자원과 한계가 있는지 정리한다.
 
 ## 6. 주요 결과
 
-핵심 개념, 공격면, 평가 기준, 향후 연구과제를 체계화한다. 수치 결과를 새로 만들지 않기 위해 본 요약에서는 정량값을 적지 않았고, 원문에서 직접 확인되는 항목만 최종 보고서에 반영하도록 남겨 둔다.
+Prompt privacy는 leakage만 줄이면 끝나는 문제가 아니라 utility, policy compliance, reproducibility evidence를 함께 봐야 한다. 지나친 마스킹은 작업 의도를 훼손할 수 있다.
 
 ## 7. 보안 관점 분석
 
-이 논문은 NLP 대적공격, 프롬프트 프라이버시, ICL 위험을 이해하기 위한 배경 문헌으로 활용된다. 공격자의 능력, 방어자의 관측 가능성, 평가 데이터의 한계, 재현성 조건을 함께 정리해야 실제 보안 연구로 이어질 수 있다.
+W04의 Prompt masking과 Privacy-preserving prompt 조건은 P05의 큰 문제의식을 synthetic toy protocol로 축소한 것이다. leakage 0.000000은 regex 기반 synthetic check 결과일 뿐 실제 LLM privacy guarantee가 아니다.
 
 ## 8. 한계와 오픈문제
 
-원문 정밀 독해 전에는 세부 실험 설정, 데이터셋, DOI, 인용 관계를 확정할 수 없다. 또한 survey 성격의 문헌은 실제 재현 실험보다는 분류체계와 연구 공백 파악에 더 적합하므로, 기말 논문에서는 별도 평가 프로토콜로 보완해야 한다.
+출판 DOI는 확인되었지만 ACM Article 번호는 추가 확인이 필요하다. 또한 실제 개인정보, 실제 API, 운영 로그를 사용하지 않았으므로 외적 타당성은 후속 연구에서 별도 검증해야 한다.
 
 ## 9. 기말 논문에 반영할 부분
 
-P05는 Transformer 변형 및 NLP 대적공격/프라이버시 연구에서 개념 정의, 위협 분류, 평가 지표 후보를 정리하는 근거로 반영한다. 특히 공격-방어-평가 관점을 연결하는 보안 분석 틀을 관련연구와 연구방법 장에 연결한다.
+KCI/SCI 후보 주제인 “프롬프트 기반 AI 시스템의 민감정보 보호 평가체계”의 핵심 관련연구로 활용한다.

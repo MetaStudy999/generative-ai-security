@@ -18,6 +18,18 @@ W04는 Transformer 변형 및 NLP 대적공격/프라이버시를 중심으로 A
 
 Transformer, X-formers, 효율화, sparse attention를 이해하기 위해 Transformer 기본 구조, Self-attention과 multi-head attention, Query, Key, Value의 역할, Positional encoding, X-formers와 Efficient Transformer 계열, Sparse attention, low-rank approximation, kernelized attention를 핵심 개념으로 정리했다. 이 원리들은 모델 또는 시스템이 어떤 입력과 학습 구조를 갖고 어떤 기준으로 평가되는지 설명한다.
 
+### 2.1 핵심 수식 또는 알고리즘 쉬운 설명
+
+아래 수식은 원문 수식의 직접 인용이 아니라, 각 논문의 핵심 개념을 보고서에서 설명하기 위한 대표 수식과 지표다. 최종 제출본에서 원문 수식으로 인용할 경우 논문 원문 쪽/절 번호를 추가 확인한다.
+
+| ID | 핵심 수식/알고리즘 | 쉬운 설명 | 보안 평가 연결 |
+|---|---|---|---|
+| P01 | $Cost_{attn}=O(n^2d)$ | 기본 attention은 토큰 수가 늘면 비용이 제곱으로 커져 긴 문서 처리에 부담이 된다. | efficient transformer 필요성 |
+| P02 | $Speedup=T_{base}/T_{efficient}$ | 빠른 모델은 같은 작업을 더 짧은 시간에 처리하지만 정확도와 보안성을 같이 봐야 한다. | 속도·비용 평가 |
+| P03 | $Attn(Q,K,V)=softmax(QK^T/\sqrt d)V$ | Transformer는 현재 토큰이 다른 토큰을 얼마나 참고할지 가중합으로 계산한다. | NLP/LLM 공통 원리 |
+| P04 | $\max_{x'}L(f(x'),y)\;s.t.\;Sim(x,x')\ge\tau$ | NLP 대적 공격은 의미는 비슷하게 유지하면서 모델 판단만 바꾸려 한다. | semantic-preserving attack |
+| P05 | $Leak=N_{sensitive}/N_{tests}$ | 프롬프트 프라이버시는 민감 정보가 출력으로 새어 나온 비율을 별도 기록한다. | prompt privacy 평가 |
+
 ## 3. 보안 이슈 30% 정리
 
 NLP 대적공격, 프롬프트 프라이버시, ICL 위험를 중심으로 NLP 대적공격, 단어 치환 공격, 문장 재구성 공격, 의미 보존 공격, Prompt privacy, In-context learning 환경의 민감정보 노출를 정리했다. 보안 분석은 공격 절차 자체보다 보호 자산, 공격자 능력, 방어자 가정, 평가 지표를 명확히 하는 방향으로 작성했다.

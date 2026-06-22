@@ -29,6 +29,18 @@ DRL 기반 사이버 방어 에이전트는 상태·행동·보상 설계에 따
 | Actor-Critic | 정책 선택과 가치 평가를 결합 | P01, P03 |
 | DRL Verification | 안전성·강건성 명세를 만족하는지 검토 | P05 |
 
+### 2.1 핵심 수식 또는 알고리즘 쉬운 설명
+
+아래 수식은 원문 수식의 직접 인용이 아니라, 각 논문의 핵심 개념을 보고서에서 설명하기 위한 대표 수식과 지표다. 최종 제출본에서 원문 수식으로 인용할 경우 논문 원문 쪽/절 번호를 추가 확인한다.
+
+| ID | 핵심 수식/알고리즘 | 쉬운 설명 | 보안 평가 연결 |
+|---|---|---|---|
+| P01 | $Q(s,a)\leftarrow Q(s,a)+\alpha[r+\gamma\max_{a'}Q(s',a')-Q(s,a)]$ | 강화학습 에이전트는 행동 뒤 받은 보상으로 다음 선택 가치를 고친다. | DRL 기본 원리 |
+| P02 | $J(\pi)=E[\sum_t \gamma^t r_t]$ | 자율주행/제어 DRL은 장기 보상 합이 커지는 정책을 찾는다. | safe policy evaluation |
+| P03 | $R=TP-\lambda FP-\mu FN-\rho Cost$ | 사이버 방어 보상은 탐지 성공만 아니라 오탐, 미탐, 비용을 함께 반영해야 한다. | cyber defense reward design |
+| P04 | $F1=2PR/(P+R)$ | IDS/IPS는 공격 탐지율과 오탐 관리가 동시에 중요하다. | RL-based IDS 평가 |
+| P05 | $P_\pi(\varphi)\ge p$ | DRL 검증은 정책이 안전 속성 $\varphi$를 충분히 높은 확률로 만족하는지 확인한다. | policy verification |
+
 ## 3. 보안 이슈 30% 정리
 
 DRL cyber defense의 핵심 공격면은 상태 관측, 보상 신호, 정책 업데이트, 자동 대응 action이다. 특히 reward manipulation은 agent가 학습 중 받는 점수를 왜곡해 실제 보안 목표와 다른 행동을 유도할 수 있다.

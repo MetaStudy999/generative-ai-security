@@ -28,6 +28,18 @@ MLOps는 ML, software engineering, data engineering, operations를 연결하는 
 | AIOps | 운영 telemetry를 이용해 incident detection, failure prediction, RCA, response를 보조하는 영역 |
 | Edge deployment | AI가 cloud 밖 edge node/device로 확장될 때 artifact와 update 관리가 더 중요해지는 배포 형태 |
 
+### 2.1 핵심 수식 또는 알고리즘 쉬운 설명
+
+아래 수식은 원문 수식의 직접 인용이 아니라, 각 논문의 핵심 개념을 보고서에서 설명하기 위한 대표 수식과 지표다. 최종 제출본에서 원문 수식으로 인용할 경우 논문 원문 쪽/절 번호를 추가 확인한다.
+
+| ID | 핵심 수식/알고리즘 | 쉬운 설명 | 보안 평가 연결 |
+|---|---|---|---|
+| P01 | $Coverage=N_{artifacts}/N_{required}$ | MLOps 재현성은 코드, config, data, model, log 등 필요한 산출물이 얼마나 남았는지로 본다. | artifact inventory |
+| P02 | $DeployRisk=\sum_i P_i\times Impact_i$ | 배포 위험은 발생 가능성과 영향도를 함께 봐야 한다. | deployment challenge |
+| P03 | $AnomalyScore=\lVert x-\hat x\rVert$ | AIOps는 관측값과 예측/복원값 차이가 클 때 이상으로 본다. | monitoring, rollback |
+| P04 | $Latency=T_{upload}+T_{infer}+T_{download}$ | edge AI는 정확도뿐 아니라 통신·추론 지연이 보안 대응에 영향을 준다. | edge deployment |
+| P05 | $SEScore=(Accuracy,F1,HumanReview)$ | 소프트웨어공학용 DL은 자동화 품질과 사람 검토를 함께 기록해야 한다. | secure software engineering |
+
 ## 3. 보안 이슈 30% 정리
 
 W14의 보안 이슈는 공격 절차 재현이 아니라 운영 파이프라인의 보호 자산과 통제항목 정의다. 핵심 위협은 데이터 파이프라인 오염, 모델 artifact 변조, 의존성 취약점, 무단 update, drift 미탐지, 로그 누락 또는 로그 노출이다.

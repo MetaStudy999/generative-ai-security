@@ -30,6 +30,18 @@ LLM의 기본 원리는 대규모 말뭉치 기반 pretraining, instruction tuni
 | Multimodal LLM | 이미지·텍스트 등 복수 modality를 LLM 추론에 연결 | multimodal prompt injection, hallucination |
 | Code LLM | 코드 생성·분석·수정에 LLM 활용 | vulnerable code generation, bug triage 품질 |
 
+### 2.1 핵심 수식 또는 알고리즘 쉬운 설명
+
+아래 수식은 원문 수식의 직접 인용이 아니라, 각 논문의 핵심 개념을 보고서에서 설명하기 위한 대표 수식과 지표다. 최종 제출본에서 원문 수식으로 인용할 경우 논문 원문 쪽/절 번호를 추가 확인한다.
+
+| ID | 핵심 수식/알고리즘 | 쉬운 설명 | 보안 평가 연결 |
+|---|---|---|---|
+| P01 | $Score=\frac{1}{K}\sum_k s_k$ | LLM 평가는 여러 능력·위험 항목을 나누어 평균 또는 가중합으로 본다. | LLM evaluation taxonomy |
+| P02 | $Risk=N_{unsafe}/N_{prompts}$ | 안전하지 않은 답변 비율을 따로 세어야 성능과 위험을 분리할 수 있다. | LLM security/privacy risk |
+| P03 | $TotalRisk=\sum_i w_i r_i$ | LLM 보안은 jailbreak, privacy, misuse 같은 여러 위험을 가중합으로 관리할 수 있다. | Good/Bad/Ugly taxonomy |
+| P04 | $z=f_{align}(z_{text},z_{image})$ | multimodal LLM은 이미지와 텍스트 표현을 맞추므로 한쪽 입력의 오염이 다른 쪽 판단에 영향을 줄 수 있다. | multimodal attack surface |
+| P05 | $VulnRate=N_{vulnerable}/N_{code}$ | 코드 보안 LLM 평가는 생성 코드 중 취약한 산출물 비율을 별도 측정한다. | software security meets LLMs |
+
 ## 3. 보안 이슈 30% 정리
 
 W07의 보안 이슈는 공격 절차 자체보다 보호 자산과 평가 항목을 중심으로 읽어야 한다. LLM 시스템의 주요 보호 자산은 학습데이터, 시스템 프롬프트, 사용자 입력, retrieval context, 모델 응답, 코드 산출물, 로그, 평가셋이다.

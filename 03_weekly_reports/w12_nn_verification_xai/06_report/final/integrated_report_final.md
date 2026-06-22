@@ -22,6 +22,18 @@ W12는 신경망 검증과 정형방법을 AI 원리로 이해하고, 대적 강
 
 XAI는 모델 판단을 feature attribution, saliency map, rule, concept 등으로 설명하려는 접근이다. 설명이 안정적이지 않으면 모델의 신뢰성 검토도 흔들린다. 따라서 W12의 AI 원리는 "모델이 맞았는가"에서 끝나지 않고 "작은 입력 변화에도 예측과 설명이 일관적인가", "보증 가능한 범위는 어디까지인가"로 확장된다.
 
+### 2.1 핵심 수식 또는 알고리즘 쉬운 설명
+
+아래 수식은 원문 수식의 직접 인용이 아니라, 각 논문의 핵심 개념을 보고서에서 설명하기 위한 대표 수식과 지표다. 최종 제출본에서 원문 수식으로 인용할 경우 논문 원문 쪽/절 번호를 추가 확인한다.
+
+| ID | 핵심 수식/알고리즘 | 쉬운 설명 | 보안 평가 연결 |
+|---|---|---|---|
+| P01 | $\forall x'\in B_\epsilon(x): f(x')=y$ | 검증은 작은 입력 변화 안에서도 모델 예측이 유지되는지 확인한다. | certified robustness |
+| P02 | $\delta^*=arg\max_{\lVert\delta\rVert\le\epsilon}L(f(x+\delta),y)$ | 공격은 제한된 변화 안에서 손실이 가장 커지는 방향을 찾는다. | adversarial attack |
+| P03 | $Stability=1-\lVert E(x)-E(x')\rVert/\lVert x-x'\rVert$ | 설명 공격은 예측은 비슷한데 설명만 크게 바뀌게 만들 수 있다. | adversarial XAI |
+| P04 | $\lVert f(x)-f(x')\rVert\le K\lVert x-x'\rVert$ | Lipschitz bound는 입력 변화가 출력 변화로 얼마나 커질 수 있는지 제한한다. | robustness regularization |
+| P05 | $(Accuracy,\ Robustness,\ FairnessGap)$ | accuracy, robustness, fairness는 한 숫자로 합치기보다 벡터로 함께 보고하는 편이 안전하다. | triangular trade-off |
+
 ## 3. 보안 이슈 30% 정리
 
 보안 이슈는 대적 입력이 모델 예측을 바꾸는 integrity 문제, 설명 조작이 검토자를 오도하는 accountability 문제, 검증 비용이 커져 실제 운영 검토가 실패하는 availability 문제로 나뉜다. Certified robustness와 empirical robustness는 구분해야 한다. 전자는 명세와 bound에 의존하고, 후자는 제한된 공격/테스트 조건에서 관측된 성능이다. Robustness, accuracy, fairness가 동시에 좋아지지 않을 수 있으므로 보고서에는 단일 지표가 아니라 다중 지표 표가 필요하다.

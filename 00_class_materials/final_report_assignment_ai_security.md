@@ -161,6 +161,69 @@ RAG 기반 생성형 AI 시스템에서 간접 프롬프트 인젝션 대응 방
 
 ---
 
+## 8.1 수식·알고리즘 설명 반영 기준
+
+분야별 논문을 읽을 때 핵심 수식이나 알고리즘은 연구문제, 위협모형, 평가방법을 이해하는 데 필요한 경우에만 반영한다. 수식이 논문 기여의 핵심인데 설명을 생략하면 관련연구 비교와 방법론의 설득력이 약해질 수 있다. 반대로 원문에서 확인하지 않은 수식을 임의로 만들거나, 본문과 연결되지 않는 장식용 수식을 넣는 것은 피한다.
+
+### 판단 기준
+
+- 논문의 핵심 기여가 손실함수, 최적화, privacy budget, aggregation, reward, perturbation, 검증 조건처럼 수식으로 정의되는가?
+- 공격·방어 원리가 수식 또는 알고리즘 절차를 알아야 이해되는가?
+- 평가 지표가 연구결과 해석에 직접 쓰이는가?
+- 기말논문의 연구방법 또는 분석/실험 장에서 해당 수식을 다시 사용하거나 변형하는가?
+
+### 작성 방식
+
+| 항목 | 작성 내용 |
+|---|---|
+| 원문 수식 | 논문 원문 또는 검증 가능한 표준 수식만 사용 |
+| 기호 설명 | 변수, 파라미터, 입력·출력, 단위 또는 범위 설명 |
+| 직관적 설명 | 수식이 무엇을 최소화·최대화·보장·측정하는지 쉬운 문장으로 설명 |
+| 보안 해석 | 공격자 능력, 방어자 가정, 보호 자산, 실패 조건과 연결 |
+| 평가 연결 | clean accuracy, ASR, robust accuracy, privacy leakage, utility, cost 등 지표와 연결 |
+| 한계 | 수식의 가정, 적용 범위, 실제 시스템과의 차이 명시 |
+
+### 분야별 우선 검토 항목
+
+| 분야 | 우선 검토할 수식·알고리즘 |
+|---|---|
+| 딥러닝·최적화 | 손실함수, gradient descent, regularization, 일반화 지표 |
+| 데이터 오염·백도어 | poisoning objective, 중독 비율, attack success rate, stealth 조건 |
+| 컴퓨터비전·대적공격 | FGSM/PGD, perturbation norm, robust accuracy |
+| Transformer·LLM·RAG | attention, retrieval score, re-ranking, benchmark contamination 지표 |
+| 생성모형·딥페이크 | GAN min-max objective, diffusion forward/reverse process, detection FPR/FNR |
+| 심층강화학습 | MDP, Bellman equation, Q-learning, policy gradient, reward manipulation |
+| 연합학습 | FedAvg, robust aggregation, client update, communication/privacy cost |
+| 차등프라이버시·멤버십 추론 | epsilon-delta DP, DP-SGD clipping/noise, membership inference advantage |
+| 신경망 검증·XAI | verification property, Lipschitz bound, saliency/attribution stability |
+| 모델 IP·MLOps | watermark detectability, false positive rate, drift metric, audit evidence |
+
+수식 설명에 AI 도구를 사용한 경우에는 AI 활용 고지서의 사용 목적에 `수식 설명`을 포함하고, 원문·교재·공식 문서·실험 로그로 검증한 방식을 함께 기록한다.
+
+---
+
+## 8.2 수식 작성 권장 도구와 라이브러리
+
+수식 작성과 검증은 `00_class_materials/math_formula_toolchain.md`를 기준으로 한다. 기본 작성 형식은 Markdown 안의 LaTeX math이며, 최종 제출 양식에 맞춰 DOCX/PDF 변환 상태를 확인한다.
+
+| 용도 | 권장 도구 | 사용 시점 |
+|---|---|---|
+| 기본 수식 작성 | Markdown + LaTeX math | 주차별 보고서, 기말논문 초안 |
+| HTML 렌더링 | KaTeX / MathJax | 발표용 HTML, 웹 문서 |
+| 문서 변환 | Pandoc | Markdown에서 HTML/DOCX/PDF 변환 |
+| 최종 PDF 품질 | LaTeX / TeX Live | 수식이 많은 최종 원고 |
+| 수식 검산 | sympy | 수식 전개, 단순화, 미분, LaTeX 출력 확인 |
+| 수치 계산 | numpy / scipy | 지표 계산, 최적화, 통계 |
+| 그림 수식 | matplotlib | 그래프 축, 범례, 그림 안 수식 표기 |
+| 결과표 정리 | pandas | CSV, 비교표, 평가 지표표 |
+| 대화형 검토 | jupyterlab | 수식 설명, 계산, 표·그림 검토 |
+
+`numpy`, `pandas`, `matplotlib`은 루트 공통 연구환경에 포함되어 있다. `sympy`, `scipy`, `jupyterlab`은 실제 검산이나 대화형 분석이 필요한 경우 선택적으로 추가한다. 의존성을 추가하면 `pyproject.toml`, lock 파일, 실행 로그를 함께 갱신한다.
+
+따라서 수식 작성을 시작하는 단계에서는 추가 설치가 필요하지 않다. 수식 검산이 실제로 필요한 경우 `sympy`를 먼저 추가하고, 통계·최적화 계산이 필요한 경우 `scipy`, 노트북 기반 검토가 필요한 경우 `jupyterlab`을 추가한다. Pandoc과 TeX Live는 Python 라이브러리가 아니라 문서 변환·PDF 작성용 별도 도구이므로 제출본 자동 변환이 필요할 때만 설치한다.
+
+---
+
 ## 9. 권장 논문 주제 예시
 
 아래 주제는 예시이다. 그대로 사용해도 되지만, 본인의 주차별 보고서와 관심 분야에 맞게 범위를 좁혀 작성하는 것을 권장한다.
@@ -283,6 +346,8 @@ RAG 기반 생성형 AI 시스템에서 간접 프롬프트 인젝션 대응 방
 - [ ] 국문초록과 영문초록을 작성했다.
 - [ ] 키워드를 작성했다.
 - [ ] 서론, 관련연구, 연구문제, 연구방법, 분석, 보안적 함의, 결론을 모두 포함했다.
+- [ ] 핵심 수식 또는 알고리즘이 필요한 분야는 기호, 직관, 보안 해석, 평가 지표 연결을 설명했다.
+- [ ] 수식이 포함된 경우 DOCX/PDF 또는 HTML 변환 후 깨지지 않는지 확인했다.
 - [ ] 표 1개 이상, 그림 1개 이상을 포함했다.
 - [ ] 국내 논문 3편 이상, 해외 논문 5편 이상을 실제로 검증했다.
 - [ ] 주차별 보고서 2개 이상을 논문에 반영했다.

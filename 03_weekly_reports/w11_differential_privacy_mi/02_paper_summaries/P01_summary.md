@@ -6,11 +6,11 @@
 |---|---|
 | 논문 제목 | A Critical Review on the Use (and Misuse) of Differential Privacy in Machine Learning |
 | 저자 | Alberto Blanco-Justicia, David Sanchez, Josep Domingo-Ferrer, Krishnamurty Muralidhar |
-| 학술지/학회 | 강의자료: ACM Computing Surveys 55(8), Article 166; 로컬 PDF: arXiv preprint |
-| 연도 | 2022 |
-| DOI/URL | arXiv `2206.04621`; ACM DOI 공식 확인 필요 |
+| 학술지/학회 | ACM Computing Surveys 55(8), pp. 1-16; online 2022-12-23, print 2023-08-31 |
+| 연도 | 2022/2023 |
+| DOI/URL | DOI `10.1145/3547139`; arXiv `2206.04621` |
 | PDF 파일명 | `01_Blanco_Justicia_et_al_2022_Differential_Privacy_Critical_Review.pdf` |
-| 검증 상태 | 로컬 PDF 첫 페이지 확인, DOI 공식 대조 필요 |
+| 검증 상태 | Crossref/ACM 등록 DOI 확인. 로컬 PDF는 arXiv v2이므로 ACM 최종본과 세부 차이 검토 필요 |
 
 ## 2. 한 문장 요약
 
@@ -43,7 +43,7 @@ P01은 W11의 accountability 축에 가장 강하게 연결된다. 보고서나 
 
 ## 8. 한계와 오픈문제
 
-로컬 PDF는 arXiv preprint이므로 최종 ACM DOI와 권호 정보를 공식 페이지에서 다시 확인해야 한다. 또한 비판 논문이므로 특정 DP-SGD 구현의 최신 개선까지 모두 포괄하지는 않는다.
+로컬 PDF는 arXiv preprint이므로 ACM 최종본의 문구, pagination, article number 표기는 최종 제출 전 다시 대조해야 한다. 또한 비판 논문이므로 특정 DP-SGD 구현의 최신 개선까지 모두 포괄하지는 않는다.
 
 ## 9. 기말 논문에 반영할 부분
 

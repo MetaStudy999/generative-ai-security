@@ -44,7 +44,7 @@ membership inference는 confidence나 loss 같은 신호를 보고 sample의 학
 
 예상 시간: 1:00
 
-P01은 DP misuse, P02는 DP-DL auditing, P03은 DP 적용 위치, P04는 MI taxonomy, P05는 MI defense와 trade-off를 담당합니다. P03/P05는 로컬 PDF가 대체 문헌임을 명확히 표시했습니다.
+P01은 DP misuse, P02는 DP-DL auditing, P03은 DP 적용 위치, P04는 MI taxonomy, P05는 MI defense와 trade-off를 담당합니다. P01, P02, P04, P05의 DOI는 확인했고, P03도 DOI가 Neurocomputing 논문으로 연결됨을 확인했습니다. 다만 P03/P05는 로컬 PDF가 대체 문헌이므로 원문 확보 전까지 지정 논문처럼 인용하지 않습니다.
 
 ## 6. 위협모형
 
@@ -63,6 +63,8 @@ P01은 DP misuse, P02는 DP-DL auditing, P03은 DP 적용 위치, P04는 MI taxo
 예상 시간: 1:00
 
 표준 라이브러리 기반 synthetic binary classification입니다. Non-DP baseline과 DP-like noise low, medium, high를 비교합니다. 여기서 epsilon은 정식 accountant 값이 아니라 proxy입니다.
+
+`noise_multiplier`도 formal DP-SGD accountant 값이 아니라 toy gradient noise scale입니다.
 
 ## 9. 결과
 

@@ -81,41 +81,71 @@ def parse_scalar(raw: str) -> Any:
 
 
 def parse_simple_yaml(text: str) -> dict[str, Any]:
-    root: dict[str, Any] = {}
-    stack: list[tuple[int, dict[str, Any]]] = [(0, root)]
-    last_key_at_indent: dict[int, tuple[dict[str, Any], str]] = {}
+    lines = [
+        (len(raw) - len(raw.lstrip(" ")), raw.strip())
+        for raw in text.splitlines()
+        if raw.strip() and not raw.lstrip().startswith("#")
+    ]
 
-    for raw_line in text.splitlines():
-        if not raw_line.strip() or raw_line.lstrip().startswith("#"):
-            continue
-        indent = len(raw_line) - len(raw_line.lstrip(" "))
-        stripped = raw_line.strip()
+    def parse_block(index: int, indent: int) -> tuple[Any, int]:
+        if index >= len(lines):
+            return {}, index
 
-        if stripped.startswith("- "):
-            item = parse_scalar(stripped[2:])
-            parent, key = last_key_at_indent.get(indent - 2, (None, ""))
-            if parent is not None:
-                parent.setdefault(key, [])
-                if isinstance(parent[key], list):
-                    parent[key].append(item)
-            continue
+        if lines[index][1].startswith("- "):
+            items: list[Any] = []
+            while index < len(lines):
+                current_indent, stripped = lines[index]
+                if current_indent != indent or not stripped.startswith("- "):
+                    break
+                content = stripped[2:].strip()
+                index += 1
 
-        if ":" not in stripped:
-            continue
-        key, raw = stripped.split(":", 1)
-        while len(stack) > 1 and indent < stack[-1][0]:
-            stack.pop()
-        parent = stack[-1][1]
-        clean_key = key.strip()
-        if raw.strip() == "":
-            child: dict[str, Any] = {}
-            parent[clean_key] = child
-            stack.append((indent + 2, child))
-            last_key_at_indent[indent] = (parent, clean_key)
-        else:
-            parent[clean_key] = parse_scalar(raw)
-            last_key_at_indent[indent] = (parent, clean_key)
-    return root
+                if not content:
+                    child, index = parse_block(index, lines[index][0]) if index < len(lines) else ({}, index)
+                    items.append(child)
+                    continue
+
+                if ":" in content:
+                    key, raw_value = content.split(":", 1)
+                    item: dict[str, Any] = {}
+                    if raw_value.strip():
+                        item[key.strip()] = parse_scalar(raw_value)
+                    else:
+                        child, index = parse_block(index, lines[index][0]) if index < len(lines) else ({}, index)
+                        item[key.strip()] = child
+
+                    while index < len(lines) and lines[index][0] > indent:
+                        child, index = parse_block(index, lines[index][0])
+                        if isinstance(child, dict):
+                            item.update(child)
+                    items.append(item)
+                else:
+                    items.append(parse_scalar(content))
+            return items, index
+
+        mapping: dict[str, Any] = {}
+        while index < len(lines):
+            current_indent, stripped = lines[index]
+            if current_indent != indent or stripped.startswith("- "):
+                break
+            if ":" not in stripped:
+                index += 1
+                continue
+
+            key, raw_value = stripped.split(":", 1)
+            clean_key = key.strip()
+            index += 1
+            if raw_value.strip():
+                mapping[clean_key] = parse_scalar(raw_value)
+            elif index < len(lines) and lines[index][0] > current_indent:
+                child, index = parse_block(index, lines[index][0])
+                mapping[clean_key] = child
+            else:
+                mapping[clean_key] = {}
+        return mapping, index
+
+    parsed, _ = parse_block(0, lines[0][0] if lines else 0)
+    return parsed if isinstance(parsed, dict) else {}
 
 
 def load_config(path: Path) -> dict[str, Any]:
@@ -258,6 +288,13 @@ def summarize_condition(
 
 
 def evaluate(config: dict[str, Any]) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    if config["data"].get("type") != "synthetic_binary_classification":
+        raise ValueError("W11 toy experiment only supports synthetic_binary_classification data.")
+    if bool(config["data"].get("personal_data")):
+        raise ValueError("W11 toy experiment must not run with personal data.")
+    if config["experiment"].get("model") != "toy_logistic_regression":
+        raise ValueError("W11 toy experiment only supports toy_logistic_regression.")
+
     rng = random.Random(int(config["seed"]))
     train = generate_dataset(
         int(config["data"]["train_samples"]),
@@ -358,11 +395,13 @@ def write_run_log(path: Path, config: dict[str, Any], metrics: list[dict[str, An
 |---|---|
 | 실행일 | {config.get("run_date", "2026-06-22")} |
 | Seed | {config.get("seed", 42)} |
-| 데이터 | synthetic binary classification, no personal data |
-| 모델 | toy logistic regression with clipped gradients and DP-like gradient noise |
+| Status | {config.get("status", "executed")} |
+| 데이터 | {config["data"].get("type", "synthetic_binary_classification")}, personal_data={config["data"].get("personal_data", False)} |
+| 모델 | {config["experiment"].get("model", "toy_logistic_regression")} with clipped gradients and DP-like gradient noise |
 | Membership threshold | {details["membership_threshold"]} |
 | 보안 시나리오 | non-DP baseline, DP-like noise low/medium/high |
-| 안전 범위 | 실제 개인정보, 실제 개인 대상 membership inference, 운영 모델/API 질의, 무단 서비스 테스트 없음 |
+| 허용 범위 | {config["security_scope"].get("allowed", "synthetic toy evaluation")} |
+| 제외 범위 | {config["security_scope"].get("disallowed", "actual personal data, production model probing, unauthorized API queries, real-person membership inference")} |
 
 ## 실행 명령
 

@@ -12,11 +12,11 @@
 
 ## W11 실행 결과 요약
 
-| 조건 | Accuracy | MI Attack Accuracy | Epsilon Proxy | Utility Drop | Privacy Leakage Score |
-|---|---:|---:|---:|---:|---:|
-| Non-DP baseline | 0.956250 | 0.515625 | 해당 없음 | 0.000000 | 0.014833 |
-| DP-like noise low | 0.956250 | 0.515625 | 8.000000 | 0.000000 | 0.014494 |
-| DP-like noise medium | 0.962500 | 0.512500 | 3.000000 | 0.000000 | 0.011769 |
-| DP-like noise high | 0.950000 | 0.521875 | 1.000000 | 0.006250 | 0.016482 |
+| 조건 | Accuracy | Train Accuracy | MI Attack Accuracy | Epsilon Proxy | Utility Drop | Privacy Leakage Score | Noise Multiplier |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Non-DP baseline | 0.956250 | 0.965625 | 0.515625 | 해당 없음 | 0.000000 | 0.014833 | 0.000000 |
+| DP-like noise low | 0.956250 | 0.965625 | 0.515625 | 8.000000 | 0.000000 | 0.014494 | 0.100000 |
+| DP-like noise medium | 0.962500 | 0.965625 | 0.512500 | 3.000000 | 0.000000 | 0.011769 | 0.450000 |
+| DP-like noise high | 0.950000 | 0.962500 | 0.521875 | 1.000000 | 0.006250 | 0.016482 | 1.200000 |
 
-정량값은 `04_experiment/outputs/run_log.md`, `metrics_summary.csv`, `results.json` 기준이다. 결과는 synthetic toy 평가이며 실제 DP 보장이나 실제 모델 privacy risk로 일반화하지 않는다.
+정량값은 `04_experiment/outputs/run_log.md`, `metrics_summary.csv`, `results.json` 기준이다. 결과는 synthetic binary classification 기반 toy 평가이며 실제 DP 보장이나 실제 모델 privacy risk로 일반화하지 않는다. `noise_multiplier`는 toy gradient noise scale이고, `epsilon_proxy`는 formal privacy accountant가 산출한 epsilon이 아니다.

@@ -1,18 +1,36 @@
 # 제출 체크리스트
 
-| 항목 | 상태 | 비고 |
+## 최종 자기 점검표
+
+| 점검 항목 | 상태 | 비고 |
 |---|---|---|
-| 최종 보고서 확인 | 완료 | `06_report/final/integrated_report_final.md` |
-| 제출용 Markdown | 완료 | `w11_submission_report.md` |
-| 제출용 HTML | 완료 | `w11_submission_report.html` |
-| 참고문헌 확인 | 부분 완료 | P01/P02/P04 DOI 공식 확인, P03/P05 원문 PDF 확보 필요 |
-| AI 활용기록 확인 | 완료 | `05_ai_worklog/` |
-| 파일명 확인 | 완료 | 영문, 숫자, 언더바 중심 |
-| 실험 코드 확인 | 완료 | `04_experiment/src/run_experiment.py` |
-| 실험 결과 확인 | 완료 | `outputs/metrics_summary.csv`, `results.json`, `run_log.md` |
-| 발표자료 확인 | 완료 | `09_presentation/` |
+| 1장 한 문장 요약 작성 | 완료 |  |
+| 2장 학습 배경과 주차 목표 작성 | 완료 |  |
+| AI 원리 70% 정리 | 완료 |  |
+| 보안 이슈 30% 정리 | 완료 |  |
+| 논문 5편 요약 | 완료 |  |
+| 논문 5편 비교표 보완 | 완료 / 확인 필요 | P03/P05 대체 PDF 상태 반영 |
+| Research Track 5요소 작성 | 완료 | 연구문제, 위협모형, 평가방법, 재현성, 오픈문제 |
+| P01 공식 ACM DOI 검증 | 완료 | `10.1145/3547139` |
+| P02 공식 ACM DOI 검증 | 완료 / 확인 필요 | `10.1145/3712000`; 강의자료의 `Jonathan Demelius`, `57(9), Article 202` 표기 대조 필요 |
+| P03 지정 논문 원문 확보 | 확인 필요 | 현재 Fu et al. 대체 PDF |
+| P04 공식 ACM DOI 검증 | 완료 | `10.1145/3523273` |
+| P05 지정 논문 원문 확보 | 확인 필요 | 현재 Bai et al. 대체 PDF; 강의자료 저자 표기 대조 필요 |
+| 실험 outputs 파일 존재 확인 | 완료 | `metrics_summary.csv`, `results.json`, `run_log.md` 존재 |
+| 실험 결과와 보고서 수치 일치 | 완료 | outputs 기준 |
+| `epsilon_proxy` 한계 명시 | 완료 | formal accountant 아님 |
+| KCI 논문 형식 전환 작성 | 완료 | 초안 |
+| SCI 논문 형식 전환 작성 | 완료 | 초안 |
+| 본문 인용과 참고문헌 대응 | 완료 / 확인 필요 | P03/P05 원문 확보 필요 |
+| 표·그림 번호 정리 | 완료 | 표 1-7, 그림 1 |
+| AI 활용 고지 작성 | 완료 | 사람 검토 필요 |
+| PDF 저작권 위험 점검 | 완료 / 조치 필요 | PDF 5개 Git 추적 중, 삭제는 미수행 |
+| 최종 사람이 검토할 항목 표시 | 완료 | 최종 제출 확정 아님 |
 
 ## 제출 전 주의
 
 - `epsilon_proxy`는 정식 DP 보장이 아니므로 제출/발표에서 “실제 epsilon”처럼 말하지 않는다.
+- `noise_multiplier`는 toy gradient noise scale이며 formal DP-SGD accountant 입력값처럼 해석하지 않는다.
 - P03/P05는 로컬 PDF가 대체 문헌이므로 최종 참고문헌에 원 논문처럼 인용하지 않는다.
+- public GitHub 저장소라면 `01_papers/pdf/`에 커밋된 PDF 원문 5개의 저작권 위험을 검토한다.
+- 최종 제출 확정은 사람이 강의자료, DOI, 원문 PDF, 실험 outputs, AI 활용 고지를 다시 확인한 뒤 진행한다.

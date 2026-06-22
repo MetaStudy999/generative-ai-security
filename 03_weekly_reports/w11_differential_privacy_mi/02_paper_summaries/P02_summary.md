@@ -6,11 +6,11 @@
 |---|---|
 | 논문 제목 | Recent Advances of Differential Privacy in Centralized Deep Learning: A Systematic Survey |
 | 저자 | Lea Demelius, Roman Kern, Andreas Trugler |
-| 학술지/학회 | 로컬 PDF: arXiv preprint; 강의자료: ACM Computing Surveys 57(9), Article 202 |
-| 연도 | 로컬 PDF 2023, 강의자료 2025 |
-| DOI/URL | arXiv `2309.16398`; ACM DOI 공식 확인 필요 |
+| 학술지/학회 | ACM Computing Surveys 57(6), pp. 1-28; online 2025-02-10, print 2025-06-30 |
+| 연도 | 로컬 PDF 2023, ACM 최종본 2025 |
+| DOI/URL | DOI `10.1145/3712000`; arXiv `2309.16398` |
 | PDF 파일명 | `02_Demelius_et_al_2025_Centralized_Deep_Learning_DP_Survey.pdf` |
-| 검증 상태 | 로컬 PDF 제목/저자 확인, 프롬프트의 `Jonathan Demelius` 표기는 보정 필요 |
+| 검증 상태 | Crossref/ACM 등록 DOI 확인. 프롬프트의 `Jonathan Demelius`, `57(9), Article 202` 표기는 최종 대조 필요 |
 
 ## 2. 한 문장 요약
 
@@ -43,7 +43,7 @@ P02는 “privacy 보장을 주장하는 모델을 어떻게 감사할 것인가
 
 ## 8. 한계와 오픈문제
 
-로컬 PDF는 arXiv 버전이며 ACM 최종본과 제목/권호/DOI를 대조해야 한다. 또한 중앙집중형 DP-DL 중심이라 FL 환경은 P03/P05 대체 문헌으로 보완한다.
+로컬 PDF는 arXiv 버전이며 ACM 최종본과 세부 문구를 대조해야 한다. 주의: W11의 P02는 로컬 PDF 기준 `Lea Demelius, Roman Kern, Andreas Trugler` 및 arXiv:2309.16398로 확인되었고, 공식 DOI는 `10.1145/3712000`으로 확인되었다. 다만 강의계획서의 `Jonathan Demelius et al.` 및 `57(9), Article 202` 표기는 공식 메타데이터와 달라 최종 확인 필요 상태로 유지한다.
 
 ## 9. 기말 논문에 반영할 부분
 

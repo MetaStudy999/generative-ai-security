@@ -15,11 +15,18 @@ W11 실습은 차등프라이버시(DP)와 membership inference 평가를 안전
 | 데이터 | synthetic binary classification |
 | 결과 상태 | 실행 완료 |
 | 결과 위치 | `outputs/metrics_summary.csv`, `outputs/results.json`, `outputs/run_log.md` |
+| 의존성 | 외부 패키지 없음, Python 표준 라이브러리 기반 |
 
 ## 3. 실행 절차
 
 ```bash
 python3 src/run_experiment.py --config configs/config.yaml
+```
+
+Docker 재현 명령은 다음과 같다.
+
+```bash
+docker compose run --rm w11-differential-privacy-mi python3 src/run_experiment.py --config configs/config.yaml
 ```
 
 | 단계 | 내용 | 기록 |
@@ -30,6 +37,8 @@ python3 src/run_experiment.py --config configs/config.yaml
 | MI 평가 | member/non-member confidence threshold 비교 | MI Attack Accuracy |
 | leakage 평가 | mean member confidence와 mean non-member confidence 차이 | Privacy Leakage Score |
 | 재현성 | seed/config/CSV/JSON/run log 보존 | 완료 |
+
+`configs/config.yaml`의 `experiment.model`은 `toy_logistic_regression`만 허용하도록 코드에서 검증한다. `status`는 실행 상태 기록용으로 `results.json`과 `run_log.md`에 보존된다. `data.personal_data=false`와 `security_scope.disallowed`는 실제 개인정보, 운영 API, 실제 개인 대상 membership inference를 제외하는 안전 범위로 기록된다.
 
 ## 4. 결과
 
@@ -47,6 +56,9 @@ python3 src/run_experiment.py --config configs/config.yaml
 ## 6. 한계
 
 - `epsilon_proxy`는 정식 privacy accountant로 계산한 epsilon이 아니다.
+- `noise_multiplier`는 toy gradient noise scale이며 formal DP-SGD accountant의 noise multiplier로 해석하지 않는다.
 - 데이터는 synthetic이므로 실제 개인 정보 보호 수준으로 일반화하지 않는다.
 - MI 평가는 confidence threshold 기반의 안전한 proxy이며 실제 개인 대상 공격 절차가 아니다.
 - 최종 연구에서는 DP-SGD 라이브러리와 formal accounting을 별도로 연결해야 한다.
+
+이 결과는 synthetic binary classification 기반 toy 실험의 평가 형식 검증용 수치이며, 실제 개인정보 보호 수준, 실제 운영 모델의 membership inference 위험, 실제 DP-SGD 보장, formal privacy accounting 결과로 일반화하지 않는다.

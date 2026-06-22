@@ -1,0 +1,203 @@
+{
+  "metrics": [
+    {
+      "condition_key": "non_dp_baseline",
+      "condition": "Non-DP baseline",
+      "accuracy": 0.95625,
+      "train_accuracy": 0.965625,
+      "mi_attack_accuracy": 0.515625,
+      "epsilon_proxy": "not_applicable",
+      "utility_drop": 0.0,
+      "privacy_leakage_score": 0.014832575058810193,
+      "mean_member_confidence": 0.9453166625777912,
+      "mean_nonmember_confidence": 0.930484087518981,
+      "noise_multiplier": 0.0,
+      "notes": "표준 라이브러리 기반 synthetic toy 결과이며 정식 DP 보증이 아니다."
+    },
+    {
+      "condition_key": "dp_like_low",
+      "condition": "DP-like noise low",
+      "accuracy": 0.95625,
+      "train_accuracy": 0.965625,
+      "mi_attack_accuracy": 0.515625,
+      "epsilon_proxy": 8.0,
+      "utility_drop": 0.0,
+      "privacy_leakage_score": 0.014494059950169835,
+      "mean_member_confidence": 0.9461833858886382,
+      "mean_nonmember_confidence": 0.9316893259384683,
+      "noise_multiplier": 0.1,
+      "notes": "표준 라이브러리 기반 synthetic toy 결과이며 정식 DP 보증이 아니다."
+    },
+    {
+      "condition_key": "dp_like_medium",
+      "condition": "DP-like noise medium",
+      "accuracy": 0.9625,
+      "train_accuracy": 0.965625,
+      "mi_attack_accuracy": 0.5125,
+      "epsilon_proxy": 3.0,
+      "utility_drop": 0.0,
+      "privacy_leakage_score": 0.011768700718962855,
+      "mean_member_confidence": 0.9432345551345269,
+      "mean_nonmember_confidence": 0.9314658544155641,
+      "noise_multiplier": 0.45,
+      "notes": "표준 라이브러리 기반 synthetic toy 결과이며 정식 DP 보증이 아니다."
+    },
+    {
+      "condition_key": "dp_like_high",
+      "condition": "DP-like noise high",
+      "accuracy": 0.95,
+      "train_accuracy": 0.9625,
+      "mi_attack_accuracy": 0.521875,
+      "epsilon_proxy": 1.0,
+      "utility_drop": 0.006250000000000089,
+      "privacy_leakage_score": 0.01648154890119302,
+      "mean_member_confidence": 0.9501554153887609,
+      "mean_nonmember_confidence": 0.9336738664875679,
+      "noise_multiplier": 1.2,
+      "notes": "표준 라이브러리 기반 synthetic toy 결과이며 정식 DP 보증이 아니다."
+    }
+  ],
+  "details": {
+    "config": {
+      "week": "W11",
+      "topic": "차등프라이버시(DP) & 멤버십 추론 공격·방어",
+      "seed": 42,
+      "run_date": "2026-06-22",
+      "status": "executed",
+      "data": {
+        "type": "synthetic_binary_classification",
+        "personal_data": false,
+        "train_samples": 320,
+        "test_samples": 320,
+        "features": 3,
+        "train_noise": 0.85,
+        "test_noise": 0.9
+      },
+      "experiment": {
+        "model": "toy_logistic_regression",
+        "epochs": 60,
+        "learning_rate": 0.08,
+        "regularization": 0.001,
+        "membership_threshold": 0.94,
+        "conditions": [
+          {
+            "key": "non_dp_baseline",
+            "label": "Non-DP baseline",
+            "noise_multiplier": 0.0,
+            "epsilon_proxy": "not_applicable"
+          },
+          {
+            "key": "dp_like_low",
+            "label": "DP-like noise low",
+            "noise_multiplier": 0.1,
+            "epsilon_proxy": 8.0
+          },
+          {
+            "key": "dp_like_medium",
+            "label": "DP-like noise medium",
+            "noise_multiplier": 0.45,
+            "epsilon_proxy": 3.0
+          },
+          {
+            "key": "dp_like_high",
+            "label": "DP-like noise high",
+            "noise_multiplier": 1.2,
+            "epsilon_proxy": 1.0
+          }
+        ]
+      },
+      "security_scope": {
+        "allowed": "synthetic toy evaluation and literature-based privacy-risk analysis",
+        "disallowed": "actual personal data, production model probing, unauthorized API queries, real-person membership inference"
+      }
+    },
+    "membership_threshold": 0.94,
+    "data_statement": "synthetic binary classification data; no personal data; no external service query",
+    "sample_predictions": [
+      {
+        "condition": "Non-DP baseline",
+        "sample_id": "test_000",
+        "label": 1,
+        "probability": 0.9999522696562968,
+        "prediction": 1
+      },
+      {
+        "condition": "Non-DP baseline",
+        "sample_id": "test_001",
+        "label": 0,
+        "probability": 0.5329090796156788,
+        "prediction": 1
+      },
+      {
+        "condition": "Non-DP baseline",
+        "sample_id": "test_002",
+        "label": 1,
+        "probability": 0.8971765775485634,
+        "prediction": 1
+      },
+      {
+        "condition": "DP-like noise low",
+        "sample_id": "test_000",
+        "label": 1,
+        "probability": 0.9999588094733061,
+        "prediction": 1
+      },
+      {
+        "condition": "DP-like noise low",
+        "sample_id": "test_001",
+        "label": 0,
+        "probability": 0.5241468081882088,
+        "prediction": 1
+      },
+      {
+        "condition": "DP-like noise low",
+        "sample_id": "test_002",
+        "label": 1,
+        "probability": 0.8973281189537775,
+        "prediction": 1
+      },
+      {
+        "condition": "DP-like noise medium",
+        "sample_id": "test_000",
+        "label": 1,
+        "probability": 0.9998919607598473,
+        "prediction": 1
+      },
+      {
+        "condition": "DP-like noise medium",
+        "sample_id": "test_001",
+        "label": 0,
+        "probability": 0.3808796468291692,
+        "prediction": 0
+      },
+      {
+        "condition": "DP-like noise medium",
+        "sample_id": "test_002",
+        "label": 1,
+        "probability": 0.8391006273270644,
+        "prediction": 1
+      },
+      {
+        "condition": "DP-like noise high",
+        "sample_id": "test_000",
+        "label": 1,
+        "probability": 0.9999966839997605,
+        "prediction": 1
+      },
+      {
+        "condition": "DP-like noise high",
+        "sample_id": "test_001",
+        "label": 0,
+        "probability": 0.7790309563268004,
+        "prediction": 1
+      },
+      {
+        "condition": "DP-like noise high",
+        "sample_id": "test_002",
+        "label": 1,
+        "probability": 0.9660042556578385,
+        "prediction": 1
+      }
+    ]
+  }
+}

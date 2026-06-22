@@ -6,176 +6,338 @@
 |---|---|
 | 주차 | W11 |
 | 주제 | 차등프라이버시(DP) & 멤버십 추론 공격·방어 |
-| AI 원리 | Differential Privacy, privacy budget, DP-SGD, privacy accounting |
-| 보안 이슈 | Membership inference, privacy leakage, utility-privacy trade-off |
-| 작성일 | 2026-06-22 |
-| 문서 상태 | 제출용 최종본 |
-| 실험 근거 | `04_experiment/outputs/run_log.md` |
+| 문서 상태 | 제출용 최종 초안, 사람 검토 필요 |
+| 실험 상태 | 2026-06-22 실행 완료, 2026-06-23 로컬/Docker 재검증 |
+| 안전 범위 | synthetic binary classification 기반 toy 실험, 실제 개인정보 없음 |
+| 핵심 주의 | `epsilon_proxy`는 formal DP accountant 값이 아님 |
 
 ## 1. 한 문장 요약
 
-W11의 핵심은 DP 보장을 “적용했다”는 선언이 아니라 accuracy, MI attack accuracy, leakage, privacy budget/accounting, utility drop, 재현성 로그로 함께 검증해야 한다는 점이다.
+W11은 DP를 적용했다는 선언보다 epsilon/accounting, utility, membership inference risk, leakage score, 재현성 증거를 함께 제시해야 privacy claim을 검증할 수 있음을 정리한다[1][2][4][5].
 
-## 2. AI 원리 70% 정리
+## 2. 학습 배경과 주차 목표
 
-DP는 인접 데이터셋의 출력 분포 차이를 제한해 특정 레코드의 포함 여부가 출력에서 드러나지 않도록 하는 privacy 원리다. 딥러닝에서는 DP-SGD가 대표 구현이며, gradient clipping과 noise injection을 통해 개별 sample이 update에 미치는 영향을 제한한다.
+### 2.1 이번 주 주제의 위치
 
-| 개념 | W11 해석 |
-|---|---|
-| Privacy budget | epsilon/delta로 표현되는 privacy loss 조건 |
-| DP-SGD | clipping, noise, accountant가 함께 있어야 해석 가능 |
-| Privacy accounting | 여러 step의 privacy loss를 누적 추적 |
-| Utility-privacy trade-off | noise가 privacy risk를 낮출 수 있지만 성능과 안정성을 흔들 수 있음 |
+W11은 W10의 연합학습 privacy leakage 논의를 차등프라이버시와 membership inference 평가로 확장하는 주차다. W10에서는 FL의 local update와 aggregation이 privacy와 integrity 위험을 남긴다는 점을 다루었다. W11은 모델 학습 과정과 모델 출력에서 개별 레코드의 포함 여부가 노출될 수 있는지, 그리고 DP 또는 DP-like 방어를 주장할 때 어떤 증거가 필요한지를 다룬다. 핵심은 DP를 “적용했다”는 선언이 아니라 epsilon/delta 또는 accountant, utility, MI attack risk, leakage score, reproducibility evidence를 함께 검증해야 한다는 점이다.
 
-P01은 DP misuse와 reporting 책임을, P02는 중앙집중형 DP-DL의 평가·감사 흐름을, P03은 deep learning/FL 환경에서 보호 대상과 적용 위치가 달라짐을 보여준다.
+### 2.2 강의계획서상 학습목표
 
-### 2.1 핵심 수식 또는 알고리즘 쉬운 설명
+- Differential Privacy의 epsilon/delta 의미와 privacy budget을 정리한다.
+- DP-SGD의 gradient clipping, noise injection, privacy accounting 구조를 이해한다.
+- Membership inference attack과 defense taxonomy를 정리한다.
+- Utility, MI attack accuracy, privacy leakage score, epsilon/accounting, reproducibility evidence를 통합한 평가 프로토콜을 설계한다.
 
-아래 수식은 원문 수식의 직접 인용이 아니라, 각 논문의 핵심 개념을 보고서에서 설명하기 위한 대표 수식과 지표다. 최종 제출본에서 원문 수식으로 인용할 경우 논문 원문 쪽/절 번호를 추가 확인한다.
-
-| ID | 핵심 수식/알고리즘 | 쉬운 설명 | 보안 평가 연결 |
-|---|---|---|---|
-| P01 | $Pr[M(D)\in S]\le e^\epsilon Pr[M(D')\in S]+\delta$ | DP는 한 사람의 데이터가 들어가도 결과 분포가 크게 바뀌지 않게 제한한다. | privacy claim 검증 |
-| P02 | $\bar g_i=g_i/\max(1,\lVert g_i\rVert_2/C)$, $\tilde g=\frac{1}{B}(\sum_i\bar g_i+\mathcal N(0,\sigma^2C^2I))$ | DP-SGD는 각 샘플 gradient를 자르고 노이즈를 더해 개인 영향력을 줄인다. | DP-SGD 원리 |
-| P03 | $\epsilon_{total}\approx \sum_t \epsilon_t$ | 여러 학습 step에서 privacy loss가 누적되므로 accountant가 필요하다. | privacy accounting |
-| P04 | $MIAdv=TPR-FPR$ | membership inference 공격은 member를 잘 맞히면서 non-member를 덜 오인할수록 강하다. | MI risk |
-| P05 | $Tradeoff=(Utility,\ PrivacyRisk)$ | 방어는 하나의 점수가 아니라 성능과 privacy risk를 함께 보고해야 한다. | utility-privacy trade-off |
-
-## 3. 보안 이슈 30% 정리
-
-Membership inference는 특정 레코드가 학습 데이터였는지 추론하는 privacy attack이다. 보호 자산은 데이터 원문뿐 아니라 membership information, confidence score, loss 신호, 평가 로그까지 확장된다.
-
-| 관점 | 관련 위협 | 평가 연결 |
-|---|---|---|
-| Confidentiality | membership inference, training data leakage | MI Attack Accuracy |
-| Privacy | individual record exposure | Privacy Leakage Score |
-| Integrity | 잘못된 DP claim, accountant 누락 | reference/config 검증 |
-| Availability | 과도한 noise로 인한 utility 저하 | Accuracy, Utility Drop |
-| Accountability | DOI/PDF 불일치, 실행 로그 부재 | `01_papers/`, `outputs/` |
-
-## 4. 논문 5편 요약
-
-| ID | 문헌 | 핵심 역할 | 검증 상태 |
-|---|---|---|---|
-| P01 | A Critical Review on the Use (and Misuse) of Differential Privacy in Machine Learning | DP misuse, epsilon 해석, reporting 책임 | arXiv 확인, ACM DOI 공식 확인 필요 |
-| P02 | Recent Advances of Differential Privacy in Centralized Deep Learning | DP-DL auditing, privacy-utility 개선, application 분류 | arXiv 확인, ACM 최종본 대조 필요 |
-| P03 | Differential Privacy in Deep Learning: A Literature Survey | deep learning DP 문헌축 | DOI 후보 확인, 로컬 PDF는 Fu et al. FL 대체 문헌 |
-| P04 | Membership Inference Attacks on Machine Learning | MI attack/defense taxonomy | arXiv 확인, ACM DOI 공식 확인 필요 |
-| P05 | Defenses to Membership Inference Attacks | MI defense taxonomy와 trade-off | DOI 후보 확인, 로컬 PDF는 Bai et al. FL-MIA 대체 문헌 |
-
-## 5. 논문 5편 비교
-
-P01/P02/P03은 DP 원리와 적용 위치를, P04/P05는 MI 공격과 방어 평가를 담당한다. 기말 논문에서는 이 둘을 분리하지 않고 “privacy claim 검증 프로토콜”로 묶는다.
-
-| 비교축 | DP 문헌 | MI 문헌 | 통합 관점 |
-|---|---|---|---|
-| 보호 대상 | 개별 sample 영향 제한 | membership information 보호 | record-level privacy |
-| 주요 지표 | epsilon/delta, accounting, utility | MI accuracy, confidence gap | utility + leakage 동시 보고 |
-| 실패 조건 | 큰 epsilon, accountant 누락, 오용 | overfitting, confidence 노출 | 평가표와 로그 부재 |
-
-## 6. Research Track
-
-### 6.1 연구문제
-
-RQ1. DP-like noise 또는 DP-SGD 설정 변화는 모델 accuracy와 membership inference risk 사이에 어떤 trade-off를 만드는가?
-
-RQ2. MI 위험은 overfitting, confidence score, train/test 분포 차이에 따라 어떻게 달라지는가?
-
-RQ3. AI 보안 연구에서 DP를 주장할 때 privacy accounting, utility, attack evaluation, reproducibility log를 어떤 최소 항목으로 보고해야 하는가?
-
-### 6.2 위협모형
-
-| 항목 | 내용 |
-|---|---|
-| 대상 시스템 | 개인정보가 포함될 수 있는 ML/DL 학습 시스템 |
-| 보호 자산 | 학습 데이터 포함 여부, confidence score, model output, evaluation log |
-| 공격자 | 외부 질의자, 모델 사용자, API 접근자, 내부 평가자 |
-| 공격자의 지식 | black-box output 관찰부터 gray-box log 접근까지 구분 |
-| 공격 경로 | 모델 API, 예측 확률, 학습 결과, 평가 로그 |
-| 방어자 가정 | DP-SGD/DP-like noise, output restriction, calibration, accounting 가능 |
-| 제외 범위 | 실제 개인정보, 실제 개인 대상 추론, 운영 모델/API 무단 질의 |
-
-### 6.3 평가방법
-
-| 평가 항목 | 지표 | 측정 방법 |
-|---|---|---|
-| Utility | Accuracy, Utility Drop | baseline 대비 test accuracy 비교 |
-| Membership Risk | MI Attack Accuracy | synthetic member/non-member confidence threshold 비교 |
-| Leakage | Privacy Leakage Score | mean member confidence와 non-member confidence 차이 |
-| Privacy Budget | epsilon/delta 또는 epsilon proxy | accountant 또는 실습용 proxy 기록 |
-| Reproducibility | seed/config/CSV/JSON/run log | `outputs/` 보존 |
-
-### 6.4 재현성
-
-| 항목 | 내용 |
-|---|---|
-| 실행 명령 | `python3 src/run_experiment.py --config configs/config.yaml` |
-| Seed | 42 |
-| 데이터 | synthetic binary classification, no personal data |
-| 스크립트 | `04_experiment/src/run_experiment.py` |
-| 산출물 | `metrics_summary.csv`, `results.json`, `run_log.md` |
-
-### 6.5 한계와 오픈문제
-
-- `epsilon_proxy`는 정식 privacy accountant 산출값이 아니다.
-- P03/P05는 로컬 PDF가 지정 논문과 달라 원문 확보가 필요하다.
-- toy 실험 결과는 실제 개인정보 보호 수준이나 실제 운영 모델의 MI 위험으로 일반화하지 않는다.
-- 향후에는 DP-SGD 라이브러리와 formal accounting을 연결해야 한다.
-
-## 7. 실습 요약
-
-| 조건 | Accuracy | MI Attack Accuracy | Epsilon Proxy | Utility Drop | Privacy Leakage Score |
-|---|---:|---:|---:|---:|---:|
-| Non-DP baseline | 0.956250 | 0.515625 | 해당 없음 | 0.000000 | 0.014833 |
-| DP-like noise low | 0.956250 | 0.515625 | 8.000000 | 0.000000 | 0.014494 |
-| DP-like noise medium | 0.962500 | 0.512500 | 3.000000 | 0.000000 | 0.011769 |
-| DP-like noise high | 0.950000 | 0.521875 | 1.000000 | 0.006250 | 0.016482 |
-
-결과는 medium noise에서 leakage proxy가 가장 낮고 high noise에서 utility drop이 발생했다. high noise가 항상 MI risk를 낮춘 것은 아니므로, DP-like noise를 실제 DP 보장으로 오해하지 않아야 한다.
-
-## 8. AI 활용 기록 요약
-
-Codex를 사용해 로컬 파일 점검, W11 문헌/서지 정리, 실험 코드 작성, 실행 로그 생성, 제출용/발표용 문서 보완을 수행했다. 정량값은 `04_experiment/outputs/` 산출물과 일치하는 값만 반영했다.
-
-## 9. 토론 질문
+### 2.3 이번 주 핵심 질문
 
 1. DP 보장을 주장할 때 epsilon만 제시하면 충분한가?
-2. MI attack accuracy가 낮아도 confidence leakage가 남아 있다면 privacy risk를 어떻게 해석해야 하는가?
-3. toy 실험과 실제 DP-SGD 실험 사이의 간극을 기말논문에서 어떻게 설명할 것인가?
+2. DP-like noise와 formal DP-SGD의 차이는 무엇인가?
+3. Membership inference risk는 confidence score, overfitting, train/test gap과 어떻게 연결되는가?
+4. Utility drop과 privacy leakage score는 어떤 trade-off를 만드는가?
+5. W11의 synthetic toy 실험을 KCI 또는 SCI 논문 주제로 발전시키려면 어떤 연구문제가 적절한가?
 
-## 10. 기말 논문 연결
+## 3. AI 원리 70% 정리
 
-| 논문 장 | 반영 가능 내용 |
+DP는 인접 데이터셋의 출력 분포 차이를 제한하여 개별 레코드의 영향력을 줄이는 privacy 보장 개념이다[1]. 중앙집중형 deep learning에서 DP-SGD는 clipping, noise injection, accounting을 함께 요구한다[2]. Deep learning에서 DP 적용 위치는 sample-level, client-level, update-level에 따라 달라질 수 있다[3].
+
+| 표 1. W11 핵심 개념과 보안 연결 | AI 원리 | 보안 연결 |
+|---|---|---|
+| Differential Privacy | 인접 데이터셋 간 출력 분포 차이 제한 | 개별 레코드 노출 가능성 축소 |
+| Privacy Budget | epsilon/delta 또는 accountant 기반 보호 강도 | 큰 epsilon, composition 누락은 claim 약화 |
+| DP-SGD | gradient clipping과 noise injection | 학습 단계 leakage 완화, utility drop 발생 가능 |
+| Membership Inference | 학습 포함 여부를 추론하는 privacy attack | 모델 출력 confidence/loss가 공격 신호가 될 수 있음 |
+| Privacy Accounting | 반복 학습과 composition의 privacy loss 계산 | `epsilon_proxy`와 formal epsilon 구분 필요 |
+
+## 4. 보안 이슈 30% 정리
+
+Membership inference attack은 모델 출력이나 confidence score로 학습 데이터 포함 여부를 추론한다[4]. Membership inference 방어는 privacy risk를 낮출 수 있지만 utility drop과 calibration 변화를 함께 고려해야 한다[5].
+
+보호 자산은 원본 데이터뿐 아니라 학습 포함 여부, confidence score, loss signal, model output, evaluation log이다. 제외 범위는 실제 개인정보 데이터 사용, 실제 개인 대상 membership inference, 운영 모델/API 무단 질의, 실제 서비스 privacy probing이다. 본 보고서는 공격 절차를 악용 가능한 단계별 지침으로 상세화하지 않는다.
+
+## 5. 논문 5편 요약
+
+| 표 2. 관련 문헌 5편 요약 | 핵심 역할 | 검증 상태 |
+|---|---|---|
+| P01 Blanco-Justicia et al.[1] | DP misuse, epsilon 해석, reporting 책임 | DOI `10.1145/3547139` 확인, 로컬 PDF는 arXiv 판 |
+| P02 Demelius et al.[2] | centralized DP-DL, auditing, privacy-utility trade-off | DOI `10.1145/3712000` 확인, 강의자료 저자/권호 표기 대조 필요 |
+| P03 Pan et al.[3] | deep learning에서 DP 적용 위치와 보호 대상 | DOI `10.1016/j.neucom.2024.127663` 확인, 로컬 PDF는 Fu et al. 대체 PDF |
+| P04 Hu et al.[4] | MI attack taxonomy, confidence/loss/output signal | DOI `10.1145/3523273` 확인 |
+| P05 Hu/Li Hu et al.[5] | MI defense taxonomy, utility-privacy trade-off | DOI `10.1145/3620667` 확인, 로컬 PDF는 Bai et al. 대체 PDF, 강의자료 저자 표기 대조 필요 |
+
+P03과 P05는 지정 논문과 현재 로컬 PDF가 일치하지 않는다. P03 로컬 PDF는 Fu et al.의 DP-FL systematic review이고, P05 로컬 PDF는 Bai et al.의 FL-MIA survey이다. 두 대체 PDF는 W10-FL과의 연결을 설명하는 보조 문헌으로만 사용하고, 지정 논문처럼 확정 인용하지 않는다.
+
+## 6. 논문 5편 비교표
+
+| 논문 | 연구문제 | 핵심 방법 | 데이터/실험 | AI 원리 기여 | 보안 위협 연결 | 평가 지표 | 한계 | 내 논문 활용 |
+|---|---|---|---|---|---|---|---|---|
+| P01 | DP가 ML에서 오용될 때 어떤 privacy claim 문제가 생기는가 | 비판적 문헌검토 | ML privacy claim 사례 | epsilon/delta 해석, reporting 책임 | 큰 epsilon, accountant 누락 | budget, utility, reporting completeness | 로컬 PDF는 arXiv 판 | DP reporting checklist |
+| P02 | 중앙집중형 DP-DL의 최신 연구축은 무엇인가 | systematic survey | DP-DL 문헌 분류 | DP-SGD, clipping, noise, accountant | privacy leakage, auditing failure | accuracy, auditing, utility trade-off | 강의 표기 대조 필요 | 평가 프로토콜 상위 분류 |
+| P03 | DP 적용 위치와 보호 대상은 어떻게 달라지는가 | 지정 논문과 대체 PDF 분리 | Neurocomputing 지정 논문, DP-FL 대체 PDF | sample/client/update level 비교 | FL update leakage | epsilon/accounting, utility | 원문 PDF 미확보 | W10-FL 연결, 대체 PDF 인용 주의 |
+| P04 | MI 공격은 어떤 조건에서 privacy breach가 되는가 | taxonomy survey | confidence/loss/output 공격 문헌 | MI signal 분류 | membership inference, overfitting | MI accuracy, TPR/FPR, confidence gap | 최신 LLM/FL 특화 공격 추가 필요 | threat model 핵심 근거 |
+| P05 | MI 방어는 어떤 trade-off를 만드는가 | defense taxonomy | ACM 지정 논문, FL-MIA 대체 PDF | output restriction, regularization, DP | output leakage, FL update leakage | clean accuracy, MI risk, utility drop | 원문 PDF 미확보, 저자 표기 대조 필요 | 방어 평가표 |
+
+## 7. Research Track 분석
+
+| 표 3. W11 Research Track 요약 | 내용 |
 |---|---|
-| 서론 | AI 모델 학습에서 privacy protection과 utility trade-off의 필요성 |
-| 관련연구 | DP misuse, DP-DL survey, MI attack/defense taxonomy |
-| 연구문제 | DP claim 검증을 위한 다중지표 평가 |
-| 연구방법 | synthetic toy 평가, threat model, reproducibility protocol |
-| 분석/실험 | accuracy, MI attack accuracy, leakage score, utility drop |
-| 보안적 함의 | privacy claim accountability와 원문/DOI 검증 |
+| 연구문제 | privacy claim 검증을 위해 accuracy, MI risk, leakage, accounting, reproducibility를 어떻게 함께 보고할 것인가 |
+| 위협모형 | black-box output observer, gray-box evaluator, API user, internal auditor |
+| 평가방법 | synthetic split에서 utility와 MI proxy를 분리 기록 |
+| 재현성 | seed, config, CSV, JSON, run log, DOI 검증표 보존 |
+| 오픈문제 | formal DP-SGD accountant, 실제 benchmark, 반복 실험, P03/P05 원문 확보 |
 
-## 11. 참고문헌 검증표
+그림 1. DP와 Membership Inference 평가 흐름
 
-| ID | 상태 |
+```text
+Synthetic Train/Test Data
+        ↓
+Toy Logistic Regression
+        ↓
+Non-DP / DP-like Noise Conditions
+        ↓
+Model Output Confidence
+        ↓
+Membership Inference Proxy
+        ↓
+Metrics
+Accuracy, Train Accuracy, MI Attack Accuracy, Leakage Score, Utility Drop
+        ↓
+Privacy Claim Check
+epsilon/accounting, noise setting, limitations, reproducibility evidence
+```
+
+## 8. 실습 보고서
+
+본 실습은 실제 개인정보나 실제 운영 모델을 대상으로 한 membership inference 공격 재현이 아니라 W11의 핵심인 privacy claim 평가축을 안전하게 설명하기 위한 최소 toy protocol이다. 따라서 synthetic binary classification 기반 안전 toy 실험과 toy logistic regression을 사용하되, 평가 구조는 이후 formal DP-SGD, privacy accountant, membership inference benchmark에도 확장 가능하도록 accuracy, train accuracy, MI attack accuracy, privacy leakage score, utility drop, epsilon/accounting, reproducibility evidence로 분리하였다.
+
+| 표 4. W11 실습 설계 | 내용 |
 |---|---|
-| P01 | arXiv 확인, ACM DOI 공식 확인 필요 |
-| P02 | arXiv 확인, ACM 최종본/DOI 대조 필요 |
-| P03 | DOI 후보 `10.1016/j.neucom.2024.127663`, 로컬 PDF 대체 상태 |
-| P04 | arXiv 확인, ACM DOI 공식 확인 필요 |
-| P05 | DOI 후보 `10.1145/3620667`, 로컬 PDF 대체 상태 |
+| Dataset | Synthetic binary classification |
+| Train/Test samples | 320 / 320 |
+| Features | 3 |
+| Model | Toy logistic regression |
+| Conditions | Non-DP baseline, DP-like noise low/medium/high |
+| Noise multipliers | 0.00, 0.10, 0.45, 1.20 |
+| MI evaluation | Confidence-threshold proxy |
+| Output files | `metrics_summary.csv`, `results.json`, `run_log.md` |
 
-상세 표는 `01_papers/doi_check.md`에 둔다.
+| 표 5. W11 실습 결과 | Accuracy | Train Accuracy | MI Attack Accuracy | Epsilon Proxy | Utility Drop | Privacy Leakage Score | Noise Multiplier |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Non-DP baseline | 0.956250 | 0.965625 | 0.515625 | 해당 없음 | 0.000000 | 0.014833 | 0.000000 |
+| DP-like noise low | 0.956250 | 0.965625 | 0.515625 | 8.000000 | 0.000000 | 0.014494 | 0.100000 |
+| DP-like noise medium | 0.962500 | 0.965625 | 0.512500 | 3.000000 | 0.000000 | 0.011769 | 0.450000 |
+| DP-like noise high | 0.950000 | 0.962500 | 0.521875 | 1.000000 | 0.006250 | 0.016482 | 1.200000 |
 
-## 12. 자기 점검
+이 결과는 synthetic binary classification 기반 toy 실험의 평가 형식 검증용 수치이며, 실제 개인정보 보호 수준, 실제 운영 모델의 membership inference 위험, 실제 DP-SGD 보장, formal privacy accounting 결과로 일반화하지 않는다.
 
-| 항목 | 상태 |
+## 9. AI 도구 활용 기록
+
+AI는 문헌 요약 보강, DOI/URL 검증 보조, 대체 PDF 표시, synthetic DP/MI 실험 코드 작성, 발표자료 작성, KCI/SCI 섹션 보완에 사용되었다. 최종 제출자는 원고의 내용, 인용, 실험결과, 연구윤리 책임을 확인해야 한다. 상세 고지는 `05_ai_worklog/ai_disclosure_draft.md`에 둔다.
+
+## 10. 토론 질문
+
+1. formal accountant 없이 `epsilon_proxy`를 쓰는 경우 어떤 표현까지 허용되는가?
+2. MI Attack Accuracy가 0.5 근처라도 leakage score를 별도로 봐야 하는 이유는 무엇인가?
+3. DP-SGD, output restriction, calibration, regularization 중 어떤 방어가 어떤 위협모형에 적합한가?
+4. P03/P05처럼 지정 논문과 로컬 PDF가 다를 때 수업 제출물에서 어떻게 표시해야 하는가?
+
+## 11. 기말논문 연결
+
+기말논문 주제 후보는 “AI 보안 연구에서 Privacy Claim 검증을 위한 다중지표 평가 프레임워크”이다. W11의 contribution은 단일 epsilon 또는 단일 accuracy가 아니라 utility, MI risk, leakage score, privacy accounting, noise setting, reproducibility evidence를 함께 보고하는 구조다.
+
+## 12. KCI 논문 형식 전환
+
+### 12.1 KCI형 제목 후보
+
+| 표 6. KCI 논문 제목 후보 | 국문 제목 후보 | 영문 제목 후보 | 대상 시스템 | 보안 위협 | 연구방법 | 예상 기여 |
+|---:|---|---|---|---|---|---|
+| 1 | AI 보안 연구에서 Privacy Claim 검증을 위한 다중지표 평가 프레임워크 연구 | A Multi-Metric Evaluation Framework for Verifying Privacy Claims in AI Security Research | ML/DL 학습 시스템 | Membership inference, DP misuse | 문헌분석 + synthetic MI 실험 | DP reporting checklist |
+| 2 | 차등프라이버시 기반 학습에서 Utility와 Membership Inference 위험의 Trade-off 분석 | An Analysis of the Trade-off Between Utility and Membership Inference Risk in Differential Privacy-Based Learning | DP-like ML 모델 | privacy leakage, utility degradation | toy logistic regression | utility-risk 동시 평가 |
+| 3 | Membership Inference 방어 평가를 위한 Accuracy·Leakage·Accounting 통합 보고체계 연구 | An Integrated Reporting Framework of Accuracy, Leakage, and Accounting for Membership Inference Defense Evaluation | privacy-preserving ML | MI attack, incomplete accounting | 문헌분석 + 체크리스트 | 재현성 중심 privacy claim 검증 |
+
+### 12.2 추천 최종 제목
+
+- 국문: AI 보안 연구에서 Privacy Claim 검증을 위한 다중지표 평가 프레임워크 연구
+- 영문: A Multi-Metric Evaluation Framework for Verifying Privacy Claims in AI Security Research
+
+### 12.3 국문초록 초안
+
+본 연구는 AI 보안 연구에서 차등프라이버시 및 membership inference 방어를 주장할 때 필요한 privacy claim 검증 프레임워크를 제안한다. DP misuse, centralized DP-DL, differential privacy in deep learning, membership inference attack, membership inference defense 관련 선행연구를 비교하고, accuracy, train accuracy, MI attack accuracy, privacy leakage score, utility drop, epsilon/accounting, reproducibility evidence의 평가축을 도출한다. 또한 실제 개인정보나 운영 모델을 사용하지 않고 synthetic binary classification과 toy logistic regression을 활용하여 non-DP baseline, DP-like noise low/medium/high 조건을 비교한다. 본 연구는 `epsilon_proxy`가 정식 DP accountant 값이 아니며 실제 DP 보장으로 해석할 수 없음을 명확히 하면서, privacy claim을 검증하기 위한 최소 보고항목과 재현성 구조를 제시하는 데 목적이 있다.
+
+### 12.4 영문초록 초안
+
+This study proposes a multi-metric framework for verifying privacy claims in AI security research involving differential privacy and membership inference defenses. By reviewing studies on DP misuse, centralized DP in deep learning, differential privacy in deep learning, membership inference attacks, and membership inference defenses, this report derives evaluation axes including accuracy, train accuracy, membership inference attack accuracy, privacy leakage score, utility drop, epsilon/accounting, and reproducibility evidence. A safe toy experiment using synthetic binary classification and toy logistic regression is used to compare non-DP baseline and DP-like noise conditions. The goal is not to claim formal DP guarantees, but to demonstrate a reproducible reporting structure for privacy-claim evaluation.
+
+### 12.5 키워드
+
+| 구분 | 키워드 |
 |---|---|
-| 논문 5편 요약 | 완료 |
-| 논문 비교표 | 완료 |
-| AI 원리 70% | 완료 |
-| 보안 이슈 30% | 완료 |
-| Research Track | 완료 |
-| 실험 코드/결과 | 완료 |
-| 제출용 보고서 | 완료 |
-| 발표자료 | 완료 |
-| DOI/원문 확인 | 부분 완료, 최종 공식 대조 필요 |
+| 국문 | 차등프라이버시, DP-SGD, 멤버십 추론, Privacy Claim, Utility-Privacy Trade-off, 재현성 |
+| 영문 | Differential Privacy, DP-SGD, Membership Inference, Privacy Claim, Utility-Privacy Trade-off, Reproducibility |
+
+### 12.6 연구문제
+
+- RQ1. DP 또는 DP-like 방어를 주장할 때 accuracy, MI attack accuracy, leakage score, accounting 중 어떤 항목을 최소 보고해야 하는가?
+- RQ2. DP-like noise 강도 변화는 utility drop과 privacy leakage score에 어떤 영향을 주는가?
+- RQ3. Formal privacy accountant 없이 `epsilon_proxy`를 사용할 때 어떤 연구윤리적 한계가 발생하는가?
+
+### 12.7 연구방법
+
+문헌분석으로 W11 논문 5편을 DP misuse, DP-DL, DP deep learning, MI attack, MI defense 축으로 비교한다. 위협모형은 학습 데이터 포함 여부, confidence score, model output, evaluation log를 보호 자산으로 설정한다. 모의실험은 synthetic binary classification 기반 toy logistic regression을 사용하며, non-DP baseline과 DP-like noise 조건을 accuracy, train accuracy, MI attack accuracy, epsilon proxy, utility drop, privacy leakage score, noise multiplier, reproducibility evidence로 비교한다.
+
+### 12.8 보안적 함의
+
+Confidentiality 관점에서 membership inference는 학습 데이터 포함 여부를 노출할 수 있다. Privacy 관점에서 confidence gap과 overfitting은 privacy leakage 신호가 될 수 있다. Integrity 관점에서 잘못된 DP claim은 연구 결과와 보안 주장을 왜곡한다. Availability 관점에서 과도한 noise는 utility degradation을 유발할 수 있다. Accountability와 reproducibility를 위해 DOI, config, seed, outputs, AI 활용 고지를 보존해야 한다.
+
+### 12.9 KCI 제출 가능성 점검표
+
+| 점검 항목 | 상태 |
+|---|---|
+| 국문·영문 제목 후보 작성 | 완료 |
+| 국문초록 초안 작성 | 완료 |
+| 영문초록 초안 작성 | 완료 |
+| 키워드 작성 | 완료 |
+| 연구문제 작성 | 완료 |
+| 연구방법 작성 | 완료 |
+| 표 1개 이상 포함 | 완료 |
+| 그림 1개 이상 포함 | 확인 필요 |
+| 국내 참고문헌 3편 이상 | 확인 필요 |
+| 해외 참고문헌 5편 이상 | W11 기준 완료, P03/P05 원문 확보 필요 |
+| AI 활용 고지 | 보완 완료, 사람 검토 필요 |
+| 실험 outputs 파일 존재 | 완료 |
+| epsilon_proxy 한계 명시 | 완료 |
+
+## 13. SCI 논문 형식 전환
+
+### 13.1 SCI 제목 후보
+
+A Multi-Metric Framework for Verifying Privacy Claims Against Membership Inference Risk in Differentially Private Machine Learning
+
+### 13.2 Structured Abstract
+
+#### Background
+
+Differential privacy is widely used to limit individual record exposure in machine learning, but privacy claims can be misleading when epsilon values, accounting assumptions, utility loss, and attack evaluations are not reported together.
+
+#### Problem
+
+Many studies state that DP or DP-like mechanisms are applied, but do not consistently report formal privacy accounting, membership inference risk, confidence leakage, utility degradation, and reproducibility evidence.
+
+#### Method
+
+This study synthesizes five representative studies on DP misuse, centralized DP in deep learning, DP in deep learning, membership inference attacks, and membership inference defenses. A safe synthetic toy experiment is used to compare non-DP baseline and DP-like noise conditions with a toy logistic regression model.
+
+#### Results
+
+The W11 toy experiment shows that medium DP-like noise reduces the privacy leakage proxy in the synthetic setting, while high noise causes utility drop and does not monotonically reduce MI attack accuracy. These results should not be interpreted as formal DP guarantees.
+
+#### Contribution
+
+The main contribution is a multi-metric reporting framework that separates accuracy, train accuracy, membership inference attack accuracy, privacy leakage score, utility drop, epsilon/accounting, noise multiplier, and reproducibility evidence.
+
+#### Implications
+
+The framework can be extended to formal DP-SGD experiments, privacy accounting, membership inference benchmark evaluation, federated privacy analysis, and reproducible privacy-claim auditing.
+
+### 13.3 Introduction 구성
+
+- DP와 privacy-preserving ML의 필요성
+- DP misuse와 incomplete privacy claim 문제
+- Membership inference attack의 threat model
+- Utility-privacy trade-off
+- Formal accounting과 reproducibility evidence의 중요성
+- 본 연구의 contribution
+
+### 13.4 Related Work 축
+
+| 표 7. SCI Related Work 축 | 대표 논문 | 역할 |
+|---|---|---|
+| DP misuse and reporting | Blanco-Justicia et al.[1] | DP claim misuse, epsilon interpretation, reporting responsibility |
+| Centralized DP-DL | Demelius et al.[2] | DP-SGD, privacy auditing, utility-privacy improvement |
+| DP in deep learning | Pan et al.[3] | DP deep learning literature, 지정 논문 원문 확보 필요 |
+| Membership inference attacks | Hu et al.[4] | MI attack taxonomy, confidence/loss/output attack signal |
+| Membership inference defenses | Hu/Li Hu et al.[5] | MI defense taxonomy, utility-privacy trade-off, 지정 논문 원문 확보 필요 |
+
+### 13.5 Threat Model
+
+Target system은 민감 레코드를 포함할 수 있는 ML/DL 모델이다. Protected assets는 training data membership, confidence scores, model outputs, evaluation logs이다. Adversary knowledge는 black-box output observer, gray-box evaluator, API user, internal auditor로 구분한다. Attack success condition은 member/non-member status가 random baseline 이상으로 구분되는 것이다. Excluded scope는 real personal data, real-person membership inference, production API probing, unauthorized model testing이다.
+
+### 13.6 Methodology
+
+방법론은 literature matrix construction, DP/MI threat model design, synthetic binary classification experiment, toy logistic regression training, non-DP baseline evaluation, DP-like noise low/medium/high evaluation, confidence-threshold MI proxy evaluation, privacy leakage score calculation, reproducibility evidence collection으로 구성한다.
+
+### 13.7 Experimental Setup
+
+| Item | Description |
+|---|---|
+| Dataset | Synthetic binary classification |
+| Train samples | 320 |
+| Test samples | 320 |
+| Features | 3 |
+| Model | Toy logistic regression |
+| Conditions | Non-DP baseline, DP-like noise low, medium, high |
+| Noise multipliers | 0.00, 0.10, 0.45, 1.20 |
+| Epsilon values | Proxy only, not formal accounting |
+| MI evaluation | Confidence-threshold proxy |
+| Metrics | Accuracy, train accuracy, MI attack accuracy, epsilon proxy, utility drop, privacy leakage score |
+| Seed | 42 |
+| Output files | metrics_summary.csv, results.json, run_log.md |
+
+### 13.8 Results
+
+outputs 기준 결과는 표 5와 같다. Medium DP-like noise 조건은 leakage proxy 0.011769로 가장 낮았고, high noise 조건은 utility drop 0.006250이 발생했으며 MI attack accuracy는 0.521875로 단조롭게 감소하지 않았다.
+
+### 13.9 Discussion
+
+DP-like noise는 formal differential privacy guarantee가 아니다. `epsilon_proxy`는 정식 privacy accountant 산출값이 아니다. MI attack accuracy가 낮아도 confidence leakage score를 함께 봐야 한다. Noise를 키운다고 항상 MI risk proxy가 단조롭게 감소하지 않을 수 있다. Utility drop과 privacy leakage score를 함께 기록해야 한다. Synthetic toy 결과는 실제 개인정보 보호 수준을 의미하지 않는다.
+
+### 13.10 Limitations and Threats to Validity
+
+Internal validity: toy logistic regression은 실제 deep learning model 또는 DP-SGD dynamics를 대표하지 않는다. External validity: synthetic data는 실제 민감 데이터, class imbalance, long-tail records, overfitting risk를 대표하지 않는다. Construct validity: MI attack accuracy는 confidence-threshold proxy이며 실제 공격 성능이 아니다. Privacy validity: epsilon proxy는 formal DP accountant가 아니며 privacy guarantee로 해석할 수 없다. Literature validity: P03/P05는 로컬 PDF가 지정 논문과 불일치하므로 원문 확보가 필요하다. Reproducibility: outputs 파일과 보고서 수치의 일치가 필요하다.
+
+### 13.11 Conclusion
+
+W11은 AI 보안 연구에서 privacy claim을 검증하기 위해 단일 epsilon 또는 단일 accuracy가 아니라 utility, MI risk, leakage score, privacy accounting, noise setting, reproducibility evidence를 함께 기록해야 함을 보인다. 이 구조는 formal DP-SGD, FL privacy, RAG privacy governance, MLOps audit logging으로 확장될 수 있다.
+
+## 14. 발표용 요약
+
+- 핵심 메시지: DP claim은 epsilon 하나로 충분하지 않고, utility와 MI risk를 함께 보고해야 한다.
+- 실험 메시지: medium noise는 toy leakage proxy가 가장 낮았지만, high noise는 utility drop이 생기고 MI proxy가 단조 개선되지 않았다.
+- 주의 메시지: `epsilon_proxy`는 실제 epsilon이나 formal DP guarantee가 아니다.
+- 문헌 메시지: P03/P05는 대체 PDF 상태이므로 원문 확보 전까지 부분 검증으로 표시한다.
+
+## 15. 참고문헌 검증표
+
+| 번호 | 참고문헌 | DOI/URL | 상태 |
+|---|---|---|---|
+| [1] | Alberto Blanco-Justicia, David Sanchez, Josep Domingo-Ferrer, Krishnamurty Muralidhar, A Critical Review on the Use (and Misuse) of Differential Privacy in Machine Learning, ACM Computing Surveys 55(8), pp. 1-16. | `https://doi.org/10.1145/3547139`; arXiv `2206.04621` | DOI 확인 |
+| [2] | Lea Demelius, Roman Kern, Andreas Trugler, Recent Advances of Differential Privacy in Centralized Deep Learning: A Systematic Survey, ACM Computing Surveys 57(6), pp. 1-28. | `https://doi.org/10.1145/3712000`; arXiv `2309.16398` | DOI 확인, 강의자료 저자/권호 표기 대조 필요 |
+| [3] | Ke Pan et al., Differential privacy in deep learning: A literature survey, Neurocomputing 589, Article 127663. 강의자료의 Pan 저자명 표기는 최종 확인 필요. | `https://doi.org/10.1016/j.neucom.2024.127663` | DOI 확인, 지정 논문 원문 확인 필요, 로컬 PDF 대체 상태 |
+| [4] | Hongsheng Hu, Zoran Salcic, Lichao Sun, Gillian Dobbie, Philip S. Yu, Xuyun Zhang, Membership Inference Attacks on Machine Learning: A Survey, ACM Computing Surveys 54(11s), pp. 1-37. | `https://doi.org/10.1145/3523273`; arXiv `2103.07853` | DOI 확인 |
+| [5] | Li Hu et al., Defenses to Membership Inference Attacks: A Survey, ACM Computing Surveys 56(4), pp. 1-34. 강의자료의 Hongsheng Hu 표기는 최종 확인 필요. | `https://doi.org/10.1145/3620667` | DOI 확인, 지정 논문 원문 확인 필요, 로컬 PDF 대체 상태 |
+
+## 16. 자기 점검표
+
+| 점검 항목 | 상태 | 비고 |
+|---|---|---|
+| 1장 한 문장 요약 작성 | 완료 |  |
+| 2장 학습 배경과 주차 목표 작성 | 완료 |  |
+| AI 원리 70% 정리 | 완료 |  |
+| 보안 이슈 30% 정리 | 완료 |  |
+| 논문 5편 요약 | 완료 | P03/P05 대체 PDF 상태 반영 |
+| Research Track 5요소 작성 | 완료 | 연구문제, 위협모형, 평가방법, 재현성, 오픈문제 |
+| P01 공식 ACM DOI 검증 | 완료 | `10.1145/3547139` |
+| P02 공식 ACM DOI 검증 | 완료 / 확인 필요 | `10.1145/3712000`, 강의자료 표기 대조 필요 |
+| P03 지정 논문 원문 확보 | 확인 필요 | 현재 대체 PDF |
+| P04 공식 ACM DOI 검증 | 완료 | `10.1145/3523273` |
+| P05 지정 논문 원문 확보 | 확인 필요 | 현재 대체 PDF |
+| 실험 outputs 파일 존재 확인 | 완료 | CSV/JSON/run log 존재 |
+| 실험 결과와 보고서 수치 일치 | 완료 | outputs 기준 |
+| epsilon_proxy 한계 명시 | 완료 | formal accountant 아님 |
+| KCI 논문 형식 전환 작성 | 완료 | 초안 |
+| SCI 논문 형식 전환 작성 | 완료 | 초안 |
+| 본문 인용과 참고문헌 대응 | 완료 / 확인 필요 | P03/P05 원문 확보 필요 |
+| 표·그림 번호 정리 | 완료 | 표 1-7, 그림 1 |
+| AI 활용 고지 작성 | 완료 | 사람 검토 필요 |
+| PDF 저작권 위험 점검 | 완료 / 조치 필요 | PDF 5개 Git 추적 중, 삭제는 미수행 |
+| 최종 사람이 검토할 항목 표시 | 완료 | 최종 제출 확정 아님 |

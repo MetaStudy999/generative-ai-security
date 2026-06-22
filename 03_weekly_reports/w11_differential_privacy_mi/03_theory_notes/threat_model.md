@@ -12,6 +12,8 @@
 | 방어자 가정 | DP-SGD 또는 DP-like noise, output restriction, calibration, regularization, privacy accounting 가능 |
 | 제외 범위 | 실제 개인정보 데이터 사용, 실제 개인 대상 추론, 무단 API 대량 질의, 운영 시스템 공격 |
 
+W11 실습은 위협모형을 설명하기 위한 synthetic toy protocol이다. 실제 서비스 privacy probing, 실제 개인 대상 membership inference, 운영 모델/API 무단 질의는 포함하지 않는다. `epsilon_proxy`와 toy `noise_multiplier`는 formal DP-SGD accountant 산출값이 아니므로, 실제 DP 보장으로 해석하지 않는다.
+
 ## 연구문제 후보
 
 RQ1. DP-SGD 또는 DP-like noise의 강도 변화는 모델 accuracy와 membership inference risk 사이에 어떤 trade-off를 만드는가?

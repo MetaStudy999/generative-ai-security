@@ -1,0 +1,5 @@
+condition,accuracy,train_accuracy,mi_attack_accuracy,epsilon_proxy,utility_drop,privacy_leakage_score,mean_member_confidence,mean_nonmember_confidence,noise_multiplier,notes
+Non-DP baseline,0.956250,0.965625,0.515625,not_applicable,0.000000,0.014833,0.945317,0.930484,0.000000,표준 라이브러리 기반 synthetic toy 결과이며 정식 DP 보증이 아니다.
+DP-like noise low,0.956250,0.965625,0.515625,8.000000,0.000000,0.014494,0.946183,0.931689,0.100000,표준 라이브러리 기반 synthetic toy 결과이며 정식 DP 보증이 아니다.
+DP-like noise medium,0.962500,0.965625,0.512500,3.000000,0.000000,0.011769,0.943235,0.931466,0.450000,표준 라이브러리 기반 synthetic toy 결과이며 정식 DP 보증이 아니다.
+DP-like noise high,0.950000,0.962500,0.521875,1.000000,0.006250,0.016482,0.950155,0.933674,1.200000,표준 라이브러리 기반 synthetic toy 결과이며 정식 DP 보증이 아니다.

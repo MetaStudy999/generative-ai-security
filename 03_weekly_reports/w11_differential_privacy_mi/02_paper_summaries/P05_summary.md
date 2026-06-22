@@ -5,13 +5,13 @@
 | 항목 | 내용 |
 |---|---|
 | 지정 논문 제목 | Defenses to Membership Inference Attacks: A Survey |
-| 지정 논문 저자 | Hongsheng Hu et al. |
-| 지정 논문 학술지 | ACM Computing Surveys 56(7), Article 144 |
+| 지정 논문 저자 | 강의자료: Hongsheng Hu et al.; Crossref 공식 메타데이터: Li Hu, Anli Yan, Hongyang Yan, Jin Li, Teng Huang, Yingying Zhang, Changyu Dong, Chunsheng Yang |
+| 지정 논문 학술지 | ACM Computing Surveys 56(4), pp. 1-34; online 2023-11-10, print 2024-04-30 |
 | 지정 논문 DOI | `10.1145/3620667` |
 | 로컬 PDF 제목 | Membership Inference Attacks and Defenses in Federated Learning: A Survey |
 | 로컬 PDF 저자 | Li Bai, Haibo Hu, Qingqing Ye, Haoyang Li, Leixia Wang, Jianliang Xu |
 | PDF 파일명 | `05_SUBSTITUTE_Bai_et_al_2024_MIA_Attacks_Defenses_FL_Survey.pdf` |
-| 검증 상태 | 지정 논문과 로컬 PDF 불일치. 제출본에서는 대체 문헌으로 명시 |
+| 검증 상태 | DOI `10.1145/3620667` 확인. 강의자료 저자명/권호 표기는 공식 메타데이터와 달라 최종 확인 필요. 로컬 PDF는 지정 논문과 불일치 |
 
 ## 2. 한 문장 요약
 
@@ -44,7 +44,7 @@ P05는 W11의 utility-privacy trade-off를 설명하는 핵심 문헌이다. 방
 
 ## 8. 한계와 오픈문제
 
-현재 로컬 PDF는 FL 특화 대체 문헌이다. 지정 논문 원문을 확보하기 전까지 세부 분류와 DOI는 최종 확정하지 않는다.
+주의: W11의 P05는 지정 논문과 로컬 PDF가 불일치한다. 현재 로컬 PDF는 Bai et al.의 FL-MIA survey이므로, 최종 제출 전 `Defenses to Membership Inference Attacks: A Survey`의 지정 논문 원문 PDF 또는 공식 출판 페이지를 확보해야 한다. DOI `10.1145/3620667`은 확인되었으나 공식 메타데이터는 `Li Hu et al.` 및 ACM CSUR 56(4), pp. 1-34로 확인되어, 강의자료의 `Hongsheng Hu et al.` 표기는 최종 확인 필요 상태로 둔다.
 
 ## 9. 기말 논문에 반영할 부분
 

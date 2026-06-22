@@ -33,6 +33,7 @@ DP 보장은 “noise를 넣었다”는 선언이 아니라 accounting, utility
 ## 주의
 
 - `epsilon_proxy`는 정식 DP accountant 값이 아니다.
+- `noise_multiplier`는 toy gradient noise scale이며 formal DP-SGD accountant 값이 아니다.
 - 결과는 synthetic toy 평가이며 실제 개인정보 보호 수준으로 일반화하지 않는다.
 - P03/P05는 로컬 PDF가 대체 문헌이므로 최종 인용 전 원문 PDF 확보가 필요하다.
 

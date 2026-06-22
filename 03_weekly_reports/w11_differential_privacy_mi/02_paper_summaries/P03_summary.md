@@ -5,13 +5,13 @@
 | 항목 | 내용 |
 |---|---|
 | 지정 논문 제목 | Differential Privacy in Deep Learning: A Literature Survey |
-| 지정 논문 저자 | Zizheng Pan et al. |
-| 지정 논문 학술지 | Neurocomputing |
+| 지정 논문 저자 | 강의자료: Zizheng Pan et al.; Crossref 공식 메타데이터: Ke Pan, Yew-Soon Ong, Maoguo Gong, Hui Li, A.K. Qin, Yuan Gao |
+| 지정 논문 학술지 | Neurocomputing 589, Article 127663, 2024-07 |
 | 지정 논문 DOI | `10.1016/j.neucom.2024.127663` |
 | 로컬 PDF 제목 | Differentially Private Federated Learning: A Systematic Review |
 | 로컬 PDF 저자 | Jie Fu, Yuan Hong, Xinpeng Ling, Leixia Wang, Xun Ran, Zhiyu Sun, Wendy Hui Wang, Zhili Chen, Yang Cao |
 | PDF 파일명 | `03_SUBSTITUTE_Fu_et_al_2024_Differentially_Private_FL_Review.pdf` |
-| 검증 상태 | 지정 논문과 로컬 PDF 불일치. 제출본에서는 대체 문헌으로 명시 |
+| 검증 상태 | DOI는 Neurocomputing 지정 논문과 연결됨. 단 강의자료 저자명 표기와 공식 메타데이터가 달라 최종 확인 필요. 로컬 PDF는 지정 논문과 불일치 |
 
 ## 2. 한 문장 요약
 
@@ -44,7 +44,7 @@ P03은 W11을 W10 연합학습 보안과 연결한다. membership inference risk
 
 ## 8. 한계와 오픈문제
 
-현재 로컬 PDF가 지정 논문과 다르다. 최종 제출이나 기말논문 인용에서는 Neurocomputing 지정 논문 원문을 확보하고, Fu et al. 대체 문헌은 FL 보완 참고문헌으로 분리해야 한다.
+주의: W11의 P03은 지정 논문과 로컬 PDF가 불일치한다. 현재 로컬 PDF는 Fu et al.의 DP-FL systematic review이므로, 최종 제출 전 Pan et al.의 지정 논문 원문 PDF 또는 공식 출판 페이지를 확보해야 한다. 또한 DOI `10.1016/j.neucom.2024.127663`의 공식 메타데이터는 `Ke Pan et al.`로 확인되어, 강의자료의 `Zizheng Pan et al.` 표기는 최종 확인 필요 상태로 둔다.
 
 ## 9. 기말 논문에 반영할 부분
 

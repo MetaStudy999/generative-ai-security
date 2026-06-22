@@ -30,6 +30,52 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_CONFIG = ROOT / "configs" / "config.yaml"
 
 
+def validate_config(config: dict[str, Any]) -> None:
+    data_config = config["data"]
+    model_config = config["model"]
+    attack_config = config["attack"]
+    defense_config = config["defense"]
+    output_config = config["outputs"]
+    security_scope = config["security_scope"]
+
+    expected_values = {
+        "data.type": (data_config["type"], "synthetic_8x8_bar_images"),
+        "data.personal_data": (data_config["personal_data"], False),
+        "model.type": (model_config["type"], "nearest_centroid"),
+        "attack.type": (attack_config["type"], "centroid_direction_linf"),
+        "defense.type": (defense_config["type"], "feature_squeeze"),
+    }
+    for name, (actual, expected) in expected_values.items():
+        if actual != expected:
+            raise ValueError(f"{name} must be {expected!r}; got {actual!r}")
+
+    if int(data_config["image_size"]) <= 0:
+        raise ValueError("data.image_size must be positive")
+    if int(data_config["n_train_per_class"]) <= 0 or int(data_config["n_test_per_class"]) <= 0:
+        raise ValueError("data class counts must be positive")
+    if int(defense_config["levels"]) < 2:
+        raise ValueError("defense.levels must be >= 2")
+    if not attack_config["epsilons"]:
+        raise ValueError("attack.epsilons must not be empty")
+    if float(defense_config["epsilon"]) not in [float(value) for value in attack_config["epsilons"]]:
+        raise ValueError("defense.epsilon should match one configured attack epsilon")
+
+    required_outputs = [
+        "directory",
+        "metrics_csv",
+        "results_json",
+        "run_log",
+        "clean_example",
+        "adversarial_example",
+        "defense_example",
+    ]
+    missing_outputs = [key for key in required_outputs if key not in output_config]
+    if missing_outputs:
+        raise ValueError(f"outputs config missing keys: {', '.join(missing_outputs)}")
+    if not security_scope.get("allowed") or not security_scope.get("disallowed"):
+        raise ValueError("security_scope.allowed and security_scope.disallowed are required")
+
+
 def parse_scalar(value: str) -> Any:
     value = value.strip()
     if not value:
@@ -272,6 +318,7 @@ def write_pgm(path: Path, image: list[float], size: int) -> None:
 
 
 def run(config: dict[str, Any]) -> dict[str, Any]:
+    validate_config(config)
     x_train, y_train = make_dataset(config, "train")
     x_test, y_test = make_dataset(config, "test")
     model = fit_nearest_centroid(x_train, y_train)

@@ -9,3 +9,5 @@
 | 2026-06-22 | W03 발표용 슬라이드 작성 | `presentation_slides.md`, `presentation_slides.html` 생성 | 발표 전 브라우저 넘김 확인 |
 | 2026-06-22 | W03 발표 보조자료 작성 | `speaker_notes.md`, `qna.md`, `one_page_handout.md` 생성 | 발표 전 시간 배분과 예상 질문 점검 |
 | 2026-06-22 | W03 완성도 점검 및 보완 | 공통지침 기준 상태표 정리, 보조 README 추가, 실험 산출물 보존 대상 확인 | DOI/URL 공식 출처 대조 |
+| 2026-06-22 | W03 최종 보완 | P01-P05 DOI/URL 확인, 16장 목차 반영, KCI/SCI 섹션 추가, PDF 위험 표시 | 사람이 PDF 삭제 여부와 최종 제출 여부 검토 |
+| 2026-06-22 | W03 Docker 재현성 확인 | `docker compose build` 및 compose 실험 실행 성공, `pyyaml` only 의존성 확인 | 최종 제출 전 브라우저 HTML 인쇄 확인 |

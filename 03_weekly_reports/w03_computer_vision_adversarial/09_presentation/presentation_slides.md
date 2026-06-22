@@ -131,7 +131,7 @@ Image/Data -> Model -> Prediction -> Evaluation Log
 
 # 11. 결과 해석과 한계
 
-- Epsilon 0.45에서 결정 경계를 넘어 모든 샘플이 오분류된다.
+- Epsilon 0.45는 toy decision boundary 전환이며 실제 CNN/ViT 공격 성공이 아니다.
 - 이는 synthetic 2-class toy 데이터의 경계 전환을 보여준다.
 - 실제 CNN/ViT 또는 2D/3D 비전 모델 강건성으로 일반화하지 않는다.
 - 핵심은 수치 자체보다 clean 성능, 공격 영향, 재현성 근거를 분리하는 방식이다.

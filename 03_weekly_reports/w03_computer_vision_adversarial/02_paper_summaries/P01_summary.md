@@ -1,50 +1,47 @@
-# 논문 요약
+# P01 요약: Gradient-Based Learning Applied to Document Recognition
 
 ## 1. 서지정보
 
 | 항목 | 내용 |
 |---|---|
 | 논문 제목 | Gradient-Based Learning Applied to Document Recognition |
-| 저자 | Yann LeCun et al. |
-| 학술지/학회 | Proceedings of the IEEE |
+| 저자 | Yann LeCun, Leon Bottou, Yoshua Bengio, Patrick Haffner |
+| 학술지 | *Proceedings of the IEEE* |
+| 권호/쪽 | 86(11), 2278-2324 |
 | 연도 | 1998 |
-| DOI/URL | 확인 필요 |
-| PDF 파일명 | 01_LeCun_et_al_1998_Gradient_Based_Learning_Document_Recognition.pdf |
-| 검증 상태 | 로컬 PDF 파일명 확인, DOI/URL과 원문 세부 내용은 최종 대조 필요 |
+| DOI/URL | https://doi.org/10.1109/5.726791 |
+| PDF 파일명 | `01_LeCun_et_al_1998_Gradient_Based_Learning_Document_Recognition.pdf` |
+| 검증 상태 | Crossref/IEEE URL 및 로컬 PDF 제목 일치 확인 |
 
 ## 2. 한 문장 요약
 
-> 이 논문은 CNN, ViT, 멀티모달 정합, 표현학습의 핵심 원리와 적용 범위 문제를 개념 분석과 사례 중심 정리 방법으로 다루며, 기말 연구의 배경 이론과 평가축을 기말 연구에 반영할 수 있게 해준다.
+CNN과 gradient-based learning이 문자인식/OCR 문제에서 지역 연결, weight sharing, subsampling, end-to-end 학습을 통해 강력한 표현학습 구조가 될 수 있음을 보여준 고전 문헌이다.
 
 ## 3. 연구문제
 
-이 논문에서 기말 연구와 연결되는 질문은 컴퓨터비전 표현학습 및 비전 대적공격 영역에서 어떤 개념, 공격면, 평가 기준을 우선적으로 정리해야 하는가이다. 특히 CNN의 기본 구조, 합성곱, 풀링, 특징맵, 계층적 표현, 컴퓨터비전 표현학습의 발전와 비전 기반 대적공격, White-box attack, Black-box attack가 서로 만나는 지점을 확인하는 데 초점을 둔다.
+핸드크래프트 특징 추출과 분리된 분류기 구조 대신, 픽셀 입력에서 직접 계층적 특징을 학습하는 gradient 기반 모델이 문자인식과 문서 인식 시스템을 얼마나 잘 해결할 수 있는지를 다룬다.
 
-## 4. 핵심 개념
+## 4. 핵심 방법
 
-| 개념 | 설명 | 기말 논문 연결 |
+| 요소 | 내용 | W03 연결 |
 |---|---|---|
-| CNN의 기본 구조 | 주차 AI 원리의 출발점이며 모델 또는 시스템을 이해하는 기본 단위이다. | 배경 이론 |
-| 합성곱, 풀링, 특징맵, 계층적 표현 | 성능, 일반화, 효율 또는 신뢰성을 설명하는 보조 축이다. | 분석 기준 |
-| 비전 기반 대적공격 | 보안 위협을 식별하기 위한 대표 공격면이다. | 위협모형 |
-| White-box attack | 방어와 평가 프로토콜을 설계할 때 비교해야 하는 요소이다. | 평가방법 |
+| Convolution | 지역 receptive field와 weight sharing으로 이미지 구조를 반영한다. | CNN inductive bias |
+| Subsampling/Pooling | 위치 변화에 대한 완만한 불변성을 만든다. | 시각 표현 안정성 |
+| Gradient-based learning | 손실을 기준으로 전체 모델 파라미터를 조정한다. | gradient 기반 취약성 논의의 배경 |
+| Graph Transformer Network | 여러 인식 모듈을 전체 목적함수 관점에서 연결한다. | end-to-end vision pipeline 평가 |
 
-## 5. 방법론
+## 5. AI 원리 기여
 
-이 문헌은 개념 분석과 사례 중심 정리을 통해 기존 연구를 묶어 읽을 수 있게 한다. 본 보고서에서는 논문 제목, 프롬프트의 논문 패킷 정보, 로컬 PDF 존재 여부를 기준으로 요약했으며, 세부 실험값이나 DOI는 최종 원문 대조 단계에서 확인한다.
+P01은 W03의 AI 원리 축에서 CNN의 역사적 출발점이다. CNN은 이미지의 국소성과 공간 구조라는 inductive bias를 모델 구조에 넣기 때문에, 완전연결망보다 시각 패턴을 효율적으로 학습할 수 있다. 이 구조는 이후 이미지 분류, 객체탐지, OCR, 문서 인식, 의료 영상 등 많은 비전 응용의 기반이 되었다.
 
-## 6. 주요 결과
+## 6. 보안 위협 연결
 
-해당 영역의 대표 문제와 연구 설계 기준을 제시한다. 수치 결과를 새로 만들지 않기 위해 본 요약에서는 정량값을 적지 않았고, 원문에서 직접 확인되는 항목만 최종 보고서에 반영하도록 남겨 둔다.
+논문 자체는 현대적 adversarial attack 문헌이 아니지만, gradient 기반 학습과 이미지 표현 구조를 설명하기 때문에 gradient 기반 교란, decision boundary, feature representation 취약성을 이해하기 위한 배경 문헌으로 활용된다. 공격 절차나 실서비스 침해 방법은 본 보고서 범위에서 제외한다.
 
-## 7. 보안 관점 분석
+## 7. 평가 지표와 한계
 
-이 논문은 White-box/Black-box 비전 대적공격, 2D/3D 강건성, 안전성 평가을 이해하기 위한 배경 문헌으로 활용된다. 공격자의 능력, 방어자의 관측 가능성, 평가 데이터의 한계, 재현성 조건을 함께 정리해야 실제 보안 연구로 이어질 수 있다.
+원문은 문자인식/OCR 계열 실험을 포함하지만, W03 제출 초안에서는 원문 세부 실험 수치를 새로 전사하지 않았다. recognition accuracy 등 세부 수치는 최종 원문 쪽수 대조가 필요하다. 또한 이 논문은 CNN과 OCR 중심 고전 문헌이므로 ViT, 멀티모달 Transformer, 2D/3D adversarial robustness를 직접 분석하지 않는다.
 
-## 8. 한계와 오픈문제
+## 8. 기말 논문 활용
 
-원문 정밀 독해 전에는 세부 실험 설정, 데이터셋, DOI, 인용 관계를 확정할 수 없다. 또한 survey 성격의 문헌은 실제 재현 실험보다는 분류체계와 연구 공백 파악에 더 적합하므로, 기말 논문에서는 별도 평가 프로토콜로 보완해야 한다.
-
-## 9. 기말 논문에 반영할 부분
-
-P01는 컴퓨터비전 표현학습 및 비전 대적공격 연구에서 개념 정의, 위협 분류, 평가 지표 후보를 정리하는 근거로 반영한다. 특히 기말 연구의 배경 이론과 평가축을 관련연구와 연구방법 장에 연결한다.
+CNN의 inductive bias와 gradient 기반 학습 원리를 설명하는 관련연구 배경으로 사용한다. W03 toy 실험에서는 nearest-centroid 모델을 쓰지만, clean accuracy와 robust accuracy를 분리해야 한다는 논리를 실제 CNN 평가로 확장할 때 P01을 출발점 문헌으로 연결할 수 있다.

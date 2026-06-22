@@ -1,50 +1,47 @@
-# 논문 요약
+# P04 요약: Transformers in Vision: A Survey
 
 ## 1. 서지정보
 
 | 항목 | 내용 |
 |---|---|
 | 논문 제목 | Transformers in Vision: A Survey |
-| 저자 | Salman Khan et al. |
-| 학술지/학회 | ACM Computing Surveys |
+| 저자 | Salman Khan, Muzammal Naseer, Munawar Hayat, Syed Waqas Zamir, Fahad Shahbaz Khan, Mubarak Shah |
+| 학술지 | *ACM Computing Surveys* |
+| 권호/쪽 | 54(10s), 1-41 |
 | 연도 | 2022 |
-| DOI/URL | 확인 필요 |
-| PDF 파일명 | 04_Khan_et_al_2022_Transformers_in_Vision_Survey.pdf |
-| 검증 상태 | 로컬 PDF 파일명 확인, DOI/URL과 원문 세부 내용은 최종 대조 필요 |
+| DOI/URL | https://doi.org/10.1145/3505244 |
+| PDF 파일명 | `04_Khan_et_al_2022_Transformers_in_Vision_Survey.pdf` |
+| 검증 상태 | Crossref/ACM URL 및 로컬 PDF 제목 일치 확인 |
 
 ## 2. 한 문장 요약
 
-> 이 논문은 CNN, ViT, 멀티모달 정합, 표현학습의 핵심 원리와 적용 범위 문제를 문헌조사와 분류체계 정리 방법으로 다루며, 기말 연구의 배경 이론과 평가축을 기말 연구에 반영할 수 있게 해준다.
+Vision Transformer와 다양한 vision transformer 변형을 self-attention, patch/token representation, pretraining, vision task 적용 관점에서 정리한 survey 문헌이다.
 
 ## 3. 연구문제
 
-이 논문에서 기말 연구와 연결되는 질문은 컴퓨터비전 표현학습 및 비전 대적공격 영역에서 어떤 개념, 공격면, 평가 기준을 우선적으로 정리해야 하는가이다. 특히 CNN의 기본 구조, 합성곱, 풀링, 특징맵, 계층적 표현, 컴퓨터비전 표현학습의 발전와 비전 기반 대적공격, White-box attack, Black-box attack가 서로 만나는 지점을 확인하는 데 초점을 둔다.
+NLP에서 성공한 Transformer가 이미지 인식, 탐지, 분할, 생성, 비디오, 3D vision 등 컴퓨터비전 문제에 어떻게 적용되며, CNN과 어떤 inductive bias 차이를 갖는지 다룬다.
 
-## 4. 핵심 개념
+## 4. 핵심 방법
 
-| 개념 | 설명 | 기말 논문 연결 |
+| 요소 | 내용 | W03 연결 |
 |---|---|---|
-| CNN의 기본 구조 | 주차 AI 원리의 출발점이며 모델 또는 시스템을 이해하는 기본 단위이다. | 배경 이론 |
-| 합성곱, 풀링, 특징맵, 계층적 표현 | 성능, 일반화, 효율 또는 신뢰성을 설명하는 보조 축이다. | 분석 기준 |
-| 비전 기반 대적공격 | 보안 위협을 식별하기 위한 대표 공격면이다. | 위협모형 |
-| White-box attack | 방어와 평가 프로토콜을 설계할 때 비교해야 하는 요소이다. | 평가방법 |
+| Patch embedding | 이미지를 patch token sequence로 변환한다. | ViT 기본 구조 |
+| Self-attention | 장거리 의존성과 전역 관계를 모델링한다. | CNN 대비 구조 차이 |
+| Pretraining/fine-tuning | 대규모 데이터에서 표현을 학습하고 task에 맞춘다. | 평가 데이터와 재현성 |
+| Vision task taxonomy | classification, detection, segmentation, generation, 3D 등을 정리한다. | 보안 평가 범위 |
 
-## 5. 방법론
+## 5. AI 원리 기여
 
-이 문헌은 문헌조사와 분류체계 정리을 통해 기존 연구를 묶어 읽을 수 있게 한다. 본 보고서에서는 논문 제목, 프롬프트의 논문 패킷 정보, 로컬 PDF 존재 여부를 기준으로 요약했으며, 세부 실험값이나 DOI는 최종 원문 대조 단계에서 확인한다.
+P04는 CNN과 ViT의 inductive bias 차이를 설명하는 핵심 문헌이다. CNN은 지역성과 translation equivariance를 구조적으로 강하게 반영하는 반면, ViT는 patch token과 attention을 통해 더 약한 구조 가정으로 전역 관계를 학습한다.
 
-## 6. 주요 결과
+## 6. 보안 위협 연결
 
-핵심 개념, 공격면, 평가 기준, 향후 연구과제를 체계화한다. 수치 결과를 새로 만들지 않기 위해 본 요약에서는 정량값을 적지 않았고, 원문에서 직접 확인되는 항목만 최종 보고서에 반영하도록 남겨 둔다.
+ViT의 patch/token 구조와 attention은 CNN과 다른 취약성 분석이 필요하다. patch-level perturbation, attention 교란, pretraining data 문제, transferability는 W03 보안 평가에서 별도 항목으로 분리할 수 있다. 단, P04는 대적공격 전문 survey가 아니므로 P05와 함께 사용한다.
 
-## 7. 보안 관점 분석
+## 7. 평가 지표와 한계
 
-이 논문은 White-box/Black-box 비전 대적공격, 2D/3D 강건성, 안전성 평가을 이해하기 위한 배경 문헌으로 활용된다. 공격자의 능력, 방어자의 관측 가능성, 평가 데이터의 한계, 재현성 조건을 함께 정리해야 실제 보안 연구로 이어질 수 있다.
+accuracy, efficiency, robustness, transferability 등 다양한 지표가 관련되지만, W03 초안에서는 원문 수치를 임의 전사하지 않는다. survey 문헌이므로 특정 모델의 보안 성능을 확정하는 근거로 과장하지 않는다.
 
-## 8. 한계와 오픈문제
+## 8. 기말 논문 활용
 
-원문 정밀 독해 전에는 세부 실험 설정, 데이터셋, DOI, 인용 관계를 확정할 수 없다. 또한 survey 성격의 문헌은 실제 재현 실험보다는 분류체계와 연구 공백 파악에 더 적합하므로, 기말 논문에서는 별도 평가 프로토콜로 보완해야 한다.
-
-## 9. 기말 논문에 반영할 부분
-
-P04는 컴퓨터비전 표현학습 및 비전 대적공격 연구에서 개념 정의, 위협 분류, 평가 지표 후보를 정리하는 근거로 반영한다. 특히 기말 연구의 배경 이론과 평가축을 관련연구와 연구방법 장에 연결한다.
+CNN 기반 평가와 ViT 기반 평가의 차이를 관련연구와 평가 프로토콜에 반영한다. 특히 같은 clean accuracy라도 구조별 취약성 원인이 다를 수 있으므로 clean/robust/ASR 분리 기록의 필요성을 뒷받침한다.

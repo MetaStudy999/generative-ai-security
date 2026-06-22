@@ -5,7 +5,7 @@
 - dataset: synthetic_8x8_bar_images
 - seed: 42
 - model: nearest_centroid
-- run_at_utc: 2026-06-22T06:56:52.174302+00:00
+- run_at_utc: 2026-06-22T12:57:53.833889+00:00
 - safety_scope: {'allowed': 'toy evaluation and literature-based risk analysis', 'disallowed': 'actual system compromise, personal data use, unauthorized attack'}
 
 ## Metrics
@@ -46,3 +46,4 @@ Rows are true labels and columns are predicted labels.
 ### adversarial_with_feature_squeeze eps=0.30 defense=feature_squeeze_2_levels
 
 [[60, 0], [0, 60]]
+

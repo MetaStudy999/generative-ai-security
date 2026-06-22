@@ -24,13 +24,13 @@
 
 ## W08 결과 요약
 
-| 조건 | Retrieval Relevance | ASR | Source Verification | Tool Misuse Rate | Faithfulness | Answer Rate |
-|---|---:|---:|---:|---:|---:|---:|
-| Clean RAG | 0.907887 | 0.000000 | 1.000000 | 0.000000 | 0.907613 | 0.950000 |
-| Poisoned document | 0.690091 | 0.575000 | 0.275000 | 0.125000 | 0.458069 | 0.875000 |
-| Source filter 적용 | 0.776926 | 0.050000 | 1.000000 | 0.025000 | 0.778693 | 0.800000 |
-| Human approval 적용 | 0.764926 | 0.025000 | 1.000000 | 0.000000 | 0.840805 | 0.575000 |
+| 조건 | Retrieval Relevance | ASR | Source Verification | Tool Misuse Rate | Faithfulness | Answer Rate | Source Block Rate | Human Block Rate |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| Clean RAG | 0.907887 | 0.000000 | 1.000000 | 0.000000 | 0.907613 | 0.950000 | 0.000000 | 0.000000 |
+| Poisoned document | 0.690091 | 0.575000 | 0.275000 | 0.125000 | 0.458069 | 0.875000 | 0.000000 | 0.000000 |
+| Source filter 적용 | 0.776926 | 0.050000 | 1.000000 | 0.025000 | 0.778693 | 0.800000 | 0.892857 | 0.000000 |
+| Human approval 적용 | 0.764926 | 0.025000 | 1.000000 | 0.000000 | 0.840805 | 0.575000 | 0.814815 | 1.000000 |
 
 ## 해석 원칙
 
-이 수치는 실제 LLM 성능이 아니라 평가 프로토콜과 기록 구조를 검증하기 위한 toy 실험 결과다. 실제 연구로 확장할 때는 공개 benchmark, 복수 모델, 복수 seed, 독립 라벨러 검토가 필요하다.
+이 결과는 synthetic RAG document와 rule-based toy evaluator를 사용한 평가 형식 검증용 수치이며, 실제 LLM 보안 성능이나 실제 RAG 제품의 안전성으로 일반화하지 않는다. 실제 연구로 확장할 때는 공개 benchmark, 복수 모델, 복수 seed, 독립 라벨러 검토가 필요하다.

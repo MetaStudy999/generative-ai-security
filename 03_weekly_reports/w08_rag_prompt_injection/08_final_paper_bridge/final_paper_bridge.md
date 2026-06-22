@@ -32,3 +32,21 @@
 ## 4. 최종 추천 주제
 
 최종 추천 주제는 “RAG 기반 생성형 AI 시스템에서 간접 프롬프트 인젝션 대응을 위한 출처 검증·승인 게이트 평가 프레임워크”다. 문헌분석, 안전한 synthetic 실험, 체크리스트 설계를 결합할 수 있어 박사과정 세미나 보고서에서 기말논문으로 확장하기 적합하다.
+
+## 5. KCI/SCI 전환 방향
+
+| 구분 | 전환 방향 | 보완 필요 |
+|---|---|---|
+| KCI형 | 국내 생성형 AI 보안·정보보호 맥락에서 RAG 출처 검증과 승인 게이트 평가 프레임워크를 제안한다. | 국내 참고문헌 3편 이상, 그림 1개 이상, 국내 제도·가이드라인 연결 |
+| SCI형 | Multi-metric evaluation framework for indirect prompt injection defense in RAG-based LLM systems로 구성한다. | 공개 benchmark, 복수 LLM, 복수 seed, provenance schema, 독립 평가자 |
+| 공통 | ASR, source verification, tool misuse, faithfulness, answer rate, reproducibility evidence를 분리 보고한다. | W08 toy 수치를 실제 제품 성능으로 일반화하지 않음 |
+
+## 6. 최종 제출 전 검토 리스크
+
+| 항목 | 상태 | 조치 |
+|---|---|---|
+| P01 DOI/출판정보 | 확인 필요 | arXiv 기준으로만 인용하고 ACM DOI는 확정하지 않는다. |
+| P02 강의계획서 저자명 | 확인 필요 | DOI 기준 Zulun Zhu et al.과 Jianxiang Li et al. 표기 차이를 수업자료로 확인한다. |
+| P04 저자명 | 확인 필요 | Tianlei/Tongcheng Geng 차이를 출판사 페이지로 재확인한다. |
+| P05 제목 | 확인 필요 | 강의계획서 지정 제목과 JAMA DOI 기준 제목의 동일 여부를 확인한다. |
+| PDF 원문 보관 | 위험 있음 | public GitHub에서는 PDF 원문 대신 DOI/URL과 요약만 남기는 방안을 검토한다. |

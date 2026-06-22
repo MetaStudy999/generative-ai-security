@@ -9,8 +9,11 @@
 | 학술지/학회 | ACM Computing Surveys |
 | 연도 | 2026 |
 | DOI/URL | https://doi.org/10.1145/3789253 |
+| 권호/Article | ACM Computing Surveys 58(10), Article 255, 38 pages |
 | PDF 파일명 | 03_Liu_et_al_2026_Prompting_Frameworks_for_LLMs.pdf |
-| 검증 상태 | PDF 첫 페이지 DOI 확인 |
+| 강의계획서 표기 | X. Liu et al., "Prompting Frameworks for Large Language Models" |
+| 로컬 PDF/DOI 표기 | Xiaoxia Liu et al., "Prompting Frameworks for Large Language Models: A Survey" |
+| 검증 상태 | DOI/Crossref와 PDF 첫 페이지 확인. X. Liu는 Xiaoxia Liu로 해석 가능하나 제목의 ": A Survey" 포함을 공식 서지로 기록 |
 
 ## 2. 한 문장 요약
 
@@ -45,6 +48,8 @@ Prompting framework의 계층이 늘어날수록 trust boundary도 늘어난다.
 ## 8. 한계와 오픈문제
 
 이 논문은 framework 생태계와 용어 정리에 초점이 있으며, prompt injection 공격 성공률이나 방어 효과를 직접 측정하지는 않는다. 보안 연구에서는 각 계층별 권한, 로그, 승인 정책을 추가해야 한다.
+
+강의계획서의 축약 표기인 X. Liu et al.과 로컬 DOI 기준 Xiaoxia Liu et al.은 동일 저자 표기로 볼 수 있으나, 제출 참고문헌에는 DOI 기준 정식 제목인 "Prompting Frameworks for Large Language Models: A Survey"를 사용한다.
 
 ## 9. 기말 논문에 반영할 부분
 

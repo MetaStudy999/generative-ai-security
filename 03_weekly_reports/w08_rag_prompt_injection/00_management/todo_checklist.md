@@ -15,3 +15,8 @@
 | 제출용 보고서 및 HTML | 완료 | `07_week_submission/` |
 | 발표자료 및 보조자료 | 완료 | `09_presentation/` |
 | AI 활용기록 | 완료 | `05_ai_worklog/` |
+| 최신 16장 목차 반영 | 완료 | 통합보고서·제출용 보고서 0~16장 구조 |
+| KCI 논문 형식 전환 | 완료 | 제목 후보, 초록, 키워드, 연구문제, 점검표 |
+| SCI 논문 형식 전환 | 완료 | structured abstract, related work, threat model, limitation |
+| PDF 보관 정책 점검 | 완료 / 확인 필요 | PDF 5개 git 추적 중. 삭제는 사용자 승인 필요 |
+| 강의계획서와 로컬 PDF 동일 여부 | 확인 필요 | P01/P02/P04/P05 표기 차이 유지 |

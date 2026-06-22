@@ -10,7 +10,9 @@
 | 연도 | 2024 |
 | DOI/URL | https://arxiv.org/abs/2408.08921 |
 | PDF 파일명 | 01_Peng_et_al_2025_Graph_Retrieval_Augmented_Generation.pdf |
-| 검증 상태 | PDF 첫 페이지와 arXiv ID 확인, DOI는 PDF placeholder라 확정 보류 |
+| 강의계획서 표기 | Shiyu Chen et al., ACM Computing Surveys, 2025 |
+| 로컬 PDF 표기 | Boci Peng et al., arXiv:2408.08921 |
+| 검증 상태 | PDF 첫 페이지와 arXiv ID 확인, DOI는 PDF placeholder라 확정 보류. 강의계획서 표기와 동일 논문 여부 확인 필요 |
 
 ## 2. 한 문장 요약
 
@@ -45,6 +47,8 @@ GraphRAG는 관계 추론 능력을 높이지만, 동시에 오염된 node, forg
 ## 8. 한계와 오픈문제
 
 PDF의 DOI가 placeholder로 표시되어 확정 인용에는 arXiv URL만 사용해야 한다. 또한 survey 문헌이므로 GraphRAG 보안성 자체를 실험적으로 검증하지는 않는다. W08 실습에서는 이를 보완하기 위해 synthetic source verification 평가를 별도로 수행했다.
+
+주의: W08의 P01은 arXiv:2408.08921 기준으로 확인했으나, PDF 내부 DOI가 placeholder이므로 DOI를 확정하지 않는다. 강의계획서의 Shiyu Chen et al. / ACM Computing Surveys 2025 표기와 현재 로컬 PDF의 Boci Peng et al. 표기가 동일 논문을 가리키는지 최종 확인이 필요하다.
 
 ## 9. 기말 논문에 반영할 부분
 

@@ -9,8 +9,11 @@
 | 학술지/학회 | Computers, Materials & Continua |
 | 연도 | 2026 |
 | DOI/URL | https://doi.org/10.32604/cmc.2025.074081 |
+| 권호/페이지 | Computers, Materials & Continua 87(1), pp. 1-10 |
 | PDF 파일명 | 04_Geng_et_al_2025_Prompt_Injection_Attacks_Survey.pdf |
-| 검증 상태 | PDF 첫 페이지 DOI 확인 |
+| 강의계획서 표기 | Tianlei Geng et al. |
+| 로컬 PDF/DOI 표기 | Tongcheng Geng et al. |
+| 검증 상태 | DOI/Crossref와 PDF 첫 페이지 확인. Tianlei/Tongcheng 표기 차이는 확인 필요 |
 
 ## 2. 한 문장 요약
 
@@ -45,6 +48,8 @@ W08의 핵심 보안 문헌이다. 특히 RAG에서는 indirect injection이 검
 ## 8. 한계와 오픈문제
 
 Survey 문헌의 수치는 연구별 환경과 모델이 달라 직접 비교가 어렵다. 또한 공격 payload 세부를 재현하는 방향보다, 안전한 synthetic benchmark와 방어 지표 표준화로 확장해야 한다.
+
+강의계획서의 Tianlei Geng 표기와 로컬 PDF·DOI 기준 Tongcheng Geng 표기가 다르므로, 최종 제출 전 수업자료 또는 출판사 페이지에서 저자명을 다시 확인한다. 현재 보고서에는 DOI 기준 Tongcheng Geng et al.을 사용한다.
 
 ## 9. 기말 논문에 반영할 부분
 

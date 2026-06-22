@@ -9,8 +9,11 @@
 | 학술지/학회 | JAMA Network Open |
 | 연도 | 2025 |
 | DOI/URL | https://doi.org/10.1001/jamanetworkopen.2025.49963 |
+| 권호/Article | JAMA Network Open 2025;8(12):e2549963 |
 | PDF 파일명 | 05_Lee_et_al_2025_LLM_Prompt_Injection_Medical_Advice.pdf |
-| 검증 상태 | PDF 첫 페이지 DOI 확인 |
+| 강의계획서 표기 | P. Lee et al., "Generative Artificial Intelligence and Prompt Injection Vulnerability in Drug Information Provision by Large Language Models" |
+| 로컬 PDF/DOI 표기 | Ro Woon Lee et al., "Vulnerability of Large Language Models to Prompt Injection When Providing Medical Advice" |
+| 검증 상태 | DOI/Crossref와 PDF 첫 페이지 확인. 강의계획서 제목과 동일 논문 여부 확인 필요 |
 
 ## 2. 한 문장 요약
 
@@ -45,6 +48,8 @@ PDF 첫 페이지 기준으로 216개 patient-LLM dialogue 평가에서 injectio
 ## 8. 한계와 오픈문제
 
 본 논문은 의료 도메인에 초점을 둔다. W08 기말 연구로 일반화하려면 의료 조언 세부 payload가 아니라 safety-critical domain에서 필요한 평가 항목, approval gate, source verification, redacted testing 절차를 추출해야 한다.
+
+주의: W08의 P05는 현재 로컬 PDF 기준 제목과 강의계획서 지정 제목이 다르므로, 동일 논문 여부와 최종 JAMA Network Open 서지정보를 확인 필요 상태로 유지한다.
 
 ## 9. 기말 논문에 반영할 부분
 

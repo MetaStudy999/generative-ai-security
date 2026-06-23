@@ -1,72 +1,72 @@
-# 논문 요약
+# P05 Summary
 
-## 1. 서지정보
+## Vulnerability of Large Language Models to Prompt Injection When Providing Medical Advice — Ro Woon Lee et al., JAMA Network Open, 2025
 
-| 항목 | 내용 |
-|---|---|
-| 논문 제목 | Vulnerability of Large Language Models to Prompt Injection When Providing Medical Advice |
-| 저자 | Ro Woon Lee, Tae Joon Jun, Jeong-Moo Lee, Soo Ick Cho, Hyung Jun Park, Jungyo Suh |
-| 학술지/학회 | JAMA Network Open |
-| 연도 | 2025 |
-| DOI/URL | https://doi.org/10.1001/jamanetworkopen.2025.49963 |
-| 권호/Article | JAMA Network Open 2025;8(12):e2549963 |
-| PDF 파일명 | 05_Lee_et_al_2025_LLM_Prompt_Injection_Medical_Advice.pdf |
-| 강의계획서 표기 | P. Lee et al., "Generative Artificial Intelligence and Prompt Injection Vulnerability in Drug Information Provision by Large Language Models" |
-| 로컬 PDF/DOI 표기 | Ro Woon Lee et al., "Vulnerability of Large Language Models to Prompt Injection When Providing Medical Advice" |
-| 검증 상태 | DOI/Crossref와 PDF 첫 페이지 확인. 강의계획서 제목과 동일 논문 여부 확인 필요 |
-
-## 2. 한 문장 요약
-
-> 이 논문은 의료 조언 LLM이 prompt injection에 의해 위험한 권고를 생성할 수 있는지를 통제된 patient-LLM dialogue simulation으로 평가하며, safety-critical RAG/LLM 시스템에서 system-level safeguard와 adversarial robustness testing이 필요함을 보인다.
-
-## 3. 연구문제
-
-상용 LLM이 의료 조언 환경에서 prompt injection에 조작되어 금기 치료나 안전하지 않은 권고를 할 수 있는가가 핵심 질문이다. 논문은 client-side injection과 evidence-fabrication injection을 통제된 시뮬레이션으로 평가한다.
-
-## 4. 핵심 개념
-
-| 개념 | 설명 | W08 연결 |
-|---|---|---|
-| Safety-Critical LLM | 의료처럼 잘못된 답변이 직접 피해로 이어질 수 있는 LLM 적용 |
-| Controlled Simulation | 실제 환자나 진료 시스템을 쓰지 않는 통제된 평가 |
-| Prompt Injection Success | 모델의 최종 권고가 주입 지시의 영향을 받는 상태 |
-| Persistence | 후속 대화 turn에서도 조작 효과가 유지되는 현상 |
-| Regulatory Oversight | 안전성 검증과 운영 통제 필요성 |
-
-## 5. 방법론
-
-2025년 1월부터 10월까지 통제된 simulation design을 사용했다. 원문은 12개 clinical scenario와 여러 commercial LLM을 대상으로 injection과 control 조건을 비교하고, primary decision turn과 follow-up persistence를 측정했다.
-
-### 5.1 핵심 수식 또는 알고리즘 설명
+## 0. 문헌 검증 상태
 
 | 항목 | 내용 |
 |---|---|
-| 수식/알고리즘 이름 | Medical Advice Safety Failure Rate |
-| 원문 위치 | 논문 세부 절/쪽/그림/알고리즘 번호 확인 필요. 로컬 DOI/URL 점검표로 문헌 대응만 확인. |
-| 작성 형식 | Markdown + LaTeX math |
-| 검산 도구 | 사용 안 함 |
-| 수식 또는 절차 | 표준 정의식 / 원문 직접 인용 아님.<br>$$SafetyFailRate=\frac{N_{unsafe\ medical\ outputs}}{N_{medical\ prompts}}$$ |
-| 기호·입력·출력 | \(N_{medical\ prompts}\): 의료 조언 평가 입력 수, \(N_{unsafe\ medical\ outputs}\): 위험 조언 판정 수 |
-| 직관적 의미 | Medical Advice Safety Failure Rate는 RAG·Prompt Injection 평가에서 핵심 원리나 평가 지표를 정량적으로 해석하기 위한 표준식이다. |
-| 보안 관점 해석 | RAG·Prompt Injection 평가에서는 정상 성능과 보안 실패 조건을 분리해 보아야 한다. 이 항목은 공격·방어 원리 또는 운영 통제의 평가 기준을 명시하되, 실제 공격 절차나 무단 적용 단계는 포함하지 않는다. |
-| 평가 지표와 연결 | safety failure, refusal quality, groundedness, expert review score |
-| 한계와 가정 | 표준 정의식 / 원문 직접 인용 아님. 논문별 변형, 정확한 수식 번호, 실험 설정은 원문 PDF에서 확인 필요다. |
-| 기말 논문 반영 여부 | 참고만 |
+| 주차 | W08 RAG & Prompt Injection |
+| 논문명 | Vulnerability of Large Language Models to Prompt Injection When Providing Medical Advice |
+| 저자 | Ro Woon Lee et al. |
+| 출판 정보 | JAMA Network Open, 8(12):e2549963, 2025 |
+| DOI | https://doi.org/10.1001/jamanetworkopen.2025.49963 |
+| 검증 상태 | W08 `paper_list.md` 기준 DOI/PDF 확인. 강의계획서 제목과 동일 여부 추가 확인 메모 유지 |
 
-## 6. 주요 결과
+---
 
-PDF 첫 페이지 기준으로 216개 patient-LLM dialogue 평가에서 injection 성공률이 높게 보고되었고, 후속 대화에서도 조작 효과가 지속되는 사례가 관찰되었다. 특히 high-harm scenario에서 위험한 권고가 유도될 수 있음을 보여준다. W08 보고서에서는 해당 수치를 “의료 LLM 안전성 연구의 원문 결과”로만 인용하며, 실습 수치와 혼동하지 않는다.
+## 1. 한 문장 요약
 
-## 7. 보안 관점 분석
+이 논문은 의료 조언 맥락에서 LLM이 prompt injection에 취약할 수 있음을 보여주는 고위험 응용 사례 문헌이며, W08에서 prompt injection 평가가 단순 보안 문제가 아니라 의료·법률·금융 등 high-stakes domain의 안전 문제임을 설명한다.
 
-이 논문은 prompt injection이 단순 정보 품질 문제가 아니라 Safety와 Accountability 문제임을 보여준다. RAG나 agent pipeline이 의료 문서, plugin, middleware와 연결될 경우 indirect injection은 사용자가 알아차리기 어려운 경로로 유입될 수 있다.
+---
 
-## 8. 한계와 오픈문제
+## 2. 핵심 연구질문
 
-본 논문은 의료 도메인에 초점을 둔다. W08 기말 연구로 일반화하려면 의료 조언 세부 payload가 아니라 safety-critical domain에서 필요한 평가 항목, approval gate, source verification, redacted testing 절차를 추출해야 한다.
+| 번호 | 연구질문 |
+|---|---|
+| RQ1 | 의료 조언 제공 상황에서 prompt injection은 어떤 방식으로 모델 응답을 왜곡할 수 있는가? |
+| RQ2 | High-stakes domain에서 LLM 안전성 평가는 일반 챗봇 평가와 무엇이 다른가? |
+| RQ3 | 공격 성공 여부뿐 아니라 harmful advice, refusal, escalation, citation support를 어떻게 봐야 하는가? |
+| RQ4 | 기말논문에서 실제 의료 조언을 생성하지 않고 안전하게 사례를 활용하려면 어떤 범위 제한이 필요한가? |
 
-주의: W08의 P05는 현재 로컬 PDF 기준 제목과 강의계획서 지정 제목이 다르므로, 동일 논문 여부와 최종 JAMA Network Open 서지정보를 확인 필요 상태로 유지한다.
+---
 
-## 9. 기말 논문에 반영할 부분
+## 3. 핵심 수식·지표
 
-기말 논문 보안적 함의 장에는 “RAG prompt injection은 Integrity뿐 아니라 Safety 문제로 확대된다”는 근거로 반영한다.
+$$
+UnsafeAdviceRate=\frac{N_{unsafe\ medical\ outputs}}{N_{injection\ prompts}}
+$$
+
+$$
+SafeEscalationRate=\frac{N_{refer\ to\ professional}}{N_{high\ risk\ prompts}}
+$$
+
+| 기호 | 의미 |
+|---|---|
+| $UnsafeAdviceRate$ | 위험 응답 비율 |
+| $SafeEscalationRate$ | 전문가 상담·안전 안내로 전환한 비율 |
+
+---
+
+## 4. 위협모형·평가지표
+
+| 항목 | 내용 |
+|---|---|
+| 보호 자산 | 환자 안전, 의료 정보 신뢰성, 사용자 개인정보, 시스템 정책 |
+| 공격자 목표 | 위험 조언 유도, 안전정책 우회, 근거 없는 의료정보 생성 |
+| 공격자 능력 | injection prompt 작성, 문서/컨텍스트 오염, 반복 질의 |
+| 지표 | unsafe advice rate, refusal quality, safe escalation, citation support, hallucination |
+| 제외 범위 | 실제 환자 상담, 진단·치료 지시 생성, 개인정보 기반 실험 |
+
+---
+
+## 5. 기말논문 연결
+
+P05는 prompt injection의 high-stakes 사례로 활용한다. 기말논문에서는 의료 내용을 직접 조언하지 않고, “고위험 도메인에서는 안전한 거절·전문가 안내·근거 확인·감사 로그가 필수”라는 평가 원칙으로 반영한다.
+
+---
+
+## 6. 최종 판단
+
+P05는 W08의 관련 보조 문헌이다. prompt injection이 실제 사회적 피해로 연결될 수 있음을 보여주므로, RAG/LLM 보안 평가에 high-stakes safety 항목을 추가하는 근거가 된다.

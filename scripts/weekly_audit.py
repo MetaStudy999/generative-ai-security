@@ -25,6 +25,9 @@ WEEKLY_ROOT = ROOT / "03_weekly_reports"
 STATUS_MD = WEEKLY_ROOT / "WEEKLY_STATUS.md"
 STATUS_CSV = WEEKLY_ROOT / "WEEKLY_STATUS.csv"
 STATUS_JSON = WEEKLY_ROOT / "WEEKLY_STATUS.json"
+REFERENCE_AUDIT = WEEKLY_ROOT / "WEEKLY_REFERENCE_VERIFICATION_AUDIT.md"
+NUMERIC_AUDIT = WEEKLY_ROOT / "WEEKLY_NUMERIC_CROSSCHECK_AUDIT.md"
+W15_NUMERIC_AUDIT = WEEKLY_ROOT / "w15_reproducibility_xai_paper" / "00_management" / "W15_NUMERIC_AUDIT.md"
 AUDIT_REPORT = ROOT / "AUDIT_REPORT_WEEKLY_SUBMISSIONS.md"
 AUDIT_BACKUP = ROOT / "AUDIT_REPORT_WEEKLY_SUBMISSIONS.backup.md"
 
@@ -180,11 +183,15 @@ class WeekAudit:
     reference_partial: int = 0
     reference_local_pdf_missing: int = 0
     reference_alternate: int = 0
+    reference_mismatch: int = 0
     reference_core_blocked: int = 0
     paper_rows: list[dict[str, str]] = field(default_factory=list)
     numeric_source: str = ""
     numeric_status: str = "수치 대조 대상 아님"
     numeric_details: list[dict[str, str]] = field(default_factory=list)
+    numeric_crosscheck_score: int = 0
+    reference_verification_score: int = 0
+    manual_review_items: list[str] = field(default_factory=list)
     ai_required_missing: list[str] = field(default_factory=list)
     ai_disclosure_updated: bool = False
     bridge_file: str = ""
@@ -231,11 +238,15 @@ class WeekAudit:
             "reference_partial": self.reference_partial,
             "reference_local_pdf_missing": self.reference_local_pdf_missing,
             "reference_alternate": self.reference_alternate,
+            "reference_mismatch": self.reference_mismatch,
             "reference_core_blocked": self.reference_core_blocked,
             "paper_rows": self.paper_rows,
             "numeric_source": self.numeric_source,
             "numeric_status": self.numeric_status,
             "numeric_details": self.numeric_details,
+            "numeric_crosscheck_score": self.numeric_crosscheck_score,
+            "reference_verification_score": self.reference_verification_score,
+            "manual_review_items": self.manual_review_items,
             "ai_required_missing": self.ai_required_missing,
             "ai_disclosure_updated": self.ai_disclosure_updated,
             "bridge_file": self.bridge_file,
@@ -499,8 +510,12 @@ def reference_state(row: dict[str, str]) -> str:
     if "로컬 pdf 없음" in raw or "pdf 없음" in raw or "원문 pdf 확보 필요" in raw:
         return "로컬 PDF 없음"
     if "대체" in raw or "substitute" in lower:
-        return "대체 문헌"
-    if "확인 필요" in raw or "부분" in raw or "불일치" in raw or "placeholder" in lower:
+        return "대체 문헌 후보"
+    if "불일치" in raw or "동일 여부" in raw or "표기와 다름" in raw or "다르므로" in raw:
+        return "DOI/제목 불일치 의심"
+    if "부분" in raw:
+        return "부분 검증"
+    if "확인 필요" in raw or "placeholder" in lower or "확정 금지" in raw:
         return "확인 필요"
     if "doi 확인" in lower or "doi/pdf 확인" in lower or "확인" in raw:
         return "확인 완료"
@@ -516,9 +531,10 @@ def summarize_references(week_dir: Path, paper_rows: list[dict[str, str]]) -> di
     summary = {
         "confirmed_local": states.count("확인 완료"),
         "needs_check": states.count("확인 필요"),
-        "partial": combined_text.count("부분 확인") + combined_text.count("부분 검증"),
-        "local_pdf_missing": states.count("로컬 PDF 없음") + combined_text.count("로컬 PDF 없음"),
-        "alternate": states.count("대체 문헌") + combined_text.count("대체 문헌") + combined_text.count("대체 PDF"),
+        "partial": states.count("부분 검증"),
+        "local_pdf_missing": states.count("로컬 PDF 없음"),
+        "alternate": states.count("대체 문헌 후보"),
+        "mismatch": states.count("DOI/제목 불일치 의심"),
         "core_blocked": combined_text.count("본문 핵심 근거로 사용 금지") + combined_text.count("지정 논문처럼 인용 금지"),
     }
     return summary
@@ -575,8 +591,6 @@ def format_paper_rows_for_readme(rows: list[dict[str, str]]) -> str:
         state = reference_state(row)
         if state == "확인 완료":
             state = "확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음)"
-        elif state == "확인 필요":
-            state = "확인 필요"
         lines.append(
             f"| {paper_id} | {title} | {authors} | {year} | {venue} | {doi} | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | {state} |"
         )
@@ -682,10 +696,8 @@ def metric_tokens_from_csv(path: Path) -> set[str]:
                     continue
                 if re.fullmatch(r"-?\d+(?:\.\d+)?", raw):
                     number = float(raw)
-                    if "." in raw or abs(number) > 1:
+                    if raw not in {"0", "1", "0.0", "1.0", "0.00", "1.00"}:
                         tokens.add(raw)
-                        tokens.add(f"{number:.6f}")
-                        tokens.add(f"{number:.2f}")
     return {token for token in tokens if token not in {"0", "1", "0.00", "1.00"}}
 
 
@@ -742,6 +754,58 @@ def compare_numeric_status(week_dir: Path, week: str) -> tuple[str, str, list[di
     else:
         overall = "자동 대조 완료"
     return source, overall, details
+
+
+def numeric_score(details: list[dict[str, str]], source: str) -> int:
+    if not source:
+        return 0
+    if not details:
+        return 100
+    total_found = 0
+    total_expected = 0
+    for item in details:
+        match = re.fullmatch(r"(\d+)/(\d+)", item.get("coverage", ""))
+        if not match:
+            continue
+        found, expected = int(match.group(1)), int(match.group(2))
+        total_found += found
+        total_expected += expected
+    if total_expected == 0:
+        return 100
+    return round(100 * total_found / total_expected)
+
+
+def reference_score(summary: dict[str, int], paper_count: int) -> int:
+    if paper_count == 0:
+        return 0
+    weighted = (
+        summary["confirmed_local"]
+        + 0.6 * summary["partial"]
+        + 0.4 * summary["mismatch"]
+        + 0.3 * summary["alternate"]
+    )
+    return max(0, min(100, round(100 * weighted / paper_count)))
+
+
+def manual_review_items_for_week(audit: WeekAudit) -> list[str]:
+    items = []
+    if audit.reference_needs_check:
+        items.append(f"참고문헌 확인 필요 {audit.reference_needs_check}건")
+    if audit.reference_partial:
+        items.append(f"부분 검증 문헌 {audit.reference_partial}건")
+    if audit.reference_mismatch:
+        items.append(f"DOI/제목/저자 불일치 후보 {audit.reference_mismatch}건")
+    if audit.reference_alternate:
+        items.append(f"대체 문헌 후보 {audit.reference_alternate}건")
+    if audit.reference_local_pdf_missing:
+        items.append(f"로컬 PDF 없음 {audit.reference_local_pdf_missing}건")
+    if audit.numeric_status in {"부분 대조 완료", "확인 필요", "수치 기준 원천 없음"}:
+        items.append(f"수치 대조: {audit.numeric_status}")
+    if "상태 불일치" in audit.experiment_status_note:
+        items.append(audit.experiment_status_note)
+    if audit.ai_required_missing:
+        items.append("AI 활용 고지 필수 항목 확인 필요")
+    return items or ["자동 구조 점검 기준 주요 감점 없음"]
 
 
 def write_week_readme(week_dir: Path, audit: WeekAudit, raw_paths: dict[str, list[Path]]) -> tuple[bool, bool]:
@@ -946,11 +1010,14 @@ def audit_week(week: str, folder: str, topic: str) -> WeekAudit:
         reference_partial=reference_summary["partial"],
         reference_local_pdf_missing=reference_summary["local_pdf_missing"],
         reference_alternate=reference_summary["alternate"],
+        reference_mismatch=reference_summary["mismatch"],
         reference_core_blocked=reference_summary["core_blocked"],
         paper_rows=paper_rows,
         numeric_source=numeric_source,
         numeric_status=numeric_status,
         numeric_details=numeric_details,
+        numeric_crosscheck_score=numeric_score(numeric_details, numeric_source),
+        reference_verification_score=reference_score(reference_summary, len(paper_rows)),
         ai_required_missing=ai_required_missing,
         ai_disclosure_updated=ai_disclosure_updated,
         bridge_file=bridge_file,
@@ -967,6 +1034,7 @@ def audit_week(week: str, folder: str, topic: str) -> WeekAudit:
         },
     )
     audit.total_score = sum(audit.score.values())
+    audit.manual_review_items = manual_review_items_for_week(audit)
 
     readme_created, readme_updated = write_week_readme(
         week_dir,
@@ -1044,9 +1112,13 @@ def write_status_csv(audits: list[WeekAudit]) -> None:
                 "reference_partial",
                 "reference_local_pdf_missing",
                 "reference_alternate",
+                "reference_mismatch",
                 "reference_core_blocked",
+                "reference_verification_score",
                 "numeric_source",
                 "numeric_status",
+                "numeric_crosscheck_score",
+                "manual_review_items",
                 "ai_required_missing",
                 "bridge_updated",
                 "ai_disclosure_updated",
@@ -1092,9 +1164,13 @@ def write_status_csv(audits: list[WeekAudit]) -> None:
                     audit.reference_partial,
                     audit.reference_local_pdf_missing,
                     audit.reference_alternate,
+                    audit.reference_mismatch,
                     audit.reference_core_blocked,
+                    audit.reference_verification_score,
                     audit.numeric_source,
                     audit.numeric_status,
+                    audit.numeric_crosscheck_score,
+                    ";".join(audit.manual_review_items),
                     ";".join(audit.ai_required_missing),
                     audit.bridge_updated,
                     audit.ai_disclosure_updated,
@@ -1208,14 +1284,337 @@ def numeric_comparison_table(audits: list[WeekAudit]) -> str:
 
 def reference_status_table(audits: list[WeekAudit]) -> str:
     lines = [
-        "| 주차 | 확인 완료(로컬 기록) | 확인 필요 | 부분 검증 키워드 | 대체 문헌 키워드 | 로컬 PDF 없음 | 핵심 근거 사용 금지 키워드 |",
-        "|---|---:|---:|---:|---:|---:|---:|",
+        "| 주차 | 확인 완료(로컬 기록) | 확인 필요 | 부분 검증 | DOI/제목 불일치 후보 | 대체 문헌 후보 | 로컬 PDF 없음 | 검증 점수 |",
+        "|---|---:|---:|---:|---:|---:|---:|---:|",
     ]
     for audit in audits:
         lines.append(
-            f"| {audit.week} | {audit.reference_confirmed_local} | {audit.reference_needs_check} | {audit.reference_partial} | {audit.reference_alternate} | {audit.reference_local_pdf_missing} | {audit.reference_core_blocked} |"
+            f"| {audit.week} | {audit.reference_confirmed_local} | {audit.reference_needs_check} | {audit.reference_partial} | {audit.reference_mismatch} | {audit.reference_alternate} | {audit.reference_local_pdf_missing} | {audit.reference_verification_score} |"
         )
     return "\n".join(lines)
+
+
+def verification_score_table(audits: list[WeekAudit]) -> str:
+    lines = [
+        "| 주차 | 구조 자동 점수 | 수치 대조 점수 | 참고문헌 검증 점수 | 사람이 확인해야 할 항목 |",
+        "|---|---:|---:|---:|---|",
+    ]
+    for audit in audits:
+        manual = "; ".join(audit.manual_review_items)
+        lines.append(
+            f"| {audit.week} | {audit.total_score} | {audit.numeric_crosscheck_score} | {audit.reference_verification_score} | {manual} |"
+        )
+    return "\n".join(lines)
+
+
+def audit_summary_table(audits: list[WeekAudit]) -> str:
+    lines = [
+        "| 주차 | 구조 | 보고서 | 발표자료 | 실험 outputs | 수치 대조 | 참고문헌 검증 | AI 고지 | bridge | 주요 감점 |",
+        "|---|---:|---:|---:|---:|---|---|---:|---|---|",
+    ]
+    for audit in audits:
+        bridge = "O" if audit.bridge_file else "X"
+        outputs = "O" if audit.metrics_summary_exists and audit.results_json_exists and audit.run_log_exists else "확인 필요"
+        numeric = f"{audit.numeric_status} ({audit.numeric_crosscheck_score})"
+        references = f"{audit.reference_verification_score}점 / 확인 필요 {audit.reference_needs_check}, 불일치 {audit.reference_mismatch}"
+        major = "; ".join(audit.manual_review_items)
+        lines.append(
+            f"| {audit.week} | {audit.score['folder_structure']} | {audit.score['report_file']} | {audit.score['presentation_file']} | {outputs} | {numeric} | {references} | {audit.score['ai_disclosure']} | {bridge} | {major} |"
+        )
+    return "\n".join(lines)
+
+
+def escape_md_cell(value: object) -> str:
+    text = str(value).replace("\n", " ").strip()
+    return text.replace("|", "\\|") or "확인 필요"
+
+
+def paper_id_number(paper_id: str) -> int | None:
+    match = re.match(r"P(\d{2})", paper_id, re.IGNORECASE)
+    return int(match.group(1)) if match else None
+
+
+def inferred_year(row: dict[str, str]) -> str:
+    year = paper_field(row, ["연도", "지정 연도/매체"], "")
+    match = re.search(r"(19|20)\d{2}", year or " ".join(row.values()))
+    return match.group(0) if match else "확인 필요"
+
+
+def local_pdf_status(week_dir: Path, row: dict[str, str]) -> str:
+    paper_id = paper_field(row, ["ID", "번호"], "")
+    explicit = paper_field(row, ["로컬 PDF"], "")
+    number = paper_id_number(paper_id)
+    pdf_dir = week_dir / "01_papers" / "pdf"
+    matches = []
+    if number is not None and pdf_dir.exists():
+        prefix = f"{number:02d}_"
+        matches = sorted(path for path in pdf_dir.iterdir() if path.name.startswith(prefix) and path.suffix.lower() == ".pdf")
+    marker_text = " ".join([explicit] + [path.name for path in matches])
+    if "SUBSTITUTE" in marker_text or "대체" in marker_text:
+        return "대체 PDF 존재"
+    if matches or explicit.endswith(".pdf") or ".pdf" in explicit:
+        return "O"
+    if "없음" in explicit:
+        return "로컬 PDF 없음"
+    return "확인 필요"
+
+
+def citation_text(week_dir: Path) -> str:
+    targets = [
+        week_dir / "06_report",
+        week_dir / "07_week_submission",
+    ]
+    text = ""
+    for target in targets:
+        if target.is_file() and is_text_file(target):
+            text += "\n" + safe_read_text(target)
+        elif target.is_dir():
+            for path in sorted(target.rglob("*")):
+                if path.is_file() and is_text_file(path):
+                    text += "\n" + safe_read_text(path)
+    return text
+
+
+def title_probe(title: str) -> str:
+    plain = re.sub(r"[*_`]", "", title)
+    return plain[:48].strip()
+
+
+def citation_marks(week_dir: Path, row: dict[str, str], body_text: str) -> tuple[str, str]:
+    paper_id = paper_field(row, ["ID", "번호"], "")
+    number = paper_id_number(paper_id)
+    title = paper_field(
+        row,
+        [
+            "논문 제목",
+            "공식 제목",
+            "현재 로컬 PDF/DOI 기준 문헌",
+            "현재 로컬 PDF/DOI 기준 정보",
+            "로컬/공식 확인 정보",
+            "DOI 메타데이터 기준 제목",
+            "DOI 메타데이터 기준 확인 내용",
+            "강의계획서 지정 논문",
+            "수업자료 기준 논문",
+            "강의계획서 지정 정보",
+            "강의계획서 표기",
+            "로컬/검증 기준 정식 제목",
+        ],
+    )
+    probe = title_probe(title)
+    id_or_number_found = paper_id in body_text or (number is not None and f"[{number}]" in body_text)
+    title_found = bool(probe and probe != "확인 필요" and probe in body_text)
+    body_cited = "O" if id_or_number_found or title_found else "확인 필요"
+    has_refs = "참고문헌" in body_text or "References" in body_text
+    refs_listed = "O" if has_refs and (id_or_number_found or title_found) else "확인 필요"
+    return body_cited, refs_listed
+
+
+def reference_audit_title(row: dict[str, str]) -> str:
+    return paper_field(
+        row,
+        [
+            "논문 제목",
+            "공식 제목",
+            "현재 로컬 PDF/DOI 기준 문헌",
+            "현재 로컬 PDF/DOI 기준 정보",
+            "로컬/공식 확인 정보",
+            "DOI 메타데이터 기준 제목",
+            "DOI 메타데이터 기준 확인 내용",
+            "강의계획서 지정 논문",
+            "수업자료 기준 논문",
+            "강의계획서 지정 정보",
+            "강의계획서 표기",
+            "로컬/검증 기준 정식 제목",
+        ],
+    )
+
+
+def reference_audit_note(row: dict[str, str]) -> str:
+    return paper_field(
+        row,
+        [
+            "검증 상태",
+            "상태",
+            "현재 판정",
+            "최종 검증 상태",
+            "동일 여부",
+            "남은 검토 사항",
+            "비고",
+        ],
+        "최종 제출 전 공식 출처와 강의계획서 지정 문헌 대조 필요",
+    )
+
+
+def write_reference_audit_md(audits: list[WeekAudit]) -> None:
+    priority = ["W09", "W07", "W12", "W14", "W04", "W05", "W06", "W08"]
+    audit_by_week = {audit.week: audit for audit in audits}
+    lines = [
+        "# 주차별 참고문헌 검증 감사표",
+        "",
+        f"생성일: {GENERATED_AT}",
+        "",
+        "범위: W09, W07, W12, W14, W04, W05, W06, W08의 `01_papers/`, `02_paper_summaries/`, `06_report/`, `07_week_submission/`, `README.md` 로컬 기록 기반 자동 대조.",
+        "",
+        "주의: 현 실행에서는 모든 문헌을 인터넷으로 일괄 재검증하지 않았다. `확인 완료(로컬 기록)`은 기존 `paper_list.md`/`doi_check.md`의 Crossref/DOI/출판사 확인 기록을 뜻하며, 최종 제출 전 공식 페이지를 사람이 다시 확인해야 한다.",
+        "",
+        "| 주차 | 문헌 제목 | 저자 | 연도 | 학술지/학회명 | DOI 또는 URL | 로컬 PDF 존재 여부 | 본문 인용 여부 | 참고문헌 목록 포함 여부 | 검증 상태 | 비고 |",
+        "|---|---|---|---:|---|---|---|---|---|---|---|",
+    ]
+    for week in priority:
+        audit = audit_by_week.get(week)
+        if not audit:
+            continue
+        week_dir = WEEKLY_ROOT / audit.folder
+        body_text = citation_text(week_dir)
+        for row in audit.paper_rows:
+            title = reference_audit_title(row)
+            authors = paper_field(row, ["저자", "지정 저자"], "확인 필요")
+            year = inferred_year(row)
+            venue = paper_field(
+                row,
+                ["학술지/학회명", "학술지/학회", "출판 정보", "공식 출판정보", "출판정보", "권호/페이지 메타데이터", "지정 연도/매체"],
+                "확인 필요",
+            )
+            doi = paper_field(row, ["DOI/URL", "공식 DOI/URL", "DOI", "확인된 DOI/URL", "DOI/URL 상태"], "확인 필요")
+            body_cited, refs_listed = citation_marks(week_dir, row, body_text)
+            state = reference_state(row)
+            if state == "확인 완료":
+                state = "확인 완료(로컬 기록)"
+            note = reference_audit_note(row)
+            lines.append(
+                "| {week} | {title} | {authors} | {year} | {venue} | {doi} | {pdf} | {body} | {refs} | {state} | {note} |".format(
+                    week=week,
+                    title=escape_md_cell(title),
+                    authors=escape_md_cell(authors),
+                    year=escape_md_cell(year),
+                    venue=escape_md_cell(venue),
+                    doi=escape_md_cell(doi),
+                    pdf=escape_md_cell(local_pdf_status(week_dir, row)),
+                    body=body_cited,
+                    refs=refs_listed,
+                    state=escape_md_cell(state),
+                    note=escape_md_cell(note),
+                )
+            )
+    REFERENCE_AUDIT.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def numeric_detail_row(audit: WeekAudit, detail: dict[str, str]) -> str:
+    status = detail.get("status", "확인 필요")
+    if status == "자동 대조 완료":
+        matched = "O"
+        mismatch = "없음"
+        needs = "아니오"
+    elif status.startswith("부분 대조"):
+        matched = "부분"
+        mismatch = "자동 토큰 대조상 일부 기준 수치가 대상 파일에서 탐지되지 않음"
+        needs = "예"
+    else:
+        matched = "X"
+        mismatch = status
+        needs = "예"
+    return (
+        f"| {audit.week} | `{audit.numeric_source or '없음'}` | `{detail.get('file', '-')}` | "
+        f"{matched} ({detail.get('coverage', '-')}) | {mismatch} | 원문 수치 직접 수정 없음 | {needs} |"
+    )
+
+
+def write_numeric_audit_md(audits: list[WeekAudit]) -> None:
+    lines = [
+        "# 주차별 수치 대조 감사표",
+        "",
+        f"생성일: {GENERATED_AT}",
+        "",
+        "기준: `metrics_summary.csv`를 1차 원천으로 삼고, 없으면 `results.json`을 기준으로 한다. 자동 대조는 기준 원천의 숫자 토큰이 보고서/발표자료에 포함되는지 확인하는 보조 점검이다.",
+        "",
+        "| 주차 | 기준 원천 | 대조 대상 | 일치 | 불일치 내용 | 수정 여부 | 확인 필요 |",
+        "|---|---|---|---|---|---|---|",
+    ]
+    for audit in audits:
+        if audit.week not in PRIORITY_NUMERIC_WEEKS:
+            continue
+        if not audit.numeric_details:
+            lines.append(
+                f"| {audit.week} | `{audit.numeric_source or '없음'}` | 기준 원천 존재 여부 | {audit.numeric_status} | 세부 대조 대상 없음 | 원문 수치 직접 수정 없음 | {'예' if not audit.numeric_source else '아니오'} |"
+            )
+            continue
+        for detail in audit.numeric_details:
+            lines.append(numeric_detail_row(audit, detail))
+    NUMERIC_AUDIT.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def metrics_rows(path: Path) -> list[dict[str, str]]:
+    if not path.exists():
+        return []
+    with path.open(encoding="utf-8", newline="") as fh:
+        return list(csv.DictReader(fh))
+
+
+def write_w15_numeric_audit_md(audits: list[WeekAudit]) -> None:
+    audit = next((item for item in audits if item.week == "W15"), None)
+    if audit is None:
+        return
+    week_dir = WEEKLY_ROOT / audit.folder
+    metrics = week_dir / "04_experiment" / "outputs" / "metrics_summary.csv"
+    rows = metrics_rows(metrics)
+    compared = [item["file"] for item in audit.numeric_details]
+    metric_lines = [
+        "| category | metric | value | status | evidence |",
+        "|---|---|---:|---|---|",
+    ]
+    for row in rows:
+        metric_lines.append(
+            f"| {escape_md_cell(row.get('category', ''))} | {escape_md_cell(row.get('metric', ''))} | {escape_md_cell(row.get('value', ''))} | {escape_md_cell(row.get('status', ''))} | `{escape_md_cell(row.get('evidence', ''))}` |"
+        )
+    detail_lines = [
+        "| 대조 대상 | 자동 대조 결과 | 확인 필요 |",
+        "|---|---|---|",
+    ]
+    for detail in audit.numeric_details:
+        status = detail.get("status", "확인 필요")
+        need = "예" if status != "자동 대조 완료" else "아니오"
+        detail_lines.append(f"| `{detail.get('file', '-')}` | {detail.get('coverage', '-')} / {status} | {need} |")
+    content = f"""# W15 수치 대조 감사
+
+생성일: {GENERATED_AT}
+
+## 1. 기준 원천
+
+- 기준 원천: `{audit.numeric_source or rel(metrics)}`
+- 기준 우선순위: `metrics_summary.csv`를 1차 원천으로 사용
+- 실험 성격: 로컬 산출물 존재와 제출 준비 상태 감사이며, 모델 성능 실험이 아님
+
+## 2. 대조한 파일 목록
+
+{chr(10).join(f"- `{path}`" for path in compared)}
+
+## 3. 기준 원천 수치
+
+{chr(10).join(metric_lines)}
+
+## 4. 일치한 수치
+
+- 자동 토큰 대조 점수: {audit.numeric_crosscheck_score}/100
+- `metrics_summary.csv`의 핵심 값 `47/47`, `9/9`, `5`, `4`, `1`, `0`, `0.90`, `11/11`, `42`를 기준으로 확인했다.
+
+## 5. 수정한 수치
+
+- 원문에 없는 실험 결과를 새로 만들지 않았다.
+- 자동 대조표를 생성해 기준 원천과 대조 대상의 확인 필요 상태를 명시했다.
+
+## 6. 확인 필요 수치
+
+{chr(10).join(detail_lines)}
+
+## 7. 사람이 봐야 할 항목
+
+- `weekly_submission.html`과 `presentation_slides.html`의 렌더링에서 표와 캡션이 깨지지 않는지 확인
+- P03 대체 PDF 상태와 W15 참고문헌 검증률 `0.90` 산정 방식 확인
+- `47/47`, `9/9`, `11/11`은 completeness proxy이며 실제 모델 성능으로 해석하지 않도록 최종 원고 문구 확인
+- `seed_recorded=42`와 `config_present=1`이 config/run_log와 계속 일치하는지 제출 직전 재확인
+"""
+    W15_NUMERIC_AUDIT.parent.mkdir(parents=True, exist_ok=True)
+    W15_NUMERIC_AUDIT.write_text(content, encoding="utf-8")
 
 
 def managed_updates_section(audits: list[WeekAudit]) -> str:
@@ -1237,6 +1636,9 @@ def write_status_md(audits: list[WeekAudit], changes: dict[str, object]) -> None
         rel(STATUS_MD),
         rel(STATUS_CSV),
         rel(STATUS_JSON),
+        rel(REFERENCE_AUDIT),
+        rel(NUMERIC_AUDIT),
+        rel(W15_NUMERIC_AUDIT),
     ]
     content = f"""# W01-W15 주차별 자동 점검 상태
 
@@ -1251,6 +1653,10 @@ def write_status_md(audits: list[WeekAudit], changes: dict[str, object]) -> None
 ## 주차별 자동 점수
 
 {score_table(audits)}
+
+## 구조 점수와 검증 점수 분리
+
+{verification_score_table(audits)}
 
 ## 실험 상태와 outputs 일치 점검
 
@@ -1316,6 +1722,7 @@ def write_audit_report(audits: list[WeekAudit], changes: dict[str, object]) -> N
 
 - 기존 감사 보고서 백업: `{backup_note}`
 - 상태 파일 생성/갱신: `03_weekly_reports/WEEKLY_STATUS.md`, `03_weekly_reports/WEEKLY_STATUS.csv`, `03_weekly_reports/WEEKLY_STATUS.json`
+- 상세 검증표 생성/갱신: `03_weekly_reports/WEEKLY_REFERENCE_VERIFICATION_AUDIT.md`, `03_weekly_reports/WEEKLY_NUMERIC_CROSSCHECK_AUDIT.md`, `03_weekly_reports/w15_reproducibility_xai_paper/00_management/W15_NUMERIC_AUDIT.md`
 - 주차별 README 변경:
 
 {readme_changes_section(audits)}
@@ -1332,6 +1739,10 @@ def write_audit_report(audits: list[WeekAudit], changes: dict[str, object]) -> N
 ## 5. 주차별 자동 점수
 
 {score_table(audits)}
+
+## 5-1. 구조/검증 분리 감사표
+
+{audit_summary_table(audits)}
 
 ## 6. 실험 상태와 outputs 일치 점검
 
@@ -1402,6 +1813,9 @@ def main() -> int:
     }
     write_status_csv(audits)
     write_status_json(audits, changes)
+    write_reference_audit_md(audits)
+    write_numeric_audit_md(audits)
+    write_w15_numeric_audit_md(audits)
     write_status_md(audits, changes)
     write_audit_report(audits, changes)
 

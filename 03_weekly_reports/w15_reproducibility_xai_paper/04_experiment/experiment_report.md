@@ -49,6 +49,23 @@ docker run --rm -v /home/ubuntu/generative-ai-security:/workspace -w /workspace/
 | `outputs/results.json` | 실행 메타데이터와 원시 감사 결과 |
 | `outputs/run_log.md` | 사람이 읽을 수 있는 실행 로그 |
 
+## 5-1. 기준 수치 대조표
+
+출처: `outputs/metrics_summary.csv`. 본 표는 W15 제출 준비 감사의 기준 원천을 그대로 옮긴 것이며, 실제 모델 성능이나 운영 환경 보안 성능을 의미하지 않는다.
+
+| category | metric | value | status |
+|---|---|---:|---|
+| artifact | w15_required_files | 47/47 | complete |
+| artifact | final_paper_link_files | 9/9 | complete |
+| paper | local_pdf_count | 5 | complete |
+| reference | doi_confirmed | 4 | complete |
+| reference | doi_partial | 1 | partial |
+| reference | doi_unverified | 0 | complete |
+| reference | weighted_reference_verification_rate | 0.90 | partial |
+| ai_disclosure | ai_disclosure_completeness | 11/11 | complete |
+| reproducibility | config_present | 1 | complete |
+| reproducibility | seed_recorded | 42 | complete |
+
 ## 6. 결과 해석
 
 W15 감사는 개인정보를 사용하지 않았고 실제 공격을 수행하지 않았다. 결과는 산출물 존재 여부와 검증 상태만 나타내며, LLM 또는 XAI 모델의 성능을 주장하지 않는다. 참고문헌 검증은 P01, P02, P04, P05는 확인, P03은 대체 PDF로 인한 부분 확인 상태다.

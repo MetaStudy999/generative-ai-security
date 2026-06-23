@@ -1,6 +1,6 @@
 # W01-W15 주차별 보고서 자동 감사 보고서
 
-감사 기준일: 2026-06-23 23:21:42 KST
+감사 기준일: 2026-06-24 00:18:47 KST
 
 ## 1. 자동 감사 원칙
 
@@ -14,86 +14,14 @@
 
 - 기존 감사 보고서 백업: `AUDIT_REPORT_WEEKLY_SUBMISSIONS.backup.md (현재 감사 보고서로 갱신)`
 - 상태 파일 생성/갱신: `03_weekly_reports/WEEKLY_STATUS.md`, `03_weekly_reports/WEEKLY_STATUS.csv`, `03_weekly_reports/WEEKLY_STATUS.json`
+- 상세 검증표 생성/갱신: `03_weekly_reports/WEEKLY_REFERENCE_VERIFICATION_AUDIT.md`, `03_weekly_reports/WEEKLY_NUMERIC_CROSSCHECK_AUDIT.md`, `03_weekly_reports/w15_reproducibility_xai_paper/00_management/W15_NUMERIC_AUDIT.md`
 - 주차별 README 변경:
 
-- 갱신: `03_weekly_reports/w01_deep_learning_ml_security/README.md`
-- 갱신: `03_weekly_reports/w02_optimization_data_poisoning/README.md`
-- 갱신: `03_weekly_reports/w03_computer_vision_adversarial/README.md`
-- 갱신: `03_weekly_reports/w04_transformer_nlp_security/README.md`
-- 갱신: `03_weekly_reports/w05_ssl_backdoor/README.md`
-- 갱신: `03_weekly_reports/w06_diffusion_gan_deepfake/README.md`
-- 갱신: `03_weekly_reports/w07_llm_security_privacy/README.md`
-- 갱신: `03_weekly_reports/w08_rag_prompt_injection/README.md`
-- 갱신: `03_weekly_reports/w09_drl_cybersecurity/README.md`
-- 갱신: `03_weekly_reports/w10_federated_learning_security/README.md`
-- 갱신: `03_weekly_reports/w11_differential_privacy_mi/README.md`
-- 갱신: `03_weekly_reports/w12_nn_verification_xai/README.md`
-- 갱신: `03_weekly_reports/w13_model_stealing_watermarking/README.md`
-- 갱신: `03_weekly_reports/w14_mlops_supply_chain/README.md`
-- 갱신: `03_weekly_reports/w15_reproducibility_xai_paper/README.md`
+- 없음
 
 ## 2-1. 자동 보완한 bridge/AI 고지/보고서 문장
 
-- bridge 갱신: `03_weekly_reports/w01_deep_learning_ml_security/08_final_paper_bridge/final_paper_bridge.md`
-- AI 활용 고지 갱신: `03_weekly_reports/w01_deep_learning_ml_security/05_ai_worklog/ai_disclosure_draft.md`
-- 보고서 AI 고지 문장 갱신: `03_weekly_reports/w01_deep_learning_ml_security/06_report/final/integrated_report_final.md`
-- 보고서 AI 고지 문장 갱신: `03_weekly_reports/w01_deep_learning_ml_security/07_week_submission/w01_submission_report.md`
-- bridge 갱신: `03_weekly_reports/w02_optimization_data_poisoning/08_final_paper_bridge/final_paper_bridge.md`
-- AI 활용 고지 갱신: `03_weekly_reports/w02_optimization_data_poisoning/05_ai_worklog/ai_disclosure_draft.md`
-- 보고서 AI 고지 문장 갱신: `03_weekly_reports/w02_optimization_data_poisoning/06_report/final/integrated_report_final.md`
-- 보고서 AI 고지 문장 갱신: `03_weekly_reports/w02_optimization_data_poisoning/07_week_submission/w02_submission_report.md`
-- bridge 갱신: `03_weekly_reports/w03_computer_vision_adversarial/08_final_paper_bridge/final_paper_bridge.md`
-- AI 활용 고지 갱신: `03_weekly_reports/w03_computer_vision_adversarial/05_ai_worklog/ai_disclosure_draft.md`
-- 보고서 AI 고지 문장 갱신: `03_weekly_reports/w03_computer_vision_adversarial/06_report/final/integrated_report_final.md`
-- 보고서 AI 고지 문장 갱신: `03_weekly_reports/w03_computer_vision_adversarial/07_week_submission/w03_submission_report.md`
-- bridge 갱신: `03_weekly_reports/w04_transformer_nlp_security/08_final_paper_bridge/final_paper_bridge.md`
-- AI 활용 고지 갱신: `03_weekly_reports/w04_transformer_nlp_security/05_ai_worklog/ai_disclosure_draft.md`
-- 보고서 AI 고지 문장 갱신: `03_weekly_reports/w04_transformer_nlp_security/06_report/final/integrated_report_final.md`
-- 보고서 AI 고지 문장 갱신: `03_weekly_reports/w04_transformer_nlp_security/07_week_submission/w04_submission_report.md`
-- bridge 갱신: `03_weekly_reports/w05_ssl_backdoor/08_final_paper_bridge/final_paper_bridge.md`
-- AI 활용 고지 갱신: `03_weekly_reports/w05_ssl_backdoor/05_ai_worklog/ai_disclosure_draft.md`
-- 보고서 AI 고지 문장 갱신: `03_weekly_reports/w05_ssl_backdoor/06_report/final/integrated_report_final.md`
-- 보고서 AI 고지 문장 갱신: `03_weekly_reports/w05_ssl_backdoor/07_week_submission/w05_submission_report.md`
-- bridge 갱신: `03_weekly_reports/w06_diffusion_gan_deepfake/08_final_paper_bridge/final_paper_bridge.md`
-- AI 활용 고지 갱신: `03_weekly_reports/w06_diffusion_gan_deepfake/05_ai_worklog/ai_disclosure_draft.md`
-- 보고서 AI 고지 문장 갱신: `03_weekly_reports/w06_diffusion_gan_deepfake/06_report/final/integrated_report_final.md`
-- 보고서 AI 고지 문장 갱신: `03_weekly_reports/w06_diffusion_gan_deepfake/07_week_submission/w06_submission_report.md`
-- bridge 갱신: `03_weekly_reports/w07_llm_security_privacy/08_final_paper_bridge/final_paper_bridge.md`
-- AI 활용 고지 갱신: `03_weekly_reports/w07_llm_security_privacy/05_ai_worklog/ai_disclosure_draft.md`
-- 보고서 AI 고지 문장 갱신: `03_weekly_reports/w07_llm_security_privacy/06_report/final/integrated_report_final.md`
-- 보고서 AI 고지 문장 갱신: `03_weekly_reports/w07_llm_security_privacy/07_week_submission/w07_submission_report.md`
-- bridge 갱신: `03_weekly_reports/w08_rag_prompt_injection/08_final_paper_bridge/final_paper_bridge.md`
-- AI 활용 고지 갱신: `03_weekly_reports/w08_rag_prompt_injection/05_ai_worklog/ai_disclosure_draft.md`
-- 보고서 AI 고지 문장 갱신: `03_weekly_reports/w08_rag_prompt_injection/06_report/final/integrated_report_final.md`
-- 보고서 AI 고지 문장 갱신: `03_weekly_reports/w08_rag_prompt_injection/07_week_submission/w08_submission_report.md`
-- bridge 갱신: `03_weekly_reports/w09_drl_cybersecurity/08_final_paper_bridge/final_paper_bridge.md`
-- AI 활용 고지 갱신: `03_weekly_reports/w09_drl_cybersecurity/05_ai_worklog/ai_disclosure_draft.md`
-- 보고서 AI 고지 문장 갱신: `03_weekly_reports/w09_drl_cybersecurity/06_report/final/integrated_report_final.md`
-- 보고서 AI 고지 문장 갱신: `03_weekly_reports/w09_drl_cybersecurity/07_week_submission/w09_submission_report.md`
-- bridge 갱신: `03_weekly_reports/w10_federated_learning_security/08_final_paper_bridge/final_paper_bridge.md`
-- AI 활용 고지 갱신: `03_weekly_reports/w10_federated_learning_security/05_ai_worklog/ai_disclosure_draft.md`
-- 보고서 AI 고지 문장 갱신: `03_weekly_reports/w10_federated_learning_security/06_report/final/integrated_report_final.md`
-- 보고서 AI 고지 문장 갱신: `03_weekly_reports/w10_federated_learning_security/07_week_submission/w10_submission_report.md`
-- bridge 갱신: `03_weekly_reports/w11_differential_privacy_mi/08_final_paper_bridge/final_paper_bridge.md`
-- AI 활용 고지 갱신: `03_weekly_reports/w11_differential_privacy_mi/05_ai_worklog/ai_disclosure_draft.md`
-- 보고서 AI 고지 문장 갱신: `03_weekly_reports/w11_differential_privacy_mi/06_report/final/integrated_report_final.md`
-- 보고서 AI 고지 문장 갱신: `03_weekly_reports/w11_differential_privacy_mi/07_week_submission/w11_submission_report.md`
-- bridge 갱신: `03_weekly_reports/w12_nn_verification_xai/08_final_paper_bridge/final_paper_bridge.md`
-- AI 활용 고지 갱신: `03_weekly_reports/w12_nn_verification_xai/05_ai_worklog/ai_disclosure_draft.md`
-- 보고서 AI 고지 문장 갱신: `03_weekly_reports/w12_nn_verification_xai/06_report/final/integrated_report_final.md`
-- 보고서 AI 고지 문장 갱신: `03_weekly_reports/w12_nn_verification_xai/07_week_submission/w12_submission_report.md`
-- bridge 갱신: `03_weekly_reports/w13_model_stealing_watermarking/08_final_paper_bridge/final_paper_bridge.md`
-- AI 활용 고지 갱신: `03_weekly_reports/w13_model_stealing_watermarking/05_ai_worklog/ai_disclosure_draft.md`
-- 보고서 AI 고지 문장 갱신: `03_weekly_reports/w13_model_stealing_watermarking/06_report/final/integrated_report_final.md`
-- 보고서 AI 고지 문장 갱신: `03_weekly_reports/w13_model_stealing_watermarking/07_week_submission/w13_submission_report.md`
-- bridge 갱신: `03_weekly_reports/w14_mlops_supply_chain/08_final_paper_bridge/final_paper_bridge.md`
-- AI 활용 고지 갱신: `03_weekly_reports/w14_mlops_supply_chain/05_ai_worklog/ai_disclosure_draft.md`
-- 보고서 AI 고지 문장 갱신: `03_weekly_reports/w14_mlops_supply_chain/06_report/final/integrated_report_final.md`
-- 보고서 AI 고지 문장 갱신: `03_weekly_reports/w14_mlops_supply_chain/07_week_submission/w14_submission_report.md`
-- bridge 갱신: `03_weekly_reports/w15_reproducibility_xai_paper/08_final_paper_bridge/final_paper_bridge.md`
-- AI 활용 고지 갱신: `03_weekly_reports/w15_reproducibility_xai_paper/05_ai_worklog/ai_disclosure_draft.md`
-- 보고서 AI 고지 문장 갱신: `03_weekly_reports/w15_reproducibility_xai_paper/06_report/final/integrated_report_final.md`
-- 보고서 AI 고지 문장 갱신: `03_weekly_reports/w15_reproducibility_xai_paper/07_week_submission/w15_submission_report.md`
+- 없음
 
 
 ## 3. 주차별 README 존재 상태
@@ -124,6 +52,26 @@
 | W14 | `w14_mlops_supply_chain` | 100 | 20 | 20 | 15 | 15 | 10 | 10 | 10 | 0 | 0 |
 | W15 | `w15_reproducibility_xai_paper` | 100 | 20 | 20 | 15 | 15 | 10 | 10 | 10 | 0 | 0 |
 
+## 5-1. 구조/검증 분리 감사표
+
+| 주차 | 구조 | 보고서 | 발표자료 | 실험 outputs | 수치 대조 | 참고문헌 검증 | AI 고지 | bridge | 주요 감점 |
+|---|---:|---:|---:|---:|---|---|---:|---|---|
+| W01 | 20 | 20 | 15 | O | 기준 원천 존재 (100) | 88점 / 확인 필요 0, 불일치 1 | 10 | O | DOI/제목/저자 불일치 후보 1건 |
+| W02 | 20 | 20 | 15 | O | 확인 필요 (11) | 46점 / 확인 필요 2, 불일치 0 | 10 | O | 참고문헌 확인 필요 2건; 대체 문헌 후보 1건; 수치 대조: 확인 필요 |
+| W03 | 20 | 20 | 15 | O | 기준 원천 존재 (100) | 100점 / 확인 필요 0, 불일치 0 | 10 | O | 자동 구조 점검 기준 주요 감점 없음 |
+| W04 | 20 | 20 | 15 | O | 기준 원천 존재 (100) | 20점 / 확인 필요 4, 불일치 0 | 10 | O | 참고문헌 확인 필요 4건 |
+| W05 | 20 | 20 | 15 | O | 기준 원천 존재 (100) | 36점 / 확인 필요 2, 불일치 2 | 10 | O | 참고문헌 확인 필요 2건; DOI/제목/저자 불일치 후보 2건 |
+| W06 | 20 | 20 | 15 | O | 확인 필요 (52) | 28점 / 확인 필요 3, 불일치 1 | 10 | O | 참고문헌 확인 필요 3건; DOI/제목/저자 불일치 후보 1건; 수치 대조: 확인 필요 |
+| W07 | 20 | 20 | 15 | O | 기준 원천 존재 (100) | 42점 / 확인 필요 0, 불일치 3 | 10 | O | 부분 검증 문헌 1건; DOI/제목/저자 불일치 후보 3건; 대체 문헌 후보 1건 |
+| W08 | 20 | 20 | 15 | O | 기준 원천 존재 (100) | 40점 / 확인 필요 2, 불일치 1 | 10 | O | 참고문헌 확인 필요 2건; 부분 검증 문헌 1건; DOI/제목/저자 불일치 후보 1건 |
+| W09 | 20 | 20 | 15 | O | 부분 대조 완료 (48) | 32점 / 확인 필요 2, 불일치 1 | 10 | O | 참고문헌 확인 필요 2건; 부분 검증 문헌 2건; DOI/제목/저자 불일치 후보 1건; 수치 대조: 부분 대조 완료 |
+| W10 | 20 | 20 | 15 | O | 기준 원천 존재 (100) | 100점 / 확인 필요 0, 불일치 0 | 10 | O | 자동 구조 점검 기준 주요 감점 없음 |
+| W11 | 20 | 20 | 15 | O | 확인 필요 (47) | 32점 / 확인 필요 2, 불일치 0 | 10 | O | 참고문헌 확인 필요 2건; 대체 문헌 후보 2건; 수치 대조: 확인 필요 |
+| W12 | 20 | 20 | 15 | O | 기준 원천 존재 (100) | 32점 / 확인 필요 0, 불일치 1 | 10 | O | DOI/제목/저자 불일치 후보 1건; 대체 문헌 후보 4건 |
+| W13 | 20 | 20 | 15 | O | 부분 대조 완료 (82) | 60점 / 확인 필요 0, 불일치 1 | 10 | O | DOI/제목/저자 불일치 후보 1건; 대체 문헌 후보 2건; 수치 대조: 부분 대조 완료 |
+| W14 | 20 | 20 | 15 | O | 기준 원천 존재 (100) | 32점 / 확인 필요 1, 불일치 1 | 10 | O | 참고문헌 확인 필요 1건; 부분 검증 문헌 1건; DOI/제목/저자 불일치 후보 1건; 대체 문헌 후보 2건 |
+| W15 | 20 | 20 | 15 | O | 자동 대조 완료 (100) | 86점 / 확인 필요 0, 불일치 0 | 10 | O | 대체 문헌 후보 1건 |
+
 ## 6. 실험 상태와 outputs 일치 점검
 
 | 주차 | config status | metrics | results | run_log | 그래프 | 상태 메모 |
@@ -148,32 +96,32 @@
 
 | 주차 | 상태 | 기준 원천 | 세부 메모 |
 |---|---|---|---|
-| W02 | 부분 대조 완료 | `03_weekly_reports/w02_optimization_data_poisoning/04_experiment/outputs/metrics_summary.csv` | experiment_report.md 16/67 부분 대조: 사람이 세부 수치 확인 필요; w02_submission_report.md 18/67 부분 대조: 사람이 세부 수치 확인 필요; w02_submission_report.html 19/67 부분 대조: 사람이 세부 수치 확인 필요; presentation_slides.html 2/67 부분 대조: 사람이 세부 수치 확인 필요 |
-| W06 | 부분 대조 완료 | `03_weekly_reports/w06_diffusion_gan_deepfake/04_experiment/outputs/metrics_summary.csv` | experiment_report.md 27/47 부분 대조: 사람이 세부 수치 확인 필요; w06_submission_report.md 26/47 부분 대조: 사람이 세부 수치 확인 필요; w06_submission_report.html 26/47 부분 대조: 사람이 세부 수치 확인 필요; presentation_slides.html 4/47 부분 대조: 사람이 세부 수치 확인 필요 |
-| W09 | 부분 대조 완료 | `03_weekly_reports/w09_drl_cybersecurity/04_experiment/outputs/metrics_summary.csv` | experiment_report.md 20/67 부분 대조: 사람이 세부 수치 확인 필요; w09_submission_report.md 25/67 부분 대조: 사람이 세부 수치 확인 필요; w09_submission_report.html 26/67 부분 대조: 사람이 세부 수치 확인 필요; presentation_slides.html 10/67 부분 대조: 사람이 세부 수치 확인 필요 |
-| W11 | 부분 대조 완료 | `03_weekly_reports/w11_differential_privacy_mi/04_experiment/outputs/metrics_summary.csv` | experiment_report.md 29/41 부분 대조: 사람이 세부 수치 확인 필요; w11_submission_report.md 24/41 부분 대조: 사람이 세부 수치 확인 필요; w11_submission_report.html 24/41 부분 대조: 사람이 세부 수치 확인 필요; presentation_slides.html 5/41 부분 대조: 사람이 세부 수치 확인 필요 |
-| W13 | 부분 대조 완료 | `03_weekly_reports/w13_model_stealing_watermarking/04_experiment/outputs/metrics_summary.csv` | experiment_report.md 23/34 부분 대조: 사람이 세부 수치 확인 필요; w13_submission_report.md 23/34 부분 대조: 사람이 세부 수치 확인 필요; w13_submission_report.html 23/34 부분 대조: 사람이 세부 수치 확인 필요; presentation_slides.html 10/34 부분 대조: 사람이 세부 수치 확인 필요 |
-| W15 | 부분 대조 완료 | `03_weekly_reports/w15_reproducibility_xai_paper/04_experiment/outputs/metrics_summary.csv` | experiment_report.md 3/14 부분 대조: 사람이 세부 수치 확인 필요; w15_submission_report.md 6/14 부분 대조: 사람이 세부 수치 확인 필요; w15_submission_report.html 6/14 부분 대조: 사람이 세부 수치 확인 필요; presentation_slides.html 5/14 부분 대조: 사람이 세부 수치 확인 필요 |
+| W02 | 확인 필요 | `03_weekly_reports/w02_optimization_data_poisoning/04_experiment/outputs/metrics_summary.csv` | experiment_report.md 3/27 부분 대조: 사람이 세부 수치 확인 필요; w02_submission_report.md 4/27 부분 대조: 사람이 세부 수치 확인 필요; w02_submission_report.html 5/27 부분 대조: 사람이 세부 수치 확인 필요; presentation_slides.html 0/27 확인 필요: 기준 수치 토큰 미탐지 |
+| W06 | 확인 필요 | `03_weekly_reports/w06_diffusion_gan_deepfake/04_experiment/outputs/metrics_summary.csv` | experiment_report.md 18/25 부분 대조: 사람이 세부 수치 확인 필요; w06_submission_report.md 17/25 부분 대조: 사람이 세부 수치 확인 필요; w06_submission_report.html 17/25 부분 대조: 사람이 세부 수치 확인 필요; presentation_slides.html 0/25 확인 필요: 기준 수치 토큰 미탐지 |
+| W09 | 부분 대조 완료 | `03_weekly_reports/w09_drl_cybersecurity/04_experiment/outputs/metrics_summary.csv` | experiment_report.md 15/31 부분 대조: 사람이 세부 수치 확인 필요; w09_submission_report.md 20/31 부분 대조: 사람이 세부 수치 확인 필요; w09_submission_report.html 20/31 부분 대조: 사람이 세부 수치 확인 필요; presentation_slides.html 4/31 부분 대조: 사람이 세부 수치 확인 필요 |
+| W11 | 확인 필요 | `03_weekly_reports/w11_differential_privacy_mi/04_experiment/outputs/metrics_summary.csv` | experiment_report.md 19/27 부분 대조: 사람이 세부 수치 확인 필요; w11_submission_report.md 16/27 부분 대조: 사람이 세부 수치 확인 필요; w11_submission_report.html 16/27 부분 대조: 사람이 세부 수치 확인 필요; presentation_slides.html 0/27 확인 필요: 기준 수치 토큰 미탐지 |
+| W13 | 부분 대조 완료 | `03_weekly_reports/w13_model_stealing_watermarking/04_experiment/outputs/metrics_summary.csv` | experiment_report.md 15/15 자동 대조 완료; w13_submission_report.md 15/15 자동 대조 완료; w13_submission_report.html 15/15 자동 대조 완료; presentation_slides.html 4/15 부분 대조: 사람이 세부 수치 확인 필요 |
+| W15 | 자동 대조 완료 | `03_weekly_reports/w15_reproducibility_xai_paper/04_experiment/outputs/metrics_summary.csv` | experiment_report.md 7/7 자동 대조 완료; w15_submission_report.md 7/7 자동 대조 완료; w15_submission_report.html 7/7 자동 대조 완료; presentation_slides.html 7/7 자동 대조 완료 |
 
 ## 8. 참고문헌 검증 상태
 
-| 주차 | 확인 완료(로컬 기록) | 확인 필요 | 부분 검증 키워드 | 대체 문헌 키워드 | 로컬 PDF 없음 | 핵심 근거 사용 금지 키워드 |
-|---|---:|---:|---:|---:|---:|---:|
-| W01 | 4 | 1 | 2 | 0 | 0 | 0 |
-| W02 | 2 | 2 | 0 | 1 | 0 | 0 |
-| W03 | 5 | 0 | 0 | 0 | 0 | 0 |
-| W04 | 1 | 4 | 0 | 0 | 0 | 0 |
-| W05 | 1 | 4 | 0 | 3 | 0 | 0 |
-| W06 | 1 | 4 | 3 | 1 | 0 | 0 |
-| W07 | 0 | 4 | 8 | 3 | 0 | 0 |
-| W08 | 1 | 4 | 4 | 1 | 0 | 0 |
-| W09 | 0 | 5 | 6 | 3 | 0 | 0 |
-| W10 | 5 | 0 | 0 | 1 | 0 | 0 |
-| W11 | 1 | 2 | 0 | 3 | 0 | 0 |
-| W12 | 0 | 1 | 5 | 9 | 0 | 0 |
-| W13 | 2 | 1 | 0 | 6 | 0 | 1 |
-| W14 | 0 | 3 | 3 | 2 | 0 | 0 |
-| W15 | 4 | 0 | 2 | 3 | 0 | 0 |
+| 주차 | 확인 완료(로컬 기록) | 확인 필요 | 부분 검증 | DOI/제목 불일치 후보 | 대체 문헌 후보 | 로컬 PDF 없음 | 검증 점수 |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| W01 | 4 | 0 | 0 | 1 | 0 | 0 | 88 |
+| W02 | 2 | 2 | 0 | 0 | 1 | 0 | 46 |
+| W03 | 5 | 0 | 0 | 0 | 0 | 0 | 100 |
+| W04 | 1 | 4 | 0 | 0 | 0 | 0 | 20 |
+| W05 | 1 | 2 | 0 | 2 | 0 | 0 | 36 |
+| W06 | 1 | 3 | 0 | 1 | 0 | 0 | 28 |
+| W07 | 0 | 0 | 1 | 3 | 1 | 0 | 42 |
+| W08 | 1 | 2 | 1 | 1 | 0 | 0 | 40 |
+| W09 | 0 | 2 | 2 | 1 | 0 | 0 | 32 |
+| W10 | 5 | 0 | 0 | 0 | 0 | 0 | 100 |
+| W11 | 1 | 2 | 0 | 0 | 2 | 0 | 32 |
+| W12 | 0 | 0 | 0 | 1 | 4 | 0 | 32 |
+| W13 | 2 | 0 | 0 | 1 | 2 | 0 | 60 |
+| W14 | 0 | 1 | 1 | 1 | 2 | 0 | 32 |
+| W15 | 4 | 0 | 0 | 0 | 1 | 0 | 86 |
 
 ## 9. 깨진 상대경로 링크 목록
 

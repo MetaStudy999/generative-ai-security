@@ -48,6 +48,11 @@ $$
 | local_pdf_count | 5 | complete |
 | doi_confirmed | 4 | complete |
 | doi_partial | 1 | partial |
+| doi_unverified | 0 | complete |
+| weighted_reference_verification_rate | 0.90 | partial |
+| ai_disclosure_completeness | 11/11 | complete |
+| config_present | 1 | complete |
+| seed_recorded | 42 | complete |
 
 ---
 

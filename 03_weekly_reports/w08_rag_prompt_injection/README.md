@@ -13,11 +13,11 @@
 
 | ID | 제목 | 저자 | 연도 | 학술지/학회명 | DOI 또는 URL | 확인 경로 | 확인일 | 상태 |
 |---|---|---|---:|---|---|---|---|---|
-| P01 | Graph Retrieval-Augmented Generation: A Survey | Boci Peng, Yun Zhu, Yongchao Liu, Xiaohe Bo, Haizhou Shi, Chuntao Hong, Yan Zhang, Siliang Tang | 2024 | arXiv / ACM 출판정보 확인 필요 | https://arxiv.org/abs/2408.08921 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 필요 |
+| P01 | Graph Retrieval-Augmented Generation: A Survey | Boci Peng, Yun Zhu, Yongchao Liu, Xiaohe Bo, Haizhou Shi, Chuntao Hong, Yan Zhang, Siliang Tang | 2024 | arXiv / ACM 출판정보 확인 필요 | https://arxiv.org/abs/2408.08921 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 부분 검증 |
 | P02 | Graph-Based Approaches and Functionalities in Retrieval-Augmented Generation: A Comprehensive Survey | Zulun Zhu, Tiancheng Huang, Kai Wang, Junda Ye, Xinghe Chen, Siqiang Luo | 2026 | ACM Computing Surveys | https://doi.org/10.1145/3795880 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 필요 |
 | P03 | Prompting Frameworks for Large Language Models: A Survey | Xiaoxia Liu, Jingyi Wang, Xiaohan Yuan, Jun Sun, Guoliang Dong, Peng Di, Wenhai Wang, Dongxia Wang | 2026 | ACM Computing Surveys | https://doi.org/10.1145/3789253 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
 | P04 | Prompt Injection Attacks on Large Language Models: A Survey of Attack Methods, Root Causes, and Defense Strategies | Tongcheng Geng, Zhiyuan Xu, Yubin Qu, W. Eric Wong | 2026 | Computers, Materials & Continua | https://doi.org/10.32604/cmc.2025.074081 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 필요 |
-| P05 | Vulnerability of Large Language Models to Prompt Injection When Providing Medical Advice | Ro Woon Lee, Tae Joon Jun, Jeong-Moo Lee, Soo Ick Cho, Hyung Jun Park, Jungyo Suh | 2025 | JAMA Network Open | https://doi.org/10.1001/jamanetworkopen.2025.49963 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 필요 |
+| P05 | Vulnerability of Large Language Models to Prompt Injection When Providing Medical Advice | Ro Woon Lee, Tae Joon Jun, Jeong-Moo Lee, Soo Ick Cho, Hyung Jun Park, Jungyo Suh | 2025 | JAMA Network Open | https://doi.org/10.1001/jamanetworkopen.2025.49963 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | DOI/제목 불일치 의심 |
 
 주의: 현 세션에서는 인터넷으로 DOI/URL 실제 존재 여부를 재검증하지 않았으므로, 로컬 검증 기록이 있더라도 최종 제출 전 사람이 확인한다.
 
@@ -91,7 +91,7 @@
 
 ## 6. 확인 필요 항목
 
-- 참고문헌 검증 필요 항목: 확인 필요 4건, 부분 검증 키워드 4건, 대체 문헌 키워드 1건
+- 참고문헌 검증 필요 항목: 확인 필요 2건, 부분 검증 키워드 1건, 대체 문헌 키워드 0건
 - 수치 대조 필요 항목: 기준 원천 존재
 - PDF/HTML 수동 확인 필요 항목: PDF 시각적 깨짐과 HTML 렌더링은 자동 정상 처리하지 않음
 - 참고문헌 실제 존재 여부, 강의계획서 지정 문헌과 로컬 PDF 일치 여부, 최종 제출본 서식은 사람이 직접 확인해야 한다.

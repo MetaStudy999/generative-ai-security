@@ -15,7 +15,7 @@
 |---|---|---|---:|---|---|---|---|---|
 | P01 | A Survey on Evaluation of Large Language Models | Yupeng Chang et al. | 2024 | ACM Transactions on Intelligent Systems and Technology | DOI 확인: 10.1145/3641289 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
 | P02 | Assuring the Machine Learning Lifecycle: Desiderata, Methods, and Challenges | Rob Ashmore, Radu Calinescu, Colin Paterson | 2021 | ACM Computing Surveys / White Rose accepted version | DOI 확인: 10.1145/3453444 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
-| P03 | Explainable AI: Core Ideas, Techniques, and Solutions | Rudresh Dwivedi et al.로 공식 metadata 확인. 원 프롬프트의 Vivek 표기는 재확인 필요 | 2023 | ACM Computing Surveys | DOI 부분 확인: 10.1145/3561048, 로컬 PDF는 지정 논문 아님 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 대체 문헌 |
+| P03 | Explainable AI: Core Ideas, Techniques, and Solutions | Rudresh Dwivedi et al.로 공식 metadata 확인. 원 프롬프트의 Vivek 표기는 재확인 필요 | 2023 | ACM Computing Surveys | DOI 부분 확인: 10.1145/3561048, 로컬 PDF는 지정 논문 아님 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 대체 문헌 후보 |
 | P04 | Explainable Artificial Intelligence (XAI): Concepts, Taxonomies, Opportunities and Challenges toward Responsible AI | Alejandro Barredo Arrieta et al. | 2020 | Information Fusion | DOI 확인: 10.1016/j.inffus.2019.12.012 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
 | P05 | Concept-based Explainable Artificial Intelligence: A Survey | Eleonora Poeta et al. | 2023/2025 | arXiv preprint / ACM Computing Surveys online publication | DOI 확인: 10.1145/3774643, arXiv 2312.12936 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
 
@@ -80,7 +80,7 @@
 - results.json 존재 여부: O
 - run_log.md 존재 여부: O
 - 그래프 파일 존재 여부: O
-- 수치 대조 상태: 부분 대조 완료
+- 수치 대조 상태: 자동 대조 완료
 - 수치 기준 원천: `03_weekly_reports/w15_reproducibility_xai_paper/04_experiment/outputs/metrics_summary.csv`
 
 ## 5. 기말논문 연결
@@ -91,8 +91,8 @@
 
 ## 6. 확인 필요 항목
 
-- 참고문헌 검증 필요 항목: 확인 필요 0건, 부분 검증 키워드 2건, 대체 문헌 키워드 3건
-- 수치 대조 필요 항목: 부분 대조 완료
+- 참고문헌 검증 필요 항목: 확인 필요 0건, 부분 검증 키워드 0건, 대체 문헌 키워드 1건
+- 수치 대조 필요 항목: 자동 대조 완료
 - PDF/HTML 수동 확인 필요 항목: PDF 시각적 깨짐과 HTML 렌더링은 자동 정상 처리하지 않음
 - 참고문헌 실제 존재 여부, 강의계획서 지정 문헌과 로컬 PDF 일치 여부, 최종 제출본 서식은 사람이 직접 확인해야 한다.
 

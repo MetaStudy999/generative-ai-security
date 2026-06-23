@@ -6,9 +6,9 @@
 | Deployment Reliability | Re-run consistency | 동일 seed/config 재실행 후 dataset/model hash 비교 | Config, seed, artifact | true | 재현성 |
 | Drift Detection | Drift score | 기준 test set과 drifted sample의 평균 표준화 feature shift 계산 | Monitoring sample | 0.307626, threshold 0.25 초과 | 모델 감시 |
 | Baseline Utility | Accuracy/F1 | 정상 synthetic test set에서 toy model 평가 | Synthetic test data | accuracy 0.925000, F1 0.923077 | 기준 성능 |
-| Incident Response | Audit evidence availability | 사고 후 필요한 run metadata와 artifact 목록 보존 여부 | Run log, audit log | audit coverage 1.000000 | 대응력 |
-| Auditability | Audit coverage | 필수 감사 필드 10개 중 기록된 비율 | Logs/metadata | 1.000000 | 책임성 |
-| Supply Chain Risk | Inventory coverage | AI BOM/ML artifact inventory 최소 항목 충족 여부 | artifact_inventory.json | 1.000000 | 공급망 |
+| Incident Response | Audit evidence availability | 사고 후 필요한 run metadata와 artifact 목록 보존 여부 | Run log, audit log | audit coverage 1.000000 | toy evidence |
+| Auditability | Audit coverage | 필수 감사 필드 10개 중 기록된 비율 | Logs/metadata | 1.000000 | 로그 품질·진실성 보장 아님 |
+| Supply Chain Risk | Inventory coverage | AI BOM/ML artifact inventory 최소 항목 충족 여부 | artifact_inventory.json | 1.000000 | 완전한 AI BOM 아님 |
 
 ## 실행 전제
 
@@ -18,5 +18,6 @@
 
 - Accuracy/F1은 모델 성능의 기준선일 뿐 공급망 보안성을 직접 의미하지 않는다.
 - Hash와 inventory는 변조 탐지와 책임추적의 출발점이지 완전한 방어가 아니다.
-- Drift score는 입력 분포 변화 경보이며, 원인 분석이나 자동 롤백은 별도 운영 절차가 필요하다.
+- Drift score는 입력 분포 변화 경보이며, 원인 분석이나 자동 롤백은 별도 운영 절차가 필요하다. 이 값은 공격 성공률이나 실제 운영 장애 확률이 아니다.
+- Audit coverage와 inventory coverage는 toy evidence coverage이며, 실제 기업 감사 완전성이나 완전한 AI BOM을 의미하지 않는다.
 - 실제 개인정보, 실제 운영 로그, 실제 악성 패키지 또는 공격 payload는 사용하지 않는다.

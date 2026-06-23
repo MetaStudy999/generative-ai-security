@@ -1,0 +1,15 @@
+{
+  "config_hash": "bf70c5860357c21c289e0507fbe6df25b5a239fe43656e53c731b6047e092002",
+  "dataset_hash": "b9e597bccdbde442522edac38adba4f62be507680b053883620e5defeb4cd5ff",
+  "feature_count": 5,
+  "model": "toy_logistic_regression",
+  "seed": 42,
+  "weights": [
+    -0.115021152078,
+    1.123949046856,
+    -0.709694973614,
+    0.579324277494,
+    0.97500364089,
+    -1.071436596224
+  ]
+}

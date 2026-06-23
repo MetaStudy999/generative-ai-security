@@ -46,9 +46,11 @@ P03/P04/P05는 로컬 PDF가 대상 논문과 달라 공식 원문 확인이 필
 | Dataset hash | `sha256:b9e597bccdbde442` | 데이터 무결성 기준점 |
 | Model hash match | true | 모델 artifact 변조 탐지 기준 |
 | Re-run consistency | true | 동일 config/seed 재실행 가능성 |
-| Drift score | 0.307626 | threshold 0.25 초과, drift 감시 필요 |
-| Audit coverage | 1.000000 | 책임추적 로그 필드 충족 |
-| Inventory coverage | 1.000000 | AI BOM/ML artifact inventory 최소 항목 충족 |
+| Drift score | 0.307626 | threshold 0.25 초과, 운영 감시 신호 |
+| Audit coverage | 1.000000 | toy 필수 로그 필드 보존률 |
+| Inventory coverage | 1.000000 | toy AI BOM/ML artifact inventory 최소 항목 충족률 |
+
+Drift score 0.307626은 synthetic 기준 데이터와 drifted 데이터 사이의 평균 표준화 feature shift이며, 공격 성공률이나 실제 운영 장애 확률이 아니다. Audit coverage와 inventory coverage는 toy evidence coverage이므로 실제 기업 감사 완전성이나 완전한 AI BOM으로 해석하지 않는다.
 
 ## 6. 기말논문 연결 지점
 
@@ -60,5 +62,7 @@ W14는 기말논문에서 운영형 AI 시스템의 보안·재현성 보증을 
 |---|---|
 | Accuracy가 높으면 보안도 괜찮다고 볼 수 있는가? | 아니다. Accuracy는 모델 성능 기준선이고, 공급망 보안은 데이터·모델·config·로그가 추적 가능한지 별도로 봐야 한다. |
 | Drift score 0.307626은 공격을 의미하는가? | 아니다. 입력 분포 변화 경보일 뿐이며, 공격인지 정상 환경 변화인지는 incident analysis가 필요하다. |
+| Audit coverage 1.000000은 감사가 완전하다는 뜻인가? | 아니다. toy 필수 필드가 채워졌다는 뜻이며 로그 품질·진실성은 별도 검증이 필요하다. |
+| Inventory coverage 1.000000은 완전한 AI BOM인가? | 아니다. dataset/model/config/run log 최소 항목만 다루며 SBOM, license, vulnerability scan은 운영 확장 항목이다. |
 | P03/P04/P05는 왜 확인 필요인가? | 수업자료의 대상 논문 DOI와 로컬 PDF가 달라서 최종 인용 전 공식 원문 확보가 필요하다. |
 | 이 toy 실험이 실제 MLOps 보안을 증명하는가? | 아니다. 실제 운영 보안성 증명이 아니라 evidence 구조의 최소 구현이다. |

@@ -37,6 +37,8 @@ MLOps 공급망 보안은 모델 성능만으로 설명할 수 없다. 데이터
 | Audit coverage | 1.000000 |
 | Inventory coverage | 1.000000 |
 
+Drift score는 평균 표준화 feature shift로, 공격 성공률이나 실제 운영 장애 확률이 아니다. Audit coverage와 inventory coverage는 toy evidence coverage이며 실제 기업 감사 완전성이나 완전한 AI BOM이 아니다.
+
 ## 기말논문 연결
 
 W14는 운영형 AI 시스템 보안을 위한 evidence set으로 연결된다. 최소 지표는 dataset hash, model hash, config hash, drift score, audit coverage, artifact inventory다.

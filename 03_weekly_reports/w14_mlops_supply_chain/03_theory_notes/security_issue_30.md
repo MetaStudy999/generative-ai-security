@@ -35,7 +35,7 @@ W14의 보안 초점은 ML supply chain과 deployment/update/logging attack surf
 
 ## 4. W14 toy 실험의 보안 해석
 
-이번 실행은 실제 공격 절차가 아니라 통제항목의 최소 구현이다. Dataset hash와 model hash는 무결성 기준점을 만들고, re-run consistency=true는 같은 seed/config로 결과를 다시 만들 수 있음을 보인다. Drift score 0.307626은 운영 입력 분포 변화 감시가 필요함을 보여주며, audit coverage 1.000000과 inventory coverage 1.000000은 제출 가능한 증거 목록을 갖췄다는 의미다.
+이번 실행은 실제 공격 절차가 아니라 통제항목의 최소 구현이다. Dataset hash와 model hash는 무결성 기준점을 만들고, re-run consistency=true는 같은 seed/config로 결과를 다시 만들 수 있음을 보인다. Drift score 0.307626은 운영 입력 분포 변화 감시가 필요함을 보여주지만 공격 성공률이나 실제 운영 장애 확률이 아니다. Audit coverage 1.000000과 inventory coverage 1.000000은 toy 필수 필드 충족률이며 실제 기업 감사 완전성이나 완전한 AI BOM을 의미하지 않는다.
 
 ## 5. 기말 논문 연결
 

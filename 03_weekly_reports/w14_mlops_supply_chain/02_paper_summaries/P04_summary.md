@@ -5,13 +5,14 @@
 | 항목 | 내용 |
 |---|---|
 | 대상 논문 제목 | Deep Learning with Edge Computing: A Review |
-| 대상 논문 저자 | J. Chen et al. |
+| 대상 논문 저자 | Jiasi Chen, Xukan Ran |
 | 학술지/학회 | Proceedings of the IEEE |
 | 연도 | 2019 |
 | DOI/URL | https://doi.org/10.1109/JPROC.2019.2921977 |
+| DOI 메타데이터 | Vol. 107, Issue 8, pp. 1655-1674, 2019-08 |
 | 로컬 PDF 파일명 | 04_SUBSTITUTE_Zhou_et_al_2019_Edge_Intelligence_Survey.pdf |
 | 로컬 PDF 제목 | Edge Intelligence: Paving the Last Mile of Artificial Intelligence with Edge Computing |
-| 검증 상태 | 대상 논문 DOI는 수업자료 기준, 로컬 PDF는 Zhou et al. 대체문헌이므로 공식 원문 확보 필요 |
+| 검증 상태 | DOI/권호/페이지 확인. 로컬 PDF는 Zhou et al. 대체문헌이므로 공식 원문 PDF 확보 필요 |
 
 ## 2. 한 문장 요약
 
@@ -34,6 +35,8 @@ AI 추론과 학습을 중앙 cloud가 아니라 edge device 또는 edge node에
 ## 5. 방법론
 
 대상 논문은 deep learning과 edge computing review로 수업자료에 제시되어 있다. 로컬 대체 PDF는 edge intelligence survey이며, 본 보고서에서는 edge deployment의 보안 함의를 도출하는 보조 근거로만 사용한다.
+
+주의: W14의 P04는 지정 논문과 로컬 PDF가 불일치한다. 현재 로컬 PDF는 Zhou et al. Edge Intelligence 관련 대체문헌이므로, 최종 제출 전 Jiasi Chen and Xukan Ran의 지정 논문 원문 PDF 또는 공식 출판 페이지를 확보해야 한다.
 
 ## 6. 주요 결과
 

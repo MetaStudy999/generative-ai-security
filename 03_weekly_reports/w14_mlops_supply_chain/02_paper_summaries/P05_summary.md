@@ -4,15 +4,18 @@
 
 | 항목 | 내용 |
 |---|---|
-| 대상 논문 제목 | Deep Learning for Software Engineering: A Survey |
-| 대상 논문 저자 | Xiang Chen et al. |
+| 수업자료 기준 제목 | Deep Learning for Software Engineering: A Survey |
+| 수업자료 기준 저자 | Xiang Chen et al. |
+| DOI 메타데이터 기준 제목 | A Survey on Deep Learning for Software Engineering |
+| DOI 메타데이터 기준 저자 | Yanming Yang, Xin Xia, David Lo, John Grundy |
 | 학술지/학회 | ACM Computing Surveys |
 | 연도 | 2022 |
 | DOI/URL | https://doi.org/10.1145/3505243 |
+| DOI 메타데이터 | Vol. 54, Issue 10s, pp. 1-73, print 2022-01-31, online 2022-09-13 |
 | 로컬 PDF 파일명 | 05_Yang_Xia_Lo_Grundy_2022_Deep_Learning_Software_Engineering.pdf |
 | 로컬 PDF 제목 | A Survey on Deep Learning for Software Engineering |
 | 로컬 PDF 저자 | Yanming Yang, Xin Xia, David Lo, John Grundy |
-| 검증 상태 | 대상 논문 DOI는 수업자료 기준, 로컬 PDF는 Yang/Xia/Lo/Grundy 계열 대체문헌이므로 공식 원문 확보 필요 |
+| 검증 상태 | DOI/로컬 PDF는 Yang/Xia/Lo/Grundy로 대응되나 수업자료의 Xiang Chen 표기와 다르므로 지정 논문 확인 필요 |
 
 ## 2. 한 문장 요약
 
@@ -34,7 +37,9 @@
 
 ## 5. 방법론
 
-로컬 PDF는 2006년 이후 DL for SE 연구를 survey하고, 관련 기술과 research topic을 분류한다. 본 보고서에서는 대상 논문과 로컬 PDF의 서지 차이를 명시하고, 세부 task taxonomy는 공식 원문 확보 후 최종 확정한다.
+로컬 PDF는 2006년 이후 DL for SE 연구를 survey하고, 관련 기술과 research topic을 분류한다. DOI 10.1145/3505243도 Yang/Xia/Lo/Grundy 논문으로 확인되었으나, 수업자료는 Xiang Chen et al.으로 되어 있어 지정 논문 표기 재확인이 필요하다. 본 보고서에서는 대상 논문과 로컬 PDF의 서지 차이를 명시하고, 세부 task taxonomy는 공식 원문 확보 후 최종 확정한다.
+
+주의: W14의 P05는 수업자료의 Xiang Chen 표기와 DOI/로컬 PDF 기준 Yang/Xia/Lo/Grundy 계열 DL for software engineering 문헌이 불일치한다. 최종 제출 전 수업자료 지정 논문과 DOI 10.1145/3505243의 공식 출판정보를 재확인해야 한다.
 
 ## 6. 주요 결과
 

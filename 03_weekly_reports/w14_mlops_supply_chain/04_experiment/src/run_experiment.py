@@ -457,14 +457,14 @@ def write_outputs(config: dict[str, Any], result: dict[str, Any], output_dir: Pa
             "metric": "audit_coverage",
             "value": f"{audit_coverage:.6f}",
             "status": "pass",
-            "security_meaning": "책임추적 로그 완전성",
+            "security_meaning": "toy 필수 로그 필드 보존률",
         },
         {
             "check_item": "Artifact inventory",
             "metric": "inventory_coverage",
             "value": f"{inventory_coverage:.6f}",
             "status": "pass",
-            "security_meaning": "AI BOM/ML artifact inventory 최소 항목 충족",
+            "security_meaning": "toy AI BOM/ML artifact inventory 최소 항목 충족률",
         },
     ]
 
@@ -539,14 +539,14 @@ def write_outputs(config: dict[str, Any], result: dict[str, Any], output_dir: Pa
 | Re-run consistency | Model/data hash match | {str(reproducible).lower()} | 동일 config/seed 재실행 가능성 |
 | Drift monitoring | Mean standardized feature shift | {result['drift_score']:.6f} | 입력 분포 변화 감시 |
 | Drifted model | Accuracy under drift | {result['drift_metrics']['accuracy']:.6f} | 분포 변화 조건 성능 |
-| Log audit | Audit coverage | {audit_coverage:.6f} | 책임추적 로그 완전성 |
-| Artifact inventory | Inventory coverage | {inventory_coverage:.6f} | AI BOM/ML artifact inventory 최소 항목 충족 |
+| Log audit | Audit coverage | {audit_coverage:.6f} | toy 필수 로그 필드 보존률 |
+| Artifact inventory | Inventory coverage | {inventory_coverage:.6f} | toy AI BOM/ML artifact inventory 최소 항목 충족률 |
 
 ## 4. 해석
 
 - Synthetic 기준 모델은 accuracy {result['baseline_metrics']['accuracy']:.6f}, F1 {result['baseline_metrics']['f1']:.6f}로 정상 조건 기준선을 만들었다.
-- Drift score는 {result['drift_score']:.6f}이며 threshold {config['experiment']['drift_threshold']:.2f} 기준으로 drift_detected={str(result['drift_detected']).lower()}이다.
-- Dataset, config, model hash와 audit log를 함께 남겨 모델 아티팩트 변조와 결과 재현성 점검의 최소 근거를 확보했다.
+- Drift score는 {result['drift_score']:.6f}이며 threshold {config['experiment']['drift_threshold']:.2f} 기준으로 drift_detected={str(result['drift_detected']).lower()}이다. 이 값은 공격 성공률이나 실제 운영 장애 확률이 아니라 synthetic 기준 데이터와 drifted 데이터 사이의 평균 표준화 feature shift이다.
+- Dataset, config, model hash와 audit log를 함께 남겨 모델 아티팩트 변조와 결과 재현성 점검의 toy evidence set을 확보했다. Audit coverage와 inventory coverage는 실제 기업 보안 보증이나 완전한 AI BOM이 아니라 최소 필드 충족률이다.
 
 ## 5. 제외 범위
 

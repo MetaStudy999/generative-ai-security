@@ -28,8 +28,11 @@ RQ3. ML 공급망 보안을 위해 어떤 로그, 메타데이터, 검증 절차
 | 모델 무결성 | model artifact payload hash 계산 | model hash match true |
 | 재현성 | 동일 config/seed 재실행 후 hash 비교 | re-run consistency true |
 | Drift 감시 | 평균 표준화 feature shift 계산 | drift score 0.307626, threshold 0.25 초과 |
-| 감사 가능성 | 필수 감사 필드 10개 기록 여부 점검 | audit coverage 1.000000 |
+| 감사 가능성 | 필수 감사 필드 10개 기록 여부 점검 | audit coverage 1.000000, toy 필드 보존률 |
+| Artifact inventory | dataset/model/config/run log 최소 항목 기록 | inventory coverage 1.000000, toy 최소 항목 충족률 |
 
 ## 안전 경계
 
 이 위협모형은 교육용 보안 평가 설계다. 실제 시스템 침해 절차, 무단 접근 방법, 악성 패키지 배포 방법, 실제 개인정보 처리 절차는 포함하지 않는다.
+
+Drift score 0.307626은 synthetic reference distribution과 drifted sample distribution 사이의 평균 표준화 feature shift이며, 실제 운영 장애 확률 또는 공격 성공률이 아니다. Audit coverage와 inventory coverage는 toy evidence coverage일 뿐 실제 기업 감사 완전성이나 완전한 AI BOM을 의미하지 않는다.

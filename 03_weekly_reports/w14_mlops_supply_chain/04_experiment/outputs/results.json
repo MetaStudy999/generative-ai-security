@@ -1,0 +1,113 @@
+{
+  "artifact_inventory": [
+    {
+      "hash": "sha256:b9e597bccdbde442522edac38adba4f62be507680b053883620e5defeb4cd5ff",
+      "name": "synthetic_training_and_test_data",
+      "personal_data": false,
+      "source": "local synthetic generator",
+      "type": "dataset"
+    },
+    {
+      "hash": "sha256:5ae625dca9cecba7e20c73cbae71f3416be800418bbd93c3c4d3b1555e2a1ce9",
+      "name": "toy_logistic_regression_model",
+      "path": "outputs/model_artifact.json",
+      "type": "model_artifact"
+    },
+    {
+      "hash": "sha256:bf70c5860357c21c289e0507fbe6df25b5a239fe43656e53c731b6047e092002",
+      "name": "experiment_config",
+      "path": "configs/config.yaml",
+      "type": "configuration"
+    },
+    {
+      "name": "run_log",
+      "path": "outputs/run_log.md",
+      "type": "audit_log"
+    }
+  ],
+  "config": {
+    "audit": {
+      "required_fields": [
+        "run_date",
+        "seed",
+        "config_hash",
+        "dataset_hash",
+        "model_hash",
+        "baseline_accuracy",
+        "drift_score",
+        "artifact_inventory",
+        "reproducibility_check",
+        "security_scope"
+      ]
+    },
+    "data": {
+      "drift_shift": 0.6,
+      "feature_count": 5,
+      "personal_data": false,
+      "test_samples": 160,
+      "train_samples": 320,
+      "type": "synthetic_mlops_binary_classification"
+    },
+    "experiment": {
+      "drift_threshold": 0.25,
+      "epochs": 160,
+      "l2": 0.001,
+      "learning_rate": 0.08,
+      "model": "toy_logistic_regression",
+      "notes": "2026-06-22 local synthetic toy pipeline 실행 완료. 결과값은 outputs/run_log.md, metrics_summary.csv, results.json 기준으로만 사용한다.",
+      "results_recorded": true
+    },
+    "run_date": "2026-06-22",
+    "security_scope": {
+      "allowed": "toy evaluation and literature-based risk analysis",
+      "disallowed": "actual system compromise, personal data use, unauthorized attack"
+    },
+    "seed": 42,
+    "status": "executed",
+    "topic": "MLOps/DevOps·데이터/모델 파이프라인·공급망 보안",
+    "week": "W14"
+  },
+  "hashes": {
+    "config_sha256": "bf70c5860357c21c289e0507fbe6df25b5a239fe43656e53c731b6047e092002",
+    "dataset_sha256": "b9e597bccdbde442522edac38adba4f62be507680b053883620e5defeb4cd5ff",
+    "model_sha256": "5ae625dca9cecba7e20c73cbae71f3416be800418bbd93c3c4d3b1555e2a1ce9"
+  },
+  "metadata": {
+    "personal_data": false,
+    "run_date": "2026-06-22",
+    "status": "executed",
+    "topic": "MLOps/DevOps·데이터/모델 파이프라인·공급망 보안",
+    "week": "W14"
+  },
+  "metrics": {
+    "audit_coverage": 1.0,
+    "baseline": {
+      "accuracy": 0.925,
+      "f1": 0.9230769230769231,
+      "fn": 4.0,
+      "fp": 8.0,
+      "precision": 0.9,
+      "recall": 0.9473684210526315,
+      "tn": 76.0,
+      "tp": 72.0
+    },
+    "drift_detected": true,
+    "drift_score": 0.30762593740740946,
+    "drifted": {
+      "accuracy": 0.925,
+      "f1": 0.9428571428571428,
+      "fn": 6.0,
+      "fp": 6.0,
+      "precision": 0.9428571428571428,
+      "recall": 0.9428571428571428,
+      "tn": 49.0,
+      "tp": 99.0
+    },
+    "inventory_coverage": 1.0,
+    "re_run_consistency": true
+  },
+  "security_scope": {
+    "allowed": "toy evaluation and literature-based risk analysis",
+    "disallowed": "actual system compromise, personal data use, unauthorized attack"
+  }
+}

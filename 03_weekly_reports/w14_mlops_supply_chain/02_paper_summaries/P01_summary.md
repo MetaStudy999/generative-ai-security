@@ -7,10 +7,11 @@
 | 논문 제목 | A Multivocal Review of MLOps Practices, Challenges and Open Issues |
 | 저자 | Beyza Eken, Samodha Pallewatta, Nguyen Khoi Tran, Ayse Tosun, Muhammad Ali Babar |
 | 학술지/학회 | ACM Computing Surveys / arXiv version |
-| 연도 | 2025 |
+| 연도 | 2025 online, 2026 print |
 | DOI/URL | https://doi.org/10.1145/3747346 / https://arxiv.org/abs/2406.09737 |
 | PDF 파일명 | 01_Eken_et_al_2025_MLOps_Practices_Multivocal_Review.pdf |
-| 검증 상태 | 제목은 수업 검수보고서와 PDF 첫 페이지 기준으로 보정, ACM 최종본 세부 서지는 재대조 필요 |
+| DOI 메타데이터 | Vol. 58, Issue 2, pp. 1-35, online 2025-09-08, print 2026-01-31 |
+| 검증 상태 | DOI/arXiv/로컬 PDF는 Beyza Eken 제목으로 대응된다. 수업자료의 Bayram Eken 및 긴 제목 표기는 재확인 필요 |
 
 ## 2. 한 문장 요약
 
@@ -32,6 +33,12 @@ MLOps가 데이터 처리, 모델 학습, 배포, 모니터링, 재학습을 하
 ## 5. 방법론
 
 PDF 첫 페이지 기준으로 peer-reviewed 연구와 grey literature를 함께 분석하는 multivocal review다. 본 보고서에서는 로컬 PDF 제목과 수업자료 DOI를 대조했으며, 세부 분류표와 빈도 수치는 최종 원문 확인 대상으로 남긴다.
+
+## 5.1 서지 차이 메모
+
+- 수업자료 표기: Bayram Eken et al., `A Multivocal Literature Review of MLOps Practices: Emerging Trends, Challenges, and Research Directions`.
+- DOI/arXiv/로컬 PDF 기준: Beyza Eken et al., `A Multivocal Review of MLOps Practices, Challenges and Open Issues`.
+- 주의: W14의 P01은 수업자료/프롬프트 표기와 로컬 PDF 기준 제목·저자명이 다르므로, DOI 10.1145/3747346의 공식 ACM 출판정보를 기준으로 최종 서지를 재확인해야 한다.
 
 ## 6. 주요 결과
 

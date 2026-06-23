@@ -4,13 +4,14 @@
 
 | 항목 | 내용 |
 |---|---|
-| 논문 제목 | Challenges in Deploying Machine Learning: a Survey of Case Studies |
+| 논문 제목 | Challenges in Deploying Machine Learning: A Survey of Case Studies |
 | 저자 | Andrei Paleyes, Raoul-Gabriel Urma, Neil D. Lawrence |
 | 학술지/학회 | ACM Computing Surveys |
-| 연도 | 2022 |
+| 연도 | 2022 online, 2023 print |
 | DOI/URL | https://doi.org/10.1145/3533378 |
 | PDF 파일명 | 02_Paleyes_Urma_Lawrence_2022_ML_Deployment_Challenges.pdf |
-| 검증 상태 | DOI가 로컬 PDF 첫 페이지와 수업자료에서 일치 |
+| DOI 메타데이터 | Vol. 55, Issue 6, pp. 1-29, online 2022-12-07, print 2023-07-31 |
+| 검증 상태 | 제목·저자·DOI 확인. 로컬 PDF는 arXiv판이며 ACM Article 번호는 ACM 페이지 재확인 필요 |
 
 ## 2. 한 문장 요약
 
@@ -32,6 +33,10 @@
 ## 5. 방법론
 
 논문은 published deployment case를 수집하고 ML deployment workflow 단계에 mapping한다. 본 요약은 PDF 첫 페이지와 수업자료 DOI를 대조한 뒤, 세부 사례별 통계는 원문 정밀 확인 대상으로 남겼다.
+
+## 5.1 서지 차이 메모
+
+Crossref DOI 메타데이터 기준 제목은 `Challenges in Deploying Machine Learning: A Survey of Case Studies`이며, 제목 대소문자는 ACM 출판사 기준을 따른다. 수업자료의 권호/Article 번호와 Crossref 권호가 다르므로 최종 참고문헌에는 ACM 페이지에서 Article 번호를 재확인한 뒤 확정한다.
 
 ## 6. 주요 결과
 

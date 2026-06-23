@@ -26,11 +26,18 @@
 |---|---:|---|
 | Baseline accuracy | 0.925000 | 정상 조건 기준선 |
 | Baseline F1 | 0.923077 | 분류 균형 지표 |
-| Drift score | 0.307626 | 운영 monitoring 지표 |
+| Drift score | 0.307626 | 운영 monitoring 지표. 공격 성공률 또는 장애 확률 아님 |
 | Re-run consistency | true | 재현성 근거 |
-| Audit coverage | 1.000000 | 책임추적 근거 |
-| Inventory coverage | 1.000000 | AI BOM/ML artifact inventory 근거 |
+| Audit coverage | 1.000000 | toy 필수 로그 필드 보존률 |
+| Inventory coverage | 1.000000 | toy AI BOM/ML artifact inventory 최소 항목 충족률 |
 
 ## 4. 주의할 점
 
-P03/P04/P05는 로컬 PDF가 대상 논문과 다르므로 최종 논문 인용 전 공식 원문 확인이 필요하다. W14 toy 실험은 실제 운영 보안성 증명이 아니라 보안 평가 evidence 구조를 보이는 제한된 실습이다.
+P01은 수업자료 제목/저자명과 DOI/arXiv/로컬 PDF 기준 제목/저자명이 다르며, P03/P04/P05는 로컬 PDF가 대상 논문과 다르거나 수업자료 표기와 DOI 메타데이터가 다르므로 최종 논문 인용 전 공식 원문 확인이 필요하다. W14 toy 실험은 실제 운영 보안성 증명이 아니라 보안 평가 evidence 구조를 보이는 제한된 실습이다.
+
+## 5. KCI/SCI 전환 메모
+
+| 전환 방향 | 제목 후보 | 핵심 기여 |
+|---|---|---|
+| KCI | 운영형 AI 시스템 보안을 위한 MLOps Evidence Set 평가 프레임워크 연구 | 국문 evidence set 평가표, AI BOM 확장표 |
+| SCI | An Evidence-Set Framework for MLOps Supply-Chain Security and Reproducibility in Operational AI Systems | multi-evidence reporting structure |

@@ -1,0 +1,10 @@
+check_item,metric,value,status,security_meaning
+Baseline model,accuracy,0.925000,recorded,정상 조건 기준 성능
+Baseline model,f1,0.923077,recorded,정상 조건 분류 균형
+Data versioning,dataset_sha256,sha256:b9e597bccdbde442,pass,데이터 무결성 기준점
+Model artifact verification,model_hash_match,true,pass,모델 아티팩트 변조 탐지 기준
+Re-run consistency,model_and_dataset_hash_match,true,pass,동일 config/seed 재실행 가능성
+Drift monitoring,mean_standardized_feature_shift,0.307626,drift_detected,입력 분포 변화 감시
+Drifted model,drift_accuracy,0.925000,recorded,분포 변화 조건 성능
+Log audit,audit_coverage,1.000000,pass,toy 필수 로그 필드 보존률
+Artifact inventory,inventory_coverage,1.000000,pass,toy AI BOM/ML artifact inventory 최소 항목 충족률

@@ -1,27 +1,27 @@
 # W14 논문 5편 비교표
 
-| 논문 | 연구문제 | 핵심 방법 | 데이터/실험 | 보안 위협 | 평가 지표 | 한계 | 내 논문 활용 |
-|---|---|---|---|---|---|---|---|
-| P01 | MLOps practices와 adoption challenge를 어떻게 통합적으로 정리할 것인가 | Multivocal literature review | 학술문헌과 grey literature, 원문 세부 수치 재대조 필요 | artifact 관리 실패, governance/security 공백 | practice taxonomy, challenge taxonomy, lifecycle coverage | survey이므로 통제 효과 직접 검증은 아님 | MLOps 보안통제 프레임워크의 상위 구조 |
-| P02 | ML deployment workflow에서 반복되는 production challenge는 무엇인가 | Case-study survey | published deployment case, 세부 사례 수치 재대조 필요 | 데이터 품질, 통합 실패, monitoring 부재 | workflow 단계별 challenge, deployment concern | 사례별 보안 통제 수준 비교는 제한적 | 연구용/운영용 ML 격차 설명 |
-| P03 | MLOps/AIOps taxonomy와 운영 자동화 task를 어떻게 구분할 것인가 | Systematic survey / 로컬 대체 AIOps review | 대상 원문 PDF 미확보, 로컬 PDF는 cloud AIOps review | 로그 노출, 이상탐지 실패, 자동대응 오류 | incident detection, failure prediction, RCA, TTR/TTD | 로컬 PDF가 대체문헌 | monitoring, incident response, auditability 근거 |
-| P04 | Edge deployment에서 AI pipeline은 어떤 제약을 갖는가 | Edge AI / edge computing review | 대상 원문 PDF 미확보, 로컬 PDF는 Edge Intelligence survey | 분산 모델 update, device별 artifact 변조, 로그 수집 공백 | latency, bandwidth, privacy/locality, resource constraint | 대상 논문 직접 원문 재확인 필요 | edge 배포 환경의 공급망 통제 필요성 |
-| P05 | DL for SE가 DevOps/MLOps pipeline에 어떤 영향을 주는가 | DL for SE survey | 대상 원문 PDF 미확보, 로컬 PDF는 Yang/Xia/Lo/Grundy survey | AI-assisted 개발도구 오염, software/ML supply chain 결합 | task performance, model selection, optimization, reproducibility | 대상 논문과 로컬 PDF 서지 차이 | AI 개발 자동화 도구의 감사·재현성 요구 |
+| 논문 | 연구문제 | 핵심 방법 | 데이터/실험 | AI 원리 기여 | 보안 위협 연결 | 평가 지표 | 한계 | 내 논문 활용 |
+|---|---|---|---|---|---|---|---|---|
+| P01 | MLOps practices와 adoption challenge를 어떻게 통합적으로 정리할 것인가 | multivocal literature review, MLOps practice/challenge taxonomy | 학술문헌 + grey literature. 세부 taxonomy 원문 대조 필요 | MLOps lifecycle, experiment tracking, governance, reproducibility | artifact 관리 실패, governance gap, security control 부재 | lifecycle coverage, artifact coverage, governance maturity | 수업자료/프롬프트 제목 및 저자명과 DOI/로컬 PDF 제목 차이 확인 필요 | MLOps 보안통제 프레임워크의 상위 구조 |
+| P02 | ML deployment workflow에서 반복되는 production challenge는 무엇인가 | case-study survey, deployment workflow analysis | published deployment case studies | 연구용 모델과 운영용 시스템의 차이 | data quality failure, integration failure, monitoring gap, rollback failure | deployment concern, workflow challenge, production readiness | 사례별 보안 통제 수준 정량 비교는 제한적 | 연구용/운영용 ML 격차 설명 |
+| P03 | MLOps/AIOps taxonomy와 운영 자동화 task를 어떻게 구분할 것인가 | systematic survey, AIOps taxonomy, monitoring/incident response classification | 지정 원문 PDF 미확보. 로컬 PDF는 Cheng et al. cloud AIOps 대체문헌 | telemetry, anomaly detection, incident response, RCA | log leakage, anomaly detection failure, unsafe automated response | incident detection, failure prediction, RCA, TTD/TTR | 수업자료 제목과 DOI 메타데이터 제목 차이 및 로컬 PDF 대체 상태 | monitoring, incident response, auditability 근거 |
+| P04 | Edge deployment에서 AI pipeline은 어떤 제약을 갖는가 | edge AI/deep learning with edge computing review | 지정 원문 PDF 미확보. 로컬 PDF는 Zhou et al. Edge Intelligence 대체문헌 | cloud-edge-device deployment, latency, resource constraints | distributed update tampering, edge artifact drift, telemetry gap | latency, bandwidth, privacy/locality, resource constraint | 대상 논문 공식 원문 PDF 재확인 필요 | edge 배포 환경의 공급망 통제 필요성 |
+| P05 | Deep learning for software engineering이 DevOps/MLOps pipeline에 어떤 영향을 주는가 | DL for SE survey, AI-assisted software engineering taxonomy | DOI/로컬 PDF는 Yang/Xia/Lo/Grundy 논문. 수업자료의 Xiang Chen 표기 확인 필요 | code, test, defect prediction, SE automation | AI-assisted dev tool poisoning, software/ML supply-chain coupling | task performance, model selection, reproducibility, human review | 수업자료 지정 저자와 DOI/로컬 PDF 서지 차이 확인 필요 | AI 개발 자동화 도구의 감사·재현성 요구 |
 
 ## 종합 비교
 
 ### 1. 공통적으로 다루는 문제
 
-다섯 편은 연구용 모델을 실제 소프트웨어와 운영환경에 연결할 때 생기는 격차를 서로 다른 층위에서 다룬다. P01/P02는 MLOps와 deployment workflow를, P03은 운영 telemetry와 incident response를, P04는 edge deployment를, P05는 AI가 software engineering workflow에 들어오는 경우를 담당한다.
+다섯 편은 연구용 모델을 실제 소프트웨어와 운영환경에 연결할 때 생기는 격차를 서로 다른 층위에서 다룬다. P01은 MLOps lifecycle과 governance 구조 문헌이고, P02는 production deployment challenge 문헌이다. P03은 AIOps, monitoring, incident response 문헌이며, P04는 edge deployment와 분산 artifact/update 관리 문헌이다. P05는 software engineering pipeline 내부의 DL/AI 활용 문헌이다.
 
-### 2. 논문 간 차이점
+### 2. W14 핵심 연결부
 
-P01은 MLOps practice의 통합 구조, P02는 deployment case의 현실적 난점, P03은 AIOps 운영 감시, P04는 cloud-edge 배포 구조, P05는 개발 pipeline 내부의 AI 활용에 초점을 둔다. W14 보고서에서는 이 차이를 `data/model/config/log/artifact`의 traceability로 묶었다.
+W14의 핵심 연결부는 `data/model/config/log/artifact` traceability와 AI BOM/ML artifact inventory다. 모델 정확도만으로는 운영형 AI 보안성을 설명할 수 없으며, dataset hash, config hash, model hash, drift score, audit coverage, inventory coverage, re-run consistency를 함께 보고해야 한다.
 
-### 3. 아직 해결되지 않은 문제
+### 3. SUBSTITUTE PDF 상태
 
-P03, P04, P05는 로컬 PDF가 대상 논문의 직접 원문과 다르다. 최종 인용 전 공식 원문 확보가 필요하다. 또한 survey 문헌만으로는 보안 통제 효과를 정량 검증하기 어렵기 때문에 toy pipeline 실험을 통해 최소 지표를 보완했다.
+P03/P04/P05는 대체 PDF 상태이므로 지정 논문처럼 인용하지 않는다. P03의 로컬 파일은 Cheng et al. AIOps cloud survey, P04의 로컬 파일은 Zhou et al. Edge Intelligence survey, P05의 로컬 파일은 Yang/Xia/Lo/Grundy DL for SE survey다. 최종 제출 전 수업자료 지정 논문과 DOI 메타데이터의 차이를 공식 출판 페이지에서 재확인해야 한다.
 
-### 4. 기말 논문 주제로 발전 가능한 연결부
+### 4. Toy 실험의 위치
 
-기말 논문에서는 W14를 "운영형 AI 시스템의 보안·재현성 보증 프레임워크"의 근거 주차로 활용한다. 핵심 연결부는 artifact hash, config hash, dataset provenance, drift monitoring, audit coverage, AI BOM/ML artifact inventory다.
+W14 toy 실험은 실제 registry, CI/CD, Kubernetes, package scanner, production telemetry를 구현하지 않은 local synthetic pipeline이다. 따라서 drift score는 공격 성공률이 아니라 운영 감시 지표이고, audit coverage와 inventory coverage는 toy evidence coverage일 뿐 실제 기업 보안 보증이나 완전한 AI BOM이 아니다.

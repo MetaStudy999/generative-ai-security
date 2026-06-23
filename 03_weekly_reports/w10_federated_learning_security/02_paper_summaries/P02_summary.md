@@ -1,62 +1,70 @@
-# P02 논문 요약
+# P02 Summary
 
-## 1. 서지정보
+## A survey on security and privacy of federated learning — Viraaji Mothukuri et al., Future Generation Computer Systems, 2021
 
-| 항목 | 내용 |
-|---|---|
-| 논문 제목 | A survey on security and privacy of federated learning |
-| 저자 | Viraaji Mothukuri, Reza M. Parizi, Seyedamin Pouriyeh, Yan Huang, Ali Dehghantanha, Gautam Srivastava |
-| 공식 출판 정보 | Future Generation Computer Systems, 115, pp. 619-640, 2021 |
-| DOI/URL | https://doi.org/10.1016/j.future.2020.10.007 |
-| PDF 파일명 | 02_Mothukuri_et_al_2021_FL_Security_Privacy_Survey.pdf |
-| 검증 상태 | DOI 메타데이터 기준 제목, 저자, 학술지, volume, page 확인 |
-
-## 2. 한 문장 요약
-
-이 논문은 FL의 security/privacy 위험을 체계적으로 검토하며, poisoning, backdoor, communication bottleneck, inference attack을 FL 채택 전 평가해야 할 핵심 위험으로 정리한다[2].
-
-## 3. 연구문제
-
-FL이 raw data를 중앙 서버로 보내지 않아도 왜 보안·프라이버시 위험에서 자유롭지 않은가를 다룬다. W10에서는 security threat와 privacy threat를 분리해 threat model과 평가 지표를 설계하는 근거가 된다.
-
-## 4. 핵심 개념
-
-| 개념 | 설명 | 기말 논문 연결 |
-|---|---|---|
-| Security threat | poisoning, backdoor, communication bottleneck 등 무결성과 가용성을 해치는 위험 | 보안 이슈 30% |
-| Privacy threat | inference 기반 공격과 업데이트 노출 위험 | leakage proxy 설계 |
-| Edge/on-device learning | 데이터가 클라이언트에 남는 FL 운영 구조 | 보호 자산 정의 |
-| Mass adoption barrier | 신뢰 부족과 위험 문서화 미비 | 정책·책임성 논의 |
-
-## 5. 방법론
-
-이 문헌은 FL 보안·프라이버시 문헌을 survey 형식으로 묶고, 접근 방식, 구현 스타일, 위험요인을 설명한다. W10 보고서는 이를 confidentiality, integrity, privacy 항목으로 전환한다.
-
-### 5.1 핵심 수식 또는 알고리즘 설명
+## 0. 문헌 검증 상태
 
 | 항목 | 내용 |
 |---|---|
-| 수식/알고리즘 이름 | Gradient Leakage Risk Proxy |
-| 원문 위치 | 논문 세부 절/쪽/그림/알고리즘 번호 확인 필요. 로컬 DOI/URL 점검표로 문헌 대응만 확인. |
-| 작성 형식 | Markdown + LaTeX math |
-| 검산 도구 | 사용 안 함 |
-| 수식 또는 절차 | 표준 정의식 / 원문 직접 인용 아님.<br>$$Risk_{leak}\propto I(g_k;D_k)$$ |
-| 기호·입력·출력 | \(g_k\): client gradient/update, \(D_k\): local data, \(I\): mutual information 관점 의존성 |
-| 직관적 의미 | Gradient Leakage Risk Proxy는 Federated Learning 보안 평가에서 핵심 원리나 평가 지표를 정량적으로 해석하기 위한 표준식이다. |
-| 보안 관점 해석 | Federated Learning 보안 평가에서는 정상 성능과 보안 실패 조건을 분리해 보아야 한다. 이 항목은 공격·방어 원리 또는 운영 통제의 평가 기준을 명시하되, 실제 공격 절차나 무단 적용 단계는 포함하지 않는다. |
-| 평가 지표와 연결 | reconstruction error, membership advantage, privacy leakage |
-| 한계와 가정 | 표준 정의식 / 원문 직접 인용 아님. 논문별 변형, 정확한 수식 번호, 실험 설정은 원문 PDF에서 확인 필요다. |
-| 기말 논문 반영 여부 | 반영 |
+| 주차 | W10 Federated Learning Security |
+| 논문명 | A survey on security and privacy of federated learning |
+| 저자 | Viraaji Mothukuri et al. |
+| 출판 정보 | Future Generation Computer Systems, 115, pp. 619–640, 2021 |
+| DOI | https://doi.org/10.1016/j.future.2020.10.007 |
+| 검증 상태 | W10 `paper_list.md` 기준 DOI 확인 |
 
-## 6. 보안 관점 분석
+---
 
-P02는 FL이 privacy-preserving 구조를 표방하더라도 local update, communication, aggregation 단계에서 공격면이 남는다는 점을 설명한다. W10 toy 실험은 그중 poisoning/backdoor 계열을 안전한 synthetic setting으로 축소해 다룬다.
+## 1. 한 문장 요약
 
-## 7. 한계와 확인 필요
+이 논문은 FL의 보안·프라이버시 위협을 **inference attack, poisoning, model update leakage, secure aggregation, differential privacy, access control, trust management** 관점에서 정리하는 W10의 핵심 보안 survey 문헌이다.
 
-- 최신 FL backdoor, secure aggregation, DP, membership inference 논문은 후속 문헌으로 보완해야 한다.
-- W10 실험은 P02의 위협 분류 전체를 재현하지 않고 poisoning/backdoor 평가 형식만 검증한다.
+---
 
-## 8. 기말 논문에 반영할 부분
+## 2. 핵심 연구질문
 
-P02는 FL security/privacy threat taxonomy의 기본 관련연구로 반영한다. 기말 논문에서는 raw data 비공유가 곧 완전한 privacy 보증이 아니라는 문제 제기에 사용한다.
+| 번호 | 연구질문 |
+|---|---|
+| RQ1 | FL은 데이터를 공유하지 않아도 어떤 privacy leakage가 발생하는가? |
+| RQ2 | 악성 client는 update를 통해 global model을 어떻게 오염시킬 수 있는가? |
+| RQ3 | Secure aggregation과 DP는 어떤 보호를 제공하고 어떤 trade-off를 만드는가? |
+| RQ4 | FL 보안 평가는 utility, privacy, robustness, communication cost를 어떻게 함께 봐야 하는가? |
+
+---
+
+## 3. 핵심 수식
+
+### 3.1 Update Leakage Risk
+
+$$
+Risk_{FL}=\alpha PoisonImpact+\beta LeakageRisk+\gamma ByzantineRate
+$$
+
+### 3.2 Privacy-Utility Trade-off
+
+$$
+UtilityDrop=Acc_{baseline}-Acc_{private}
+$$
+
+---
+
+## 4. 위협모형·평가지표
+
+| 항목 | 내용 |
+|---|---|
+| 보호 자산 | client data, gradient/update, client identity, global model |
+| 공격자 목표 | membership inference, gradient leakage, model poisoning, backdoor |
+| 방어 | secure aggregation, differential privacy, anomaly detection, robust aggregation |
+| 지표 | clean accuracy, privacy leakage, ASR, utility drop, communication overhead |
+
+---
+
+## 5. 기말논문 연결
+
+P02는 FL 보안·프라이버시의 직접 핵심 문헌이다. 기말논문에서는 분산 데이터 기여와 모델 업데이트를 감사 가능한 보안 자산으로 정의하는 근거로 사용한다.
+
+---
+
+## 6. 최종 판단
+
+P02는 W10의 보안·프라이버시 기준 문헌이다. FL은 데이터가 중앙으로 모이지 않아도 update와 aggregation 단계에서 보안 위험이 남는다.

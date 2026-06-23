@@ -1,70 +1,154 @@
-# 논문 요약
+# P01 Summary
 
-## 1. 서지정보
+## Diffusion Models: A Comprehensive Survey of Methods and Applications — Ling Yang et al., ACM Computing Surveys, 2024
+
+## 0. 문헌 검증 상태
 
 | 항목 | 내용 |
 |---|---|
-| 논문 제목 | Diffusion Models: A Comprehensive Survey of Methods and Applications |
-| 저자 | Ling Yang, Zhilong Zhang, Yang Song, Shenda Hong, Runsheng Xu, Yue Zhao, Wentao Zhang, Bin Cui, Ming-Hsuan Yang |
-| 학술지/학회 | ACM Computing Surveys |
-| 출판 정보 | Vol. 56, No. 4, Article 105, online 2023-11-09, print issue 2024-04-30 |
-| 연도 | 2023 online / 2024 print issue |
-| DOI/URL | https://doi.org/10.1145/3626235, https://arxiv.org/abs/2209.00796 |
-| PDF 파일명 | 01_Yang_et_al_2023_Diffusion_Models_Comprehensive_Survey.pdf |
-| 검증 상태 | DOI/URL 확인 |
+| 주차 | W06 확률생성모형(Diffusion/GAN) & 딥페이크 검출 |
+| 논문명 | Diffusion Models: A Comprehensive Survey of Methods and Applications |
+| 저자 | Ling Yang et al. |
+| 학술지 | ACM Computing Surveys |
+| 권호/쪽 | Vol. 56, No. 4, Article 105 |
+| 연도 | online 2023 / print 2024 |
+| DOI | https://doi.org/10.1145/3626235 |
+| 보조 URL | https://arxiv.org/abs/2209.00796 |
+| 로컬 PDF | `01_papers/pdf/01_Yang_et_al_2023_Diffusion_Models_Comprehensive_Survey.pdf` |
+| 검증 상태 | W06 `paper_list.md` 기준 DOI/URL 확인 |
 
-## 2. 한 문장 요약
+---
 
-> 이 논문은 diffusion model의 학습 원리, sampling 개선, likelihood 추정, 구조화 데이터 적용 문제를 survey와 taxonomy로 정리하며, 생성모형 평가와 딥페이크 탐지 신뢰성 논의를 위한 배경 이론을 제공한다.
+## 1. 한 문장 요약
 
-## 3. 연구문제
+이 논문은 diffusion model을 **forward noising, reverse denoising, score-based modeling, sampling, conditioning, applications** 관점에서 체계화하고, W06에서 생성형 AI의 합성 이미지·딥페이크·watermark·검출 문제를 이해하기 위한 핵심 확률생성모형 배경을 제공한다.
 
-Diffusion model은 노이즈를 점진적으로 추가하는 forward process와 노이즈를 제거하며 데이터를 복원하는 reverse process를 통해 복잡한 데이터 분포를 학습한다. 이 논문은 다양한 diffusion 계열 방법을 어떻게 분류하고, sampling 비용과 생성 품질, likelihood 추정, 특수 데이터 구조 처리 문제를 어떻게 이해할 것인지 묻는다.
+---
 
-## 4. 핵심 개념
+## 2. 연구문제
 
-| 개념 | 설명 | 기말 논문 연결 |
+| 번호 | 연구질문 |
+|---|---|
+| RQ1 | Diffusion model은 데이터를 점진적으로 noise화하고 다시 복원하는 과정을 어떻게 학습하는가? |
+| RQ2 | DDPM, score-based model, latent diffusion은 어떤 공통 원리와 차이를 갖는가? |
+| RQ3 | Conditioning과 guidance는 text-to-image, image editing, video generation에 어떤 역할을 하는가? |
+| RQ4 | Diffusion 기반 생성물이 딥페이크·저작권·개인정보·워터마킹 평가에 어떤 보안 문제를 만드는가? |
+
+---
+
+## 3. 핵심 이론 및 수식
+
+### 3.1 Forward Diffusion
+
+$$
+q(x_t\mid x_{t-1})=\mathcal{N}\left(x_t;\sqrt{1-\beta_t}x_{t-1},\beta_t I\right)
+$$
+
+| 기호 | 의미 |
+|---|---|
+| $x_0$ | 원본 데이터 |
+| $x_t$ | $t$번째 noise 단계 데이터 |
+| $\beta_t$ | noise schedule |
+
+**보안 해석:** 생성모형은 학습 데이터 분포를 근사한다. 학습 데이터에 얼굴·저작물·민감정보가 포함되면 생성 결과와 프라이버시·저작권 이슈로 이어질 수 있다.
+
+### 3.2 Reverse Denoising
+
+$$
+p_\theta(x_{t-1}\mid x_t)=\mathcal{N}\left(x_{t-1};\mu_\theta(x_t,t),\Sigma_\theta(x_t,t)\right)
+$$
+
+### 3.3 Denoising Loss
+
+$$
+\mathcal{L}_{simple}=\mathbb{E}_{t,x_0,\epsilon}\left[\left\|\epsilon-\epsilon_\theta(x_t,t)\right\|_2^2\right]
+$$
+
+**보안 해석:** 생성 품질 향상은 합성 이미지 탐지 난이도를 높인다. 따라서 W06에서는 생성 품질, 탐지 성능, 워터마크, provenance evidence를 분리해 평가해야 한다.
+
+---
+
+## 4. AI 원리 관점 분석
+
+| 항목 | 분석 |
+|---|---|
+| Forward process | 원본 데이터를 Gaussian noise로 점진적으로 변환한다. |
+| Reverse process | noise에서 data sample을 복원하도록 학습한다. |
+| Score/Denoising | noise 예측 또는 score 추정이 핵심 학습 목표가 된다. |
+| Sampling | 생성 품질과 속도는 sampler와 step 수에 영향을 받는다. |
+| Conditioning | text, class, image condition이 생성 방향을 제어한다. |
+| Latent Diffusion | latent space에서 diffusion을 수행해 비용을 줄인다. |
+
+---
+
+## 5. 보안 이슈 관점 분석
+
+| 보안 항목 | Diffusion 관점 해석 |
+|---|---|
+| 기밀성 | 학습 데이터 memorization과 민감 이미지 재생성 위험이 있다. |
+| 무결성 | 합성 이미지가 증거·인증·여론 조작에 사용될 수 있다. |
+| 가용성 | 고품질 합성물 증가로 검출 시스템 부하가 커진다. |
+| 저작권 | 학습 데이터와 생성물의 권리 문제가 발생할 수 있다. |
+| 책임성 | 생성 모델, prompt, seed, watermark, provenance 기록이 필요하다. |
+
+---
+
+## 6. 위협모형
+
+| 항목 | 내용 |
+|---|---|
+| 보호 대상 | 얼굴 이미지, 신원, 저작물, 생성 prompt, model checkpoint, provenance log |
+| 공격자 목표 | 합성 이미지 생성, 신원 사칭, 허위 시각 증거 생성, 검출 회피 |
+| 공격자 능력 | text prompt 조작, image editing, model fine-tuning, watermark 제거 시도 |
+| 공격 경로 | training data → diffusion model → conditioned generation → synthetic media distribution |
+| 제외 범위 | 실제 인물 사칭물 제작, 무단 개인정보 사용, 유해 딥페이크 생성 |
+
+---
+
+## 7. 평가방법 및 지표
+
+| 지표 | 의미 | W06/P01에서의 활용 |
 |---|---|---|
-| Forward process | 데이터에 노이즈를 점진적으로 추가하는 고정 또는 학습된 확률 과정 | 생성모형 원리 설명 |
-| Reverse process | 노이즈 상태에서 원 데이터 분포로 되돌리는 denoising 생성 과정 | synthetic media 생성 경로 이해 |
-| Score-based model | 데이터 분포의 score를 추정해 sampling하는 관점 | diffusion과 확률적 생성 연결 |
-| Sampling cost | 고품질 생성을 위해 많은 step이 필요한 문제 | 실제 보안 평가 비용과 연결 |
-| Conditional generation | class, text, image condition으로 생성 방향을 제어 | 딥페이크와 합성미디어 위험 분석 |
+| FID/KID | 생성 이미지 품질·분포 유사성 | 생성 품질 배경 |
+| CLIP Score | text-image alignment | prompt-conditioned generation 평가 |
+| Detection AUC | 합성물 검출 성능 | 딥페이크 검출 연결 |
+| Watermark Robustness | watermark 유지율 | provenance 평가 |
+| Leakage Risk | 학습 데이터 재현 위험 | 프라이버시 평가 |
+| Latency/Cost | sampling 비용 | 운영 가능성 |
 
-## 5. 방법론
+---
 
-이 논문은 diffusion 연구를 sampling, likelihood, special data structure, application 관점으로 분류한다. 개별 모델 성능 경쟁보다 방법군의 구조와 연구 흐름을 정리하는 survey이므로, W06에서는 정량 수치보다 평가축과 한계를 가져온다.
+## 8. 재현성 점검
 
-### 5.1 핵심 수식 또는 알고리즘 설명
-
-| 항목 | 내용 |
+| 항목 | 점검 |
 |---|---|
-| 수식/알고리즘 이름 | DDPM Forward Process |
-| 원문 위치 | 논문 세부 절/쪽/그림/알고리즘 번호 확인 필요. 로컬 DOI/URL 점검표로 문헌 대응만 확인. |
-| 작성 형식 | Markdown + LaTeX math |
-| 검산 도구 | 사용 안 함 |
-| 수식 또는 절차 | 표준 정의식 / 원문 직접 인용 아님.<br>$$q(x_t\mid x_{t-1})=\mathcal{N}(x_t;\sqrt{1-\beta_t}x_{t-1},\beta_t I)$$ |
-| 기호·입력·출력 | \(x_t\): timestep t의 noisy sample, \(\beta_t\): noise schedule, \(I\): identity covariance |
-| 직관적 의미 | DDPM Forward Process는 Diffusion/GAN·Deepfake 평가에서 핵심 원리나 평가 지표를 정량적으로 해석하기 위한 표준식이다. |
-| 보안 관점 해석 | Diffusion/GAN·Deepfake 평가에서는 정상 성능과 보안 실패 조건을 분리해 보아야 한다. 이 항목은 공격·방어 원리 또는 운영 통제의 평가 기준을 명시하되, 실제 공격 절차나 무단 적용 단계는 포함하지 않는다. |
-| 평가 지표와 연결 | FID, detection accuracy, FPR/FNR, provenance score |
-| 한계와 가정 | 표준 정의식 / 원문 직접 인용 아님. 논문별 변형, 정확한 수식 번호, 실험 설정은 원문 PDF에서 확인 필요다. |
-| 기말 논문 반영 여부 | 반영 |
+| 모델 | diffusion variant, sampler, step 수, guidance scale 기록 |
+| 데이터 | 공개 데이터셋 또는 synthetic toy data 사용 |
+| 생성 로그 | prompt, seed, model version, output hash 기록 |
+| 보안 평가 | detection AUC, watermark, provenance, failure case 저장 |
+| 한계 | toy generation 결과를 실제 딥페이크 탐지 성능으로 일반화하지 않음 |
 
-## 6. 주요 결과
+---
 
-Diffusion model은 이미지 생성뿐 아니라 video, text, temporal data, scientific data 등으로 확장된다. 그러나 sampling 비용, 평가 지표의 한계, 조건부 생성 통제, 데이터 구조별 일반화 문제는 여전히 중요한 연구 공백으로 남는다.
+## 9. 기말논문 반영 위치
 
-## 7. 보안 관점 분석
+| 장 | 반영 내용 |
+|---|---|
+| 2장 관련연구 | diffusion model 원리와 응용 정리 |
+| 3장 위협모형 | 합성 이미지·prompt·checkpoint·provenance 공격면 정의 |
+| 4장 연구방법 | 생성품질, 검출성능, provenance, watermark 지표 설계 |
+| 6장 보안적 함의 | 딥페이크, 저작권, 프라이버시, 책임성 해석 |
 
-Diffusion model은 고품질 합성미디어 생성 능력을 높이는 동시에 딥페이크 탐지의 난도를 높인다. 따라서 보안 평가는 “생성이 가능한가”보다 “탐지기가 새로운 생성 방식, 압축, 편집, 도메인 이동에서도 신뢰할 수 있는가”로 이동해야 한다.
+---
 
-## 8. 한계와 오픈문제
+## 10. 기말논문 연결 3문장
 
-Survey 문헌이므로 특정 딥페이크 탐지 모델의 성능을 직접 증명하지 않는다. 또한 생성 품질 지표와 포렌식 신뢰성 지표 사이에는 간극이 있어, W06 toy 실험에서는 이를 cross-domain reliability와 FPR/FNR 기록으로 보완했다.
+1. W06에서 기말논문에 반영할 개념: Diffusion model은 고품질 합성물을 생성할 수 있으므로 생성물 신뢰성, provenance, 검출 가능성을 함께 평가해야 한다.
+2. 반영할 표·그림·실험: forward/reverse diffusion 수식, 생성 pipeline, detection AUC·watermark·provenance 평가표를 반영한다.
+3. RAG/LLM 보안 연결: 이미지·비디오 생성물도 멀티모달 RAG의 입력 또는 근거 자료가 될 수 있으므로 provenance와 생성 로그 감사가 필요하다.
 
-arXiv판과 ACM판이 모두 확인되며, 제출용 참고문헌에는 ACM DOI와 Article 105 정보를 우선 사용한다. 세부 수식이나 그림을 직접 인용할 때는 ACM판의 절·쪽수 기준으로 재확인한다.
+---
 
-## 9. 기말 논문에 반영할 부분
+## 11. 최종 판단
 
-기말 논문의 관련연구와 배경 이론 장에서 diffusion model의 forward/reverse process, score-based 관점, sampling 비용, 조건부 생성 개념을 정리하는 근거로 활용한다.
+P01은 W06의 확률생성모형 원리 핵심 문헌이다. 직접 딥페이크 탐지 문헌은 P04/P05가 담당하고, P01은 생성물 보안 평가의 모델 원리를 제공한다.

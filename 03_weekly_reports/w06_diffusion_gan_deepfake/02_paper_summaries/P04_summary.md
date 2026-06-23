@@ -1,70 +1,108 @@
-# 논문 요약
+# P04 Summary
 
-## 1. 서지정보
+## The Creation and Detection of Deepfakes: A Survey — Yisroel Mirsky, Wenke Lee, ACM Computing Surveys, 2021
+
+## 0. 문헌 검증 상태
 
 | 항목 | 내용 |
 |---|---|
-| 논문 제목 | The Creation and Detection of Deepfakes: A Survey |
+| 주차 | W06 확률생성모형(Diffusion/GAN) & 딥페이크 검출 |
+| 논문명 | The Creation and Detection of Deepfakes: A Survey |
 | 저자 | Yisroel Mirsky, Wenke Lee |
-| 학술지/학회 | ACM Computing Surveys |
-| 출판 정보 | Vol. 54, No. 1, pages 1-41, online 2021-01-02, print issue 2022-01-31 |
-| 연도 | 2021 online / 2022 print issue |
-| DOI/URL | https://doi.org/10.1145/3425780, https://arxiv.org/abs/2004.11138 |
-| PDF 파일명 | 04_Mirsky_Lee_2021_Creation_Detection_Deepfakes.pdf |
-| 검증 상태 | DOI/URL 확인, Article 번호 확인 필요 |
+| 학술지 | ACM Computing Surveys |
+| 권호/쪽 | Vol. 54, No. 1, pp. 1–41 |
+| DOI | https://doi.org/10.1145/3425780 |
+| 보조 URL | https://arxiv.org/abs/2004.11138 |
+| 로컬 PDF | `01_papers/pdf/04_Mirsky_Lee_2021_Creation_Detection_Deepfakes.pdf` |
+| 검증 상태 | W06 `paper_list.md` 기준 DOI/URL 확인. 로컬 PDF는 preprint 양식 메모 유지 |
 
-## 2. 한 문장 요약
+---
 
-> 이 논문은 deepfake의 생성 방식과 탐지 방식을 함께 survey하며, 합성미디어가 허위정보·사칭·명예훼손·증거 조작 위험으로 이어지는 구조와 방어 한계를 정리한다.
+## 1. 한 문장 요약
 
-## 3. 연구문제
+이 논문은 딥페이크의 생성과 검출을 **face swap, reenactment, lip-sync, audio/visual manipulation, detection artifact, forensic cues, social impact** 관점에서 정리하며, W06의 핵심 보안 위협모형과 검출 평가 기준을 제공한다.
 
-딥페이크는 생성 기술 발전과 공개 도구 확산으로 점점 만들기 쉬워지고 탐지하기 어려워진다. 이 논문은 deepfake가 어떻게 생성되고, 어떤 탐지 접근이 사용되며, 기존 방어가 어떤 상황에서 실패하는지 묻는다.
+---
 
-## 4. 핵심 개념
+## 2. 핵심 연구질문
 
-| 개념 | 설명 | 기말 논문 연결 |
-|---|---|---|
-| Face swap/reenactment | 얼굴 정체성 또는 표정·동작을 합성 | 공격 시나리오 |
-| Lip sync/audio-visual fake | 음성과 입모양 정합 조작 | 멀티모달 포렌식 |
-| Artifact-based detection | 생성 과정의 흔적을 탐지 | detector 한계 분석 |
-| Generalization failure | 학습 데이터 밖 조작 방식에서 성능 저하 | cross-domain 실험 |
-| Societal harm | 허위정보, 사칭, 협박, 증거 조작 | 보안적 함의 |
+| 번호 | 연구질문 |
+|---|---|
+| RQ1 | 딥페이크는 얼굴 교체, 표정 재연, 음성·입술 동기화 등 어떤 방식으로 생성되는가? |
+| RQ2 | 검출기는 spatial artifact, temporal inconsistency, physiological cue를 어떻게 활용하는가? |
+| RQ3 | 압축·재인코딩·소셜미디어 업로드는 검출 성능을 어떻게 약화시키는가? |
+| RQ4 | 딥페이크 탐지는 기술 지표와 사회적 피해 평가를 어떻게 함께 고려해야 하는가? |
 
-## 5. 방법론
+---
 
-Creation과 detection을 함께 다루는 survey이다. W06에서는 이 논문을 위협모형의 중심 문헌으로 삼고, 공격 절차를 재현하지 않은 채 탐지 신뢰성 지표만 안전한 synthetic 실험으로 확인했다.
+## 3. 핵심 수식
 
-### 5.1 핵심 수식 또는 알고리즘 설명
+### 3.1 Binary Deepfake Detection
+
+$$
+\hat{y}=f_\theta(x), \qquad \hat{y}\in\{real, fake\}
+$$
+
+### 3.2 검출 지표
+
+$$
+Precision=\frac{TP}{TP+FP}, \qquad Recall=\frac{TP}{TP+FN}
+$$
+
+$$
+F1=\frac{2\cdot Precision\cdot Recall}{Precision+Recall}
+$$
+
+**보안 해석:** 딥페이크 검출에서는 fake를 놓치는 FN과 real을 fake로 오탐하는 FP가 모두 사회적 비용을 갖는다. 따라서 accuracy 하나로 평가하면 부족하다.
+
+---
+
+## 4. 생성·검출 Taxonomy
+
+| 축 | 내용 |
+|---|---|
+| 생성 | face swap, face reenactment, expression transfer, lip-sync, voice cloning |
+| 검출 | spatial artifact, temporal artifact, biological signal, frequency cue, metadata/provenance |
+| 공격면 | post-processing, compression, adversarial perturbation, detector overfitting |
+| 피해 | 명예훼손, 사기, 여론조작, 증거 조작, 개인정보 침해 |
+
+---
+
+## 5. 위협모형
 
 | 항목 | 내용 |
 |---|---|
-| 수식/알고리즘 이름 | Deepfake Detection FPR/FNR |
-| 원문 위치 | 논문 세부 절/쪽/그림/알고리즘 번호 확인 필요. 로컬 DOI/URL 점검표로 문헌 대응만 확인. |
-| 작성 형식 | Markdown + LaTeX math |
-| 검산 도구 | 사용 안 함 |
-| 수식 또는 절차 | 표준 정의식 / 원문 직접 인용 아님.<br>$$FPR=\frac{FP}{FP+TN},\qquad FNR=\frac{FN}{FN+TP}$$ |
-| 기호·입력·출력 | FP: 정상 콘텐츠 오탐, TN: 정상으로 올바르게 판정, FN: deepfake 미탐, TP: deepfake 탐지 |
-| 직관적 의미 | Deepfake Detection FPR/FNR는 Diffusion/GAN·Deepfake 평가에서 핵심 원리나 평가 지표를 정량적으로 해석하기 위한 표준식이다. |
-| 보안 관점 해석 | Diffusion/GAN·Deepfake 평가에서는 정상 성능과 보안 실패 조건을 분리해 보아야 한다. 이 항목은 공격·방어 원리 또는 운영 통제의 평가 기준을 명시하되, 실제 공격 절차나 무단 적용 단계는 포함하지 않는다. |
-| 평가 지표와 연결 | accuracy, precision, recall, FPR, FNR, AUC |
-| 한계와 가정 | 표준 정의식 / 원문 직접 인용 아님. 논문별 변형, 정확한 수식 번호, 실험 설정은 원문 PDF에서 확인 필요다. |
-| 기말 논문 반영 여부 | 반영 |
+| 보호 대상 | 얼굴·음성·정체성·영상 원본성·사회적 신뢰 |
+| 공격자 목표 | 신원 사칭, 허위 영상 배포, 검출 회피, 사회공학 공격 |
+| 공격자 능력 | 합성도구 사용, post-processing, compression, 플랫폼 업로드 |
+| 방어자 능력 | 검출 모델, metadata 확인, provenance/watermark, human review |
+| 제외 범위 | 실제 인물 대상 딥페이크 제작, 악의적 배포, 무단 데이터 수집 |
 
-## 6. 주요 결과
+---
 
-딥페이크 탐지는 조작 종류, 데이터셋, 압축 수준, 생성 방식에 따라 성능이 크게 달라질 수 있다. 따라서 단일 accuracy보다 FPR/FNR, domain shift, human review 기준을 함께 기록해야 한다.
+## 6. 평가방법 및 지표
 
-## 7. 보안 관점 분석
+| 지표 | 의미 |
+|---|---|
+| AUC | threshold 독립 검출 성능 |
+| Precision/Recall/F1 | 오탐·미탐 균형 |
+| Cross-dataset Performance | 생성기·데이터셋 변화 일반화 |
+| Compression Robustness | 재인코딩 후 검출 유지 |
+| Temporal Consistency Score | frame 간 artifact 평가 |
+| Human Review Agreement | 사람 검토와 모델 검출 일치성 |
 
-포렌식 맥락에서는 false positive가 무고한 사람을 의심하게 만들고, false negative가 실제 조작물을 놓치게 만든다. W06 toy 실험에서 FPR과 FNR을 분리한 이유가 여기에 있다.
+---
 
-## 8. 한계와 오픈문제
+## 7. 재현성·기말논문 연결
 
-Survey 특성상 최신 diffusion 기반 video generation까지 모두 포괄하지는 못한다. 또한 탐지기 성능은 데이터셋과 후처리 조건에 강하게 의존하므로, 실제 적용 전에는 별도 검증이 필요하다.
+| 항목 | 반영 내용 |
+|---|---|
+| 재현성 | 데이터셋, 생성기, 압축 조건, detector version, threshold 기록 필요 |
+| 한계 | 특정 데이터셋 성능을 실제 인터넷 환경 성능으로 일반화하지 않음 |
+| 기말논문 | 딥페이크 위협모형, 검출 지표, 사회적 피해·책임성 장에 반영 |
 
-로컬 PDF 첫 페이지에는 preprint성 placeholder DOI가 남아 있으므로 제출용 참고문헌에는 ACM DOI `10.1145/3425780`을 우선 사용한다. Crossref 제목은 `The Creation and Detection of Deepfakes`로 표시되며, 로컬 PDF와 강의계획서 제목의 `A Survey` 부제와 차이가 있어 최종 서지 형식에서 한 번 더 확인한다.
+---
 
-## 9. 기말 논문에 반영할 부분
+## 8. 최종 판단
 
-딥페이크 위협모형, 보호 자산, 피해 시나리오, 탐지 실패 조건을 기말 논문의 보안 이슈와 평가방법 장에 반영한다.
+P04는 W06의 핵심 보안 문헌이다. 생성기 원리는 P01/P03이 제공하고, 딥페이크 위협·검출·사회적 함의는 P04가 담당한다.

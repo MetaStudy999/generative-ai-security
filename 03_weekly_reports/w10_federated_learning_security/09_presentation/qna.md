@@ -1,30 +1,29 @@
-# 예상 질문과 답변
+# W10 Q&A
 
-| 질문 | 답변 | 근거 파일 |
-|---|---|---|
-| 왜 실제 FL framework를 사용하지 않았나? | 이번 주차의 목적은 공격 재현이 아니라 평가 구조와 로그 재현성을 안전하게 확인하는 것이다. synthetic toy 환경만 사용했다. | `04_experiment/experiment_report.md` |
-| ASR이 높은데 accuracy가 유지되는 이유는? | backdoor는 전체 clean test set이 아니라 특정 trigger 조건에서만 목표 오동작을 유도한다. 그래서 clean accuracy와 ASR을 함께 봐야 한다. | `04_experiment/outputs/run_log.md` |
-| Coordinate median이면 방어가 끝난 것인가? | 아니다. 20% 조건에서 ASR을 0.496835에서 0.237342로 낮췄지만 완전히 제거하지 못했다. | `03_theory_notes/evaluation_protocol.md` |
-| Privacy Leakage Proxy는 실제 공격 성공률인가? | 아니다. update norm과 다양성 기반 대용 지표이며 실제 gradient inversion이나 membership inference를 수행하지 않았다. | `03_theory_notes/open_problems.md` |
-| P03/P05 DOI는 확인되었나? | 확인했다. P03은 DOI 10.1016/j.inffus.2022.09.011, P05는 DOI 10.1016/j.engappai.2023.107166을 참고문헌에 반영했다. 발표에서는 최종 제출 전 DOI landing page를 사람이 다시 확인한다고 말한다. | `01_papers/doi_check.md` |
-| PDF 원문을 GitHub에 올려도 되는가? | 현재 PDF 5개가 git 추적 중이므로 public 저장소에서는 저작권 위험이 있다. 공개 전 DOI/URL과 요약만 남길지 결정해야 한다. | `01_papers/download_source.md` |
+## Q1. 이 수식이 실제 실험 지표와 어떻게 연결되는가?
 
-<!-- formula-visual-qna:start -->
-## 수식·그래프·그림 보강 Q&A
+A. 핵심 수식은 global_accuracy, global_f1, attack_success_rate, privacy_leakage_proxy, mean_update_norm 같은 지표를 해석하는 표준 정식화다. 실제 값은 `04_experiment/outputs/metrics_summary.csv`에서만 가져오며, 수식 자체가 운영 보증을 뜻하지는 않는다.
 
-### Q. 그래프 수치는 어디에서 온 것인가?
+## Q2. 이 그래프의 수치는 실제 실행 결과인가, 설계 예시인가?
 
-A. `04_experiment/outputs/metrics_summary.csv`의 기존 수치만 사용했다. CSV에 없는 값, 실행하지 않은 실험, 외부 논문 실험 수치는 추가하지 않았다.
+A. 그래프는 `metrics_summary.csv`가 존재하고 numeric 컬럼을 확인한 경우에만 생성했다. CSV에 없는 값은 만들지 않았으며, 산출물이 없을 때는 `design_only / 실행 전 / 확인 필요`로 표시한다.
 
-### Q. 이 수식은 해당 논문의 원문 수식인가?
+## Q3. clean accuracy와 보안 지표가 다른 이유는 무엇인가?
 
-A. 발표 보강용 수식은 표준 정의식 또는 검증 가능한 평가식이다. 논문별 원문 절·쪽·그림 번호가 필요한 경우 최종 제출 전 사람 검토로 확인한다.
+A. clean accuracy는 정상 조건의 예측 성능이고, 보안 지표는 공격 조건, 교란 조건, 프라이버시 누출, 재현성 증거처럼 다른 실패 모드를 본다. 둘은 같은 숫자로 합치면 안 된다.
 
-### Q. 다이어그램은 실험 결과인가?
+## Q4. 이 주차 내용을 기말논문에 어떻게 반영할 수 있는가?
 
-A. 아니다. `FL aggregation structure` 다이어그램은 AI-assisted conceptual diagram이며 threat model과 pipeline 설명을 위한 보조 그림이다.
+A. `FL aggregation structure`를 위협모형 그림으로 쓰고, global_accuracy, global_f1, attack_success_rate, privacy_leakage_proxy, mean_update_norm를 평가방법 표에 연결할 수 있다. 단, toy/synthetic 범위와 확인 필요 항목은 한계 절에 남겨야 한다.
 
-### Q. 보안적으로 가장 조심해야 할 해석은 무엇인가?
+## Q5. 현재 한계는 무엇이고 추가 실험은 무엇인가?
 
-A. privacy_leakage_proxy는 실제 gradient inversion 성공률이 아니며 proxy로만 해석한다. 또한 모든 실습은 공개 데이터, synthetic/toy 데이터, 로컬 모의실험 범위로만 해석한다.
-<!-- formula-visual-qna:end -->
+A. privacy_leakage_proxy는 실제 gradient inversion 성공률이 아니며 proxy로만 해석한다. 추가 실험은 run_log.md와 results.json까지 일치하는 조건에서만 확정 수치로 반영한다.
+
+## Q6. 논문 5편 중 핵심 근거는 무엇인가?
+
+A. P01은 핵심 이론, P02는 위협 분류, P03은 평가 지표, P04는 공격·방어 사례, P05는 재현성·정책 근거로 사용한다. 세부 서지와 DOI/URL은 최종 제출 전 원문으로 확인한다.
+
+## Q7. 실제 운영 시스템에 바로 적용할 수 없는 이유는 무엇인가?
+
+A. 발표의 실습과 그림은 public, synthetic, toy, local evaluation 범위다. 운영 적용에는 실제 데이터 거버넌스, 정책 승인, 위협모형 검토, 독립 검증, 법적 검토가 추가로 필요하다.

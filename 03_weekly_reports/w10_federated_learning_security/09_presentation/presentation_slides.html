@@ -3,76 +3,407 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>W10 FL Security Slides</title>
-  <style>
-    * { box-sizing: border-box; }
-    body { margin: 0; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f5f7fa; color: #1f252c; }
-    .slide { min-height: 100vh; display: none; align-items: center; justify-content: center; padding: 64px 72px 96px; }
-    .slide.active { display: flex; }
-    .content { width: min(1040px, 100%); }
-    h1 { font-size: 48px; line-height: 1.18; margin: 0 0 28px; }
-    h2 { font-size: 38px; line-height: 1.22; margin: 0 0 24px; }
-    p, li { font-size: 24px; line-height: 1.55; }
-    ul { padding-left: 28px; }
-    table { border-collapse: collapse; width: 100%; margin-top: 22px; font-size: 22px; }
-    th, td { border: 1px solid #b9c2cf; padding: 12px 14px; text-align: left; }
-    th { background: #e7edf4; }
-    .controls { position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%); display: flex; align-items: center; gap: 10px; background: #ffffff; border: 1px solid #c7d0dc; padding: 8px 10px; border-radius: 8px; box-shadow: 0 8px 24px rgba(29, 43, 58, 0.14); }
-    button { min-width: 72px; height: 36px; border: 1px solid #9aa8b8; background: #eef2f6; color: #1f252c; border-radius: 6px; font-size: 15px; cursor: pointer; }
-    button:hover { background: #dfe7f0; }
-    #counter { min-width: 64px; text-align: center; font-size: 15px; }
-    @media (max-width: 720px) {
-      .slide { padding: 48px 24px 88px; }
-      h1 { font-size: 34px; }
-      h2 { font-size: 29px; }
-      p, li, table { font-size: 18px; }
-      table { display: block; overflow-x: auto; }
-    }
-  </style>
-<!-- formula-visual-mathjax:start -->
-<script>
-window.MathJax = {
-  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$']] },
-  svg: { fontCache: 'global' }
-};
-</script>
-<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
-<style>
-.formula-visual-supplement .math-block { border-left: 5px solid #0f766e; background: #eef8f6; padding: 14px 18px; margin: 12px 0; font-size: 20px; overflow-x: auto; }
-.formula-visual-supplement .caption { font-size: 16px; line-height: 1.35; color: #53616f; }
-.formula-visual-supplement img { max-width: 100%; max-height: 390px; object-fit: contain; border: 1px solid #d8e0e8; border-radius: 8px; background: #fff; }
-.formula-visual-supplement .media-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
-</style>
-<!-- formula-visual-mathjax:end -->
+  <title>W10 Federated Learning 보안 발표 슬라이드</title>
+  <link rel="stylesheet" href="../../../02_report_templates/nature_research_slide_style.css">
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [["\\(", "\\)"]],
+        displayMath: [["\\[", "\\]"], ["$$", "$$"]]
+      },
+      svg: {
+        fontCache: "global"
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 </head>
 <body>
-  <section class="slide active"><div class="content"><h1>W10 연합학습(FL) &amp; FL 위협·방어·정책</h1><p>FL 보안 평가는 clean accuracy만으로 충분하지 않다.</p></div></section>
-  <section class="slide"><div class="content"><h2>FL 원리</h2><ul><li>Client는 local data로 update를 계산한다.</li><li>Server는 update를 모아 global model을 갱신한다.</li><li>Aggregation rule이 성능과 보안성을 함께 좌우한다.</li></ul></div></section>
-  <section class="slide"><div class="content"><h2>위협모형</h2><table><tr><th>자산</th><th>위협</th></tr><tr><td>local update</td><td>gradient leakage, membership inference</td></tr><tr><td>global model</td><td>poisoning, backdoor</td></tr><tr><td>aggregation result</td><td>malicious/byzantine client 영향</td></tr><tr><td>training log</td><td>재현성·책임성 근거</td></tr></table></div></section>
-  <section class="slide"><div class="content"><h2>논문 패킷 역할</h2><p>P01은 aggregation taxonomy, P02/P03은 security/privacy taxonomy, P04는 privacy와 policy, P05는 backdoor와 ASR 평가를 담당한다.</p></div></section>
-  <section class="slide"><div class="content"><h2>Toy 실험 설계</h2><ul><li>Synthetic binary classification</li><li>10 clients, client별 80 samples</li><li>25 FL rounds, seed 42</li><li>Clean, poisoned 10%, poisoned 20%, robust aggregation 20%</li></ul></div></section>
-  <section class="slide"><div class="content"><h2>실험 결과</h2><table><tr><th>조건</th><th>Acc.</th><th>F1</th><th>ASR</th><th>Privacy</th></tr><tr><td>Clean FL</td><td>0.960000</td><td>0.958042</td><td>0.136076</td><td>0.442597</td></tr><tr><td>Poisoned 10%</td><td>0.953333</td><td>0.951557</td><td>0.297468</td><td>0.428377</td></tr><tr><td>Poisoned 20%</td><td>0.950000</td><td>0.948630</td><td>0.496835</td><td>0.486591</td></tr><tr><td>Robust 20%</td><td>0.955000</td><td>0.953368</td><td>0.237342</td><td>0.439875</td></tr></table></div></section>
-  <section class="slide"><div class="content"><h2>해석</h2><p>20% poisoned FedAvg는 clean accuracy를 크게 떨어뜨리지 않지만 ASR을 크게 올렸다. Coordinate median은 ASR을 낮췄지만 완전히 제거하지는 못했다.</p></div></section>
-  <section class="slide"><div class="content"><h2>기말논문 연결</h2><p>W10는 utility, ASR, privacy leakage proxy, reproducibility를 함께 기록하는 AI 보안 평가표의 근거가 된다.</p></div></section>
-  <section class="slide"><div class="content"><h2>결론</h2><p>FL 보안 평가는 "데이터를 보내지 않는다"는 구조 설명을 넘어 update, aggregation, attack success, 로그 재현성을 함께 검토해야 한다.</p></div></section>
-  <div class="controls"><button id="prev" type="button">이전</button><span id="counter">1/9</span><button id="next" type="button">다음</button></div>
+  <!-- Final canonical deck: presentation_slides.html. Week-numbered HTML files are compatibility copies only. -->
+  <main class="deck">
+
+    <section class="slide" id="w10-title">
+      <div class="journal-kicker">Research Presentation / W10</div>
+      <h1>W10 Federated Learning 보안</h1>
+      <p class="research-question">연구 질문: Federated Learning 보안에서 성능 지표와 보안 지표를 어떻게 분리해 평가할 수 있는가?</p>
+      <div class="ratio-strip">
+        <span>Formula-first</span>
+        <span>Figure-first</span>
+        <span>Toy/Public/Synthetic scope</span>
+        <span>No journal logo or trademark</span>
+      </div>
+      <p class="citation-footnote">최종 발표본: presentation_slides.html. 기존 주차번호 HTML은 호환용으로만 유지.</p>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Background / W10</div>
+      <h2>왜 이 주제가 중요한가</h2>
+      <p class="key-finding">이 주제는 clean 성능만으로는 안전성을 설명하기 어렵다.</p>
+      <div class="figure-grid three-panel">
+        <div class="figure-panel"><div class="panel-label">A</div><h3>AI 원리</h3><p>모델 목적함수와 표현이 평가 지표의 출발점이다.</p></div>
+        <div class="figure-panel"><div class="panel-label">B</div><h3>보안 표면</h3><p>공격자 가정, 보호 자산, 실패 조건을 분리한다.</p></div>
+        <div class="figure-panel"><div class="panel-label">C</div><h3>근거 관리</h3><p>CSV, run log, 결과표가 같은 값을 말해야 한다.</p></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Research Gap</div>
+      <h2>기존 발표 흐름의 빈틈</h2>
+      <table>
+        <thead><tr><th>빈틈</th><th>보완 방식</th><th>검증 상태</th></tr></thead>
+        <tbody>
+          <tr><td>수식과 지표 연결 부족</td><td>핵심 수식, 기호표, 보안적 의미를 한 장에 배치</td><td>표준식 / 확인 필요 병기</td></tr>
+          <tr><td>표와 위협모형 분리</td><td>공격자·방어자·보호 자산 표로 정리</td><td>toy/synthetic 범위</td></tr>
+          <tr><td>결과 그래프 출처 불명확</td><td>metrics_summary.csv 기반 그래프만 사용</td><td>데이터 출처: 04_experiment/outputs/metrics_summary.csv</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Core Formula / W10</div>
+      <h2>핵심 수식: FedAvg Aggregation과 Client Update</h2>
+      <div class="formula-card">
+        \[
+\theta_{t+1}^{(k)}=\theta_t-\eta\nabla \mathcal{L}_k(\theta_t),
+\qquad
+\theta_{t+1}=\sum_{k=1}^{K}\frac{n_k}{n}\theta_{t+1}^{(k)}
+        \]
+      </div>
+      <table>
+<thead>
+<tr>
+<th>기호</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\(\theta_t\)</td>
+<td>round t의 글로벌 모델</td>
+</tr>
+<tr>
+<td>\(\mathcal{L}_k\)</td>
+<td>client k의 local objective</td>
+</tr>
+<tr>
+<td>\(n_k/n\)</td>
+<td>client 데이터 비중</td>
+</tr>
+<tr>
+<td>\(K\)</td>
+<td>client 수</td>
+</tr>
+</tbody>
+</table>
+      <p class="figure-caption">Formula | 각 client는 local update를 만들고 server는 데이터 비중으로 평균한다. 악성 client update가 aggregation에 들어오면 global model과 backdoor 성능이 바뀔 수 있다. 평가 지표 연결: global_accuracy, global_f1, attack_success_rate, malicious_client_rate와 연결한다.</p>
+      <div class="limitation-box">한계: toy FL setting이며 실제 client 침해 절차가 아니다.</div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Threat Model</div>
+      <h2>공격자·방어자·보호 자산</h2>
+      <table>
+        <thead><tr><th>구성요소</th><th>발표 내 의미</th><th>주의</th></tr></thead>
+        <tbody>
+          <tr><td>공격자</td><td>안전한 toy/public/synthetic 범위의 평가 조건을 가정</td><td>실제 시스템 악용 절차 없음</td></tr>
+          <tr><td>방어자</td><td>지표, 로그, 검증 절차로 위험을 관찰</td><td>formal guarantee와 empirical proxy 구분</td></tr>
+          <tr><td>보호 자산</td><td>모델 성능, 데이터 프라이버시, 재현성 증거, 운영 신뢰</td><td>없는 결과는 만들지 않음</td></tr>
+          <tr><td>성공 조건</td><td>global_accuracy, global_f1, attack_success_rate, privacy_leakage_proxy, mean_update_norm 변화가 위험을 설명하는지 확인</td><td>CSV와 모순되면 보류</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Evaluation Protocol</div>
+      <h2>평가 프로토콜과 지표</h2>
+      <table>
+<thead>
+<tr>
+<th>평가 항목</th>
+<th>대표 지표</th>
+<th>기록 방식</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>global_accuracy</td>
+<td>CSV 컬럼 존재 시 그래프와 표에 반영</td>
+<td>실제 실행 산출물 기준</td>
+</tr>
+<tr>
+<td>global_f1</td>
+<td>CSV 컬럼 존재 시 그래프와 표에 반영</td>
+<td>실제 실행 산출물 기준</td>
+</tr>
+<tr>
+<td>attack_success_rate</td>
+<td>CSV 컬럼 존재 시 그래프와 표에 반영</td>
+<td>실제 실행 산출물 기준</td>
+</tr>
+<tr>
+<td>privacy_leakage_proxy</td>
+<td>CSV 컬럼 존재 시 그래프와 표에 반영</td>
+<td>실제 실행 산출물 기준</td>
+</tr>
+<tr>
+<td>mean_update_norm</td>
+<td>CSV 컬럼 존재 시 그래프와 표에 반영</td>
+<td>실제 실행 산출물 기준</td>
+</tr>
+</tbody>
+</table>
+      <p class="figure-caption">Protocol | 데이터 출처: 04_experiment/outputs/metrics_summary.csv. run_log.md 또는 results.json과 모순되는 수치는 사용하지 않는다.</p>
+    </section>
+
+    <section class="slide figure-first">
+      <div class="slide-header">Figure 1 / Diagram</div>
+      <h2>FL aggregation structure</h2>
+      <div class="figure-grid two-panel">
+        <figure class="figure-panel">
+          <div class="panel-label">A</div>
+          <div class="pipeline-diagram" role="img" aria-label="FL aggregation structure">
+<div class="stage normal">Clients<br><small>data stays local</small></div>
+<div class="arrow" aria-hidden="true">→</div>
+<div class="stage normal">Local Update<br><small>Delta theta</small></div>
+<div class="arrow" aria-hidden="true">→</div>
+<div class="stage normal">Aggregation<br><small>FedAvg</small></div>
+<div class="arrow" aria-hidden="true">→</div>
+<div class="stage normal">Global Model<br><small>round t+1</small></div>
+<div class="arrow" aria-hidden="true">→</div>
+<div class="stage risk">Security Eval<br><small>ASR/leakage</small></div>
+</div>
+          <figcaption class="figure-caption">Pipeline | 단계별 공격면과 방어·검증 지점을 4~6개로 압축했다.</figcaption>
+        </figure>
+        <figure class="figure-panel">
+          <div class="panel-label">B</div>
+          <img src="assets/diagrams/w10_pipeline_diagram.svg" alt="W10 pipeline diagram">
+          <figcaption class="figure-caption">Manifest | assets/figure_manifest.md에 생성 방식과 한계를 기록했다.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="slide figure-first">
+      <div class="slide-header">Figure 2 / Metrics</div>
+      <h2>실제 CSV 기반 지표 그래프</h2>
+      <div class="figure-grid two-panel">
+        <figure class="figure-panel chart-panel">
+          <div class="panel-label">A</div>
+          <img src="assets/charts/w10_metrics_chart.svg" alt="W10 metrics chart">
+          <figcaption class="figure-caption">Graph | 그래프는 global_accuracy, global_f1, ASR, privacy_leakage_proxy, mean_update_norm을 조건별로 보여준다. FL에서는 중앙 성능만이 아니라 malicious client rate, update norm, leakage proxy를 함께 기록해야 한다. CSV에 없는 client-level raw data는 만들지 않았다. 데이터 출처: 04_experiment/outputs/metrics_summary.csv</figcaption>
+        </figure>
+        <figure class="figure-panel">
+          <div class="panel-label">B</div>
+          <table>
+<thead>
+<tr>
+<th>condition</th>
+<th>global_accuracy</th>
+<th>global_f1</th>
+<th>attack_success_rate</th>
+<th>privacy_leakage_proxy</th>
+<th>mean_update_norm</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Clean FL</td>
+<td>0.96</td>
+<td>0.958</td>
+<td>0.136</td>
+<td>0.443</td>
+<td>0.638</td>
+</tr>
+<tr>
+<td>Poisoned FL 10%</td>
+<td>0.953</td>
+<td>0.952</td>
+<td>0.297</td>
+<td>0.428</td>
+<td>0.839</td>
+</tr>
+<tr>
+<td>Poisoned FL 20%</td>
+<td>0.95</td>
+<td>0.949</td>
+<td>0.497</td>
+<td>0.487</td>
+<td>1.024</td>
+</tr>
+<tr>
+<td>Robust aggregation 20%</td>
+<td>0.955</td>
+<td>0.953</td>
+<td>0.237</td>
+<td>0.44</td>
+<td>0.93</td>
+</tr>
+</tbody>
+</table>
+          <figcaption class="figure-caption">Table | 그래프에 사용한 CSV의 주요 행을 요약했다.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Paper Map</div>
+      <h2>논문 5편의 역할표</h2>
+      <table>
+<thead>
+<tr>
+<th>ID</th>
+<th>논문 역할</th>
+<th>발표에서 쓰는 위치</th>
+<th>기말논문 연결</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P01</td>
+<td>핵심 이론</td>
+<td>Background / Core Formula</td>
+<td>Federated Learning 보안의 관련연구 뼈대</td>
+</tr>
+<tr>
+<td>P02</td>
+<td>위협 분류</td>
+<td>Threat Model</td>
+<td>공격자·방어자·보호자산 정의</td>
+</tr>
+<tr>
+<td>P03</td>
+<td>평가 지표</td>
+<td>Evaluation Protocol</td>
+<td>정량 지표와 로그 근거 연결</td>
+</tr>
+<tr>
+<td>P04</td>
+<td>공격·방어 사례</td>
+<td>Security Implication</td>
+<td>보안적 함의와 방어 한계</td>
+</tr>
+<tr>
+<td>P05</td>
+<td>재현성·정책 근거</td>
+<td>Limitation</td>
+<td>확인 필요 항목과 제출 전 검증</td>
+</tr>
+</tbody>
+</table>
+      <p class="figure-caption">Paper map | 서지 세부사항과 DOI/URL은 최종 제출 전 원문 기준으로 확인한다.</p>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Security Implication</div>
+      <h2>보안적 함의</h2>
+      <div class="question-box">업데이트 통계와 global 성능을 함께 보아야 은닉형 공격을 놓치지 않는다.</div>
+      <div class="figure-grid three-panel">
+        <div class="figure-panel"><div class="panel-label">A</div><h3>분리</h3><p>clean 성능과 보안 지표를 같은 값처럼 해석하지 않는다.</p></div>
+        <div class="figure-panel"><div class="panel-label">B</div><h3>추적</h3><p>수치, 그래프, 노트, Q&A가 같은 산출물을 가리킨다.</p></div>
+        <div class="figure-panel"><div class="panel-label">C</div><h3>제한</h3><p>실제 악용 절차 없이 평가 개념과 방어 관점만 설명한다.</p></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Limitation</div>
+      <h2>한계와 검증 상태</h2>
+      <div class="limitation-box">privacy_leakage_proxy는 실제 gradient inversion 성공률이 아니며 proxy로만 해석한다. formal privacy leakage guarantee가 아니라 toy proxy다.</div>
+      <table>
+        <thead><tr><th>항목</th><th>상태</th><th>다음 확인</th></tr></thead>
+        <tbody>
+          <tr><td>실험 수치</td><td>실행 산출물 있음</td><td>run_log.md, results.json 대조</td></tr>
+          <tr><td>수식 보증</td><td>표준식 또는 proxy</td><td>원문 절·쪽·formal guarantee 확인</td></tr>
+          <tr><td>운영 적용</td><td>바로 적용 불가</td><td>실제 데이터·정책·위험평가 필요</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Final Takeaway</div>
+      <h2>기말논문 연결</h2>
+      <p class="key-finding">W10의 결론은 지표를 분리하고 근거 파일로 추적하는 연구 설계다.</p>
+      <table>
+        <thead><tr><th>기말논문 장</th><th>연결 내용</th></tr></thead>
+        <tbody>
+          <tr><td>관련연구</td><td>Federated Learning 보안의 핵심 이론과 보안 taxonomy 정리</td></tr>
+          <tr><td>위협모형</td><td>FL aggregation structure 기반 공격면·방어면 정의</td></tr>
+          <tr><td>평가방법</td><td>global_accuracy, global_f1, attack_success_rate, privacy_leakage_proxy, mean_update_norm를 CSV/log 기준으로 검증</td></tr>
+          <tr><td>한계</td><td>toy/synthetic 범위와 확인 필요 항목을 명시</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+  </main>
+
+  <nav class="slide-nav" aria-label="슬라이드 이동">
+    <button id="prevSlide" type="button" title="이전 슬라이드" aria-label="이전 슬라이드">‹</button>
+    <span id="slideCounter" class="slide-counter" aria-live="polite">1 / 1</span>
+    <button id="nextSlide" type="button" title="다음 슬라이드" aria-label="다음 슬라이드">›</button>
+  </nav>
+
   <script>
-    const slides = Array.from(document.querySelectorAll('.slide'));
-    const counter = document.querySelector('#counter');
-    let index = 0;
-    function show(nextIndex) {
-      index = Math.max(0, Math.min(slides.length - 1, nextIndex));
-      slides.forEach((slide, slideIndex) => slide.classList.toggle('active', slideIndex === index));
-      counter.textContent = `${index + 1}/${slides.length}`;
+    const slides = Array.from(document.querySelectorAll("section.slide, section"));
+    const prevButton = document.getElementById("prevSlide");
+    const nextButton = document.getElementById("nextSlide");
+    const counter = document.getElementById("slideCounter");
+    let currentIndex = 0;
+
+    function updateNav(index) {
+      currentIndex = Math.max(0, Math.min(index, slides.length - 1));
+      counter.textContent = `${currentIndex + 1} / ${slides.length}`;
+      prevButton.disabled = currentIndex === 0;
+      nextButton.disabled = currentIndex === slides.length - 1;
     }
-    document.querySelector('#prev').addEventListener('click', () => show(index - 1));
-    document.querySelector('#next').addEventListener('click', () => show(index + 1));
-    document.addEventListener('keydown', (event) => {
-      if (['ArrowRight', 'PageDown', ' '].includes(event.key)) show(index + 1);
-      if (['ArrowLeft', 'PageUp'].includes(event.key)) show(index - 1);
-      if (event.key === 'Home') show(0);
-      if (event.key === 'End') show(slides.length - 1);
+
+    function goToSlide(index) {
+      const nextIndex = Math.max(0, Math.min(index, slides.length - 1));
+      slides[nextIndex].scrollIntoView({ behavior: "smooth", block: "start" });
+      updateNav(nextIndex);
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        window.MathJax.typesetPromise([slides[nextIndex]]).catch(() => {});
+      }
+    }
+
+    prevButton.addEventListener("click", () => goToSlide(currentIndex - 1));
+    nextButton.addEventListener("click", () => goToSlide(currentIndex + 1));
+
+    document.addEventListener("keydown", (event) => {
+      if (["ArrowRight", "PageDown", " "].includes(event.key)) {
+        event.preventDefault();
+        goToSlide(currentIndex + 1);
+      }
+
+      if (["ArrowLeft", "PageUp"].includes(event.key)) {
+        event.preventDefault();
+        goToSlide(currentIndex - 1);
+      }
+
+      if (event.key === "Home") {
+        event.preventDefault();
+        goToSlide(0);
+      }
+
+      if (event.key === "End") {
+        event.preventDefault();
+        goToSlide(slides.length - 1);
+      }
     });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((left, right) => right.intersectionRatio - left.intersectionRatio)[0];
+
+        if (visible) {
+          updateNav(slides.indexOf(visible.target));
+        }
+      },
+      { threshold: [0.55] }
+    );
+
+    slides.forEach((slide) => observer.observe(slide));
+    updateNav(0);
   </script>
 </body>
 </html>

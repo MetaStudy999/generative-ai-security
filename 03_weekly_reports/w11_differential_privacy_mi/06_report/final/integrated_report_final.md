@@ -406,7 +406,7 @@ accuracy, utility_drop, privacy_leakage_score, mi_attack_accuracy, noise_multipl
 
 ### 표 수치 기반 그래프
 
-![W11 metrics chart](../../09_presentation/assets/charts/w11_metrics_chart.png)
+![W11 metrics chart](../../09_presentation/assets/charts/w11_metrics_chart.svg)
 
 그래프는 accuracy, MI attack accuracy, epsilon_proxy, leakage score, utility_drop, noise_multiplier를 조건별로 비교한다. `epsilon_proxy`는 formal DP accountant 결과가 아니므로 privacy guarantee로 읽으면 안 된다. 수치는 W11 outputs의 toy 결과 그대로다.
 

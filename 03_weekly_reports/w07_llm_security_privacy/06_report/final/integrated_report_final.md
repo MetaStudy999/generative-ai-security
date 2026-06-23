@@ -460,7 +460,7 @@ privacy_leakage_rate, over_refusal_rate, mean_risk_score와 연결한다.
 
 ### 표 수치 기반 그래프
 
-![W07 metrics chart](../../09_presentation/assets/charts/w07_metrics_chart.png)
+![W07 metrics chart](../../09_presentation/assets/charts/w07_metrics_chart.svg)
 
 그래프는 LLM 평가의 utility, attack_success_rate, privacy_leakage_rate, code_vulnerability_rate를 비교한다. 유용성 향상과 안전성 저하가 동시에 나타날 수 있으므로 refusal quality와 leakage를 분리해서 해석해야 한다. 수치는 기존 output CSV 기반이다.
 

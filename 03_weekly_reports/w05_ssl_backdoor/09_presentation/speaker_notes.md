@@ -1,63 +1,197 @@
 # W05 발표자 노트
 
-## 1. 표지
+- 권장 시간: 10-14분
+- 발표 원칙: 그림과 수식을 먼저 보여주고, 긴 설명은 구두로 보완한다.
+- 안전 범위: public, synthetic, toy, local evaluation. 실제 시스템 악용 절차는 설명하지 않는다.
 
-오늘 발표는 자기지도학습과 파운데이션 모델, 그리고 poisoning/backdoor 보안을 연결합니다. 핵심 메시지는 표현학습 기반 모델의 보안 평가는 clean 성능 하나로 설명할 수 없다는 점입니다.
+## Slide 1. Title
 
-## 2. 왜 중요한가
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
 
-Foundation model은 대규모 pretraining 표현을 여러 task에 재사용합니다. 그래서 pretraining 데이터가 오염되거나 trigger가 표현공간을 특정 방향으로 이동시키면 downstream task까지 영향을 받을 수 있습니다.
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
 
-## 3. Self-Supervised Learning 원리
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- trigger 관련 설명은 공개 toy/synthetic 범위이며 실제 악용 가능한 절차를 제공하지 않는다.
 
-자기지도학습은 사람이 직접 붙인 라벨 없이 데이터 자체에서 학습 신호를 만듭니다. 목표는 downstream task에 잘 전이되는 representation을 만드는 것입니다. 이 representation이 바로 W05의 보호 자산입니다.
+## Slide 2. Background
 
-## 4. 주요 방법
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
 
-Contrastive learning은 positive pair와 negative pair의 거리를 이용합니다. Masked modeling은 입력 일부를 가리고 복원합니다. Predictive learning은 문맥이나 미래 상태를 예측합니다. 세 방법 모두 데이터 구성과 augmentation 품질에 민감합니다.
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
 
-## 5. 보안 이슈
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- trigger 관련 설명은 공개 toy/synthetic 범위이며 실제 악용 가능한 절차를 제공하지 않는다.
 
-Poisoning은 학습 데이터나 pretraining corpus를 오염시키는 공격입니다. Backdoor는 평소에는 정상처럼 보이다가 trigger가 들어오면 target behavior를 유도합니다. 핵심 지표는 clean 성능과 ASR을 분리해 보는 것입니다.
+## Slide 3. Research Gap
 
-## 6. 논문 5편의 역할
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
 
-P01-P03은 자기지도학습과 video/recommendation 도메인의 표현학습 원리를 맡고, P04-P05는 poisoning과 backdoor의 공격·방어 taxonomy를 맡습니다. 단, P02는 강의계획서 지정 일반 SSL survey와 동일 여부가 남아 있으므로 발표에서는 recommendation SSL survey로 조심스럽게 표현합니다.
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
 
-## 7. 위협모형
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- trigger 관련 설명은 공개 toy/synthetic 범위이며 실제 악용 가능한 절차를 제공하지 않는다.
 
-흐름은 pretraining data에서 SSL objective를 거쳐 embedding space와 downstream classifier로 이어집니다. 공격자는 poisoned sample이나 trigger를 넣고, 방어자는 데이터 검수, consistency check, 실행 로그 보존으로 대응합니다.
+## Slide 4. Core Formula
 
-## 8. 평가 프로토콜
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
 
-평가 지표는 clean accuracy, poisoned clean accuracy, ASR, mean shift, detection rate, clean FPR로 나눕니다. 이 구분이 있어야 정상 입력에서는 잘 동작하지만 trigger 조건에서는 실패하는 상황을 설명할 수 있습니다.
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
 
-## 9. Toy 실험
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- trigger 관련 설명은 공개 toy/synthetic 범위이며 실제 악용 가능한 절차를 제공하지 않는다.
 
-실험은 실제 데이터나 실제 모델 공격이 아닙니다. synthetic 2D representation cluster를 만들고 nearest-centroid classifier로 clean 조건과 trigger 조건을 비교했습니다. 실행 결과는 outputs 폴더의 CSV, JSON, run_log에 있습니다.
+## Slide 5. Threat Model
 
-## 10. 결과
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
 
-Clean baseline accuracy는 1.000000입니다. Poisoned/backdoor 조건에서도 clean accuracy는 1.000000이지만, trigger 후 source embedding이 target centroid로 분류되어 ASR이 1.000000입니다. Consistency defense 후 ASR은 0.000000입니다.
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
 
-## 11. 한계
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- trigger 관련 설명은 공개 toy/synthetic 범위이며 실제 악용 가능한 절차를 제공하지 않는다.
 
-이 결과는 toy 실험입니다. 실제 SSL 모델이나 foundation model의 보안 성능으로 일반화하면 안 됩니다. 발표에서 중요한 것은 수치 자체보다 지표 분리와 로그 근거를 갖춘 평가 구조입니다.
+## Slide 6. Evaluation Protocol
 
-## 12. 기말논문 연결
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
 
-기말논문에서는 표현학습 기반 AI 시스템의 poisoning/backdoor 평가 프레임워크로 연결할 수 있습니다. 관련연구, 위협모형, 평가방법, 분석/실험 장에 모두 반영 가능합니다.
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
 
-## 13. 결론
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- trigger 관련 설명은 공개 toy/synthetic 범위이며 실제 악용 가능한 절차를 제공하지 않는다.
 
-마지막으로 네 가지를 강조합니다. 표현공간은 보호 자산이고, backdoor 평가는 clean 성능과 trigger 조건을 분리해야 하며, representation shift는 중요한 평가축이고, 수치는 실행 근거가 있을 때만 주장해야 합니다.
+## Slide 7. Figure 1 Diagram
 
-<!-- formula-visual-speaker-notes:start -->
-## 수식·그래프·그림 발표자 노트
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
 
-- 핵심 수식: Contrastive Loss와 Representation Shift, Backdoor Trigger Success Metric. 수식은 표준 정의식이며, 원문 위치나 formal guarantee가 확인되지 않은 부분은 확인 필요로 말한다.
-- 기호 정의표는 청중이 식을 해석할 수 있도록 먼저 읽고, 이후 보안 지표와 연결한다.
-- 그래프 설명: 그래프는 representation_shift, trigger_detection_rate, attack_success_rate 같은 SSL/backdoor 관련 지표를 한 화면에서 비교한다. Clean accuracy만으로는 representation 내부 변화나 trigger 조건 성능을 설명할 수 없다. 모든 값은 기존 CSV의 수치 열에서 가져왔다.
-- 다이어그램 설명: `SSL backdoor evaluation flow`는 threat model 또는 평가 pipeline을 한 장으로 보여주는 보조 그림이다.
-- 한계 고지: trigger 관련 설명은 공개 toy/synthetic 범위이며 실제 악용 가능한 절차를 제공하지 않는다.
-<!-- formula-visual-speaker-notes:end -->
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
+
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- trigger 관련 설명은 공개 toy/synthetic 범위이며 실제 악용 가능한 절차를 제공하지 않는다.
+
+## Slide 8. Figure 2 Metrics
+
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
+
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
+
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- trigger 관련 설명은 공개 toy/synthetic 범위이며 실제 악용 가능한 절차를 제공하지 않는다.
+
+## Slide 9. Paper Map
+
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
+
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
+
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- trigger 관련 설명은 공개 toy/synthetic 범위이며 실제 악용 가능한 절차를 제공하지 않는다.
+
+## Slide 10. Security Implication
+
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
+
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
+
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- trigger 관련 설명은 공개 toy/synthetic 범위이며 실제 악용 가능한 절차를 제공하지 않는다.
+
+## Slide 11. Limitation
+
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
+
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
+
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- trigger 관련 설명은 공개 toy/synthetic 범위이며 실제 악용 가능한 절차를 제공하지 않는다.
+
+## Slide 12. Final Takeaway
+
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
+
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
+
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- trigger 관련 설명은 공개 toy/synthetic 범위이며 실제 악용 가능한 절차를 제공하지 않는다.

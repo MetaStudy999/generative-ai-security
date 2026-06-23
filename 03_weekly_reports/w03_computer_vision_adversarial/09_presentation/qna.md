@@ -1,84 +1,29 @@
-# W03 발표 예상 질문과 답변
+# W03 Q&A
 
-## 기준
+## Q1. 이 수식이 실제 실험 지표와 어떻게 연결되는가?
 
-| 항목 | 내용 |
-|---|---|
-| 주제 | 컴퓨터비전 표현학습 & 비전 대적공격 |
-| 발표 파일 | `presentation_report.md`, `presentation_slides.md` |
-| 실험 근거 | `04_experiment/outputs/run_log.md` |
-| 주의 | DOI/URL은 확인되었으나 원문 세부 수치, PDF 보관 정책, 실제 시스템 일반화는 확정 표현 금지 |
+A. 핵심 수식은 accuracy, attack_success_rate, robust_drop 같은 지표를 해석하는 표준 정식화다. 실제 값은 `04_experiment/outputs/metrics_summary.csv`에서만 가져오며, 수식 자체가 운영 보증을 뜻하지는 않는다.
 
-## Q1. 왜 실제 CNN이나 ViT가 아니라 toy nearest-centroid 실험을 사용했나요?
+## Q2. 이 그래프의 수치는 실제 실행 결과인가, 설계 예시인가?
 
-이번 주차의 목적은 최고 성능 모델을 만드는 것이 아니라, clean performance, attack impact, reproducibility를 분리해 기록하는 평가 구조를 확인하는 것입니다. synthetic 8x8 데이터와 단순 모델을 사용하면 개인정보나 운영 서비스 공격 없이 안전하게 공격 조건과 로그 구조를 검증할 수 있습니다.
+A. 그래프는 `metrics_summary.csv`가 존재하고 numeric 컬럼을 확인한 경우에만 생성했다. CSV에 없는 값은 만들지 않았으며, 산출물이 없을 때는 `design_only / 실행 전 / 확인 필요`로 표시한다.
 
-근거 파일: `04_experiment/experiment_report.md`, `04_experiment/outputs/run_log.md`
+## Q3. clean accuracy와 보안 지표가 다른 이유는 무엇인가?
 
-## Q2. Accuracy가 1.0 또는 0.0으로 극단적인데, 이 결과를 일반화할 수 있나요?
+A. clean accuracy는 정상 조건의 예측 성능이고, 보안 지표는 공격 조건, 교란 조건, 프라이버시 누출, 재현성 증거처럼 다른 실패 모드를 본다. 둘은 같은 숫자로 합치면 안 된다.
 
-일반화하면 안 됩니다. 이 값은 synthetic 2-class toy 데이터에서 결정 경계 전환을 보여주는 결과입니다. 실제 CNN/ViT, 자연 이미지, 2D/3D 입력의 강건성을 주장하려면 별도 데이터셋, 모델, 공격 설정, 반복 실험이 필요합니다.
+## Q4. 이 주차 내용을 기말논문에 어떻게 반영할 수 있는가?
 
-근거 파일: `09_presentation/presentation_slides.md`, `06_report/final/integrated_report_final.md`
+A. `adversarial evaluation flow`를 위협모형 그림으로 쓰고, accuracy, attack_success_rate, robust_drop를 평가방법 표에 연결할 수 있다. 단, toy/synthetic 범위와 확인 필요 항목은 한계 절에 남겨야 한다.
 
-## Q3. Feature squeezing은 실제 방어라고 볼 수 있나요?
+## Q5. 현재 한계는 무엇이고 추가 실험은 무엇인가?
 
-이번 실험에서는 방어 성능을 확정하기보다 “방어/점검 조건도 별도 지표로 기록해야 한다”는 예시로 사용했습니다. Feature squeezing eps 0.30 결과는 accuracy 1.000000, ASR 0.000000이지만, 이는 toy 설정의 관찰값이며 실제 방어 효과로 일반화하지 않습니다.
+A. 대적 교란은 toy evaluation 범위로 설명하며 실제 시스템 우회 절차로 쓰지 않는다. 추가 실험은 run_log.md와 results.json까지 일치하는 조건에서만 확정 수치로 반영한다.
 
-근거 파일: `04_experiment/outputs/run_log.md`
+## Q6. 논문 5편 중 핵심 근거는 무엇인가?
 
-## Q4. 왜 ASR을 accuracy와 따로 기록해야 하나요?
+A. P01은 핵심 이론, P02는 위협 분류, P03은 평가 지표, P04는 공격·방어 사례, P05는 재현성·정책 근거로 사용한다. 세부 서지와 DOI/URL은 최종 제출 전 원문으로 확인한다.
 
-Accuracy는 전체 예측 정답률을 보여주지만, 공격이 성공했는지 직접 설명하지 못할 수 있습니다. ASR은 공격 조건에서 원래 맞던 샘플이 공격 후 실패했는지를 보여주므로, 보안 관점의 공격 영향도를 별도로 설명하는 데 필요합니다.
+## Q7. 실제 운영 시스템에 바로 적용할 수 없는 이유는 무엇인가?
 
-근거 파일: `03_theory_notes/evaluation_protocol.md`, `04_experiment/experiment_report.md`
-
-## Q5. White-box와 black-box 공격은 발표에서 어떻게 구분하면 되나요?
-
-White-box는 공격자가 모델 구조, 파라미터, gradient 등 내부 정보를 알고 있다고 가정합니다. Black-box는 내부 정보 없이 제한된 질의나 transfer를 통해 공격한다고 봅니다. W03 발표에서는 이 구분을 공격자 능력의 차이로 설명하고, 평가 지표는 robust accuracy, ASR, attack impact로 연결하면 됩니다.
-
-근거 파일: `02_security_notes/threat_model.md`, `09_presentation/presentation_slides.md`
-
-## Q6. W03 결과는 기말논문에 어떻게 반영되나요?
-
-W03는 기말논문의 관련연구, 위협모형, 평가방법, 분석/실험 장에 연결됩니다. 특히 clean 성능, 공격 조건 성능, 재현성 산출물을 분리하는 형식은 AI 보안 평가 프레임워크의 핵심 사례로 사용할 수 있습니다.
-
-근거 파일: `08_final_paper_bridge/final_paper_bridge.md`, `09_presentation/presentation_report.md`
-
-## Q7. DOI/URL이나 원문 세부 내용은 모두 검증되었나요?
-
-P01-P05 DOI/URL은 Crossref/DOI 기준으로 확인되었습니다. 다만 발표에서는 원문 세부 실험 수치, PDF 보관 정책, 실제 모델 일반화 가능성은 사람이 최종 검토해야 한다고 말합니다.
-
-근거 파일: `01_papers/doi_check.md`, `07_week_submission/submit_checklist.md`
-
-## Q8. 다음 실험으로 확장한다면 무엇을 해야 하나요?
-
-다음 단계는 실제 이미지 데이터셋, CNN 또는 ViT 모델, 복수 epsilon, 반복 seed, 더 명시적인 공격 알고리즘을 포함하는 것입니다. 다만 확장 후에도 실행 로그, config, CSV/JSON, 한계 기록을 함께 남겨야 합니다.
-
-근거 파일: `00_management/progress_log.md`, `04_experiment/configs/config.yaml`
-
-## Q9. 이 발표에서 피해야 할 표현은 무엇인가요?
-
-“W03 실험으로 실제 비전 모델 방어가 검증되었다” 또는 “feature squeezing이 보편적으로 효과적이다” 같은 표현은 피해야 합니다. 정확한 표현은 “toy/synthetic 조건에서 평가 지표 분리와 로그 재현성 구조를 확인했다”입니다.
-
-근거 파일: `09_presentation/speaker_notes.md`, `04_experiment/outputs/run_log.md`
-
-<!-- formula-visual-qna:start -->
-## 수식·그래프·그림 보강 Q&A
-
-### Q. 그래프 수치는 어디에서 온 것인가?
-
-A. `04_experiment/outputs/metrics_summary.csv`의 기존 수치만 사용했다. CSV에 없는 값, 실행하지 않은 실험, 외부 논문 실험 수치는 추가하지 않았다.
-
-### Q. 이 수식은 해당 논문의 원문 수식인가?
-
-A. 발표 보강용 수식은 표준 정의식 또는 검증 가능한 평가식이다. 논문별 원문 절·쪽·그림 번호가 필요한 경우 최종 제출 전 사람 검토로 확인한다.
-
-### Q. 다이어그램은 실험 결과인가?
-
-A. 아니다. `adversarial evaluation flow` 다이어그램은 AI-assisted conceptual diagram이며 threat model과 pipeline 설명을 위한 보조 그림이다.
-
-### Q. 보안적으로 가장 조심해야 할 해석은 무엇인가?
-
-A. 대적 교란은 toy evaluation 범위로 설명하며 실제 시스템 우회 절차로 쓰지 않는다. 또한 모든 실습은 공개 데이터, synthetic/toy 데이터, 로컬 모의실험 범위로만 해석한다.
-<!-- formula-visual-qna:end -->
+A. 발표의 실습과 그림은 public, synthetic, toy, local evaluation 범위다. 운영 적용에는 실제 데이터 거버넌스, 정책 승인, 위협모형 검토, 독립 검증, 법적 검토가 추가로 필요하다.

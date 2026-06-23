@@ -3,589 +3,376 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>W01 딥러닝 패러다임 & ML 보안 분류학</title>
-  <style>
-    :root {
-      --bg: #f6f7f9;
-      --paper: #ffffff;
-      --ink: #17212b;
-      --muted: #5d6b78;
-      --line: #d9e0e7;
-      --accent: #126a73;
-      --accent-2: #b9473f;
-      --accent-3: #6d5aa8;
-      --soft: #e7f3f4;
-      --warn: #f8e7e3;
-      --code: #10232a;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--ink);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR", Arial, sans-serif;
-      line-height: 1.5;
-    }
-
-    main {
-      width: min(1180px, 100vw);
-      margin: 0 auto;
-    }
-
-    .slide {
-      min-height: 100vh;
-      display: none;
-      padding: 56px 64px 72px;
-      background: var(--paper);
-      border-left: 1px solid var(--line);
-      border-right: 1px solid var(--line);
-    }
-
-    .slide.active {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .slide-header {
-      color: var(--accent);
-      font-size: 15px;
-      font-weight: 700;
-      letter-spacing: 0;
-      margin-bottom: 18px;
-    }
-
-    h1 {
-      margin: 0 0 22px;
-      font-size: 46px;
-      line-height: 1.18;
-      letter-spacing: 0;
-    }
-
-    h2 {
-      margin: 0 0 18px;
-      font-size: 36px;
-      line-height: 1.2;
-      letter-spacing: 0;
-    }
-
-    p {
-      margin: 0 0 16px;
-      font-size: 23px;
-      color: var(--ink);
-    }
-
-    .subtitle {
-      max-width: 920px;
-      color: var(--muted);
-      font-size: 25px;
-    }
-
-    .meta {
-      margin-top: 34px;
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .pill {
-      padding: 8px 12px;
-      border: 1px solid var(--line);
-      background: var(--soft);
-      border-radius: 4px;
-      font-size: 16px;
-      color: var(--accent);
-      font-weight: 700;
-    }
-
-    ul, ol {
-      margin: 8px 0 0;
-      padding-left: 28px;
-    }
-
-    li {
-      margin: 10px 0;
-      font-size: 24px;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 18px;
-      font-size: 18px;
-    }
-
-    th, td {
-      border: 1px solid var(--line);
-      padding: 12px 14px;
-      vertical-align: top;
-      text-align: left;
-    }
-
-    th {
-      background: #eef2f6;
-      color: #1f2a35;
-      font-weight: 800;
-    }
-
-    td.num {
-      text-align: right;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-      margin-top: 20px;
-    }
-
-    .panel {
-      border: 1px solid var(--line);
-      border-radius: 6px;
-      padding: 18px;
-      background: #fbfcfd;
-    }
-
-    .panel strong {
-      display: block;
-      color: var(--accent);
-      font-size: 20px;
-      margin-bottom: 8px;
-    }
-
-    .panel span {
-      color: var(--muted);
-      font-size: 18px;
-    }
-
-    .diagram {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 10px;
-      margin-top: 24px;
-    }
-
-    .stage {
-      min-height: 132px;
-      border: 1px solid var(--line);
-      background: #fbfcfd;
-      border-radius: 6px;
-      padding: 14px;
-      position: relative;
-    }
-
-    .stage b {
-      display: block;
-      color: var(--accent);
-      margin-bottom: 9px;
-      font-size: 18px;
-    }
-
-    .stage small {
-      display: block;
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.45;
-    }
-
-    .callout {
-      margin-top: 24px;
-      padding: 18px 20px;
-      border-left: 5px solid var(--accent);
-      background: var(--soft);
-      font-size: 22px;
-      font-weight: 700;
-    }
-
-    .warning {
-      border-left-color: var(--accent-2);
-      background: var(--warn);
-    }
-
-    .codebox {
-      margin-top: 22px;
-      background: var(--code);
-      color: #f3fbff;
-      padding: 18px 20px;
-      border-radius: 6px;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      font-size: 20px;
-      white-space: pre-wrap;
-    }
-
-    .footer {
-      position: fixed;
-      left: 50%;
-      bottom: 18px;
-      transform: translateX(-50%);
-      width: min(1052px, calc(100vw - 64px));
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      color: var(--muted);
-      font-size: 14px;
-      pointer-events: none;
-    }
-
-    .counter {
-      color: var(--accent);
-      font-weight: 800;
-    }
-
-    .controls {
-      position: fixed;
-      right: 18px;
-      top: 18px;
-      display: flex;
-      gap: 8px;
-    }
-
-    button {
-      min-width: 40px;
-      height: 36px;
-      border: 1px solid var(--line);
-      background: var(--paper);
-      color: var(--ink);
-      border-radius: 4px;
-      font-size: 18px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
-    @media (max-width: 760px) {
-      .slide {
-        padding: 72px 24px 70px;
-      }
-
-      h1 {
-        font-size: 34px;
-      }
-
-      h2 {
-        font-size: 28px;
-      }
-
-      p, li {
-        font-size: 19px;
-      }
-
-      .subtitle {
-        font-size: 20px;
-      }
-
-      .grid, .diagram {
-        grid-template-columns: 1fr;
-      }
-
-      table {
-        font-size: 14px;
-      }
-
-      th, td {
-        padding: 8px;
-      }
-    }
-
-    @media print {
-      body {
-        background: white;
-      }
-
-      .slide {
-        display: flex !important;
-        min-height: 100vh;
-        page-break-after: always;
-        border: 0;
-      }
-
-      .controls, .footer {
-        display: none;
-      }
-    }
-  </style>
-<!-- formula-visual-mathjax:start -->
-<script>
-window.MathJax = {
-  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$']] },
-  svg: { fontCache: 'global' }
-};
-</script>
-<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
-<style>
-.formula-visual-supplement .math-block { border-left: 5px solid #0f766e; background: #eef8f6; padding: 14px 18px; margin: 12px 0; font-size: 20px; overflow-x: auto; }
-.formula-visual-supplement .caption { font-size: 16px; line-height: 1.35; color: #53616f; }
-.formula-visual-supplement img { max-width: 100%; max-height: 390px; object-fit: contain; border: 1px solid #d8e0e8; border-radius: 8px; background: #fff; }
-.formula-visual-supplement .media-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
-</style>
-<!-- formula-visual-mathjax:end -->
-</head>
-<body>
-  <div class="controls" aria-label="슬라이드 이동">
-    <button type="button" id="prev" title="이전 슬라이드">‹</button>
-    <button type="button" id="next" title="다음 슬라이드">›</button>
-  </div>
-
-  <main>
-    <section class="slide active">
-      <div class="slide-header">W01 Presentation</div>
-      <h1>딥러닝 패러다임 &<br>ML 보안 분류학</h1>
-      <p class="subtitle">딥러닝을 정확도 모델이 아니라 보안 평가가 필요한 ML 시스템으로 읽기</p>
-      <div class="meta">
-        <span class="pill">AI 원리 70%</span>
-        <span class="pill">보안 이슈 30%</span>
-        <span class="pill">논문 5편</span>
-        <span class="pill">safe toy evaluation</span>
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="slide-header">1 / 기준 주차</div>
-      <h2>왜 W01이 중요한가</h2>
-      <ul>
-        <li>이후 주차의 공격과 방어를 읽기 위한 공통 언어를 만든다.</li>
-        <li>성능 중심 질문을 보안성 중심 질문으로 바꾼다.</li>
-        <li>핵심 질문: 모델이 잘 맞는다는 말은 보안적으로 충분한가?</li>
-      </ul>
-      <div class="callout">W01의 목표는 딥러닝 원리를 ML 시스템 보안 평가 프레임으로 바꾸는 것이다.</div>
-    </section>
-
-    <section class="slide">
-      <div class="slide-header">2 / Roadmap</div>
-      <h2>발표 흐름</h2>
-      <ol>
-        <li>딥러닝 원리 70%</li>
-        <li>보안 이슈 30%</li>
-        <li>논문 5편의 역할</li>
-        <li>ML 생명주기 위협모형</li>
-        <li>평가 프레임과 실습 결과</li>
-        <li>한계와 기말논문 연결</li>
-      </ol>
-    </section>
-
-    <section class="slide">
-      <div class="slide-header">3 / AI Principle</div>
-      <h2>딥러닝 원리 70%</h2>
-      <div class="grid">
-        <div class="panel"><strong>표현학습</strong><span>원시 입력에서 과제에 유용한 특징을 모델이 직접 학습한다.</span></div>
-        <div class="panel"><strong>역전파</strong><span>손실함수의 gradient를 이용해 파라미터를 갱신한다.</span></div>
-        <div class="panel"><strong>일반화</strong><span>학습 데이터 밖에서도 성능이 유지되는 성질이다.</span></div>
-        <div class="panel"><strong>과적합</strong><span>성능 문제이면서 privacy leakage의 위험 신호가 될 수 있다.</span></div>
-      </div>
-      <div class="callout">공격자는 입력만 바꾸는 것이 아니라 내부 표현과 decision boundary를 흔든다.</div>
-    </section>
-
-    <section class="slide">
-      <div class="slide-header">4 / Security Issue</div>
-      <h2>보안 이슈 30%</h2>
-      <table>
-        <thead>
-          <tr><th>보안 속성</th><th>ML 보안 문제</th><th>대표 예</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Confidentiality</td><td>학습 데이터와 민감 정보 노출</td><td>membership inference, model inversion</td></tr>
-          <tr><td>Integrity</td><td>예측 결과 조작</td><td>adversarial example, poisoning</td></tr>
-          <tr><td>Availability</td><td>탐지 실패 또는 오탐 폭증</td><td>IDS 미탐, 오탐 비용 증가</td></tr>
-          <tr><td>Accountability</td><td>결과 재현과 책임 추적 실패</td><td>seed, config, 로그 누락</td></tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section class="slide">
-      <div class="slide-header">5 / Paper Map</div>
-      <h2>논문 5편의 역할</h2>
-      <table>
-        <thead>
-          <tr><th>ID</th><th>중심 역할</th><th>W01 활용</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>P01</td><td>딥러닝 원리</td><td>표현학습, 역전파, 일반화</td></tr>
-          <tr><td>P02</td><td>ML 생명주기 보증</td><td>데이터-학습-검증-배포 증거</td></tr>
-          <tr><td>P03</td><td>침입탐지 ML</td><td>오탐, 미탐, 평가 지표</td></tr>
-          <tr><td>P04</td><td>대적 공격과 방어</td><td>robust accuracy, attack success rate</td></tr>
-          <tr><td>P05</td><td>프라이버시 공격</td><td>leakage risk, 공격자 지식</td></tr>
-        </tbody>
-      </table>
-      <div class="callout">단일 accuracy 표가 아니라 위협가정, 지표, 재현성 증거를 함께 기록해야 한다.</div>
-    </section>
-
-    <section class="slide">
-      <div class="slide-header">6 / Lifecycle Threat Model</div>
-      <h2>ML 생명주기 위협모형</h2>
-      <div class="diagram">
-        <div class="stage"><b>Data</b><small>라벨 품질<br>편향<br>민감정보 노출</small></div>
-        <div class="stage"><b>Training</b><small>poisoning<br>overfitting<br>memorization</small></div>
-        <div class="stage"><b>Validation</b><small>robust 평가 누락<br>leakage 평가 누락</small></div>
-        <div class="stage"><b>Deployment</b><small>evasion<br>model extraction<br>drift</small></div>
-        <div class="stage"><b>Monitoring</b><small>incident log<br>재현성<br>운영 추적</small></div>
-      </div>
-      <p class="subtitle">평가 단위는 모델 하나가 아니라 전체 ML 생명주기다.</p>
-    </section>
-
-    <section class="slide">
-      <div class="slide-header">7 / Evaluation Frame</div>
-      <h2>평가 프레임</h2>
-      <table>
-        <thead>
-          <tr><th>평가축</th><th>질문</th><th>대표 지표</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Clean performance</td><td>정상 조건에서 잘 맞는가</td><td>accuracy, precision, recall, F1</td></tr>
-          <tr><td>Robust performance</td><td>교란 조건에서도 유지되는가</td><td>robust accuracy, attack impact</td></tr>
-          <tr><td>Privacy leakage</td><td>민감 정보가 새는가</td><td>leakage risk, attack advantage</td></tr>
-          <tr><td>Reproducibility</td><td>결과를 다시 만들 수 있는가</td><td>seed, config, code, logs</td></tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section class="slide">
-      <div class="slide-header">8 / Experiment Design</div>
-      <h2>실습 설계</h2>
-      <ul>
-        <li>데이터: synthetic binary classification data</li>
-        <li>모델: 표준 라이브러리 기반 toy logistic regression</li>
-        <li>조건: clean baseline, label-noise training, toy feature perturbation</li>
-        <li>점검: privacy-safe overfitting/confidence audit</li>
-      </ul>
-      <div class="callout warning">안전 범위: 개인정보, 실제 서비스 질의, 무단 접근, 악성코드 실행 없음.</div>
-    </section>
-
-    <section class="slide">
-      <div class="slide-header">9 / Experiment Result</div>
-      <h2>실습 결과</h2>
-      <table>
-        <thead>
-          <tr><th>조건</th><th>Accuracy</th><th>Precision</th><th>Recall</th><th>F1</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Clean baseline</td><td class="num">0.869444</td><td class="num">0.867403</td><td class="num">0.872222</td><td class="num">0.869806</td></tr>
-          <tr><td>Label-noise training</td><td class="num">0.838889</td><td class="num">0.827957</td><td class="num">0.855556</td><td class="num">0.841530</td></tr>
-          <tr><td>Toy feature perturbation</td><td class="num">0.844444</td><td class="num">0.848315</td><td class="num">0.838889</td><td class="num">0.843575</td></tr>
-        </tbody>
-      </table>
-      <div class="callout">정상 조건 성능만으로는 라벨 품질 저하나 입력 교란 취약성을 설명할 수 없다.</div>
-    </section>
-
-    <section class="slide">
-      <div class="slide-header">10 / Privacy-Safe Audit</div>
-      <h2>Privacy-safe audit</h2>
-      <div class="grid">
-        <div class="panel"><strong>Train accuracy</strong><span>0.857143</span></div>
-        <div class="panel"><strong>Test accuracy</strong><span>0.869444</span></div>
-        <div class="panel"><strong>Train-test gap</strong><span>-0.012301</span></div>
-        <div class="panel"><strong>Risk label</strong><span>low_overfitting_signal</span></div>
-      </div>
-      <div class="callout warning">이 결과는 실제 데이터 대상 membership inference 공격 결과가 아니다.</div>
-    </section>
-
-    <section class="slide">
-      <div class="slide-header">11 / Limits</div>
-      <h2>한계와 오픈 문제</h2>
-      <ul>
-        <li>Synthetic toy evaluation은 실제 운영망의 공격 표면을 대표하지 않는다.</li>
-        <li>Survey taxonomy를 실제 평가로 연결하려면 데이터셋과 공격자 지식이 필요하다.</li>
-        <li>Privacy risk는 단일 수치로 요약하기 어렵다.</li>
-        <li>재현성 증거는 보안 주장을 검토할 수 있게 하는 최소 조건이다.</li>
-      </ul>
-    </section>
-
-    <section class="slide">
-      <div class="slide-header">12 / Conclusion</div>
-      <h2>결론과 기말논문 연결</h2>
-      <ul>
-        <li>딥러닝 원리는 보안 취약성의 기술적 배경이다.</li>
-        <li>ML 보안은 생명주기 전체에서 평가해야 한다.</li>
-        <li>clean, robust, privacy, reproducibility를 분리해 기록해야 한다.</li>
-      </ul>
-      <div class="callout">기말논문 후보: ML 생명주기 기반 AI 보안 평가 프레임워크</div>
-    </section>
-  <!-- formula-visual-html:start -->
-    <section class="slide formula-visual-supplement">
-      <div class="slide-header">Formula / W01</div>
-      <h2>핵심 수식과 기호</h2>
-      <h3>Empirical Risk와 Generalization Gap</h3>
-      <div class="math-block">
-      $$
-      \hat{R}(\theta)=\frac{1}{n}\sum_{i=1}^{n}\ell(f_\theta(x_i),y_i),
-      \qquad
-      Gap=R_{\mathrm{test}}(\theta)-\hat{R}_{\mathrm{train}}(\theta)
-      $$
-      </div>
-      <p>보안 관점에서는 clean 성능이 높아도 공격·교란·privacy 조건의 위험이 별도로 남을 수 있다. 따라서 lifecycle 평가에서는 데이터, 학습, 검증, 배포 로그를 함께 본다.</p>
-      <h3>Robust Accuracy와 ASR</h3>
-      <div class="math-block">
-      $$
-      RA_\epsilon=\Pr_{(x,y)\sim D}\left[f_\theta(x+\delta)=y,\ \forall \delta \in \Delta_\epsilon\right],
-      \qquad
-      ASR=\frac{1}{m}\sum_{j=1}^{m}\mathbf{1}[f_\theta(\tilde{x}_j)=y_j^{target}]
-      $$
-      </div>
-      <p>보안 평가는 clean accuracy 하나로 끝나지 않고 robustness와 privacy leakage를 분리해야 한다.</p>
-      <div class="message">수식은 표준 정의식이며 원문 위치와 formal guarantee는 최종 검토 대상이다.</div>
-      <div class="footer"><span>W01 formula supplement</span><span></span></div>
-    </section>
-
-    <section class="slide formula-visual-supplement">
-      <div class="slide-header">Visual / W01</div>
-      <h2>그래프와 Pipeline Diagram</h2>
-      <div class="media-grid">
-        <div><img src="assets/charts/w01_metrics_chart.png" alt="W01 metrics chart"><p class="caption">그래프는 `metrics_summary.csv`의 condition별 accuracy와 F1만 시각화한다. Clean baseline, label-noise training, toy feature perturbation 조건을 같은 축에 두어 정상 성능만으로 보안성을 단정하기 어렵다는 점을 보여준다. synthetic/toy 평가 결과이므로 실제 운영 시스템 보증으로 해석하지 않는다.</p></div>
-        <div><img src="assets/diagrams/w01_pipeline_diagram.svg" alt="W01 pipeline diagram"><p class="caption">AI-assisted conceptual diagram. See assets/figure_manifest.md.</p></div>
-      </div>
-      <div class="footer"><span>Source: outputs/metrics_summary.csv</span><span>ML lifecycle threat model</span></div>
-    </section>
-<!-- formula-visual-html:end -->
-  </main>
-
-  <div class="footer">
-    <span>W01 딥러닝 패러다임 & ML 보안 분류학</span>
-    <span class="counter" id="counter">1 / 13</span>
-  </div>
+  <title>W01 딥러닝 패러다임 &amp; ML 보안 분류학 발표 슬라이드</title>
+  <link rel="stylesheet" href="../../../02_report_templates/nature_research_slide_style.css">
 
   <script>
-    const slides = Array.from(document.querySelectorAll(".slide"));
-    const counter = document.getElementById("counter");
-    let index = 0;
-
-    function showSlide(nextIndex) {
-      index = Math.max(0, Math.min(slides.length - 1, nextIndex));
-      slides.forEach((slide, slideIndex) => {
-        slide.classList.toggle("active", slideIndex === index);
-      });
-      counter.textContent = `${index + 1} / ${slides.length}`;
-      if (window.MathJax && window.MathJax.typesetPromise) {
-        window.MathJax.typesetPromise([slides[index]]).catch(() => {});
+    window.MathJax = {
+      tex: {
+        inlineMath: [["\\(", "\\)"]],
+        displayMath: [["\\[", "\\]"], ["$$", "$$"]]
+      },
+      svg: {
+        fontCache: "global"
       }
-      document.title = `W01 발표자료 (${index + 1}/${slides.length})`;
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <!-- Final canonical deck: presentation_slides.html. Week-numbered HTML files are compatibility copies only. -->
+  <main class="deck">
+
+    <section class="slide" id="w01-title">
+      <div class="journal-kicker">Research Presentation / W01</div>
+      <h1>W01 딥러닝 패러다임 &amp; ML 보안 분류학</h1>
+      <p class="research-question">연구 질문: 딥러닝 패러다임 &amp; ML 보안 분류학에서 성능 지표와 보안 지표를 어떻게 분리해 평가할 수 있는가?</p>
+      <div class="ratio-strip">
+        <span>Formula-first</span>
+        <span>Figure-first</span>
+        <span>Toy/Public/Synthetic scope</span>
+        <span>No journal logo or trademark</span>
+      </div>
+      <p class="citation-footnote">최종 발표본: presentation_slides.html. 기존 주차번호 HTML은 호환용으로만 유지.</p>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Background / W01</div>
+      <h2>왜 이 주제가 중요한가</h2>
+      <p class="key-finding">이 주제는 clean 성능만으로는 안전성을 설명하기 어렵다.</p>
+      <div class="figure-grid three-panel">
+        <div class="figure-panel"><div class="panel-label">A</div><h3>AI 원리</h3><p>모델 목적함수와 표현이 평가 지표의 출발점이다.</p></div>
+        <div class="figure-panel"><div class="panel-label">B</div><h3>보안 표면</h3><p>공격자 가정, 보호 자산, 실패 조건을 분리한다.</p></div>
+        <div class="figure-panel"><div class="panel-label">C</div><h3>근거 관리</h3><p>CSV, run log, 결과표가 같은 값을 말해야 한다.</p></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Research Gap</div>
+      <h2>기존 발표 흐름의 빈틈</h2>
+      <table>
+        <thead><tr><th>빈틈</th><th>보완 방식</th><th>검증 상태</th></tr></thead>
+        <tbody>
+          <tr><td>수식과 지표 연결 부족</td><td>핵심 수식, 기호표, 보안적 의미를 한 장에 배치</td><td>표준식 / 확인 필요 병기</td></tr>
+          <tr><td>표와 위협모형 분리</td><td>공격자·방어자·보호 자산 표로 정리</td><td>toy/synthetic 범위</td></tr>
+          <tr><td>결과 그래프 출처 불명확</td><td>metrics_summary.csv 기반 그래프만 사용</td><td>데이터 출처: 04_experiment/outputs/metrics_summary.csv</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Core Formula / W01</div>
+      <h2>핵심 수식: Empirical Risk와 Generalization Gap</h2>
+      <div class="formula-card">
+        \[
+\hat{R}(\theta)=\frac{1}{n}\sum_{i=1}^{n}\ell(f_\theta(x_i),y_i),
+\qquad
+Gap=R_{\mathrm{test}}(\theta)-\hat{R}_{\mathrm{train}}(\theta)
+        \]
+      </div>
+      <table>
+<thead>
+<tr>
+<th>기호</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\(\theta\)</td>
+<td>모델 파라미터</td>
+</tr>
+<tr>
+<td>\(n\)</td>
+<td>학습 표본 수</td>
+</tr>
+<tr>
+<td>\(\ell\)</td>
+<td>손실 함수</td>
+</tr>
+<tr>
+<td>\(Gap\)</td>
+<td>훈련 손실과 테스트 위험의 차이</td>
+</tr>
+</tbody>
+</table>
+      <p class="figure-caption">Formula | 딥러닝 평가는 학습 표본 평균 손실을 낮추는 과정으로 출발한다. Generalization gap은 훈련 성능과 테스트 성능이 얼마나 벌어지는지 보는 기본 렌즈다. 보안 관점에서는 clean 성능이 높아도 공격·교란·privacy 조건의 위험이 별도로 남을 수 있다. 따라서 lifecycle 평가에서는 데이터, 학습, 검증, 배포 로그를 함께 본다. 평가 지표 연결: clean accuracy, F1, robust accuracy, leakage score, reproducibility evidence를 서로 다른 축으로 연결한다.</p>
+      <div class="limitation-box">한계: W01 실습은 synthetic/toy setting이며 formal robustness나 privacy guarantee를 제공하지 않는다.</div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Threat Model</div>
+      <h2>공격자·방어자·보호 자산</h2>
+      <table>
+        <thead><tr><th>구성요소</th><th>발표 내 의미</th><th>주의</th></tr></thead>
+        <tbody>
+          <tr><td>공격자</td><td>안전한 toy/public/synthetic 범위의 평가 조건을 가정</td><td>실제 시스템 악용 절차 없음</td></tr>
+          <tr><td>방어자</td><td>지표, 로그, 검증 절차로 위험을 관찰</td><td>formal guarantee와 empirical proxy 구분</td></tr>
+          <tr><td>보호 자산</td><td>모델 성능, 데이터 프라이버시, 재현성 증거, 운영 신뢰</td><td>없는 결과는 만들지 않음</td></tr>
+          <tr><td>성공 조건</td><td>accuracy, f1 변화가 위험을 설명하는지 확인</td><td>CSV와 모순되면 보류</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Evaluation Protocol</div>
+      <h2>평가 프로토콜과 지표</h2>
+      <table>
+<thead>
+<tr>
+<th>평가 항목</th>
+<th>대표 지표</th>
+<th>기록 방식</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>accuracy</td>
+<td>CSV 컬럼 존재 시 그래프와 표에 반영</td>
+<td>실제 실행 산출물 기준</td>
+</tr>
+<tr>
+<td>f1</td>
+<td>CSV 컬럼 존재 시 그래프와 표에 반영</td>
+<td>실제 실행 산출물 기준</td>
+</tr>
+</tbody>
+</table>
+      <p class="figure-caption">Protocol | 데이터 출처: 04_experiment/outputs/metrics_summary.csv. run_log.md 또는 results.json과 모순되는 수치는 사용하지 않는다.</p>
+    </section>
+
+    <section class="slide figure-first">
+      <div class="slide-header">Figure 1 / Diagram</div>
+      <h2>ML lifecycle threat model</h2>
+      <div class="figure-grid two-panel">
+        <figure class="figure-panel">
+          <div class="panel-label">A</div>
+          <div class="pipeline-diagram" role="img" aria-label="ML lifecycle threat model">
+<div class="stage normal">Data<br><small>quality/privacy</small></div>
+<div class="arrow" aria-hidden="true">→</div>
+<div class="stage risk">Training<br><small>empirical risk</small></div>
+<div class="arrow" aria-hidden="true">→</div>
+<div class="stage normal">Evaluation<br><small>clean/robust</small></div>
+<div class="arrow" aria-hidden="true">→</div>
+<div class="stage risk">Deployment<br><small>runtime risk</small></div>
+<div class="arrow" aria-hidden="true">→</div>
+<div class="stage defense">Monitoring<br><small>evidence log</small></div>
+</div>
+          <figcaption class="figure-caption">Pipeline | 단계별 공격면과 방어·검증 지점을 4~6개로 압축했다.</figcaption>
+        </figure>
+        <figure class="figure-panel">
+          <div class="panel-label">B</div>
+          <img src="assets/diagrams/w01_pipeline_diagram.svg" alt="W01 pipeline diagram">
+          <figcaption class="figure-caption">Manifest | assets/figure_manifest.md에 생성 방식과 한계를 기록했다.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="slide figure-first">
+      <div class="slide-header">Figure 2 / Metrics</div>
+      <h2>실제 CSV 기반 지표 그래프</h2>
+      <div class="figure-grid two-panel">
+        <figure class="figure-panel chart-panel">
+          <div class="panel-label">A</div>
+          <img src="assets/charts/w01_metrics_chart.svg" alt="W01 metrics chart">
+          <figcaption class="figure-caption">Graph | 그래프는 `metrics_summary.csv`의 condition별 accuracy와 F1만 시각화한다. Clean baseline, label-noise training, toy feature perturbation 조건을 같은 축에 두어 정상 성능만으로 보안성을 단정하기 어렵다는 점을 보여준다. synthetic/toy 평가 결과이므로 실제 운영 시스템 보증으로 해석하지 않는다. 데이터 출처: 04_experiment/outputs/metrics_summary.csv</figcaption>
+        </figure>
+        <figure class="figure-panel">
+          <div class="panel-label">B</div>
+          <table>
+<thead>
+<tr>
+<th>condition</th>
+<th>accuracy</th>
+<th>f1</th>
+<th>security_note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>clean_baseline</td>
+<td>0.869</td>
+<td>0.87</td>
+<td>normal synthetic test split</td>
+</tr>
+<tr>
+<td>label_noise_training</td>
+<td>0.839</td>
+<td>0.842</td>
+<td>126 training labels flipped in toy data</td>
+</tr>
+<tr>
+<td>toy_feature_perturbation</td>
+<td>0.844</td>
+<td>0.844</td>
+<td>gaussian feature noise on synthetic test split</td>
+</tr>
+</tbody>
+</table>
+          <figcaption class="figure-caption">Table | 그래프에 사용한 CSV의 주요 행을 요약했다.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Paper Map</div>
+      <h2>논문 5편의 역할표</h2>
+      <table>
+<thead>
+<tr>
+<th>ID</th>
+<th>논문 역할</th>
+<th>발표에서 쓰는 위치</th>
+<th>기말논문 연결</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P01</td>
+<td>핵심 이론</td>
+<td>Background / Core Formula</td>
+<td>딥러닝 패러다임 &amp; ML 보안 분류학의 관련연구 뼈대</td>
+</tr>
+<tr>
+<td>P02</td>
+<td>위협 분류</td>
+<td>Threat Model</td>
+<td>공격자·방어자·보호자산 정의</td>
+</tr>
+<tr>
+<td>P03</td>
+<td>평가 지표</td>
+<td>Evaluation Protocol</td>
+<td>정량 지표와 로그 근거 연결</td>
+</tr>
+<tr>
+<td>P04</td>
+<td>공격·방어 사례</td>
+<td>Security Implication</td>
+<td>보안적 함의와 방어 한계</td>
+</tr>
+<tr>
+<td>P05</td>
+<td>재현성·정책 근거</td>
+<td>Limitation</td>
+<td>확인 필요 항목과 제출 전 검증</td>
+</tr>
+</tbody>
+</table>
+      <p class="figure-caption">Paper map | 서지 세부사항과 DOI/URL은 최종 제출 전 원문 기준으로 확인한다.</p>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Security Implication</div>
+      <h2>보안적 함의</h2>
+      <div class="question-box">보안 평가는 clean accuracy 하나로 끝나지 않고 robustness와 privacy leakage를 분리해야 한다.</div>
+      <div class="figure-grid three-panel">
+        <div class="figure-panel"><div class="panel-label">A</div><h3>분리</h3><p>clean 성능과 보안 지표를 같은 값처럼 해석하지 않는다.</p></div>
+        <div class="figure-panel"><div class="panel-label">B</div><h3>추적</h3><p>수치, 그래프, 노트, Q&A가 같은 산출물을 가리킨다.</p></div>
+        <div class="figure-panel"><div class="panel-label">C</div><h3>제한</h3><p>실제 악용 절차 없이 평가 개념과 방어 관점만 설명한다.</p></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Limitation</div>
+      <h2>한계와 검증 상태</h2>
+      <div class="limitation-box">원문 논문별 절·쪽·그림 번호와 formal guarantee 여부는 확인 필요. 여기서는 안전한 평가 개념을 설명하는 표준식이며 실제 시스템 공격 절차를 제공하지 않는다.</div>
+      <table>
+        <thead><tr><th>항목</th><th>상태</th><th>다음 확인</th></tr></thead>
+        <tbody>
+          <tr><td>실험 수치</td><td>실행 산출물 있음</td><td>run_log.md, results.json 대조</td></tr>
+          <tr><td>수식 보증</td><td>표준식 또는 proxy</td><td>원문 절·쪽·formal guarantee 확인</td></tr>
+          <tr><td>운영 적용</td><td>바로 적용 불가</td><td>실제 데이터·정책·위험평가 필요</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Final Takeaway</div>
+      <h2>기말논문 연결</h2>
+      <p class="key-finding">W01의 결론은 지표를 분리하고 근거 파일로 추적하는 연구 설계다.</p>
+      <table>
+        <thead><tr><th>기말논문 장</th><th>연결 내용</th></tr></thead>
+        <tbody>
+          <tr><td>관련연구</td><td>딥러닝 패러다임 &amp; ML 보안 분류학의 핵심 이론과 보안 taxonomy 정리</td></tr>
+          <tr><td>위협모형</td><td>ML lifecycle threat model 기반 공격면·방어면 정의</td></tr>
+          <tr><td>평가방법</td><td>accuracy, f1를 CSV/log 기준으로 검증</td></tr>
+          <tr><td>한계</td><td>toy/synthetic 범위와 확인 필요 항목을 명시</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+  </main>
+
+  <nav class="slide-nav" aria-label="슬라이드 이동">
+    <button id="prevSlide" type="button" title="이전 슬라이드" aria-label="이전 슬라이드">‹</button>
+    <span id="slideCounter" class="slide-counter" aria-live="polite">1 / 1</span>
+    <button id="nextSlide" type="button" title="다음 슬라이드" aria-label="다음 슬라이드">›</button>
+  </nav>
+
+  <script>
+    const slides = Array.from(document.querySelectorAll("section.slide, section"));
+    const prevButton = document.getElementById("prevSlide");
+    const nextButton = document.getElementById("nextSlide");
+    const counter = document.getElementById("slideCounter");
+    let currentIndex = 0;
+
+    function updateNav(index) {
+      currentIndex = Math.max(0, Math.min(index, slides.length - 1));
+      counter.textContent = `${currentIndex + 1} / ${slides.length}`;
+      prevButton.disabled = currentIndex === 0;
+      nextButton.disabled = currentIndex === slides.length - 1;
     }
 
-    document.getElementById("prev").addEventListener("click", () => showSlide(index - 1));
-    document.getElementById("next").addEventListener("click", () => showSlide(index + 1));
+    function goToSlide(index) {
+      const nextIndex = Math.max(0, Math.min(index, slides.length - 1));
+      slides[nextIndex].scrollIntoView({ behavior: "smooth", block: "start" });
+      updateNav(nextIndex);
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        window.MathJax.typesetPromise([slides[nextIndex]]).catch(() => {});
+      }
+    }
+
+    prevButton.addEventListener("click", () => goToSlide(currentIndex - 1));
+    nextButton.addEventListener("click", () => goToSlide(currentIndex + 1));
 
     document.addEventListener("keydown", (event) => {
       if (["ArrowRight", "PageDown", " "].includes(event.key)) {
         event.preventDefault();
-        showSlide(index + 1);
+        goToSlide(currentIndex + 1);
       }
+
       if (["ArrowLeft", "PageUp"].includes(event.key)) {
         event.preventDefault();
-        showSlide(index - 1);
+        goToSlide(currentIndex - 1);
       }
+
       if (event.key === "Home") {
-        showSlide(0);
+        event.preventDefault();
+        goToSlide(0);
       }
+
       if (event.key === "End") {
-        showSlide(slides.length - 1);
+        event.preventDefault();
+        goToSlide(slides.length - 1);
       }
     });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((left, right) => right.intersectionRatio - left.intersectionRatio)[0];
+
+        if (visible) {
+          updateNav(slides.indexOf(visible.target));
+        }
+      },
+      { threshold: [0.55] }
+    );
+
+    slides.forEach((slide) => observer.observe(slide));
+    updateNav(0);
   </script>
 </body>
 </html>

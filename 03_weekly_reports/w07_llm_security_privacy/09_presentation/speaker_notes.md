@@ -1,63 +1,197 @@
 # W07 발표자 노트
 
-## 1. 표지
+- 권장 시간: 10-14분
+- 발표 원칙: 그림과 수식을 먼저 보여주고, 긴 설명은 구두로 보완한다.
+- 안전 범위: public, synthetic, toy, local evaluation. 실제 시스템 악용 절차는 설명하지 않는다.
 
-오늘 발표는 LLM 학습·정렬·평가 원리를 보안·프라이버시 평가로 연결하는 내용입니다. 핵심 메시지는 LLM 보안을 ASR 하나로 판단하면 안 되고 utility, leakage, refusal, code risk, 재현성을 함께 봐야 한다는 점입니다.
+## Slide 1. Title
 
-## 2. 왜 중요한가
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
 
-LLM은 모델 파일 하나가 아닙니다. Prompt, context window, output, log, benchmark가 이어진 시스템입니다. 그래서 어느 한 지점이 오염되거나 노출되면 평가 결과와 보안 판단이 함께 흔들립니다.
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
 
-## 3. AI 원리
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- privacy leakage는 toy/proxy metric이며 실제 개인정보 추출 실험으로 해석하지 않는다.
 
-Pretraining은 데이터에서 언어 패턴을 학습하는 단계이고, instruction tuning과 alignment는 지시 따르기와 안전 정책 적합성을 강화하는 단계입니다. Context window는 입력과 검색 문서가 함께 들어가는 공간이라 보안 경계로 봐야 합니다.
+## Slide 2. Background
 
-## 4. 평가 원리
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
 
-Benchmark는 필요하지만 충분하지 않습니다. 평가셋 오염, hidden test leakage, prompt sensitivity가 있으면 점수 해석이 어려워집니다. 그래서 seed, config, prompt set, output log를 같이 남겨야 합니다.
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
 
-## 5. 보안 이슈
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- privacy leakage는 toy/proxy metric이며 실제 개인정보 추출 실험으로 해석하지 않는다.
 
-대표 위협은 data extraction, prompt injection, prompt leakage, privacy leakage, insecure code generation입니다. 오늘은 공격 절차를 재현하지 않고 평가 항목과 기록 방식을 다룹니다.
+## Slide 3. Research Gap
 
-## 6. 논문 5편
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
 
-P01은 평가, P02와 P03은 보안·프라이버시 분류, P04는 멀티모달 LLM, P05는 소프트웨어 보안 접점을 맡습니다. 이 다섯 편을 연결하면 LLM 보안 평가는 여러 축을 동시에 봐야 한다는 결론이 나옵니다.
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
 
-## 7. 위협모형
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- privacy leakage는 toy/proxy metric이며 실제 개인정보 추출 실험으로 해석하지 않는다.
 
-흐름은 user prompt가 context window를 거쳐 LLM response, logs, code, benchmark로 이어지는 구조입니다. 보호 자산은 학습데이터, system prompt, context, output, code, logs, benchmark입니다.
+## Slide 4. Core Formula
 
-## 8. 평가 프로토콜
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
 
-평가 항목은 utility, ASR, privacy leakage, refusal quality, over-refusal, code vulnerability rate입니다. 특히 refusal quality와 over-refusal은 함께 봐야 합니다. 위험 요청을 잘 거절해도 정상 요청을 지나치게 막으면 운영 품질이 떨어집니다.
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
 
-## 9. Toy 실험
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- privacy leakage는 toy/proxy metric이며 실제 개인정보 추출 실험으로 해석하지 않는다.
 
-실험은 synthetic prompt category만 사용했습니다. 실제 LLM을 호출하지 않고 toy guard score를 만들었습니다. 목적은 보안 공격 재현이 아니라 지표와 로그 구조 확인입니다.
+## Slide 5. Threat Model
 
-## 10. 결과
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
 
-Clean prompts의 utility는 0.866746이고 answer rate는 1.000000입니다. Prompt attack simulation의 ASR은 0.150000, refusal quality는 0.850000입니다. Privacy-risk prompts의 leakage는 0.025000입니다.
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
 
-## 11. 해석
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- privacy leakage는 toy/proxy metric이며 실제 개인정보 추출 실험으로 해석하지 않는다.
 
-Code security prompts에서는 code vulnerability rate가 0.200000이고 over-refusal이 0.350000입니다. 이 값은 실제 코드 모델 성능이 아니라 “취약 코드 위험과 과차단을 한 표에 같이 기록해야 한다”는 구조를 보여주는 toy 결과입니다. 모든 수치는 outputs 파일 기준입니다.
+## Slide 6. Evaluation Protocol
 
-## 12. 기말논문 연결
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
 
-기말논문에서는 LLM/RAG 기반 AI 시스템의 보안·프라이버시·재현성 평가 프레임워크로 연결할 수 있습니다. W07은 관련연구, 위협모형, 평가방법, 재현성 장에 바로 들어갑니다.
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
 
-## 13. 결론
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- privacy leakage는 toy/proxy metric이며 실제 개인정보 추출 실험으로 해석하지 않는다.
 
-마지막으로 네 가지를 강조합니다. LLM 보안 평가는 다중지표 문제이고, ASR 단독 평가는 부족하며, utility 단독 평가도 위험합니다. 그리고 수치는 실행 로그가 있을 때만 주장해야 합니다.
+## Slide 7. Figure 1 Diagram
 
-<!-- formula-visual-speaker-notes:start -->
-## 수식·그래프·그림 발표자 노트
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
 
-- 핵심 수식: Language Modeling Objective와 Perplexity, Privacy Leakage Proxy. 수식은 표준 정의식이며, 원문 위치나 formal guarantee가 확인되지 않은 부분은 확인 필요로 말한다.
-- 기호 정의표는 청중이 식을 해석할 수 있도록 먼저 읽고, 이후 보안 지표와 연결한다.
-- 그래프 설명: 그래프는 LLM 평가의 utility, attack_success_rate, privacy_leakage_rate, code_vulnerability_rate를 비교한다. 유용성 향상과 안전성 저하가 동시에 나타날 수 있으므로 refusal quality와 leakage를 분리해서 해석해야 한다. 수치는 기존 output CSV 기반이다.
-- 다이어그램 설명: `LLM privacy/safety evaluation flow`는 threat model 또는 평가 pipeline을 한 장으로 보여주는 보조 그림이다.
-- 한계 고지: privacy leakage는 toy/proxy metric이며 실제 개인정보 추출 실험으로 해석하지 않는다.
-<!-- formula-visual-speaker-notes:end -->
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
+
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- privacy leakage는 toy/proxy metric이며 실제 개인정보 추출 실험으로 해석하지 않는다.
+
+## Slide 8. Figure 2 Metrics
+
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
+
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
+
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- privacy leakage는 toy/proxy metric이며 실제 개인정보 추출 실험으로 해석하지 않는다.
+
+## Slide 9. Paper Map
+
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
+
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
+
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- privacy leakage는 toy/proxy metric이며 실제 개인정보 추출 실험으로 해석하지 않는다.
+
+## Slide 10. Security Implication
+
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
+
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
+
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- privacy leakage는 toy/proxy metric이며 실제 개인정보 추출 실험으로 해석하지 않는다.
+
+## Slide 11. Limitation
+
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
+
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
+
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- privacy leakage는 toy/proxy metric이며 실제 개인정보 추출 실험으로 해석하지 않는다.
+
+## Slide 12. Final Takeaway
+
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
+
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
+
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- privacy leakage는 toy/proxy metric이며 실제 개인정보 추출 실험으로 해석하지 않는다.

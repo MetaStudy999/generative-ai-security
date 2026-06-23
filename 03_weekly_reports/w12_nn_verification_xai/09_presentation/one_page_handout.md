@@ -1,52 +1,43 @@
-# W12 1페이지 요약
+# W12 주차 연구 발표 요약
 
-## 핵심 메시지
+## Research Question
 
-AI 모델 안전성 평가는 clean accuracy 하나로 충분하지 않다. 신경망 검증, XAI 설명 안정성, 대적 강건성, 공정성 영향, 검증 비용, 재현성 로그를 함께 보고해야 한다.
+이 주차에서 성능 지표와 보안 지표를 어떻게 분리해 평가할 수 있는가?
 
-## AI 원리 70%
+## Key Formula
 
-| 개념 | 의미 |
-|---|---|
-| Neural network verification | 입력 범위에서 모델 출력이 명세를 만족하는지 확인 |
-| Abstraction | 복잡한 모델 계산을 검증 가능한 형태로 근사 |
-| Robustness certificate | 일정 perturbation 범위에서 예측 안정성을 보증하려는 근거 |
-| XAI stability | 입력 변화 전후 설명 결과의 일관성 |
+**Robustness Objective와 Certified Radius**
 
-## 보안 이슈 30%
+$$
+\min_\theta \mathbb{E}_{(x,y)}\left[\max_{\lVert \delta\rVert\le \epsilon}\ell(f_\theta(x+\delta),y)\right],
+\qquad
+\forall \delta:\lVert\delta\rVert\le r,\ f(x+\delta)=f(x)
+$$
 
-| 이슈 | 평가 지표 |
-|---|---|
-| Adversarial input | Robust Accuracy |
-| Explanation manipulation | Explanation Stability |
-| Verification scalability | Verification Cost |
-| Trade-off | Accuracy, Certified Rate, Fairness Gap |
+- 기호와 의미는 슬라이드의 표를 기준으로 설명한다.
+- 보안적 의미: 보안 주장에는 empirical robustness와 formal certificate를 구분해야 한다.
 
-## W12 toy 실험 결과
+## Threat Model
 
-| 조건 | Clean | Robust | XAI | Certified | Fairness | Cost ms |
-|---|---:|---:|---:|---:|---:|---:|
-| Clean model | 0.818750 | 0.543750 | 0.927782 | 0.543750 | 0.039141 | 0.223524 |
-| Adversarial input | 0.818750 | 0.543750 | 0.862321 | 0.340625 | 0.039141 | 0.190324 |
-| Robust defense | 0.815625 | 0.543750 | 0.927152 | 0.543750 | 0.044823 | 0.191790 |
-| XAI stability check | 0.815625 | 0.696875 | 0.976252 | 0.696875 | 0.044823 | 0.193048 |
+verification-XAI robustness flow 기준으로 공격자, 방어자, 보호 자산, 성공 조건을 분리한다.
 
-## 주의
+## Main Figure
 
-이 수치는 synthetic binary classification 기반 안전 toy 실험 결과다. Certified rate는 선형 모델 bound proxy이며 대규모 DNN formal verification 결과가 아니다. 실제 시스템 공격, 운영 모델 침해, 개인정보 기반 평가는 포함하지 않았다. P01~P05 DOI/PDF 상태와 공개 PDF 저작권 위험은 최종 제출 전 사람이 확인해야 한다.
+- Diagram: `assets/diagrams/w12_pipeline_diagram.svg`
+- Chart: `assets/charts/w12_metrics_chart.svg`
 
-## 기말논문 연결
+## Evaluation Metrics
 
-W12는 "성능·강건성·설명안정성·공정성·재현성 통합 평가 프레임워크"의 근거 주차로 활용할 수 있다.
+clean_accuracy, robust_accuracy, explanation_stability, certified_rate, fairness_gap. 실제 수치는 `04_experiment/outputs/metrics_summary.csv` 기준이다.
 
-<!-- formula-visual-handout:start -->
-## 수식·그래프·그림 보강 요약
+## Security Implication
 
-| 항목 | 반영 내용 |
-|---|---|
-| 핵심 수식 | Robustness Objective와 Certified Radius, Explanation Stability, Fairness Gap, Verification Cost |
-| 그래프 | `assets/charts/w12_metrics_chart.png` (`metrics_summary.csv` 기반) |
-| 다이어그램 | `assets/diagrams/w12_pipeline_diagram.svg` (verification-XAI robustness flow) |
-| 기호 정의 | 통합보고서와 발표 슬라이드의 수식 블록에 포함 |
-| 주의사항 | `certified_rate`는 toy proxy 또는 제한 실험인지 formal verification인지 최종 원문 확인이 필요하다. |
-<!-- formula-visual-handout:end -->
+Clean 성능과 보안 지표는 서로 다른 실패 모드를 설명하므로 같은 결론으로 합치지 않는다.
+
+## Limitation
+
+`certified_rate`는 toy proxy 또는 제한 실험인지 formal verification인지 최종 원문 확인이 필요하다. toy/synthetic 범위와 formal guarantee 여부를 구분해야 한다.
+
+## Final Paper Link
+
+기말논문에서는 관련연구, 위협모형, 평가방법, 한계 절에 이 주차의 수식·표·그래프·다이어그램을 연결한다.

@@ -1,5 +1,14 @@
-# W14 발표자료
+# W14 발표 산출물
 
-이 폴더는 W14 MLOps/DevOps·데이터/모델 파이프라인·공급망 보안 발표 패키지를 보관한다.
+최종 발표본은 `presentation_slides.html`이다. 주차 번호가 붙은 이전 HTML 파일은 호환용으로만 유지한다.
 
-최종 발표본은 `presentation_slides.html`이다. 발표 보고서, 슬라이드 원본, 발표자 노트, 예상 Q&A, 1페이지 handout은 모두 `04_experiment/outputs/`의 실행 결과와 같은 수치를 사용한다.
+| 파일 | 역할 |
+|---|---|
+| `presentation_slides.html` | 오른쪽 하단 `.slide-nav`가 적용된 Nature-style 연구 발표 슬라이드 |
+| `presentation_slides.md` | 슬라이드 내용 원본 요약 |
+| `speaker_notes.md` | 슬라이드별 발표자 노트 |
+| `qna.md` | 예상 질문과 안전한 답변 |
+| `one_page_handout.md` | 1페이지 연구 발표 요약 |
+| `assets/figure_manifest.md` | 그래프와 다이어그램 생성 근거 |
+
+수치 그래프는 `04_experiment/outputs/metrics_summary.csv`가 있는 경우에만 생성한다. 없는 수치나 실행하지 않은 결과는 만들지 않는다.

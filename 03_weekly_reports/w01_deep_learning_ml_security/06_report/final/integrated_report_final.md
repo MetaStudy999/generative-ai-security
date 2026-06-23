@@ -442,7 +442,7 @@ robust accuracy, robust drop, ASR, leakage score와 연결한다.
 
 ### 표 수치 기반 그래프
 
-![W01 metrics chart](../../09_presentation/assets/charts/w01_metrics_chart.png)
+![W01 metrics chart](../../09_presentation/assets/charts/w01_metrics_chart.svg)
 
 그래프는 `metrics_summary.csv`의 condition별 accuracy와 F1만 시각화한다. Clean baseline, label-noise training, toy feature perturbation 조건을 같은 축에 두어 정상 성능만으로 보안성을 단정하기 어렵다는 점을 보여준다. synthetic/toy 평가 결과이므로 실제 운영 시스템 보증으로 해석하지 않는다.
 

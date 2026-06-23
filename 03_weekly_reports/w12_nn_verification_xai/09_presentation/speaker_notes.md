@@ -1,47 +1,197 @@
-# W12 발표자 대본
+# W12 발표자 노트
 
-## 1. 도입
+- 권장 시간: 10-14분
+- 발표 원칙: 그림과 수식을 먼저 보여주고, 긴 설명은 구두로 보완한다.
+- 안전 범위: public, synthetic, toy, local evaluation. 실제 시스템 악용 절차는 설명하지 않는다.
 
-오늘 발표는 신경망 검증, 정형방법, 대적방어, XAI, 강건성 trade-off를 하나로 묶어서 설명합니다. 핵심 질문은 모델이 테스트셋에서 잘 맞는다는 사실만으로 안전하다고 할 수 있는가입니다.
+## Slide 1. Title
 
-## 2. 문제 제기
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
 
-Clean accuracy는 정상 조건의 평균 성능입니다. 하지만 보안 관점에서는 작은 입력 변화, 설명 조작, 검증 비용, 집단별 성능 차이까지 봐야 합니다. 그래서 W12는 성능 하나가 아니라 다중지표 평가표를 만드는 주차입니다.
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
 
-## 3. 문헌 역할
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- `certified_rate`는 toy proxy 또는 제한 실험인지 formal verification인지 최종 원문 확인이 필요하다.
 
-P01은 신경망 검증에서 abstraction이 왜 필요한지 보여주고, P02는 대적공격과 방어 taxonomy를 제공합니다. P03은 XAI 설명 자체가 공격 대상이 될 수 있음을 보여줍니다. P04는 Lipschitz regularization과 강건성 보증을 연결하고, P05는 강건성·정확도·공정성의 삼각 trade-off를 정리합니다. 다만 로컬 PDF와 지정 논문 사이 불일치가 있어 최종 제출 전 공식 DOI와 원문 PDF 재확인이 필요합니다.
+## Slide 2. Background
 
-## 4. AI 원리
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
 
-신경망 검증은 모델이 특정 입력 영역에서 명세를 만족하는지 확인하는 절차입니다. 경험적 평가는 테스트셋 평균 성능에 가깝고, 정형검증은 bound나 certificate처럼 보증 가능한 표현을 요구합니다. XAI는 설명을 제공하지만 설명이 불안정하면 검토 근거가 약해집니다.
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
 
-## 5. 보안 이슈
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- `certified_rate`는 toy proxy 또는 제한 실험인지 formal verification인지 최종 원문 확인이 필요하다.
 
-대적 입력은 모델 예측을 바꾸는 integrity 문제입니다. Explanation manipulation은 사람이 보는 설명을 바꾸는 accountability 문제입니다. 검증 비용이 크면 검증이 생략될 수 있으므로 availability 문제도 생깁니다.
+## Slide 3. Research Gap
 
-## 6. 실험 설명
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
 
-실험은 실제 공격이 아니라 synthetic binary classification 기반 toy 평가입니다. `seed 42`로 toy logistic classifier를 학습하고, L-infinity epsilon 0.35 proxy로 perturbation 조건을 만들었습니다. 결과는 `outputs/run_log.md`에 남겼습니다.
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
 
-## 7. 결과 해석
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- `certified_rate`는 toy proxy 또는 제한 실험인지 formal verification인지 최종 원문 확인이 필요하다.
 
-Clean model은 clean accuracy 0.818750이지만 robust accuracy는 0.543750입니다. Adversarial input 조건에서는 explanation stability와 certified rate가 더 낮아집니다. XAI stability check에서는 완화된 perturbation 조건에서 robust accuracy 0.696875와 explanation stability 0.976252를 보입니다. 기준 조건의 fairness gap은 0.039141, verification cost는 0.223524 ms입니다. 단, 이 값은 대규모 DNN 보증이 아니라 toy proxy입니다.
+## Slide 4. Core Formula
 
-## 8. 기말논문 연결
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
 
-기말논문에는 W12를 성능·강건성·설명안정성·공정성·재현성 통합 평가표로 연결할 수 있습니다. 특히 실행 로그와 보고서 수치를 일치시키는 절차가 연구윤리와 재현성 측면에서 중요합니다.
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
 
-## 9. 마무리
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- `certified_rate`는 toy proxy 또는 제한 실험인지 formal verification인지 최종 원문 확인이 필요하다.
 
-W12의 결론은 정확도 중심 보고에서 보증 가능한 다중지표 보고로 넘어가야 한다는 것입니다.
+## Slide 5. Threat Model
 
-<!-- formula-visual-speaker-notes:start -->
-## 수식·그래프·그림 발표자 노트
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
 
-- 핵심 수식: Robustness Objective와 Certified Radius, Explanation Stability, Fairness Gap, Verification Cost. 수식은 표준 정의식이며, 원문 위치나 formal guarantee가 확인되지 않은 부분은 확인 필요로 말한다.
-- 기호 정의표는 청중이 식을 해석할 수 있도록 먼저 읽고, 이후 보안 지표와 연결한다.
-- 그래프 설명: 그래프는 clean_accuracy, robust_accuracy, explanation_stability, certified_rate, fairness_gap, verification_cost_ms를 조건별로 표시한다. certified_rate가 toy proxy인지 formal verification 결과인지 문서에서 명확히 구분해야 한다. 모든 값은 W12 output CSV에서 읽었다.
-- 다이어그램 설명: `verification-XAI robustness flow`는 threat model 또는 평가 pipeline을 한 장으로 보여주는 보조 그림이다.
-- 한계 고지: `certified_rate`는 toy proxy 또는 제한 실험인지 formal verification인지 최종 원문 확인이 필요하다.
-<!-- formula-visual-speaker-notes:end -->
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
+
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- `certified_rate`는 toy proxy 또는 제한 실험인지 formal verification인지 최종 원문 확인이 필요하다.
+
+## Slide 6. Evaluation Protocol
+
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
+
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
+
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- `certified_rate`는 toy proxy 또는 제한 실험인지 formal verification인지 최종 원문 확인이 필요하다.
+
+## Slide 7. Figure 1 Diagram
+
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
+
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
+
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- `certified_rate`는 toy proxy 또는 제한 실험인지 formal verification인지 최종 원문 확인이 필요하다.
+
+## Slide 8. Figure 2 Metrics
+
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
+
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
+
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- `certified_rate`는 toy proxy 또는 제한 실험인지 formal verification인지 최종 원문 확인이 필요하다.
+
+## Slide 9. Paper Map
+
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
+
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
+
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- `certified_rate`는 toy proxy 또는 제한 실험인지 formal verification인지 최종 원문 확인이 필요하다.
+
+## Slide 10. Security Implication
+
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
+
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
+
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- `certified_rate`는 toy proxy 또는 제한 실험인지 formal verification인지 최종 원문 확인이 필요하다.
+
+## Slide 11. Limitation
+
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
+
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
+
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- `certified_rate`는 toy proxy 또는 제한 실험인지 formal verification인지 최종 원문 확인이 필요하다.
+
+## Slide 12. Final Takeaway
+
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
+
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
+
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- `certified_rate`는 toy proxy 또는 제한 실험인지 formal verification인지 최종 원문 확인이 필요하다.

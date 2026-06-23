@@ -1,101 +1,197 @@
-# W11 발표자 대본
+# W11 발표자 노트
 
-## 발표 기준
+- 권장 시간: 10-14분
+- 발표 원칙: 그림과 수식을 먼저 보여주고, 긴 설명은 구두로 보완한다.
+- 안전 범위: public, synthetic, toy, local evaluation. 실제 시스템 악용 절차는 설명하지 않는다.
 
-| 항목 | 내용 |
-|---|---|
-| 주차 | W11 |
-| 주제 | 차등프라이버시(DP) & 멤버십 추론 공격·방어 |
-| 권장 시간 | 8-10분 |
-| 기준 슬라이드 | `presentation_slides.md`, `presentation_slides.html` |
-| 수치 근거 | `04_experiment/outputs/run_log.md` |
+## Slide 1. Title
 
-## 표지. 발표 제목
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
 
-예상 시간: 0:30
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
 
-오늘의 질문은 “DP를 적용했다는 말을 어떻게 검증할 것인가”입니다. 결론은 단순합니다. DP 보장은 선언이 아니라 accounting, utility, MI risk, leakage, 재현성 로그가 함께 있어야 해석 가능합니다.
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- `epsilon_proxy`는 formal DP accountant 값이 아니며 formal DP guarantee로 쓰지 않는다.
 
-## 1. 왜 중요한가
+## Slide 2. Background
 
-예상 시간: 0:50
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
 
-모델이 학습한 데이터 원문이 노출되지 않아도, 어떤 레코드가 학습에 포함되었는지 알 수 있으면 privacy breach가 될 수 있습니다. 그래서 W11은 accuracy가 아니라 privacy leakage와 membership risk를 함께 봅니다.
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
 
-## 2. 발표 로드맵
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- `epsilon_proxy`는 formal DP accountant 값이 아니며 formal DP guarantee로 쓰지 않는다.
 
-예상 시간: 0:30
+## Slide 3. Research Gap
 
-먼저 DP와 DP-SGD 원리를 설명하고, membership inference 위협으로 연결합니다. 이후 문헌 5편, 위협모형, toy 실험, 기말논문 연결 순서로 가겠습니다.
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
 
-## 3. AI 원리
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
 
-예상 시간: 1:20
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- `epsilon_proxy`는 formal DP accountant 값이 아니며 formal DP guarantee로 쓰지 않는다.
 
-DP는 인접 데이터셋의 출력 분포 차이를 제한하는 정의입니다. 딥러닝에서는 clipping, noise injection, privacy accounting이 결합된 DP-SGD가 대표 구현입니다. 단순히 noise를 넣는 것과 정식 DP 보장은 다릅니다.
+## Slide 4. Core Formula
 
-## 4. 보안 이슈
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
 
-예상 시간: 1:00
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
 
-membership inference는 confidence나 loss 같은 신호를 보고 sample의 학습 포함 여부를 추론하는 문제입니다. 본 발표에서는 실제 개인 대상 절차가 아니라 synthetic split 기반 지표로만 다룹니다.
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- `epsilon_proxy`는 formal DP accountant 값이 아니며 formal DP guarantee로 쓰지 않는다.
 
-## 5. 논문 5편의 역할
+## Slide 5. Threat Model
 
-예상 시간: 1:00
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
 
-P01은 DP misuse, P02는 DP-DL auditing, P03은 DP 적용 위치, P04는 MI taxonomy, P05는 MI defense와 trade-off를 담당합니다. P01, P02, P04, P05의 DOI는 확인했고, P03도 DOI가 Neurocomputing 논문으로 연결됨을 확인했습니다. 다만 P03/P05는 로컬 PDF가 대체 문헌이므로 원문 확보 전까지 지정 논문처럼 인용하지 않습니다.
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
 
-## 6. 위협모형
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- `epsilon_proxy`는 formal DP accountant 값이 아니며 formal DP guarantee로 쓰지 않는다.
 
-예상 시간: 0:55
+## Slide 6. Evaluation Protocol
 
-보호 자산은 membership information, confidence score, model output, evaluation log입니다. 실제 개인정보, 운영 모델/API 무단 질의, 실제 개인 대상 추론은 제외합니다.
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
 
-## 7. 평가 프로토콜
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
 
-예상 시간: 1:00
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- `epsilon_proxy`는 formal DP accountant 값이 아니며 formal DP guarantee로 쓰지 않는다.
 
-평가표는 utility, membership risk, leakage, reproducibility를 함께 둡니다. 이 네 가지를 함께 봐야 privacy claim을 연구 문장으로 책임 있게 쓸 수 있습니다.
+## Slide 7. Figure 1 Diagram
 
-## 8. 실험 설계
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
 
-예상 시간: 1:00
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
 
-표준 라이브러리 기반 synthetic binary classification입니다. Non-DP baseline과 DP-like noise low, medium, high를 비교합니다. 여기서 epsilon은 정식 accountant 값이 아니라 proxy입니다.
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- `epsilon_proxy`는 formal DP accountant 값이 아니며 formal DP guarantee로 쓰지 않는다.
 
-`noise_multiplier`도 formal DP-SGD accountant 값이 아니라 toy gradient noise scale입니다.
+## Slide 8. Figure 2 Metrics
 
-## 9. 결과
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
 
-예상 시간: 1:10
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
 
-Baseline accuracy는 0.956250이고 high noise accuracy는 0.950000입니다. Leakage score는 medium noise에서 0.011769로 가장 낮았습니다. 그러나 high noise에서 MI attack accuracy는 0.521875로 단조 개선되지 않았습니다.
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- `epsilon_proxy`는 formal DP accountant 값이 아니며 formal DP guarantee로 쓰지 않는다.
 
-## 10. 해석
+## Slide 9. Paper Map
 
-예상 시간: 0:50
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
 
-이 결과는 noise가 항상 privacy proxy를 단조롭게 개선하지 않는다는 점을 보여줍니다. 그래서 formal accounting과 반복 평가가 필요합니다.
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
 
-## 11. 기말논문 연결
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- `epsilon_proxy`는 formal DP accountant 값이 아니며 formal DP guarantee로 쓰지 않는다.
 
-예상 시간: 0:45
+## Slide 10. Security Implication
 
-기말논문에서는 privacy claim 다중지표 평가 프레임워크로 연결합니다. 관련연구, 위협모형, 평가방법, 보안적 함의 장에 직접 들어갑니다.
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
 
-## 12. 결론
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
 
-예상 시간: 0:30
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- `epsilon_proxy`는 formal DP accountant 값이 아니며 formal DP guarantee로 쓰지 않는다.
 
-DP는 구현 설정과 accounting까지 보고해야 합니다. MI 위험은 별도 보안 지표로 평가해야 합니다. 수치는 `outputs/` 로그가 있을 때만 주장합니다.
+## Slide 11. Limitation
 
-<!-- formula-visual-speaker-notes:start -->
-## 수식·그래프·그림 발표자 노트
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
 
-- 핵심 수식: Differential Privacy Definition, DP-SGD Clipping/Noise와 MI Advantage. 수식은 표준 정의식이며, 원문 위치나 formal guarantee가 확인되지 않은 부분은 확인 필요로 말한다.
-- 기호 정의표는 청중이 식을 해석할 수 있도록 먼저 읽고, 이후 보안 지표와 연결한다.
-- 그래프 설명: 그래프는 accuracy, MI attack accuracy, epsilon_proxy, leakage score, utility_drop, noise_multiplier를 조건별로 비교한다. `epsilon_proxy`는 formal DP accountant 결과가 아니므로 privacy guarantee로 읽으면 안 된다. 수치는 W11 outputs의 toy 결과 그대로다.
-- 다이어그램 설명: `DP-SGD and MI audit flow`는 threat model 또는 평가 pipeline을 한 장으로 보여주는 보조 그림이다.
-- 한계 고지: `epsilon_proxy`는 formal DP accountant 값이 아니며 formal DP guarantee로 쓰지 않는다.
-<!-- formula-visual-speaker-notes:end -->
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
+
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- `epsilon_proxy`는 formal DP accountant 값이 아니며 formal DP guarantee로 쓰지 않는다.
+
+## Slide 12. Final Takeaway
+
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
+
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
+
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- `epsilon_proxy`는 formal DP accountant 값이 아니며 formal DP guarantee로 쓰지 않는다.

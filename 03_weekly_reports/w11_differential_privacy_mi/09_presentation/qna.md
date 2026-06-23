@@ -1,72 +1,29 @@
-# W11 발표 예상 질문과 답변
+# W11 Q&A
 
-## 기준
+## Q1. 이 수식이 실제 실험 지표와 어떻게 연결되는가?
 
-| 항목 | 내용 |
-|---|---|
-| 주차 | W11 |
-| 주제 | 차등프라이버시(DP) & 멤버십 추론 공격·방어 |
-| 발표 파일 | `presentation_report.md`, `presentation_slides.md` |
-| 실험 근거 | `04_experiment/outputs/run_log.md` |
+A. 핵심 수식은 accuracy, mi_attack_accuracy, epsilon_proxy, privacy_leakage_score, utility_drop 같은 지표를 해석하는 표준 정식화다. 실제 값은 `04_experiment/outputs/metrics_summary.csv`에서만 가져오며, 수식 자체가 운영 보증을 뜻하지는 않는다.
 
-## Q1. 이번 주차의 핵심 질문은 무엇인가요?
+## Q2. 이 그래프의 수치는 실제 실행 결과인가, 설계 예시인가?
 
-답변: DP 보장을 주장할 때 어떤 평가 항목을 함께 보고해야 하는가입니다. W11은 accuracy, MI attack accuracy, leakage, epsilon/accounting, utility drop, reproducibility를 함께 묶습니다.
+A. 그래프는 `metrics_summary.csv`가 존재하고 numeric 컬럼을 확인한 경우에만 생성했다. CSV에 없는 값은 만들지 않았으며, 산출물이 없을 때는 `design_only / 실행 전 / 확인 필요`로 표시한다.
 
-근거 파일: `06_report/final/integrated_report_final.md`
+## Q3. clean accuracy와 보안 지표가 다른 이유는 무엇인가?
 
-## Q2. 실습/실험 결과는 어디까지 주장할 수 있나요?
+A. clean accuracy는 정상 조건의 예측 성능이고, 보안 지표는 공격 조건, 교란 조건, 프라이버시 누출, 재현성 증거처럼 다른 실패 모드를 본다. 둘은 같은 숫자로 합치면 안 된다.
 
-답변: synthetic toy 실험의 평가 형식과 기록 구조까지만 주장할 수 있습니다. 실제 DP-SGD 보장, 실제 개인정보 보호 수준, 실제 운영 모델의 MI 위험으로 일반화하지 않습니다.
+## Q4. 이 주차 내용을 기말논문에 어떻게 반영할 수 있는가?
 
-근거 파일: `04_experiment/outputs/run_log.md`
+A. `DP-SGD and MI audit flow`를 위협모형 그림으로 쓰고, accuracy, mi_attack_accuracy, epsilon_proxy, privacy_leakage_score, utility_drop를 평가방법 표에 연결할 수 있다. 단, toy/synthetic 범위와 확인 필요 항목은 한계 절에 남겨야 한다.
 
-## Q3. `epsilon_proxy`는 실제 epsilon인가요?
+## Q5. 현재 한계는 무엇이고 추가 실험은 무엇인가?
 
-답변: 아닙니다. noise 강도별 비교를 위한 proxy이며 정식 privacy accountant로 계산한 epsilon이 아닙니다.
+A. `epsilon_proxy`는 formal DP accountant 값이 아니며 formal DP guarantee로 쓰지 않는다. 추가 실험은 run_log.md와 results.json까지 일치하는 조건에서만 확정 수치로 반영한다.
 
-근거 파일: `04_experiment/experiment_report.md`
+## Q6. 논문 5편 중 핵심 근거는 무엇인가?
 
-## Q4. 선택한 보안 지표는 왜 필요한가요?
+A. P01은 핵심 이론, P02는 위협 분류, P03은 평가 지표, P04는 공격·방어 사례, P05는 재현성·정책 근거로 사용한다. 세부 서지와 DOI/URL은 최종 제출 전 원문으로 확인한다.
 
-답변: Accuracy는 utility를 보여주지만 membership leakage를 보여주지 않습니다. MI Attack Accuracy와 Privacy Leakage Score를 함께 기록해야 privacy risk를 별도 축으로 볼 수 있습니다.
+## Q7. 실제 운영 시스템에 바로 적용할 수 없는 이유는 무엇인가?
 
-근거 파일: `03_theory_notes/evaluation_protocol.md`
-
-## Q5. 논문 5편은 각각 어떤 역할을 하나요?
-
-답변: P01은 DP misuse, P02는 DP-DL auditing, P03은 DP 적용 위치, P04는 MI taxonomy, P05는 MI defense와 trade-off를 담당합니다.
-
-근거 파일: `02_paper_summaries/paper_matrix.md`
-
-## Q6. DOI/URL 또는 원문 검증은 완료되었나요?
-
-답변: 부분 완료입니다. P01, P02, P04, P05의 DOI는 확인했습니다. P02는 강의자료의 저자명/권호 표기가 공식 메타데이터와 달라 최종 대조가 필요합니다. P03은 DOI가 Neurocomputing 지정 논문으로 연결되지만 강의자료 저자명 표기와 로컬 대체 PDF 상태가 남아 있습니다. P03/P05는 지정 원문 PDF 확보가 필요합니다.
-
-근거 파일: `01_papers/doi_check.md`
-
-## Q7. 다음 실험으로 확장한다면 무엇이 필요하나요?
-
-답변: 정식 DP-SGD 라이브러리, privacy accountant, 반복 seed, confidence/loss 기반 MI 평가, formal epsilon/delta 기록이 필요합니다.
-
-근거 파일: `04_experiment/experiment_report.md`
-
-<!-- formula-visual-qna:start -->
-## 수식·그래프·그림 보강 Q&A
-
-### Q. 그래프 수치는 어디에서 온 것인가?
-
-A. `04_experiment/outputs/metrics_summary.csv`의 기존 수치만 사용했다. CSV에 없는 값, 실행하지 않은 실험, 외부 논문 실험 수치는 추가하지 않았다.
-
-### Q. 이 수식은 해당 논문의 원문 수식인가?
-
-A. 발표 보강용 수식은 표준 정의식 또는 검증 가능한 평가식이다. 논문별 원문 절·쪽·그림 번호가 필요한 경우 최종 제출 전 사람 검토로 확인한다.
-
-### Q. 다이어그램은 실험 결과인가?
-
-A. 아니다. `DP-SGD and MI audit flow` 다이어그램은 AI-assisted conceptual diagram이며 threat model과 pipeline 설명을 위한 보조 그림이다.
-
-### Q. 보안적으로 가장 조심해야 할 해석은 무엇인가?
-
-A. `epsilon_proxy`는 formal DP accountant 값이 아니며 formal DP guarantee로 쓰지 않는다. 또한 모든 실습은 공개 데이터, synthetic/toy 데이터, 로컬 모의실험 범위로만 해석한다.
-<!-- formula-visual-qna:end -->
+A. 발표의 실습과 그림은 public, synthetic, toy, local evaluation 범위다. 운영 적용에는 실제 데이터 거버넌스, 정책 승인, 위협모형 검토, 독립 검증, 법적 검토가 추가로 필요하다.

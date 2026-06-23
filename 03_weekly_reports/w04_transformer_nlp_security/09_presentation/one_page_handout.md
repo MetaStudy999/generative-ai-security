@@ -1,79 +1,41 @@
-# W04 1페이지 발표 요약
+# W04 주차 연구 발표 요약
 
-## 주제
+## Research Question
 
-Transformer 변형 & NLP 대적공격·프라이버시
+이 주차에서 성능 지표와 보안 지표를 어떻게 분리해 평가할 수 있는가?
 
-## 핵심 주장
+## Key Formula
 
-프롬프트 기반 NLP 보안 평가는 clean score 하나로 끝나지 않는다. 단어 치환 공격 영향, privacy leakage, utility, 재현성 근거를 분리해서 기록해야 한다.
+**Scaled Dot-Product Attention**
 
-## 발표 흐름
+$$
+Attention(Q,K,V)=softmax\left(\frac{QK^\top}{\sqrt{d_k}}\right)V
+$$
 
-| 구분 | 핵심 내용 |
-|---|---|
-| AI 원리 | Transformer는 self-attention으로 토큰 관계를 계산하고, Efficient Transformer는 긴 입력 비용을 줄인다. |
-| 보안 이슈 | 단어 치환 공격은 키워드 기반 탐지를 우회할 수 있고, prompt privacy는 입력·응답·로그 노출을 다룬다. |
-| 문헌 역할 | P01-P03은 Transformer/X-former 원리, P04-P05는 NLP 공격 방어와 prompt privacy를 담당한다. |
-| 평가 관점 | clean score, ASR, privacy leakage, utility score, reproducibility를 분리한다. |
-| 기말 연결 | 프롬프트 기반 AI 시스템의 민감정보 보호 평가체계로 발전시킨다. |
+- 기호와 의미는 슬라이드의 표를 기준으로 설명한다.
+- 보안적 의미: 입력 문맥이 길거나 오염되면 정보 흐름과 취약 응답이 달라질 수 있다.
 
-## Toy 실험 요약
+## Threat Model
 
-| 항목 | 내용 |
-|---|---|
-| 데이터 | synthetic privacy-risk prompts |
-| 분류기 | keyword privacy-risk detector |
-| 공격 | `password`, `ssn`, `token` 우회 표현 치환 |
-| 방어 | regex masking + privacy-preserving prompt wrapper |
-| 산출물 | `metrics_summary.csv`, `results.json`, `run_log.md` |
+Transformer security evaluation flow 기준으로 공격자, 방어자, 보호 자산, 성공 조건을 분리한다.
 
-## 주요 결과
+## Main Figure
 
-정량값은 `04_experiment/outputs/run_log.md` 기준이다.
+- Diagram: `assets/diagrams/w04_pipeline_diagram.svg`
+- Chart: `assets/charts/w04_metrics_chart.svg`
 
-| 조건 | Clean Score | ASR | Leakage | Utility |
-|---|---:|---:|---:|---:|
-| Clean baseline | 1.000000 | 해당 없음 | 해당 없음 | 1.000000 |
-| Word substitution | 0.625000 | 0.750000 | 해당 없음 | 1.000000 |
-| Prompt masking | 해당 없음 | 해당 없음 | 0.000000 | 1.000000 |
-| Privacy-preserving prompt | 해당 없음 | 해당 없음 | 0.000000 | 1.000000 |
+## Evaluation Metrics
 
-## 해석
+clean_score, attack_success_rate, privacy_leakage, utility_score. 실제 수치는 `04_experiment/outputs/metrics_summary.csv` 기준이다.
 
-- 단어 치환 후 privacy-risk 입력 4개 중 3개가 benign으로 오분류됐다.
-- 마스킹 후 synthetic 원시 민감값 패턴은 남지 않았다.
-- 이 결과는 toy 설정의 관찰값이며 실제 LLM 보안 성능으로 일반화하지 않는다.
+## Security Implication
 
-## DOI/URL 상태
+Clean 성능과 보안 지표는 서로 다른 실패 모드를 설명하므로 같은 결론으로 합치지 않는다.
 
-| ID | 상태 |
-|---|---|
-| P01 | ACM DOI `10.1145/3530811` 확인 |
-| P02 | ACM DOI `10.1145/3586074` 확인 |
-| P03 | AI Open 출판 DOI 확인 |
-| P04 | ACM DOI `10.1145/3593042` 확인, 강의자료 표기 확인 필요 |
-| P05 | ACM DOI `10.1145/3729219` 확인 |
+## Limitation
 
-## 관련 산출물
+efficient attention 복잡도는 구조별로 달라 표준 비교식으로만 제시한다. toy/synthetic 범위와 formal guarantee 여부를 구분해야 한다.
 
-| 파일 | 용도 |
-|---|---|
-| `presentation_report.md` | 발표용 보고서 |
-| `presentation_slides.md` | 슬라이드 원본 |
-| `presentation_slides.html` | 브라우저 발표용 슬라이드 |
-| `speaker_notes.md` | 슬라이드별 발표자 대본 |
-| `qna.md` | 예상 질문과 답변 |
-| `04_experiment/outputs/run_log.md` | 실험 수치 근거 |
+## Final Paper Link
 
-<!-- formula-visual-handout:start -->
-## 수식·그래프·그림 보강 요약
-
-| 항목 | 반영 내용 |
-|---|---|
-| 핵심 수식 | Scaled Dot-Product Attention, Attention Complexity 비교 |
-| 그래프 | `assets/charts/w04_metrics_chart.png` (`metrics_summary.csv` 기반) |
-| 다이어그램 | `assets/diagrams/w04_pipeline_diagram.svg` (Transformer security evaluation flow) |
-| 기호 정의 | 통합보고서와 발표 슬라이드의 수식 블록에 포함 |
-| 주의사항 | efficient attention 복잡도는 구조별로 달라 표준 비교식으로만 제시한다. |
-<!-- formula-visual-handout:end -->
+기말논문에서는 관련연구, 위협모형, 평가방법, 한계 절에 이 주차의 수식·표·그래프·다이어그램을 연결한다.

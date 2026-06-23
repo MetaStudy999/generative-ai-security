@@ -455,7 +455,7 @@ toy watermark audit이며 법적 소유권 판단을 자동화하지 않는다.
 
 ### 표 수치 기반 그래프
 
-![W13 metrics chart](../../09_presentation/assets/charts/w13_metrics_chart.png)
+![W13 metrics chart](../../09_presentation/assets/charts/w13_metrics_chart.svg)
 
 그래프는 extraction_fidelity, substitute_accuracy, watermark_detection, false_positive_rate, utility_accuracy를 조건별로 비교한다. Watermark detection은 utility loss와 false positive risk를 함께 보아야 한다. 수치는 output CSV 그대로다.
 

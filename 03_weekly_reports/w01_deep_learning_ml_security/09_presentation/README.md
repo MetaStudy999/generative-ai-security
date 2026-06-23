@@ -1,28 +1,14 @@
-# W01 발표자료
+# W01 발표 산출물
 
-## 구성
+최종 발표본은 `presentation_slides.html`이다. 주차 번호가 붙은 이전 HTML 파일은 호환용으로만 유지한다.
 
-| 파일 | 용도 |
+| 파일 | 역할 |
 |---|---|
-| `presentation_report.md` | 공통지침 파일명의 발표용 보고서 |
-| `presentation_report.html` | 공통지침 파일명의 브라우저 발표용 보고서 |
-| `presentation_slides.md` | 공통지침 파일명의 발표 슬라이드 원본 |
-| `presentation_slides.html` | 공통지침 파일명의 브라우저 발표용 슬라이드 |
-| `w01_presentation_slides.md` | 발표 슬라이드 원본 |
-| `w01_presentation.html` | 브라우저에서 바로 열 수 있는 발표용 HTML |
-| `speaker_notes.md` | 슬라이드별 발표자 대본 |
-| `qna.md` | 예상 질문과 답변 |
-| `one_page_handout.md` | 청중 배포용 1페이지 요약 |
+| `presentation_slides.html` | 오른쪽 하단 `.slide-nav`가 적용된 Nature-style 연구 발표 슬라이드 |
+| `presentation_slides.md` | 슬라이드 내용 원본 요약 |
+| `speaker_notes.md` | 슬라이드별 발표자 노트 |
+| `qna.md` | 예상 질문과 안전한 답변 |
+| `one_page_handout.md` | 1페이지 연구 발표 요약 |
+| `assets/figure_manifest.md` | 그래프와 다이어그램 생성 근거 |
 
-## 발표 시간 기준
-
-- 권장 발표 시간: 8-10분
-- 슬라이드 수: 13장, 표지 포함
-- 핵심 메시지: W01은 딥러닝 원리를 보안 평가 프레임으로 바꾸는 기준 주차다.
-
-## 사용 방법
-
-1. 공통지침 기준 제출 확인은 `presentation_report.html`과 `presentation_slides.html`을 사용한다.
-2. 주차명 파일을 직접 열 경우 `w01_presentation.html`을 브라우저로 연다.
-3. 키보드 방향키, PageUp/PageDown, Home/End로 슬라이드를 이동한다.
-4. 인쇄 또는 PDF 저장이 필요하면 브라우저 인쇄 기능을 사용한다.
+수치 그래프는 `04_experiment/outputs/metrics_summary.csv`가 있는 경우에만 생성한다. 없는 수치나 실행하지 않은 결과는 만들지 않는다.

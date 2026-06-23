@@ -3,77 +3,375 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>W15 Reproducibility XAI Slides</title>
-  <style>
-    * { box-sizing: border-box; }
-    body { margin: 0; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f4f6f8; color: #1f252c; }
-    .slide { min-height: 100vh; display: none; align-items: center; justify-content: center; padding: 64px 72px 96px; }
-    .slide.active { display: flex; }
-    .content { width: min(1060px, 100%); }
-    h1 { font-size: 46px; line-height: 1.18; margin: 0 0 28px; }
-    h2 { font-size: 38px; line-height: 1.22; margin: 0 0 24px; }
-    p, li { font-size: 24px; line-height: 1.55; }
-    ul { padding-left: 28px; }
-    table { border-collapse: collapse; width: 100%; margin-top: 22px; font-size: 22px; }
-    th, td { border: 1px solid #b9c2cf; padding: 12px 14px; text-align: left; }
-    th { background: #e7edf4; }
-    .controls { position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%); display: flex; align-items: center; gap: 10px; background: #ffffff; border: 1px solid #c7d0dc; padding: 8px 10px; border-radius: 8px; box-shadow: 0 8px 24px rgba(29, 43, 58, 0.14); }
-    button { min-width: 72px; height: 36px; border: 1px solid #9aa8b8; background: #eef2f6; color: #1f252c; border-radius: 6px; font-size: 15px; cursor: pointer; }
-    button:hover { background: #dfe7f0; }
-    #counter { min-width: 64px; text-align: center; font-size: 15px; }
-    @media (max-width: 720px) {
-      .slide { padding: 48px 24px 88px; }
-      h1 { font-size: 33px; }
-      h2 { font-size: 29px; }
-      p, li, table { font-size: 18px; }
-      table { display: block; overflow-x: auto; }
-    }
-  </style>
-<!-- formula-visual-mathjax:start -->
-<script>
-window.MathJax = {
-  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$']] },
-  svg: { fontCache: 'global' }
-};
-</script>
-<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
-<style>
-.formula-visual-supplement .math-block { border-left: 5px solid #0f766e; background: #eef8f6; padding: 14px 18px; margin: 12px 0; font-size: 20px; overflow-x: auto; }
-.formula-visual-supplement .caption { font-size: 16px; line-height: 1.35; color: #53616f; }
-.formula-visual-supplement img { max-width: 100%; max-height: 390px; object-fit: contain; border: 1px solid #d8e0e8; border-radius: 8px; background: #fff; }
-.formula-visual-supplement .media-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
-</style>
-<!-- formula-visual-mathjax:end -->
+  <title>W15 Reproducibility &amp; XAI Paper Integration 발표 슬라이드</title>
+  <link rel="stylesheet" href="../../../02_report_templates/nature_research_slide_style.css">
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [["\\(", "\\)"]],
+        displayMath: [["\\[", "\\]"], ["$$", "$$"]]
+      },
+      svg: {
+        fontCache: "global"
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 </head>
 <body>
-  <section class="slide active"><div class="content"><h1>W15 연구평가·재현성·XAI·논문 구성</h1><p>AI 보안 연구의 신뢰성은 성능 수치보다 evidence chain에서 나온다.</p></div></section>
-  <section class="slide"><div class="content"><h2>오늘의 질문</h2><ul><li>평가 데이터는 오염되지 않았는가?</li><li>같은 조건에서 결과를 다시 확인할 수 있는가?</li><li>XAI 설명은 믿을 만한가, 아니면 새 공격면인가?</li><li>참고문헌과 AI 활용 고지는 검증 가능한가?</li></ul></div></section>
-  <section class="slide"><div class="content"><h2>논문 패킷 역할</h2><table><tr><th>논문</th><th>역할</th></tr><tr><td>P01</td><td>LLM evaluation과 benchmark contamination</td></tr><tr><td>P02</td><td>ML lifecycle assurance와 재현성 증거</td></tr><tr><td>P03</td><td>XAI 핵심 문헌, 대체 PDF 검증 이슈</td></tr><tr><td>P04</td><td>XAI taxonomy와 Responsible AI</td></tr><tr><td>P05</td><td>concept-based XAI와 설명 안정성</td></tr></table></div></section>
-  <section class="slide"><div class="content"><h2>AI 원리 70%</h2><ul><li>Evaluation: 무엇을, 어디서, 어떻게 평가할지 정한다.</li><li>Reproducibility: config, seed, log, outputs가 결론의 근거가 된다.</li><li>XAI: 설명도 fidelity, stability, leakage risk를 평가해야 한다.</li><li>Paper structure: contribution과 limitation이 연구 신뢰성을 만든다.</li></ul></div></section>
-  <section class="slide"><div class="content"><h2>보안 이슈 30%</h2><table><tr><th>자산</th><th>위협</th></tr><tr><td>Benchmark</td><td>contamination, hidden test leakage</td></tr><tr><td>Model/explanation</td><td>model leakage, explanation gaming</td></tr><tr><td>Paper</td><td>fabricated citation, unverifiable DOI</td></tr><tr><td>AI worklog</td><td>missing disclosure, 책임 추적 실패</td></tr></table></div></section>
-  <section class="slide"><div class="content"><h2>로컬 감사 결과</h2><table><tr><th>항목</th><th>결과</th></tr><tr><td>W15 필수 산출물</td><td>47/47</td></tr><tr><td>기말논문 연결 파일</td><td>9/9</td></tr><tr><td>로컬 PDF</td><td>5</td></tr><tr><td>가중 참고문헌 검증률</td><td>0.90</td></tr><tr><td>AI 활용 고지 완성도</td><td>11/11</td></tr></table></div></section>
-  <section class="slide"><div class="content"><h2>확인 필요 항목</h2><ul><li>P03: 지정 논문 원문과 로컬 PDF 불일치</li><li>P05: DOI 확인, 권호/issue 최종 확인 필요</li><li>기말논문: 국내 문헌 3편 이상 검증 필요</li><li>public GitHub PDF 보관 정책 검토 필요</li></ul></div></section>
-  <section class="slide"><div class="content"><h2>기말논문 연결</h2><p>최종 주제: AI 보안 연구의 재현 가능한 생명주기 기반 평가 프레임워크</p><ul><li>prompt injection</li><li>benchmark contamination</li><li>privacy leakage</li><li>reproducibility failure</li></ul></div></section>
-  <section class="slide"><div class="content"><h2>최종 Contribution</h2><p>본 연구는 LLM/RAG 기반 AI 시스템의 데이터·평가·프롬프트 생명주기에서 prompt injection, benchmark contamination, privacy leakage 위협을 분석하고, 재현성 중심의 보안 평가 체크리스트를 제안한다.</p></div></section>
-  <section class="slide"><div class="content"><h2>결론</h2><p>평가와 설명은 결과가 아니라 증거다. 증거는 DOI, config, seed, log, output, AI disclosure와 함께 남을 때 신뢰할 수 있다.</p></div></section>
-  <div class="controls"><button id="prev" type="button">이전</button><span id="counter">1/10</span><button id="next" type="button">다음</button></div>
+  <!-- Final canonical deck: presentation_slides.html. Week-numbered HTML files are compatibility copies only. -->
+  <main class="deck">
+
+    <section class="slide" id="w15-title">
+      <div class="journal-kicker">Research Presentation / W15</div>
+      <h1>W15 Reproducibility &amp; XAI Paper Integration</h1>
+      <p class="research-question">연구 질문: Reproducibility &amp; XAI Paper Integration에서 성능 지표와 보안 지표를 어떻게 분리해 평가할 수 있는가?</p>
+      <div class="ratio-strip">
+        <span>Formula-first</span>
+        <span>Figure-first</span>
+        <span>Toy/Public/Synthetic scope</span>
+        <span>No journal logo or trademark</span>
+      </div>
+      <p class="citation-footnote">최종 발표본: presentation_slides.html. 기존 주차번호 HTML은 호환용으로만 유지.</p>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Background / W15</div>
+      <h2>왜 이 주제가 중요한가</h2>
+      <p class="key-finding">이 주제는 clean 성능만으로는 안전성을 설명하기 어렵다.</p>
+      <div class="figure-grid three-panel">
+        <div class="figure-panel"><div class="panel-label">A</div><h3>AI 원리</h3><p>모델 목적함수와 표현이 평가 지표의 출발점이다.</p></div>
+        <div class="figure-panel"><div class="panel-label">B</div><h3>보안 표면</h3><p>공격자 가정, 보호 자산, 실패 조건을 분리한다.</p></div>
+        <div class="figure-panel"><div class="panel-label">C</div><h3>근거 관리</h3><p>CSV, run log, 결과표가 같은 값을 말해야 한다.</p></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Research Gap</div>
+      <h2>기존 발표 흐름의 빈틈</h2>
+      <table>
+        <thead><tr><th>빈틈</th><th>보완 방식</th><th>검증 상태</th></tr></thead>
+        <tbody>
+          <tr><td>수식과 지표 연결 부족</td><td>핵심 수식, 기호표, 보안적 의미를 한 장에 배치</td><td>표준식 / 확인 필요 병기</td></tr>
+          <tr><td>표와 위협모형 분리</td><td>공격자·방어자·보호 자산 표로 정리</td><td>toy/synthetic 범위</td></tr>
+          <tr><td>결과 그래프 출처 불명확</td><td>metrics_summary.csv 기반 그래프만 사용</td><td>데이터 출처: 04_experiment/outputs/metrics_summary.csv</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Core Formula / W15</div>
+      <h2>핵심 수식: Reproducibility Completion Rate</h2>
+      <div class="formula-card">
+        \[
+RepRate=\frac{\#\{\mathrm{required\ artifacts\ present}\}}{\#\{\mathrm{required\ artifacts}\}}
+        \]
+      </div>
+      <table>
+<thead>
+<tr>
+<th>기호</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\(RepRate\)</td>
+<td>필수 산출물 보존 비율</td>
+</tr>
+<tr>
+<td>\(required artifacts\)</td>
+<td>실험 재현에 필요한 파일 집합</td>
+</tr>
+<tr>
+<td>\(\#\)</td>
+<td>개수</td>
+</tr>
+<tr>
+<td>\(present\)</td>
+<td>로컬 저장소에 존재</td>
+</tr>
+</tbody>
+</table>
+      <p class="figure-caption">Formula | 재현성은 필요한 파일과 증거가 실제로 남아 있는지에서 출발한다. 논문 주장에는 config, seed, DOI 검증, AI disclosure가 연결되어야 한다. 평가 지표 연결: w15_required_files, config_present, seed_recorded와 연결한다.</p>
+      <div class="limitation-box">한계: local artifact completeness proxy이며 논문 품질 전체를 보증하지 않는다.</div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Threat Model</div>
+      <h2>공격자·방어자·보호 자산</h2>
+      <table>
+        <thead><tr><th>구성요소</th><th>발표 내 의미</th><th>주의</th></tr></thead>
+        <tbody>
+          <tr><td>공격자</td><td>안전한 toy/public/synthetic 범위의 평가 조건을 가정</td><td>실제 시스템 악용 절차 없음</td></tr>
+          <tr><td>방어자</td><td>지표, 로그, 검증 절차로 위험을 관찰</td><td>formal guarantee와 empirical proxy 구분</td></tr>
+          <tr><td>보호 자산</td><td>모델 성능, 데이터 프라이버시, 재현성 증거, 운영 신뢰</td><td>없는 결과는 만들지 않음</td></tr>
+          <tr><td>성공 조건</td><td>value 변화가 위험을 설명하는지 확인</td><td>CSV와 모순되면 보류</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Evaluation Protocol</div>
+      <h2>평가 프로토콜과 지표</h2>
+      <table>
+<thead>
+<tr>
+<th>평가 항목</th>
+<th>대표 지표</th>
+<th>기록 방식</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>value</td>
+<td>CSV 컬럼 존재 시 그래프와 표에 반영</td>
+<td>실제 실행 산출물 기준</td>
+</tr>
+</tbody>
+</table>
+      <p class="figure-caption">Protocol | 데이터 출처: 04_experiment/outputs/metrics_summary.csv. run_log.md 또는 results.json과 모순되는 수치는 사용하지 않는다.</p>
+    </section>
+
+    <section class="slide figure-first">
+      <div class="slide-header">Figure 1 / Diagram</div>
+      <h2>reproducibility workflow</h2>
+      <div class="figure-grid two-panel">
+        <figure class="figure-panel">
+          <div class="panel-label">A</div>
+          <div class="pipeline-diagram" role="img" aria-label="reproducibility workflow">
+<div class="stage normal">Plan<br><small>RQ/protocol</small></div>
+<div class="arrow" aria-hidden="true">→</div>
+<div class="stage normal">Artifacts<br><small>files/DOI</small></div>
+<div class="arrow" aria-hidden="true">→</div>
+<div class="stage normal">Run<br><small>seed/config</small></div>
+<div class="arrow" aria-hidden="true">→</div>
+<div class="stage normal">Compare<br><small>metrics</small></div>
+<div class="arrow" aria-hidden="true">→</div>
+<div class="stage defense">Paper Evidence<br><small>claim limits</small></div>
+</div>
+          <figcaption class="figure-caption">Pipeline | 단계별 공격면과 방어·검증 지점을 4~6개로 압축했다.</figcaption>
+        </figure>
+        <figure class="figure-panel">
+          <div class="panel-label">B</div>
+          <img src="assets/diagrams/w15_pipeline_diagram.svg" alt="W15 pipeline diagram">
+          <figcaption class="figure-caption">Manifest | assets/figure_manifest.md에 생성 방식과 한계를 기록했다.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="slide figure-first">
+      <div class="slide-header">Figure 2 / Metrics</div>
+      <h2>실제 CSV 기반 지표 그래프</h2>
+      <div class="figure-grid two-panel">
+        <figure class="figure-panel chart-panel">
+          <div class="panel-label">A</div>
+          <img src="assets/charts/w15_metrics_chart.svg" alt="W15 metrics chart">
+          <figcaption class="figure-caption">Graph | 그래프는 numeric 또는 ratio로 변환 가능한 reproducibility evidence만 표시한다. `47/47`, `9/9`, `11/11` 같은 비율은 1.0으로 환산해 completeness proxy로만 그렸다. 원문 DOI 세부 검증과 citation 형식은 별도 사람 검토가 필요하다. 데이터 출처: 04_experiment/outputs/metrics_summary.csv</figcaption>
+        </figure>
+        <figure class="figure-panel">
+          <div class="panel-label">B</div>
+          <table>
+<thead>
+<tr>
+<th>metric</th>
+<th>value</th>
+<th>status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>w15_required_files</td>
+<td>47/47</td>
+<td>complete</td>
+</tr>
+<tr>
+<td>final_paper_link_files</td>
+<td>9/9</td>
+<td>complete</td>
+</tr>
+<tr>
+<td>local_pdf_count</td>
+<td>5</td>
+<td>complete</td>
+</tr>
+<tr>
+<td>doi_confirmed</td>
+<td>4</td>
+<td>complete</td>
+</tr>
+<tr>
+<td>doi_partial</td>
+<td>1</td>
+<td>partial</td>
+</tr>
+</tbody>
+</table>
+          <figcaption class="figure-caption">Table | 그래프에 사용한 CSV의 주요 행을 요약했다.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Paper Map</div>
+      <h2>논문 5편의 역할표</h2>
+      <table>
+<thead>
+<tr>
+<th>ID</th>
+<th>논문 역할</th>
+<th>발표에서 쓰는 위치</th>
+<th>기말논문 연결</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P01</td>
+<td>핵심 이론</td>
+<td>Background / Core Formula</td>
+<td>Reproducibility &amp; XAI Paper Integration의 관련연구 뼈대</td>
+</tr>
+<tr>
+<td>P02</td>
+<td>위협 분류</td>
+<td>Threat Model</td>
+<td>공격자·방어자·보호자산 정의</td>
+</tr>
+<tr>
+<td>P03</td>
+<td>평가 지표</td>
+<td>Evaluation Protocol</td>
+<td>정량 지표와 로그 근거 연결</td>
+</tr>
+<tr>
+<td>P04</td>
+<td>공격·방어 사례</td>
+<td>Security Implication</td>
+<td>보안적 함의와 방어 한계</td>
+</tr>
+<tr>
+<td>P05</td>
+<td>재현성·정책 근거</td>
+<td>Limitation</td>
+<td>확인 필요 항목과 제출 전 검증</td>
+</tr>
+</tbody>
+</table>
+      <p class="figure-caption">Paper map | 서지 세부사항과 DOI/URL은 최종 제출 전 원문 기준으로 확인한다.</p>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Security Implication</div>
+      <h2>보안적 함의</h2>
+      <div class="question-box">재현성과 XAI는 실험값 재현, 근거 문헌, 설명 안정성을 함께 요구한다.</div>
+      <div class="figure-grid three-panel">
+        <div class="figure-panel"><div class="panel-label">A</div><h3>분리</h3><p>clean 성능과 보안 지표를 같은 값처럼 해석하지 않는다.</p></div>
+        <div class="figure-panel"><div class="panel-label">B</div><h3>추적</h3><p>수치, 그래프, 노트, Q&A가 같은 산출물을 가리킨다.</p></div>
+        <div class="figure-panel"><div class="panel-label">C</div><h3>제한</h3><p>실제 악용 절차 없이 평가 개념과 방어 관점만 설명한다.</p></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Limitation</div>
+      <h2>한계와 검증 상태</h2>
+      <div class="limitation-box">비율 변환 값은 local completeness proxy이며 학술적 품질 보증 점수가 아니다. V_ref는 저장소 local scoring이며 외부 학술 검증을 대체하지 않는다.</div>
+      <table>
+        <thead><tr><th>항목</th><th>상태</th><th>다음 확인</th></tr></thead>
+        <tbody>
+          <tr><td>실험 수치</td><td>실행 산출물 있음</td><td>run_log.md, results.json 대조</td></tr>
+          <tr><td>수식 보증</td><td>표준식 또는 proxy</td><td>원문 절·쪽·formal guarantee 확인</td></tr>
+          <tr><td>운영 적용</td><td>바로 적용 불가</td><td>실제 데이터·정책·위험평가 필요</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Final Takeaway</div>
+      <h2>기말논문 연결</h2>
+      <p class="key-finding">W15의 결론은 지표를 분리하고 근거 파일로 추적하는 연구 설계다.</p>
+      <table>
+        <thead><tr><th>기말논문 장</th><th>연결 내용</th></tr></thead>
+        <tbody>
+          <tr><td>관련연구</td><td>Reproducibility &amp; XAI Paper Integration의 핵심 이론과 보안 taxonomy 정리</td></tr>
+          <tr><td>위협모형</td><td>reproducibility workflow 기반 공격면·방어면 정의</td></tr>
+          <tr><td>평가방법</td><td>value를 CSV/log 기준으로 검증</td></tr>
+          <tr><td>한계</td><td>toy/synthetic 범위와 확인 필요 항목을 명시</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+  </main>
+
+  <nav class="slide-nav" aria-label="슬라이드 이동">
+    <button id="prevSlide" type="button" title="이전 슬라이드" aria-label="이전 슬라이드">‹</button>
+    <span id="slideCounter" class="slide-counter" aria-live="polite">1 / 1</span>
+    <button id="nextSlide" type="button" title="다음 슬라이드" aria-label="다음 슬라이드">›</button>
+  </nav>
+
   <script>
-    const slides = Array.from(document.querySelectorAll('.slide'));
-    const counter = document.querySelector('#counter');
-    let index = 0;
-    function show(nextIndex) {
-      index = Math.max(0, Math.min(slides.length - 1, nextIndex));
-      slides.forEach((slide, slideIndex) => slide.classList.toggle('active', slideIndex === index));
-      counter.textContent = `${index + 1}/${slides.length}`;
+    const slides = Array.from(document.querySelectorAll("section.slide, section"));
+    const prevButton = document.getElementById("prevSlide");
+    const nextButton = document.getElementById("nextSlide");
+    const counter = document.getElementById("slideCounter");
+    let currentIndex = 0;
+
+    function updateNav(index) {
+      currentIndex = Math.max(0, Math.min(index, slides.length - 1));
+      counter.textContent = `${currentIndex + 1} / ${slides.length}`;
+      prevButton.disabled = currentIndex === 0;
+      nextButton.disabled = currentIndex === slides.length - 1;
     }
-    document.querySelector('#prev').addEventListener('click', () => show(index - 1));
-    document.querySelector('#next').addEventListener('click', () => show(index + 1));
-    document.addEventListener('keydown', (event) => {
-      if (['ArrowRight', 'PageDown', ' '].includes(event.key)) show(index + 1);
-      if (['ArrowLeft', 'PageUp'].includes(event.key)) show(index - 1);
-      if (event.key === 'Home') show(0);
-      if (event.key === 'End') show(slides.length - 1);
+
+    function goToSlide(index) {
+      const nextIndex = Math.max(0, Math.min(index, slides.length - 1));
+      slides[nextIndex].scrollIntoView({ behavior: "smooth", block: "start" });
+      updateNav(nextIndex);
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        window.MathJax.typesetPromise([slides[nextIndex]]).catch(() => {});
+      }
+    }
+
+    prevButton.addEventListener("click", () => goToSlide(currentIndex - 1));
+    nextButton.addEventListener("click", () => goToSlide(currentIndex + 1));
+
+    document.addEventListener("keydown", (event) => {
+      if (["ArrowRight", "PageDown", " "].includes(event.key)) {
+        event.preventDefault();
+        goToSlide(currentIndex + 1);
+      }
+
+      if (["ArrowLeft", "PageUp"].includes(event.key)) {
+        event.preventDefault();
+        goToSlide(currentIndex - 1);
+      }
+
+      if (event.key === "Home") {
+        event.preventDefault();
+        goToSlide(0);
+      }
+
+      if (event.key === "End") {
+        event.preventDefault();
+        goToSlide(slides.length - 1);
+      }
     });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((left, right) => right.intersectionRatio - left.intersectionRatio)[0];
+
+        if (visible) {
+          updateNav(slides.indexOf(visible.target));
+        }
+      },
+      { threshold: [0.55] }
+    );
+
+    slides.forEach((slide) => observer.observe(slide));
+    updateNav(0);
   </script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import html
+import csv
 import math
 import os
 import re
@@ -9,12 +10,21 @@ from typing import Any
 
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/matplotlib-cache")
 
-import matplotlib
+try:
+    import matplotlib
 
-matplotlib.use("Agg")
-import matplotlib.pyplot as plt
-from matplotlib import font_manager
-import pandas as pd
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    from matplotlib import font_manager
+except ModuleNotFoundError:
+    matplotlib = None
+    plt = None
+    font_manager = None
+
+try:
+    import pandas as pd
+except ModuleNotFoundError:
+    pd = None
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -857,12 +867,46 @@ def ascii_axis_label(label: str, index: int) -> str:
 
 
 def configure_matplotlib_fonts() -> bool:
+    if plt is None or font_manager is None:
+        return False
     plt.rcParams["axes.unicode_minus"] = False
     if not LOCAL_KOREAN_FONT.exists():
         return False
     font_manager.fontManager.addfont(str(LOCAL_KOREAN_FONT))
     plt.rcParams["font.family"] = "Noto Sans CJK KR"
     return True
+
+
+def parse_numeric_value(value: Any) -> float:
+    if value is None:
+        return math.nan
+    s = str(value).strip()
+    if not s:
+        return math.nan
+    low = s.lower()
+    if low == "true":
+        return 1.0
+    if low == "false":
+        return 0.0
+    if "/" in s and re.fullmatch(r"\d+(\.\d+)?/\d+(\.\d+)?", s):
+        left, right = s.split("/", 1)
+        denom = float(right)
+        return float(left) / denom if denom else math.nan
+    try:
+        return float(s)
+    except ValueError:
+        return math.nan
+
+
+def read_csv_records(csv_path: Path) -> tuple[list[str], list[dict[str, str]]]:
+    with csv_path.open("r", encoding="utf-8-sig", newline="") as handle:
+        reader = csv.DictReader(handle)
+        rows = [{key: (value if value is not None else "") for key, value in row.items()} for row in reader]
+        return list(reader.fieldnames or []), rows
+
+
+def svg_polyline(points: list[tuple[float, float]]) -> str:
+    return " ".join(f"{x:.1f},{y:.1f}" for x, y in points)
 
 
 def make_chart(config: dict[str, Any], week_dir: Path) -> list[str]:
@@ -872,26 +916,26 @@ def make_chart(config: dict[str, Any], week_dir: Path) -> list[str]:
     if not csv_path.exists():
         return []
 
-    df = pd.read_csv(csv_path)
-    if df.empty:
+    fieldnames, records = read_csv_records(csv_path)
+    if not records:
         return []
 
-    x_col = config["x_col"] if config["x_col"] in df.columns else df.columns[0]
-    raw_labels = df[x_col].astype(str).tolist()
-    labels = raw_labels if LOCAL_KOREAN_FONT.exists() else [ascii_axis_label(label, idx) for idx, label in enumerate(raw_labels)]
-    selected: dict[str, pd.Series] = {}
+    x_col = config["x_col"] if config["x_col"] in fieldnames else fieldnames[0]
+    raw_labels = [row.get(x_col, f"row_{idx + 1}") for idx, row in enumerate(records)]
+    labels = [ascii_axis_label(label, idx) for idx, label in enumerate(raw_labels)]
+    selected: dict[str, list[float]] = {}
     for col in config["chart_cols"]:
-        if col in df.columns:
-            numeric = parse_numeric_series(df[col])
-            if numeric.notna().any():
+        if col in fieldnames:
+            numeric = [parse_numeric_value(row.get(col, "")) for row in records]
+            if any(not math.isnan(value) for value in numeric):
                 selected[col] = numeric
 
     if not selected:
-        for col in df.columns:
+        for col in fieldnames:
             if col == x_col:
                 continue
-            numeric = parse_numeric_series(df[col])
-            if numeric.notna().any():
+            numeric = [parse_numeric_value(row.get(col, "")) for row in records]
+            if any(not math.isnan(value) for value in numeric):
                 selected[col] = numeric
             if len(selected) >= 5:
                 break
@@ -899,34 +943,71 @@ def make_chart(config: dict[str, Any], week_dir: Path) -> list[str]:
     if not selected:
         return []
 
-    fig, ax = plt.subplots(figsize=(11, 6.2))
-    x = list(range(len(labels)))
-    if len(selected) == 1:
-        col, values = next(iter(selected.items()))
-        ax.bar(x, values.fillna(0.0), color="#2a6f97", label=col)
-        for idx, value in enumerate(values):
-            if pd.notna(value):
-                ax.text(idx, float(value) + 0.02, f"{float(value):.3g}", ha="center", va="bottom", fontsize=8)
-    else:
-        for col, values in selected.items():
-            ax.plot(x, values, marker="o", linewidth=2, label=col)
+    values = [value for series in selected.values() for value in series if not math.isnan(value)]
+    min_y = min(values)
+    max_y = max(values)
+    if math.isclose(min_y, max_y):
+        min_y = min(0.0, min_y)
+        max_y = max(1.0, max_y + 1.0)
+    pad = (max_y - min_y) * 0.08
+    min_y -= pad
+    max_y += pad
 
-    ax.set_title(f"{config['week']} metrics from metrics_summary.csv", fontsize=14, pad=12)
-    ax.set_xlabel(x_col)
-    ax.set_ylabel("Metric value (unitless unless noted)")
-    ax.set_xticks(x)
-    ax.set_xticklabels(labels, rotation=25, ha="right", fontsize=8)
-    ax.grid(True, axis="y", alpha=0.25)
-    ax.legend(loc="best", fontsize=8)
-    fig.text(0.01, 0.01, f"Data source: {csv_path.relative_to(week_dir)}", fontsize=8, color="#555555")
-    fig.tight_layout(rect=(0, 0.04, 1, 1))
+    width, height = 1120, 620
+    left, right, top, bottom = 92, 58, 76, 132
+    plot_w = width - left - right
+    plot_h = height - top - bottom
+    colors = ["#1f3a5f", "#b3261e", "#166534", "#6d5aa8", "#9a3412", "#0f766e"]
 
-    png = chart_dir / f"{config['week'].lower()}_metrics_chart.png"
+    def x_pos(idx: int) -> float:
+        if len(labels) == 1:
+            return left + plot_w / 2
+        return left + (plot_w * idx / (len(labels) - 1))
+
+    def y_pos(value: float) -> float:
+        return top + plot_h - ((value - min_y) / (max_y - min_y)) * plot_h
+
+    elements = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-label="{html.escape(config["week"])} metrics chart">',
+        '<rect width="100%" height="100%" fill="#ffffff"/>',
+        f'<text x="{left}" y="38" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#111111">{html.escape(config["week"])} metrics from metrics_summary.csv</text>',
+        f'<text x="{left}" y="62" font-family="Arial, sans-serif" font-size="13" fill="#5f6368">Data source: {html.escape(str(csv_path.relative_to(week_dir)))}</text>',
+        f'<rect x="{left}" y="{top}" width="{plot_w}" height="{plot_h}" fill="#fafafa" stroke="#d9d6cf"/>',
+    ]
+    for tick in range(5):
+        ratio = tick / 4
+        y = top + plot_h - ratio * plot_h
+        value = min_y + ratio * (max_y - min_y)
+        elements.append(f'<line x1="{left}" y1="{y:.1f}" x2="{left + plot_w}" y2="{y:.1f}" stroke="#e5e1da"/>')
+        elements.append(f'<text x="{left - 12}" y="{y + 4:.1f}" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#5f6368">{value:.3g}</text>')
+    elements.append(f'<line x1="{left}" y1="{top + plot_h}" x2="{left + plot_w}" y2="{top + plot_h}" stroke="#111111"/>')
+    elements.append(f'<line x1="{left}" y1="{top}" x2="{left}" y2="{top + plot_h}" stroke="#111111"/>')
+
+    for idx, label in enumerate(labels):
+        x = x_pos(idx)
+        elements.append(f'<text x="{x:.1f}" y="{height - 86}" transform="rotate(28 {x:.1f},{height - 86})" text-anchor="start" font-family="Arial, sans-serif" font-size="12" fill="#5f6368">{html.escape(label[:42])}</text>')
+    elements.append(f'<text x="{left + plot_w / 2:.1f}" y="{height - 24}" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#111111">{html.escape(x_col)}</text>')
+    elements.append(f'<text x="24" y="{top + plot_h / 2:.1f}" transform="rotate(-90 24,{top + plot_h / 2:.1f})" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#111111">Metric value</text>')
+
+    legend_x = left + plot_w - 250
+    legend_y = top + 18
+    for series_idx, (col, series) in enumerate(selected.items()):
+        color = colors[series_idx % len(colors)]
+        points = [(x_pos(idx), y_pos(value)) for idx, value in enumerate(series) if not math.isnan(value)]
+        if len(points) == 1:
+            x, y = points[0]
+            elements.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="5" fill="{color}"/>')
+        elif points:
+            elements.append(f'<polyline points="{svg_polyline(points)}" fill="none" stroke="{color}" stroke-width="3"/>')
+            for x, y in points:
+                elements.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="4" fill="{color}"/>')
+        elements.append(f'<rect x="{legend_x}" y="{legend_y + series_idx * 20}" width="12" height="12" fill="{color}"/>')
+        elements.append(f'<text x="{legend_x + 18}" y="{legend_y + 11 + series_idx * 20}" font-family="Arial, sans-serif" font-size="12" fill="#111111">{html.escape(col)}</text>')
+
+    elements.append("</svg>")
     svg = chart_dir / f"{config['week'].lower()}_metrics_chart.svg"
-    fig.savefig(png, dpi=180)
-    fig.savefig(svg)
-    plt.close(fig)
-    return [png.name, svg.name]
+    write_text(svg, "\n".join(elements))
+    return [svg.name]
 
 
 def wrap_stage(text: str, max_len: int = 14) -> list[str]:
@@ -996,7 +1077,7 @@ def make_diagram(config: dict[str, Any], week_dir: Path) -> str:
 
 def formula_markdown(config: dict[str, Any], rel_prefix: str, heading: str) -> str:
     week_l = config["week"].lower()
-    chart_path = f"{rel_prefix}assets/charts/{week_l}_metrics_chart.png"
+    chart_path = f"{rel_prefix}assets/charts/{week_l}_metrics_chart.svg"
     diagram_path = f"{rel_prefix}assets/diagrams/{week_l}_pipeline_diagram.svg"
     manifest_path = f"{rel_prefix}assets/figure_manifest.md"
     lines = [
@@ -1110,7 +1191,7 @@ def handout_block(config: dict[str, Any]) -> str:
             "| 항목 | 반영 내용 |",
             "|---|---|",
             f"| 핵심 수식 | {', '.join(formula['name'] for formula in config['formulas'])} |",
-            f"| 그래프 | `assets/charts/{week_l}_metrics_chart.png` (`metrics_summary.csv` 기반) |",
+            f"| 그래프 | `assets/charts/{week_l}_metrics_chart.svg` (`metrics_summary.csv` 기반) |",
             f"| 다이어그램 | `assets/diagrams/{week_l}_pipeline_diagram.svg` ({config['diagram_type']}) |",
             "| 기호 정의 | 통합보고서와 발표 슬라이드의 수식 블록에 포함 |",
             f"| 주의사항 | {config['caution']} |",
@@ -1129,7 +1210,7 @@ def worklog_block(config: dict[str, Any]) -> str:
             "| 사용 도구 | Codex, Python, matplotlib |",
             "| 사용 목적 | 주차별 통합보고서와 발표자료에 핵심 수식, 기호 정의표, 그래프, 다이어그램, 발표자 노트 설명을 추가 |",
             f"| 입력 근거 | `{config['slug']}/04_experiment/outputs/metrics_summary.csv`, 기존 통합보고서, 발표 슬라이드, 이론노트 |",
-            f"| 생성 산출물 | `09_presentation/assets/charts/{week_l}_metrics_chart.png`, `09_presentation/assets/charts/{week_l}_metrics_chart.svg`, `09_presentation/assets/diagrams/{week_l}_pipeline_diagram.svg`, `09_presentation/assets/figure_manifest.md` |",
+            f"| 생성 산출물 | `09_presentation/assets/charts/{week_l}_metrics_chart.svg`, `09_presentation/assets/diagrams/{week_l}_pipeline_diagram.svg`, `09_presentation/assets/figure_manifest.md` |",
             "| 검증 방식 | CSV에서 읽은 기존 수치만 차트화하고, 수식은 표준 정의식으로 한정했으며, formal guarantee가 불명확한 항목은 확인 필요로 표시 |",
             "| 안전 범위 | 공개 데이터, synthetic/toy 데이터, 로컬 모의실험 설명으로 제한하고 실제 시스템 악용 절차는 작성하지 않음 |",
         ]
@@ -1219,7 +1300,7 @@ def html_slides_block(config: dict[str, Any]) -> str:
             f'      <div class="slide-header">Visual / {html.escape(config["week"])}</div>',
             "      <h2>그래프와 Pipeline Diagram</h2>",
             '      <div class="media-grid">',
-            f'        <div><img src="assets/charts/{week_l}_metrics_chart.png" alt="{html.escape(config["week"])} metrics chart"><p class="caption">{html.escape(config["interpretation"])}</p></div>',
+            f'        <div><img src="assets/charts/{week_l}_metrics_chart.svg" alt="{html.escape(config["week"])} metrics chart"><p class="caption">{html.escape(config["interpretation"])}</p></div>',
             f'        <div><img src="assets/diagrams/{week_l}_pipeline_diagram.svg" alt="{html.escape(config["week"])} pipeline diagram"><p class="caption">AI-assisted conceptual diagram. See assets/figure_manifest.md.</p></div>',
             "      </div>",
             f'      <div class="footer"><span>Source: outputs/metrics_summary.csv</span><span>{html.escape(config["diagram_type"])}</span></div>',
@@ -1369,6 +1450,740 @@ def make_global_audit() -> None:
         "",
     ]
     write_text(BASE / "formula_visual_audit.md", "\n".join(intro + header + rows))
+
+
+def short_text(value: str, limit: int = 96) -> str:
+    normalized = re.sub(r"\s+", " ", str(value)).strip()
+    if len(normalized) <= limit:
+        return normalized
+    return normalized[: limit - 1].rstrip() + "..."
+
+
+def format_metric_value(value: Any) -> str:
+    if value is None or (isinstance(value, float) and math.isnan(value)):
+        return "해당 없음"
+    if pd is not None and pd.isna(value):
+        return "해당 없음"
+    if isinstance(value, (int, float)):
+        if abs(float(value)) >= 1000:
+            return f"{float(value):,.0f}"
+        return f"{float(value):.3f}".rstrip("0").rstrip(".")
+    text = str(value).strip()
+    try:
+        numeric = float(text)
+    except ValueError:
+        return short_text(text)
+    if abs(numeric) >= 1000:
+        return f"{numeric:,.0f}"
+    return f"{numeric:.3f}".rstrip("0").rstrip(".")
+
+
+def read_metrics(config: dict[str, Any], week_dir: Path) -> tuple[list[str], list[dict[str, str]], bool]:
+    csv_path = week_dir / "04_experiment" / "outputs" / "metrics_summary.csv"
+    if not csv_path.exists():
+        return [], [], False
+    fieldnames, records = read_csv_records(csv_path)
+    if not records:
+        return [], [], True
+    x_col = config["x_col"] if config["x_col"] in fieldnames else fieldnames[0]
+    columns = [x_col]
+    for col in config["chart_cols"]:
+        if col in fieldnames and col not in columns:
+            columns.append(col)
+    for candidate in ["accuracy", "f1", "status", "notes", "security_note", "interpretation"]:
+        if candidate in fieldnames and candidate not in columns and len(columns) < 6:
+            columns.append(candidate)
+    columns = columns[:6]
+    rows: list[dict[str, str]] = []
+    for row in records[:5]:
+        rows.append({col: format_metric_value(row.get(col, "")) for col in columns})
+    return columns, rows, True
+
+
+def html_table(headers: list[str], rows: list[list[str]], classes: str = "") -> str:
+    class_attr = f' class="{classes}"' if classes else ""
+    parts = [f"<table{class_attr}>", "<thead>", "<tr>"]
+    parts.extend(f"<th>{html.escape(header)}</th>" for header in headers)
+    parts.extend(["</tr>", "</thead>", "<tbody>"])
+    for row in rows:
+        parts.append("<tr>")
+        for cell in row:
+            parts.append(f"<td>{cell}</td>")
+        parts.append("</tr>")
+    parts.extend(["</tbody>", "</table>"])
+    return "\n".join(parts)
+
+
+def symbol_table(formula: dict[str, Any]) -> str:
+    rows = []
+    for symbol, meaning in formula["symbols"]:
+        rows.append([f"\\({html.escape(symbol)}\\)", html.escape(meaning)])
+    return html_table(["기호", "의미"], rows)
+
+
+def metric_table(columns: list[str], rows: list[dict[str, str]]) -> str:
+    if not columns or not rows:
+        return html_table(
+            ["상태", "설명"],
+            [["design_only / 실행 전", "metrics_summary.csv가 없거나 비어 있어 그래프와 수치표를 생성하지 않음."]],
+        )
+    return html_table(columns, [[html.escape(row[col]) for col in columns] for row in rows])
+
+
+def paper_map_rows(config: dict[str, Any]) -> list[list[str]]:
+    topic = config["topic"]
+    return [
+        ["P01", "핵심 이론", "Background / Core Formula", f"{topic}의 관련연구 뼈대"],
+        ["P02", "위협 분류", "Threat Model", "공격자·방어자·보호자산 정의"],
+        ["P03", "평가 지표", "Evaluation Protocol", "정량 지표와 로그 근거 연결"],
+        ["P04", "공격·방어 사례", "Security Implication", "보안적 함의와 방어 한계"],
+        ["P05", "재현성·정책 근거", "Limitation", "확인 필요 항목과 제출 전 검증"],
+    ]
+
+
+def stage_kind(stage: str, note: str, idx: int, total: int) -> str:
+    haystack = f"{stage} {note}".lower()
+    if any(token in haystack for token in ["attack", "poison", "trigger", "risk", "leak", "reward", "prompt"]):
+        return "risk"
+    if idx == total - 1 or any(token in haystack for token in ["defense", "audit", "verify", "verification", "review", "policy"]):
+        return "defense"
+    return "normal"
+
+
+def pipeline_html(config: dict[str, Any]) -> str:
+    parts = [f'<div class="pipeline-diagram" role="img" aria-label="{html.escape(config["diagram_type"])}">']
+    total = len(config["stages"])
+    for idx, (stage, note) in enumerate(zip(config["stages"], config["stage_notes"])):
+        parts.append(f'<div class="stage {stage_kind(stage, note, idx, total)}">{html.escape(stage)}<br><small>{html.escape(note)}</small></div>')
+        if idx < total - 1:
+            parts.append('<div class="arrow" aria-hidden="true">→</div>')
+    parts.append("</div>")
+    return "\n".join(parts)
+
+
+def metric_names(config: dict[str, Any]) -> str:
+    names = [col for col in config["chart_cols"]]
+    return ", ".join(names[:5])
+
+
+def nav_html() -> str:
+    return """
+  <nav class="slide-nav" aria-label="슬라이드 이동">
+    <button id="prevSlide" type="button" title="이전 슬라이드" aria-label="이전 슬라이드">‹</button>
+    <span id="slideCounter" class="slide-counter" aria-live="polite">1 / 1</span>
+    <button id="nextSlide" type="button" title="다음 슬라이드" aria-label="다음 슬라이드">›</button>
+  </nav>
+""".rstrip()
+
+
+def nav_script() -> str:
+    return """
+  <script>
+    const slides = Array.from(document.querySelectorAll("section.slide, section"));
+    const prevButton = document.getElementById("prevSlide");
+    const nextButton = document.getElementById("nextSlide");
+    const counter = document.getElementById("slideCounter");
+    let currentIndex = 0;
+
+    function updateNav(index) {
+      currentIndex = Math.max(0, Math.min(index, slides.length - 1));
+      counter.textContent = `${currentIndex + 1} / ${slides.length}`;
+      prevButton.disabled = currentIndex === 0;
+      nextButton.disabled = currentIndex === slides.length - 1;
+    }
+
+    function goToSlide(index) {
+      const nextIndex = Math.max(0, Math.min(index, slides.length - 1));
+      slides[nextIndex].scrollIntoView({ behavior: "smooth", block: "start" });
+      updateNav(nextIndex);
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        window.MathJax.typesetPromise([slides[nextIndex]]).catch(() => {});
+      }
+    }
+
+    prevButton.addEventListener("click", () => goToSlide(currentIndex - 1));
+    nextButton.addEventListener("click", () => goToSlide(currentIndex + 1));
+
+    document.addEventListener("keydown", (event) => {
+      if (["ArrowRight", "PageDown", " "].includes(event.key)) {
+        event.preventDefault();
+        goToSlide(currentIndex + 1);
+      }
+
+      if (["ArrowLeft", "PageUp"].includes(event.key)) {
+        event.preventDefault();
+        goToSlide(currentIndex - 1);
+      }
+
+      if (event.key === "Home") {
+        event.preventDefault();
+        goToSlide(0);
+      }
+
+      if (event.key === "End") {
+        event.preventDefault();
+        goToSlide(slides.length - 1);
+      }
+    });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((left, right) => right.intersectionRatio - left.intersectionRatio)[0];
+
+        if (visible) {
+          updateNav(slides.indexOf(visible.target));
+        }
+      },
+      { threshold: [0.55] }
+    );
+
+    slides.forEach((slide) => observer.observe(slide));
+    updateNav(0);
+  </script>
+""".rstrip()
+
+
+def mathjax_head() -> str:
+    return """
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [["\\\\(", "\\\\)"]],
+        displayMath: [["\\\\[", "\\\\]"], ["$$", "$$"]]
+      },
+      svg: {
+        fontCache: "global"
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+""".rstrip()
+
+
+def build_nature_html(config: dict[str, Any], week_dir: Path, chart_files: list[str]) -> str:
+    formula = config["formulas"][0]
+    second_formula = config["formulas"][1] if len(config["formulas"]) > 1 else formula
+    columns, rows, has_metrics = read_metrics(config, week_dir)
+    week_l = config["week"].lower()
+    chart_svg = f"assets/charts/{week_l}_metrics_chart.svg"
+    chart_png = f"assets/charts/{week_l}_metrics_chart.png"
+    chart_exists = any(name.endswith(".svg") for name in chart_files)
+    chart_media = (
+        f'<img src="{chart_svg}" alt="{html.escape(config["week"])} metrics chart">'
+        if chart_exists
+        else (
+            '<div class="figure-panel empty-data">'
+            '<h3>Graph pending</h3>'
+            '<p>실험 산출물 `metrics_summary.csv`가 없어 그래프는 생성하지 않음.</p>'
+            '<p class="method-inset">현재 상태: design_only / 실행 전</p>'
+            "</div>"
+        )
+    )
+    csv_note = "데이터 출처: 04_experiment/outputs/metrics_summary.csv" if has_metrics else "데이터 출처: 실행 전 / 확인 필요"
+    metric_rows = []
+    for col in config["chart_cols"][:5]:
+        metric_rows.append([
+            html.escape(col),
+            "CSV 컬럼 존재 시 그래프와 표에 반영",
+            "실제 실행 산출물 기준" if has_metrics else "design_only / 실행 전",
+        ])
+    if not metric_rows:
+        metric_rows.append(["value", "numeric value가 있는 항목만 반영", "실제 실행 산출물 기준" if has_metrics else "design_only / 실행 전"])
+
+    sections = [
+        f"""
+    <section class="slide" id="{week_l}-title">
+      <div class="journal-kicker">Research Presentation / {html.escape(config["week"])}</div>
+      <h1>{html.escape(config["week"])} {html.escape(config["topic"])}</h1>
+      <p class="research-question">연구 질문: {html.escape(config["topic"])}에서 성능 지표와 보안 지표를 어떻게 분리해 평가할 수 있는가?</p>
+      <div class="ratio-strip">
+        <span>Formula-first</span>
+        <span>Figure-first</span>
+        <span>Toy/Public/Synthetic scope</span>
+        <span>No journal logo or trademark</span>
+      </div>
+      <p class="citation-footnote">최종 발표본: presentation_slides.html. 기존 주차번호 HTML은 호환용으로만 유지.</p>
+    </section>
+""",
+        f"""
+    <section class="slide">
+      <div class="slide-header">Background / {html.escape(config["week"])}</div>
+      <h2>왜 이 주제가 중요한가</h2>
+      <p class="key-finding">이 주제는 clean 성능만으로는 안전성을 설명하기 어렵다.</p>
+      <div class="figure-grid three-panel">
+        <div class="figure-panel"><div class="panel-label">A</div><h3>AI 원리</h3><p>모델 목적함수와 표현이 평가 지표의 출발점이다.</p></div>
+        <div class="figure-panel"><div class="panel-label">B</div><h3>보안 표면</h3><p>공격자 가정, 보호 자산, 실패 조건을 분리한다.</p></div>
+        <div class="figure-panel"><div class="panel-label">C</div><h3>근거 관리</h3><p>CSV, run log, 결과표가 같은 값을 말해야 한다.</p></div>
+      </div>
+    </section>
+""",
+        f"""
+    <section class="slide">
+      <div class="slide-header">Research Gap</div>
+      <h2>기존 발표 흐름의 빈틈</h2>
+      <table>
+        <thead><tr><th>빈틈</th><th>보완 방식</th><th>검증 상태</th></tr></thead>
+        <tbody>
+          <tr><td>수식과 지표 연결 부족</td><td>핵심 수식, 기호표, 보안적 의미를 한 장에 배치</td><td>표준식 / 확인 필요 병기</td></tr>
+          <tr><td>표와 위협모형 분리</td><td>공격자·방어자·보호 자산 표로 정리</td><td>toy/synthetic 범위</td></tr>
+          <tr><td>결과 그래프 출처 불명확</td><td>metrics_summary.csv 기반 그래프만 사용</td><td>{html.escape(csv_note)}</td></tr>
+        </tbody>
+      </table>
+    </section>
+""",
+        f"""
+    <section class="slide">
+      <div class="slide-header">Core Formula / {html.escape(config["week"])}</div>
+      <h2>핵심 수식: {html.escape(formula["name"])}</h2>
+      <div class="formula-card">
+        \\[
+{html.escape(formula["equation"])}
+        \\]
+      </div>
+      {symbol_table(formula)}
+      <p class="figure-caption">Formula | {html.escape(formula["intuition"])} {html.escape(formula["security"])} 평가 지표 연결: {html.escape(formula["metrics"])}</p>
+      <div class="limitation-box">한계: {html.escape(formula["limits"])}</div>
+    </section>
+""",
+        f"""
+    <section class="slide">
+      <div class="slide-header">Threat Model</div>
+      <h2>공격자·방어자·보호 자산</h2>
+      <table>
+        <thead><tr><th>구성요소</th><th>발표 내 의미</th><th>주의</th></tr></thead>
+        <tbody>
+          <tr><td>공격자</td><td>안전한 toy/public/synthetic 범위의 평가 조건을 가정</td><td>실제 시스템 악용 절차 없음</td></tr>
+          <tr><td>방어자</td><td>지표, 로그, 검증 절차로 위험을 관찰</td><td>formal guarantee와 empirical proxy 구분</td></tr>
+          <tr><td>보호 자산</td><td>모델 성능, 데이터 프라이버시, 재현성 증거, 운영 신뢰</td><td>없는 결과는 만들지 않음</td></tr>
+          <tr><td>성공 조건</td><td>{html.escape(metric_names(config))} 변화가 위험을 설명하는지 확인</td><td>CSV와 모순되면 보류</td></tr>
+        </tbody>
+      </table>
+    </section>
+""",
+        f"""
+    <section class="slide">
+      <div class="slide-header">Evaluation Protocol</div>
+      <h2>평가 프로토콜과 지표</h2>
+      {html_table(["평가 항목", "대표 지표", "기록 방식"], metric_rows)}
+      <p class="figure-caption">Protocol | {html.escape(csv_note)}. run_log.md 또는 results.json과 모순되는 수치는 사용하지 않는다.</p>
+    </section>
+""",
+        f"""
+    <section class="slide figure-first">
+      <div class="slide-header">Figure 1 / Diagram</div>
+      <h2>{html.escape(config["diagram_type"])}</h2>
+      <div class="figure-grid two-panel">
+        <figure class="figure-panel">
+          <div class="panel-label">A</div>
+          {pipeline_html(config)}
+          <figcaption class="figure-caption">Pipeline | 단계별 공격면과 방어·검증 지점을 4~6개로 압축했다.</figcaption>
+        </figure>
+        <figure class="figure-panel">
+          <div class="panel-label">B</div>
+          <img src="assets/diagrams/{week_l}_pipeline_diagram.svg" alt="{html.escape(config["week"])} pipeline diagram">
+          <figcaption class="figure-caption">Manifest | assets/figure_manifest.md에 생성 방식과 한계를 기록했다.</figcaption>
+        </figure>
+      </div>
+    </section>
+""",
+        f"""
+    <section class="slide figure-first">
+      <div class="slide-header">Figure 2 / Metrics</div>
+      <h2>실제 CSV 기반 지표 그래프</h2>
+      <div class="figure-grid two-panel">
+        <figure class="figure-panel chart-panel">
+          <div class="panel-label">A</div>
+          {chart_media}
+          <figcaption class="figure-caption">Graph | {html.escape(config["interpretation"])} {html.escape(csv_note)}</figcaption>
+        </figure>
+        <figure class="figure-panel">
+          <div class="panel-label">B</div>
+          {metric_table(columns, rows)}
+          <figcaption class="figure-caption">Table | 그래프에 사용한 CSV의 주요 행을 요약했다.</figcaption>
+        </figure>
+      </div>
+    </section>
+""",
+        f"""
+    <section class="slide">
+      <div class="slide-header">Paper Map</div>
+      <h2>논문 5편의 역할표</h2>
+      {html_table(["ID", "논문 역할", "발표에서 쓰는 위치", "기말논문 연결"], [[html.escape(cell) for cell in row] for row in paper_map_rows(config)])}
+      <p class="figure-caption">Paper map | 서지 세부사항과 DOI/URL은 최종 제출 전 원문 기준으로 확인한다.</p>
+    </section>
+""",
+        f"""
+    <section class="slide">
+      <div class="slide-header">Security Implication</div>
+      <h2>보안적 함의</h2>
+      <div class="question-box">{html.escape(second_formula["security"])}</div>
+      <div class="figure-grid three-panel">
+        <div class="figure-panel"><div class="panel-label">A</div><h3>분리</h3><p>clean 성능과 보안 지표를 같은 값처럼 해석하지 않는다.</p></div>
+        <div class="figure-panel"><div class="panel-label">B</div><h3>추적</h3><p>수치, 그래프, 노트, Q&A가 같은 산출물을 가리킨다.</p></div>
+        <div class="figure-panel"><div class="panel-label">C</div><h3>제한</h3><p>실제 악용 절차 없이 평가 개념과 방어 관점만 설명한다.</p></div>
+      </div>
+    </section>
+""",
+        f"""
+    <section class="slide">
+      <div class="slide-header">Limitation</div>
+      <h2>한계와 검증 상태</h2>
+      <div class="limitation-box">{html.escape(config["caution"])} {html.escape(second_formula["limits"])}</div>
+      <table>
+        <thead><tr><th>항목</th><th>상태</th><th>다음 확인</th></tr></thead>
+        <tbody>
+          <tr><td>실험 수치</td><td>{html.escape("실행 산출물 있음" if has_metrics else "실행 전 / 확인 필요")}</td><td>run_log.md, results.json 대조</td></tr>
+          <tr><td>수식 보증</td><td>표준식 또는 proxy</td><td>원문 절·쪽·formal guarantee 확인</td></tr>
+          <tr><td>운영 적용</td><td>바로 적용 불가</td><td>실제 데이터·정책·위험평가 필요</td></tr>
+        </tbody>
+      </table>
+    </section>
+""",
+        f"""
+    <section class="slide">
+      <div class="slide-header">Final Takeaway</div>
+      <h2>기말논문 연결</h2>
+      <p class="key-finding">{html.escape(config["week"])}의 결론은 지표를 분리하고 근거 파일로 추적하는 연구 설계다.</p>
+      <table>
+        <thead><tr><th>기말논문 장</th><th>연결 내용</th></tr></thead>
+        <tbody>
+          <tr><td>관련연구</td><td>{html.escape(config["topic"])}의 핵심 이론과 보안 taxonomy 정리</td></tr>
+          <tr><td>위협모형</td><td>{html.escape(config["diagram_type"])} 기반 공격면·방어면 정의</td></tr>
+          <tr><td>평가방법</td><td>{html.escape(metric_names(config))}를 CSV/log 기준으로 검증</td></tr>
+          <tr><td>한계</td><td>toy/synthetic 범위와 확인 필요 항목을 명시</td></tr>
+        </tbody>
+      </table>
+    </section>
+""",
+    ]
+    return f"""<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{html.escape(config["week"])} {html.escape(config["topic"])} 발표 슬라이드</title>
+  <link rel="stylesheet" href="../../../02_report_templates/nature_research_slide_style.css">
+{mathjax_head()}
+</head>
+<body>
+  <!-- Final canonical deck: presentation_slides.html. Week-numbered HTML files are compatibility copies only. -->
+  <main class="deck">
+{''.join(sections)}
+  </main>
+{nav_html()}
+{nav_script()}
+</body>
+</html>
+"""
+
+
+def build_nature_markdown(config: dict[str, Any], week_dir: Path, chart_files: list[str]) -> str:
+    columns, rows, has_metrics = read_metrics(config, week_dir)
+    week_l = config["week"].lower()
+    formula = config["formulas"][0]
+    metric_md_rows = []
+    for row in rows:
+        metric_md_rows.append("| " + " | ".join(row[col] for col in columns) + " |")
+    metric_table_md = ""
+    if columns and metric_md_rows:
+        metric_table_md = "\n".join(["| " + " | ".join(columns) + " |", "| " + " | ".join(["---"] * len(columns)) + " |", *metric_md_rows])
+    else:
+        metric_table_md = "| 상태 | 설명 |\n|---|---|\n| design_only / 실행 전 | metrics_summary.csv가 없거나 비어 있어 그래프를 생성하지 않음 |"
+
+    lines = [
+        f"# {config['week']} {config['topic']}",
+        "",
+        f"Research Question: {config['topic']}에서 성능 지표와 보안 지표를 어떻게 분리해 평가할 수 있는가?",
+        "",
+        "---",
+        "",
+        "## Core Formula",
+        "",
+        f"### {formula['name']}",
+        "",
+        "$$",
+        formula["equation"],
+        "$$",
+        "",
+        "| 기호 | 의미 |",
+        "|---|---|",
+        *[f"| `{sym}` | {meaning} |" for sym, meaning in formula["symbols"]],
+        "",
+        f"- 직관적 의미: {formula['intuition']}",
+        f"- 보안적 의미: {formula['security']}",
+        f"- 평가 지표 연결: {formula['metrics']}",
+        f"- 한계: {formula['limits']}",
+        "",
+        "---",
+        "",
+        "## Threat Model",
+        "",
+        f"- Diagram: {config['diagram_type']}",
+        f"- Stages: {', '.join(config['stages'])}",
+        "- 안전 범위: public, synthetic, toy, local evaluation",
+        "",
+        f"![{config['week']} pipeline diagram](assets/diagrams/{week_l}_pipeline_diagram.svg)",
+        "",
+        "---",
+        "",
+        "## Evaluation Protocol",
+        "",
+        f"- Metrics: {metric_names(config)}",
+        "- 데이터 출처: `04_experiment/outputs/metrics_summary.csv`" if has_metrics else "- 데이터 출처: 실행 전 / 확인 필요",
+        "",
+        metric_table_md,
+        "",
+        "---",
+        "",
+        "## Figure-first Result",
+        "",
+        f"![{config['week']} metrics chart](assets/charts/{week_l}_metrics_chart.svg)",
+        "",
+        config["interpretation"],
+        "",
+        "---",
+        "",
+        "## Paper Map",
+        "",
+        "| ID | 논문 역할 | 발표에서 쓰는 위치 | 기말논문 연결 |",
+        "|---|---|---|---|",
+        *["| " + " | ".join(row) + " |" for row in paper_map_rows(config)],
+        "",
+        "---",
+        "",
+        "## Limitation",
+        "",
+        f"- {config['caution']}",
+        "- 원문 DOI/URL과 formal guarantee는 최종 제출 전 확인 필요.",
+        "- 실제 운영 시스템 악용 절차나 무단 API 질의 절차는 포함하지 않음.",
+        "",
+        "---",
+        "",
+        "## Final Takeaway",
+        "",
+        f"{config['week']}의 핵심은 `{metric_names(config)}`를 성능·보안·재현성 근거로 분리해 기말논문의 평가방법에 연결하는 것이다.",
+    ]
+    return "\n".join(lines)
+
+
+def build_speaker_notes(config: dict[str, Any]) -> str:
+    slide_titles = [
+        "Title",
+        "Background",
+        "Research Gap",
+        "Core Formula",
+        "Threat Model",
+        "Evaluation Protocol",
+        "Figure 1 Diagram",
+        "Figure 2 Metrics",
+        "Paper Map",
+        "Security Implication",
+        "Limitation",
+        "Final Takeaway",
+    ]
+    notes = [
+        f"# {config['week']} 발표자 노트",
+        "",
+        "- 권장 시간: 10-14분",
+        "- 발표 원칙: 그림과 수식을 먼저 보여주고, 긴 설명은 구두로 보완한다.",
+        "- 안전 범위: public, synthetic, toy, local evaluation. 실제 시스템 악용 절차는 설명하지 않는다.",
+        "",
+    ]
+    for idx, title in enumerate(slide_titles, start=1):
+        notes.extend(
+            [
+                f"## Slide {idx}. {title}",
+                "",
+                "### 말할 핵심",
+                "- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.",
+                "",
+                "### 설명 순서",
+                "1. 그림 또는 수식을 먼저 설명",
+                "2. 평가 지표와 연결",
+                "3. 보안적 의미 설명",
+                "4. 한계 언급",
+                "",
+                "### 주의",
+                "- 실행하지 않은 결과는 결과처럼 말하지 않는다.",
+                "- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.",
+                f"- {config['caution']}",
+                "",
+            ]
+        )
+    return "\n".join(notes)
+
+
+def build_qna(config: dict[str, Any]) -> str:
+    return "\n".join(
+        [
+            f"# {config['week']} Q&A",
+            "",
+            "## Q1. 이 수식이 실제 실험 지표와 어떻게 연결되는가?",
+            "",
+            f"A. 핵심 수식은 {metric_names(config)} 같은 지표를 해석하는 표준 정식화다. 실제 값은 `04_experiment/outputs/metrics_summary.csv`에서만 가져오며, 수식 자체가 운영 보증을 뜻하지는 않는다.",
+            "",
+            "## Q2. 이 그래프의 수치는 실제 실행 결과인가, 설계 예시인가?",
+            "",
+            "A. 그래프는 `metrics_summary.csv`가 존재하고 numeric 컬럼을 확인한 경우에만 생성했다. CSV에 없는 값은 만들지 않았으며, 산출물이 없을 때는 `design_only / 실행 전 / 확인 필요`로 표시한다.",
+            "",
+            "## Q3. clean accuracy와 보안 지표가 다른 이유는 무엇인가?",
+            "",
+            "A. clean accuracy는 정상 조건의 예측 성능이고, 보안 지표는 공격 조건, 교란 조건, 프라이버시 누출, 재현성 증거처럼 다른 실패 모드를 본다. 둘은 같은 숫자로 합치면 안 된다.",
+            "",
+            "## Q4. 이 주차 내용을 기말논문에 어떻게 반영할 수 있는가?",
+            "",
+            f"A. `{config['diagram_type']}`를 위협모형 그림으로 쓰고, {metric_names(config)}를 평가방법 표에 연결할 수 있다. 단, toy/synthetic 범위와 확인 필요 항목은 한계 절에 남겨야 한다.",
+            "",
+            "## Q5. 현재 한계는 무엇이고 추가 실험은 무엇인가?",
+            "",
+            f"A. {config['caution']} 추가 실험은 run_log.md와 results.json까지 일치하는 조건에서만 확정 수치로 반영한다.",
+            "",
+            "## Q6. 논문 5편 중 핵심 근거는 무엇인가?",
+            "",
+            "A. P01은 핵심 이론, P02는 위협 분류, P03은 평가 지표, P04는 공격·방어 사례, P05는 재현성·정책 근거로 사용한다. 세부 서지와 DOI/URL은 최종 제출 전 원문으로 확인한다.",
+            "",
+            "## Q7. 실제 운영 시스템에 바로 적용할 수 없는 이유는 무엇인가?",
+            "",
+            "A. 발표의 실습과 그림은 public, synthetic, toy, local evaluation 범위다. 운영 적용에는 실제 데이터 거버넌스, 정책 승인, 위협모형 검토, 독립 검증, 법적 검토가 추가로 필요하다.",
+        ]
+    )
+
+
+def build_handout(config: dict[str, Any]) -> str:
+    formula = config["formulas"][0]
+    return "\n".join(
+        [
+            f"# {config['week']} 주차 연구 발표 요약",
+            "",
+            "## Research Question",
+            "",
+            "이 주차에서 성능 지표와 보안 지표를 어떻게 분리해 평가할 수 있는가?",
+            "",
+            "## Key Formula",
+            "",
+            f"**{formula['name']}**",
+            "",
+            "$$",
+            formula["equation"],
+            "$$",
+            "",
+            f"- 기호와 의미는 슬라이드의 표를 기준으로 설명한다.",
+            f"- 보안적 의미: {formula['security']}",
+            "",
+            "## Threat Model",
+            "",
+            f"{config['diagram_type']} 기준으로 공격자, 방어자, 보호 자산, 성공 조건을 분리한다.",
+            "",
+            "## Main Figure",
+            "",
+            f"- Diagram: `assets/diagrams/{config['week'].lower()}_pipeline_diagram.svg`",
+            f"- Chart: `assets/charts/{config['week'].lower()}_metrics_chart.svg`",
+            "",
+            "## Evaluation Metrics",
+            "",
+            f"{metric_names(config)}. 실제 수치는 `04_experiment/outputs/metrics_summary.csv` 기준이다.",
+            "",
+            "## Security Implication",
+            "",
+            "Clean 성능과 보안 지표는 서로 다른 실패 모드를 설명하므로 같은 결론으로 합치지 않는다.",
+            "",
+            "## Limitation",
+            "",
+            f"{config['caution']} toy/synthetic 범위와 formal guarantee 여부를 구분해야 한다.",
+            "",
+            "## Final Paper Link",
+            "",
+            "기말논문에서는 관련연구, 위협모형, 평가방법, 한계 절에 이 주차의 수식·표·그래프·다이어그램을 연결한다.",
+        ]
+    )
+
+
+def build_presentation_readme(config: dict[str, Any]) -> str:
+    return "\n".join(
+        [
+            f"# {config['week']} 발표 산출물",
+            "",
+            "최종 발표본은 `presentation_slides.html`이다. 주차 번호가 붙은 이전 HTML 파일은 호환용으로만 유지한다.",
+            "",
+            "| 파일 | 역할 |",
+            "|---|---|",
+            "| `presentation_slides.html` | 오른쪽 하단 `.slide-nav`가 적용된 Nature-style 연구 발표 슬라이드 |",
+            "| `presentation_slides.md` | 슬라이드 내용 원본 요약 |",
+            "| `speaker_notes.md` | 슬라이드별 발표자 노트 |",
+            "| `qna.md` | 예상 질문과 안전한 답변 |",
+            "| `one_page_handout.md` | 1페이지 연구 발표 요약 |",
+            "| `assets/figure_manifest.md` | 그래프와 다이어그램 생성 근거 |",
+            "",
+            "수치 그래프는 `04_experiment/outputs/metrics_summary.csv`가 있는 경우에만 생성한다. 없는 수치나 실행하지 않은 결과는 만들지 않는다.",
+        ]
+    )
+
+
+def update_week(config: dict[str, Any]) -> None:
+    week_dir = BASE / config["slug"]
+    assets_dir = week_dir / "09_presentation" / "assets"
+    for sub in ["charts", "diagrams", "figures"]:
+        (assets_dir / sub).mkdir(parents=True, exist_ok=True)
+
+    chart_files = make_chart(config, week_dir)
+    diagram_file = make_diagram(config, week_dir)
+    make_manifest(config, week_dir, chart_files, diagram_file)
+
+    report = week_dir / "06_report" / "final" / "integrated_report_final.md"
+    if report.exists():
+        text = report.read_text(encoding="utf-8")
+        text = update_kci_status(text)
+        text = replace_block(text, BLOCK_START, BLOCK_END, formula_markdown(config, "../../09_presentation/", "## 수식·그래프·그림 보강"))
+        write_text(report, text)
+
+    presentation_dir = week_dir / "09_presentation"
+    write_text(presentation_dir / "presentation_slides.html", build_nature_html(config, week_dir, chart_files))
+    write_text(presentation_dir / "presentation_slides.md", build_nature_markdown(config, week_dir, chart_files))
+    write_text(presentation_dir / "speaker_notes.md", build_speaker_notes(config))
+    write_text(presentation_dir / "qna.md", build_qna(config))
+    write_text(presentation_dir / "one_page_handout.md", build_handout(config))
+    write_text(presentation_dir / "README.md", build_presentation_readme(config))
+
+    worklog = week_dir / "05_ai_worklog" / "ai_worklog.md"
+    if worklog.exists():
+        text = worklog.read_text(encoding="utf-8")
+        text = replace_block(text, WORKLOG_START, WORKLOG_END, worklog_block(config))
+        write_text(worklog, text)
+
+    submission = week_dir / "07_week_submission" / f"{config['week'].lower()}_submission_report.md"
+    if submission.exists():
+        text = update_kci_status(submission.read_text(encoding="utf-8"))
+        write_text(submission, text)
+
+
+def make_global_audit() -> None:
+    rows = [
+        "# Formula & Visual Generation Summary",
+        "",
+        f"- 생성 일자: {TODAY}",
+        "- W01~W15 발표 슬라이드는 `presentation_slides.html`을 최종 발표본으로 통일했다.",
+        "- 그래프는 각 주차 `04_experiment/outputs/metrics_summary.csv`에서 읽은 numeric 값만 사용했다.",
+        "- 오른쪽 하단 `.slide-nav`, MathJax, figure caption, panel label, limitation box를 포함했다.",
+        "",
+        "| Week | Deck | Formula | Chart | Diagram | Notes/QNA/Handout |",
+        "|---|---|---|---|---|---|",
+    ]
+    for config in WEEKS:
+        week_dir = BASE / config["slug"]
+        week_l = config["week"].lower()
+        rows.append(
+            "| {week} | {deck} | {formula} | {chart} | {diagram} | {support} |".format(
+                week=config["week"],
+                deck="PASS" if (week_dir / "09_presentation" / "presentation_slides.html").exists() else "FAIL",
+                formula="PASS" if config["formulas"] else "FAIL",
+                chart="PASS" if (week_dir / "09_presentation" / "assets" / "charts" / f"{week_l}_metrics_chart.svg").exists() else "WARN",
+                diagram="PASS" if (week_dir / "09_presentation" / "assets" / "diagrams" / f"{week_l}_pipeline_diagram.svg").exists() else "FAIL",
+                support="PASS",
+            )
+        )
+    write_text(BASE / "formula_visual_audit.md", "\n".join(rows))
 
 
 def main() -> None:

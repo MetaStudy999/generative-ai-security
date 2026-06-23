@@ -423,7 +423,7 @@ utility_score, latency/cost proxy, attack_success_rate와 연결한다.
 
 ### 표 수치 기반 그래프
 
-![W04 metrics chart](../../09_presentation/assets/charts/w04_metrics_chart.png)
+![W04 metrics chart](../../09_presentation/assets/charts/w04_metrics_chart.svg)
 
 그래프는 clean_score, attack_success_rate, privacy_leakage, utility_score를 조건별로 비교한다. Transformer 평가에서는 유틸리티와 보안 위험이 동시에 움직일 수 있으므로 단일 점수로 결론을 내리지 않는다. 수치는 `metrics_summary.csv`에서만 가져왔다.
 

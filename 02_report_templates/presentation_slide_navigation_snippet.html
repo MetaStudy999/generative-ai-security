@@ -1,16 +1,10 @@
 <!--
   공통 슬라이드 이동 스니펫
   사용 위치: presentation_slides.html
-  전제: 각 슬라이드는 <section> 요소로 작성한다.
+  전제: 각 슬라이드는 <section class="slide"> 요소로 작성한다.
+  규칙: 이동 네비게이션은 오른쪽 하단에 고정하고, 인쇄 시 숨긴다.
 -->
 <style>
-  html {
-    scroll-behavior: smooth;
-    scroll-snap-type: y mandatory;
-  }
-  section {
-    scroll-snap-align: start;
-  }
   .slide-nav {
     position: fixed;
     right: 24px;
@@ -19,41 +13,50 @@
     align-items: center;
     gap: 10px;
     padding: 10px;
-    background: rgba(255, 255, 255, 0.92);
-    border: 1px solid #d1d5db;
+    background: rgba(255, 255, 255, 0.94);
+    border: 1px solid var(--line, #d9d6cf);
     border-radius: 999px;
-    box-shadow: 0 10px 30px rgba(17, 24, 39, 0.16);
-    z-index: 20;
+    box-shadow: 0 8px 24px rgba(17, 17, 17, 0.12);
+    z-index: 1000;
     backdrop-filter: blur(8px);
   }
+
   .slide-nav button {
-    width: 44px;
-    height: 44px;
-    border: 1px solid #9ca3af;
+    width: 42px;
+    height: 42px;
+    border: 1px solid var(--line, #d9d6cf);
     border-radius: 50%;
-    background: #111827;
-    color: white;
-    font-size: 26px;
+    background: var(--ink, #111111);
+    color: #fff;
+    font-size: 24px;
     line-height: 1;
     cursor: pointer;
   }
+
   .slide-nav button:disabled {
     cursor: not-allowed;
     opacity: 0.35;
   }
+
   .slide-counter {
-    min-width: 62px;
+    min-width: 64px;
     text-align: center;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 700;
-    color: #111827;
+    color: var(--ink, #111111);
   }
-  @media (max-width: 720px) {
-    section { padding-bottom: 14vh; }
-    .slide-nav { right: 12px; bottom: 12px; }
+
+  @media (max-width: 800px) {
+    .slide-nav {
+      right: 12px;
+      bottom: 12px;
+    }
   }
+
   @media print {
-    .slide-nav { display: none; }
+    .slide-nav {
+      display: none !important;
+    }
   }
 </style>
 
@@ -64,7 +67,7 @@
 </nav>
 
 <script>
-  const slides = Array.from(document.querySelectorAll("section"));
+  const slides = Array.from(document.querySelectorAll("section.slide, section"));
   const prevButton = document.getElementById("prevSlide");
   const nextButton = document.getElementById("nextSlide");
   const counter = document.getElementById("slideCounter");
@@ -87,18 +90,21 @@
   nextButton.addEventListener("click", () => goToSlide(currentIndex + 1));
 
   document.addEventListener("keydown", (event) => {
-    if (event.key === "ArrowRight" || event.key === "PageDown" || event.key === " ") {
+    if (["ArrowRight", "PageDown", " "].includes(event.key)) {
       event.preventDefault();
       goToSlide(currentIndex + 1);
     }
-    if (event.key === "ArrowLeft" || event.key === "PageUp") {
+
+    if (["ArrowLeft", "PageUp"].includes(event.key)) {
       event.preventDefault();
       goToSlide(currentIndex - 1);
     }
+
     if (event.key === "Home") {
       event.preventDefault();
       goToSlide(0);
     }
+
     if (event.key === "End") {
       event.preventDefault();
       goToSlide(slides.length - 1);
@@ -110,12 +116,14 @@
       const visible = entries
         .filter((entry) => entry.isIntersecting)
         .sort((left, right) => right.intersectionRatio - left.intersectionRatio)[0];
+
       if (visible) {
         updateNav(slides.indexOf(visible.target));
       }
     },
     { threshold: [0.55] }
   );
+
   slides.forEach((slide) => observer.observe(slide));
   updateNav(0);
 </script>

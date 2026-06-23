@@ -352,7 +352,7 @@ formal privacy leakage guarantee가 아니라 toy proxy다.
 
 ### 표 수치 기반 그래프
 
-![W10 metrics chart](../../09_presentation/assets/charts/w10_metrics_chart.png)
+![W10 metrics chart](../../09_presentation/assets/charts/w10_metrics_chart.svg)
 
 그래프는 global_accuracy, global_f1, ASR, privacy_leakage_proxy, mean_update_norm을 조건별로 보여준다. FL에서는 중앙 성능만이 아니라 malicious client rate, update norm, leakage proxy를 함께 기록해야 한다. CSV에 없는 client-level raw data는 만들지 않았다.
 

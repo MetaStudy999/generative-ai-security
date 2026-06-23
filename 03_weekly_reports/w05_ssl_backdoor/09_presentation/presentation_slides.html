@@ -3,305 +3,401 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>W05 Slides</title>
-  <style>
-    :root { color-scheme: light; }
-    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f8fafc; color: #111827; }
-    main { height: 100vh; overflow: hidden; }
-    section { box-sizing: border-box; min-height: 100vh; padding: 64px 8vw 96px; display: none; align-content: center; }
-    section.active { display: grid; }
-    h1 { font-size: clamp(34px, 5vw, 64px); margin: 0 0 24px; line-height: 1.08; }
-    h2 { font-size: clamp(28px, 4vw, 48px); margin: 0 0 22px; line-height: 1.12; }
-    p, li { font-size: clamp(20px, 2.2vw, 30px); line-height: 1.45; }
-    ul, ol { padding-left: 1.2em; }
-    table { border-collapse: collapse; width: 100%; font-size: clamp(15px, 1.35vw, 21px); background: white; }
-    th, td { border: 1px solid #cbd5e1; padding: 10px 12px; vertical-align: top; }
-    th { background: #e2e8f0; }
-    code, pre { background: #e5e7eb; border-radius: 6px; }
-    pre { padding: 18px; font-size: clamp(17px, 1.7vw, 24px); overflow: auto; }
-    .kicker { text-transform: uppercase; font-size: 16px; letter-spacing: 0.08em; color: #2563eb; font-weight: 700; }
-    .slide-controls {
-      position: fixed;
-      left: 50%;
-      bottom: 18px;
-      transform: translateX(-50%);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 12px;
-      border: 1px solid #cbd5e1;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.94);
-      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.14);
-      z-index: 20;
-    }
-    .slide-controls button {
-      min-width: 58px;
-      border: 1px solid #cbd5e1;
-      border-radius: 999px;
-      background: #ffffff;
-      color: #111827;
-      padding: 7px 12px;
-      font-size: 14px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-    .slide-controls button:hover:not(:disabled) { background: #e2e8f0; }
-    .slide-controls button:disabled { color: #94a3b8; cursor: not-allowed; background: #f8fafc; }
-    .slide-count { min-width: 58px; text-align: center; color: #64748b; font-size: 14px; font-weight: 700; }
-    @media print {
-      .slide-controls { display: none; }
-      main { height: auto; overflow: visible; }
-      section { display: grid !important; page-break-after: always; }
-    }
-    @media (max-width: 680px) {
-      section { padding: 52px 6vw 84px; }
-      .slide-controls { bottom: 12px; }
-    }
-  </style>
-<!-- formula-visual-mathjax:start -->
-<script>
-window.MathJax = {
-  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$']] },
-  svg: { fontCache: 'global' }
-};
-</script>
-<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
-<style>
-.formula-visual-supplement .math-block { border-left: 5px solid #0f766e; background: #eef8f6; padding: 14px 18px; margin: 12px 0; font-size: 20px; overflow-x: auto; }
-.formula-visual-supplement .caption { font-size: 16px; line-height: 1.35; color: #53616f; }
-.formula-visual-supplement img { max-width: 100%; max-height: 390px; object-fit: contain; border: 1px solid #d8e0e8; border-radius: 8px; background: #fff; }
-.formula-visual-supplement .media-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
-</style>
-<!-- formula-visual-mathjax:end -->
+  <title>W05 Self-Supervised Learning &amp; Backdoor 발표 슬라이드</title>
+  <link rel="stylesheet" href="../../../02_report_templates/nature_research_slide_style.css">
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [["\\(", "\\)"]],
+        displayMath: [["\\[", "\\]"], ["$$", "$$"]]
+      },
+      svg: {
+        fontCache: "global"
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 </head>
 <body>
-  <main>
-    <section class="active">
-      <div>
-        <p class="kicker">W05</p>
-        <h1>자기지도학습·파운데이션 모델 &amp; Poisoning/Backdoor</h1>
-        <p>clean 성능, ASR, representation shift, 재현성 근거를 분리해 평가한다.</p>
+  <!-- Final canonical deck: presentation_slides.html. Week-numbered HTML files are compatibility copies only. -->
+  <main class="deck">
+
+    <section class="slide" id="w05-title">
+      <div class="journal-kicker">Research Presentation / W05</div>
+      <h1>W05 Self-Supervised Learning &amp; Backdoor</h1>
+      <p class="research-question">연구 질문: Self-Supervised Learning &amp; Backdoor에서 성능 지표와 보안 지표를 어떻게 분리해 평가할 수 있는가?</p>
+      <div class="ratio-strip">
+        <span>Formula-first</span>
+        <span>Figure-first</span>
+        <span>Toy/Public/Synthetic scope</span>
+        <span>No journal logo or trademark</span>
       </div>
-    </section>
-    <section>
-      <div>
-        <h2>왜 중요한가</h2>
-        <ul>
-          <li>Foundation model은 대규모 pretraining 표현을 여러 task에 전이한다.</li>
-          <li>Pretraining 데이터와 augmentation pair가 오염되면 표현공간이 흔들릴 수 있다.</li>
-          <li>핵심 질문은 좋은 representation이 trigger 조건에서도 안전한가이다.</li>
-        </ul>
-      </div>
-    </section>
-    <section>
-      <div>
-        <h2>발표 로드맵</h2>
-        <ol>
-          <li>자기지도학습과 표현학습 원리</li>
-          <li>Contrastive/masked/predictive learning</li>
-          <li>Poisoning과 backdoor 위협</li>
-          <li>Synthetic toy 실험과 결과</li>
-          <li>기말논문 연결</li>
-        </ol>
-      </div>
-    </section>
-    <section>
-      <div>
-        <h2>AI 원리: SSL</h2>
-        <ul>
-          <li>사람이 붙인 라벨 없이 데이터 자체에서 supervision signal을 만든다.</li>
-          <li>목표는 downstream task에 전이 가능한 representation이다.</li>
-          <li>Foundation model은 대규모 pretraining 표현을 여러 task에 재사용한다.</li>
-        </ul>
-      </div>
-    </section>
-    <section>
-      <div>
-        <h2>주요 방법</h2>
-        <table>
-          <tr><th>방법</th><th>핵심</th><th>보안 연결</th></tr>
-          <tr><td>Contrastive</td><td>positive pair와 negative pair 거리 학습</td><td>pair 오염</td></tr>
-          <tr><td>Masked modeling</td><td>입력 일부를 복원</td><td>corpus 오염</td></tr>
-          <tr><td>Predictive</td><td>문맥/미래 상태 예측</td><td>temporal trigger</td></tr>
-          <tr><td>Transfer</td><td>pretraining 표현 전이</td><td>취약성 전파</td></tr>
-        </table>
-      </div>
-    </section>
-    <section>
-      <div>
-        <h2>보안 이슈</h2>
-        <table>
-          <tr><th>위협</th><th>공격자 능력</th><th>대표 지표</th></tr>
-          <tr><td>Poisoning</td><td>pretraining sample 삽입</td><td>clean/poisoned 성능</td></tr>
-          <tr><td>Backdoor</td><td>trigger 조건 target behavior</td><td>ASR</td></tr>
-          <tr><td>Representation shift</td><td>embedding을 target 영역으로 이동</td><td>mean shift</td></tr>
-          <tr><td>Governance gap</td><td>출처·로그 불명확</td><td>reproducibility</td></tr>
-        </table>
-      </div>
-    </section>
-    <section>
-      <div>
-        <h2>논문 5편의 역할</h2>
-        <table>
-          <tr><th>ID</th><th>중심 역할</th><th>W05 활용</th></tr>
-          <tr><td>P01-P03</td><td>SSL/foundation 원리</td><td>표현학습 taxonomy, P02 동일 여부 확인 필요</td></tr>
-          <tr><td>P04</td><td>Poisoning survey</td><td>공격·방어 taxonomy</td></tr>
-          <tr><td>P05</td><td>Backdoor survey</td><td>DNN-LLM backdoor 연결</td></tr>
-        </table>
-      </div>
-    </section>
-    <section>
-      <div>
-        <h2>위협모형</h2>
-        <pre>Pretraining data -> SSL objective -> Embedding space -> Downstream classifier
-       |                 |                 |                  |
- poisoned sample     poisoned pair      trigger shift      target class</pre>
-      </div>
-    </section>
-    <section>
-      <div>
-        <h2>평가 프로토콜</h2>
-        <table>
-          <tr><th>평가 항목</th><th>지표</th><th>기록</th></tr>
-          <tr><td>Clean performance</td><td>clean accuracy</td><td>정상 synthetic embedding</td></tr>
-          <tr><td>Backdoor impact</td><td>ASR</td><td>trigger 후 target 분류</td></tr>
-          <tr><td>Representation change</td><td>mean shift</td><td>embedding 거리</td></tr>
-          <tr><td>Defense check</td><td>detection rate, clean FPR</td><td>paired-view consistency</td></tr>
-          <tr><td>Reproducibility</td><td>seed, config, outputs</td><td>CSV/JSON/run log</td></tr>
-        </table>
-      </div>
-    </section>
-    <section>
-      <div>
-        <h2>Synthetic Toy 실험</h2>
-        <ul>
-          <li>데이터: synthetic 2D representation clusters</li>
-          <li>분류기: nearest-centroid representation classifier</li>
-          <li>공격: source embedding에 trigger vector를 더해 target centroid 쪽으로 이동</li>
-          <li>방어 점검: paired-view distance threshold</li>
-        </ul>
-      </div>
-    </section>
-    <section>
-      <div>
-        <h2>실험 결과</h2>
-        <table>
-          <tr><th>조건</th><th>Clean</th><th>Poisoned Clean</th><th>ASR</th><th>ASR after defense</th><th>Shift</th></tr>
-          <tr><td>Clean baseline</td><td>1.000000</td><td>해당 없음</td><td>해당 없음</td><td>해당 없음</td><td>해당 없음</td></tr>
-          <tr><td>Backdoor scenario</td><td>해당 없음</td><td>1.000000</td><td>1.000000</td><td>해당 없음</td><td>2.418677</td></tr>
-          <tr><td>Defense check</td><td>해당 없음</td><td>해당 없음</td><td>해당 없음</td><td>0.000000</td><td>0.090597</td></tr>
-        </table>
-      </div>
-    </section>
-    <section>
-      <div>
-        <h2>해석과 한계</h2>
-        <ul>
-          <li>Triggered source embedding은 toy 조건에서 target centroid로 모두 분류됐다.</li>
-          <li>Consistency threshold는 trigger shift를 모두 플래그했고 clean FPR은 0.000000이었다.</li>
-          <li>실제 SSL/foundation model 보안 성능으로 일반화하지 않는다.</li>
-        </ul>
-      </div>
-    </section>
-    <section>
-      <div>
-        <h2>기말논문 연결</h2>
-        <table>
-          <tr><th>장</th><th>연결 내용</th></tr>
-          <tr><td>관련연구</td><td>SSL/foundation survey와 poisoning/backdoor survey</td></tr>
-          <tr><td>위협모형</td><td>pretraining data, embedding, downstream classifier</td></tr>
-          <tr><td>평가방법</td><td>clean, ASR, shift, detection, reproducibility</td></tr>
-          <tr><td>분석/실험</td><td>synthetic toy 평가를 통한 지표 구조 예시</td></tr>
-        </table>
-      </div>
-    </section>
-    <section>
-      <div>
-        <h2>결론</h2>
-        <ul>
-          <li>표현공간은 AI 보안의 핵심 보호 자산이다.</li>
-          <li>Backdoor 평가는 clean 성능과 trigger 조건을 분리해야 한다.</li>
-          <li>Representation shift는 설명 가능한 보안 평가축이다.</li>
-          <li>수치는 실행 근거가 있을 때만 주장해야 한다.</li>
-        </ul>
-      </div>
-    </section>
-  <!-- formula-visual-html:start -->
-    <section class="slide formula-visual-supplement">
-      <div class="slide-header">Formula / W05</div>
-      <h2>핵심 수식과 기호</h2>
-      <h3>Contrastive Loss와 Representation Shift</h3>
-      <div class="math-block">
-      $$
-      \mathcal{L}_{NCE}=-\log
-      \frac{\exp(sim(z_i,z_i^+)/\tau)}
-      {\sum_{j}\exp(sim(z_i,z_j)/\tau)},
-      \qquad
-      \Delta_z=\lVert \mu_{clean}-\mu_{trigger}\rVert_2
-      $$
-      </div>
-      <p>은닉 trigger가 representation에 남으면 downstream classifier에서 조건부 실패가 생길 수 있다.</p>
-      <h3>Backdoor Trigger Success Metric</h3>
-      <div class="math-block">
-      $$
-      ASR=\frac{1}{m}\sum_{j=1}^{m}\mathbf{1}[f_\theta(T(x_j))=y^{target}]
-      $$
-      </div>
-      <p>clean 성능이 유지되어도 ASR이 높으면 보안적으로 실패할 수 있다.</p>
-      <div class="message">수식은 표준 정의식이며 원문 위치와 formal guarantee는 최종 검토 대상이다.</div>
-      <div class="footer"><span>W05 formula supplement</span><span></span></div>
+      <p class="citation-footnote">최종 발표본: presentation_slides.html. 기존 주차번호 HTML은 호환용으로만 유지.</p>
     </section>
 
-    <section class="slide formula-visual-supplement">
-      <div class="slide-header">Visual / W05</div>
-      <h2>그래프와 Pipeline Diagram</h2>
-      <div class="media-grid">
-        <div><img src="assets/charts/w05_metrics_chart.png" alt="W05 metrics chart"><p class="caption">그래프는 representation_shift, trigger_detection_rate, attack_success_rate 같은 SSL/backdoor 관련 지표를 한 화면에서 비교한다. Clean accuracy만으로는 representation 내부 변화나 trigger 조건 성능을 설명할 수 없다. 모든 값은 기존 CSV의 수치 열에서 가져왔다.</p></div>
-        <div><img src="assets/diagrams/w05_pipeline_diagram.svg" alt="W05 pipeline diagram"><p class="caption">AI-assisted conceptual diagram. See assets/figure_manifest.md.</p></div>
+    <section class="slide">
+      <div class="slide-header">Background / W05</div>
+      <h2>왜 이 주제가 중요한가</h2>
+      <p class="key-finding">이 주제는 clean 성능만으로는 안전성을 설명하기 어렵다.</p>
+      <div class="figure-grid three-panel">
+        <div class="figure-panel"><div class="panel-label">A</div><h3>AI 원리</h3><p>모델 목적함수와 표현이 평가 지표의 출발점이다.</p></div>
+        <div class="figure-panel"><div class="panel-label">B</div><h3>보안 표면</h3><p>공격자 가정, 보호 자산, 실패 조건을 분리한다.</p></div>
+        <div class="figure-panel"><div class="panel-label">C</div><h3>근거 관리</h3><p>CSV, run log, 결과표가 같은 값을 말해야 한다.</p></div>
       </div>
-      <div class="footer"><span>Source: outputs/metrics_summary.csv</span><span>SSL backdoor evaluation flow</span></div>
     </section>
-<!-- formula-visual-html:end -->
+
+    <section class="slide">
+      <div class="slide-header">Research Gap</div>
+      <h2>기존 발표 흐름의 빈틈</h2>
+      <table>
+        <thead><tr><th>빈틈</th><th>보완 방식</th><th>검증 상태</th></tr></thead>
+        <tbody>
+          <tr><td>수식과 지표 연결 부족</td><td>핵심 수식, 기호표, 보안적 의미를 한 장에 배치</td><td>표준식 / 확인 필요 병기</td></tr>
+          <tr><td>표와 위협모형 분리</td><td>공격자·방어자·보호 자산 표로 정리</td><td>toy/synthetic 범위</td></tr>
+          <tr><td>결과 그래프 출처 불명확</td><td>metrics_summary.csv 기반 그래프만 사용</td><td>데이터 출처: 04_experiment/outputs/metrics_summary.csv</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Core Formula / W05</div>
+      <h2>핵심 수식: Contrastive Loss와 Representation Shift</h2>
+      <div class="formula-card">
+        \[
+\mathcal{L}_{NCE}=-\log
+\frac{\exp(sim(z_i,z_i^+)/\tau)}
+{\sum_{j}\exp(sim(z_i,z_j)/\tau)},
+\qquad
+\Delta_z=\lVert \mu_{clean}-\mu_{trigger}\rVert_2
+        \]
+      </div>
+      <table>
+<thead>
+<tr>
+<th>기호</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\(z_i,z_i^+\)</td>
+<td>같은 샘플 또는 양성 쌍의 표현</td>
+</tr>
+<tr>
+<td>\(sim\)</td>
+<td>표현 간 유사도</td>
+</tr>
+<tr>
+<td>\(\tau\)</td>
+<td>temperature</td>
+</tr>
+<tr>
+<td>\(\Delta_z\)</td>
+<td>clean/trigger 표현 중심 차이</td>
+</tr>
+</tbody>
+</table>
+      <p class="figure-caption">Formula | Contrastive learning은 가까워야 할 표현과 멀어져야 할 표현을 구분한다. Backdoor 평가는 clean 성능뿐 아니라 표현 공간 이동을 함께 확인한다. 은닉 trigger가 representation에 남으면 downstream classifier에서 조건부 실패가 생길 수 있다. 평가 지표 연결: representation_shift, clean_accuracy, attack_success_rate, trigger_detection_rate와 연결한다.</p>
+      <div class="limitation-box">한계: 표준 contrastive objective와 proxy shift이며 formal backdoor guarantee가 아니다.</div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Threat Model</div>
+      <h2>공격자·방어자·보호 자산</h2>
+      <table>
+        <thead><tr><th>구성요소</th><th>발표 내 의미</th><th>주의</th></tr></thead>
+        <tbody>
+          <tr><td>공격자</td><td>안전한 toy/public/synthetic 범위의 평가 조건을 가정</td><td>실제 시스템 악용 절차 없음</td></tr>
+          <tr><td>방어자</td><td>지표, 로그, 검증 절차로 위험을 관찰</td><td>formal guarantee와 empirical proxy 구분</td></tr>
+          <tr><td>보호 자산</td><td>모델 성능, 데이터 프라이버시, 재현성 증거, 운영 신뢰</td><td>없는 결과는 만들지 않음</td></tr>
+          <tr><td>성공 조건</td><td>clean_accuracy, attack_success_rate, attack_after_defense, representation_shift, trigger_detection_rate 변화가 위험을 설명하는지 확인</td><td>CSV와 모순되면 보류</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Evaluation Protocol</div>
+      <h2>평가 프로토콜과 지표</h2>
+      <table>
+<thead>
+<tr>
+<th>평가 항목</th>
+<th>대표 지표</th>
+<th>기록 방식</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>clean_accuracy</td>
+<td>CSV 컬럼 존재 시 그래프와 표에 반영</td>
+<td>실제 실행 산출물 기준</td>
+</tr>
+<tr>
+<td>attack_success_rate</td>
+<td>CSV 컬럼 존재 시 그래프와 표에 반영</td>
+<td>실제 실행 산출물 기준</td>
+</tr>
+<tr>
+<td>attack_after_defense</td>
+<td>CSV 컬럼 존재 시 그래프와 표에 반영</td>
+<td>실제 실행 산출물 기준</td>
+</tr>
+<tr>
+<td>representation_shift</td>
+<td>CSV 컬럼 존재 시 그래프와 표에 반영</td>
+<td>실제 실행 산출물 기준</td>
+</tr>
+<tr>
+<td>trigger_detection_rate</td>
+<td>CSV 컬럼 존재 시 그래프와 표에 반영</td>
+<td>실제 실행 산출물 기준</td>
+</tr>
+</tbody>
+</table>
+      <p class="figure-caption">Protocol | 데이터 출처: 04_experiment/outputs/metrics_summary.csv. run_log.md 또는 results.json과 모순되는 수치는 사용하지 않는다.</p>
+    </section>
+
+    <section class="slide figure-first">
+      <div class="slide-header">Figure 1 / Diagram</div>
+      <h2>SSL backdoor evaluation flow</h2>
+      <div class="figure-grid two-panel">
+        <figure class="figure-panel">
+          <div class="panel-label">A</div>
+          <div class="pipeline-diagram" role="img" aria-label="SSL backdoor evaluation flow">
+<div class="stage normal">Pretext Data<br><small>views/masks</small></div>
+<div class="arrow" aria-hidden="true">→</div>
+<div class="stage normal">Representation<br><small>embedding</small></div>
+<div class="arrow" aria-hidden="true">→</div>
+<div class="stage normal">Classifier<br><small>linear head</small></div>
+<div class="arrow" aria-hidden="true">→</div>
+<div class="stage risk">Trigger Test<br><small>ASR</small></div>
+<div class="arrow" aria-hidden="true">→</div>
+<div class="stage defense">Defense Check<br><small>detection/FPR</small></div>
+</div>
+          <figcaption class="figure-caption">Pipeline | 단계별 공격면과 방어·검증 지점을 4~6개로 압축했다.</figcaption>
+        </figure>
+        <figure class="figure-panel">
+          <div class="panel-label">B</div>
+          <img src="assets/diagrams/w05_pipeline_diagram.svg" alt="W05 pipeline diagram">
+          <figcaption class="figure-caption">Manifest | assets/figure_manifest.md에 생성 방식과 한계를 기록했다.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="slide figure-first">
+      <div class="slide-header">Figure 2 / Metrics</div>
+      <h2>실제 CSV 기반 지표 그래프</h2>
+      <div class="figure-grid two-panel">
+        <figure class="figure-panel chart-panel">
+          <div class="panel-label">A</div>
+          <img src="assets/charts/w05_metrics_chart.svg" alt="W05 metrics chart">
+          <figcaption class="figure-caption">Graph | 그래프는 representation_shift, trigger_detection_rate, attack_success_rate 같은 SSL/backdoor 관련 지표를 한 화면에서 비교한다. Clean accuracy만으로는 representation 내부 변화나 trigger 조건 성능을 설명할 수 없다. 모든 값은 기존 CSV의 수치 열에서 가져왔다. 데이터 출처: 04_experiment/outputs/metrics_summary.csv</figcaption>
+        </figure>
+        <figure class="figure-panel">
+          <div class="panel-label">B</div>
+          <table>
+<thead>
+<tr>
+<th>condition</th>
+<th>clean_accuracy</th>
+<th>attack_success_rate</th>
+<th>attack_after_defense</th>
+<th>representation_shift</th>
+<th>trigger_detection_rate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Clean representation baseline</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Poisoned/backdoor representation</td>
+<td></td>
+<td>1</td>
+<td></td>
+<td>2.419</td>
+<td></td>
+</tr>
+<tr>
+<td>Consistency defense check</td>
+<td></td>
+<td></td>
+<td>0</td>
+<td>0.091</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+          <figcaption class="figure-caption">Table | 그래프에 사용한 CSV의 주요 행을 요약했다.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Paper Map</div>
+      <h2>논문 5편의 역할표</h2>
+      <table>
+<thead>
+<tr>
+<th>ID</th>
+<th>논문 역할</th>
+<th>발표에서 쓰는 위치</th>
+<th>기말논문 연결</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P01</td>
+<td>핵심 이론</td>
+<td>Background / Core Formula</td>
+<td>Self-Supervised Learning &amp; Backdoor의 관련연구 뼈대</td>
+</tr>
+<tr>
+<td>P02</td>
+<td>위협 분류</td>
+<td>Threat Model</td>
+<td>공격자·방어자·보호자산 정의</td>
+</tr>
+<tr>
+<td>P03</td>
+<td>평가 지표</td>
+<td>Evaluation Protocol</td>
+<td>정량 지표와 로그 근거 연결</td>
+</tr>
+<tr>
+<td>P04</td>
+<td>공격·방어 사례</td>
+<td>Security Implication</td>
+<td>보안적 함의와 방어 한계</td>
+</tr>
+<tr>
+<td>P05</td>
+<td>재현성·정책 근거</td>
+<td>Limitation</td>
+<td>확인 필요 항목과 제출 전 검증</td>
+</tr>
+</tbody>
+</table>
+      <p class="figure-caption">Paper map | 서지 세부사항과 DOI/URL은 최종 제출 전 원문 기준으로 확인한다.</p>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Security Implication</div>
+      <h2>보안적 함의</h2>
+      <div class="question-box">clean 성능이 유지되어도 ASR이 높으면 보안적으로 실패할 수 있다.</div>
+      <div class="figure-grid three-panel">
+        <div class="figure-panel"><div class="panel-label">A</div><h3>분리</h3><p>clean 성능과 보안 지표를 같은 값처럼 해석하지 않는다.</p></div>
+        <div class="figure-panel"><div class="panel-label">B</div><h3>추적</h3><p>수치, 그래프, 노트, Q&A가 같은 산출물을 가리킨다.</p></div>
+        <div class="figure-panel"><div class="panel-label">C</div><h3>제한</h3><p>실제 악용 절차 없이 평가 개념과 방어 관점만 설명한다.</p></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Limitation</div>
+      <h2>한계와 검증 상태</h2>
+      <div class="limitation-box">trigger 관련 설명은 공개 toy/synthetic 범위이며 실제 악용 가능한 절차를 제공하지 않는다. 실제 공격 절차가 아니라 안전한 toy 평가 지표 설명이다.</div>
+      <table>
+        <thead><tr><th>항목</th><th>상태</th><th>다음 확인</th></tr></thead>
+        <tbody>
+          <tr><td>실험 수치</td><td>실행 산출물 있음</td><td>run_log.md, results.json 대조</td></tr>
+          <tr><td>수식 보증</td><td>표준식 또는 proxy</td><td>원문 절·쪽·formal guarantee 확인</td></tr>
+          <tr><td>운영 적용</td><td>바로 적용 불가</td><td>실제 데이터·정책·위험평가 필요</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Final Takeaway</div>
+      <h2>기말논문 연결</h2>
+      <p class="key-finding">W05의 결론은 지표를 분리하고 근거 파일로 추적하는 연구 설계다.</p>
+      <table>
+        <thead><tr><th>기말논문 장</th><th>연결 내용</th></tr></thead>
+        <tbody>
+          <tr><td>관련연구</td><td>Self-Supervised Learning &amp; Backdoor의 핵심 이론과 보안 taxonomy 정리</td></tr>
+          <tr><td>위협모형</td><td>SSL backdoor evaluation flow 기반 공격면·방어면 정의</td></tr>
+          <tr><td>평가방법</td><td>clean_accuracy, attack_success_rate, attack_after_defense, representation_shift, trigger_detection_rate를 CSV/log 기준으로 검증</td></tr>
+          <tr><td>한계</td><td>toy/synthetic 범위와 확인 필요 항목을 명시</td></tr>
+        </tbody>
+      </table>
+    </section>
+
   </main>
-  <div class="slide-controls" aria-label="슬라이드 이동 버튼">
-    <button type="button" id="prevSlide" aria-label="이전 슬라이드">이전</button>
-    <span class="slide-count"><span id="counter">1</span> / <span id="totalSlides">14</span></span>
-    <button type="button" id="nextSlide" aria-label="다음 슬라이드">다음</button>
-  </div>
+
+  <nav class="slide-nav" aria-label="슬라이드 이동">
+    <button id="prevSlide" type="button" title="이전 슬라이드" aria-label="이전 슬라이드">‹</button>
+    <span id="slideCounter" class="slide-counter" aria-live="polite">1 / 1</span>
+    <button id="nextSlide" type="button" title="다음 슬라이드" aria-label="다음 슬라이드">›</button>
+  </nav>
+
   <script>
-    const slides = [...document.querySelectorAll("section")];
-    const counter = document.getElementById("counter");
-    const totalSlides = document.getElementById("totalSlides");
+    const slides = Array.from(document.querySelectorAll("section.slide, section"));
     const prevButton = document.getElementById("prevSlide");
     const nextButton = document.getElementById("nextSlide");
-    let index = 0;
-    totalSlides.textContent = slides.length;
-    function showSlide(nextIndex) {
-      index = Math.max(0, Math.min(slides.length - 1, nextIndex));
-      slides.forEach((slide, slideIndex) => slide.classList.toggle("active", slideIndex === index));
-      counter.textContent = String(index + 1);
-      prevButton.disabled = index === 0;
-      nextButton.disabled = index === slides.length - 1;
+    const counter = document.getElementById("slideCounter");
+    let currentIndex = 0;
+
+    function updateNav(index) {
+      currentIndex = Math.max(0, Math.min(index, slides.length - 1));
+      counter.textContent = `${currentIndex + 1} / ${slides.length}`;
+      prevButton.disabled = currentIndex === 0;
+      nextButton.disabled = currentIndex === slides.length - 1;
     }
-    prevButton.addEventListener("click", (event) => {
-      event.stopPropagation();
-      showSlide(index - 1);
-    });
-    nextButton.addEventListener("click", (event) => {
-      event.stopPropagation();
-      showSlide(index + 1);
-    });
+
+    function goToSlide(index) {
+      const nextIndex = Math.max(0, Math.min(index, slides.length - 1));
+      slides[nextIndex].scrollIntoView({ behavior: "smooth", block: "start" });
+      updateNav(nextIndex);
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        window.MathJax.typesetPromise([slides[nextIndex]]).catch(() => {});
+      }
+    }
+
+    prevButton.addEventListener("click", () => goToSlide(currentIndex - 1));
+    nextButton.addEventListener("click", () => goToSlide(currentIndex + 1));
+
     document.addEventListener("keydown", (event) => {
-      if (event.key === "ArrowRight" || event.key === "PageDown") showSlide(index + 1);
-      if (event.key === "ArrowLeft" || event.key === "PageUp") showSlide(index - 1);
-      if (event.key === "Home") showSlide(0);
-      if (event.key === "End") showSlide(slides.length - 1);
+      if (["ArrowRight", "PageDown", " "].includes(event.key)) {
+        event.preventDefault();
+        goToSlide(currentIndex + 1);
+      }
+
+      if (["ArrowLeft", "PageUp"].includes(event.key)) {
+        event.preventDefault();
+        goToSlide(currentIndex - 1);
+      }
+
+      if (event.key === "Home") {
+        event.preventDefault();
+        goToSlide(0);
+      }
+
+      if (event.key === "End") {
+        event.preventDefault();
+        goToSlide(slides.length - 1);
+      }
     });
-    document.addEventListener("click", (event) => {
-      if (!event.target.closest(".slide-controls")) showSlide(index + 1);
-    });
-    showSlide(0);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((left, right) => right.intersectionRatio - left.intersectionRatio)[0];
+
+        if (visible) {
+          updateNav(slides.indexOf(visible.target));
+        }
+      },
+      { threshold: [0.55] }
+    );
+
+    slides.forEach((slide) => observer.observe(slide));
+    updateNav(0);
   </script>
 </body>
 </html>

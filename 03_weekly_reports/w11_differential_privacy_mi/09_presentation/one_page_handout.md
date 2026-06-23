@@ -1,54 +1,41 @@
-# W11 1페이지 요약
+# W11 주차 연구 발표 요약
 
-## 핵심 메시지
+## Research Question
 
-DP 보장은 “noise를 넣었다”는 선언이 아니라 accounting, utility, MI risk, leakage, 재현성 로그가 함께 있을 때 해석 가능하다.
+이 주차에서 성능 지표와 보안 지표를 어떻게 분리해 평가할 수 있는가?
 
-## AI 원리
+## Key Formula
 
-| 개념 | 요점 |
-|---|---|
-| Differential Privacy | 한 레코드 포함 여부가 출력 분포에 크게 드러나지 않도록 제한 |
-| DP-SGD | gradient clipping, noise injection, privacy accounting의 결합 |
-| Privacy budget | epsilon/delta와 utility 사이의 trade-off |
+**Differential Privacy Definition**
 
-## 보안 이슈
+$$
+\Pr[M(D)\in S]\le e^{\varepsilon}\Pr[M(D')\in S]+\delta
+$$
 
-| 이슈 | 평가 지표 |
-|---|---|
-| Membership inference | MI Attack Accuracy |
-| Privacy leakage | Privacy Leakage Score |
-| Utility cost | Accuracy, Utility Drop |
-| Accountability | DOI/PDF 검증, seed/config/output log |
+- 기호와 의미는 슬라이드의 표를 기준으로 설명한다.
+- 보안적 의미: Membership inference 위험을 줄이려는 privacy claim은 이 정의와 accountant 근거가 있어야 한다.
 
-## 실험 결과
+## Threat Model
 
-| 조건 | Accuracy | MI Attack Accuracy | Epsilon Proxy | Leakage |
-|---|---:|---:|---:|---:|
-| Non-DP baseline | 0.956250 | 0.515625 | 해당 없음 | 0.014833 |
-| DP-like noise low | 0.956250 | 0.515625 | 8.000000 | 0.014494 |
-| DP-like noise medium | 0.962500 | 0.512500 | 3.000000 | 0.011769 |
-| DP-like noise high | 0.950000 | 0.521875 | 1.000000 | 0.016482 |
+DP-SGD and MI audit flow 기준으로 공격자, 방어자, 보호 자산, 성공 조건을 분리한다.
 
-## 주의
+## Main Figure
 
-- `epsilon_proxy`는 정식 DP accountant 값이 아니다.
-- `noise_multiplier`는 toy gradient noise scale이며 formal DP-SGD accountant 값이 아니다.
-- 결과는 synthetic toy 평가이며 실제 개인정보 보호 수준으로 일반화하지 않는다.
-- P03/P05는 로컬 PDF가 대체 문헌이므로 최종 인용 전 원문 PDF 확보가 필요하다.
+- Diagram: `assets/diagrams/w11_pipeline_diagram.svg`
+- Chart: `assets/charts/w11_metrics_chart.svg`
 
-## 기말논문 연결
+## Evaluation Metrics
 
-W11은 기말논문의 관련연구, 위협모형, 평가방법, 보안적 함의에 연결된다. 핵심 기여 후보는 privacy claim 다중지표 평가 프레임워크다.
+accuracy, mi_attack_accuracy, epsilon_proxy, privacy_leakage_score, utility_drop. 실제 수치는 `04_experiment/outputs/metrics_summary.csv` 기준이다.
 
-<!-- formula-visual-handout:start -->
-## 수식·그래프·그림 보강 요약
+## Security Implication
 
-| 항목 | 반영 내용 |
-|---|---|
-| 핵심 수식 | Differential Privacy Definition, DP-SGD Clipping/Noise와 MI Advantage |
-| 그래프 | `assets/charts/w11_metrics_chart.png` (`metrics_summary.csv` 기반) |
-| 다이어그램 | `assets/diagrams/w11_pipeline_diagram.svg` (DP-SGD and MI audit flow) |
-| 기호 정의 | 통합보고서와 발표 슬라이드의 수식 블록에 포함 |
-| 주의사항 | `epsilon_proxy`는 formal DP accountant 값이 아니며 formal DP guarantee로 쓰지 않는다. |
-<!-- formula-visual-handout:end -->
+Clean 성능과 보안 지표는 서로 다른 실패 모드를 설명하므로 같은 결론으로 합치지 않는다.
+
+## Limitation
+
+`epsilon_proxy`는 formal DP accountant 값이 아니며 formal DP guarantee로 쓰지 않는다. toy/synthetic 범위와 formal guarantee 여부를 구분해야 한다.
+
+## Final Paper Link
+
+기말논문에서는 관련연구, 위협모형, 평가방법, 한계 절에 이 주차의 수식·표·그래프·다이어그램을 연결한다.

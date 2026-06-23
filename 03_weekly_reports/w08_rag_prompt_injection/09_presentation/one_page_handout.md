@@ -1,51 +1,43 @@
-# W08 1페이지 핸드아웃
+# W08 주차 연구 발표 요약
 
-## 핵심 메시지
+## Research Question
 
-RAG 보안은 검색 정확도만의 문제가 아니다. 검색 문서의 출처, prompt boundary, tool 권한, human approval, audit log를 함께 설계해야 indirect prompt injection을 줄일 수 있다.
+이 주차에서 성능 지표와 보안 지표를 어떻게 분리해 평가할 수 있는가?
 
-## AI 원리
+## Key Formula
 
-| 구성요소 | 의미 |
-|---|---|
-| RAG | 외부 문서를 검색해 LLM context에 넣고 답변 생성 |
-| GraphRAG | node, edge, path, subgraph를 활용한 관계 기반 RAG |
-| Prompting Framework | prompt, memory, tool, service 실행을 관리하는 LLM app 구조 |
+**Retrieval Score와 Context-Conditioned Generation**
 
-## 보안 이슈
+$$
+s(q,d)=\frac{e(q)^\top e(d)}{\lVert e(q)\rVert_2\lVert e(d)\rVert_2},
+\qquad
+p(y|q,C)=\prod_{t=1}^{T}p_\theta(y_t|y_{<t},q,C)
+$$
 
-| 이슈 | 위험 | 대응 |
-|---|---|---|
-| Indirect prompt injection | 외부 문서가 모델 지시처럼 작동 | source verification |
-| RAG 문서 오염 | vector DB/corpus에 악성 문서 포함 | ingestion 검증, metadata |
-| Tool misuse | agent가 부적절한 tool action 수행 | permission policy, human approval |
-| Safety-critical failure | 의료 등 고위험 조언 왜곡 | domain review, approval gate |
+- 기호와 의미는 슬라이드의 표를 기준으로 설명한다.
+- 보안적 의미: 검색된 context가 오염되면 생성 단계가 공격 문맥에 영향을 받을 수 있다.
 
-## W08 실험 결과
+## Threat Model
 
-| 조건 | ASR | Source Verification | Tool Misuse |
-|---|---:|---:|---:|
-| Clean RAG | 0.000000 | 1.000000 | 0.000000 |
-| Poisoned document | 0.575000 | 0.275000 | 0.125000 |
-| Source filter 적용 | 0.050000 | 1.000000 | 0.025000 |
-| Human approval 적용 | 0.025000 | 1.000000 | 0.000000 |
+RAG pipeline threat model 기준으로 공격자, 방어자, 보호 자산, 성공 조건을 분리한다.
 
-## 기말논문 연결
+## Main Figure
 
-추천 주제: RAG 기반 생성형 AI 시스템에서 간접 프롬프트 인젝션 대응을 위한 출처 검증·승인 게이트 평가 프레임워크.
+- Diagram: `assets/diagrams/w08_pipeline_diagram.svg`
+- Chart: `assets/charts/w08_metrics_chart.svg`
 
-## 한계
+## Evaluation Metrics
 
-본 실험은 synthetic toy evaluator 결과이며 실제 LLM/RAG 제품의 보안 성능으로 일반화하지 않는다.
+retrieval_relevance, attack_success_rate, source_verification_rate, tool_misuse_rate, faithfulness. 실제 수치는 `04_experiment/outputs/metrics_summary.csv` 기준이다.
 
-<!-- formula-visual-handout:start -->
-## 수식·그래프·그림 보강 요약
+## Security Implication
 
-| 항목 | 반영 내용 |
-|---|---|
-| 핵심 수식 | Retrieval Score와 Context-Conditioned Generation, Injection Success와 Contamination Rate |
-| 그래프 | `assets/charts/w08_metrics_chart.png` (`metrics_summary.csv` 기반) |
-| 다이어그램 | `assets/diagrams/w08_pipeline_diagram.svg` (RAG pipeline threat model) |
-| 기호 정의 | 통합보고서와 발표 슬라이드의 수식 블록에 포함 |
-| 주의사항 | prompt injection은 방어 평가 관점으로만 설명하고 실제 우회 절차는 제공하지 않는다. |
-<!-- formula-visual-handout:end -->
+Clean 성능과 보안 지표는 서로 다른 실패 모드를 설명하므로 같은 결론으로 합치지 않는다.
+
+## Limitation
+
+prompt injection은 방어 평가 관점으로만 설명하고 실제 우회 절차는 제공하지 않는다. toy/synthetic 범위와 formal guarantee 여부를 구분해야 한다.
+
+## Final Paper Link
+
+기말논문에서는 관련연구, 위협모형, 평가방법, 한계 절에 이 주차의 수식·표·그래프·다이어그램을 연결한다.

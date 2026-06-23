@@ -1,164 +1,12 @@
-# W07 LLM 학습·정렬·평가 & LLM 보안·프라이버시
+# W07 LLM 보안과 프라이버시
 
-## 발표 핵심
-
-LLM 보안 평가는 utility, ASR, privacy leakage, refusal quality, code vulnerability risk, 재현성을 함께 기록해야 한다.
+Research Question: LLM 보안과 프라이버시에서 성능 지표와 보안 지표를 어떻게 분리해 평가할 수 있는가?
 
 ---
 
-# 1. 왜 W07이 중요한가
+## Core Formula
 
-- LLM은 모델 하나가 아니라 prompt, context, output, log, benchmark가 얽힌 시스템이다.
-- 평가가 오염되면 성능 해석도 보안 판단도 흔들린다.
-- W07의 질문: “LLM 시스템을 보안적으로 믿으려면 무엇을 함께 측정해야 하는가?”
-
----
-
-# 2. 발표 로드맵
-
-1. LLM 학습·정렬·평가 원리
-2. LLM 보안·프라이버시 위협
-3. 논문 5편의 역할
-4. Synthetic toy 실험
-5. 결과와 기말논문 연결
-
----
-
-# 3. AI 원리 70%
-
-| 개념 | 핵심 | 보안 연결 |
-|---|---|---|
-| Pretraining | 대규모 데이터 학습 | memorization |
-| Instruction tuning | 지시 따르기 | unsafe instruction |
-| Alignment/RLHF | 선호와 안전 정책 | refusal quality |
-| Context window | 입력과 context 결합 | prompt injection |
-| Benchmark | 능력 측정 | contamination |
-
----
-
-# 4. 평가 원리
-
-- Benchmark score는 모델 능력의 일부만 보여준다.
-- Contamination은 평가셋이 학습이나 프롬프트에 노출되는 문제다.
-- Evaluation leakage는 hidden test나 기준이 새는 문제다.
-- 재현성에는 seed, config, prompt set, output log가 필요하다.
-
----
-
-# 5. 보안 이슈 30%
-
-| 위협 | 보호 자산 | 대표 지표 |
-|---|---|---|
-| Data extraction | 학습데이터 | leakage rate |
-| Prompt injection | context, tool chain | ASR |
-| Prompt leakage | system prompt | leakage flag |
-| Insecure code | 코드 산출물 | vulnerability rate |
-| Over-refusal | 정상 사용자 workflow | answer rate |
-
----
-
-# 6. 논문 5편의 역할
-
-| ID | 중심 역할 | W07 활용 |
-|---|---|---|
-| P01 | LLM evaluation survey | 평가축과 benchmark |
-| P02 | security/privacy challenges | 공격·방어 분류 |
-| P03 | good/bad/ugly taxonomy | 보안 활용과 취약성 |
-| P04 | multimodal LLM survey | MLLM 구조와 hallucination |
-| P05 | software security with LLMs | 코드 보안 접점 |
-
----
-
-# 7. 위협모형
-
-```text
-User prompt -> Context window -> LLM response -> Logs / Code / Benchmark
-      |              |                 |                 |
- prompt attack   prompt leakage    unsafe output     audit failure
-```
-
-- 보호 자산: 데이터, system prompt, context, output, code, logs, benchmark
-- 제외 범위: 실제 개인정보 추출, 실제 서비스 공격, exploit instruction
-
----
-
-# 8. 평가 프로토콜
-
-| 평가 항목 | 지표 | 기록 방법 |
-|---|---|---|
-| Utility | utility, answer rate | clean prompts |
-| Attack success | ASR | synthetic risky prompts |
-| Privacy | leakage rate | synthetic privacy-risk prompts |
-| Refusal | refusal quality, over-refusal | risk/clean 분리 |
-| Code security | vulnerability rate | code security category |
-| Reproducibility | seed, config, outputs | CSV/JSON/run log |
-
----
-
-# 9. Synthetic toy 실험
-
-- 데이터: synthetic prompt categories
-- 조건: clean, prompt attack simulation, privacy-risk, code security
-- 각 조건: 40개 synthetic sample
-- Guard threshold: 0.55
-- 실제 LLM/API 호출 없음
-
----
-
-# 10. 실험 결과
-
-| 조건 | Utility | Answer | ASR | Leakage | Refusal | Over-refusal | Code risk |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| Clean | 0.866746 | 1.000000 | 0.000000 | 0.000000 | 해당 없음 | 0.000000 | 0.000000 |
-| Prompt attack | 0.400908 | 0.150000 | 0.150000 | 0.000000 | 0.850000 | 0.000000 | 0.000000 |
-| Privacy-risk | 0.392926 | 0.100000 | 0.100000 | 0.025000 | 0.900000 | 0.000000 | 0.000000 |
-| Code security | 0.678267 | 0.650000 | 0.000000 | 0.000000 | 해당 없음 | 0.350000 | 0.200000 |
-
-정량값은 `04_experiment/outputs/run_log.md` 기준이다.
-
----
-
-# 11. 결과 해석
-
-- Clean utility 0.866746은 정상 질의 지원성을 보여준다.
-- Prompt attack simulation의 ASR 0.150000은 toy guard가 일부 synthetic 위험 조건을 놓친다는 뜻이다.
-- Privacy-risk leakage 0.025000은 평가표에 privacy 항목을 분리해야 함을 보여준다.
-- Code security의 over-refusal 0.350000과 code risk 0.200000은 함께 봐야 한다.
-- 이 수치는 실제 LLM의 보안 성능이나 실제 jailbreak 성공률이 아니다.
-
----
-
-# 12. 기말논문 연결
-
-| 기말논문 장 | 연결 내용 |
-|---|---|
-| 관련연구 | LLM evaluation/security/privacy/software security |
-| 위협모형 | prompt/context/output/log/benchmark |
-| 평가방법 | utility, ASR, leakage, refusal, code risk |
-| 재현성 | seed, config, CSV/JSON/run log |
-
-Contribution 후보: LLM/RAG 기반 AI 시스템의 보안·프라이버시·재현성 평가 프레임워크.
-
----
-
-# 13. 결론
-
-W07 결론:
-
-- LLM 보안 평가는 다중지표 문제다.
-- 공격 성공률만 보면 utility와 over-refusal을 놓친다.
-- Utility만 보면 leakage와 code risk를 놓친다.
-- 실행 로그 없는 수치는 주장하지 않는다.
-
-<!-- formula-visual-supplement:start -->
-# 수식·그래프·그림 보강
-
-- 보강 일자: 2026-06-23
-- 수식은 표준 정의식 또는 검증 가능한 평가식으로만 작성했다.
-- 그래프는 `04_experiment/outputs/metrics_summary.csv`의 기존 수치만 사용했다.
-- 다이어그램은 AI-assisted conceptual diagram이며 사실 자료나 실험 결과처럼 해석하지 않는다.
-
-### 핵심 수식: Language Modeling Objective와 Perplexity
+### Language Modeling Objective와 Perplexity
 
 $$
 \mathcal{L}_{LM}=-\sum_{t=1}^{T}\log p_\theta(x_t|x_{<t}),
@@ -173,57 +21,65 @@ $$
 | `p_\theta` | 언어모델 확률 |
 | `PPL` | perplexity |
 
-**직관적 의미:**  
-언어모델은 이전 문맥을 보고 다음 토큰 확률을 높이는 방향으로 학습된다. Perplexity는 언어모델링 품질을 보는 표준 지표다.
+- 직관적 의미: 언어모델은 이전 문맥을 보고 다음 토큰 확률을 높이는 방향으로 학습된다. Perplexity는 언어모델링 품질을 보는 표준 지표다.
+- 보안적 의미: 보안 평가에서는 품질 지표와 privacy leakage, unsafe completion을 분리해야 한다.
+- 평가 지표 연결: utility, answer_rate, privacy_leakage_rate, code_vulnerability_rate와 연결한다.
+- 한계: 실습 수치는 toy prompt set 기준 proxy이며 실제 서비스 위험률이 아니다.
 
-**보안 관점 해석:**  
-보안 평가에서는 품질 지표와 privacy leakage, unsafe completion을 분리해야 한다.
+---
 
-**평가 지표 연결:**  
-utility, answer_rate, privacy_leakage_rate, code_vulnerability_rate와 연결한다.
+## Threat Model
 
-**한계와 가정:**  
-실습 수치는 toy prompt set 기준 proxy이며 실제 서비스 위험률이 아니다.
-
-### 핵심 수식: Privacy Leakage Proxy
-
-$$
-LeakageRate=\frac{\#\{\mathrm{responses\ with\ disallowed\ sensitive\ disclosure}\}}{\#\{\mathrm{evaluated\ prompts}\}}
-$$
-
-| 기호 | 의미 |
-|---|---|
-| `LeakageRate` | 평가 prompt 중 민감정보 노출 비율 |
-| `\#` | 조건을 만족하는 개수 |
-| `responses` | 모델 응답 |
-| `prompts` | 평가 입력 |
-
-**직관적 의미:**  
-Leakage proxy는 응답 중 금지된 민감정보 노출이 얼마나 발견되는지 세는 방식이다.
-
-**보안 관점 해석:**  
-프라이버시 위험은 유용성 점수와 독립적으로 보고해야 한다.
-
-**평가 지표 연결:**  
-privacy_leakage_rate, over_refusal_rate, mean_risk_score와 연결한다.
-
-**한계와 가정:**  
-실제 개인정보를 사용하지 않는 안전한 toy audit이다.
-
-### 표 수치 기반 그래프
-
-![W07 metrics chart](assets/charts/w07_metrics_chart.png)
-
-그래프는 LLM 평가의 utility, attack_success_rate, privacy_leakage_rate, code_vulnerability_rate를 비교한다. 유용성 향상과 안전성 저하가 동시에 나타날 수 있으므로 refusal quality와 leakage를 분리해서 해석해야 한다. 수치는 기존 output CSV 기반이다.
-
-### Threat Model / Pipeline Diagram
+- Diagram: LLM privacy/safety evaluation flow
+- Stages: Prompt, LM, Safety Policy, Leakage Audit, Report
+- 안전 범위: public, synthetic, toy, local evaluation
 
 ![W07 pipeline diagram](assets/diagrams/w07_pipeline_diagram.svg)
 
-이 다이어그램은 `LLM privacy/safety evaluation flow`를 발표용으로 요약한 개념도다. 데이터 흐름, 평가 지표, 한계 표시는 `assets/figure_manifest.md`에도 기록했다.
+---
 
-### 확인 필요
+## Evaluation Protocol
+
+- Metrics: utility, attack_success_rate, privacy_leakage_rate, code_vulnerability_rate
+- 데이터 출처: `04_experiment/outputs/metrics_summary.csv`
+
+| condition | utility | attack_success_rate | privacy_leakage_rate | code_vulnerability_rate | notes |
+| --- | --- | --- | --- | --- | --- |
+| Clean prompts | 0.867 | 0 | 0 | 0 | 정상 질의에서 유용성과 과차단 여부를 확인 |
+| Prompt attack simulation | 0.401 | 0.15 | 0 | 0 | 공격 절차 재현 없이 방어 평가용 추상 카테고리만 사용 |
+| Privacy-risk prompts | 0.393 | 0.1 | 0.025 | 0 | 실제 개인정보 없이 민감정보 노출 평가 구조만 점검 |
+| Code security prompts | 0.678 | 0 | 0 | 0.2 | 취약 코드 생성을 직접 제시하지 않고 체크리스트 판정만 모의 |
+
+---
+
+## Figure-first Result
+
+![W07 metrics chart](assets/charts/w07_metrics_chart.svg)
+
+그래프는 LLM 평가의 utility, attack_success_rate, privacy_leakage_rate, code_vulnerability_rate를 비교한다. 유용성 향상과 안전성 저하가 동시에 나타날 수 있으므로 refusal quality와 leakage를 분리해서 해석해야 한다. 수치는 기존 output CSV 기반이다.
+
+---
+
+## Paper Map
+
+| ID | 논문 역할 | 발표에서 쓰는 위치 | 기말논문 연결 |
+|---|---|---|---|
+| P01 | 핵심 이론 | Background / Core Formula | LLM 보안과 프라이버시의 관련연구 뼈대 |
+| P02 | 위협 분류 | Threat Model | 공격자·방어자·보호자산 정의 |
+| P03 | 평가 지표 | Evaluation Protocol | 정량 지표와 로그 근거 연결 |
+| P04 | 공격·방어 사례 | Security Implication | 보안적 함의와 방어 한계 |
+| P05 | 재현성·정책 근거 | Limitation | 확인 필요 항목과 제출 전 검증 |
+
+---
+
+## Limitation
 
 - privacy leakage는 toy/proxy metric이며 실제 개인정보 추출 실험으로 해석하지 않는다.
-- 논문별 원문 절·쪽·그림 번호는 최종 제출 전 사람 검토가 필요하다.
-<!-- formula-visual-supplement:end -->
+- 원문 DOI/URL과 formal guarantee는 최종 제출 전 확인 필요.
+- 실제 운영 시스템 악용 절차나 무단 API 질의 절차는 포함하지 않음.
+
+---
+
+## Final Takeaway
+
+W07의 핵심은 `utility, attack_success_rate, privacy_leakage_rate, code_vulnerability_rate`를 성능·보안·재현성 근거로 분리해 기말논문의 평가방법에 연결하는 것이다.

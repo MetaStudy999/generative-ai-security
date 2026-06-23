@@ -486,7 +486,7 @@ proxy metric이며 formal safety proof가 아니다.
 
 ### 표 수치 기반 그래프
 
-![W09 metrics chart](../../09_presentation/assets/charts/w09_metrics_chart.png)
+![W09 metrics chart](../../09_presentation/assets/charts/w09_metrics_chart.svg)
 
 그래프는 reward, detection_f1, safety_violation_rate, policy_robustness를 조건별로 함께 보여준다. 보상 점수가 좋아 보여도 safety violation이 높으면 보안 정책으로는 실패할 수 있다. 수치는 `metrics_summary.csv`에서 읽었다.
 

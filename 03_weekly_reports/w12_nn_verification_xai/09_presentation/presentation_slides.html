@@ -3,65 +3,407 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>W12 발표 슬라이드</title>
-  <style>
-    :root { color-scheme: light; }
-    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #111820; color: #f7fafc; }
-    .slide { display: none; min-height: 100vh; box-sizing: border-box; padding: 8vh 8vw; align-items: center; }
-    .slide.active { display: flex; }
-    .content { max-width: 1120px; width: 100%; }
-    h1 { font-size: clamp(2.3rem, 5vw, 4.8rem); line-height: 1.08; margin: 0 0 1.2rem; }
-    h2 { font-size: clamp(2rem, 4vw, 3.4rem); line-height: 1.12; margin: 0 0 1.4rem; }
-    p, li { font-size: clamp(1.15rem, 2vw, 1.75rem); }
-    table { width: 100%; border-collapse: collapse; font-size: clamp(0.82rem, 1.25vw, 1.08rem); background: #182330; }
-    th, td { border: 1px solid #385064; padding: 0.5rem 0.6rem; }
-    th { background: #223247; text-align: left; }
-    .muted { color: #b9c6d4; }
-    .progress { position: fixed; right: 22px; bottom: 18px; color: #b9c6d4; font-size: 0.95rem; }
-  </style>
-<!-- formula-visual-mathjax:start -->
-<script>
-window.MathJax = {
-  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$']] },
-  svg: { fontCache: 'global' }
-};
-</script>
-<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
-<style>
-.formula-visual-supplement .math-block { border-left: 5px solid #0f766e; background: #eef8f6; padding: 14px 18px; margin: 12px 0; font-size: 20px; overflow-x: auto; }
-.formula-visual-supplement .caption { font-size: 16px; line-height: 1.35; color: #53616f; }
-.formula-visual-supplement img { max-width: 100%; max-height: 390px; object-fit: contain; border: 1px solid #d8e0e8; border-radius: 8px; background: #fff; }
-.formula-visual-supplement .media-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
-</style>
-<!-- formula-visual-mathjax:end -->
+  <title>W12 Neural Network Verification &amp; XAI 발표 슬라이드</title>
+  <link rel="stylesheet" href="../../../02_report_templates/nature_research_slide_style.css">
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [["\\(", "\\)"]],
+        displayMath: [["\\[", "\\]"], ["$$", "$$"]]
+      },
+      svg: {
+        fontCache: "global"
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 </head>
 <body>
-  <section class="slide active"><div class="content"><h1>W12 신경망 검증·XAI·강건성 Trade-off</h1><p class="muted">안전한 AI 평가는 정확도 하나로 끝나지 않는다.</p></div></section>
-  <section class="slide"><div class="content"><h2>오늘의 질문</h2><ul><li>모델이 clean test에서 잘 맞으면 충분한가?</li><li>작은 입력 변화에도 예측과 설명이 안정적인가?</li><li>검증 비용과 공정성 영향까지 같이 보고했는가?</li></ul></div></section>
-  <section class="slide"><div class="content"><h2>문헌 5편의 역할</h2><table><tr><th>문헌</th><th>발표 역할</th></tr><tr><td>P01</td><td>verification abstraction, 로컬 PDF는 SUBSTITUTE</td></tr><tr><td>P02</td><td>adversarial attack/defense, DOI/원문 대조 필요</td></tr><tr><td>P03</td><td>adversarial XAI, 로컬 PDF는 SUBSTITUTE</td></tr><tr><td>P04</td><td>Lipschitz robustness, 지정 DOI 확인 필요</td></tr><tr><td>P05</td><td>robustness-accuracy-fairness trade-off, 지정 DOI 확인 필요</td></tr></table></div></section>
-  <section class="slide"><div class="content"><h2>AI 원리 70%</h2><ul><li>Neural network verification</li><li>Abstraction and reachability</li><li>Formal robustness certificate</li><li>Lipschitz regularization</li><li>XAI explanation stability</li></ul></div></section>
-  <section class="slide"><div class="content"><h2>보안 이슈 30%</h2><ul><li>Adversarial input은 예측 무결성을 흔든다.</li><li>Explanation manipulation은 검토자 판단을 흔든다.</li><li>Verification scalability failure는 검증 생략으로 이어진다.</li><li>Robustness, accuracy, fairness는 trade-off를 만들 수 있다.</li></ul></div></section>
-  <section class="slide"><div class="content"><h2>Toy 실험 설계</h2><table><tr><th>항목</th><th>설정</th></tr><tr><td>데이터</td><td>synthetic binary classification</td></tr><tr><td>모델</td><td>toy logistic classifier</td></tr><tr><td>Seed</td><td>42</td></tr><tr><td>Perturbation</td><td>L-infinity epsilon 0.35 proxy</td></tr><tr><td>제외</td><td>실제 시스템 공격, 개인정보</td></tr></table></div></section>
-  <section class="slide"><div class="content"><h2>실험 결과</h2><table><tr><th>조건</th><th>Clean</th><th>Robust</th><th>XAI</th><th>Certified</th><th>Fairness</th><th>Cost ms</th></tr><tr><td>Clean model</td><td>0.818750</td><td>0.543750</td><td>0.927782</td><td>0.543750</td><td>0.039141</td><td>0.223524</td></tr><tr><td>Adversarial input</td><td>0.818750</td><td>0.543750</td><td>0.862321</td><td>0.340625</td><td>0.039141</td><td>0.190324</td></tr><tr><td>Robust defense</td><td>0.815625</td><td>0.543750</td><td>0.927152</td><td>0.543750</td><td>0.044823</td><td>0.191790</td></tr><tr><td>XAI stability check</td><td>0.815625</td><td>0.696875</td><td>0.976252</td><td>0.696875</td><td>0.044823</td><td>0.193048</td></tr></table></div></section>
-  <section class="slide"><div class="content"><h2>해석</h2><p>Clean accuracy가 높아도 robust accuracy는 낮아질 수 있다.</p><p>Certified rate는 toy 선형 모델의 bound proxy이며 실제 DNN formal verification certificate가 아니다.</p><p>공개 PDF와 DOI/원문 불일치는 최종 제출 전 사람이 재확인해야 한다.</p></div></section>
-  <section class="slide"><div class="content"><h2>기말논문 연결</h2><ul><li>성능·강건성·설명안정성·공정성·재현성 통합 평가표</li><li>위협모형과 평가 프로토콜의 연결</li><li>실행 로그 기반 연구윤리와 재현성 관리</li></ul></div></section>
-  <section class="slide"><div class="content"><h2>결론</h2><p>W12의 핵심은 정확도 중심 보고에서 보증 가능한 다중지표 보고로 관점을 바꾸는 것이다.</p></div></section>
-  <div class="progress" id="progress">1 / 10</div>
+  <!-- Final canonical deck: presentation_slides.html. Week-numbered HTML files are compatibility copies only. -->
+  <main class="deck">
+
+    <section class="slide" id="w12-title">
+      <div class="journal-kicker">Research Presentation / W12</div>
+      <h1>W12 Neural Network Verification &amp; XAI</h1>
+      <p class="research-question">연구 질문: Neural Network Verification &amp; XAI에서 성능 지표와 보안 지표를 어떻게 분리해 평가할 수 있는가?</p>
+      <div class="ratio-strip">
+        <span>Formula-first</span>
+        <span>Figure-first</span>
+        <span>Toy/Public/Synthetic scope</span>
+        <span>No journal logo or trademark</span>
+      </div>
+      <p class="citation-footnote">최종 발표본: presentation_slides.html. 기존 주차번호 HTML은 호환용으로만 유지.</p>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Background / W12</div>
+      <h2>왜 이 주제가 중요한가</h2>
+      <p class="key-finding">이 주제는 clean 성능만으로는 안전성을 설명하기 어렵다.</p>
+      <div class="figure-grid three-panel">
+        <div class="figure-panel"><div class="panel-label">A</div><h3>AI 원리</h3><p>모델 목적함수와 표현이 평가 지표의 출발점이다.</p></div>
+        <div class="figure-panel"><div class="panel-label">B</div><h3>보안 표면</h3><p>공격자 가정, 보호 자산, 실패 조건을 분리한다.</p></div>
+        <div class="figure-panel"><div class="panel-label">C</div><h3>근거 관리</h3><p>CSV, run log, 결과표가 같은 값을 말해야 한다.</p></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Research Gap</div>
+      <h2>기존 발표 흐름의 빈틈</h2>
+      <table>
+        <thead><tr><th>빈틈</th><th>보완 방식</th><th>검증 상태</th></tr></thead>
+        <tbody>
+          <tr><td>수식과 지표 연결 부족</td><td>핵심 수식, 기호표, 보안적 의미를 한 장에 배치</td><td>표준식 / 확인 필요 병기</td></tr>
+          <tr><td>표와 위협모형 분리</td><td>공격자·방어자·보호 자산 표로 정리</td><td>toy/synthetic 범위</td></tr>
+          <tr><td>결과 그래프 출처 불명확</td><td>metrics_summary.csv 기반 그래프만 사용</td><td>데이터 출처: 04_experiment/outputs/metrics_summary.csv</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Core Formula / W12</div>
+      <h2>핵심 수식: Robustness Objective와 Certified Radius</h2>
+      <div class="formula-card">
+        \[
+\min_\theta \mathbb{E}_{(x,y)}\left[\max_{\lVert \delta\rVert\le \epsilon}\ell(f_\theta(x+\delta),y)\right],
+\qquad
+\forall \delta:\lVert\delta\rVert\le r,\ f(x+\delta)=f(x)
+        \]
+      </div>
+      <table>
+<thead>
+<tr>
+<th>기호</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\(\epsilon\)</td>
+<td>학습 또는 평가 교란 반경</td>
+</tr>
+<tr>
+<td>\(r\)</td>
+<td>certified radius</td>
+</tr>
+<tr>
+<td>\(\delta\)</td>
+<td>입력 교란</td>
+</tr>
+<tr>
+<td>\(\ell\)</td>
+<td>손실 함수</td>
+</tr>
+</tbody>
+</table>
+      <p class="figure-caption">Formula | 강건 학습은 허용 교란 안에서 최악의 손실을 낮추려는 목표로 표현된다. Certified radius는 주어진 반경 안에서 예측이 바뀌지 않음을 보장하려는 개념이다. 보안 주장에는 empirical robustness와 formal certificate를 구분해야 한다. 평가 지표 연결: robust_accuracy, certified_rate, mean_bound_margin, verification_cost_ms와 연결한다.</p>
+      <div class="limitation-box">한계: 현재 실습의 certified_rate는 formal verification인지 toy proxy인지 최종 검토가 필요하다.</div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Threat Model</div>
+      <h2>공격자·방어자·보호 자산</h2>
+      <table>
+        <thead><tr><th>구성요소</th><th>발표 내 의미</th><th>주의</th></tr></thead>
+        <tbody>
+          <tr><td>공격자</td><td>안전한 toy/public/synthetic 범위의 평가 조건을 가정</td><td>실제 시스템 악용 절차 없음</td></tr>
+          <tr><td>방어자</td><td>지표, 로그, 검증 절차로 위험을 관찰</td><td>formal guarantee와 empirical proxy 구분</td></tr>
+          <tr><td>보호 자산</td><td>모델 성능, 데이터 프라이버시, 재현성 증거, 운영 신뢰</td><td>없는 결과는 만들지 않음</td></tr>
+          <tr><td>성공 조건</td><td>clean_accuracy, robust_accuracy, explanation_stability, certified_rate, fairness_gap 변화가 위험을 설명하는지 확인</td><td>CSV와 모순되면 보류</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Evaluation Protocol</div>
+      <h2>평가 프로토콜과 지표</h2>
+      <table>
+<thead>
+<tr>
+<th>평가 항목</th>
+<th>대표 지표</th>
+<th>기록 방식</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>clean_accuracy</td>
+<td>CSV 컬럼 존재 시 그래프와 표에 반영</td>
+<td>실제 실행 산출물 기준</td>
+</tr>
+<tr>
+<td>robust_accuracy</td>
+<td>CSV 컬럼 존재 시 그래프와 표에 반영</td>
+<td>실제 실행 산출물 기준</td>
+</tr>
+<tr>
+<td>explanation_stability</td>
+<td>CSV 컬럼 존재 시 그래프와 표에 반영</td>
+<td>실제 실행 산출물 기준</td>
+</tr>
+<tr>
+<td>certified_rate</td>
+<td>CSV 컬럼 존재 시 그래프와 표에 반영</td>
+<td>실제 실행 산출물 기준</td>
+</tr>
+<tr>
+<td>fairness_gap</td>
+<td>CSV 컬럼 존재 시 그래프와 표에 반영</td>
+<td>실제 실행 산출물 기준</td>
+</tr>
+</tbody>
+</table>
+      <p class="figure-caption">Protocol | 데이터 출처: 04_experiment/outputs/metrics_summary.csv. run_log.md 또는 results.json과 모순되는 수치는 사용하지 않는다.</p>
+    </section>
+
+    <section class="slide figure-first">
+      <div class="slide-header">Figure 1 / Diagram</div>
+      <h2>verification-XAI robustness flow</h2>
+      <div class="figure-grid two-panel">
+        <figure class="figure-panel">
+          <div class="panel-label">A</div>
+          <div class="pipeline-diagram" role="img" aria-label="verification-XAI robustness flow">
+<div class="stage normal">Model/Spec<br><small>property</small></div>
+<div class="arrow" aria-hidden="true">→</div>
+<div class="stage normal">Bound Check<br><small>radius/Lipschitz</small></div>
+<div class="arrow" aria-hidden="true">→</div>
+<div class="stage normal">Robust Eval<br><small>cert proxy</small></div>
+<div class="arrow" aria-hidden="true">→</div>
+<div class="stage normal">XAI Stability<br><small>attribution</small></div>
+<div class="arrow" aria-hidden="true">→</div>
+<div class="stage defense">Cost/Fairness<br><small>ms/gap</small></div>
+</div>
+          <figcaption class="figure-caption">Pipeline | 단계별 공격면과 방어·검증 지점을 4~6개로 압축했다.</figcaption>
+        </figure>
+        <figure class="figure-panel">
+          <div class="panel-label">B</div>
+          <img src="assets/diagrams/w12_pipeline_diagram.svg" alt="W12 pipeline diagram">
+          <figcaption class="figure-caption">Manifest | assets/figure_manifest.md에 생성 방식과 한계를 기록했다.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="slide figure-first">
+      <div class="slide-header">Figure 2 / Metrics</div>
+      <h2>실제 CSV 기반 지표 그래프</h2>
+      <div class="figure-grid two-panel">
+        <figure class="figure-panel chart-panel">
+          <div class="panel-label">A</div>
+          <img src="assets/charts/w12_metrics_chart.svg" alt="W12 metrics chart">
+          <figcaption class="figure-caption">Graph | 그래프는 clean_accuracy, robust_accuracy, explanation_stability, certified_rate, fairness_gap, verification_cost_ms를 조건별로 표시한다. certified_rate가 toy proxy인지 formal verification 결과인지 문서에서 명확히 구분해야 한다. 모든 값은 W12 output CSV에서 읽었다. 데이터 출처: 04_experiment/outputs/metrics_summary.csv</figcaption>
+        </figure>
+        <figure class="figure-panel">
+          <div class="panel-label">B</div>
+          <table>
+<thead>
+<tr>
+<th>condition</th>
+<th>clean_accuracy</th>
+<th>robust_accuracy</th>
+<th>explanation_stability</th>
+<th>certified_rate</th>
+<th>fairness_gap</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Clean model</td>
+<td>0.819</td>
+<td>0.544</td>
+<td>0.928</td>
+<td>0.544</td>
+<td>0.039</td>
+</tr>
+<tr>
+<td>Adversarial input</td>
+<td>0.819</td>
+<td>0.544</td>
+<td>0.862</td>
+<td>0.341</td>
+<td>0.039</td>
+</tr>
+<tr>
+<td>Robust defense</td>
+<td>0.816</td>
+<td>0.544</td>
+<td>0.927</td>
+<td>0.544</td>
+<td>0.045</td>
+</tr>
+<tr>
+<td>XAI stability check</td>
+<td>0.816</td>
+<td>0.697</td>
+<td>0.976</td>
+<td>0.697</td>
+<td>0.045</td>
+</tr>
+</tbody>
+</table>
+          <figcaption class="figure-caption">Table | 그래프에 사용한 CSV의 주요 행을 요약했다.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Paper Map</div>
+      <h2>논문 5편의 역할표</h2>
+      <table>
+<thead>
+<tr>
+<th>ID</th>
+<th>논문 역할</th>
+<th>발표에서 쓰는 위치</th>
+<th>기말논문 연결</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P01</td>
+<td>핵심 이론</td>
+<td>Background / Core Formula</td>
+<td>Neural Network Verification &amp; XAI의 관련연구 뼈대</td>
+</tr>
+<tr>
+<td>P02</td>
+<td>위협 분류</td>
+<td>Threat Model</td>
+<td>공격자·방어자·보호자산 정의</td>
+</tr>
+<tr>
+<td>P03</td>
+<td>평가 지표</td>
+<td>Evaluation Protocol</td>
+<td>정량 지표와 로그 근거 연결</td>
+</tr>
+<tr>
+<td>P04</td>
+<td>공격·방어 사례</td>
+<td>Security Implication</td>
+<td>보안적 함의와 방어 한계</td>
+</tr>
+<tr>
+<td>P05</td>
+<td>재현성·정책 근거</td>
+<td>Limitation</td>
+<td>확인 필요 항목과 제출 전 검증</td>
+</tr>
+</tbody>
+</table>
+      <p class="figure-caption">Paper map | 서지 세부사항과 DOI/URL은 최종 제출 전 원문 기준으로 확인한다.</p>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Security Implication</div>
+      <h2>보안적 함의</h2>
+      <div class="question-box">보안 검증은 robust accuracy 하나가 아니라 explanation stability와 fairness/cost를 함께 본다.</div>
+      <div class="figure-grid three-panel">
+        <div class="figure-panel"><div class="panel-label">A</div><h3>분리</h3><p>clean 성능과 보안 지표를 같은 값처럼 해석하지 않는다.</p></div>
+        <div class="figure-panel"><div class="panel-label">B</div><h3>추적</h3><p>수치, 그래프, 노트, Q&A가 같은 산출물을 가리킨다.</p></div>
+        <div class="figure-panel"><div class="panel-label">C</div><h3>제한</h3><p>실제 악용 절차 없이 평가 개념과 방어 관점만 설명한다.</p></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Limitation</div>
+      <h2>한계와 검증 상태</h2>
+      <div class="limitation-box">`certified_rate`는 toy proxy 또는 제한 실험인지 formal verification인지 최종 원문 확인이 필요하다. toy binary classification 설정이며 formal proof로 일반화하지 않는다.</div>
+      <table>
+        <thead><tr><th>항목</th><th>상태</th><th>다음 확인</th></tr></thead>
+        <tbody>
+          <tr><td>실험 수치</td><td>실행 산출물 있음</td><td>run_log.md, results.json 대조</td></tr>
+          <tr><td>수식 보증</td><td>표준식 또는 proxy</td><td>원문 절·쪽·formal guarantee 확인</td></tr>
+          <tr><td>운영 적용</td><td>바로 적용 불가</td><td>실제 데이터·정책·위험평가 필요</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Final Takeaway</div>
+      <h2>기말논문 연결</h2>
+      <p class="key-finding">W12의 결론은 지표를 분리하고 근거 파일로 추적하는 연구 설계다.</p>
+      <table>
+        <thead><tr><th>기말논문 장</th><th>연결 내용</th></tr></thead>
+        <tbody>
+          <tr><td>관련연구</td><td>Neural Network Verification &amp; XAI의 핵심 이론과 보안 taxonomy 정리</td></tr>
+          <tr><td>위협모형</td><td>verification-XAI robustness flow 기반 공격면·방어면 정의</td></tr>
+          <tr><td>평가방법</td><td>clean_accuracy, robust_accuracy, explanation_stability, certified_rate, fairness_gap를 CSV/log 기준으로 검증</td></tr>
+          <tr><td>한계</td><td>toy/synthetic 범위와 확인 필요 항목을 명시</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+  </main>
+
+  <nav class="slide-nav" aria-label="슬라이드 이동">
+    <button id="prevSlide" type="button" title="이전 슬라이드" aria-label="이전 슬라이드">‹</button>
+    <span id="slideCounter" class="slide-counter" aria-live="polite">1 / 1</span>
+    <button id="nextSlide" type="button" title="다음 슬라이드" aria-label="다음 슬라이드">›</button>
+  </nav>
+
   <script>
-    const slides = Array.from(document.querySelectorAll('.slide'));
-    const progress = document.getElementById('progress');
-    let index = 0;
-    function show(next) {
-      index = Math.max(0, Math.min(slides.length - 1, next));
-      slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
-      progress.textContent = `${index + 1} / ${slides.length}`;
+    const slides = Array.from(document.querySelectorAll("section.slide, section"));
+    const prevButton = document.getElementById("prevSlide");
+    const nextButton = document.getElementById("nextSlide");
+    const counter = document.getElementById("slideCounter");
+    let currentIndex = 0;
+
+    function updateNav(index) {
+      currentIndex = Math.max(0, Math.min(index, slides.length - 1));
+      counter.textContent = `${currentIndex + 1} / ${slides.length}`;
+      prevButton.disabled = currentIndex === 0;
+      nextButton.disabled = currentIndex === slides.length - 1;
     }
-    document.addEventListener('keydown', (event) => {
-      if (['ArrowRight', 'PageDown', ' '].includes(event.key)) show(index + 1);
-      if (['ArrowLeft', 'PageUp'].includes(event.key)) show(index - 1);
-      if (event.key === 'Home') show(0);
-      if (event.key === 'End') show(slides.length - 1);
+
+    function goToSlide(index) {
+      const nextIndex = Math.max(0, Math.min(index, slides.length - 1));
+      slides[nextIndex].scrollIntoView({ behavior: "smooth", block: "start" });
+      updateNav(nextIndex);
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        window.MathJax.typesetPromise([slides[nextIndex]]).catch(() => {});
+      }
+    }
+
+    prevButton.addEventListener("click", () => goToSlide(currentIndex - 1));
+    nextButton.addEventListener("click", () => goToSlide(currentIndex + 1));
+
+    document.addEventListener("keydown", (event) => {
+      if (["ArrowRight", "PageDown", " "].includes(event.key)) {
+        event.preventDefault();
+        goToSlide(currentIndex + 1);
+      }
+
+      if (["ArrowLeft", "PageUp"].includes(event.key)) {
+        event.preventDefault();
+        goToSlide(currentIndex - 1);
+      }
+
+      if (event.key === "Home") {
+        event.preventDefault();
+        goToSlide(0);
+      }
+
+      if (event.key === "End") {
+        event.preventDefault();
+        goToSlide(slides.length - 1);
+      }
     });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((left, right) => right.intersectionRatio - left.intersectionRatio)[0];
+
+        if (visible) {
+          updateNav(slides.indexOf(visible.target));
+        }
+      },
+      { threshold: [0.55] }
+    );
+
+    slides.forEach((slide) => observer.observe(slide));
+    updateNav(0);
   </script>
 </body>
 </html>

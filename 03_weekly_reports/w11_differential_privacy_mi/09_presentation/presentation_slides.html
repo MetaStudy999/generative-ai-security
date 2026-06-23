@@ -3,90 +3,403 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>W11 Slides</title>
-  <style>
-    html { scroll-behavior: smooth; scroll-snap-type: y mandatory; }
-    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #10201d; color: #f8fafc; }
-    section { min-height: 100vh; box-sizing: border-box; padding: 8vh 8vw 14vh; display: flex; flex-direction: column; justify-content: center; border-bottom: 1px solid #31524b; scroll-snap-align: start; }
-    h1 { font-size: clamp(2rem, 5vw, 4.2rem); margin: 0 0 24px; line-height: 1.1; }
-    h2 { font-size: clamp(1.6rem, 3vw, 2.7rem); margin: 0 0 20px; color: #99f6e4; }
-    p, li { font-size: clamp(1.05rem, 1.8vw, 1.55rem); }
-    table { border-collapse: collapse; width: 100%; background: #17352f; font-size: clamp(0.8rem, 1.25vw, 1.1rem); }
-    th, td { border: 1px solid #47766c; padding: 10px; vertical-align: top; }
-    th { background: #0f766e; }
-    code, pre { background: #06211d; color: #ccfbf1; padding: 2px 5px; border-radius: 4px; }
-    .muted { color: #cbd5e1; }
-    .slide-nav { position: fixed; right: 24px; bottom: 24px; display: flex; align-items: center; gap: 10px; padding: 10px; background: rgba(255, 255, 255, 0.92); border: 1px solid #d1d5db; border-radius: 999px; box-shadow: 0 10px 30px rgba(17, 24, 39, 0.16); z-index: 20; backdrop-filter: blur(8px); }
-    .slide-nav button { width: 44px; height: 44px; border: 1px solid #9ca3af; border-radius: 50%; background: #111827; color: white; font-size: 26px; line-height: 1; cursor: pointer; }
-    .slide-nav button:disabled { cursor: not-allowed; opacity: 0.35; }
-    .slide-counter { min-width: 62px; text-align: center; font-size: 16px; font-weight: 700; color: #111827; }
-    @media (max-width: 720px) { section { padding: 6vh 5vw 16vh; } .slide-nav { right: 12px; bottom: 12px; } }
-    @media print { .slide-nav { display: none; } }
-  </style>
-<!-- formula-visual-mathjax:start -->
-<script>
-window.MathJax = {
-  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$']] },
-  svg: { fontCache: 'global' }
-};
-</script>
-<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
-<style>
-.formula-visual-supplement .math-block { border-left: 5px solid #0f766e; background: #eef8f6; padding: 14px 18px; margin: 12px 0; font-size: 20px; overflow-x: auto; }
-.formula-visual-supplement .caption { font-size: 16px; line-height: 1.35; color: #53616f; }
-.formula-visual-supplement img { max-width: 100%; max-height: 390px; object-fit: contain; border: 1px solid #d8e0e8; border-radius: 8px; background: #fff; }
-.formula-visual-supplement .media-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
-</style>
-<!-- formula-visual-mathjax:end -->
+  <title>W11 Differential Privacy &amp; Membership Inference 발표 슬라이드</title>
+  <link rel="stylesheet" href="../../../02_report_templates/nature_research_slide_style.css">
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [["\\(", "\\)"]],
+        displayMath: [["\\[", "\\]"], ["$$", "$$"]]
+      },
+      svg: {
+        fontCache: "global"
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 </head>
 <body>
-  <section><h1>W11 차등프라이버시(DP) &amp; 멤버십 추론 공격·방어</h1><p>DP 보장은 선언이 아니라 accounting, utility, MI risk, leakage, 재현성 로그로 검증해야 한다.</p></section>
-  <section><h2>1. 왜 중요한가</h2><ul><li>학습 데이터 포함 여부 자체가 민감정보가 될 수 있다.</li><li>DP를 적용했다고 해도 accountant와 평가 로그가 없으면 해석이 어렵다.</li><li>Accuracy만 보면 privacy leakage를 놓친다.</li></ul></section>
-  <section><h2>2. 발표 로드맵</h2><ol><li>AI 원리</li><li>보안 이슈</li><li>논문 5편의 역할</li><li>위협모형과 평가방법</li><li>synthetic toy 실험</li><li>기말논문 연결</li></ol></section>
-  <section><h2>3. AI 원리 70%</h2><table><tr><th>개념</th><th>핵심</th></tr><tr><td>Differential Privacy</td><td>인접 데이터셋의 출력 분포 차이 제한</td></tr><tr><td>DP-SGD</td><td>gradient clipping + noise injection + accounting</td></tr><tr><td>Privacy budget</td><td>epsilon/delta와 utility의 trade-off</td></tr></table></section>
-  <section><h2>4. 보안 이슈 30%</h2><table><tr><th>위협</th><th>공격자 가정</th><th>대표 지표</th></tr><tr><td>Membership inference</td><td>confidence/loss 관찰</td><td>MI Attack Accuracy</td></tr><tr><td>Privacy leakage</td><td>member/non-member 신호 차이</td><td>Leakage Score</td></tr><tr><td>DP misuse</td><td>accountant 누락</td><td>Reference/config check</td></tr></table></section>
-  <section><h2>5. 논문 5편의 역할</h2><table><tr><th>ID</th><th>중심 역할</th><th>발표 활용</th></tr><tr><td>P01</td><td>DP misuse</td><td>reporting 책임</td></tr><tr><td>P02</td><td>DP-DL survey</td><td>auditing/evaluation</td></tr><tr><td>P03</td><td>DP 적용 위치</td><td>DL/FL 연결, 대체 PDF 주의</td></tr><tr><td>P04</td><td>MI taxonomy</td><td>위협모형</td></tr><tr><td>P05</td><td>MI defense</td><td>trade-off, 대체 PDF 주의</td></tr></table><p>P03/P05는 최종 인용 전 지정 논문 원문 확보가 필요하다.</p></section>
-  <section><h2>6. 위협모형</h2><table><tr><th>항목</th><th>내용</th></tr><tr><td>보호 자산</td><td>membership information, confidence score, output, log</td></tr><tr><td>공격자</td><td>외부 질의자, 모델 사용자, 내부 평가자</td></tr><tr><td>공격 경로</td><td>API output, confidence, evaluation log</td></tr><tr><td>제외 범위</td><td>실제 개인정보, 실제 개인 대상 추론, 무단 API</td></tr></table></section>
-  <section><h2>7. 평가 프로토콜</h2><table><tr><th>평가 항목</th><th>지표</th><th>기록 방법</th></tr><tr><td>Utility</td><td>Accuracy, Utility Drop</td><td>CSV/JSON/log</td></tr><tr><td>Membership risk</td><td>MI Attack Accuracy</td><td>synthetic split</td></tr><tr><td>Leakage</td><td>Privacy Leakage Score</td><td>confidence gap</td></tr><tr><td>Reproducibility</td><td>seed, config, outputs</td><td>run log</td></tr></table></section>
-  <section><h2>8. 실험 설계</h2><ul><li>Synthetic binary classification</li><li>Toy logistic regression</li><li>Non-DP baseline vs DP-like noise low/medium/high</li><li><code>epsilon_proxy</code>는 정식 DP accountant 값이 아님</li><li><code>noise_multiplier</code>는 toy gradient noise scale임</li></ul></section>
-  <section><h2>9. 결과</h2><table><tr><th>조건</th><th>Accuracy</th><th>MI Acc.</th><th>Eps. proxy</th><th>Leakage</th></tr><tr><td>Non-DP</td><td>0.956250</td><td>0.515625</td><td>해당 없음</td><td>0.014833</td></tr><tr><td>Low</td><td>0.956250</td><td>0.515625</td><td>8.000000</td><td>0.014494</td></tr><tr><td>Medium</td><td>0.962500</td><td>0.512500</td><td>3.000000</td><td>0.011769</td></tr><tr><td>High</td><td>0.950000</td><td>0.521875</td><td>1.000000</td><td>0.016482</td></tr></table></section>
-  <section><h2>10. 해석</h2><ul><li>Medium noise에서 leakage proxy가 가장 낮았다.</li><li>High noise는 utility drop이 생겼지만 MI risk가 단조롭게 낮아지지는 않았다.</li><li>DP claim은 accountant와 반복 평가 없이는 확정할 수 없다.</li></ul></section>
-  <section><h2>11. 기말논문 연결</h2><table><tr><th>기말논문 장</th><th>연결 내용</th></tr><tr><td>관련연구</td><td>DP misuse, DP-DL, MI survey</td></tr><tr><td>위협모형</td><td>membership information 보호</td></tr><tr><td>평가방법</td><td>utility + MI risk + leakage + logs</td></tr><tr><td>보안적 함의</td><td>privacy claim accountability</td></tr></table></section>
-  <section><h2>12. 결론</h2><ul><li>DP는 구현 설정과 accounting까지 함께 보고해야 한다.</li><li>MI 위험은 별도 보안 지표로 평가해야 한다.</li><li>수치는 <code>outputs/</code> 로그가 있을 때만 주장한다.</li></ul></section>
+  <!-- Final canonical deck: presentation_slides.html. Week-numbered HTML files are compatibility copies only. -->
+  <main class="deck">
+
+    <section class="slide" id="w11-title">
+      <div class="journal-kicker">Research Presentation / W11</div>
+      <h1>W11 Differential Privacy &amp; Membership Inference</h1>
+      <p class="research-question">연구 질문: Differential Privacy &amp; Membership Inference에서 성능 지표와 보안 지표를 어떻게 분리해 평가할 수 있는가?</p>
+      <div class="ratio-strip">
+        <span>Formula-first</span>
+        <span>Figure-first</span>
+        <span>Toy/Public/Synthetic scope</span>
+        <span>No journal logo or trademark</span>
+      </div>
+      <p class="citation-footnote">최종 발표본: presentation_slides.html. 기존 주차번호 HTML은 호환용으로만 유지.</p>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Background / W11</div>
+      <h2>왜 이 주제가 중요한가</h2>
+      <p class="key-finding">이 주제는 clean 성능만으로는 안전성을 설명하기 어렵다.</p>
+      <div class="figure-grid three-panel">
+        <div class="figure-panel"><div class="panel-label">A</div><h3>AI 원리</h3><p>모델 목적함수와 표현이 평가 지표의 출발점이다.</p></div>
+        <div class="figure-panel"><div class="panel-label">B</div><h3>보안 표면</h3><p>공격자 가정, 보호 자산, 실패 조건을 분리한다.</p></div>
+        <div class="figure-panel"><div class="panel-label">C</div><h3>근거 관리</h3><p>CSV, run log, 결과표가 같은 값을 말해야 한다.</p></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Research Gap</div>
+      <h2>기존 발표 흐름의 빈틈</h2>
+      <table>
+        <thead><tr><th>빈틈</th><th>보완 방식</th><th>검증 상태</th></tr></thead>
+        <tbody>
+          <tr><td>수식과 지표 연결 부족</td><td>핵심 수식, 기호표, 보안적 의미를 한 장에 배치</td><td>표준식 / 확인 필요 병기</td></tr>
+          <tr><td>표와 위협모형 분리</td><td>공격자·방어자·보호 자산 표로 정리</td><td>toy/synthetic 범위</td></tr>
+          <tr><td>결과 그래프 출처 불명확</td><td>metrics_summary.csv 기반 그래프만 사용</td><td>데이터 출처: 04_experiment/outputs/metrics_summary.csv</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Core Formula / W11</div>
+      <h2>핵심 수식: Differential Privacy Definition</h2>
+      <div class="formula-card">
+        \[
+\Pr[M(D)\in S]\le e^{\varepsilon}\Pr[M(D&#x27;)\in S]+\delta
+        \]
+      </div>
+      <table>
+<thead>
+<tr>
+<th>기호</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\(M\)</td>
+<td>무작위 알고리즘 또는 학습 절차</td>
+</tr>
+<tr>
+<td>\(D,D&#x27;\)</td>
+<td>한 레코드만 다른 adjacent datasets</td>
+</tr>
+<tr>
+<td>\(S\)</td>
+<td>가능한 출력 사건</td>
+</tr>
+<tr>
+<td>\(\varepsilon,\delta\)</td>
+<td>DP privacy parameters</td>
+</tr>
+</tbody>
+</table>
+      <p class="figure-caption">Formula | DP는 한 개인 레코드의 포함 여부가 출력 분포를 크게 바꾸지 않도록 제한하는 표준 정의다. Membership inference 위험을 줄이려는 privacy claim은 이 정의와 accountant 근거가 있어야 한다. 평가 지표 연결: epsilon, delta, privacy_leakage_score, mi_attack_accuracy와 연결한다.</p>
+      <div class="limitation-box">한계: 현재 CSV의 `epsilon_proxy`는 formal accountant 결과가 아니므로 보증값으로 쓰지 않는다.</div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Threat Model</div>
+      <h2>공격자·방어자·보호 자산</h2>
+      <table>
+        <thead><tr><th>구성요소</th><th>발표 내 의미</th><th>주의</th></tr></thead>
+        <tbody>
+          <tr><td>공격자</td><td>안전한 toy/public/synthetic 범위의 평가 조건을 가정</td><td>실제 시스템 악용 절차 없음</td></tr>
+          <tr><td>방어자</td><td>지표, 로그, 검증 절차로 위험을 관찰</td><td>formal guarantee와 empirical proxy 구분</td></tr>
+          <tr><td>보호 자산</td><td>모델 성능, 데이터 프라이버시, 재현성 증거, 운영 신뢰</td><td>없는 결과는 만들지 않음</td></tr>
+          <tr><td>성공 조건</td><td>accuracy, mi_attack_accuracy, epsilon_proxy, privacy_leakage_score, utility_drop 변화가 위험을 설명하는지 확인</td><td>CSV와 모순되면 보류</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Evaluation Protocol</div>
+      <h2>평가 프로토콜과 지표</h2>
+      <table>
+<thead>
+<tr>
+<th>평가 항목</th>
+<th>대표 지표</th>
+<th>기록 방식</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>accuracy</td>
+<td>CSV 컬럼 존재 시 그래프와 표에 반영</td>
+<td>실제 실행 산출물 기준</td>
+</tr>
+<tr>
+<td>mi_attack_accuracy</td>
+<td>CSV 컬럼 존재 시 그래프와 표에 반영</td>
+<td>실제 실행 산출물 기준</td>
+</tr>
+<tr>
+<td>epsilon_proxy</td>
+<td>CSV 컬럼 존재 시 그래프와 표에 반영</td>
+<td>실제 실행 산출물 기준</td>
+</tr>
+<tr>
+<td>privacy_leakage_score</td>
+<td>CSV 컬럼 존재 시 그래프와 표에 반영</td>
+<td>실제 실행 산출물 기준</td>
+</tr>
+<tr>
+<td>utility_drop</td>
+<td>CSV 컬럼 존재 시 그래프와 표에 반영</td>
+<td>실제 실행 산출물 기준</td>
+</tr>
+</tbody>
+</table>
+      <p class="figure-caption">Protocol | 데이터 출처: 04_experiment/outputs/metrics_summary.csv. run_log.md 또는 results.json과 모순되는 수치는 사용하지 않는다.</p>
+    </section>
+
+    <section class="slide figure-first">
+      <div class="slide-header">Figure 1 / Diagram</div>
+      <h2>DP-SGD and MI audit flow</h2>
+      <div class="figure-grid two-panel">
+        <figure class="figure-panel">
+          <div class="panel-label">A</div>
+          <div class="pipeline-diagram" role="img" aria-label="DP-SGD and MI audit flow">
+<div class="stage normal">Dataset<br><small>adjacent data</small></div>
+<div class="arrow" aria-hidden="true">→</div>
+<div class="stage normal">Clip Gradients<br><small>norm C</small></div>
+<div class="arrow" aria-hidden="true">→</div>
+<div class="stage normal">Add Noise<br><small>sigma C</small></div>
+<div class="arrow" aria-hidden="true">→</div>
+<div class="stage normal">Model<br><small>utility</small></div>
+<div class="arrow" aria-hidden="true">→</div>
+<div class="stage risk">MI Audit<br><small>adv/leakage</small></div>
+</div>
+          <figcaption class="figure-caption">Pipeline | 단계별 공격면과 방어·검증 지점을 4~6개로 압축했다.</figcaption>
+        </figure>
+        <figure class="figure-panel">
+          <div class="panel-label">B</div>
+          <img src="assets/diagrams/w11_pipeline_diagram.svg" alt="W11 pipeline diagram">
+          <figcaption class="figure-caption">Manifest | assets/figure_manifest.md에 생성 방식과 한계를 기록했다.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="slide figure-first">
+      <div class="slide-header">Figure 2 / Metrics</div>
+      <h2>실제 CSV 기반 지표 그래프</h2>
+      <div class="figure-grid two-panel">
+        <figure class="figure-panel chart-panel">
+          <div class="panel-label">A</div>
+          <img src="assets/charts/w11_metrics_chart.svg" alt="W11 metrics chart">
+          <figcaption class="figure-caption">Graph | 그래프는 accuracy, MI attack accuracy, epsilon_proxy, leakage score, utility_drop, noise_multiplier를 조건별로 비교한다. `epsilon_proxy`는 formal DP accountant 결과가 아니므로 privacy guarantee로 읽으면 안 된다. 수치는 W11 outputs의 toy 결과 그대로다. 데이터 출처: 04_experiment/outputs/metrics_summary.csv</figcaption>
+        </figure>
+        <figure class="figure-panel">
+          <div class="panel-label">B</div>
+          <table>
+<thead>
+<tr>
+<th>condition</th>
+<th>accuracy</th>
+<th>mi_attack_accuracy</th>
+<th>epsilon_proxy</th>
+<th>privacy_leakage_score</th>
+<th>utility_drop</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Non-DP baseline</td>
+<td>0.956</td>
+<td>0.516</td>
+<td>not_applicable</td>
+<td>0.015</td>
+<td>0</td>
+</tr>
+<tr>
+<td>DP-like noise low</td>
+<td>0.956</td>
+<td>0.516</td>
+<td>8</td>
+<td>0.014</td>
+<td>0</td>
+</tr>
+<tr>
+<td>DP-like noise medium</td>
+<td>0.963</td>
+<td>0.512</td>
+<td>3</td>
+<td>0.012</td>
+<td>0</td>
+</tr>
+<tr>
+<td>DP-like noise high</td>
+<td>0.95</td>
+<td>0.522</td>
+<td>1</td>
+<td>0.016</td>
+<td>0.006</td>
+</tr>
+</tbody>
+</table>
+          <figcaption class="figure-caption">Table | 그래프에 사용한 CSV의 주요 행을 요약했다.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Paper Map</div>
+      <h2>논문 5편의 역할표</h2>
+      <table>
+<thead>
+<tr>
+<th>ID</th>
+<th>논문 역할</th>
+<th>발표에서 쓰는 위치</th>
+<th>기말논문 연결</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P01</td>
+<td>핵심 이론</td>
+<td>Background / Core Formula</td>
+<td>Differential Privacy &amp; Membership Inference의 관련연구 뼈대</td>
+</tr>
+<tr>
+<td>P02</td>
+<td>위협 분류</td>
+<td>Threat Model</td>
+<td>공격자·방어자·보호자산 정의</td>
+</tr>
+<tr>
+<td>P03</td>
+<td>평가 지표</td>
+<td>Evaluation Protocol</td>
+<td>정량 지표와 로그 근거 연결</td>
+</tr>
+<tr>
+<td>P04</td>
+<td>공격·방어 사례</td>
+<td>Security Implication</td>
+<td>보안적 함의와 방어 한계</td>
+</tr>
+<tr>
+<td>P05</td>
+<td>재현성·정책 근거</td>
+<td>Limitation</td>
+<td>확인 필요 항목과 제출 전 검증</td>
+</tr>
+</tbody>
+</table>
+      <p class="figure-caption">Paper map | 서지 세부사항과 DOI/URL은 최종 제출 전 원문 기준으로 확인한다.</p>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Security Implication</div>
+      <h2>보안적 함의</h2>
+      <div class="question-box">프라이버시 방어는 utility drop과 leakage 감소를 함께 보고해야 한다.</div>
+      <div class="figure-grid three-panel">
+        <div class="figure-panel"><div class="panel-label">A</div><h3>분리</h3><p>clean 성능과 보안 지표를 같은 값처럼 해석하지 않는다.</p></div>
+        <div class="figure-panel"><div class="panel-label">B</div><h3>추적</h3><p>수치, 그래프, 노트, Q&A가 같은 산출물을 가리킨다.</p></div>
+        <div class="figure-panel"><div class="panel-label">C</div><h3>제한</h3><p>실제 악용 절차 없이 평가 개념과 방어 관점만 설명한다.</p></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Limitation</div>
+      <h2>한계와 검증 상태</h2>
+      <div class="limitation-box">`epsilon_proxy`는 formal DP accountant 값이 아니며 formal DP guarantee로 쓰지 않는다. 표준식 설명이며 이 실습은 정식 DP accountant를 실행하지 않은 toy evaluation이다.</div>
+      <table>
+        <thead><tr><th>항목</th><th>상태</th><th>다음 확인</th></tr></thead>
+        <tbody>
+          <tr><td>실험 수치</td><td>실행 산출물 있음</td><td>run_log.md, results.json 대조</td></tr>
+          <tr><td>수식 보증</td><td>표준식 또는 proxy</td><td>원문 절·쪽·formal guarantee 확인</td></tr>
+          <tr><td>운영 적용</td><td>바로 적용 불가</td><td>실제 데이터·정책·위험평가 필요</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Final Takeaway</div>
+      <h2>기말논문 연결</h2>
+      <p class="key-finding">W11의 결론은 지표를 분리하고 근거 파일로 추적하는 연구 설계다.</p>
+      <table>
+        <thead><tr><th>기말논문 장</th><th>연결 내용</th></tr></thead>
+        <tbody>
+          <tr><td>관련연구</td><td>Differential Privacy &amp; Membership Inference의 핵심 이론과 보안 taxonomy 정리</td></tr>
+          <tr><td>위협모형</td><td>DP-SGD and MI audit flow 기반 공격면·방어면 정의</td></tr>
+          <tr><td>평가방법</td><td>accuracy, mi_attack_accuracy, epsilon_proxy, privacy_leakage_score, utility_drop를 CSV/log 기준으로 검증</td></tr>
+          <tr><td>한계</td><td>toy/synthetic 범위와 확인 필요 항목을 명시</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+  </main>
+
   <nav class="slide-nav" aria-label="슬라이드 이동">
     <button id="prevSlide" type="button" title="이전 슬라이드" aria-label="이전 슬라이드">‹</button>
     <span id="slideCounter" class="slide-counter" aria-live="polite">1 / 1</span>
     <button id="nextSlide" type="button" title="다음 슬라이드" aria-label="다음 슬라이드">›</button>
   </nav>
+
   <script>
-    const slides = Array.from(document.querySelectorAll("section"));
+    const slides = Array.from(document.querySelectorAll("section.slide, section"));
     const prevButton = document.getElementById("prevSlide");
     const nextButton = document.getElementById("nextSlide");
     const counter = document.getElementById("slideCounter");
     let currentIndex = 0;
+
     function updateNav(index) {
       currentIndex = Math.max(0, Math.min(index, slides.length - 1));
       counter.textContent = `${currentIndex + 1} / ${slides.length}`;
       prevButton.disabled = currentIndex === 0;
       nextButton.disabled = currentIndex === slides.length - 1;
     }
+
     function goToSlide(index) {
       const nextIndex = Math.max(0, Math.min(index, slides.length - 1));
       slides[nextIndex].scrollIntoView({ behavior: "smooth", block: "start" });
       updateNav(nextIndex);
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        window.MathJax.typesetPromise([slides[nextIndex]]).catch(() => {});
+      }
     }
+
     prevButton.addEventListener("click", () => goToSlide(currentIndex - 1));
     nextButton.addEventListener("click", () => goToSlide(currentIndex + 1));
+
     document.addEventListener("keydown", (event) => {
-      if (["ArrowRight", "PageDown", " "].includes(event.key)) { event.preventDefault(); goToSlide(currentIndex + 1); }
-      if (["ArrowLeft", "PageUp"].includes(event.key)) { event.preventDefault(); goToSlide(currentIndex - 1); }
-      if (event.key === "Home") { event.preventDefault(); goToSlide(0); }
-      if (event.key === "End") { event.preventDefault(); goToSlide(slides.length - 1); }
+      if (["ArrowRight", "PageDown", " "].includes(event.key)) {
+        event.preventDefault();
+        goToSlide(currentIndex + 1);
+      }
+
+      if (["ArrowLeft", "PageUp"].includes(event.key)) {
+        event.preventDefault();
+        goToSlide(currentIndex - 1);
+      }
+
+      if (event.key === "Home") {
+        event.preventDefault();
+        goToSlide(0);
+      }
+
+      if (event.key === "End") {
+        event.preventDefault();
+        goToSlide(slides.length - 1);
+      }
     });
-    const observer = new IntersectionObserver((entries) => {
-      const visible = entries.filter((entry) => entry.isIntersecting).sort((left, right) => right.intersectionRatio - left.intersectionRatio)[0];
-      if (visible) updateNav(slides.indexOf(visible.target));
-    }, { threshold: [0.55] });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((left, right) => right.intersectionRatio - left.intersectionRatio)[0];
+
+        if (visible) {
+          updateNav(slides.indexOf(visible.target));
+        }
+      },
+      { threshold: [0.55] }
+    );
+
     slides.forEach((slide) => observer.observe(slide));
     updateNav(0);
   </script>

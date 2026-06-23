@@ -31,7 +31,7 @@
 | 사용 도구 | Codex, Python, matplotlib |
 | 사용 목적 | 주차별 통합보고서와 발표자료에 핵심 수식, 기호 정의표, 그래프, 다이어그램, 발표자 노트 설명을 추가 |
 | 입력 근거 | `w15_reproducibility_xai_paper/04_experiment/outputs/metrics_summary.csv`, 기존 통합보고서, 발표 슬라이드, 이론노트 |
-| 생성 산출물 | `09_presentation/assets/charts/w15_metrics_chart.png`, `09_presentation/assets/charts/w15_metrics_chart.svg`, `09_presentation/assets/diagrams/w15_pipeline_diagram.svg`, `09_presentation/assets/figure_manifest.md` |
+| 생성 산출물 | `09_presentation/assets/charts/w15_metrics_chart.svg`, `09_presentation/assets/diagrams/w15_pipeline_diagram.svg`, `09_presentation/assets/figure_manifest.md` |
 | 검증 방식 | CSV에서 읽은 기존 수치만 차트화하고, 수식은 표준 정의식으로 한정했으며, formal guarantee가 불명확한 항목은 확인 필요로 표시 |
 | 안전 범위 | 공개 데이터, synthetic/toy 데이터, 로컬 모의실험 설명으로 제한하고 실제 시스템 악용 절차는 작성하지 않음 |
 <!-- formula-visual-ai-worklog:end -->

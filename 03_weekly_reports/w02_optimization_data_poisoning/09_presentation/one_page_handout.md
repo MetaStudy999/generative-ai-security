@@ -1,45 +1,43 @@
-# W02 발표 1페이지 요약
+# W02 주차 연구 발표 요약
 
-## 핵심 메시지
+## Research Question
 
-학습은 데이터가 만드는 손실함수를 따라 움직인다. 데이터가 오염되면 gradient와 decision boundary가 바뀌고, 정상 성능과 공격 조건 성능이 달라질 수 있다.
+이 주차에서 성능 지표와 보안 지표를 어떻게 분리해 평가할 수 있는가?
 
-## AI 원리 70%
+## Key Formula
 
-| 원리 | 의미 | 보안 연결 |
-|---|---|---|
-| 대규모 최적화 | 손실함수를 최소화하는 파라미터 탐색 | 데이터 조작이 목적함수를 바꿈 |
-| SGD | 일부 샘플로 gradient 추정 | 오염 샘플이 update 방향에 영향 |
-| 일반화 | 새 데이터에서 성능 유지 | clean과 공격 조건 성능 분리 |
-| 효율적 학습 | 비용, 속도, 메모리 절감 | 방어 비용과 재학습 가능성 |
+**ERM, Poisoned Empirical Risk, SGD Update**
 
-## 보안 이슈 30%
+$$
+\hat{R}(\theta)=\frac{1}{n}\sum_{i=1}^{n}\ell(f_\theta(x_i),y_i),
+\qquad
+\hat{R}_{poison}(\theta)=\frac{1}{n+m}\left(\sum_{i=1}^{n}\ell(f_\theta(x_i),y_i)+\sum_{j=1}^{m}\ell(f_\theta(\tilde{x}_j),\tilde{y}_j)\right)
+$$
 
-| 위협 | 설명 | 지표 |
-|---|---|---|
-| Label-flipping | 라벨 변경으로 학습 왜곡 | accuracy drop |
-| Poisoning | 학습 데이터 조작 | clean accuracy, macro F1 |
-| Backdoor | trigger 조건부 오분류 | ASR |
-| Provenance failure | 오염 출처 추적 실패 | 로그, 데이터 이력 |
+- 기호와 의미는 슬라이드의 표를 기준으로 설명한다.
+- 보안적 의미: 훈련 단계 위협은 모델 파라미터와 decision boundary를 바꾸며, 검증셋이 clean-only이면 위험이 숨을 수 있다.
 
-## 논문 5편
+## Threat Model
 
-P01은 최적화, P02는 효율성, P03은 poisoning taxonomy, P04는 training data poisoning threat model, P05는 backdoor와 ASR 평가를 제공한다.
+training-data poisoning evaluation flow 기준으로 공격자, 방어자, 보호 자산, 성공 조건을 분리한다.
 
-## 기말논문 연결
+## Main Figure
 
-추천 주제: 학습 데이터 오염과 backdoor 평가를 위한 다중지표 프레임워크
+- Diagram: `assets/diagrams/w02_pipeline_diagram.svg`
+- Chart: `assets/charts/w02_metrics_chart.svg`
 
-핵심 지표: clean accuracy, macro F1, ASR, stealthiness, detection rate, efficiency cost, reproducibility evidence
+## Evaluation Metrics
 
-<!-- formula-visual-handout:start -->
-## 수식·그래프·그림 보강 요약
+accuracy, f1_macro, asr. 실제 수치는 `04_experiment/outputs/metrics_summary.csv` 기준이다.
 
-| 항목 | 반영 내용 |
-|---|---|
-| 핵심 수식 | ERM, Poisoned Empirical Risk, SGD Update, Accuracy Drop와 ASR |
-| 그래프 | `assets/charts/w02_metrics_chart.png` (`metrics_summary.csv` 기반) |
-| 다이어그램 | `assets/diagrams/w02_pipeline_diagram.svg` (training-data poisoning evaluation flow) |
-| 기호 정의 | 통합보고서와 발표 슬라이드의 수식 블록에 포함 |
-| 주의사항 | toy backdoor는 공개 toy 데이터 기반 안전 실습이며 실제 시스템 악용 절차로 일반화하지 않는다. |
-<!-- formula-visual-handout:end -->
+## Security Implication
+
+Clean 성능과 보안 지표는 서로 다른 실패 모드를 설명하므로 같은 결론으로 합치지 않는다.
+
+## Limitation
+
+toy backdoor는 공개 toy 데이터 기반 안전 실습이며 실제 시스템 악용 절차로 일반화하지 않는다. toy/synthetic 범위와 formal guarantee 여부를 구분해야 한다.
+
+## Final Paper Link
+
+기말논문에서는 관련연구, 위협모형, 평가방법, 한계 절에 이 주차의 수식·표·그래프·다이어그램을 연결한다.

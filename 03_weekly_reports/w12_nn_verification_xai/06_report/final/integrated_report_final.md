@@ -408,7 +408,7 @@ toy binary classification 설정이며 formal proof로 일반화하지 않는다
 
 ### 표 수치 기반 그래프
 
-![W12 metrics chart](../../09_presentation/assets/charts/w12_metrics_chart.png)
+![W12 metrics chart](../../09_presentation/assets/charts/w12_metrics_chart.svg)
 
 그래프는 clean_accuracy, robust_accuracy, explanation_stability, certified_rate, fairness_gap, verification_cost_ms를 조건별로 표시한다. certified_rate가 toy proxy인지 formal verification 결과인지 문서에서 명확히 구분해야 한다. 모든 값은 W12 output CSV에서 읽었다.
 

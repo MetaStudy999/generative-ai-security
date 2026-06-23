@@ -1,78 +1,45 @@
-# W05 1페이지 발표 요약
+# W05 주차 연구 발표 요약
 
-## 주제
+## Research Question
 
-자기지도학습·파운데이션 모델 & Poisoning/Backdoor
+이 주차에서 성능 지표와 보안 지표를 어떻게 분리해 평가할 수 있는가?
 
-## 핵심 주장
+## Key Formula
 
-표현학습 기반 모델의 보안 평가는 clean 성능 하나로 끝나지 않는다. Trigger 조건의 ASR, representation shift, defense check, 재현성 근거를 분리해서 기록해야 한다.
+**Contrastive Loss와 Representation Shift**
 
-## 발표 흐름
+$$
+\mathcal{L}_{NCE}=-\log
+\frac{\exp(sim(z_i,z_i^+)/\tau)}
+{\sum_{j}\exp(sim(z_i,z_j)/\tau)},
+\qquad
+\Delta_z=\lVert \mu_{clean}-\mu_{trigger}\rVert_2
+$$
 
-| 구분 | 핵심 내용 |
-|---|---|
-| AI 원리 | 자기지도학습은 데이터 자체에서 supervision signal을 만들고, pretraining 표현을 downstream task에 전이한다. |
-| 보안 이슈 | Poisoning은 학습 데이터를 오염시키고, backdoor는 trigger 조건에서 target behavior를 유도한다. |
-| 문헌 역할 | P01-P03은 SSL/foundation 원리, P04-P05는 poisoning/backdoor 공격·방어 taxonomy를 담당한다. |
-| 평가 관점 | clean accuracy, poisoned clean accuracy, ASR, mean shift, detection rate, clean FPR을 분리한다. |
-| 기말 연결 | 표현학습 기반 AI 시스템의 poisoning/backdoor 평가 프레임워크로 발전시킨다. |
+- 기호와 의미는 슬라이드의 표를 기준으로 설명한다.
+- 보안적 의미: 은닉 trigger가 representation에 남으면 downstream classifier에서 조건부 실패가 생길 수 있다.
 
-## Toy 실험 요약
+## Threat Model
 
-| 항목 | 내용 |
-|---|---|
-| 데이터 | synthetic 2D representation clusters |
-| 분류기 | nearest-centroid representation classifier |
-| 공격 | source embedding에 trigger vector를 더해 target centroid 쪽으로 이동 |
-| 방어 점검 | paired-view distance threshold |
-| 산출물 | `metrics_summary.csv`, `results.json`, `run_log.md` |
+SSL backdoor evaluation flow 기준으로 공격자, 방어자, 보호 자산, 성공 조건을 분리한다.
 
-## 주요 결과
+## Main Figure
 
-정량값은 `04_experiment/outputs/run_log.md` 기준이다.
+- Diagram: `assets/diagrams/w05_pipeline_diagram.svg`
+- Chart: `assets/charts/w05_metrics_chart.svg`
 
-| 조건 | Clean | Poisoned Clean | ASR | ASR after defense | Shift |
-|---|---:|---:|---:|---:|---:|
-| Clean baseline | 1.000000 | 해당 없음 | 해당 없음 | 해당 없음 | 해당 없음 |
-| Backdoor scenario | 해당 없음 | 1.000000 | 1.000000 | 해당 없음 | 2.418677 |
-| Defense check | 해당 없음 | 해당 없음 | 해당 없음 | 0.000000 | 0.090597 |
+## Evaluation Metrics
 
-## 해석
+clean_accuracy, attack_success_rate, attack_after_defense, representation_shift, trigger_detection_rate. 실제 수치는 `04_experiment/outputs/metrics_summary.csv` 기준이다.
 
-- Triggered source embedding은 toy 조건에서 target centroid로 모두 분류됐다.
-- Consistency threshold는 trigger shift를 모두 플래그했고 clean FPR은 0.000000이었다.
-- 이 결과는 toy 설정의 관찰값이며 실제 SSL/foundation model 보안 성능으로 일반화하지 않는다.
+## Security Implication
 
-## DOI/URL 상태
+Clean 성능과 보안 지표는 서로 다른 실패 모드를 설명하므로 같은 결론으로 합치지 않는다.
 
-| ID | 상태 |
-|---|---|
-| P01 | TPAMI DOI `10.1109/TPAMI.2024.3415112` 확인, 강의계획서 저자 표기 확인 필요 |
-| P02 | DOI 확인, 현재 PDF는 recommendation survey이므로 지정 일반 SSL survey 동일 여부 확인 필요 |
-| P03 | DOI 확인, arXiv URL 확인, 제목 차이와 Article 번호 확인 필요 |
-| P04 | DOI 확인, 강의계획서 제목/저자 표기 차이 확인 필요 |
-| P05 | DOI 확인, 강의계획서 저자 표기 확인 필요 |
+## Limitation
 
-## 관련 산출물
+trigger 관련 설명은 공개 toy/synthetic 범위이며 실제 악용 가능한 절차를 제공하지 않는다. toy/synthetic 범위와 formal guarantee 여부를 구분해야 한다.
 
-| 파일 | 용도 |
-|---|---|
-| `presentation_report.md` | 발표용 보고서 |
-| `presentation_slides.md` | 슬라이드 원본 |
-| `presentation_slides.html` | 브라우저 발표용 슬라이드 |
-| `speaker_notes.md` | 슬라이드별 발표자 대본 |
-| `qna.md` | 예상 질문과 답변 |
-| `04_experiment/outputs/run_log.md` | 실험 수치 근거 |
+## Final Paper Link
 
-<!-- formula-visual-handout:start -->
-## 수식·그래프·그림 보강 요약
-
-| 항목 | 반영 내용 |
-|---|---|
-| 핵심 수식 | Contrastive Loss와 Representation Shift, Backdoor Trigger Success Metric |
-| 그래프 | `assets/charts/w05_metrics_chart.png` (`metrics_summary.csv` 기반) |
-| 다이어그램 | `assets/diagrams/w05_pipeline_diagram.svg` (SSL backdoor evaluation flow) |
-| 기호 정의 | 통합보고서와 발표 슬라이드의 수식 블록에 포함 |
-| 주의사항 | trigger 관련 설명은 공개 toy/synthetic 범위이며 실제 악용 가능한 절차를 제공하지 않는다. |
-<!-- formula-visual-handout:end -->
+기말논문에서는 관련연구, 위협모형, 평가방법, 한계 절에 이 주차의 수식·표·그래프·다이어그램을 연결한다.

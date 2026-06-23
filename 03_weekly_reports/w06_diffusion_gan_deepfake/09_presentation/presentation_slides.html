@@ -3,183 +3,338 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>W06 발표 슬라이드</title>
-  <style>
-    html { scroll-behavior: smooth; scroll-snap-type: y mandatory; }
-    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f8fafc; color: #111827; }
-    section { min-height: 100vh; box-sizing: border-box; padding: 8vh 9vw; border-bottom: 1px solid #d1d5db; display: flex; flex-direction: column; justify-content: center; scroll-snap-align: start; }
-    h1 { font-size: 44px; margin: 0 0 20px; }
-    h2 { font-size: 34px; margin: 0 0 18px; }
-    p, li { font-size: 22px; line-height: 1.55; max-width: 980px; }
-    table { border-collapse: collapse; width: min(100%, 1100px); margin-top: 18px; font-size: 18px; background: white; }
-    th, td { border: 1px solid #d1d5db; padding: 10px 12px; text-align: left; }
-    th { background: #e5e7eb; }
-    code, pre { background: #e5e7eb; padding: 3px 6px; border-radius: 4px; }
-    pre { font-size: 20px; padding: 18px; overflow-x: auto; }
-    .slide-nav {
-      position: fixed;
-      right: 24px;
-      bottom: 24px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px;
-      background: rgba(255, 255, 255, 0.92);
-      border: 1px solid #d1d5db;
-      border-radius: 999px;
-      box-shadow: 0 10px 30px rgba(17, 24, 39, 0.16);
-      z-index: 10;
-      backdrop-filter: blur(8px);
-    }
-    .slide-nav button {
-      width: 44px;
-      height: 44px;
-      border: 1px solid #9ca3af;
-      border-radius: 50%;
-      background: #111827;
-      color: white;
-      font-size: 26px;
-      line-height: 1;
-      cursor: pointer;
-    }
-    .slide-nav button:disabled {
-      cursor: not-allowed;
-      opacity: 0.35;
-    }
-    .slide-counter {
-      min-width: 62px;
-      text-align: center;
-      font-size: 16px;
-      font-weight: 700;
-      color: #111827;
-    }
-    @media (max-width: 720px) {
-      section { padding: 8vh 6vw 14vh; }
-      h1 { font-size: 34px; }
-      h2 { font-size: 28px; }
-      p, li { font-size: 19px; }
-      table { font-size: 15px; }
-      .slide-nav { right: 12px; bottom: 12px; }
-    }
-  </style>
-<!-- formula-visual-mathjax:start -->
-<script>
-window.MathJax = {
-  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$']] },
-  svg: { fontCache: 'global' }
-};
-</script>
-<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
-<style>
-.formula-visual-supplement .math-block { border-left: 5px solid #0f766e; background: #eef8f6; padding: 14px 18px; margin: 12px 0; font-size: 20px; overflow-x: auto; }
-.formula-visual-supplement .caption { font-size: 16px; line-height: 1.35; color: #53616f; }
-.formula-visual-supplement img { max-width: 100%; max-height: 390px; object-fit: contain; border: 1px solid #d8e0e8; border-radius: 8px; background: #fff; }
-.formula-visual-supplement .media-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
-</style>
-<!-- formula-visual-mathjax:end -->
+  <title>W06 Diffusion/GAN &amp; Deepfake Detection 발표 슬라이드</title>
+  <link rel="stylesheet" href="../../../02_report_templates/nature_research_slide_style.css">
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [["\\(", "\\)"]],
+        displayMath: [["\\[", "\\]"], ["$$", "$$"]]
+      },
+      svg: {
+        fontCache: "global"
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 </head>
 <body>
-  <section>
-    <h1>W06 확률생성모형(Diffusion/GAN) &amp; 딥페이크 검출</h1>
-    <p>핵심 질문: in-domain에서 잘 맞는 딥페이크 탐지기는 cross-domain에서도 신뢰할 수 있는가?</p>
-  </section>
-  <section>
-    <h2>왜 중요한가</h2>
-    <ul>
-      <li>Diffusion/GAN은 고품질 합성미디어 생성을 가능하게 한다.</li>
-      <li>생성 품질과 포렌식 탐지 신뢰성은 다른 문제다.</li>
-      <li>Accuracy 단독 평가는 FPR/FNR trade-off를 숨긴다.</li>
-    </ul>
-  </section>
-  <section>
-    <h2>AI 원리 70%</h2>
-    <table>
-      <tr><th>개념</th><th>핵심</th><th>보안 연결</th></tr>
-      <tr><td>Diffusion</td><td>forward noise와 reverse denoising</td><td>고품질 합성미디어</td></tr>
-      <tr><td>Score-based model</td><td>분포의 score로 sampling</td><td>생성 과정 이해</td></tr>
-      <tr><td>GAN</td><td>generator-discriminator 경쟁</td><td>딥페이크 생성 원리</td></tr>
-      <tr><td>조건부 생성</td><td>text/image/class 조건</td><td>통제된 조작 위험</td></tr>
-    </table>
-  </section>
-  <section>
-    <h2>보안 이슈 30%</h2>
-    <table>
-      <tr><th>위험</th><th>실패 조건</th><th>대표 지표</th></tr>
-      <tr><td>미탐</td><td>새로운 생성기와 압축</td><td>FNR</td></tr>
-      <tr><td>오탐</td><td>낮은 품질 real media</td><td>FPR</td></tr>
-      <tr><td>자동판정 과신</td><td>불확실 score 단정</td><td>review rate</td></tr>
-    </table>
-  </section>
-  <section>
-    <h2>위협모형</h2>
-    <pre>Synthetic media -> detector score -> threshold decision -> review workflow
-       |                 |                 |                  |
- new generator      score shift        FPR/FNR           human review</pre>
-  </section>
-  <section>
-    <h2>평가 프로토콜</h2>
-    <table>
-      <tr><th>평가 항목</th><th>지표</th><th>기록 방법</th></tr>
-      <tr><td>In-domain</td><td>accuracy, F1</td><td>기준 score 분포</td></tr>
-      <tr><td>Cross-domain</td><td>FPR, FNR, AUROC</td><td>shifted score 분포</td></tr>
-      <tr><td>Calibration</td><td>ECE</td><td>confidence-correctness 차이</td></tr>
-      <tr><td>Review routing</td><td>auto coverage, review rate</td><td>0.40-0.60 band</td></tr>
-    </table>
-  </section>
-  <section>
-    <h2>문헌 검증 주의</h2>
-    <ul>
-      <li>P02 DOI 10.1145/3696415는 확인했지만 강의계획서 지정 논문과 현재 로컬 PDF 동일 여부는 확인 필요다.</li>
-      <li>P03 DOI 10.1145/3439723는 확인했지만 강의계획서 저자명과 출판사 저자명이 다르다.</li>
-      <li>발표에서는 P02/P03을 부분 검증 문헌으로 설명한다.</li>
-    </ul>
-  </section>
-  <section>
-    <h2>Synthetic toy 실험</h2>
-    <ul>
-      <li>기준 도메인: real mean 0.22, fake mean 0.78</li>
-      <li>이동 도메인: real mean 0.34, fake mean 0.61</li>
-      <li>Threshold: 0.50</li>
-      <li>Review band: 0.40-0.60</li>
-    </ul>
-  </section>
-  <section>
-    <h2>실험 결과</h2>
-    <table>
-      <tr><th>조건</th><th>Accuracy</th><th>F1</th><th>FPR</th><th>FNR</th></tr>
-      <tr><td>In-domain</td><td>1.000000</td><td>1.000000</td><td>0.000000</td><td>0.000000</td></tr>
-      <tr><td>Cross-domain</td><td>0.816667</td><td>0.813559</td><td>0.166667</td><td>0.200000</td></tr>
-      <tr><td>Review-band</td><td>0.909091</td><td>0.901408</td><td>0.050000</td><td>0.135135</td></tr>
-    </table>
-  </section>
-  <section>
-    <h2>결과 해석</h2>
-    <ul>
-      <li>In-domain accuracy 1.000000은 cross-domain 신뢰성을 보장하지 않는다.</li>
-      <li>Cross-domain FNR 0.200000은 조작물을 놓치는 위험을 뜻한다.</li>
-      <li>Review-band는 35.8333%를 human review로 보내 자동판정 위험을 낮춘다.</li>
-    </ul>
-  </section>
-  <section>
-    <h2>기말논문 연결</h2>
-    <p>Contribution 후보: 딥페이크 탐지기의 cross-domain reliability 평가 프레임워크.</p>
-    <p>핵심 산출물은 FPR/FNR, AUROC, ECE, review rate, seed/config/output 로그를 포함하는 평가표다.</p>
-  </section>
-  <section>
-    <h2>결론</h2>
-    <ul>
-      <li>생성 품질과 탐지 신뢰성은 별도 평가축이다.</li>
-      <li>Accuracy 단독 평가는 딥페이크 탐지 위험을 숨긴다.</li>
-      <li>수치는 실행 로그와 config, CSV/JSON 근거가 있을 때만 주장한다.</li>
-    </ul>
-  </section>
+  <!-- Final canonical deck: presentation_slides.html. Week-numbered HTML files are compatibility copies only. -->
+  <main class="deck">
+
+    <section class="slide" id="w06-title">
+      <div class="journal-kicker">Research Presentation / W06</div>
+      <h1>W06 Diffusion/GAN &amp; Deepfake Detection</h1>
+      <p class="research-question">연구 질문: Diffusion/GAN &amp; Deepfake Detection에서 성능 지표와 보안 지표를 어떻게 분리해 평가할 수 있는가?</p>
+      <div class="ratio-strip">
+        <span>Formula-first</span>
+        <span>Figure-first</span>
+        <span>Toy/Public/Synthetic scope</span>
+        <span>No journal logo or trademark</span>
+      </div>
+      <p class="citation-footnote">최종 발표본: presentation_slides.html. 기존 주차번호 HTML은 호환용으로만 유지.</p>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Background / W06</div>
+      <h2>왜 이 주제가 중요한가</h2>
+      <p class="key-finding">이 주제는 clean 성능만으로는 안전성을 설명하기 어렵다.</p>
+      <div class="figure-grid three-panel">
+        <div class="figure-panel"><div class="panel-label">A</div><h3>AI 원리</h3><p>모델 목적함수와 표현이 평가 지표의 출발점이다.</p></div>
+        <div class="figure-panel"><div class="panel-label">B</div><h3>보안 표면</h3><p>공격자 가정, 보호 자산, 실패 조건을 분리한다.</p></div>
+        <div class="figure-panel"><div class="panel-label">C</div><h3>근거 관리</h3><p>CSV, run log, 결과표가 같은 값을 말해야 한다.</p></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Research Gap</div>
+      <h2>기존 발표 흐름의 빈틈</h2>
+      <table>
+        <thead><tr><th>빈틈</th><th>보완 방식</th><th>검증 상태</th></tr></thead>
+        <tbody>
+          <tr><td>수식과 지표 연결 부족</td><td>핵심 수식, 기호표, 보안적 의미를 한 장에 배치</td><td>표준식 / 확인 필요 병기</td></tr>
+          <tr><td>표와 위협모형 분리</td><td>공격자·방어자·보호 자산 표로 정리</td><td>toy/synthetic 범위</td></tr>
+          <tr><td>결과 그래프 출처 불명확</td><td>metrics_summary.csv 기반 그래프만 사용</td><td>데이터 출처: 04_experiment/outputs/metrics_summary.csv</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Core Formula / W06</div>
+      <h2>핵심 수식: Diffusion Forward Process와 Denoising Objective</h2>
+      <div class="formula-card">
+        \[
+q(x_t|x_{t-1})=\mathcal{N}\left(\sqrt{1-\beta_t}x_{t-1},\beta_t I\right),
+\qquad
+\mathcal{L}_{simple}=\mathbb{E}_{t,x_0,\epsilon}\left[\lVert \epsilon-\epsilon_\theta(x_t,t)\rVert_2^2\right]
+        \]
+      </div>
+      <table>
+<thead>
+<tr>
+<th>기호</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\(x_t\)</td>
+<td>time step t의 noisy sample</td>
+</tr>
+<tr>
+<td>\(\beta_t\)</td>
+<td>noise schedule</td>
+</tr>
+<tr>
+<td>\(\epsilon\)</td>
+<td>주입된 noise</td>
+</tr>
+<tr>
+<td>\(\epsilon_\theta\)</td>
+<td>denoising model prediction</td>
+</tr>
+</tbody>
+</table>
+      <p class="figure-caption">Formula | Diffusion은 점진적으로 noise를 더하고 이를 되돌리는 학습 문제로 볼 수 있다. 보안 발표에서는 생성 원리보다 탐지와 검증 지표를 중심에 둔다. 평가 지표 연결: AUROC, FPR, FNR, review_rate와 연결한다.</p>
+      <div class="limitation-box">한계: 표준식이며 특정 생성 모델의 원문 수치를 새로 주장하지 않는다.</div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Threat Model</div>
+      <h2>공격자·방어자·보호 자산</h2>
+      <table>
+        <thead><tr><th>구성요소</th><th>발표 내 의미</th><th>주의</th></tr></thead>
+        <tbody>
+          <tr><td>공격자</td><td>안전한 toy/public/synthetic 범위의 평가 조건을 가정</td><td>실제 시스템 악용 절차 없음</td></tr>
+          <tr><td>방어자</td><td>지표, 로그, 검증 절차로 위험을 관찰</td><td>formal guarantee와 empirical proxy 구분</td></tr>
+          <tr><td>보호 자산</td><td>모델 성능, 데이터 프라이버시, 재현성 증거, 운영 신뢰</td><td>없는 결과는 만들지 않음</td></tr>
+          <tr><td>성공 조건</td><td>accuracy, f1, false_positive_rate, false_negative_rate, auroc 변화가 위험을 설명하는지 확인</td><td>CSV와 모순되면 보류</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Evaluation Protocol</div>
+      <h2>평가 프로토콜과 지표</h2>
+      <table>
+<thead>
+<tr>
+<th>평가 항목</th>
+<th>대표 지표</th>
+<th>기록 방식</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>accuracy</td>
+<td>CSV 컬럼 존재 시 그래프와 표에 반영</td>
+<td>실제 실행 산출물 기준</td>
+</tr>
+<tr>
+<td>f1</td>
+<td>CSV 컬럼 존재 시 그래프와 표에 반영</td>
+<td>실제 실행 산출물 기준</td>
+</tr>
+<tr>
+<td>false_positive_rate</td>
+<td>CSV 컬럼 존재 시 그래프와 표에 반영</td>
+<td>실제 실행 산출물 기준</td>
+</tr>
+<tr>
+<td>false_negative_rate</td>
+<td>CSV 컬럼 존재 시 그래프와 표에 반영</td>
+<td>실제 실행 산출물 기준</td>
+</tr>
+<tr>
+<td>auroc</td>
+<td>CSV 컬럼 존재 시 그래프와 표에 반영</td>
+<td>실제 실행 산출물 기준</td>
+</tr>
+</tbody>
+</table>
+      <p class="figure-caption">Protocol | 데이터 출처: 04_experiment/outputs/metrics_summary.csv. run_log.md 또는 results.json과 모순되는 수치는 사용하지 않는다.</p>
+    </section>
+
+    <section class="slide figure-first">
+      <div class="slide-header">Figure 1 / Diagram</div>
+      <h2>generated-media detection pipeline</h2>
+      <div class="figure-grid two-panel">
+        <figure class="figure-panel">
+          <div class="panel-label">A</div>
+          <div class="pipeline-diagram" role="img" aria-label="generated-media detection pipeline">
+<div class="stage normal">Media Sample<br><small>toy/public</small></div>
+<div class="arrow" aria-hidden="true">→</div>
+<div class="stage normal">Detector<br><small>features/model</small></div>
+<div class="arrow" aria-hidden="true">→</div>
+<div class="stage risk">Score<br><small>risk score</small></div>
+<div class="arrow" aria-hidden="true">→</div>
+<div class="stage normal">Threshold<br><small>FPR/FNR</small></div>
+<div class="arrow" aria-hidden="true">→</div>
+<div class="stage defense">Review<br><small>human audit</small></div>
+</div>
+          <figcaption class="figure-caption">Pipeline | 단계별 공격면과 방어·검증 지점을 4~6개로 압축했다.</figcaption>
+        </figure>
+        <figure class="figure-panel">
+          <div class="panel-label">B</div>
+          <img src="assets/diagrams/w06_pipeline_diagram.svg" alt="W06 pipeline diagram">
+          <figcaption class="figure-caption">Manifest | assets/figure_manifest.md에 생성 방식과 한계를 기록했다.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="slide figure-first">
+      <div class="slide-header">Figure 2 / Metrics</div>
+      <h2>실제 CSV 기반 지표 그래프</h2>
+      <div class="figure-grid two-panel">
+        <figure class="figure-panel chart-panel">
+          <div class="panel-label">A</div>
+          <img src="assets/charts/w06_metrics_chart.svg" alt="W06 metrics chart">
+          <figcaption class="figure-caption">Graph | 그래프는 deepfake detector의 accuracy, F1, FPR, FNR, AUROC를 조건별로 비교한다. 탐지 문제에서는 false positive와 false negative의 보안 비용이 다르므로 accuracy만으로 결론을 내리지 않는다. source는 `metrics_summary.csv`이다. 데이터 출처: 04_experiment/outputs/metrics_summary.csv</figcaption>
+        </figure>
+        <figure class="figure-panel">
+          <div class="panel-label">B</div>
+          <table>
+<thead>
+<tr>
+<th>condition</th>
+<th>accuracy</th>
+<th>f1</th>
+<th>false_positive_rate</th>
+<th>false_negative_rate</th>
+<th>auroc</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>In-domain detector baseline</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Cross-domain reliability stress</td>
+<td>0.817</td>
+<td>0.814</td>
+<td>0.167</td>
+<td>0.2</td>
+<td>0.9</td>
+</tr>
+<tr>
+<td>Review-band triage on shifted domain</td>
+<td>0.909</td>
+<td>0.901</td>
+<td>0.05</td>
+<td>0.135</td>
+<td>0.962</td>
+</tr>
+</tbody>
+</table>
+          <figcaption class="figure-caption">Table | 그래프에 사용한 CSV의 주요 행을 요약했다.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Paper Map</div>
+      <h2>논문 5편의 역할표</h2>
+      <table>
+<thead>
+<tr>
+<th>ID</th>
+<th>논문 역할</th>
+<th>발표에서 쓰는 위치</th>
+<th>기말논문 연결</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P01</td>
+<td>핵심 이론</td>
+<td>Background / Core Formula</td>
+<td>Diffusion/GAN &amp; Deepfake Detection의 관련연구 뼈대</td>
+</tr>
+<tr>
+<td>P02</td>
+<td>위협 분류</td>
+<td>Threat Model</td>
+<td>공격자·방어자·보호자산 정의</td>
+</tr>
+<tr>
+<td>P03</td>
+<td>평가 지표</td>
+<td>Evaluation Protocol</td>
+<td>정량 지표와 로그 근거 연결</td>
+</tr>
+<tr>
+<td>P04</td>
+<td>공격·방어 사례</td>
+<td>Security Implication</td>
+<td>보안적 함의와 방어 한계</td>
+</tr>
+<tr>
+<td>P05</td>
+<td>재현성·정책 근거</td>
+<td>Limitation</td>
+<td>확인 필요 항목과 제출 전 검증</td>
+</tr>
+</tbody>
+</table>
+      <p class="figure-caption">Paper map | 서지 세부사항과 DOI/URL은 최종 제출 전 원문 기준으로 확인한다.</p>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Security Implication</div>
+      <h2>보안적 함의</h2>
+      <div class="question-box">미탐은 악성 생성물을 놓칠 위험이고, 오탐은 정상 콘텐츠 차단 위험이다.</div>
+      <div class="figure-grid three-panel">
+        <div class="figure-panel"><div class="panel-label">A</div><h3>분리</h3><p>clean 성능과 보안 지표를 같은 값처럼 해석하지 않는다.</p></div>
+        <div class="figure-panel"><div class="panel-label">B</div><h3>추적</h3><p>수치, 그래프, 노트, Q&A가 같은 산출물을 가리킨다.</p></div>
+        <div class="figure-panel"><div class="panel-label">C</div><h3>제한</h3><p>실제 악용 절차 없이 평가 개념과 방어 관점만 설명한다.</p></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Limitation</div>
+      <h2>한계와 검증 상태</h2>
+      <div class="limitation-box">생성 모델 수식은 표준 학습 목적 설명이며 deepfake 제작 절차를 안내하지 않는다. detector toy evaluation이며 실제 미디어 판별 보증으로 해석하지 않는다.</div>
+      <table>
+        <thead><tr><th>항목</th><th>상태</th><th>다음 확인</th></tr></thead>
+        <tbody>
+          <tr><td>실험 수치</td><td>실행 산출물 있음</td><td>run_log.md, results.json 대조</td></tr>
+          <tr><td>수식 보증</td><td>표준식 또는 proxy</td><td>원문 절·쪽·formal guarantee 확인</td></tr>
+          <tr><td>운영 적용</td><td>바로 적용 불가</td><td>실제 데이터·정책·위험평가 필요</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Final Takeaway</div>
+      <h2>기말논문 연결</h2>
+      <p class="key-finding">W06의 결론은 지표를 분리하고 근거 파일로 추적하는 연구 설계다.</p>
+      <table>
+        <thead><tr><th>기말논문 장</th><th>연결 내용</th></tr></thead>
+        <tbody>
+          <tr><td>관련연구</td><td>Diffusion/GAN &amp; Deepfake Detection의 핵심 이론과 보안 taxonomy 정리</td></tr>
+          <tr><td>위협모형</td><td>generated-media detection pipeline 기반 공격면·방어면 정의</td></tr>
+          <tr><td>평가방법</td><td>accuracy, f1, false_positive_rate, false_negative_rate, auroc를 CSV/log 기준으로 검증</td></tr>
+          <tr><td>한계</td><td>toy/synthetic 범위와 확인 필요 항목을 명시</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+  </main>
+
   <nav class="slide-nav" aria-label="슬라이드 이동">
     <button id="prevSlide" type="button" title="이전 슬라이드" aria-label="이전 슬라이드">‹</button>
     <span id="slideCounter" class="slide-counter" aria-live="polite">1 / 1</span>
     <button id="nextSlide" type="button" title="다음 슬라이드" aria-label="다음 슬라이드">›</button>
   </nav>
+
   <script>
-    const slides = Array.from(document.querySelectorAll("section"));
+    const slides = Array.from(document.querySelectorAll("section.slide, section"));
     const prevButton = document.getElementById("prevSlide");
     const nextButton = document.getElementById("nextSlide");
     const counter = document.getElementById("slideCounter");
@@ -196,24 +351,30 @@ window.MathJax = {
       const nextIndex = Math.max(0, Math.min(index, slides.length - 1));
       slides[nextIndex].scrollIntoView({ behavior: "smooth", block: "start" });
       updateNav(nextIndex);
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        window.MathJax.typesetPromise([slides[nextIndex]]).catch(() => {});
+      }
     }
 
     prevButton.addEventListener("click", () => goToSlide(currentIndex - 1));
     nextButton.addEventListener("click", () => goToSlide(currentIndex + 1));
 
     document.addEventListener("keydown", (event) => {
-      if (event.key === "ArrowRight" || event.key === "PageDown" || event.key === " ") {
+      if (["ArrowRight", "PageDown", " "].includes(event.key)) {
         event.preventDefault();
         goToSlide(currentIndex + 1);
       }
-      if (event.key === "ArrowLeft" || event.key === "PageUp") {
+
+      if (["ArrowLeft", "PageUp"].includes(event.key)) {
         event.preventDefault();
         goToSlide(currentIndex - 1);
       }
+
       if (event.key === "Home") {
         event.preventDefault();
         goToSlide(0);
       }
+
       if (event.key === "End") {
         event.preventDefault();
         goToSlide(slides.length - 1);
@@ -225,12 +386,14 @@ window.MathJax = {
         const visible = entries
           .filter((entry) => entry.isIntersecting)
           .sort((left, right) => right.intersectionRatio - left.intersectionRatio)[0];
+
         if (visible) {
           updateNav(slides.indexOf(visible.target));
         }
       },
       { threshold: [0.55] }
     );
+
     slides.forEach((slide) => observer.observe(slide));
     updateNav(0);
   </script>

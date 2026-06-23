@@ -1,55 +1,41 @@
-# W15 1페이지 요약
+# W15 주차 연구 발표 요약
 
-## 핵심 메시지
+## Research Question
 
-AI 보안 연구의 신뢰성은 단일 성능 수치가 아니라 평가 데이터, 재현성 증거, 설명 신뢰성, 참고문헌 검증, AI 활용 고지가 연결된 evidence chain에서 나온다.
+이 주차에서 성능 지표와 보안 지표를 어떻게 분리해 평가할 수 있는가?
 
-## 논문 패킷 역할
+## Key Formula
 
-| 논문 | 한 줄 역할 |
-|---|---|
-| P01 | LLM evaluation을 what/where/how로 정리하고 benchmark contamination을 평가 위험으로 연결 |
-| P02 | ML lifecycle assurance를 통해 config, seed, logs, outputs의 필요성을 설명 |
-| P03 | XAI 핵심 문헌이지만 로컬 PDF가 대체 문헌이라 검증 필요 사례 |
-| P04 | XAI taxonomy와 Responsible AI, privacy/accountability/fairness 연결 |
-| P05 | concept-based XAI와 explanation stability/disclosure risk 연결 |
+**Reproducibility Completion Rate**
 
-## W15 감사 결과
+$$
+RepRate=\frac{\#\{\mathrm{required\ artifacts\ present}\}}{\#\{\mathrm{required\ artifacts}\}}
+$$
 
-| 항목 | 결과 |
-|---|---:|
-| W15 필수 산출물 | 47/47 |
-| 기말논문 연결 파일 | 9/9 |
-| 로컬 PDF | 5 |
-| DOI 확인 | 4 |
-| DOI 부분 확인 | 1 |
-| DOI 미검증 | 0 |
-| 가중 참고문헌 검증률 | 0.90 |
-| AI 활용 고지 완성도 | 11/11 |
+- 기호와 의미는 슬라이드의 표를 기준으로 설명한다.
+- 보안적 의미: 논문 주장에는 config, seed, DOI 검증, AI disclosure가 연결되어야 한다.
 
-## 보안적 함의
+## Threat Model
 
-- Benchmark contamination은 평가 무결성 문제다.
-- Hidden test leakage는 기밀성과 무결성을 동시에 훼손한다.
-- XAI 설명은 편향과 오류를 찾지만 민감 단서도 노출할 수 있다.
-- 허위 DOI, 대체 PDF 은폐, AI 활용 미고지는 연구 책임성을 훼손한다.
+reproducibility workflow 기준으로 공격자, 방어자, 보호 자산, 성공 조건을 분리한다.
 
-## 기말논문 Contribution
+## Main Figure
 
-본 연구는 LLM/RAG 기반 AI 시스템의 데이터·평가·프롬프트 생명주기에서 prompt injection, benchmark contamination, privacy leakage 위협을 분석하고, 재현성 중심의 보안 평가 체크리스트를 제안한다.
+- Diagram: `assets/diagrams/w15_pipeline_diagram.svg`
+- Chart: `assets/charts/w15_metrics_chart.svg`
 
-## 남은 확인 항목
+## Evaluation Metrics
 
-P03 지정 논문 원문 PDF 확보, P05 권호/issue 확인, 국내 문헌 3편 이상 검증, public GitHub PDF 보관 정책 검토.
+value. 실제 수치는 `04_experiment/outputs/metrics_summary.csv` 기준이다.
 
-<!-- formula-visual-handout:start -->
-## 수식·그래프·그림 보강 요약
+## Security Implication
 
-| 항목 | 반영 내용 |
-|---|---|
-| 핵심 수식 | Reproducibility Completion Rate, Reference Verification와 Explanation Consistency Proxy |
-| 그래프 | `assets/charts/w15_metrics_chart.png` (`metrics_summary.csv` 기반) |
-| 다이어그램 | `assets/diagrams/w15_pipeline_diagram.svg` (reproducibility workflow) |
-| 기호 정의 | 통합보고서와 발표 슬라이드의 수식 블록에 포함 |
-| 주의사항 | 비율 변환 값은 local completeness proxy이며 학술적 품질 보증 점수가 아니다. |
-<!-- formula-visual-handout:end -->
+Clean 성능과 보안 지표는 서로 다른 실패 모드를 설명하므로 같은 결론으로 합치지 않는다.
+
+## Limitation
+
+비율 변환 값은 local completeness proxy이며 학술적 품질 보증 점수가 아니다. toy/synthetic 범위와 formal guarantee 여부를 구분해야 한다.
+
+## Final Paper Link
+
+기말논문에서는 관련연구, 위협모형, 평가방법, 한계 절에 이 주차의 수식·표·그래프·다이어그램을 연결한다.

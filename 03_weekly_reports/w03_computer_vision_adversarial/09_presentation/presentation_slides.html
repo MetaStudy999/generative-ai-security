@@ -3,515 +3,393 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>W03 발표 슬라이드</title>
-  <style>
-    :root {
-      --ink: #1e2630;
-      --muted: #5f6f7c;
-      --paper: #f4f6f8;
-      --line: #d6dee6;
-      --blue: #234f7d;
-      --green: #24745f;
-      --amber: #a15c12;
-      --panel: #ffffff;
-      --soft: #edf5ff;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      background: var(--paper);
-      color: var(--ink);
-      font-family: Arial, "Noto Sans KR", sans-serif;
-      letter-spacing: 0;
-    }
-    .deck {
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      padding: 22px;
-    }
-    .slide {
-      display: none;
-      width: min(1180px, 100%);
-      min-height: min(690px, calc(100vh - 84px));
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 44px 52px;
-      position: relative;
-      box-shadow: 0 18px 55px rgba(31, 41, 51, 0.12);
-      overflow: hidden;
-    }
-    .slide.active { display: flex; flex-direction: column; }
-    .slide-header {
-      color: var(--blue);
-      font-size: 14px;
-      font-weight: 700;
-      margin-bottom: 18px;
-      text-transform: uppercase;
-    }
-    h1, h2 {
-      margin: 0;
-      line-height: 1.12;
-      letter-spacing: 0;
-    }
-    h1 {
-      max-width: 980px;
-      font-size: 54px;
-      color: var(--ink);
-    }
-    h2 {
-      font-size: 42px;
-      margin-bottom: 22px;
-    }
-    p, li {
-      font-size: 22px;
-      line-height: 1.52;
-    }
-    p {
-      margin: 14px 0;
-      color: var(--muted);
-    }
-    ul, ol {
-      margin: 8px 0 0;
-      padding-left: 28px;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 14px;
-      font-size: 18px;
-    }
-    th, td {
-      border-bottom: 1px solid var(--line);
-      padding: 12px 10px;
-      text-align: left;
-      vertical-align: top;
-      line-height: 1.35;
-    }
-    th {
-      color: var(--blue);
-      font-size: 16px;
-      background: #eef3f8;
-    }
-    .subtitle {
-      max-width: 840px;
-      color: var(--muted);
-      font-size: 25px;
-      margin-top: 22px;
-    }
-    .kicker {
-      display: inline-flex;
-      align-items: center;
-      color: var(--green);
-      font-weight: 700;
-      margin-bottom: 16px;
-      font-size: 18px;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-      margin-top: 16px;
-    }
-    .tile {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 18px;
-      min-height: 124px;
-      background: #fbfdff;
-    }
-    .tile strong {
-      display: block;
-      color: var(--ink);
-      font-size: 22px;
-      margin-bottom: 8px;
-    }
-    .tile span {
-      color: var(--muted);
-      font-size: 18px;
-      line-height: 1.45;
-    }
-    .message {
-      margin-top: auto;
-      border-left: 5px solid var(--amber);
-      padding: 12px 16px;
-      color: var(--ink);
-      background: #fff8eb;
-      font-size: 21px;
-      line-height: 1.45;
-    }
-    .pipeline {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-      margin: 28px 0 18px;
-    }
-    .stage {
-      min-height: 126px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 14px;
-      background: #fbfdff;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .stage b {
-      color: var(--blue);
-      font-size: 17px;
-    }
-    .stage small {
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.35;
-    }
-    .bars {
-      display: grid;
-      gap: 12px;
-      margin-top: 18px;
-    }
-    .bar-row {
-      display: grid;
-      grid-template-columns: 210px 1fr 78px;
-      gap: 12px;
-      align-items: center;
-      font-size: 18px;
-    }
-    .bar-track {
-      height: 18px;
-      background: #eef2f7;
-      border-radius: 999px;
-      overflow: hidden;
-    }
-    .bar-fill {
-      height: 100%;
-      border-radius: 999px;
-      background: var(--green);
-    }
-    .bar-fill.fail { background: #b91c1c; }
-    .note {
-      color: var(--muted);
-      font-size: 18px;
-      margin-top: 18px;
-    }
-    .controls {
-      position: fixed;
-      left: 50%;
-      bottom: 18px;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 8px;
-      align-items: center;
-      background: rgba(255, 255, 255, 0.92);
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 8px 12px;
-      box-shadow: 0 8px 24px rgba(31, 41, 51, 0.12);
-    }
-    button {
-      border: 1px solid var(--line);
-      background: white;
-      color: var(--ink);
-      border-radius: 999px;
-      padding: 6px 12px;
-      font-size: 14px;
-      cursor: pointer;
-    }
-    #count {
-      min-width: 64px;
-      text-align: center;
-      color: var(--muted);
-      font-size: 14px;
-    }
-    code {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      background: #f0f3f5;
-      padding: 1px 4px;
-      border-radius: 3px;
-    }
-    @media print {
-      body { background: white; }
-      .deck { display: block; padding: 0; }
-      .slide {
-        display: flex !important;
-        min-height: 180mm;
-        width: auto;
-        margin: 0 0 12mm;
-        box-shadow: none;
-        page-break-after: always;
+  <title>W03 컴퓨터 비전 대적 공격 발표 슬라이드</title>
+  <link rel="stylesheet" href="../../../02_report_templates/nature_research_slide_style.css">
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [["\\(", "\\)"]],
+        displayMath: [["\\[", "\\]"], ["$$", "$$"]]
+      },
+      svg: {
+        fontCache: "global"
       }
-      .controls { display: none; }
-    }
-    @media (max-width: 760px) {
-      .deck { padding: 10px; }
-      .slide { padding: 28px 24px; min-height: calc(100vh - 76px); }
-      h1 { font-size: 36px; }
-      h2 { font-size: 30px; }
-      p, li { font-size: 18px; }
-      table { font-size: 14px; }
-      .grid, .pipeline { grid-template-columns: 1fr; }
-      .bar-row { grid-template-columns: 1fr; }
-    }
-  </style>
-<!-- formula-visual-mathjax:start -->
-<script>
-window.MathJax = {
-  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$']] },
-  svg: { fontCache: 'global' }
-};
-</script>
-<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
-<style>
-.formula-visual-supplement .math-block { border-left: 5px solid #0f766e; background: #eef8f6; padding: 14px 18px; margin: 12px 0; font-size: 20px; overflow-x: auto; }
-.formula-visual-supplement .caption { font-size: 16px; line-height: 1.35; color: #53616f; }
-.formula-visual-supplement img { max-width: 100%; max-height: 390px; object-fit: contain; border: 1px solid #d8e0e8; border-radius: 8px; background: #fff; }
-.formula-visual-supplement .media-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
-</style>
-<!-- formula-visual-mathjax:end -->
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 </head>
 <body>
-<main class="deck">
-  <section class="slide active">
-    <div class="kicker">W03 AI Security</div>
-    <h1>컴퓨터비전 표현학습 &amp; 비전 대적공격</h1>
-    <p class="subtitle">Clean accuracy, robust accuracy, ASR, 재현성 근거를 분리해 평가한다.</p>
-    <div class="message">좋은 표현학습이 곧 안전한 모델을 의미하지 않는다.</div>
-  </section>
+  <!-- Final canonical deck: presentation_slides.html. Week-numbered HTML files are compatibility copies only. -->
+  <main class="deck">
 
-  <section class="slide">
-    <div class="slide-header">Problem</div>
-    <h2>왜 W03가 중요한가</h2>
-    <ul>
-      <li>이미지 모델은 분류, 검색, 인식, 멀티모달 AI의 핵심 구성요소다.</li>
-      <li>정상 테스트셋에서 잘 맞아도 작은 입력 교란에 취약할 수 있다.</li>
-      <li>핵심 질문: “모델이 이미지를 잘 본다”는 말은 보안적으로 충분한가?</li>
-    </ul>
-    <div class="message">성능 중심 비전 이해를 보안성 중심 평가로 확장한다.</div>
-  </section>
-
-  <section class="slide">
-    <div class="slide-header">Roadmap</div>
-    <h2>발표 로드맵</h2>
-    <div class="grid">
-      <div class="tile"><strong>1. 표현학습</strong><span>CNN, ViT, 멀티모달 표현</span></div>
-      <div class="tile"><strong>2. 보안 위협</strong><span>White-box, black-box, transfer attack</span></div>
-      <div class="tile"><strong>3. 평가 지표</strong><span>Clean, robust, ASR, reproducibility</span></div>
-      <div class="tile"><strong>4. Toy 실험</strong><span>synthetic 8x8 bar image 평가</span></div>
-    </div>
-  </section>
-
-  <section class="slide">
-    <div class="slide-header">AI Principle</div>
-    <h2>CNN: 계층적 시각 표현</h2>
-    <ul>
-      <li>지역 receptive field와 convolution으로 이미지 특징을 추출한다.</li>
-      <li>Pooling은 공간 정보를 압축하고 feature map을 안정화한다.</li>
-      <li>얕은 계층은 edge/texture, 깊은 계층은 shape/object 표현을 학습한다.</li>
-    </ul>
-    <div class="message">입력 픽셀의 작은 변화도 feature map과 decision boundary를 바꿀 수 있다.</div>
-  </section>
-
-  <section class="slide">
-    <div class="slide-header">AI Principle</div>
-    <h2>ViT와 멀티모달 표현</h2>
-    <table>
-      <tr><th>개념</th><th>핵심</th><th>보안 연결</th></tr>
-      <tr><td>ViT</td><td>이미지를 patch token으로 처리</td><td>CNN과 다른 취약성 가능</td></tr>
-      <tr><td>Attention</td><td>장거리 의존성 학습</td><td>특정 patch 조작 영향</td></tr>
-      <tr><td>멀티모달 정합</td><td>이미지-텍스트 표현공간 정렬</td><td>입력 조작과 정합 실패</td></tr>
-      <tr><td>표현학습</td><td>과제에 유용한 특징 추출</td><td>특징공간 교란 가능</td></tr>
-    </table>
-  </section>
-
-  <section class="slide">
-    <div class="slide-header">Security</div>
-    <h2>비전 대적공격</h2>
-    <table>
-      <tr><th>위협</th><th>공격자 가정</th><th>대표 지표</th></tr>
-      <tr><td>White-box attack</td><td>모델 구조/gradient 접근</td><td>robust accuracy, ASR</td></tr>
-      <tr><td>Black-box attack</td><td>제한된 질의 또는 transfer</td><td>attack impact</td></tr>
-      <tr><td>Transfer attack</td><td>다른 모델에서 만든 교란 이전</td><td>transfer success</td></tr>
-      <tr><td>2D/3D 조작</td><td>이미지 또는 객체 입력 변화</td><td>safety failure</td></tr>
-    </table>
-  </section>
-
-  <section class="slide">
-    <div class="slide-header">Literature</div>
-    <h2>논문 5편의 역할</h2>
-    <table>
-      <tr><th>ID</th><th>중심 역할</th><th>W03 활용</th></tr>
-      <tr><td>P01</td><td>CNN과 gradient 학습</td><td>비전 표현학습 출발점</td></tr>
-      <tr><td>P02</td><td>컴퓨터비전 딥러닝 리뷰</td><td>원리 배경</td></tr>
-      <tr><td>P03</td><td>멀티모달 transformer</td><td>이미지-텍스트 표현 연결</td></tr>
-      <tr><td>P04</td><td>Vision Transformer survey</td><td>CNN/ViT 비교</td></tr>
-      <tr><td>P05</td><td>2D/3D adversarial robustness</td><td>보안 평가축</td></tr>
-    </table>
-  </section>
-
-  <section class="slide">
-    <div class="slide-header">Threat Model</div>
-    <h2>위협모형</h2>
-    <div class="pipeline">
-      <div class="stage"><b>Image/Data</b><small>input noise<br>perturbation</small></div>
-      <div class="stage"><b>Model</b><small>weights<br>access level</small></div>
-      <div class="stage"><b>Prediction</b><small>wrong label<br>target class</small></div>
-      <div class="stage"><b>Evaluation Log</b><small>seed/config<br>outputs</small></div>
-    </div>
-    <ul>
-      <li>보호 자산: 데이터, 모델 파라미터, 입력 이미지, 출력 라벨, 평가 로그</li>
-      <li>방어자 가정: toy/synthetic 평가와 재현성 기록</li>
-    </ul>
-  </section>
-
-  <section class="slide">
-    <div class="slide-header">Evaluation</div>
-    <h2>평가 프로토콜</h2>
-    <table>
-      <tr><th>평가 항목</th><th>지표</th><th>기록 방법</th></tr>
-      <tr><td>Clean performance</td><td>accuracy, macro F1</td><td>정상 입력</td></tr>
-      <tr><td>Attack impact</td><td>ASR, robust drop</td><td>교란 입력</td></tr>
-      <tr><td>Robust performance</td><td>robust accuracy</td><td>epsilon별 비교</td></tr>
-      <tr><td>Reproducibility</td><td>seed, config, outputs</td><td>CSV/JSON/run log</td></tr>
-      <tr><td>Human review</td><td>DOI/URL, 원문 대조</td><td>체크리스트</td></tr>
-    </table>
-  </section>
-
-  <section class="slide">
-    <div class="slide-header">Experiment</div>
-    <h2>Toy 실험 설계</h2>
-    <ul>
-      <li>데이터: synthetic 8x8 vertical/horizontal bar image</li>
-      <li>모델: nearest-centroid classifier</li>
-      <li>공격: 반대 클래스 중심점 방향 L-infinity perturbation</li>
-      <li>방어 점검: 2-level feature squeezing</li>
-      <li>출력: CSV, JSON, Markdown run log, PGM 예시 이미지</li>
-    </ul>
-    <div class="message">개인정보, 운영 서비스 이미지, 무단 API 공격은 제외했다.</div>
-  </section>
-
-  <section class="slide">
-    <div class="slide-header">Results</div>
-    <h2>Toy 실험 결과</h2>
-    <table>
-      <tr><th>조건</th><th>Epsilon</th><th>Accuracy</th><th>Macro F1</th><th>ASR</th></tr>
-      <tr><td>Clean baseline</td><td>0.00</td><td>1.000000</td><td>1.000000</td><td>해당 없음</td></tr>
-      <tr><td>Perturbation</td><td>0.30</td><td>1.000000</td><td>1.000000</td><td>0.000000</td></tr>
-      <tr><td>Perturbation</td><td>0.45</td><td>0.000000</td><td>0.000000</td><td>1.000000</td></tr>
-      <tr><td>Feature squeezing</td><td>0.30</td><td>1.000000</td><td>1.000000</td><td>0.000000</td></tr>
-    </table>
-    <p class="note">정량값은 <code>04_experiment/outputs/run_log.md</code> 기준이다.</p>
-  </section>
-
-  <section class="slide">
-    <div class="slide-header">Interpretation</div>
-    <h2>결과 해석과 한계</h2>
-    <div class="bars">
-      <div class="bar-row"><span>Clean baseline</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span>1.00</span></div>
-      <div class="bar-row"><span>Eps 0.30</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span>1.00</span></div>
-      <div class="bar-row"><span>Eps 0.45</span><div class="bar-track"><div class="bar-fill fail" style="width:0%"></div></div><span>0.00</span></div>
-    </div>
-    <ul>
-      <li>Epsilon 0.45는 toy decision boundary 전환이며 실제 CNN/ViT 공격 성공이 아니다.</li>
-      <li>실제 CNN/ViT 강건성으로 일반화하지 않는다.</li>
-    </ul>
-  </section>
-
-  <section class="slide">
-    <div class="slide-header">Final Paper</div>
-    <h2>기말논문 연결</h2>
-    <table>
-      <tr><th>기말논문 장</th><th>연결 내용</th></tr>
-      <tr><td>관련연구</td><td>CNN/ViT 원리와 adversarial robustness 문헌 연결</td></tr>
-      <tr><td>위협모형</td><td>보호 자산, 공격자 능력, 평가 로그</td></tr>
-      <tr><td>평가방법</td><td>clean, attack impact, reproducibility 분리</td></tr>
-      <tr><td>분석/실험</td><td>synthetic toy 평가를 통한 지표 분리 예시</td></tr>
-    </table>
-    <div class="message">Contribution 후보: 제출 가능한 AI 보안 평가 프레임워크.</div>
-  </section>
-
-  <section class="slide">
-    <div class="slide-header">Closing</div>
-    <h2>결론</h2>
-    <ul>
-      <li>비전 모델의 정상 성능은 보안성을 보장하지 않는다.</li>
-      <li>공격 조건 성능과 ASR을 별도로 기록해야 한다.</li>
-      <li>정량값은 실행 로그, config, seed, CSV/JSON이 있을 때만 주장한다.</li>
-      <li>W03는 재현성 중심 평가 프레임워크를 보강하는 사례다.</li>
-    </ul>
-  </section>
-<!-- formula-visual-html:start -->
-    <section class="slide formula-visual-supplement">
-      <div class="slide-header">Formula / W03</div>
-      <h2>핵심 수식과 기호</h2>
-      <h3>Adversarial Perturbation Constraint</h3>
-      <div class="math-block">
-      $$
-      x&#x27; = x+\delta,
-      \qquad
-      \lVert \delta \rVert_p \le \epsilon
-      $$
+    <section class="slide" id="w03-title">
+      <div class="journal-kicker">Research Presentation / W03</div>
+      <h1>W03 컴퓨터 비전 대적 공격</h1>
+      <p class="research-question">연구 질문: 컴퓨터 비전 대적 공격에서 성능 지표와 보안 지표를 어떻게 분리해 평가할 수 있는가?</p>
+      <div class="ratio-strip">
+        <span>Formula-first</span>
+        <span>Figure-first</span>
+        <span>Toy/Public/Synthetic scope</span>
+        <span>No journal logo or trademark</span>
       </div>
-      <p>보안 관점에서는 입력 검증, 강건성 평가, defense 비용이 연결된다.</p>
-      <h3>Robust Accuracy와 Robust Drop</h3>
-      <div class="math-block">
-      $$
-      RA_\epsilon=\frac{1}{n}\sum_{i=1}^{n}\mathbf{1}\left[f_\theta(x_i+\delta_i)=y_i\right],
-      \qquad
-      Drop=Acc_{clean}-RA_\epsilon
-      $$
-      </div>
-      <p>공격 조건 성능과 방어 후 성능을 같은 표에 연결한다.</p>
-      <div class="message">수식은 표준 정의식이며 원문 위치와 formal guarantee는 최종 검토 대상이다.</div>
-      <div class="footer"><span>W03 formula supplement</span><span></span></div>
+      <p class="citation-footnote">최종 발표본: presentation_slides.html. 기존 주차번호 HTML은 호환용으로만 유지.</p>
     </section>
 
-    <section class="slide formula-visual-supplement">
-      <div class="slide-header">Visual / W03</div>
-      <h2>그래프와 Pipeline Diagram</h2>
-      <div class="media-grid">
-        <div><img src="assets/charts/w03_metrics_chart.png" alt="W03 metrics chart"><p class="caption">그래프는 condition별 accuracy, attack_success_rate, robust_drop을 `metrics_summary.csv`에서 읽어 시각화한다. epsilon 또는 defense 조건별 변화는 robust accuracy를 clean accuracy와 분리해 보아야 함을 보여준다. 이미 존재하는 output 수치만 사용했다.</p></div>
-        <div><img src="assets/diagrams/w03_pipeline_diagram.svg" alt="W03 pipeline diagram"><p class="caption">AI-assisted conceptual diagram. See assets/figure_manifest.md.</p></div>
+    <section class="slide">
+      <div class="slide-header">Background / W03</div>
+      <h2>왜 이 주제가 중요한가</h2>
+      <p class="key-finding">이 주제는 clean 성능만으로는 안전성을 설명하기 어렵다.</p>
+      <div class="figure-grid three-panel">
+        <div class="figure-panel"><div class="panel-label">A</div><h3>AI 원리</h3><p>모델 목적함수와 표현이 평가 지표의 출발점이다.</p></div>
+        <div class="figure-panel"><div class="panel-label">B</div><h3>보안 표면</h3><p>공격자 가정, 보호 자산, 실패 조건을 분리한다.</p></div>
+        <div class="figure-panel"><div class="panel-label">C</div><h3>근거 관리</h3><p>CSV, run log, 결과표가 같은 값을 말해야 한다.</p></div>
       </div>
-      <div class="footer"><span>Source: outputs/metrics_summary.csv</span><span>adversarial evaluation flow</span></div>
     </section>
-<!-- formula-visual-html:end -->
+
+    <section class="slide">
+      <div class="slide-header">Research Gap</div>
+      <h2>기존 발표 흐름의 빈틈</h2>
+      <table>
+        <thead><tr><th>빈틈</th><th>보완 방식</th><th>검증 상태</th></tr></thead>
+        <tbody>
+          <tr><td>수식과 지표 연결 부족</td><td>핵심 수식, 기호표, 보안적 의미를 한 장에 배치</td><td>표준식 / 확인 필요 병기</td></tr>
+          <tr><td>표와 위협모형 분리</td><td>공격자·방어자·보호 자산 표로 정리</td><td>toy/synthetic 범위</td></tr>
+          <tr><td>결과 그래프 출처 불명확</td><td>metrics_summary.csv 기반 그래프만 사용</td><td>데이터 출처: 04_experiment/outputs/metrics_summary.csv</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Core Formula / W03</div>
+      <h2>핵심 수식: Adversarial Perturbation Constraint</h2>
+      <div class="formula-card">
+        \[
+x&#x27; = x+\delta,
+\qquad
+\lVert \delta \rVert_p \le \epsilon
+        \]
+      </div>
+      <table>
+<thead>
+<tr>
+<th>기호</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\(x\)</td>
+<td>원본 입력</td>
+</tr>
+<tr>
+<td>\(x&#x27;\)</td>
+<td>교란된 입력</td>
+</tr>
+<tr>
+<td>\(\delta\)</td>
+<td>입력 교란</td>
+</tr>
+<tr>
+<td>\(\epsilon\)</td>
+<td>허용 교란 반경</td>
+</tr>
+</tbody>
+</table>
+      <p class="figure-caption">Formula | 대적 예시는 작은 입력 교란이 예측을 바꿀 수 있는지를 보는 평가 개념이다. 핵심은 교란 크기와 모델 실패 여부를 함께 기록하는 것이다. 보안 관점에서는 입력 검증, 강건성 평가, defense 비용이 연결된다. 평가 지표 연결: robust accuracy, attack_success_rate, robust_drop, defense 여부와 연결한다.</p>
+      <div class="limitation-box">한계: toy image setting이며 실제 운영 비전 시스템을 우회하는 절차가 아니다.</div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Threat Model</div>
+      <h2>공격자·방어자·보호 자산</h2>
+      <table>
+        <thead><tr><th>구성요소</th><th>발표 내 의미</th><th>주의</th></tr></thead>
+        <tbody>
+          <tr><td>공격자</td><td>안전한 toy/public/synthetic 범위의 평가 조건을 가정</td><td>실제 시스템 악용 절차 없음</td></tr>
+          <tr><td>방어자</td><td>지표, 로그, 검증 절차로 위험을 관찰</td><td>formal guarantee와 empirical proxy 구분</td></tr>
+          <tr><td>보호 자산</td><td>모델 성능, 데이터 프라이버시, 재현성 증거, 운영 신뢰</td><td>없는 결과는 만들지 않음</td></tr>
+          <tr><td>성공 조건</td><td>accuracy, attack_success_rate, robust_drop 변화가 위험을 설명하는지 확인</td><td>CSV와 모순되면 보류</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Evaluation Protocol</div>
+      <h2>평가 프로토콜과 지표</h2>
+      <table>
+<thead>
+<tr>
+<th>평가 항목</th>
+<th>대표 지표</th>
+<th>기록 방식</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>accuracy</td>
+<td>CSV 컬럼 존재 시 그래프와 표에 반영</td>
+<td>실제 실행 산출물 기준</td>
+</tr>
+<tr>
+<td>attack_success_rate</td>
+<td>CSV 컬럼 존재 시 그래프와 표에 반영</td>
+<td>실제 실행 산출물 기준</td>
+</tr>
+<tr>
+<td>robust_drop</td>
+<td>CSV 컬럼 존재 시 그래프와 표에 반영</td>
+<td>실제 실행 산출물 기준</td>
+</tr>
+</tbody>
+</table>
+      <p class="figure-caption">Protocol | 데이터 출처: 04_experiment/outputs/metrics_summary.csv. run_log.md 또는 results.json과 모순되는 수치는 사용하지 않는다.</p>
+    </section>
+
+    <section class="slide figure-first">
+      <div class="slide-header">Figure 1 / Diagram</div>
+      <h2>adversarial evaluation flow</h2>
+      <div class="figure-grid two-panel">
+        <figure class="figure-panel">
+          <div class="panel-label">A</div>
+          <div class="pipeline-diagram" role="img" aria-label="adversarial evaluation flow">
+<div class="stage normal">Clean Image<br><small>public/toy data</small></div>
+<div class="arrow" aria-hidden="true">→</div>
+<div class="stage normal">Perturbation Set<br><small>epsilon bound</small></div>
+<div class="arrow" aria-hidden="true">→</div>
+<div class="stage normal">Model<br><small>prediction</small></div>
+<div class="arrow" aria-hidden="true">→</div>
+<div class="stage defense">Defense<br><small>squeezing/check</small></div>
+<div class="arrow" aria-hidden="true">→</div>
+<div class="stage defense">Robust Metrics<br><small>RA/drop/ASR</small></div>
+</div>
+          <figcaption class="figure-caption">Pipeline | 단계별 공격면과 방어·검증 지점을 4~6개로 압축했다.</figcaption>
+        </figure>
+        <figure class="figure-panel">
+          <div class="panel-label">B</div>
+          <img src="assets/diagrams/w03_pipeline_diagram.svg" alt="W03 pipeline diagram">
+          <figcaption class="figure-caption">Manifest | assets/figure_manifest.md에 생성 방식과 한계를 기록했다.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="slide figure-first">
+      <div class="slide-header">Figure 2 / Metrics</div>
+      <h2>실제 CSV 기반 지표 그래프</h2>
+      <div class="figure-grid two-panel">
+        <figure class="figure-panel chart-panel">
+          <div class="panel-label">A</div>
+          <img src="assets/charts/w03_metrics_chart.svg" alt="W03 metrics chart">
+          <figcaption class="figure-caption">Graph | 그래프는 condition별 accuracy, attack_success_rate, robust_drop을 `metrics_summary.csv`에서 읽어 시각화한다. epsilon 또는 defense 조건별 변화는 robust accuracy를 clean accuracy와 분리해 보아야 함을 보여준다. 이미 존재하는 output 수치만 사용했다. 데이터 출처: 04_experiment/outputs/metrics_summary.csv</figcaption>
+        </figure>
+        <figure class="figure-panel">
+          <div class="panel-label">B</div>
+          <table>
+<thead>
+<tr>
+<th>condition</th>
+<th>accuracy</th>
+<th>attack_success_rate</th>
+<th>robust_drop</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>clean_baseline</td>
+<td>1</td>
+<td></td>
+<td>0</td>
+</tr>
+<tr>
+<td>centroid_direction_linf</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>centroid_direction_linf</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>centroid_direction_linf</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>centroid_direction_linf</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+          <figcaption class="figure-caption">Table | 그래프에 사용한 CSV의 주요 행을 요약했다.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Paper Map</div>
+      <h2>논문 5편의 역할표</h2>
+      <table>
+<thead>
+<tr>
+<th>ID</th>
+<th>논문 역할</th>
+<th>발표에서 쓰는 위치</th>
+<th>기말논문 연결</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P01</td>
+<td>핵심 이론</td>
+<td>Background / Core Formula</td>
+<td>컴퓨터 비전 대적 공격의 관련연구 뼈대</td>
+</tr>
+<tr>
+<td>P02</td>
+<td>위협 분류</td>
+<td>Threat Model</td>
+<td>공격자·방어자·보호자산 정의</td>
+</tr>
+<tr>
+<td>P03</td>
+<td>평가 지표</td>
+<td>Evaluation Protocol</td>
+<td>정량 지표와 로그 근거 연결</td>
+</tr>
+<tr>
+<td>P04</td>
+<td>공격·방어 사례</td>
+<td>Security Implication</td>
+<td>보안적 함의와 방어 한계</td>
+</tr>
+<tr>
+<td>P05</td>
+<td>재현성·정책 근거</td>
+<td>Limitation</td>
+<td>확인 필요 항목과 제출 전 검증</td>
+</tr>
+</tbody>
+</table>
+      <p class="figure-caption">Paper map | 서지 세부사항과 DOI/URL은 최종 제출 전 원문 기준으로 확인한다.</p>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Security Implication</div>
+      <h2>보안적 함의</h2>
+      <div class="question-box">공격 조건 성능과 방어 후 성능을 같은 표에 연결한다.</div>
+      <div class="figure-grid three-panel">
+        <div class="figure-panel"><div class="panel-label">A</div><h3>분리</h3><p>clean 성능과 보안 지표를 같은 값처럼 해석하지 않는다.</p></div>
+        <div class="figure-panel"><div class="panel-label">B</div><h3>추적</h3><p>수치, 그래프, 노트, Q&A가 같은 산출물을 가리킨다.</p></div>
+        <div class="figure-panel"><div class="panel-label">C</div><h3>제한</h3><p>실제 악용 절차 없이 평가 개념과 방어 관점만 설명한다.</p></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Limitation</div>
+      <h2>한계와 검증 상태</h2>
+      <div class="limitation-box">대적 교란은 toy evaluation 범위로 설명하며 실제 시스템 우회 절차로 쓰지 않는다. 공식 인증 강건성은 아니며 실험적 toy proxy로 표시한다.</div>
+      <table>
+        <thead><tr><th>항목</th><th>상태</th><th>다음 확인</th></tr></thead>
+        <tbody>
+          <tr><td>실험 수치</td><td>실행 산출물 있음</td><td>run_log.md, results.json 대조</td></tr>
+          <tr><td>수식 보증</td><td>표준식 또는 proxy</td><td>원문 절·쪽·formal guarantee 확인</td></tr>
+          <tr><td>운영 적용</td><td>바로 적용 불가</td><td>실제 데이터·정책·위험평가 필요</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="slide">
+      <div class="slide-header">Final Takeaway</div>
+      <h2>기말논문 연결</h2>
+      <p class="key-finding">W03의 결론은 지표를 분리하고 근거 파일로 추적하는 연구 설계다.</p>
+      <table>
+        <thead><tr><th>기말논문 장</th><th>연결 내용</th></tr></thead>
+        <tbody>
+          <tr><td>관련연구</td><td>컴퓨터 비전 대적 공격의 핵심 이론과 보안 taxonomy 정리</td></tr>
+          <tr><td>위협모형</td><td>adversarial evaluation flow 기반 공격면·방어면 정의</td></tr>
+          <tr><td>평가방법</td><td>accuracy, attack_success_rate, robust_drop를 CSV/log 기준으로 검증</td></tr>
+          <tr><td>한계</td><td>toy/synthetic 범위와 확인 필요 항목을 명시</td></tr>
+        </tbody>
+      </table>
+    </section>
+
   </main>
 
-<div class="controls" aria-label="slide controls">
-  <button id="prev" type="button">Prev</button>
-  <span id="count">1 / 14</span>
-  <button id="next" type="button">Next</button>
-</div>
+  <nav class="slide-nav" aria-label="슬라이드 이동">
+    <button id="prevSlide" type="button" title="이전 슬라이드" aria-label="이전 슬라이드">‹</button>
+    <span id="slideCounter" class="slide-counter" aria-live="polite">1 / 1</span>
+    <button id="nextSlide" type="button" title="다음 슬라이드" aria-label="다음 슬라이드">›</button>
+  </nav>
 
-<script>
-  const slides = Array.from(document.querySelectorAll('.slide'));
-  const count = document.getElementById('count');
-  let index = 0;
+  <script>
+    const slides = Array.from(document.querySelectorAll("section.slide, section"));
+    const prevButton = document.getElementById("prevSlide");
+    const nextButton = document.getElementById("nextSlide");
+    const counter = document.getElementById("slideCounter");
+    let currentIndex = 0;
 
-  function showSlide(nextIndex) {
-    index = Math.max(0, Math.min(slides.length - 1, nextIndex));
-    slides.forEach((slide, position) => {
-      slide.classList.toggle('active', position === index);
+    function updateNav(index) {
+      currentIndex = Math.max(0, Math.min(index, slides.length - 1));
+      counter.textContent = `${currentIndex + 1} / ${slides.length}`;
+      prevButton.disabled = currentIndex === 0;
+      nextButton.disabled = currentIndex === slides.length - 1;
+    }
+
+    function goToSlide(index) {
+      const nextIndex = Math.max(0, Math.min(index, slides.length - 1));
+      slides[nextIndex].scrollIntoView({ behavior: "smooth", block: "start" });
+      updateNav(nextIndex);
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        window.MathJax.typesetPromise([slides[nextIndex]]).catch(() => {});
+      }
+    }
+
+    prevButton.addEventListener("click", () => goToSlide(currentIndex - 1));
+    nextButton.addEventListener("click", () => goToSlide(currentIndex + 1));
+
+    document.addEventListener("keydown", (event) => {
+      if (["ArrowRight", "PageDown", " "].includes(event.key)) {
+        event.preventDefault();
+        goToSlide(currentIndex + 1);
+      }
+
+      if (["ArrowLeft", "PageUp"].includes(event.key)) {
+        event.preventDefault();
+        goToSlide(currentIndex - 1);
+      }
+
+      if (event.key === "Home") {
+        event.preventDefault();
+        goToSlide(0);
+      }
+
+      if (event.key === "End") {
+        event.preventDefault();
+        goToSlide(slides.length - 1);
+      }
     });
-    count.textContent = `${index + 1} / ${slides.length}`;
-  }
 
-  document.getElementById('prev').addEventListener('click', () => showSlide(index - 1));
-  document.getElementById('next').addEventListener('click', () => showSlide(index + 1));
-  window.addEventListener('keydown', (event) => {
-    if (['ArrowRight', 'PageDown', ' '].includes(event.key)) {
-      event.preventDefault();
-      showSlide(index + 1);
-    }
-    if (['ArrowLeft', 'PageUp'].includes(event.key)) {
-      event.preventDefault();
-      showSlide(index - 1);
-    }
-    if (event.key === 'Home') showSlide(0);
-    if (event.key === 'End') showSlide(slides.length - 1);
-  });
-  showSlide(0);
-</script>
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((left, right) => right.intersectionRatio - left.intersectionRatio)[0];
+
+        if (visible) {
+          updateNav(slides.indexOf(visible.target));
+        }
+      },
+      { threshold: [0.55] }
+    );
+
+    slides.forEach((slide) => observer.observe(slide));
+    updateNav(0);
+  </script>
 </body>
 </html>

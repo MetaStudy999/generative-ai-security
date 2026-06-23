@@ -425,7 +425,7 @@ detector toy evaluation이며 실제 미디어 판별 보증으로 해석하지 
 
 ### 표 수치 기반 그래프
 
-![W06 metrics chart](../../09_presentation/assets/charts/w06_metrics_chart.png)
+![W06 metrics chart](../../09_presentation/assets/charts/w06_metrics_chart.svg)
 
 그래프는 deepfake detector의 accuracy, F1, FPR, FNR, AUROC를 조건별로 비교한다. 탐지 문제에서는 false positive와 false negative의 보안 비용이 다르므로 accuracy만으로 결론을 내리지 않는다. source는 `metrics_summary.csv`이다.
 

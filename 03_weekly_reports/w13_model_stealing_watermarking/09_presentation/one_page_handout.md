@@ -1,45 +1,41 @@
-# W13 1페이지 요약
+# W13 주차 연구 발표 요약
 
-## 핵심 메시지
+## Research Question
 
-모델 추출 위험은 victim/substitute 출력 일치율인 fidelity로 보고, 워터마크 기반 소유권 검증은 detection rate와 false positive rate를 함께 봐야 한다.
+이 주차에서 성능 지표와 보안 지표를 어떻게 분리해 평가할 수 있는가?
 
-## 문헌 상태
+## Key Formula
 
-| ID | 역할 | 상태 |
-|---|---|---|
-| P01 | model stealing taxonomy | DOI 확인 |
-| P02 | watermarking/fingerprinting | SUBSTITUTE, 원문 확보 필요 |
-| P03 | DNN watermarking trade-off | DOI 확인, 표기 차이 |
-| P04 | ModelShield | IEEE TIFS DOI 확인 |
-| P05 | GAN attack/defense | SUBSTITUTE, 지정 후보 DOI 확인 |
+**Model Extraction Query Objective**
 
-## 실험 결과
+$$
+\min_{\hat{\theta}}\frac{1}{|Q|}\sum_{x\in Q}\ell(f_{\hat{\theta}}(x), f_{\theta^\star}(x))
+$$
 
-| 조건 | Query Budget | Fidelity | Detection | FPR |
-|---|---:|---:|---:|---:|
-| Substitute query 100 | 100 | 0.864000 | 0.700000 | 0.600000 |
-| Substitute query 500 | 500 | 0.920000 | 1.000000 | 0.600000 |
-| Substitute query 1000 | 1000 | 0.902000 | 1.000000 | 0.600000 |
+- 기호와 의미는 슬라이드의 표를 기준으로 설명한다.
+- 보안적 의미: 보안 관점에서는 query budget, fidelity, watermark detection을 함께 본다.
 
-Baseline victim utility accuracy는 0.868000이다. 실험은 synthetic toy 환경에서만 수행했으며 실제 API, 실제 LLM, 개인정보, 무단 질의는 포함하지 않는다.
+## Threat Model
 
-## False Positive 해석
+model extraction and watermark audit flow 기준으로 공격자, 방어자, 보호 자산, 성공 조건을 분리한다.
 
-FPR 0.600000은 trigger-set detection만으로 소유권을 강하게 주장하기 어렵다는 신호다. clean control, unrelated model, random trigger control, multiple seeds, statistical testing이 필요하다.
+## Main Figure
 
-## 기말논문 연결
+- Diagram: `assets/diagrams/w13_pipeline_diagram.svg`
+- Chart: `assets/charts/w13_metrics_chart.svg`
 
-“모델 추출 이후 소유권 검증을 위한 다중지표 평가 프레임워크”로 발전시킬 수 있다. 핵심 지표는 fidelity, query cost, detection, false positive, utility, reproducibility다.
+## Evaluation Metrics
 
-<!-- formula-visual-handout:start -->
-## 수식·그래프·그림 보강 요약
+extraction_fidelity, substitute_accuracy, watermark_detection, false_positive_rate, utility_accuracy. 실제 수치는 `04_experiment/outputs/metrics_summary.csv` 기준이다.
 
-| 항목 | 반영 내용 |
-|---|---|
-| 핵심 수식 | Model Extraction Query Objective, Watermark Detection Rate, FPR/FNR, Utility Loss |
-| 그래프 | `assets/charts/w13_metrics_chart.png` (`metrics_summary.csv` 기반) |
-| 다이어그램 | `assets/diagrams/w13_pipeline_diagram.svg` (model extraction and watermark audit flow) |
-| 기호 정의 | 통합보고서와 발표 슬라이드의 수식 블록에 포함 |
-| 주의사항 | model extraction은 방어 평가 관점의 toy query objective로만 설명한다. |
-<!-- formula-visual-handout:end -->
+## Security Implication
+
+Clean 성능과 보안 지표는 서로 다른 실패 모드를 설명하므로 같은 결론으로 합치지 않는다.
+
+## Limitation
+
+model extraction은 방어 평가 관점의 toy query objective로만 설명한다. toy/synthetic 범위와 formal guarantee 여부를 구분해야 한다.
+
+## Final Paper Link
+
+기말논문에서는 관련연구, 위협모형, 평가방법, 한계 절에 이 주차의 수식·표·그래프·다이어그램을 연결한다.

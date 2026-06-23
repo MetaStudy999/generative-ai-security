@@ -1,30 +1,197 @@
-# 발표자 노트
+# W10 발표자 노트
 
-| 슬라이드 | 시간 | 발화 요지 |
-|---:|---:|---|
-| 1 | 0:40 | 오늘의 핵심은 FL이 privacy-preserving처럼 보이지만 보안 평가가 별도로 필요하다는 점이다. |
-| 2 | 1:00 | client, server, aggregation 구조를 설명하고 FedAvg가 가장 기본 기준임을 말한다. |
-| 3 | 1:10 | 보호 자산을 local update, global model, aggregation result, training log로 나눈다. |
-| 4 | 1:00 | 다섯 논문이 각각 원리, 보안 taxonomy, privacy/policy, backdoor 평가를 담당한다고 연결한다. |
-| 5 | 1:10 | 실제 공격이 아니라 synthetic toy 실험임을 먼저 밝힌다. |
-| 6 | 1:40 | 20% poisoned FedAvg의 ASR 0.496835와 robust aggregation ASR 0.237342를 비교한다. |
-| 7 | 1:00 | clean accuracy만 보면 위험을 놓친다는 메시지를 강조한다. |
-| 8 | 0:50 | 기말논문의 평가표와 연결한다. |
-| 9 | 0:40 | FL 보안은 update, aggregation, ASR, 로그 재현성을 함께 봐야 한다고 마무리한다. |
+- 권장 시간: 10-14분
+- 발표 원칙: 그림과 수식을 먼저 보여주고, 긴 설명은 구두로 보완한다.
+- 안전 범위: public, synthetic, toy, local evaluation. 실제 시스템 악용 절차는 설명하지 않는다.
 
-## 발표 주의
+## Slide 1. Title
 
-- Privacy Leakage Proxy는 실제 gradient inversion 성공률이 아니라고 명확히 말한다.
-- 모든 수치는 `04_experiment/outputs/run_log.md` 기준이라고 밝힌다.
-- P03/P05 출판 DOI는 확인했지만, 최종 제출 전 DOI landing page를 사람이 다시 확인한다고 말한다.
-- P01은 수업자료의 ACM Computing Surveys 표기와 공식 TIST DOI 메타데이터 차이가 있음을 짧게 언급한다.
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
 
-<!-- formula-visual-speaker-notes:start -->
-## 수식·그래프·그림 발표자 노트
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
 
-- 핵심 수식: FedAvg Aggregation과 Client Update, Update Norm Leakage/Poisoning Proxy. 수식은 표준 정의식이며, 원문 위치나 formal guarantee가 확인되지 않은 부분은 확인 필요로 말한다.
-- 기호 정의표는 청중이 식을 해석할 수 있도록 먼저 읽고, 이후 보안 지표와 연결한다.
-- 그래프 설명: 그래프는 global_accuracy, global_f1, ASR, privacy_leakage_proxy, mean_update_norm을 조건별로 보여준다. FL에서는 중앙 성능만이 아니라 malicious client rate, update norm, leakage proxy를 함께 기록해야 한다. CSV에 없는 client-level raw data는 만들지 않았다.
-- 다이어그램 설명: `FL aggregation structure`는 threat model 또는 평가 pipeline을 한 장으로 보여주는 보조 그림이다.
-- 한계 고지: privacy_leakage_proxy는 실제 gradient inversion 성공률이 아니며 proxy로만 해석한다.
-<!-- formula-visual-speaker-notes:end -->
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- privacy_leakage_proxy는 실제 gradient inversion 성공률이 아니며 proxy로만 해석한다.
+
+## Slide 2. Background
+
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
+
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
+
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- privacy_leakage_proxy는 실제 gradient inversion 성공률이 아니며 proxy로만 해석한다.
+
+## Slide 3. Research Gap
+
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
+
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
+
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- privacy_leakage_proxy는 실제 gradient inversion 성공률이 아니며 proxy로만 해석한다.
+
+## Slide 4. Core Formula
+
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
+
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
+
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- privacy_leakage_proxy는 실제 gradient inversion 성공률이 아니며 proxy로만 해석한다.
+
+## Slide 5. Threat Model
+
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
+
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
+
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- privacy_leakage_proxy는 실제 gradient inversion 성공률이 아니며 proxy로만 해석한다.
+
+## Slide 6. Evaluation Protocol
+
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
+
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
+
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- privacy_leakage_proxy는 실제 gradient inversion 성공률이 아니며 proxy로만 해석한다.
+
+## Slide 7. Figure 1 Diagram
+
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
+
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
+
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- privacy_leakage_proxy는 실제 gradient inversion 성공률이 아니며 proxy로만 해석한다.
+
+## Slide 8. Figure 2 Metrics
+
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
+
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
+
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- privacy_leakage_proxy는 실제 gradient inversion 성공률이 아니며 proxy로만 해석한다.
+
+## Slide 9. Paper Map
+
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
+
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
+
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- privacy_leakage_proxy는 실제 gradient inversion 성공률이 아니며 proxy로만 해석한다.
+
+## Slide 10. Security Implication
+
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
+
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
+
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- privacy_leakage_proxy는 실제 gradient inversion 성공률이 아니며 proxy로만 해석한다.
+
+## Slide 11. Limitation
+
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
+
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
+
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- privacy_leakage_proxy는 실제 gradient inversion 성공률이 아니며 proxy로만 해석한다.
+
+## Slide 12. Final Takeaway
+
+### 말할 핵심
+- 이 주차 주제를 clean 성능 하나가 아니라 보안 지표와 근거 파일로 분리해 설명한다.
+
+### 설명 순서
+1. 그림 또는 수식을 먼저 설명
+2. 평가 지표와 연결
+3. 보안적 의미 설명
+4. 한계 언급
+
+### 주의
+- 실행하지 않은 결과는 결과처럼 말하지 않는다.
+- 논문 수치와 로컬 실험 수치를 혼동하지 않는다.
+- privacy_leakage_proxy는 실제 gradient inversion 성공률이 아니며 proxy로만 해석한다.

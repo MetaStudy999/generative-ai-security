@@ -430,7 +430,7 @@ accuracy, attack_success_rate, robust_drop, n_samples와 연결한다.
 
 ### 표 수치 기반 그래프
 
-![W03 metrics chart](../../09_presentation/assets/charts/w03_metrics_chart.png)
+![W03 metrics chart](../../09_presentation/assets/charts/w03_metrics_chart.svg)
 
 그래프는 condition별 accuracy, attack_success_rate, robust_drop을 `metrics_summary.csv`에서 읽어 시각화한다. epsilon 또는 defense 조건별 변화는 robust accuracy를 clean accuracy와 분리해 보아야 함을 보여준다. 이미 존재하는 output 수치만 사용했다.
 

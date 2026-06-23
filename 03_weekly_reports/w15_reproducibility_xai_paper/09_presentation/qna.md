@@ -1,32 +1,29 @@
-# W15 예상 Q&A
+# W15 Q&A
 
-| 질문 | 답변 | 근거 파일 |
-|---|---|---|
-| W15 감사 결과가 모델 성능을 의미하나요? | 아닙니다. W15 감사는 로컬 파일, DOI/URL 상태, AI 고지, 제출/발표 패키지 준비 여부를 확인한 것입니다. 모델 accuracy나 F1을 주장하지 않습니다. | `04_experiment/outputs/run_log.md` |
-| 왜 P03은 부분 확인으로 남겼나요? | DOI metadata는 `10.1145/3561048`로 확인했지만, 로컬 PDF는 Mersha et al.의 arXiv 대체 survey입니다. 최종 인용 전 지정 논문 원문 PDF를 확보해야 합니다. | `01_papers/doi_check.md`, `02_paper_summaries/P03_summary.md` |
-| P05는 왜 추가 확인이 남아 있나요? | arXiv:2312.12936과 최종 DOI `10.1145/3774643`은 확인했지만, ACM 권호/issue와 최종 formatted PDF는 제출 전 사람이 재확인해야 합니다. | `01_papers/doi_check.md` |
-| benchmark contamination은 왜 보안 이슈인가요? | 평가셋이 학습·튜닝·프롬프트 설계에 노출되면 성능이 실제 일반화 능력을 반영하지 못하므로 연구 결과의 무결성이 깨집니다. | `03_theory_notes/security_issue_30.md` |
-| XAI는 방어 도구인가요? | 설명은 오류와 편향을 찾는 방어 도구가 될 수 있지만, 민감 feature나 모델 우회 단서를 노출할 수 있어 공격면이기도 합니다. | `03_theory_notes/threat_model.md` |
-| 기말논문의 최종 contribution은 무엇인가요? | LLM/RAG 기반 AI 시스템의 prompt injection, benchmark contamination, privacy leakage를 생명주기 관점에서 분석하고, 재현성 중심 보안 평가 체크리스트를 제안하는 것입니다. | `08_final_paper_bridge/contribution_candidates.md` |
-| 실제 개인정보나 상용 API 공격을 다루나요? | 다루지 않습니다. 공개 문헌, 로컬 산출물, 공개 또는 synthetic toy evaluation 범위로 제한합니다. | `04_experiment/configs/config.yaml` |
-| 최종 제출 전에 남은 일은 무엇인가요? | P03 원문 PDF 확보, P05 권호/issue 확인, 국내 문헌 3편 이상 검증, PDF 저작권/보관 정책 검토입니다. | `03_theory_notes/open_problems.md` |
+## Q1. 이 수식이 실제 실험 지표와 어떻게 연결되는가?
 
-<!-- formula-visual-qna:start -->
-## 수식·그래프·그림 보강 Q&A
+A. 핵심 수식은 value 같은 지표를 해석하는 표준 정식화다. 실제 값은 `04_experiment/outputs/metrics_summary.csv`에서만 가져오며, 수식 자체가 운영 보증을 뜻하지는 않는다.
 
-### Q. 그래프 수치는 어디에서 온 것인가?
+## Q2. 이 그래프의 수치는 실제 실행 결과인가, 설계 예시인가?
 
-A. `04_experiment/outputs/metrics_summary.csv`의 기존 수치만 사용했다. CSV에 없는 값, 실행하지 않은 실험, 외부 논문 실험 수치는 추가하지 않았다.
+A. 그래프는 `metrics_summary.csv`가 존재하고 numeric 컬럼을 확인한 경우에만 생성했다. CSV에 없는 값은 만들지 않았으며, 산출물이 없을 때는 `design_only / 실행 전 / 확인 필요`로 표시한다.
 
-### Q. 이 수식은 해당 논문의 원문 수식인가?
+## Q3. clean accuracy와 보안 지표가 다른 이유는 무엇인가?
 
-A. 발표 보강용 수식은 표준 정의식 또는 검증 가능한 평가식이다. 논문별 원문 절·쪽·그림 번호가 필요한 경우 최종 제출 전 사람 검토로 확인한다.
+A. clean accuracy는 정상 조건의 예측 성능이고, 보안 지표는 공격 조건, 교란 조건, 프라이버시 누출, 재현성 증거처럼 다른 실패 모드를 본다. 둘은 같은 숫자로 합치면 안 된다.
 
-### Q. 다이어그램은 실험 결과인가?
+## Q4. 이 주차 내용을 기말논문에 어떻게 반영할 수 있는가?
 
-A. 아니다. `reproducibility workflow` 다이어그램은 AI-assisted conceptual diagram이며 threat model과 pipeline 설명을 위한 보조 그림이다.
+A. `reproducibility workflow`를 위협모형 그림으로 쓰고, value를 평가방법 표에 연결할 수 있다. 단, toy/synthetic 범위와 확인 필요 항목은 한계 절에 남겨야 한다.
 
-### Q. 보안적으로 가장 조심해야 할 해석은 무엇인가?
+## Q5. 현재 한계는 무엇이고 추가 실험은 무엇인가?
 
-A. 비율 변환 값은 local completeness proxy이며 학술적 품질 보증 점수가 아니다. 또한 모든 실습은 공개 데이터, synthetic/toy 데이터, 로컬 모의실험 범위로만 해석한다.
-<!-- formula-visual-qna:end -->
+A. 비율 변환 값은 local completeness proxy이며 학술적 품질 보증 점수가 아니다. 추가 실험은 run_log.md와 results.json까지 일치하는 조건에서만 확정 수치로 반영한다.
+
+## Q6. 논문 5편 중 핵심 근거는 무엇인가?
+
+A. P01은 핵심 이론, P02는 위협 분류, P03은 평가 지표, P04는 공격·방어 사례, P05는 재현성·정책 근거로 사용한다. 세부 서지와 DOI/URL은 최종 제출 전 원문으로 확인한다.
+
+## Q7. 실제 운영 시스템에 바로 적용할 수 없는 이유는 무엇인가?
+
+A. 발표의 실습과 그림은 public, synthetic, toy, local evaluation 범위다. 운영 적용에는 실제 데이터 거버넌스, 정책 승인, 위협모형 검토, 독립 검증, 법적 검토가 추가로 필요하다.

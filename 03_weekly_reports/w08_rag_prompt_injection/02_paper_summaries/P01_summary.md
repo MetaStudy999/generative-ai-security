@@ -1,71 +1,78 @@
-# 논문 요약
+# P01 Summary
 
-## 1. 서지정보
+## Graph Retrieval-Augmented Generation: A Survey — Boci Peng et al., ACM TOIS, 2025/2026
 
-| 항목 | 내용 |
-|---|---|
-| 논문 제목 | Graph Retrieval-Augmented Generation: A Survey |
-| 저자 | Boci Peng, Yun Zhu, Yongchao Liu, Xiaohe Bo, Haizhou Shi, Chuntao Hong, Yan Zhang, Siliang Tang |
-| 학술지/학회 | arXiv / 출판정보 확인 필요 |
-| 연도 | 2024 |
-| DOI/URL | https://arxiv.org/abs/2408.08921 |
-| PDF 파일명 | 01_Peng_et_al_2025_Graph_Retrieval_Augmented_Generation.pdf |
-| 강의계획서 표기 | Shiyu Chen et al., ACM Computing Surveys, 2025 |
-| 로컬 PDF 표기 | Boci Peng et al., arXiv:2408.08921 |
-| 검증 상태 | PDF 첫 페이지와 arXiv ID 확인, DOI는 PDF placeholder라 확정 보류. 강의계획서 표기와 동일 논문 여부 확인 필요 |
-
-## 2. 한 문장 요약
-
-> 이 논문은 일반 RAG가 관계 구조와 전역 정보를 충분히 활용하지 못하는 문제를 GraphRAG 워크플로우 분류로 다루며, graph-based indexing, graph-guided retrieval, graph-enhanced generation이라는 분석 틀을 제시한다.
-
-## 3. 연구문제
-
-RAG가 외부 지식을 검색해 LLM의 환각과 최신성 문제를 줄일 수 있지만, 문서 사이의 관계, citation network, knowledge graph, multi-hop reasoning처럼 구조적 연결이 중요한 상황에서는 단순 semantic similarity 검색만으로 부족하다. 이 논문은 GraphRAG가 어떤 단계와 기술 요소로 구성되는지 체계화한다.
-
-## 4. 핵심 개념
-
-| 개념 | 설명 | W08 연결 |
-|---|---|---|
-| GraphRAG | 텍스트 chunk만이 아니라 node, edge, path, subgraph를 검색·생성에 활용하는 RAG |
-| Graph-Based Indexing | 검색 전에 문서와 entity 관계를 graph 형태로 구축하는 단계 |
-| Graph-Guided Retrieval | query와 관련된 graph element를 찾아 관계 기반 context를 구성하는 단계 |
-| Graph-Enhanced Generation | 검색된 관계 구조를 generation prompt에 반영하는 단계 |
-| Lost in the Middle | 긴 context 안에서 중요한 정보가 묻히는 현상 |
-
-## 5. 방법론
-
-문헌조사 기반 survey다. GraphRAG pipeline을 단계별로 formalize하고, 각 단계의 핵심 기술, training 방법, downstream task, application domain, evaluation 방법, 산업 활용 사례를 분류한다.
-
-### 5.1 핵심 수식 또는 알고리즘 설명
+## 0. 문헌 검증 상태
 
 | 항목 | 내용 |
 |---|---|
-| 수식/알고리즘 이름 | RAG Top-k Retrieval |
-| 원문 위치 | 논문 세부 절/쪽/그림/알고리즘 번호 확인 필요. 로컬 DOI/URL 점검표로 문헌 대응만 확인. |
-| 작성 형식 | Markdown + LaTeX math |
-| 검산 도구 | 사용 안 함 |
-| 수식 또는 절차 | 표준 정의식 / 원문 직접 인용 아님.<br>$$TopK(q)=\operatorname{arg\ top\ k}_{d\in\mathcal{D}}\ s(q,d)$$ |
-| 기호·입력·출력 | \(q\): 질의, \(d\): 문서, \(\mathcal{D}\): corpus, \(s(q,d)\): ranking score |
-| 직관적 의미 | RAG Top-k Retrieval는 RAG·Prompt Injection 평가에서 핵심 원리나 평가 지표를 정량적으로 해석하기 위한 표준식이다. |
-| 보안 관점 해석 | RAG·Prompt Injection 평가에서는 정상 성능과 보안 실패 조건을 분리해 보아야 한다. 이 항목은 공격·방어 원리 또는 운영 통제의 평가 기준을 명시하되, 실제 공격 절차나 무단 적용 단계는 포함하지 않는다. |
-| 평가 지표와 연결 | retrieval recall, groundedness, injection ASR, source precision |
-| 한계와 가정 | 표준 정의식 / 원문 직접 인용 아님. 논문별 변형, 정확한 수식 번호, 실험 설정은 원문 PDF에서 확인 필요다. |
-| 기말 논문 반영 여부 | 반영 |
+| 주차 | W08 RAG & Prompt Injection |
+| 논문명 | Graph Retrieval-Augmented Generation: A Survey |
+| 저자 | Boci Peng et al. |
+| 출판 정보 | ACM Transactions on Information Systems, 44(2), pp. 1–52 |
+| DOI | https://doi.org/10.1145/3777378 |
+| 보조 URL | https://arxiv.org/abs/2408.08921 |
+| 검증 상태 | W08 `paper_list.md` 기준 공식 DOI 확인. 강의계획서 Shiyu Chen/ACM CSUR 표기 차이 메모 유지 |
 
-## 6. 주요 결과
+---
 
-이 논문은 GraphRAG를 단순 RAG의 확장 기능이 아니라 “관계 구조를 검색과 생성에 주입하는 별도 pipeline”으로 설명한다. W08에서는 이 틀을 활용해 오염 문서가 graph node나 edge로 들어왔을 때 검색·생성 단계 모두에 영향을 줄 수 있음을 정리한다.
+## 1. 한 문장 요약
 
-## 7. 보안 관점 분석
+이 논문은 Graph RAG를 **graph construction, retrieval, reasoning, augmentation, knowledge graph, citation/provenance, graph-enhanced generation** 관점에서 정리하고, W08에서 RAG 문서·노드·엣지·근거 출처가 보안 자산이 됨을 설명하는 관련 핵심 문헌이다.
 
-GraphRAG는 관계 추론 능력을 높이지만, 동시에 오염된 node, forged edge, 악성 subgraph가 검색 근거로 선택될 위험도 만든다. 따라서 prompt injection 방어는 텍스트 chunk 필터링만이 아니라 graph provenance, edge trust, community-level source verification까지 포함해야 한다.
+---
 
-## 8. 한계와 오픈문제
+## 2. 핵심 연구질문
 
-PDF의 DOI가 placeholder로 표시되어 확정 인용에는 arXiv URL만 사용해야 한다. 또한 survey 문헌이므로 GraphRAG 보안성 자체를 실험적으로 검증하지는 않는다. W08 실습에서는 이를 보완하기 위해 synthetic source verification 평가를 별도로 수행했다.
+| 번호 | 연구질문 |
+|---|---|
+| RQ1 | RAG에 graph structure를 결합하면 검색과 추론은 어떻게 달라지는가? |
+| RQ2 | graph node, edge, evidence path는 어떤 provenance와 감사 가치를 갖는가? |
+| RQ3 | graph poisoning, malicious node, edge manipulation은 RAG 출력을 어떻게 왜곡할 수 있는가? |
+| RQ4 | Graph RAG의 보안 평가는 retrieval quality와 generation safety를 어떻게 함께 봐야 하는가? |
 
-주의: W08의 P01은 arXiv:2408.08921 기준으로 확인했으나, PDF 내부 DOI가 placeholder이므로 DOI를 확정하지 않는다. 강의계획서의 Shiyu Chen et al. / ACM Computing Surveys 2025 표기와 현재 로컬 PDF의 Boci Peng et al. 표기가 동일 논문을 가리키는지 최종 확인이 필요하다.
+---
 
-## 9. 기말 논문에 반영할 부분
+## 3. 핵심 수식·지표
 
-기말 논문 관련연구 장에는 GraphRAG의 세 단계 분류를 반영하고, 방법론 장에는 “검색 context에 들어온 문서/관계의 출처 검증”을 RAG 보안 평가 항목으로 넣는다.
+### 3.1 Graph Retrieval
+
+$$
+D_k(q)=TopK_{v_i\in V}\; sim(E(q),E(v_i))
+$$
+
+### 3.2 Evidence Path Score
+
+$$
+Score(q,path)=\alpha\cdot sim(E(q),E(path))+\beta\cdot Trust(path)
+$$
+
+| 기호 | 의미 |
+|---|---|
+| $V$ | graph node 집합 |
+| $E(\cdot)$ | embedding 함수 |
+| $Trust(path)$ | 출처·검증·신뢰도 점수 |
+
+---
+
+## 4. 위협모형·평가지표
+
+| 항목 | 내용 |
+|---|---|
+| 보호 자산 | graph node, edge, relation, source document, evidence path, citation |
+| 공격자 목표 | malicious node 삽입, edge 조작, evidence path 왜곡, 답변 오염 |
+| 공격자 능력 | 문서 업로드, metadata 조작, graph edge poisoning, retrieval ranking 조작 |
+| 지표 | retrieval recall, source precision, evidence faithfulness, citation support, injection ASR |
+| 재현성 | graph snapshot, node/edge version, retrieval config, prompt, output log 기록 |
+
+---
+
+## 5. 기말논문 연결
+
+Graph RAG는 RAG 보안을 단순 vector retrieval 문제가 아니라 지식 구조와 provenance 문제로 확장한다. 기말논문에서는 문서 출처, graph node/edge 무결성, evidence path 감사표로 반영한다.
+
+---
+
+## 6. 최종 판단
+
+P01은 W08의 RAG 구조와 provenance 평가 배경 문헌이다. 강의계획서 표기 차이 때문에 관련 논문 상태를 유지하되, Graph RAG 보안 평가에는 직접 활용 가능하다.

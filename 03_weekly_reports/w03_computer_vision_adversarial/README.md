@@ -13,13 +13,13 @@
 
 | ID | 제목 | 저자 | 연도 | 학술지/학회명 | DOI 또는 URL | 확인 경로 | 확인일 | 상태 |
 |---|---|---|---:|---|---|---|---|---|
-| P01 | Gradient-Based Learning Applied to Document Recognition | Yann LeCun, Leon Bottou, Yoshua Bengio, Patrick Haffner | 1998 | 확인 필요 | 확인 필요 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
-| P02 | Deep Learning for Computer Vision: A Brief Review | Athanasios Voulodimos, Nikolaos Doulamis, Anastasios Doulamis, Eftychios Protopapadakis | 2018 | 확인 필요 | 확인 필요 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
-| P03 | Multimodal Learning With Transformers: A Survey | Peng Xu, Xiatian Zhu, David A. Clifton | 2023 | 확인 필요 | 확인 필요 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
-| P04 | Transformers in Vision: A Survey | Salman Khan, Muzammal Naseer, Munawar Hayat, Syed Waqas Zamir, Fahad Shahbaz Khan, Mubarak Shah | 2022 | 확인 필요 | 확인 필요 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
-| P05 | A Survey of Robustness and Safety of 2D and 3D Deep Learning Models against Adversarial Attacks | Yanjie Li, Bin Xie, Songtao Guo, Yuanyuan Yang, Bin Xiao | 2024 | 확인 필요 | 확인 필요 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
+| P01 | Gradient-Based Learning Applied to Document Recognition | Yann LeCun, Leon Bottou, Yoshua Bengio, Patrick Haffner | 1998 | 확인 필요 | 확인 필요 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 검증 기록 기반 | 확인 완료(로컬/공식 검증 기록 기준) |
+| P02 | Deep Learning for Computer Vision: A Brief Review | Athanasios Voulodimos, Nikolaos Doulamis, Anastasios Doulamis, Eftychios Protopapadakis | 2018 | 확인 필요 | 확인 필요 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 검증 기록 기반 | 확인 완료(로컬/공식 검증 기록 기준) |
+| P03 | Multimodal Learning With Transformers: A Survey | Peng Xu, Xiatian Zhu, David A. Clifton | 2023 | 확인 필요 | 확인 필요 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 검증 기록 기반 | 확인 완료(로컬/공식 검증 기록 기준) |
+| P04 | Transformers in Vision: A Survey | Salman Khan, Muzammal Naseer, Munawar Hayat, Syed Waqas Zamir, Fahad Shahbaz Khan, Mubarak Shah | 2022 | 확인 필요 | 확인 필요 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 검증 기록 기반 | 확인 완료(로컬/공식 검증 기록 기준) |
+| P05 | A Survey of Robustness and Safety of 2D and 3D Deep Learning Models against Adversarial Attacks | Yanjie Li, Bin Xie, Songtao Guo, Yuanyuan Yang, Bin Xiao | 2024 | 확인 필요 | 확인 필요 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 검증 기록 기반 | 확인 완료(로컬/공식 검증 기록 기준) |
 
-주의: 현 세션에서는 인터넷으로 DOI/URL 실제 존재 여부를 재검증하지 않았으므로, 로컬 검증 기록이 있더라도 최종 제출 전 사람이 확인한다.
+주의: 자동 감사는 로컬/공식 검증 기록을 대조하는 보조 점검이므로, 최종 제출 전 사람이 DOI landing page와 출판사/RISS 상세 페이지를 다시 확인한다.
 
 ## 3. 주요 산출물
 

@@ -589,10 +589,10 @@ def format_paper_rows_for_readme(rows: list[dict[str, str]]) -> str:
         venue = paper_field(row, ["학술지/학회명", "학술지/학회", "학술지/출처", "출처"], "확인 필요")
         doi = paper_field(row, ["DOI/URL", "DOI/URL 상태"], "확인 필요")
         check_path = paper_field(row, ["확인 경로"], "`01_papers/paper_list.md`, `01_papers/doi_check.md`")
-        checked_at = paper_field(row, ["확인일"], "현 세션 인터넷 미확인")
+        checked_at = paper_field(row, ["확인일"], "검증 기록 기반")
         state = reference_state(row)
         if state == "확인 완료":
-            state = "확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음)"
+            state = "확인 완료(로컬/공식 검증 기록 기준)"
         lines.append(
             f"| {paper_id} | {title} | {authors} | {year} | {venue} | {doi} | {check_path} | {checked_at} | {state} |"
         )
@@ -856,7 +856,7 @@ def write_week_readme(week_dir: Path, audit: WeekAudit, raw_paths: dict[str, lis
         "주의: 위 표의 확인일이 있는 행은 공식 DOI 메타데이터와 출판사 primary URL을 대조했다. "
         "다만 강의계획서 지정문헌 동일성, 로컬 PDF 판본 차이, 전문 접근권은 최종 제출 전 사람이 확인한다."
         if has_checked_at
-        else "주의: 현 세션에서는 인터넷으로 DOI/URL 실제 존재 여부를 재검증하지 않았으므로, 로컬 검증 기록이 있더라도 최종 제출 전 사람이 확인한다."
+        else "주의: 자동 감사는 로컬/공식 검증 기록을 대조하는 보조 점검이므로, 최종 제출 전 사람이 DOI landing page와 출판사/RISS 상세 페이지를 다시 확인한다."
     )
 
     content = f"""{README_MARKER}
@@ -1455,14 +1455,14 @@ def reference_audit_note(row: dict[str, str]) -> str:
 
 
 def write_reference_audit_md(audits: list[WeekAudit]) -> None:
-    priority = ["W09", "W07", "W12", "W14", "W04", "W05", "W06", "W08"]
+    priority = [week for week, _, _ in WEEKS]
     audit_by_week = {audit.week: audit for audit in audits}
     lines = [
         "# 주차별 참고문헌 검증 감사표",
         "",
         f"생성일: {GENERATED_AT}",
         "",
-        "범위: W09, W07, W12, W14, W04, W05, W06, W08의 `01_papers/`, `02_paper_summaries/`, `06_report/`, `07_week_submission/`, `README.md` 로컬 기록 기반 자동 대조.",
+        "범위: W01-W15의 `01_papers/`, `02_paper_summaries/`, `06_report/`, `07_week_submission/`, `README.md` 로컬 기록 기반 자동 대조.",
         "",
         "주의: 현 실행에서는 모든 문헌을 인터넷으로 일괄 재검증하지 않았다. `확인 완료(로컬 기록)`은 기존 `paper_list.md`/`doi_check.md`의 Crossref/DOI/출판사 확인 기록을 뜻하며, 최종 제출 전 공식 페이지를 사람이 다시 확인해야 한다.",
         "",

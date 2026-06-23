@@ -7,7 +7,7 @@
 |---|---|---|---|---|---|
 | P01 | A Survey on Evaluation of Large Language Models | `https://doi.org/10.1145/3641289` | 로컬 PDF 첫 페이지, DOI/Crossref metadata | 확인 | ACM Transactions on Intelligent Systems and Technology 15(3), Article 39. 원 프롬프트의 ACM Computing Surveys 표기와 다름 |
 | P02 | Assuring the Machine Learning Lifecycle: Desiderata, Methods, and Challenges | `https://doi.org/10.1145/3453444` | White Rose accepted version 표지, DOI/Crossref metadata | 확인 | ACM Computing Surveys 54(5), Article 111. 로컬 PDF는 accepted version |
-| P03 | Explainable AI: Core Ideas, Techniques, and Solutions | `https://doi.org/10.1145/3561048` | Crossref metadata에서 ACM Computing Surveys 55(9), Article 131 확인. 로컬 PDF는 Mersha et al. 대체 논문 | 부분 확인 | 공식 metadata의 제1저자는 Rudresh Dwivedi로 확인된다. 원 프롬프트의 Vivek Dwivedi 표기와 로컬 PDF가 모두 표기가 다르므로 최종 반영표 기준 공식 출판정보로 정리 |
+| P03 | Explainable AI: Core Ideas, Techniques, and Solutions | `https://doi.org/10.1145/3561048` | Crossref metadata에서 ACM Computing Surveys 55(9), Article 131 확인. 로컬 PDF는 Mersha et al. 관련 보조 문헌 | 공식 DOI 확인 / PDF 차이 기록 | 공식 metadata의 제1저자는 Rudresh Dwivedi로 확인된다. 원 프롬프트의 Vivek Dwivedi 표기와 로컬 PDF 차이는 최종 반영표 기준 공식 출판정보로 정리 |
 | P04 | Explainable Artificial Intelligence (XAI): Concepts, Taxonomies, Opportunities and Challenges toward Responsible AI | `https://doi.org/10.1016/j.inffus.2019.12.012` | ScienceDirect article page 및 로컬 arXiv preprint 대조 | 확인 | Information Fusion 58, 82-115 |
 | P05 | Concept-based Explainable Artificial Intelligence: A Survey | `https://doi.org/10.1145/3774643`, `https://arxiv.org/abs/2312.12936` | arXiv API와 Crossref metadata에서 동일 제목·저자 및 최종 ACM DOI 확인 | 확인 | ACM Computing Surveys, online publication 2025-11-08, Article 3774643. 권호/issue는 최종 제출 전 ACM 페이지에서 재확인 |
 
@@ -31,5 +31,8 @@
 | ID | 구분 | 상태 | 공식 확인 기준 | 보고서 반영 |
 |---|---|---|---|---|
 | P01 | 논문 / 확인 | 공식 DOI 확인 | `https://doi.org/10.1145/3641289`; A Survey on Evaluation of Large Language Models; ACM Transactions on Intelligent Systems and Technology; 2024 | 공식 서지 기준으로 논문 인용 |
+| P02 | 논문 / 확인 | 공식 DOI 확인 | `https://doi.org/10.1145/3453444`; Assuring the Machine Learning Lifecycle: Desiderata, Methods, and Challenges; ACM Computing Surveys 54(5), Article 111, pp. 1-39; 2021/2022 | 공식 서지 기준으로 논문 인용 |
 | P03 | 논문 / 확인 | 공식 DOI 확인 | `https://doi.org/10.1145/3561048`; Explainable AI (XAI): Core Ideas, Techniques, and Solutions; ACM Computing Surveys; 2023 | 공식 서지 기준으로 논문 인용 |
+| P04 | 논문 / 확인 | 공식 DOI 확인 | `https://doi.org/10.1016/j.inffus.2019.12.012`; Explainable Artificial Intelligence (XAI): Concepts, taxonomies, opportunities and challenges toward responsible AI; Information Fusion 58, pp. 82-115; 2020 | 공식 서지 기준으로 논문 인용 |
+| P05 | 논문 / 확인 | 공식 DOI 확인 / 권호 추가 확인 | `https://doi.org/10.1145/3774643`; Concept-based Explainable Artificial Intelligence: A Survey; ACM Computing Surveys, Article 3774643, online 2025-11-08 | 공식 서지 기준으로 논문 인용. 최종 제출 전 ACM 권호/issue 표기만 재확인 |
 <!-- AUTO-RELATED-PAPER-REFLECTION:end -->

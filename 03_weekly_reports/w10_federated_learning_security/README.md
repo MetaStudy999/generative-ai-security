@@ -13,13 +13,13 @@
 
 | ID | 제목 | 저자 | 연도 | 학술지/학회명 | DOI 또는 URL | 확인 경로 | 확인일 | 상태 |
 |---|---|---|---:|---|---|---|---|---|
-| P01 | Federated Learning Survey: A Multi-Level Taxonomy of Aggregation Techniques, Experimental Insights, and Future Frontiers | Meriem Arbaoui, Mohamed-el-Amine Brahmia, Abdellatif Rahmoun, Mourad Zghal | 2024 | 확인 필요 | 확인 필요 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
-| P02 | A survey on security and privacy of federated learning | Viraaji Mothukuri, Reza M. Parizi, Seyedamin Pouriyeh, Yan Huang, Ali Dehghantanha, Gautam Srivastava | 2021 | 확인 필요 | 확인 필요 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
-| P03 | Survey on federated learning threats: Concepts, taxonomy on attacks and defences, experimental study and challenges | Nuria Rodriguez-Barroso, Daniel Jimenez-Lopez, M. Victoria Luzon, Francisco Herrera, Eugenio Martinez-Camara | 2023 | 확인 필요 | 확인 필요 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
-| P04 | The Federation Strikes Back: A Survey of Federated Learning Privacy Attacks, Defenses, Applications, and Policy Landscape | Joshua C. Zhao et al. | 2025 | ACM Computing Surveys | https://doi.org/10.1145/3724113 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
-| P05 | Backdoor attacks and defenses in federated learning: Survey, challenges and future research directions | Thuy Dung Nguyen, Tuan Nguyen, Phi Le Nguyen, Hieu H. Pham, Khoa D. Doan, Kok-Seng Wong | 2024 | 확인 필요 | 확인 필요 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
+| P01 | Federated Learning Survey: A Multi-Level Taxonomy of Aggregation Techniques, Experimental Insights, and Future Frontiers | Meriem Arbaoui, Mohamed-el-Amine Brahmia, Abdellatif Rahmoun, Mourad Zghal | 2024 | 확인 필요 | 확인 필요 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 검증 기록 기반 | 확인 완료(로컬/공식 검증 기록 기준) |
+| P02 | A survey on security and privacy of federated learning | Viraaji Mothukuri, Reza M. Parizi, Seyedamin Pouriyeh, Yan Huang, Ali Dehghantanha, Gautam Srivastava | 2021 | 확인 필요 | 확인 필요 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 검증 기록 기반 | 확인 완료(로컬/공식 검증 기록 기준) |
+| P03 | Survey on federated learning threats: Concepts, taxonomy on attacks and defences, experimental study and challenges | Nuria Rodriguez-Barroso, Daniel Jimenez-Lopez, M. Victoria Luzon, Francisco Herrera, Eugenio Martinez-Camara | 2023 | 확인 필요 | 확인 필요 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 검증 기록 기반 | 확인 완료(로컬/공식 검증 기록 기준) |
+| P04 | The Federation Strikes Back: A Survey of Federated Learning Privacy Attacks, Defenses, Applications, and Policy Landscape | Joshua C. Zhao et al. | 2025 | ACM Computing Surveys | https://doi.org/10.1145/3724113 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 검증 기록 기반 | 확인 완료(로컬/공식 검증 기록 기준) |
+| P05 | Backdoor attacks and defenses in federated learning: Survey, challenges and future research directions | Thuy Dung Nguyen, Tuan Nguyen, Phi Le Nguyen, Hieu H. Pham, Khoa D. Doan, Kok-Seng Wong | 2024 | 확인 필요 | 확인 필요 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 검증 기록 기반 | 확인 완료(로컬/공식 검증 기록 기준) |
 
-주의: 현 세션에서는 인터넷으로 DOI/URL 실제 존재 여부를 재검증하지 않았으므로, 로컬 검증 기록이 있더라도 최종 제출 전 사람이 확인한다.
+주의: 자동 감사는 로컬/공식 검증 기록을 대조하는 보조 점검이므로, 최종 제출 전 사람이 DOI landing page와 출판사/RISS 상세 페이지를 다시 확인한다.
 
 ## 3. 주요 산출물
 

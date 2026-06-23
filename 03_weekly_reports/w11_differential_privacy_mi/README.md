@@ -13,13 +13,13 @@
 
 | ID | 제목 | 저자 | 연도 | 학술지/학회명 | DOI 또는 URL | 확인 경로 | 확인일 | 상태 |
 |---|---|---|---:|---|---|---|---|---|
-| P01 | A Critical Review on the Use (and Misuse) of Differential Privacy in Machine Learning | Alberto Blanco-Justicia et al. | 2022 | ACM Computing Surveys | https://doi.org/10.1145/3547139 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
-| P02 | Recent Advances of Differential Privacy in Centralized Deep Learning: A Systematic Survey | Lea Demelius, Roman Kern, Andreas Trugler | 2025 | ACM Computing Surveys | https://doi.org/10.1145/3712000 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
-| P03 | Differential privacy in deep learning: A literature survey | Ke Pan et al. | 2024 | Neurocomputing | https://doi.org/10.1016/j.neucom.2024.127663 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
-| P04 | Membership Inference Attacks on Machine Learning: A Survey | Hongsheng Hu et al. | 2022 | ACM Computing Surveys | https://doi.org/10.1145/3523273 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
-| P05 | Defenses to Membership Inference Attacks: A Survey | Li Hu et al. | 2023 | ACM Computing Surveys | https://doi.org/10.1145/3620667 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
+| P01 | A Critical Review on the Use (and Misuse) of Differential Privacy in Machine Learning | Alberto Blanco-Justicia et al. | 2022 | ACM Computing Surveys | https://doi.org/10.1145/3547139 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 검증 기록 기반 | 확인 완료(로컬/공식 검증 기록 기준) |
+| P02 | Recent Advances of Differential Privacy in Centralized Deep Learning: A Systematic Survey | Lea Demelius, Roman Kern, Andreas Trugler | 2025 | ACM Computing Surveys | https://doi.org/10.1145/3712000 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 검증 기록 기반 | 확인 완료(로컬/공식 검증 기록 기준) |
+| P03 | Differential privacy in deep learning: A literature survey | Ke Pan et al. | 2024 | Neurocomputing | https://doi.org/10.1016/j.neucom.2024.127663 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 검증 기록 기반 | 확인 완료(로컬/공식 검증 기록 기준) |
+| P04 | Membership Inference Attacks on Machine Learning: A Survey | Hongsheng Hu et al. | 2022 | ACM Computing Surveys | https://doi.org/10.1145/3523273 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 검증 기록 기반 | 확인 완료(로컬/공식 검증 기록 기준) |
+| P05 | Defenses to Membership Inference Attacks: A Survey | Li Hu et al. | 2023 | ACM Computing Surveys | https://doi.org/10.1145/3620667 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 검증 기록 기반 | 확인 완료(로컬/공식 검증 기록 기준) |
 
-주의: 현 세션에서는 인터넷으로 DOI/URL 실제 존재 여부를 재검증하지 않았으므로, 로컬 검증 기록이 있더라도 최종 제출 전 사람이 확인한다.
+주의: 자동 감사는 로컬/공식 검증 기록을 대조하는 보조 점검이므로, 최종 제출 전 사람이 DOI landing page와 출판사/RISS 상세 페이지를 다시 확인한다.
 
 ## 3. 주요 산출물
 

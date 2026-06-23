@@ -13,13 +13,13 @@
 
 | ID | 제목 | 저자 | 연도 | 학술지/학회명 | DOI 또는 URL | 확인 경로 | 확인일 | 상태 |
 |---|---|---|---:|---|---|---|---|---|
-| P01 | Efficient Transformers: A Survey | Yi Tay, Mostafa Dehghani, Dara Bahri, Donald Metzler | 2022 | ACM Computing Surveys | https://doi.org/10.1145/3530811 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
-| P02 | A Practical Survey on Faster and Lighter Transformers | Quentin Fournier, Gaetan Marceau Caron, Daniel Aloise | 2023 | ACM Computing Surveys | https://doi.org/10.1145/3586074 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
-| P03 | A survey of transformers | Tianyang Lin, Yuxin Wang, Xiangyang Liu, Xipeng Qiu | 확인 필요 | 확인 필요 | DOI 10.1016/j.aiopen.2022.10.001; https://www.sciencedirect.com/science/article/pii/S2666651022000146 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
-| P04 | A Survey of Adversarial Defenses and Robustness in NLP | Shreya Goyal et al. | 2023 | ACM Computing Surveys | https://doi.org/10.1145/3593042 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
-| P05 | Privacy Preserving Prompt Engineering: A Survey | Kennedy Edemacu, Xintao Wu | 2025 | ACM Computing Surveys | https://doi.org/10.1145/3729219 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
+| P01 | Efficient Transformers: A Survey | Yi Tay, Mostafa Dehghani, Dara Bahri, Donald Metzler | 2022 | ACM Computing Surveys | https://doi.org/10.1145/3530811 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 검증 기록 기반 | 확인 완료(로컬/공식 검증 기록 기준) |
+| P02 | A Practical Survey on Faster and Lighter Transformers | Quentin Fournier, Gaetan Marceau Caron, Daniel Aloise | 2023 | ACM Computing Surveys | https://doi.org/10.1145/3586074 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 검증 기록 기반 | 확인 완료(로컬/공식 검증 기록 기준) |
+| P03 | A survey of transformers | Tianyang Lin, Yuxin Wang, Xiangyang Liu, Xipeng Qiu | 확인 필요 | 확인 필요 | DOI 10.1016/j.aiopen.2022.10.001; https://www.sciencedirect.com/science/article/pii/S2666651022000146 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 검증 기록 기반 | 확인 완료(로컬/공식 검증 기록 기준) |
+| P04 | A Survey of Adversarial Defenses and Robustness in NLP | Shreya Goyal et al. | 2023 | ACM Computing Surveys | https://doi.org/10.1145/3593042 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 검증 기록 기반 | 확인 완료(로컬/공식 검증 기록 기준) |
+| P05 | Privacy Preserving Prompt Engineering: A Survey | Kennedy Edemacu, Xintao Wu | 2025 | ACM Computing Surveys | https://doi.org/10.1145/3729219 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 검증 기록 기반 | 확인 완료(로컬/공식 검증 기록 기준) |
 
-주의: 현 세션에서는 인터넷으로 DOI/URL 실제 존재 여부를 재검증하지 않았으므로, 로컬 검증 기록이 있더라도 최종 제출 전 사람이 확인한다.
+주의: 자동 감사는 로컬/공식 검증 기록을 대조하는 보조 점검이므로, 최종 제출 전 사람이 DOI landing page와 출판사/RISS 상세 페이지를 다시 확인한다.
 
 ## 3. 주요 산출물
 

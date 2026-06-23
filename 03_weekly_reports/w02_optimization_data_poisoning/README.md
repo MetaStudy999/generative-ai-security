@@ -13,13 +13,13 @@
 
 | ID | 제목 | 저자 | 연도 | 학술지/학회명 | DOI 또는 URL | 확인 경로 | 확인일 | 상태 |
 |---|---|---|---:|---|---|---|---|---|
-| P01 | Optimization Methods for Large-Scale Machine Learning | Leon Bottou, Frank E. Curtis, Jorge Nocedal | 2018 | SIAM Review, 60(2), 223-311 | https://doi.org/10.1137/16M1080173 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
-| P02 | Efficient Deep Learning: A Survey on Making Deep Learning Models Smaller, Faster, and Better | Gaurav Menghani | 2023 | ACM Computing Surveys | https://doi.org/10.1145/3578938 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
-| P03 | A Comprehensive Survey on Poisoning Attacks and Countermeasures in Machine Learning | Zhiyi Tian, Lei Cui, Jie Liang, Shui Yu | 2023 | ACM Computing Surveys | https://doi.org/10.1145/3551636 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
-| P04 | Wild Patterns Reloaded: A Survey of Machine Learning Security against Training Data Poisoning | Antonio Emanuele Cina et al. | 2023 | ACM Computing Surveys | https://doi.org/10.1145/3585385 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
-| P05 | A survey of backdoor attacks and defences: From deep neural networks to large language models | Ling-Xin Jin et al. | 2025 | Journal of Electronic Science and Technology, 23(3), Article 100326 | https://doi.org/10.1016/j.jnlest.2025.100326 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
+| P01 | Optimization Methods for Large-Scale Machine Learning | Leon Bottou, Frank E. Curtis, Jorge Nocedal | 2018 | SIAM Review, 60(2), 223-311 | https://doi.org/10.1137/16M1080173 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 검증 기록 기반 | 확인 완료(로컬/공식 검증 기록 기준) |
+| P02 | Efficient Deep Learning: A Survey on Making Deep Learning Models Smaller, Faster, and Better | Gaurav Menghani | 2023 | ACM Computing Surveys | https://doi.org/10.1145/3578938 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 검증 기록 기반 | 확인 완료(로컬/공식 검증 기록 기준) |
+| P03 | A Comprehensive Survey on Poisoning Attacks and Countermeasures in Machine Learning | Zhiyi Tian, Lei Cui, Jie Liang, Shui Yu | 2023 | ACM Computing Surveys | https://doi.org/10.1145/3551636 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 검증 기록 기반 | 확인 완료(로컬/공식 검증 기록 기준) |
+| P04 | Wild Patterns Reloaded: A Survey of Machine Learning Security against Training Data Poisoning | Antonio Emanuele Cina et al. | 2023 | ACM Computing Surveys | https://doi.org/10.1145/3585385 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 검증 기록 기반 | 확인 완료(로컬/공식 검증 기록 기준) |
+| P05 | A survey of backdoor attacks and defences: From deep neural networks to large language models | Ling-Xin Jin et al. | 2025 | Journal of Electronic Science and Technology, 23(3), Article 100326 | https://doi.org/10.1016/j.jnlest.2025.100326 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 검증 기록 기반 | 확인 완료(로컬/공식 검증 기록 기준) |
 
-주의: 현 세션에서는 인터넷으로 DOI/URL 실제 존재 여부를 재검증하지 않았으므로, 로컬 검증 기록이 있더라도 최종 제출 전 사람이 확인한다.
+주의: 자동 감사는 로컬/공식 검증 기록을 대조하는 보조 점검이므로, 최종 제출 전 사람이 DOI landing page와 출판사/RISS 상세 페이지를 다시 확인한다.
 
 ## 3. 주요 산출물
 

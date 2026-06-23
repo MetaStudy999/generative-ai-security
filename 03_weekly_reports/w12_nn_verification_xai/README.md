@@ -13,13 +13,13 @@
 
 | ID | 제목 | 저자 | 연도 | 학술지/학회명 | DOI 또는 URL | 확인 경로 | 확인일 | 상태 |
 |---|---|---|---:|---|---|---|---|---|
-| P01 | A Review of Abstraction Methods Toward Verifying Neural Networks | Fateh Boudardara et al. | 2024 | ACM Transactions on Embedded Computing Systems | https://doi.org/10.1145/3617508 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
-| P02 | Adversarial Attacks and Defenses in Deep Learning: From a Perspective of Cybersecurity | Shuai Zhou et al. | 2022 | ACM Computing Surveys | https://doi.org/10.1145/3547330 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
-| P03 | Adversarial Attacks in Explainable Machine Learning: A Survey of Threats Against Models and Humans | Jon Vadillo et al. | 2024 | WIREs Data Mining and Knowledge Discovery | https://doi.org/10.1002/widm.1567 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
-| P04 | Adversarial Robustness of Neural Networks from the Perspective of Lipschitz Calculus: A Survey | Monty-Maximilian Zuhlke, Daniel Kudenko | 2025 | ACM Computing Surveys | https://doi.org/10.1145/3648351 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
-| P05 | Triangular Trade-off between Robustness, Accuracy, and Fairness in Deep Neural Networks: A Survey | Jingyang Li, Guoqiang Li | 2025 | ACM Computing Surveys | https://doi.org/10.1145/3645088 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
+| P01 | A Review of Abstraction Methods Toward Verifying Neural Networks | Fateh Boudardara et al. | 2024 | ACM Transactions on Embedded Computing Systems | https://doi.org/10.1145/3617508 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 검증 기록 기반 | 확인 완료(로컬/공식 검증 기록 기준) |
+| P02 | Adversarial Attacks and Defenses in Deep Learning: From a Perspective of Cybersecurity | Shuai Zhou et al. | 2022 | ACM Computing Surveys | https://doi.org/10.1145/3547330 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 검증 기록 기반 | 확인 완료(로컬/공식 검증 기록 기준) |
+| P03 | Adversarial Attacks in Explainable Machine Learning: A Survey of Threats Against Models and Humans | Jon Vadillo et al. | 2024 | WIREs Data Mining and Knowledge Discovery | https://doi.org/10.1002/widm.1567 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 검증 기록 기반 | 확인 완료(로컬/공식 검증 기록 기준) |
+| P04 | Adversarial Robustness of Neural Networks from the Perspective of Lipschitz Calculus: A Survey | Monty-Maximilian Zuhlke, Daniel Kudenko | 2025 | ACM Computing Surveys | https://doi.org/10.1145/3648351 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 검증 기록 기반 | 확인 완료(로컬/공식 검증 기록 기준) |
+| P05 | Triangular Trade-off between Robustness, Accuracy, and Fairness in Deep Neural Networks: A Survey | Jingyang Li, Guoqiang Li | 2025 | ACM Computing Surveys | https://doi.org/10.1145/3645088 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 검증 기록 기반 | 확인 완료(로컬/공식 검증 기록 기준) |
 
-주의: 현 세션에서는 인터넷으로 DOI/URL 실제 존재 여부를 재검증하지 않았으므로, 로컬 검증 기록이 있더라도 최종 제출 전 사람이 확인한다.
+주의: 자동 감사는 로컬/공식 검증 기록을 대조하는 보조 점검이므로, 최종 제출 전 사람이 DOI landing page와 출판사/RISS 상세 페이지를 다시 확인한다.
 
 ## 3. 주요 산출물
 

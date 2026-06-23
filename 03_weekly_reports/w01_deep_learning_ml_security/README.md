@@ -13,13 +13,13 @@
 
 | ID | 제목 | 저자 | 연도 | 학술지/학회명 | DOI 또는 URL | 확인 경로 | 확인일 | 상태 |
 |---|---|---|---:|---|---|---|---|---|
-| P01 | Deep learning | Yann LeCun, Yoshua Bengio, Geoffrey Hinton | 2015 | Nature | https://doi.org/10.1038/nature14539 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
-| P02 | Assuring the Machine Learning Lifecycle: Desiderata, Methods, and Challenges | Rob Ashmore, Radu Calinescu, Colin Paterson | 2021 | ACM Computing Surveys | https://doi.org/10.1145/3453444 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
-| P03 | A Survey of Data Mining and Machine Learning Methods for Cyber Security Intrusion Detection | Anna L. Buczak, Erhan Guven | 2016 | IEEE Communications Surveys & Tutorials | https://doi.org/10.1109/COMST.2015.2494502 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
-| P04 | Adversarial Attacks and Defenses in Machine Learning-Powered Networks: A Contemporary Survey | Yulong Wang et al. | 2023 | arXiv | https://arxiv.org/abs/2303.06302 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
-| P05 | A Survey of Privacy Attacks in Machine Learning | Maria Rigaki, Sebastian Garcia | 2023 | ACM Computing Surveys | https://doi.org/10.1145/3624010 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
+| P01 | Deep learning | Yann LeCun, Yoshua Bengio, Geoffrey Hinton | 2015 | Nature | https://doi.org/10.1038/nature14539 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 검증 기록 기반 | 확인 완료(로컬/공식 검증 기록 기준) |
+| P02 | Assuring the Machine Learning Lifecycle: Desiderata, Methods, and Challenges | Rob Ashmore, Radu Calinescu, Colin Paterson | 2021 | ACM Computing Surveys | https://doi.org/10.1145/3453444 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 검증 기록 기반 | 확인 완료(로컬/공식 검증 기록 기준) |
+| P03 | A Survey of Data Mining and Machine Learning Methods for Cyber Security Intrusion Detection | Anna L. Buczak, Erhan Guven | 2016 | IEEE Communications Surveys & Tutorials | https://doi.org/10.1109/COMST.2015.2494502 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 검증 기록 기반 | 확인 완료(로컬/공식 검증 기록 기준) |
+| P04 | Adversarial Attacks and Defenses in Machine Learning-Powered Networks: A Contemporary Survey | Yulong Wang et al. | 2023 | arXiv | https://arxiv.org/abs/2303.06302 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 검증 기록 기반 | 확인 완료(로컬/공식 검증 기록 기준) |
+| P05 | A Survey of Privacy Attacks in Machine Learning | Maria Rigaki, Sebastian Garcia | 2023 | ACM Computing Surveys | https://doi.org/10.1145/3624010 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 검증 기록 기반 | 확인 완료(로컬/공식 검증 기록 기준) |
 
-주의: 현 세션에서는 인터넷으로 DOI/URL 실제 존재 여부를 재검증하지 않았으므로, 로컬 검증 기록이 있더라도 최종 제출 전 사람이 확인한다.
+주의: 자동 감사는 로컬/공식 검증 기록을 대조하는 보조 점검이므로, 최종 제출 전 사람이 DOI landing page와 출판사/RISS 상세 페이지를 다시 확인한다.
 
 ## 3. 주요 산출물
 

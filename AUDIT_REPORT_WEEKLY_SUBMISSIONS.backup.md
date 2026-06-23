@@ -1,6 +1,6 @@
 # W01-W15 주차별 보고서 자동 감사 보고서
 
-감사 기준일: 2026-06-24 02:10:00 KST
+감사 기준일: 2026-06-24 02:30:52 KST
 
 ## 1. 자동 감사 원칙
 
@@ -17,7 +17,21 @@
 - 상세 검증표 생성/갱신: `03_weekly_reports/WEEKLY_REFERENCE_VERIFICATION_AUDIT.md`, `03_weekly_reports/WEEKLY_NUMERIC_CROSSCHECK_AUDIT.md`, `03_weekly_reports/w15_reproducibility_xai_paper/00_management/W15_NUMERIC_AUDIT.md`
 - 주차별 README 변경:
 
-- 없음
+- 갱신: `03_weekly_reports/w01_deep_learning_ml_security/README.md`
+- 갱신: `03_weekly_reports/w02_optimization_data_poisoning/README.md`
+- 갱신: `03_weekly_reports/w03_computer_vision_adversarial/README.md`
+- 갱신: `03_weekly_reports/w04_transformer_nlp_security/README.md`
+- 갱신: `03_weekly_reports/w05_ssl_backdoor/README.md`
+- 갱신: `03_weekly_reports/w06_diffusion_gan_deepfake/README.md`
+- 갱신: `03_weekly_reports/w07_llm_security_privacy/README.md`
+- 갱신: `03_weekly_reports/w08_rag_prompt_injection/README.md`
+- 갱신: `03_weekly_reports/w09_drl_cybersecurity/README.md`
+- 갱신: `03_weekly_reports/w10_federated_learning_security/README.md`
+- 갱신: `03_weekly_reports/w11_differential_privacy_mi/README.md`
+- 갱신: `03_weekly_reports/w12_nn_verification_xai/README.md`
+- 갱신: `03_weekly_reports/w13_model_stealing_watermarking/README.md`
+- 갱신: `03_weekly_reports/w14_mlops_supply_chain/README.md`
+- 갱신: `03_weekly_reports/w15_reproducibility_xai_paper/README.md`
 
 ## 2-1. 자동 보완한 bridge/AI 고지/보고서 문장
 

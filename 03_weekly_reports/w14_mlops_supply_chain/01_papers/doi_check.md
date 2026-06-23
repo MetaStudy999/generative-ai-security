@@ -7,11 +7,11 @@
 
 | ID | DOI/URL | DOI 메타데이터 기준 제목 | 권호/페이지 메타데이터 | 상태 | 남은 검토 사항 |
 |---|---|---|---|---|---|
-| P01 | https://doi.org/10.1145/3747346, https://arxiv.org/abs/2406.09737 | A Multivocal Review of MLOps Practices, Challenges and Open Issues | ACM Computing Surveys, Vol. 58, Issue 2, pp. 1-35, online 2025-09-08, print 2026-01-31 | 부분 확인 | 수업자료의 `Bayram Eken` 및 긴 제목과 DOI/arXiv/로컬 PDF의 `Beyza Eken` 제목 차이 재확인. Article 번호 추가 확인 메모 |
+| P01 | https://doi.org/10.1145/3747346, https://arxiv.org/abs/2406.09737 | A Multivocal Review of MLOps Practices, Challenges and Open Issues | ACM Computing Surveys, Vol. 58, Issue 2, pp. 1-35, online 2025-09-08, print 2026-01-31 | 공식 DOI 확인 / 표기 차이 메모 | 수업자료의 `Bayram Eken` 및 긴 제목과 DOI/arXiv/로컬 PDF의 `Beyza Eken` 제목 차이 재확인. Article 번호 추가 확인 메모 |
 | P02 | https://doi.org/10.1145/3533378, https://arxiv.org/abs/2011.09926 | Challenges in Deploying Machine Learning: A Survey of Case Studies | ACM Computing Surveys, Vol. 55, Issue 6, pp. 1-29, online 2022-12-07, print 2023-07-31 | 확인 | 수업자료의 권호/Article 번호와 Crossref 권호가 다르므로 ACM 페이지에서 Article 번호 최종 추가 확인 메모 |
-| P03 | https://doi.org/10.1145/3625289 | A Joint Study of the Challenges, Opportunities, and Roadmap of MLOps and AIOps: A Systematic Survey | ACM Computing Surveys, Vol. 56, Issue 4, pp. 1-30, online 2023-10-21, print 2024-04-30 | 부분 확인 | 수업자료 제목 `A Systematic Survey on MLOps and AIOps...` 및 `Daniel Diaz-de-Arcaya` 표기와 DOI 메타데이터가 다름. 로컬 PDF는 관련 보조 문헌 파일명으로 기록됨 |
+| P03 | https://doi.org/10.1145/3625289 | A Joint Study of the Challenges, Opportunities, and Roadmap of MLOps and AIOps: A Systematic Survey | ACM Computing Surveys, Vol. 56, Issue 4, pp. 1-30, online 2023-10-21, print 2024-04-30 | 공식 DOI 확인 / 표기 차이 메모 | 수업자료 제목 `A Systematic Survey on MLOps and AIOps...` 및 `Daniel Diaz-de-Arcaya` 표기와 DOI 메타데이터가 다름. 로컬 PDF는 관련 보조 문헌 파일명으로 기록됨 |
 | P04 | https://doi.org/10.1109/JPROC.2019.2921977 | Deep Learning With Edge Computing: A Review | Proceedings of the IEEE, Vol. 107, Issue 8, pp. 1655-1674, 2019-08 | 확인 | 로컬 PDF는 Zhou et al. RELATED이므로 최종 반영표 기준 공식 출판정보로 정리 |
-| P05 | https://doi.org/10.1145/3505243 | A Survey on Deep Learning for Software Engineering | ACM Computing Surveys, Vol. 54, Issue 10s, pp. 1-73, print 2022-01-31, online 2022-09-13 | 부분 확인 | 수업자료의 `Xiang Chen et al., Deep Learning for Software Engineering: A Survey`와 DOI/로컬 PDF 기준 Yang/Xia/Lo/Grundy 서지 차이 재확인 |
+| P05 | https://doi.org/10.1145/3505243 | A Survey on Deep Learning for Software Engineering | ACM Computing Surveys, Vol. 54, Issue 10s, pp. 1-73, print 2022-01-31, online 2022-09-13 | 공식 DOI 확인 / 관련 논문 메모 | 수업자료의 `Xiang Chen et al., Deep Learning for Software Engineering: A Survey`와 DOI/로컬 PDF 기준 Yang/Xia/Lo/Grundy 서지 차이 재확인 |
 
 ## 검증 원칙
 

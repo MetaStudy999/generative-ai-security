@@ -13,13 +13,13 @@
 
 | ID | 제목 | 저자 | 연도 | 학술지/학회명 | DOI 또는 URL | 확인 경로 | 확인일 | 상태 |
 |---|---|---|---:|---|---|---|---|---|
-| P01 | Graph Retrieval-Augmented Generation: A Survey | Boci Peng et al. | 2025 | ACM Transactions on Information Systems | https://doi.org/10.1145/3777378 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
-| P02 | Graph-Based Approaches and Functionalities in Retrieval-Augmented Generation: A Comprehensive Survey | Zulun Zhu et al. | 2026 | ACM Computing Surveys | https://doi.org/10.1145/3795880 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
-| P03 | Prompting Frameworks for Large Language Models: A Survey | Xiaoxia Liu, Jingyi Wang, Xiaohan Yuan, Jun Sun, Guoliang Dong, Peng Di, Wenhai Wang, Dongxia Wang | 2026 | ACM Computing Surveys | https://doi.org/10.1145/3789253 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
-| P04 | Prompt Injection Attacks on Large Language Models: A Survey of Attack Methods, Root Causes, and Defense Strategies | Tongcheng Geng et al. | 2026 | Computers, Materials & Continua | https://doi.org/10.32604/cmc.2025.074081 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
-| P05 | Vulnerability of Large Language Models to Prompt Injection When Providing Medical Advice | Ro Woon Lee et al. | 2025 | JAMA Network Open | https://doi.org/10.1001/jamanetworkopen.2025.49963 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
+| P01 | Graph Retrieval-Augmented Generation: A Survey | Boci Peng et al. | 2025 | ACM Transactions on Information Systems | https://doi.org/10.1145/3777378 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 검증 기록 기반 | 확인 완료(로컬/공식 검증 기록 기준) |
+| P02 | Graph-Based Approaches and Functionalities in Retrieval-Augmented Generation: A Comprehensive Survey | Zulun Zhu et al. | 2026 | ACM Computing Surveys | https://doi.org/10.1145/3795880 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 검증 기록 기반 | 확인 완료(로컬/공식 검증 기록 기준) |
+| P03 | Prompting Frameworks for Large Language Models: A Survey | Xiaoxia Liu et al. | 2026 | ACM Computing Surveys | https://doi.org/10.1145/3789253 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 검증 기록 기반 | 확인 완료(로컬/공식 검증 기록 기준) |
+| P04 | Prompt Injection Attacks on Large Language Models: A Survey of Attack Methods, Root Causes, and Defense Strategies | Tongcheng Geng et al. | 2026 | Computers, Materials & Continua | https://doi.org/10.32604/cmc.2025.074081 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 검증 기록 기반 | 확인 완료(로컬/공식 검증 기록 기준) |
+| P05 | Vulnerability of Large Language Models to Prompt Injection When Providing Medical Advice | Ro Woon Lee et al. | 2025 | JAMA Network Open | https://doi.org/10.1001/jamanetworkopen.2025.49963 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 검증 기록 기반 | 확인 완료(로컬/공식 검증 기록 기준) |
 
-주의: 현 세션에서는 인터넷으로 DOI/URL 실제 존재 여부를 재검증하지 않았으므로, 로컬 검증 기록이 있더라도 최종 제출 전 사람이 확인한다.
+주의: 자동 감사는 로컬/공식 검증 기록을 대조하는 보조 점검이므로, 최종 제출 전 사람이 DOI landing page와 출판사/RISS 상세 페이지를 다시 확인한다.
 
 ## 3. 주요 산출물
 

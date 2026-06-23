@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-24 02:13:08 KST",
+  "generated_at": "2026-06-24 02:32:24 KST",
   "scope": "03_weekly_reports/w01-w15 only",
   "automatic_only": true,
   "excluded_manual_checks": [
@@ -9,7 +9,7 @@
     "final paper content edits"
   ],
   "changes": {
-    "generated_at": "2026-06-24 02:13:08 KST",
+    "generated_at": "2026-06-24 02:32:24 KST",
     "audit_backup": "AUDIT_REPORT_WEEKLY_SUBMISSIONS.backup.md (현재 감사 보고서로 갱신)",
     "created_dirs": [],
     "created_keep_files": [],
@@ -1687,14 +1687,16 @@
         },
         {
           "ID": "P03",
+          "구분": "논문 / 확인",
           "논문 제목": "Prompting Frameworks for Large Language Models: A Survey",
-          "저자": "Xiaoxia Liu, Jingyi Wang, Xiaohan Yuan, Jun Sun, Guoliang Dong, Peng Di, Wenhai Wang, Dongxia Wang",
+          "논문": "Prompting Frameworks for Large Language Models: A Survey",
+          "저자": "Xiaoxia Liu et al.",
           "연도": "2026",
           "학술지/학회": "ACM Computing Surveys",
-          "권호/Article": "58(10), Article 255, 38 pages",
-          "DOI/URL": "https://doi.org/10.1145/3789253",
-          "로컬 PDF": "03_Liu_et_al_2026_Prompting_Frameworks_for_LLMs.pdf",
-          "검증 상태": "DOI/PDF 확인"
+          "학술지/출처": "ACM Computing Surveys",
+          "DOI/URL": "`https://doi.org/10.1145/3789253`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "공식 서지 기준으로 논문 인용"
         },
         {
           "ID": "P04",
@@ -3205,12 +3207,16 @@
         },
         {
           "ID": "P02",
+          "구분": "논문 / 확인",
           "논문 제목": "Assuring the Machine Learning Lifecycle: Desiderata, Methods, and Challenges",
+          "논문": "Assuring the Machine Learning Lifecycle: Desiderata, Methods, and Challenges",
           "저자": "Rob Ashmore, Radu Calinescu, Colin Paterson",
           "연도": "2021",
-          "학술지/출처": "ACM Computing Surveys / White Rose accepted version",
-          "PDF 파일명": "`02_Ashmore_Calinescu_Paterson_2021_Assuring_ML_Lifecycle.pdf`",
-          "DOI/URL 상태": "DOI 확인: `10.1145/3453444`"
+          "학술지/학회": "ACM Computing Surveys",
+          "학술지/출처": "ACM Computing Surveys",
+          "DOI/URL": "`https://doi.org/10.1145/3453444`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "공식 서지 기준으로 논문 인용"
         },
         {
           "ID": "P03",
@@ -3227,21 +3233,29 @@
         },
         {
           "ID": "P04",
-          "논문 제목": "Explainable Artificial Intelligence (XAI): Concepts, Taxonomies, Opportunities and Challenges toward Responsible AI",
+          "구분": "논문 / 확인",
+          "논문 제목": "Explainable Artificial Intelligence (XAI): Concepts, taxonomies, opportunities and challenges toward responsible AI",
+          "논문": "Explainable Artificial Intelligence (XAI): Concepts, taxonomies, opportunities and challenges toward responsible AI",
           "저자": "Alejandro Barredo Arrieta et al.",
           "연도": "2020",
+          "학술지/학회": "Information Fusion",
           "학술지/출처": "Information Fusion",
-          "PDF 파일명": "`04_Arrieta_et_al_2020_Explainable_AI_Concepts_Taxonomies.pdf`",
-          "DOI/URL 상태": "DOI 확인: `10.1016/j.inffus.2019.12.012`"
+          "DOI/URL": "`https://doi.org/10.1016/j.inffus.2019.12.012`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "공식 서지 기준으로 논문 인용"
         },
         {
           "ID": "P05",
+          "구분": "논문 / 확인",
           "논문 제목": "Concept-based Explainable Artificial Intelligence: A Survey",
+          "논문": "Concept-based Explainable Artificial Intelligence: A Survey",
           "저자": "Eleonora Poeta et al.",
-          "연도": "2023/2025",
-          "학술지/출처": "arXiv preprint / ACM Computing Surveys online publication",
-          "PDF 파일명": "`05_Poeta_et_al_2025_Concept_Based_XAI_Survey.pdf`",
-          "DOI/URL 상태": "DOI 확인: `10.1145/3774643`, arXiv `2312.12936`"
+          "연도": "2025",
+          "학술지/학회": "ACM Computing Surveys",
+          "학술지/출처": "ACM Computing Surveys",
+          "DOI/URL": "`https://doi.org/10.1145/3774643`",
+          "검증 상태": "공식 DOI 확인 / 권호 추가 확인",
+          "보고서 반영": "공식 서지 기준으로 논문 인용. 최종 제출 전 ACM 권호/issue 표기만 재확인"
         }
       ],
       "numeric_source": "03_weekly_reports/w15_reproducibility_xai_paper/04_experiment/outputs/metrics_summary.csv",

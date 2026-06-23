@@ -1,6 +1,6 @@
 # 참고문헌 검증표
 
-검증일: 2026-06-23
+검증일: 2026-06-24
 
 | 번호 | 구분 | 문헌명 | 저자 | 연도 | 학술지/출판처 | DOI/URL | 검증 경로 | 본문 인용 위치 | 상태 |
 |---:|---|---|---|---:|---|---|---|---|---|
@@ -13,7 +13,7 @@
 | 7 | 해외 | A Survey on Evaluation of Large Language Models | Yupeng Chang et al. | 2024 | ACM Transactions on Intelligent Systems and Technology | https://doi.org/10.1145/3641289 | arXiv/DOI | 2장, 5장 | VERIFIED |
 | 8 | 해외 | Security and Privacy Challenges of Large Language Models: A Survey | Badhan Chandra Das, M. Hadi Amini, Yanzhao Wu | 2025 | ACM Computing Surveys | https://doi.org/10.1145/3712001 | arXiv/DOI | 2장 | VERIFIED |
 | 9 | 해외 | A survey on large language model (LLM) security and privacy: The Good, The Bad, and The Ugly | Yifan Yao et al. | 2024 | High-Confidence Computing | https://doi.org/10.1016/j.hcc.2024.100211 | ScienceDirect/DOI | 2장 | VERIFIED |
-| 10 | 해외 | Graph Retrieval-Augmented Generation: A Survey | Boci Peng et al. | 2024 | arXiv | https://arxiv.org/abs/2408.08921 | arXiv | 2장, 3장 | VERIFIED |
+| 10 | 해외 | Graph Retrieval-Augmented Generation: A Survey | Boci Peng et al. | 2025 | ACM Transactions on Information Systems, Vol.44 No.2 | https://doi.org/10.1145/3777378 | Crossref/ACM DOI/arXiv | 2장, 3장 | VERIFIED |
 | 11 | 해외 | Graph-Based Approaches and Functionalities in Retrieval-Augmented Generation: A Comprehensive Survey | Zulun Zhu et al. | 2026 | ACM Computing Surveys | https://doi.org/10.1145/3795880 | arXiv/DOI | 2장 | VERIFIED |
 | 12 | 해외 | Prompting Frameworks for Large Language Models: A Survey | Xiaoxia Liu et al. | 2026 | ACM Computing Surveys | https://doi.org/10.1145/3789253 | arXiv/DOI | 2장, 4장 | VERIFIED |
 | 13 | 해외 | Not what you've signed up for: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection | Kai Greshake et al. | 2023 | arXiv | https://arxiv.org/abs/2302.12173 | arXiv | 2장, 3장, 4장 | VERIFIED |
@@ -24,3 +24,4 @@
 - DOI가 있는 해외 문헌은 DOI를 우선 기록하고, 접근 제한이 있는 경우 arXiv 또는 출판사 landing page를 보조로 기록했다.
 - 국내 문헌은 RISS 검색 결과의 KCI등재 표시와 상세 페이지 URL을 기준으로 기록했다.
 - 최종 제출 전에는 각 문헌의 권호, 페이지, 저자 표기를 원문 또는 공식 DB에서 다시 확인한다.
+- 주차별 검증 이력의 표기 차이/관련 논문 메모는 [reference_verification_todo.md](reference_verification_todo.md)에 제출 전 수동 확인 항목으로 분리한다.

@@ -10,7 +10,7 @@
 | P01 | A Review of Abstraction Methods Toward Verifying Neural Networks | Boudardara et al. | ACM Computing Surveys, 2024 | `01_RELATED_Meng_et_al_2022_DNN_Robustness_Formal_Verification.pdf` | 지정 제목 DOI 후보는 확인했으나 매체 정보가 강의 표기와 다름. 로컬 PDF는 관련 보조 문헌 파일명으로 기록됨 |
 | P02 | Adversarial Attacks and Defenses in Deep Learning | Sen Zhou et al. | ACM Computing Surveys, 2022 | `02_Ren_et_al_2020_Adversarial_Attacks_Defenses_Deep_Learning.pdf` | 로컬 PDF는 Kui Ren et al. 2020 Engineering 논문. 지정 논문 동일 여부 추가 확인 메모 |
 | P03 | Adversarial machine learning attacks against explainable artificial intelligence: A review | G. Vadillo et al. | WIREs Data Mining and Knowledge Discovery, 2025 | `03_RELATED_Baniecki_Biecek_2023_Adversarial_XAI_Survey.pdf` | Vadillo 계열 공식 DOI 후보는 확인했으나 제목이 강의 표기와 다름. 로컬 PDF는 관련 보조 문헌 파일명으로 기록됨 |
-| P04 | Adversarial Robustness of Neural Networks from Lipschitz Regularization: A Survey | Inaki Pérez et al. | ACM Computing Surveys, 2024 | `04_RELATED_Finlay_et_al_2018_Lipschitz_Adversarial_Robustness.pdf` | 강의 표기와 완전 일치하는 공식 DOI 미확인. 로컬 PDF는 관련 보조 문헌 파일명으로 기록됨 |
+| P04 | Adversarial Robustness of Neural Networks from Lipschitz Regularization: A Survey | Inaki Pérez et al. | ACM Computing Surveys, 2024 | `04_RELATED_Finlay_et_al_2018_Lipschitz_Adversarial_Robustness.pdf` | 강의 표기와 완전 일치하는 DOI는 최종 반영표의 관련 논문 기준으로 정리. 로컬 PDF는 관련 보조 문헌 파일명으로 기록됨 |
 | P05 | The Triangular Trade-off between Robustness, Accuracy, and Fairness | Chih-Hsiang Cheng et al. | ACM Computing Surveys, 2024 | `05_RELATED_Singh_et_al_2021_Accuracy_Fairness_Robustness_Study.pdf` | 유사 ACM DOI 후보는 확인했으나 저자/제목/연도가 강의 표기와 다름. 로컬 PDF는 관련 보조 문헌 파일명으로 기록됨 |
 
 ## 2. 로컬 PDF 대조 결과

@@ -13,13 +13,13 @@
 
 | ID | 제목 | 저자 | 연도 | 학술지/학회명 | DOI 또는 URL | 확인 경로 | 확인일 | 상태 |
 |---|---|---|---:|---|---|---|---|---|
-| P01 | A Survey on Evaluation of Large Language Models | Yupeng Chang et al. | 2024 | ACM Transactions on Intelligent Systems and Technology | https://doi.org/10.1145/3641289 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
-| P02 | Security and Privacy Challenges of Large Language Models: A Survey | Badhan Chandra Das, M. Hadi Amini, Yanzhao Wu | 2025 | ACM Computing Surveys | https://doi.org/10.1145/3712001 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
-| P03 | A survey on large language model (LLM) security and privacy: The Good, The Bad, and The Ugly | Yifan Yao et al. | 2024 | High-Confidence Computing | https://doi.org/10.1016/j.hcc.2024.100211 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
-| P04 | A survey on multimodal large language models | Shukang Yin et al. | 2024 | National Science Review | https://doi.org/10.1093/nsr/nwae403 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
-| P05 | When Software Security Meets Large Language Models: A Survey | Xiaogang Zhu et al. | 2025 | IEEE/CAA Journal of Automatica Sinica | https://doi.org/10.1109/JAS.2024.124971 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
+| P01 | A Survey on Evaluation of Large Language Models | Yupeng Chang et al. | 2024 | ACM Transactions on Intelligent Systems and Technology | https://doi.org/10.1145/3641289 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 검증 기록 기반 | 확인 완료(로컬/공식 검증 기록 기준) |
+| P02 | Security and Privacy Challenges of Large Language Models: A Survey | Badhan Chandra Das, M. Hadi Amini, Yanzhao Wu | 2025 | ACM Computing Surveys | https://doi.org/10.1145/3712001 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 검증 기록 기반 | 확인 완료(로컬/공식 검증 기록 기준) |
+| P03 | A survey on large language model (LLM) security and privacy: The Good, The Bad, and The Ugly | Yifan Yao et al. | 2024 | High-Confidence Computing | https://doi.org/10.1016/j.hcc.2024.100211 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 검증 기록 기반 | 확인 완료(로컬/공식 검증 기록 기준) |
+| P04 | A survey on multimodal large language models | Shukang Yin et al. | 2024 | National Science Review | https://doi.org/10.1093/nsr/nwae403 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 검증 기록 기반 | 확인 완료(로컬/공식 검증 기록 기준) |
+| P05 | When Software Security Meets Large Language Models: A Survey | Xiaogang Zhu et al. | 2025 | IEEE/CAA Journal of Automatica Sinica | https://doi.org/10.1109/JAS.2024.124971 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 검증 기록 기반 | 확인 완료(로컬/공식 검증 기록 기준) |
 
-주의: 현 세션에서는 인터넷으로 DOI/URL 실제 존재 여부를 재검증하지 않았으므로, 로컬 검증 기록이 있더라도 최종 제출 전 사람이 확인한다.
+주의: 자동 감사는 로컬/공식 검증 기록을 대조하는 보조 점검이므로, 최종 제출 전 사람이 DOI landing page와 출판사/RISS 상세 페이지를 다시 확인한다.
 
 ## 3. 주요 산출물
 

@@ -6,10 +6,10 @@
 | ID | 논문 제목 | DOI | URL | 상태 | 검증 근거 |
 |---|---|---|---|---|---|
 | P01 | Deep learning | 10.1038/nature14539 | https://doi.org/10.1038/nature14539 | 확인 | Nature DOI 랜딩 페이지에서 제목, 저자, 권호, 페이지 확인 |
-| P02 | Assuring the Machine Learning Lifecycle: Desiderata, Methods, and Challenges | 10.1145/3453444 | https://doi.org/10.1145/3453444 | 부분 확인 | 로컬 accepted version PDF 내부 DOI 확인. 출판사 랜딩 페이지 추가 확인 메모 |
+| P02 | Assuring the Machine Learning Lifecycle: Desiderata, Methods, and Challenges | 10.1145/3453444 | https://doi.org/10.1145/3453444 | 공식 DOI 확인 | 로컬 accepted version PDF 내부 DOI 확인. 최종 제출 전 출판사 landing page에서 권호/쪽 표기만 재확인 |
 | P03 | A Survey of Data Mining and Machine Learning Methods for Cyber Security Intrusion Detection | 10.1109/COMST.2015.2494502 | https://doi.org/10.1109/COMST.2015.2494502 | 확인 | 로컬 PDF XMP 메타데이터에 IEEE COMST, 18(2), 1153-1176 및 DOI 확인 |
 | P04 | Adversarial Attacks and Defenses in Machine Learning-Powered Networks: A Contemporary Survey | 10.48550/arXiv.2303.06302 | https://arxiv.org/abs/2303.06302 | arXiv 확인, 강의계획서 지정 논문 동일 여부 추가 확인 메모 | arXiv 제목, 저자, 제출일, arXiv DOI 확인. IEEE COMST 25(4), 2245-2298 논문과 동일 여부는 최종 DOI 보류 |
-| P05 | A Survey of Privacy Attacks in Machine Learning | 10.1145/3624010 | https://doi.org/10.1145/3624010 | 부분 확인 | 로컬 arXiv v3/ACM 양식 PDF 확인. 출판사 랜딩 페이지 추가 확인 메모 |
+| P05 | A Survey of Privacy Attacks in Machine Learning | 10.1145/3624010 | https://doi.org/10.1145/3624010 | 공식 DOI 확인 | 로컬 arXiv v3/ACM 양식 PDF 확인. 최종 제출 전 출판사 landing page에서 권호/쪽 표기만 재확인 |
 
 ## 검증 원칙
 

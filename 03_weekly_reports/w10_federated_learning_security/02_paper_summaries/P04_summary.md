@@ -1,63 +1,71 @@
-# P04 논문 요약
+# P04 Summary
 
-## 1. 서지정보
+## The Federation Strikes Back: A Survey of Federated Learning Privacy Attacks, Defenses, Applications, and Policy Landscape — Joshua C. Zhao et al., ACM Computing Surveys, 2025
+
+## 0. 문헌 검증 상태
 
 | 항목 | 내용 |
 |---|---|
-| 논문 제목 | The Federation Strikes Back: A Survey of Federated Learning Privacy Attacks, Defenses, Applications, and Policy Landscape |
+| 주차 | W10 Federated Learning Security |
+| 논문명 | The Federation Strikes Back: A Survey of Federated Learning Privacy Attacks, Defenses, Applications, and Policy Landscape |
 | 저자 | Joshua C. Zhao et al. |
-| 공식 출판 정보 | ACM Computing Surveys, 57(9), pp. 1-37, 2025 |
-| DOI/URL | https://doi.org/10.1145/3724113 |
-| PDF 파일명 | 04_Zhao_et_al_2025_Federation_Strikes_Back.pdf |
-| 검증 상태 | DOI 메타데이터 기준 제목, 학술지, volume, issue, page 확인. Article 번호는 추가 확인 필요 |
+| 출판 정보 | ACM Computing Surveys, 57(9), pp. 1–37, 2025 |
+| DOI | https://doi.org/10.1145/3724113 |
+| 검증 상태 | W10 `paper_list.md` 기준 DOI 확인. Article 번호 추가 대조 메모 유지 |
 
-## 2. 한 문장 요약
+---
 
-이 논문은 FL privacy attack, defense, application, policy landscape를 함께 검토하며, 모델 업데이트 공유가 항상 privacy-preserving이라는 전제가 깨질 수 있음을 정리한다[4].
+## 1. 한 문장 요약
 
-## 3. 연구문제
+이 논문은 FL 프라이버시 공격과 방어를 **gradient leakage, membership inference, property inference, secure aggregation, differential privacy, applications, policy landscape** 관점에서 정리하며, W10에서 기술적 방어와 거버넌스 요구를 연결하는 핵심 문헌이다.
 
-FL 모델 업데이트에서 어떤 privacy attack이 가능한지, 어떤 방어와 정책 조건이 필요한지를 다룬다. W10에서는 privacy leakage를 실제 gradient inversion이 아니라 update exposure proxy로 제한해 기록한다.
+---
 
-## 4. 핵심 개념
+## 2. 핵심 연구질문
 
-| 개념 | 설명 | 기말 논문 연결 |
-|---|---|---|
-| Privacy attack | 모델 업데이트에서 학습 데이터 단서를 추론하는 위협 | privacy leakage proxy |
-| Defense method | 업데이트 보호, secure aggregation, DP 등 | 방어 비교 |
-| Application lesson | 실제 산업 적용에서 얻은 운영상 제약 | 정책·운영 함의 |
-| Policy landscape | 개인정보 보호 규제와 FL 운영 책임 | 기말 논문 보안 함의 |
+| 번호 | 연구질문 |
+|---|---|
+| RQ1 | FL은 원본 데이터를 공유하지 않아도 어떤 privacy attack에 취약한가? |
+| RQ2 | Secure aggregation과 local/global DP는 어떤 보호와 한계를 갖는가? |
+| RQ3 | Application domain과 policy landscape는 FL 보안 요구를 어떻게 바꾸는가? |
+| RQ4 | 기말논문에서 FL privacy를 기술·정책·감사 관점으로 어떻게 통합할 수 있는가? |
 
-## 5. 방법론
+---
 
-이 문헌은 privacy attack과 defense를 문헌 기반으로 정리하고, 실제 적용과 정책 환경까지 연결한다. W10 보고서는 이를 privacy 지표를 독립 항목으로 분리해야 하는 근거로 사용한다.
+## 3. 핵심 수식
 
-### 5.1 핵심 수식 또는 알고리즘 설명
+### 3.1 Privacy Risk Score
+
+$$
+PrivacyRisk=w_1MI+w_2GI+w_3PI-w_4DefenseCoverage
+$$
+
+| 기호 | 의미 |
+|---|---|
+| $MI$ | membership inference 위험 |
+| $GI$ | gradient inversion 위험 |
+| $PI$ | property inference 위험 |
+| $DefenseCoverage$ | secure aggregation/DP/정책 적용 범위 |
+
+---
+
+## 4. 위협모형·평가지표
 
 | 항목 | 내용 |
 |---|---|
-| 수식/알고리즘 이름 | Membership Advantage in FL |
-| 원문 위치 | 논문 세부 절/쪽/그림/알고리즘 번호 확인 필요. 로컬 DOI/URL 점검표로 문헌 대응만 확인. |
-| 작성 형식 | Markdown + LaTeX math |
-| 검산 도구 | 사용 안 함 |
-| 수식 또는 절차 | 표준 정의식 / 원문 직접 인용 아님.<br>$$Adv_{MI}=TPR-FPR$$ |
-| 기호·입력·출력 | TPR: member를 member로 맞힌 비율, FPR: non-member를 member로 잘못 판정한 비율 |
-| 직관적 의미 | Membership Advantage in FL는 Federated Learning 보안 평가에서 핵심 원리나 평가 지표를 정량적으로 해석하기 위한 표준식이다. |
-| 보안 관점 해석 | Federated Learning 보안 평가에서는 정상 성능과 보안 실패 조건을 분리해 보아야 한다. 이 항목은 공격·방어 원리 또는 운영 통제의 평가 기준을 명시하되, 실제 공격 절차나 무단 적용 단계는 포함하지 않는다. |
-| 평가 지표와 연결 | MI advantage, privacy leakage, epsilon, utility drop |
-| 한계와 가정 | 표준 정의식 / 원문 직접 인용 아님. 논문별 변형, 정확한 수식 번호, 실험 설정은 원문 PDF에서 확인 필요다. |
-| 기말 논문 반영 여부 | 반영 |
+| 보호 자산 | client update, gradient, participant identity, local data statistics |
+| 공격자 목표 | membership inference, gradient reconstruction, property inference |
+| 방어 | secure aggregation, DP, update clipping, access control, policy compliance |
+| 지표 | leakage rate, MI advantage, utility drop, privacy budget, compliance evidence |
 
-## 6. 보안 관점 분석
+---
 
-P04는 secure aggregation, DP, privacy attack, policy landscape를 연결한다. W10의 Privacy Leakage Proxy는 실제 gradient inversion이나 membership inference 성공률이 아니라 update norm 기반 대용 지표이며, policy discussion을 위한 위험 신호로만 해석한다.
+## 5. 기말논문 연결
 
-## 7. 한계와 확인 필요
+P04는 FL privacy를 기술적 방어뿐 아니라 policy landscape와 연결한다. 기말논문에서는 분산 AI 시스템의 개인정보 보호 평가표와 감사 로그 설계 근거로 사용한다.
 
-- DOI 등록 메타데이터에서는 pages 1-37이 확인되었으나 별도 Article 번호는 확인되지 않았다.
-- 수업자료에는 P04가 Article 230으로 적혀 있으므로 최종 제출 전 ACM 페이지에서 Article 번호를 사람이 확인해야 한다.
-- 로컬 PDF는 `Manuscript submitted to ACM CSUR` 성격을 포함하므로 최종 참고문헌에는 DOI 메타데이터를 우선 사용한다.
+---
 
-## 8. 기말 논문에 반영할 부분
+## 6. 최종 판단
 
-P04는 FL privacy와 policy landscape를 기말 논문의 보안적 함의 장에 연결한다. 기술적 방어만으로 부족하고 규제·책임성·검증 로그가 함께 필요하다는 논거가 된다.
+P04는 W10의 privacy 핵심 문헌이다. P02/P03의 공격 taxonomy와 결합해 privacy-utility-governance 통합 평가축을 구성한다.

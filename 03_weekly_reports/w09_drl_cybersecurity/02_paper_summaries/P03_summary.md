@@ -1,66 +1,72 @@
-# 논문 요약
+# P03 Summary
 
-## 1. 서지정보
+## Deep Reinforcement Learning for Cyber Security — Thanh Thi Nguyen, Vijay Janapa Reddi, IEEE TNNLS, 2023
 
-| 항목 | 내용 |
-|---|---|
-| 논문 제목 | Deep Reinforcement Learning for Cyber Security |
-| 저자 | Thanh Thi Nguyen; Vijay Janapa Reddi |
-| 학술지/학회 | IEEE Transactions on Neural Networks and Learning Systems, Vol. 34, No. 8, pp. 3779-3795 |
-| 연도 | 2023 |
-| DOI/URL | https://doi.org/10.1109/TNNLS.2021.3121870 |
-| PDF 파일명 | 03_Nguyen_Reddi_2023_DRL_for_Cyber_Security.pdf |
-| 검증 상태 | DOI 확인 완료 / 강의계획서 저자명 표기 차이: 공식 DOI 저자명은 `Thanh Thi Nguyen; Vijay Janapa Reddi`, 강의계획서 저자명은 `Ngoc-Tinh Nguyen et al.` |
-
-## 2. 한 문장 요약
-
-> 이 논문은 DRL을 사이버-물리 시스템 방어, 자율 침입탐지, 게임이론 기반 방어 전략에 적용한 연구를 정리하며, DRL cyber defense의 상태·행동·보상 설계와 평가 난점을 보여준다.
-
-## 3. 연구문제
-
-복잡하고 동적인 사이버 공격에 대해 DRL이 방어 정책을 적응적으로 학습할 수 있는가가 핵심 질문이다. 특히 기존 supervised/unsupervised 방법이 순차적 대응과 proactive defense에 약한 지점을 DRL이 어떻게 보완할 수 있는지 검토한다.
-
-## 4. 핵심 개념
-
-| 개념 | 설명 | W09 연결 |
-|---|---|---|
-| DRL cyber defense | 공격 탐지와 대응을 순차 의사결정 문제로 모델링한다. | 대상 시스템 |
-| Autonomous IDS | 경보, 네트워크 이벤트, 호스트 상태를 바탕으로 탐지 정책을 학습한다. | Detection F1 |
-| Game-theoretic defense | 공격자와 방어자의 상호작용을 학습 문제로 본다. | 공격자 능력 가정 |
-| Reward design | 방어 성능, 비용, 위험을 숫자 보상으로 변환한다. | reward manipulation |
-
-## 5. 방법론
-
-DRL 기반 사이버보안 연구를 cyber-physical systems, autonomous intrusion detection, multi-agent/game-theoretic defense로 분류한다. DQN, policy gradient, actor-critic 계열이 어떤 사이버보안 문제에 적용되는지도 비교한다.
-
-### 5.1 핵심 수식 또는 알고리즘 설명
+## 0. 문헌 검증 상태
 
 | 항목 | 내용 |
 |---|---|
-| 수식/알고리즘 이름 | DQN Temporal-Difference Loss |
-| 원문 위치 | 논문 세부 절/쪽/그림/알고리즘 번호 확인 필요. 로컬 DOI/URL 점검표로 문헌 대응만 확인. |
-| 작성 형식 | Markdown + LaTeX math |
-| 검산 도구 | 사용 안 함 |
-| 수식 또는 절차 | 표준 정의식 / 원문 직접 인용 아님.<br>$$\mathcal{L}(\theta)=\mathbb{E}\left[(r+\gamma\max_{a_{next}}Q_{\theta^-}(s',a_{next})-Q_\theta(s,a))^2\right]$$ |
-| 기호·입력·출력 | \(Q_\theta\): action-value network, \(\theta^-\): target network, \(s,a,r,s'\): transition tuple |
-| 직관적 의미 | DQN Temporal-Difference Loss는 DRL 사이버보안 평가에서 핵심 원리나 평가 지표를 정량적으로 해석하기 위한 표준식이다. |
-| 보안 관점 해석 | DRL 사이버보안 평가에서는 정상 성능과 보안 실패 조건을 분리해 보아야 한다. 이 항목은 공격·방어 원리 또는 운영 통제의 평가 기준을 명시하되, 실제 공격 절차나 무단 적용 단계는 포함하지 않는다. |
-| 평가 지표와 연결 | episode return, detection success, false response, policy stability |
-| 한계와 가정 | 표준 정의식 / 원문 직접 인용 아님. 논문별 변형, 정확한 수식 번호, 실험 설정은 원문 PDF에서 확인 필요다. |
-| 기말 논문 반영 여부 | 반영 |
+| 주차 | W09 DRL & Cybersecurity |
+| 논문명 | Deep Reinforcement Learning for Cyber Security |
+| 저자 | Thanh Thi Nguyen, Vijay Janapa Reddi |
+| 출판 정보 | IEEE TNNLS, 34(8), pp. 3779–3795, 2023 |
+| DOI | https://doi.org/10.1109/TNNLS.2021.3121870 |
+| 검증 상태 | W09 `paper_list.md` 기준 DOI 확인. 강의계획서 저자 표기 차이 메모 유지 |
 
-## 6. 주요 결과
+---
 
-DRL은 동적인 공격 환경, 고차원 상태공간, adaptive defense에 유망하지만, 데이터셋 품질, 환경 모델링, reward specification, 평가 기준 표준화가 여전히 어렵다. 이 난점이 W09 toy 실험의 핵심 주제인 보상조작과 직접 연결된다.
+## 1. 한 문장 요약
 
-## 7. 보안 관점 분석
+이 논문은 DRL을 사이버보안에 적용하는 연구를 **intrusion detection, malware analysis, cyber-physical defense, moving target defense, resource allocation, autonomous response** 관점에서 정리하고, W09의 핵심 보안 응용 문헌으로 사용된다.
 
-보상 신호가 공격자에게 조작되거나 방어 목표를 잘못 대변하면 에이전트는 미탐, 오탐, 과잉 대응을 학습할 수 있다. 따라서 Detection F1만이 아니라 Safety Violation Rate, Policy Robustness, 재현성 로그를 함께 봐야 한다.
+---
 
-## 8. 한계와 오픈문제
+## 2. 핵심 연구질문
 
-Survey 문헌이므로 개별 연구의 실험 설정이 다양하고, 동일한 benchmark로 비교하기 어렵다. 실제 네트워크 공격 자동화가 아니라 안전한 simulation과 문헌 기반 평가표로 제한해야 한다. 공식 DOI 메타데이터는 `Thanh Thi Nguyen; Vijay Janapa Reddi`를 저자로 확인하지만, 강의계획서의 `Ngoc-Tinh Nguyen et al.` 표기와 표기가 다르므로 교수자 또는 강의자료 원본 확인 전까지 지정문헌 동일성은 확인 필요로 유지한다.
+| 번호 | 연구질문 |
+|---|---|
+| RQ1 | 사이버보안 문제는 어떤 state/action/reward 구조로 DRL에 매핑되는가? |
+| RQ2 | 자동 방어 정책은 탐지율·오탐·대응 비용을 어떻게 함께 고려해야 하는가? |
+| RQ3 | 공격자가 환경을 조작할 때 DRL policy는 어떤 취약성을 갖는가? |
+| RQ4 | 안전한 DRL 사이버 실험은 어떤 toy/simulation 범위로 제한해야 하는가? |
 
-## 9. 기말 논문에 반영할 부분
+---
 
-기말 논문의 관련연구와 위협모형 장에서 DRL cyber defense의 대표 적용 영역, reward design 위험, 평가 지표 후보를 정리하는 핵심 근거로 사용한다.
+## 3. 핵심 수식
+
+### 3.1 Cyber Defense MDP
+
+$$
+\mathcal{M}=(\mathcal{S},\mathcal{A},P,R,\gamma)
+$$
+
+### 3.2 방어 보상 예시
+
+$$
+r_t=\alpha\cdot Detection_t-\beta\cdot FalseAlarm_t-\lambda\cdot ResponseCost_t
+$$
+
+**보안 해석:** 보상 함수는 방어자의 가치 판단을 코드화한다. 탐지만 높이고 비용을 무시하면 과잉 대응 정책이 생길 수 있다.
+
+---
+
+## 4. 위협모형·평가지표
+
+| 항목 | 내용 |
+|---|---|
+| 보호 자산 | 네트워크 상태, IDS alert, 대응 정책, 로그, 서비스 가용성 |
+| 공격자 목표 | 탐지 회피, 방어 action 유도, 상태 관측 오염, reward 조작 |
+| 대표 지표 | detection rate, FPR, cumulative reward, response cost, policy robustness |
+| 재현성 | simulator, state/action definition, reward function, episode trace 기록 |
+
+---
+
+## 5. 기말논문 연결
+
+P03은 W09의 직접 보안 핵심 문헌이다. 기말논문에서는 AI 보안 대응을 단순 분류가 아니라 순차 의사결정·자동 대응·감사 가능한 policy evaluation 문제로 확장하는 근거로 사용한다.
+
+---
+
+## 6. 최종 판단
+
+P03은 W09의 중심 문헌이다. DRL 기반 사이버 방어는 실제 시스템 직접 적용보다 simulation과 human-in-the-loop 평가로 제한하는 것이 안전하다.

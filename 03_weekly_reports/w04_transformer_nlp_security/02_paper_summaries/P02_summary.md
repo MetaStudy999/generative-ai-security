@@ -32,6 +32,22 @@ Transformer의 성능을 크게 훼손하지 않으면서 speedup, memory footpr
 
 문헌조사와 실용 분류를 결합한다. P01이 efficient attention 구조 자체에 초점을 둔다면, P02는 실제 시스템에서 어떤 효율화 수단을 선택할지에 더 가까운 survey이다.
 
+### 5.1 핵심 수식 또는 알고리즘 설명
+
+| 항목 | 내용 |
+|---|---|
+| 수식/알고리즘 이름 | Low-rank 또는 Kernel Attention 개념식 |
+| 원문 위치 | 논문 세부 절/쪽/그림/알고리즘 번호 확인 필요. 로컬 DOI/URL 점검표로 문헌 대응만 확인. |
+| 작성 형식 | Markdown + LaTeX math |
+| 검산 도구 | 사용 안 함 |
+| 수식 또는 절차 | 표준 정의식 / 원문 직접 인용 아님.<br>$$softmax\left(\frac{QK^T}{\sqrt{d_k}}\right)V\approx \phi(Q)\left(\phi(K)^TV\right)$$ |
+| 기호·입력·출력 | \(\phi\): kernel 또는 feature map 근사, \(Q,K,V\): attention 입력 |
+| 직관적 의미 | Low-rank 또는 Kernel Attention 개념식는 Transformer·NLP 보안 평가에서 핵심 원리나 평가 지표를 정량적으로 해석하기 위한 표준식이다. |
+| 보안 관점 해석 | Transformer·NLP 보안 평가에서는 정상 성능과 보안 실패 조건을 분리해 보아야 한다. 이 항목은 공격·방어 원리 또는 운영 통제의 평가 기준을 명시하되, 실제 공격 절차나 무단 적용 단계는 포함하지 않는다. |
+| 평가 지표와 연결 | throughput, memory, long-context accuracy, safety detection rate |
+| 한계와 가정 | 표준 정의식 / 원문 직접 인용 아님. 논문별 변형, 정확한 수식 번호, 실험 설정은 원문 PDF에서 확인 필요다. |
+| 기말 논문 반영 여부 | 참고만 |
+
 ## 6. 주요 결과
 
 효율화 기법은 speed, memory, latency, parameter count를 개선할 수 있지만 utility degradation과 robustness 변화가 함께 발생할 수 있다. 보안 맥락에서는 방어 기능이 실제 운영 경로에 들어갈 수 있을 만큼 가벼운지가 중요하다.

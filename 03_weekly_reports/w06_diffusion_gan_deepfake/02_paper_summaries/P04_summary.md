@@ -35,6 +35,22 @@
 
 Creation과 detection을 함께 다루는 survey이다. W06에서는 이 논문을 위협모형의 중심 문헌으로 삼고, 공격 절차를 재현하지 않은 채 탐지 신뢰성 지표만 안전한 synthetic 실험으로 확인했다.
 
+### 5.1 핵심 수식 또는 알고리즘 설명
+
+| 항목 | 내용 |
+|---|---|
+| 수식/알고리즘 이름 | Deepfake Detection FPR/FNR |
+| 원문 위치 | 논문 세부 절/쪽/그림/알고리즘 번호 확인 필요. 로컬 DOI/URL 점검표로 문헌 대응만 확인. |
+| 작성 형식 | Markdown + LaTeX math |
+| 검산 도구 | 사용 안 함 |
+| 수식 또는 절차 | 표준 정의식 / 원문 직접 인용 아님.<br>$$FPR=\frac{FP}{FP+TN},\qquad FNR=\frac{FN}{FN+TP}$$ |
+| 기호·입력·출력 | FP: 정상 콘텐츠 오탐, TN: 정상으로 올바르게 판정, FN: deepfake 미탐, TP: deepfake 탐지 |
+| 직관적 의미 | Deepfake Detection FPR/FNR는 Diffusion/GAN·Deepfake 평가에서 핵심 원리나 평가 지표를 정량적으로 해석하기 위한 표준식이다. |
+| 보안 관점 해석 | Diffusion/GAN·Deepfake 평가에서는 정상 성능과 보안 실패 조건을 분리해 보아야 한다. 이 항목은 공격·방어 원리 또는 운영 통제의 평가 기준을 명시하되, 실제 공격 절차나 무단 적용 단계는 포함하지 않는다. |
+| 평가 지표와 연결 | accuracy, precision, recall, FPR, FNR, AUC |
+| 한계와 가정 | 표준 정의식 / 원문 직접 인용 아님. 논문별 변형, 정확한 수식 번호, 실험 설정은 원문 PDF에서 확인 필요다. |
+| 기말 논문 반영 여부 | 반영 |
+
 ## 6. 주요 결과
 
 딥페이크 탐지는 조작 종류, 데이터셋, 압축 수준, 생성 방식에 따라 성능이 크게 달라질 수 있다. 따라서 단일 accuracy보다 FPR/FNR, domain shift, human review 기준을 함께 기록해야 한다.

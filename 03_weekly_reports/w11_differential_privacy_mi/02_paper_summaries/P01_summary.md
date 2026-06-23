@@ -33,6 +33,22 @@ DP를 ML에 적용할 때 이론적 DP 보장과 실제 구현 사이에 어떤 
 
 DP의 원래 가정과 ML 적용 사례를 비판적으로 검토하고, privacy-utility-efficiency trade-off가 단순히 “DP 사용 여부”로 해결되지 않음을 문헌과 실험적 논의로 정리한다.
 
+### 5.1 핵심 수식 또는 알고리즘 설명
+
+| 항목 | 내용 |
+|---|---|
+| 수식/알고리즘 이름 | (epsilon, delta)-Differential Privacy 정의 |
+| 원문 위치 | 논문 세부 절/쪽/그림/알고리즘 번호 확인 필요. 로컬 DOI/URL 점검표로 문헌 대응만 확인. |
+| 작성 형식 | Markdown + LaTeX math |
+| 검산 도구 | 사용 안 함 |
+| 수식 또는 절차 | 표준 정의식 / 원문 직접 인용 아님.<br>$$\Pr[M(D)\in S]\le e^{\varepsilon}\Pr[M(D_{adj})\in S]+\delta$$ |
+| 기호·입력·출력 | \(D,D_{adj}\): 하나의 레코드만 다른 인접 데이터셋, \(M\): randomized mechanism, \(S\): 출력 집합 |
+| 직관적 의미 | (epsilon, delta)-Differential Privacy 정의는 Differential Privacy·Membership Inference 평가에서 핵심 원리나 평가 지표를 정량적으로 해석하기 위한 표준식이다. |
+| 보안 관점 해석 | Differential Privacy·Membership Inference 평가에서는 정상 성능과 보안 실패 조건을 분리해 보아야 한다. 이 항목은 공격·방어 원리 또는 운영 통제의 평가 기준을 명시하되, 실제 공격 절차나 무단 적용 단계는 포함하지 않는다. |
+| 평가 지표와 연결 | epsilon, delta, utility drop, MI advantage |
+| 한계와 가정 | 표준 정의식 / 원문 직접 인용 아님. 논문별 변형, 정확한 수식 번호, 실험 설정은 원문 PDF에서 확인 필요다. |
+| 기말 논문 반영 여부 | 반영 |
+
 ## 6. 주요 결과
 
 DP를 적용했다고 해서 자동으로 충분한 privacy guarantee가 생기지 않는다. 특히 느슨한 budget, composition/accounting 누락, utility 우선 구현은 DP의 핵심 약속을 약화시킬 수 있다.

@@ -33,6 +33,22 @@
 
 MI 공격과 방어를 모델 유형, 공격자 지식, 관측 정보, 방어 전략에 따라 분류한다. W11에서는 공격 절차를 악용 가능하게 재현하지 않고, synthetic confidence score 기반 위험 지표로만 축약한다.
 
+### 5.1 핵심 수식 또는 알고리즘 설명
+
+| 항목 | 내용 |
+|---|---|
+| 수식/알고리즘 이름 | Membership Inference Advantage |
+| 원문 위치 | 논문 세부 절/쪽/그림/알고리즘 번호 확인 필요. 로컬 DOI/URL 점검표로 문헌 대응만 확인. |
+| 작성 형식 | Markdown + LaTeX math |
+| 검산 도구 | 사용 안 함 |
+| 수식 또는 절차 | 표준 정의식 / 원문 직접 인용 아님.<br>$$Adv_{MI}=TPR-FPR$$ |
+| 기호·입력·출력 | TPR: member를 member로 맞힌 비율, FPR: non-member를 member로 잘못 판정한 비율 |
+| 직관적 의미 | Membership Inference Advantage는 Differential Privacy·Membership Inference 평가에서 핵심 원리나 평가 지표를 정량적으로 해석하기 위한 표준식이다. |
+| 보안 관점 해석 | Differential Privacy·Membership Inference 평가에서는 정상 성능과 보안 실패 조건을 분리해 보아야 한다. 이 항목은 공격·방어 원리 또는 운영 통제의 평가 기준을 명시하되, 실제 공격 절차나 무단 적용 단계는 포함하지 않는다. |
+| 평가 지표와 연결 | attack accuracy, advantage, leakage score, utility |
+| 한계와 가정 | 표준 정의식 / 원문 직접 인용 아님. 논문별 변형, 정확한 수식 번호, 실험 설정은 원문 PDF에서 확인 필요다. |
+| 기말 논문 반영 여부 | 반영 |
+
 ## 6. 주요 결과
 
 MI 위험은 모델의 과적합, confidence 노출, 데이터 분포, 공격자 보조 지식에 영향을 받는다. 따라서 accuracy만 보고 privacy risk를 판단하면 부족하다.

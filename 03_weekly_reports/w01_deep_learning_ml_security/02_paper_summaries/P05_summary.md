@@ -33,6 +33,22 @@
 
 privacy attack 문헌을 공격 대상 자산과 공격자 지식 수준에 따라 분류하고, 공격이 가능한 원인과 방어책을 비교한다. 본 보고서에서는 프라이버시 공격의 세부 구현 절차보다 평가 지표와 위협모형의 구조를 추출했다.
 
+### 5.1 핵심 수식 또는 알고리즘 설명
+
+| 항목 | 내용 |
+|---|---|
+| 수식/알고리즘 이름 | Membership Inference Advantage |
+| 원문 위치 | 논문 세부 절/쪽/그림/알고리즘 번호 확인 필요. 로컬 DOI/URL 점검표로 문헌 대응만 확인. |
+| 작성 형식 | Markdown + LaTeX math |
+| 검산 도구 | 사용 안 함 |
+| 수식 또는 절차 | 표준 정의식 / 원문 직접 인용 아님.<br>$$Adv_{MI}=\Pr[A(z)=1\mid z\in D_{train}]-\Pr[A(z)=1\mid z\notin D_{train}]$$ |
+| 기호·입력·출력 | \(A\): membership 판별자, \(z\): 평가 샘플, \(D_{train}\): 학습 데이터 |
+| 직관적 의미 | Membership Inference Advantage는 딥러닝·ML 보안 기본 평가에서 핵심 원리나 평가 지표를 정량적으로 해석하기 위한 표준식이다. |
+| 보안 관점 해석 | 딥러닝·ML 보안 기본 평가에서는 정상 성능과 보안 실패 조건을 분리해 보아야 한다. 이 항목은 공격·방어 원리 또는 운영 통제의 평가 기준을 명시하되, 실제 공격 절차나 무단 적용 단계는 포함하지 않는다. |
+| 평가 지표와 연결 | membership inference risk, privacy leakage, utility drop |
+| 한계와 가정 | 표준 정의식 / 원문 직접 인용 아님. 논문별 변형, 정확한 수식 번호, 실험 설정은 원문 PDF에서 확인 필요다. |
+| 기말 논문 반영 여부 | 반영 |
+
 ## 6. 주요 결과
 
 프라이버시 공격은 모델 파라미터, confidence score, decision output, 학습 데이터 분포 등 다양한 신호를 이용할 수 있다. 방어는 differential privacy, 출력 제한, regularization, confidence masking, auditing 등으로 나뉘지만, 유틸리티와 프라이버시 보호 사이의 trade-off가 지속된다.

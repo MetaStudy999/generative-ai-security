@@ -34,6 +34,22 @@
 
 논문은 published deployment case를 수집하고 ML deployment workflow 단계에 mapping한다. 본 요약은 PDF 첫 페이지와 수업자료 DOI를 대조한 뒤, 세부 사례별 통계는 원문 정밀 확인 대상으로 남겼다.
 
+### 5.1 핵심 수식 또는 알고리즘 설명
+
+| 항목 | 내용 |
+|---|---|
+| 수식/알고리즘 이름 | Population Stability Index PSI |
+| 원문 위치 | 논문 세부 절/쪽/그림/알고리즘 번호 확인 필요. 로컬 DOI/URL 점검표로 문헌 대응만 확인. |
+| 작성 형식 | Markdown + LaTeX math |
+| 검산 도구 | 사용 안 함 |
+| 수식 또는 절차 | 표준 정의식 / 원문 직접 인용 아님.<br>$$PSI=\sum_b(p_b-q_b)\log\frac{p_b}{q_b}$$ |
+| 기호·입력·출력 | \(p_b\): 기준 기간 bin 비율, \(q_b\): 현재 기간 bin 비율, \(b\): feature bin |
+| 직관적 의미 | Population Stability Index PSI는 MLOps·Supply Chain 운영 보안 평가에서 핵심 원리나 평가 지표를 정량적으로 해석하기 위한 표준식이다. |
+| 보안 관점 해석 | MLOps·Supply Chain 운영 보안 평가에서는 정상 성능과 보안 실패 조건을 분리해 보아야 한다. 이 항목은 공격·방어 원리 또는 운영 통제의 평가 기준을 명시하되, 실제 공격 절차나 무단 적용 단계는 포함하지 않는다. |
+| 평가 지표와 연결 | PSI, KL divergence, alert count, MTTR |
+| 한계와 가정 | 표준 정의식 / 원문 직접 인용 아님. 논문별 변형, 정확한 수식 번호, 실험 설정은 원문 PDF에서 확인 필요다. |
+| 기말 논문 반영 여부 | 반영 |
+
 ## 5.1 서지 차이 메모
 
 Crossref DOI 메타데이터 기준 제목은 `Challenges in Deploying Machine Learning: A Survey of Case Studies`이며, 제목 대소문자는 ACM 출판사 기준을 따른다. 수업자료의 권호/Article 번호와 Crossref 권호가 다르므로 최종 참고문헌에는 ACM 페이지에서 Article 번호를 재확인한 뒤 확정한다.

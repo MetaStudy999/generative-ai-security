@@ -38,6 +38,22 @@ AI 추론과 학습을 중앙 cloud가 아니라 edge device 또는 edge node에
 
 주의: W14의 P04는 지정 논문과 로컬 PDF가 불일치한다. 현재 로컬 PDF는 Zhou et al. Edge Intelligence 관련 대체문헌이므로, 최종 제출 전 Jiasi Chen and Xukan Ran의 지정 논문 원문 PDF 또는 공식 출판 페이지를 확보해야 한다.
 
+### 5.1 핵심 수식 또는 알고리즘 설명
+
+| 항목 | 내용 |
+|---|---|
+| 수식/알고리즘 이름 | Edge Inference Latency-Cost Metric |
+| 원문 위치 | 논문 세부 절/쪽/그림/알고리즘 번호 확인 필요. 로컬 DOI/URL 점검표로 문헌 대응만 확인. |
+| 작성 형식 | Markdown + LaTeX math |
+| 검산 도구 | 사용 안 함 |
+| 수식 또는 절차 | 표준 정의식 / 원문 직접 인용 아님.<br>$$Cost=\alpha Latency+\beta Energy+\gamma ModelSize$$ |
+| 기호·입력·출력 | Latency: 추론 지연, Energy: 에너지 사용, ModelSize: 모델 크기 |
+| 직관적 의미 | Edge Inference Latency-Cost Metric는 MLOps·Supply Chain 운영 보안 평가에서 핵심 원리나 평가 지표를 정량적으로 해석하기 위한 표준식이다. |
+| 보안 관점 해석 | MLOps·Supply Chain 운영 보안 평가에서는 정상 성능과 보안 실패 조건을 분리해 보아야 한다. 이 항목은 공격·방어 원리 또는 운영 통제의 평가 기준을 명시하되, 실제 공격 절차나 무단 적용 단계는 포함하지 않는다. |
+| 평가 지표와 연결 | latency, energy, model size, security overhead |
+| 한계와 가정 | 표준 정의식 / 원문 직접 인용 아님. 논문별 변형, 정확한 수식 번호, 실험 설정은 원문 PDF에서 확인 필요다. |
+| 기말 논문 반영 여부 | 참고만 |
+
 ## 6. 주요 결과
 
 Edge 환경은 낮은 지연, bandwidth 절감, 지역성 기반 프라이버시 이점을 제공하지만, 자원 제약과 heterogeneous device, 불안정한 연결, 분산 업데이트라는 운영 난점도 만든다. 이러한 난점은 MLOps pipeline이 중앙 서버 기준으로만 설계되면 놓치기 쉽다.

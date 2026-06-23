@@ -33,6 +33,22 @@ LLM의 능력과 위험을 task-level 평가만으로 판단하기 어렵기 때
 
 대규모 문헌조사와 분류체계를 통해 LLM 평가 영역, benchmark, 평가 방법, 성공/실패 사례, 향후 과제를 정리한다. 본 보고서에서는 세부 benchmark 수치를 새로 인용하지 않고, 평가 프레임워크의 구조를 기말논문 평가축으로 전환한다.
 
+### 5.1 핵심 수식 또는 알고리즘 설명
+
+| 항목 | 내용 |
+|---|---|
+| 수식/알고리즘 이름 | Expected Calibration Error ECE |
+| 원문 위치 | 논문 세부 절/쪽/그림/알고리즘 번호 확인 필요. 로컬 DOI/URL 점검표로 문헌 대응만 확인. |
+| 작성 형식 | Markdown + LaTeX math |
+| 검산 도구 | 사용 안 함 |
+| 수식 또는 절차 | 표준 정의식 / 원문 직접 인용 아님.<br>$$ECE=\sum_{m=1}^{M}\frac{\lvert B_m\rvert}{n}\lvert acc(B_m)-conf(B_m)\rvert$$ |
+| 기호·입력·출력 | \(B_m\): confidence bin, \(acc(B_m)\): bin 정확도, \(conf(B_m)\): bin 평균 confidence |
+| 직관적 의미 | Expected Calibration Error ECE는 Reproducibility·XAI 평가에서 핵심 원리나 평가 지표를 정량적으로 해석하기 위한 표준식이다. |
+| 보안 관점 해석 | Reproducibility·XAI 평가에서는 정상 성능과 보안 실패 조건을 분리해 보아야 한다. 이 항목은 공격·방어 원리 또는 운영 통제의 평가 기준을 명시하되, 실제 공격 절차나 무단 적용 단계는 포함하지 않는다. |
+| 평가 지표와 연결 | ECE, accuracy, refusal confidence, safety calibration |
+| 한계와 가정 | 표준 정의식 / 원문 직접 인용 아님. 논문별 변형, 정확한 수식 번호, 실험 설정은 원문 PDF에서 확인 필요다. |
+| 기말 논문 반영 여부 | 반영 |
+
 ## 6. 주요 결과
 
 LLM 평가는 단일 accuracy나 leaderboard 순위가 아니라 평가 대상, 데이터 출처, 측정 방식, 사회적 위험을 함께 다루어야 한다. 특히 평가 데이터가 학습 또는 튜닝 과정에 노출되면 성능 수치가 실제 일반화 능력을 반영하지 못할 수 있다.

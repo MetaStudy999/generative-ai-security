@@ -34,6 +34,22 @@ MLOps가 데이터 처리, 모델 학습, 배포, 모니터링, 재학습을 하
 
 PDF 첫 페이지 기준으로 peer-reviewed 연구와 grey literature를 함께 분석하는 multivocal review다. 본 보고서에서는 로컬 PDF 제목과 수업자료 DOI를 대조했으며, 세부 분류표와 빈도 수치는 최종 원문 확인 대상으로 남긴다.
 
+### 5.1 핵심 수식 또는 알고리즘 설명
+
+이 논문은 수식 자체보다 분류체계, 평가 항목, 운영 절차가 핵심인 survey/review 성격이 강하다. 따라서 원문 기준으로 직접 반영할 핵심 수식은 제한적이다. 대신 본 요약에서는 다음 평가 지표 또는 알고리즘 절차를 개념 수준으로 정리한다.
+
+| 항목 | 내용 |
+|---|---|
+| 핵심 절차/지표 | MLOps Lifecycle Control 절차 |
+| 원문 위치 | 논문 세부 절/쪽/그림/알고리즘 번호 확인 필요. 로컬 DOI/URL 점검표로 문헌 대응만 확인. |
+| 보안 관점 해석 | MLOps·Supply Chain 운영 보안 평가에서는 정상 성능과 보안 실패 조건을 분리해 보아야 한다. 이 항목은 공격·방어 원리 또는 운영 통제의 평가 기준을 명시하되, 실제 공격 절차나 무단 적용 단계는 포함하지 않는다. |
+| 평가 지표와 연결 | artifact coverage, audit coverage, MTTR, rollback success |
+| 기말 논문 반영 여부 | 반영 |
+| 절차 요약 | 1. data/model/config/code artifact 식별<br>2. version, owner, hash, lineage 기록<br>3. CI/CD 승인과 배포 로그 연결<br>4. monitoring, drift, rollback evidence 유지 |
+| 기호·입력·출력 | 입력: artifact와 운영 로그, 출력: 추적 가능한 lifecycle evidence |
+| 직관적 의미 | MLOps Lifecycle Control 절차는 MLOps·Supply Chain 운영 보안 평가에서 수식보다 분류·운영·검증 흐름을 명시하는 데 초점을 둔다. |
+| 한계와 가정 | survey/review 성격의 절차 요약이며, 원문 분류표의 세부 절·쪽 번호는 확인 필요다. |
+
 ## 5.1 서지 차이 메모
 
 - 수업자료 표기: Bayram Eken et al., `A Multivocal Literature Review of MLOps Practices: Emerging Trends, Challenges, and Research Directions`.

@@ -32,6 +32,22 @@
 | 방법 축 | contrastive learning, generative learning, adversarial learning을 추천 시나리오별로 분류한다 |
 | W05 연결 | 사용자-아이템 표현 오염, 추천 편향, 데이터 출처 관리, graph/user behavior augmentation 위험을 논의할 수 있다 |
 
+### 5.1 핵심 수식 또는 알고리즘 설명
+
+| 항목 | 내용 |
+|---|---|
+| 수식/알고리즘 이름 | Masked Reconstruction Loss |
+| 원문 위치 | 논문 세부 절/쪽/그림/알고리즘 번호 확인 필요. 로컬 DOI/URL 점검표로 문헌 대응만 확인. |
+| 작성 형식 | Markdown + LaTeX math |
+| 검산 도구 | 사용 안 함 |
+| 수식 또는 절차 | 표준 정의식 / 원문 직접 인용 아님.<br>$$\mathcal{L}_{mask}=\sum_{i\in\mathcal{M}}\ell(\hat{x}_i,x_i)$$ |
+| 기호·입력·출력 | \(\mathcal{M}\): mask 위치 집합, \(x_i\): 원 입력 조각, \(\hat{x}_i\): 복원값 |
+| 직관적 의미 | Masked Reconstruction Loss는 자기지도학습·Backdoor 평가에서 핵심 원리나 평가 지표를 정량적으로 해석하기 위한 표준식이다. |
+| 보안 관점 해석 | 자기지도학습·Backdoor 평가에서는 정상 성능과 보안 실패 조건을 분리해 보아야 한다. 이 항목은 공격·방어 원리 또는 운영 통제의 평가 기준을 명시하되, 실제 공격 절차나 무단 적용 단계는 포함하지 않는다. |
+| 평가 지표와 연결 | reconstruction loss, downstream accuracy, anomaly sensitivity |
+| 한계와 가정 | 표준 정의식 / 원문 직접 인용 아님. 논문별 변형, 정확한 수식 번호, 실험 설정은 원문 PDF에서 확인 필요다. |
+| 기말 논문 반영 여부 | 참고만 |
+
 ## 6. 보안 관점
 
 추천 시스템 SSL은 user-item graph, sequential behavior, item metadata, multimodal preference signal을 이용한다. 따라서 poisoned interaction, fake user behavior, graph augmentation 조작은 downstream ranking과 user representation을 왜곡할 수 있다. W05에서는 실제 추천 공격 절차가 아니라 데이터 거버넌스와 평가축 연결에만 활용한다.

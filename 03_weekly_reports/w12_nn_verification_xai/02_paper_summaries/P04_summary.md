@@ -38,3 +38,21 @@ W12의 `certified_rate`는 `signed_margin - epsilon * ||w||_1 > 0` 형태의 선
 - Inaki Pérez et al. 지정 논문 공식 DOI를 재검색한다.
 - 유사 후보 DOI `10.1145/3648351`을 P04로 확정하지 않는다.
 - Finlay PDF는 대체 문헌으로만 관리한다.
+
+### 5.1 핵심 수식 또는 알고리즘 설명
+
+| 항목 | 내용 |
+|---|---|
+| 수식/알고리즘 이름 | Lipschitz Robustness Bound |
+| 원문 위치 | 논문 세부 절/쪽/그림/알고리즘 번호 확인 필요. 로컬 DOI/URL 점검표로 문헌 대응만 확인. |
+| 작성 형식 | Markdown + LaTeX math |
+| 검산 도구 | 사용 안 함 |
+| 수식 또는 절차 | 표준 정의식 / 원문 직접 인용 아님.<br>$$\lVert f(x)-f(x_{alt})\rVert \le L\lVert x-x_{alt}\rVert$$ |
+| 기호·입력·출력 | \(L\): Lipschitz constant 또는 bound, \(x,x_{alt}\): 입력 쌍 |
+| 직관적 의미 | Lipschitz Robustness Bound는 Verification·XAI·Robustness 평가에서 핵심 원리나 평가 지표를 정량적으로 해석하기 위한 표준식이다. |
+| 보안 관점 해석 | Verification·XAI·Robustness 평가에서는 정상 성능과 보안 실패 조건을 분리해 보아야 한다. 이 항목은 공격·방어 원리 또는 운영 통제의 평가 기준을 명시하되, 실제 공격 절차나 무단 적용 단계는 포함하지 않는다. |
+| 평가 지표와 연결 | certified robustness, margin bound, robust accuracy |
+| 한계와 가정 | 표준 정의식 / 원문 직접 인용 아님. 논문별 변형, 정확한 수식 번호, 실험 설정은 원문 PDF에서 확인 필요다. |
+| 기말 논문 반영 여부 | 반영 |
+
+

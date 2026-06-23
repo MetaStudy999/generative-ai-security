@@ -32,6 +32,22 @@ FL aggregation을 어떤 수준에서 분류하고, heterogeneity, communication
 
 이 문헌은 bibliometric analysis와 systematic review 성격의 문헌조사를 결합해 aggregation 전략을 architecture, synchronization, federation motivation, robustness 관점에서 분류한다. W10 보고서에서는 세부 원문 수치보다 aggregation taxonomy와 평가 축 설계 근거로 사용한다.
 
+### 5.1 핵심 수식 또는 알고리즘 설명
+
+| 항목 | 내용 |
+|---|---|
+| 수식/알고리즘 이름 | FedAvg Aggregation |
+| 원문 위치 | 논문 세부 절/쪽/그림/알고리즘 번호 확인 필요. 로컬 DOI/URL 점검표로 문헌 대응만 확인. |
+| 작성 형식 | Markdown + LaTeX math |
+| 검산 도구 | 사용 안 함 |
+| 수식 또는 절차 | 표준 정의식 / 원문 직접 인용 아님.<br>$$w_{t+1}=\sum_{k=1}^{K}\frac{n_k}{n}w_{t+1}^{(k)}$$ |
+| 기호·입력·출력 | \(w_{t+1}^{(k)}\): client k의 local model, \(n_k\): client 데이터 수, \(n\): 전체 데이터 수 |
+| 직관적 의미 | FedAvg Aggregation는 Federated Learning 보안 평가에서 핵심 원리나 평가 지표를 정량적으로 해석하기 위한 표준식이다. |
+| 보안 관점 해석 | Federated Learning 보안 평가에서는 정상 성능과 보안 실패 조건을 분리해 보아야 한다. 이 항목은 공격·방어 원리 또는 운영 통제의 평가 기준을 명시하되, 실제 공격 절차나 무단 적용 단계는 포함하지 않는다. |
+| 평가 지표와 연결 | global accuracy, client drift, poisoning ASR, aggregation robustness |
+| 한계와 가정 | 표준 정의식 / 원문 직접 인용 아님. 논문별 변형, 정확한 수식 번호, 실험 설정은 원문 PDF에서 확인 필요다. |
+| 기말 논문 반영 여부 | 반영 |
+
 ## 6. 보안 관점 분석
 
 P01은 직접적인 공격 논문이라기보다 FL 원리와 aggregation taxonomy 문헌이다. Secure aggregation은 서버가 개별 update를 보지 못하게 하여 confidentiality를 강화하는 반면, robust aggregation은 악성 또는 이상 update의 영향을 줄여 integrity를 강화한다. W10 toy 실험은 후자인 robust aggregation의 간단한 예시로 coordinate median을 사용한다.

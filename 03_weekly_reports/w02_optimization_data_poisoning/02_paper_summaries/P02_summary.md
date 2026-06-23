@@ -37,6 +37,22 @@
 | Deployment constraint | edge, mobile, cloud 등 환경 제약 | 방어 기법이 실제 배포 가능한지 평가 |
 | Quality-footprint trade-off | 품질과 비용 사이의 균형 | clean accuracy만으로 모델 선택 불가 |
 
+### 5.1 핵심 수식 또는 알고리즘 설명
+
+| 항목 | 내용 |
+|---|---|
+| 수식/알고리즘 이름 | 압축 모델 Utility-Cost Trade-off |
+| 원문 위치 | 논문 세부 절/쪽/그림/알고리즘 번호 확인 필요. 로컬 DOI/URL 점검표로 문헌 대응만 확인. |
+| 작성 형식 | Markdown + LaTeX math |
+| 검산 도구 | 사용 안 함 |
+| 수식 또는 절차 | 표준 정의식 / 원문 직접 인용 아님.<br>$$Score=Utility-\lambda_1Latency-\lambda_2Size-\lambda_3Energy$$ |
+| 기호·입력·출력 | \(Utility\): task 성능, \(Latency\): 지연시간, \(Size\): 모델 크기, \(Energy\): 에너지 비용 |
+| 직관적 의미 | 압축 모델 Utility-Cost Trade-off는 최적화·데이터 오염 평가에서 핵심 원리나 평가 지표를 정량적으로 해석하기 위한 표준식이다. |
+| 보안 관점 해석 | 최적화·데이터 오염 평가에서는 정상 성능과 보안 실패 조건을 분리해 보아야 한다. 이 항목은 공격·방어 원리 또는 운영 통제의 평가 기준을 명시하되, 실제 공격 절차나 무단 적용 단계는 포함하지 않는다. |
+| 평가 지표와 연결 | accuracy, latency, memory, energy, robust accuracy |
+| 한계와 가정 | 표준 정의식 / 원문 직접 인용 아님. 논문별 변형, 정확한 수식 번호, 실험 설정은 원문 PDF에서 확인 필요다. |
+| 기말 논문 반영 여부 | 참고만 |
+
 ## 6. 방법론
 
 논문은 효율적 딥러닝 기술을 survey 형태로 묶고, 모델링 기법부터 하드웨어 지원까지 넓은 범위를 정리한다. 본 보고서에서는 모델 효율화 자체보다 "효율화된 모델이 poisoning/backdoor 방어에 어떤 제약을 만드는가"에 초점을 둔다.

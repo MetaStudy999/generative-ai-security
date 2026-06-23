@@ -35,6 +35,22 @@
 
 비디오 diffusion 연구를 generation, editing, video understanding 등으로 나누어 survey한다. 본 보고서에서는 실제 비디오 생성 실험을 수행하지 않고, 탐지 신뢰성의 핵심 위험인 domain shift와 uncertainty routing만 synthetic score 실험으로 재현했다.
 
+### 5.1 핵심 수식 또는 알고리즘 설명
+
+| 항목 | 내용 |
+|---|---|
+| 수식/알고리즘 이름 | Conditional Video Diffusion 개념식 |
+| 원문 위치 | 논문 세부 절/쪽/그림/알고리즘 번호 확인 필요. 로컬 DOI/URL 점검표로 문헌 대응만 확인. |
+| 작성 형식 | Markdown + LaTeX math |
+| 검산 도구 | 사용 안 함 |
+| 수식 또는 절차 | 표준 정의식 / 원문 직접 인용 아님.<br>$$p_\theta(x_{0:T}\mid c)=\prod_t p_\theta(x_{t-1}\mid x_t,c)$$ |
+| 기호·입력·출력 | \(x_{0:T}\): video frame 또는 latent sequence, \(c\): 조건, \(p_\theta\): reverse model |
+| 직관적 의미 | Conditional Video Diffusion 개념식는 Diffusion/GAN·Deepfake 평가에서 핵심 원리나 평가 지표를 정량적으로 해석하기 위한 표준식이다. |
+| 보안 관점 해석 | Diffusion/GAN·Deepfake 평가에서는 정상 성능과 보안 실패 조건을 분리해 보아야 한다. 이 항목은 공격·방어 원리 또는 운영 통제의 평가 기준을 명시하되, 실제 공격 절차나 무단 적용 단계는 포함하지 않는다. |
+| 평가 지표와 연결 | temporal consistency, FPR/FNR, detection accuracy |
+| 한계와 가정 | 표준 정의식 / 원문 직접 인용 아님. 논문별 변형, 정확한 수식 번호, 실험 설정은 원문 PDF에서 확인 필요다. |
+| 기말 논문 반영 여부 | 참고만 |
+
 ## 6. 주요 결과
 
 Video diffusion은 이미지 생성보다 더 큰 계산 비용과 temporal coherence 문제를 갖는다. 생성 품질이 높아질수록 탐지기는 단일 이미지 artifact보다 frame-level, sequence-level, compression robustness까지 함께 평가해야 한다.

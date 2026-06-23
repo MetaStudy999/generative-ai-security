@@ -35,6 +35,22 @@ Diffusion model은 노이즈를 점진적으로 추가하는 forward process와 
 
 이 논문은 diffusion 연구를 sampling, likelihood, special data structure, application 관점으로 분류한다. 개별 모델 성능 경쟁보다 방법군의 구조와 연구 흐름을 정리하는 survey이므로, W06에서는 정량 수치보다 평가축과 한계를 가져온다.
 
+### 5.1 핵심 수식 또는 알고리즘 설명
+
+| 항목 | 내용 |
+|---|---|
+| 수식/알고리즘 이름 | DDPM Forward Process |
+| 원문 위치 | 논문 세부 절/쪽/그림/알고리즘 번호 확인 필요. 로컬 DOI/URL 점검표로 문헌 대응만 확인. |
+| 작성 형식 | Markdown + LaTeX math |
+| 검산 도구 | 사용 안 함 |
+| 수식 또는 절차 | 표준 정의식 / 원문 직접 인용 아님.<br>$$q(x_t\mid x_{t-1})=\mathcal{N}(x_t;\sqrt{1-\beta_t}x_{t-1},\beta_t I)$$ |
+| 기호·입력·출력 | \(x_t\): timestep t의 noisy sample, \(\beta_t\): noise schedule, \(I\): identity covariance |
+| 직관적 의미 | DDPM Forward Process는 Diffusion/GAN·Deepfake 평가에서 핵심 원리나 평가 지표를 정량적으로 해석하기 위한 표준식이다. |
+| 보안 관점 해석 | Diffusion/GAN·Deepfake 평가에서는 정상 성능과 보안 실패 조건을 분리해 보아야 한다. 이 항목은 공격·방어 원리 또는 운영 통제의 평가 기준을 명시하되, 실제 공격 절차나 무단 적용 단계는 포함하지 않는다. |
+| 평가 지표와 연결 | FID, detection accuracy, FPR/FNR, provenance score |
+| 한계와 가정 | 표준 정의식 / 원문 직접 인용 아님. 논문별 변형, 정확한 수식 번호, 실험 설정은 원문 PDF에서 확인 필요다. |
+| 기말 논문 반영 여부 | 반영 |
+
 ## 6. 주요 결과
 
 Diffusion model은 이미지 생성뿐 아니라 video, text, temporal data, scientific data 등으로 확장된다. 그러나 sampling 비용, 평가 지표의 한계, 조건부 생성 통제, 데이터 구조별 일반화 문제는 여전히 중요한 연구 공백으로 남는다.

@@ -33,6 +33,22 @@
 
 자율주행 파이프라인의 구성 요소와 DRL 알고리즘 적용 영역을 survey 방식으로 정리한다. imitation learning, inverse RL, model-based/model-free RL, safe exploration, validation challenge를 함께 논의한다.
 
+### 5.1 핵심 수식 또는 알고리즘 설명
+
+| 항목 | 내용 |
+|---|---|
+| 수식/알고리즘 이름 | Safety-constrained Reward |
+| 원문 위치 | 논문 세부 절/쪽/그림/알고리즘 번호 확인 필요. 로컬 DOI/URL 점검표로 문헌 대응만 확인. |
+| 작성 형식 | Markdown + LaTeX math |
+| 검산 도구 | 사용 안 함 |
+| 수식 또는 절차 | 표준 정의식 / 원문 직접 인용 아님.<br>$$J(\pi)=\mathbb{E}_\pi\left[\sum_t\gamma^t(r_t-\lambda c_t)\right]$$ |
+| 기호·입력·출력 | \(r_t\): task reward, \(c_t\): safety cost, \(\lambda\): 안전 비용 가중치 |
+| 직관적 의미 | Safety-constrained Reward는 DRL 사이버보안 평가에서 핵심 원리나 평가 지표를 정량적으로 해석하기 위한 표준식이다. |
+| 보안 관점 해석 | DRL 사이버보안 평가에서는 정상 성능과 보안 실패 조건을 분리해 보아야 한다. 이 항목은 공격·방어 원리 또는 운영 통제의 평가 기준을 명시하되, 실제 공격 절차나 무단 적용 단계는 포함하지 않는다. |
+| 평가 지표와 연결 | return, safety violation, false action rate |
+| 한계와 가정 | 표준 정의식 / 원문 직접 인용 아님. 논문별 변형, 정확한 수식 번호, 실험 설정은 원문 PDF에서 확인 필요다. |
+| 기말 논문 반영 여부 | 참고만 |
+
 ## 6. 주요 결과
 
 DRL은 복잡한 순차 의사결정에 유용하지만, 안전중요 시스템에서는 simulator 품질, validation, safe exploration, credit assignment가 핵심 병목이다. 이는 사이버 방어 에이전트에서도 실제 네트워크가 아니라 synthetic 환경에서 먼저 평가해야 하는 이유가 된다.

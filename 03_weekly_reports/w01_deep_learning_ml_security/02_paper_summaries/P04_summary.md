@@ -35,6 +35,22 @@
 
 최근 adversarial attack/defense 문헌을 공격 원리와 방어 메커니즘에 따라 분류하고, 각 방법의 강점과 한계를 비교한다. 본 보고서에서는 공격 재현 절차가 아니라 평가 항목과 방어 검증상의 주의점을 중심으로 정리했다.
 
+### 5.1 핵심 수식 또는 알고리즘 설명
+
+| 항목 | 내용 |
+|---|---|
+| 수식/알고리즘 이름 | 대적 교란 목적함수와 Robust Accuracy |
+| 원문 위치 | 논문 세부 절/쪽/그림/알고리즘 번호 확인 필요. 로컬 DOI/URL 점검표로 문헌 대응만 확인. |
+| 작성 형식 | Markdown + LaTeX math |
+| 검산 도구 | 사용 안 함 |
+| 수식 또는 절차 | 표준 정의식 / 원문 직접 인용 아님.<br>$$\max_{\delta\in\mathcal{S}}\ell(f_\theta(x+\delta),y),\qquad RobustAcc=\frac{1}{n}\sum_i\mathbf{1}\{f_\theta(x_i+\delta_i)=y_i\}$$ |
+| 기호·입력·출력 | \(\delta\): 허용된 교란, \(\mathcal{S}\): toy/synthetic 교란 집합, \(\ell\): 손실함수 |
+| 직관적 의미 | 대적 교란 목적함수와 Robust Accuracy는 딥러닝·ML 보안 기본 평가에서 핵심 원리나 평가 지표를 정량적으로 해석하기 위한 표준식이다. |
+| 보안 관점 해석 | 딥러닝·ML 보안 기본 평가에서는 정상 성능과 보안 실패 조건을 분리해 보아야 한다. 이 항목은 공격·방어 원리 또는 운영 통제의 평가 기준을 명시하되, 실제 공격 절차나 무단 적용 단계는 포함하지 않는다. |
+| 평가 지표와 연결 | ASR, robust accuracy, robust drop, clean accuracy |
+| 한계와 가정 | 표준 정의식 / 원문 직접 인용 아님. 논문별 변형, 정확한 수식 번호, 실험 설정은 원문 PDF에서 확인 필요다. |
+| 기말 논문 반영 여부 | 반영 |
+
 ## 6. 주요 결과
 
 공격은 gradient 기반, score/decision 기반, search 기반, physical-world attack 등으로 확장되고 있다. 방어는 탐지, 입력 정제, robust training, regularization, 인증된 방어 등으로 나뉘지만, 많은 방어가 계산 비용, clean accuracy 감소, 공격 이전성, gradient masking 문제를 동시에 안고 있다.

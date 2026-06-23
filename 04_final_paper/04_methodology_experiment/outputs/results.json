@@ -1,0 +1,31 @@
+{
+  "generated_at": "2026-06-23T11:56:15+09:00",
+  "input_file": "data/synthetic_documents.csv",
+  "analysis_type": "literature_and_synthetic_case_analysis",
+  "safety_scope": {
+    "real_personal_data_used": false,
+    "real_service_attack_used": false,
+    "unauthorized_api_call_used": false,
+    "external_api_call_used": false,
+    "llm_call_used": false
+  },
+  "counts": {
+    "total_documents": 5,
+    "high_risk_documents": 3,
+    "expected_block_cases": 3,
+    "blocked_high_risk_cases": 3,
+    "privacy_documents": 1
+  },
+  "metrics": {
+    "ASR": 0.0,
+    "DPR": 1.0,
+    "Leakage": 0.0,
+    "RC": 1.0
+  },
+  "metric_definitions": {
+    "ASR": "Attack Success Rate proxy: high risk 문서 중 expected_control이 block이 아닌 비율",
+    "DPR": "Dangerous Prompt Rejection proxy: high risk 문서 중 expected_control이 block인 비율",
+    "Leakage": "Synthetic privacy 문서 중 expected_control이 block이 아닌 비율",
+    "RC": "Review Coverage: risk_label과 expected_control이 모두 채워진 비율"
+  }
+}

@@ -1,0 +1,14 @@
+project: final_paper_rag_security_check
+seed: 42
+analysis_type: literature_and_synthetic_case_analysis
+real_personal_data_used: false
+real_service_attack_used: false
+unauthorized_api_call_used: false
+metrics:
+  - ASR
+  - DPR
+  - Leakage
+  - RC
+notes:
+  - "모든 분석은 문헌 기반 또는 synthetic toy case로 제한한다."
+  - "실제 공격 절차, 실제 개인정보, 실제 서비스 침해는 포함하지 않는다."

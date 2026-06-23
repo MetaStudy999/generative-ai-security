@@ -43,6 +43,12 @@ htmlcov/
 !**/outputs/
 !**/outputs/.gitkeep
 !**/outputs/README.md
+!04_final_paper/04_methodology_experiment/outputs/
+!04_final_paper/04_methodology_experiment/outputs/results.json
+!04_final_paper/04_methodology_experiment/outputs/metrics_summary.csv
+!04_final_paper/04_methodology_experiment/outputs/run_log.md
+!04_final_paper/04_methodology_experiment/outputs/figures/
+!04_final_paper/04_methodology_experiment/outputs/figures/.gitkeep
 03_weekly_reports/**/01_papers/pdf/*.pdf
 **/results/*
 !**/results/
@@ -105,3 +111,9 @@ Thumbs.db
 # Local agent/tooling state
 .agents/
 .codex/
+
+# Research PDF copyright risk control
+*.pdf
+01_papers/pdf/
+03_weekly_reports/**/01_papers/pdf/
+04_final_paper/**/pdf/

@@ -2,6 +2,30 @@
 
 이 저장소는 AI 보안 세미나의 주차별 논문요약, 실험 설계, 통합보고서, 기말논문 자료를 관리한다.
 
+## 연구 관리 Dashboard
+
+| 구분 | 상태 | 근거 파일 |
+|---|---|---|
+| 최종 주제 | 확인 필요 | 04_final_paper/01_planning/final_topic.md |
+| 연구질문 | 확인 필요 | 04_final_paper/01_planning/research_question.md |
+| 논문 초안 | 확인 필요 | 04_final_paper/05_draft/paper_draft.md |
+| 국내 문헌 3편 | 확인 필요 | 04_final_paper/06_appendices/reference_verification.md |
+| 해외 문헌 5편 | 확인 필요 | 04_final_paper/06_appendices/reference_verification.md |
+| 학회지 양식 출처 | 확인 필요 | 04_final_paper/00_journal_format/journal_format_source.md |
+| AI 활용 고지 | 확인 필요 | 04_final_paper/06_appendices/ai_disclosure.md |
+| 실험/분석 로그 | 확인 필요 | 04_final_paper/04_methodology_experiment/outputs/run_log.md |
+| 최종 제출 패키지 | 확인 필요 | 06_submission/final_paper_submission/ |
+
+## 연구 관리 원칙
+
+이 저장소는 단순 보고서 보관소가 아니라, 연구질문-문헌-방법론-분석-결론-제출물까지 추적 가능한 연구 관리 저장소로 운영한다.
+
+- 연구질문과 결론은 반드시 대응되어야 한다.
+- 본문 인용과 참고문헌 목록은 반드시 상호 대응되어야 한다.
+- 실행하지 않은 실험 결과는 작성하지 않는다.
+- 확인하지 못한 DOI/URL은 `확인 필요`로 표시한다.
+- AI 도구 사용 내역은 최종 제출 전 반드시 고지한다.
+
 ## 주요 폴더
 
 - `00_class_materials/`: 강의자료와 과제 안내

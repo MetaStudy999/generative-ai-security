@@ -1,49 +1,85 @@
-# 논문 요약: P01
+# P01 Summary
 
-## 1. 서지정보
+## A Survey on Evaluation of Large Language Models — Yupeng Chang et al., ACM TIST, 2024
+
+## 0. 문헌 검증 상태
 
 | 항목 | 내용 |
 |---|---|
+| 주차 | W07 LLM 보안·프라이버시 |
 | 논문명 | A Survey on Evaluation of Large Language Models |
-| 저자 | Yupeng Chang, Xu Wang, Jindong Wang, Yuan Wu, Linyi Yang, Kaijie Zhu, Hao Chen, Xiaoyuan Yi, Cunxiang Wang, Yidong Wang, Wei Ye, Yue Zhang, Yi Chang, Philip S. Yu, Qiang Yang, Xing Xie |
-| 출판정보 | ACM Transactions on Intelligent Systems and Technology, 15(3), Article 39, pp. 1-45, 2024 |
-| DOI/URL | `https://doi.org/10.1145/3641289` |
-| 검증 상태 | DOI, 권호, Article 번호, 쪽수 확인. 강의계획서의 ACM Computing Surveys 표기는 실제 출판지와 다름 |
+| 저자 | Yupeng Chang et al. |
+| 출판 정보 | ACM Transactions on Intelligent Systems and Technology, 15(3), Article 39, pp. 1–45, 2024 |
+| DOI | https://doi.org/10.1145/3641289 |
+| 검증 상태 | W07 `paper_list.md` 기준 공식 DOI 확인. 강의계획서 `J. Chang` 및 ACM CSUR 표기 차이 메모 유지 |
 
-## 2. 한 문장 요약
+---
 
-LLM 평가는 task score만이 아니라 task coverage, benchmark 구성, human evaluation, contamination risk, social risk를 함께 다루는 평가 discipline으로 이해해야 한다[1].
+## 1. 한 문장 요약
 
-## 3. 연구문제
+이 논문은 LLM 평가를 **knowledge, reasoning, instruction following, alignment, robustness, safety, hallucination, human evaluation, benchmark design** 관점에서 체계화하며, W07에서 LLM 보안 평가의 기본 계량 프레임을 제공한다.
 
-이 논문은 LLM을 무엇으로 평가할 것인가, 어디에서 평가할 것인가, 어떤 방식으로 평가할 것인가를 체계적으로 분류한다. W07에서는 이 관점을 LLM/RAG 보안 평가의 기본 축으로 사용한다.
+---
 
-## 4. 핵심 개념
+## 2. 핵심 연구질문
 
-- Evaluation task: 일반 NLP, reasoning, code, medical, ethics, education, agent task 등.
-- Benchmark discipline: benchmark coverage, hidden test leakage, data contamination, prompt sensitivity.
-- Evaluation method: automatic metric, human evaluation, model-as-judge, risk-oriented evaluation.
+| 번호 | 연구질문 |
+|---|---|
+| RQ1 | LLM은 어떤 능력과 위험 축으로 평가해야 하는가? |
+| RQ2 | Benchmark score와 실제 안전성·신뢰성 사이에는 어떤 간극이 있는가? |
+| RQ3 | Hallucination, robustness, privacy, toxicity, jailbreak 저항성은 어떤 별도 지표가 필요한가? |
+| RQ4 | 기말논문에서 LLM/RAG 보안을 평가할 때 어떤 evidence를 남겨야 하는가? |
 
-## 5. 보안 관점 분석
+---
 
-P01은 직접적인 공격 논문은 아니지만, 보안 평가의 기준선을 제공한다. benchmark contamination, evaluation leakage, capability-risk mismatch가 발생하면 모델의 실제 안전성 판단이 왜곡될 수 있다. 따라서 W07 실험은 utility와 answer rate만 보지 않고 ASR, privacy leakage, refusal quality, over-refusal, code vulnerability rate를 함께 기록한다.
+## 3. 핵심 수식·지표
 
-### 5.1 핵심 수식 또는 알고리즘 설명
+### 3.1 다중 평가 점수
+
+$$
+Score_{LLM}=\sum_{k=1}^{K}w_k\cdot Metric_k
+$$
+
+| 기호 | 의미 |
+|---|---|
+| $Metric_k$ | 정확도, hallucination, safety, robustness 등 개별 지표 |
+| $w_k$ | 평가 목적별 가중치 |
+
+### 3.2 Hallucination Rate
+
+$$
+HallucinationRate=\frac{N_{unsupported}}{N_{answers}}
+$$
+
+### 보안 해석
+
+LLM 평가에서 높은 일반 성능은 보안성을 보장하지 않는다. 안전성·프라이버시·robustness·출처 근거를 분리해야 한다.
+
+---
+
+## 4. 위협모형·평가지표
 
 | 항목 | 내용 |
 |---|---|
-| 수식/알고리즘 이름 | Benchmark Contamination Rate |
-| 원문 위치 | 논문 세부 절/쪽/그림/알고리즘 번호 확인 필요. 로컬 DOI/URL 점검표로 문헌 대응만 확인. |
-| 작성 형식 | Markdown + LaTeX math |
-| 검산 도구 | 사용 안 함 |
-| 수식 또는 절차 | 표준 정의식 / 원문 직접 인용 아님.<br>$$ContamRate=\frac{N_{overlap}}{N_{benchmark}}$$ |
-| 기호·입력·출력 | \(N_{overlap}\): 학습/평가 중복 의심 항목 수, \(N_{benchmark}\): benchmark 항목 수 |
-| 직관적 의미 | Benchmark Contamination Rate는 LLM 보안·프라이버시 평가에서 핵심 원리나 평가 지표를 정량적으로 해석하기 위한 표준식이다. |
-| 보안 관점 해석 | LLM 보안·프라이버시 평가에서는 정상 성능과 보안 실패 조건을 분리해 보아야 한다. 이 항목은 공격·방어 원리 또는 운영 통제의 평가 기준을 명시하되, 실제 공격 절차나 무단 적용 단계는 포함하지 않는다. |
-| 평가 지표와 연결 | benchmark coverage, contamination rate, utility, ASR |
-| 한계와 가정 | 표준 정의식 / 원문 직접 인용 아님. 논문별 변형, 정확한 수식 번호, 실험 설정은 원문 PDF에서 확인 필요다. |
-| 기말 논문 반영 여부 | 반영 |
+| 보호 자산 | 사용자 입력, 시스템 프롬프트, 검색 문서, 모델 출력, 평가 로그 |
+| 공격자 목표 | 허위 응답 유도, 안전 정책 우회, 민감정보 추출, 근거 없는 답변 생성 |
+| 대표 지표 | task score, factuality, hallucination rate, refusal quality, jailbreak ASR, citation support |
+| 재현성 | prompt set, model version, temperature, seed, judge 기준, 평가 로그 기록 |
 
-## 6. 기말 논문 활용
+---
 
-LLM/RAG 보안 평가 프레임워크에서 “평가축을 먼저 정의한 뒤 지표를 기록한다”는 기본 논리의 근거로 활용한다.
+## 5. 기말논문 연결
+
+| 장 | 반영 내용 |
+|---|---|
+| 2장 관련연구 | LLM 평가 taxonomy |
+| 4장 연구방법 | utility/safety/privacy/robustness/reproducibility 다중지표 설계 |
+| 5장 분석 | 평가표와 실패 사례 분리 |
+
+**연결 3문장:** LLM 보안 평가는 benchmark score 하나로 판단할 수 없다. hallucination, jailbreak, privacy leakage, citation support, human review를 분리해야 한다. W08 RAG 평가에서는 이 지표를 검색 문서 근거성과 문서 오염 평가로 확장한다.
+
+---
+
+## 6. 최종 판단
+
+P01은 W07의 평가체계 배경 문헌이다. 보안 전문 문헌은 P02/P03이 담당하지만, LLM 보안 실험의 지표 설계는 P01을 기준으로 구성한다.

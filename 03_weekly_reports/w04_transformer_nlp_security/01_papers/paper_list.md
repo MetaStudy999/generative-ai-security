@@ -1,17 +1,28 @@
 # W04 논문 목록
 
 > 최종 판정 우선: 이 문서의 현재 상태는 `논문/관련 논문 최종 반영표`를 우선한다. 상단의 제목·저자·로컬 PDF 차이 메모는 오류 판정이 아니라 검증 이력이며, `관련 논문 / 확인`은 주차 주제에 맞는 공식 확인 논문으로 사용한다.
-
+>
+> 2026-06-24 기준: `02_paper_summaries/P01_summary.md` ~ `P05_summary.md`는 100점형 구조로 보완 완료했다. 수식은 GitHub, MS Word, PDF 변환 호환성을 위해 Markdown 표 밖의 LaTeX block math로 작성했다.
 
 ## 강의계획서 W04 논문 패킷 대조
 
 | ID | 논문 제목 | 저자 | 출판 정보 | DOI/URL | 검증 상태 |
 |---|---|---|---|---|---|
-| P01 | Efficient Transformers: A Survey | Yi Tay, Mostafa Dehghani, Dara Bahri, Donald Metzler | ACM Computing Surveys, Vol. 55, No. 6, 2022, pp. 1-28 | ACM DOI `10.1145/3530811`; arXiv DOI `10.48550/arXiv.2009.06732`; https://arxiv.org/abs/2009.06732 | ACM CSUR 출판 DOI 확인. Article 번호는 Crossref/BibTeX 응답에 미제공되어 추가 확인 메모 |
-| P02 | A Practical Survey on Faster and Lighter Transformers | Quentin Fournier, Gaetan Marceau Caron, Daniel Aloise | ACM Computing Surveys, Vol. 55, No. 14s, 2023, pp. 1-40 | ACM DOI `10.1145/3586074`; https://arxiv.org/abs/2103.14636 | ACM CSUR 출판 DOI 확인. Article 번호는 Crossref/BibTeX 응답에 미제공되어 추가 확인 메모 |
-| P03 | A survey of transformers | Tianyang Lin, Yuxin Wang, Xiangyang Liu, Xipeng Qiu | AI Open, Vol. 3, 2022, pp. 111-132 | DOI `10.1016/j.aiopen.2022.10.001`; https://www.sciencedirect.com/science/article/pii/S2666651022000146 | AI Open 출판 DOI/권호/쪽 확인 |
-| P04 | A Survey of Adversarial Defenses and Robustness in NLP | Shreya Goyal, Sumanth Doddapaneni, Mitesh M. Khapra, Balaraman Ravindran | ACM Computing Surveys, Vol. 55, No. 14s, 2023, pp. 1-39 | ACM DOI `10.1145/3593042`; arXiv DOI `10.48550/arXiv.2203.06414`; https://arxiv.org/abs/2203.06414 | ACM CSUR 출판 DOI 확인. Article 번호는 Crossref/BibTeX 응답에 미제공되어 추가 확인 메모 |
-| P05 | Privacy Preserving Prompt Engineering: A Survey | Kennedy Edemacu, Xintao Wu | ACM Computing Surveys, Vol. 57, No. 10, 2025, pp. 1-36 | ACM DOI `10.1145/3729219`; arXiv DOI `10.48550/arXiv.2404.06001`; https://arxiv.org/abs/2404.06001 | ACM CSUR 2025 출판 DOI 확인. Article 번호는 Crossref/BibTeX 응답에 미제공되어 추가 확인 메모 |
+| P01 | Efficient Transformers: A Survey | Yi Tay, Mostafa Dehghani, Dara Bahri, Donald Metzler | ACM Computing Surveys, Vol. 55, No. 6, 2022, pp. 1-28 | ACM DOI `10.1145/3530811`; arXiv DOI `10.48550/arXiv.2009.06732`; https://arxiv.org/abs/2009.06732 | ACM CSUR 출판 DOI 확인. 100점형 summary 보완 완료. Article 번호는 Crossref/BibTeX 응답에 미제공되어 추가 확인 메모 |
+| P02 | A Practical Survey on Faster and Lighter Transformers | Quentin Fournier, Gaetan Marceau Caron, Daniel Aloise | ACM Computing Surveys, Vol. 55, No. 14s, 2023, pp. 1-40 | ACM DOI `10.1145/3586074`; https://arxiv.org/abs/2103.14636 | ACM CSUR 출판 DOI 확인. 100점형 summary 보완 완료. Article 번호는 Crossref/BibTeX 응답에 미제공되어 추가 확인 메모 |
+| P03 | A survey of transformers | Tianyang Lin, Yuxin Wang, Xiangyang Liu, Xipeng Qiu | AI Open, Vol. 3, 2022, pp. 111-132 | DOI `10.1016/j.aiopen.2022.10.001`; https://www.sciencedirect.com/science/article/pii/S2666651022000146 | AI Open 출판 DOI/권호/쪽 확인. 100점형 summary 보완 완료 |
+| P04 | A Survey of Adversarial Defenses and Robustness in NLP | Shreya Goyal, Sumanth Doddapaneni, Mitesh M. Khapra, Balaraman Ravindran | ACM Computing Surveys, Vol. 55, No. 14s, 2023, pp. 1-39 | ACM DOI `10.1145/3593042`; arXiv DOI `10.48550/arXiv.2203.06414`; https://arxiv.org/abs/2203.06414 | ACM CSUR 출판 DOI 확인. 100점형 summary 보완 완료. Article 번호는 Crossref/BibTeX 응답에 미제공되어 추가 확인 메모 |
+| P05 | Privacy Preserving Prompt Engineering: A Survey | Kennedy Edemacu, Xintao Wu | ACM Computing Surveys, Vol. 57, No. 10, 2025, pp. 1-36 | ACM DOI `10.1145/3729219`; arXiv DOI `10.48550/arXiv.2404.06001`; https://arxiv.org/abs/2404.06001 | ACM CSUR 2025 출판 DOI 확인. 100점형 summary 보완 완료. Article 번호는 Crossref/BibTeX 응답에 미제공되어 추가 확인 메모 |
+
+## 100점형 summary 반영 상태
+
+| ID | 보완 상태 | 추가된 핵심 요소 |
+|---|---|---|
+| P01 | 완료 | full/sparse/kernel attention complexity, context coverage, long-context 보안 비용, latency/memory 평가 |
+| P02 | 완료 | utility-cost objective, compression ratio, KD loss, pruning/quantization/distillation 보안 평가 |
+| P03 | 완료 | scaled attention, Transformer block, LM objective, input-token-attention-output-log 위협모형 |
+| P04 | 완료 | NLP adversarial risk, ASR, semantic similarity constraint, character/word/paraphrase attack taxonomy |
+| P05 | 완료 | leakage rate, masking function, privacy-utility score, prompt/context/output/log leakage threat model |
 
 ## 판본 차이 메모
 
@@ -34,6 +45,7 @@
 |---|---|---|---|---|---:|---|---|---|---|---|
 | P01 | 논문 / 확인 | Efficient Transformers: A Survey | Efficient Transformers: A Survey | Yi Tay, Mostafa Dehghani, Dara Bahri, Donald Metzler | 2022 | ACM Computing Surveys | ACM Computing Surveys | `https://doi.org/10.1145/3530811` | 공식 DOI 확인 | 공식 서지 기준으로 논문 인용 |
 | P02 | 논문 / 확인 | A Practical Survey on Faster and Lighter Transformers | A Practical Survey on Faster and Lighter Transformers | Quentin Fournier, Gaetan Marceau Caron, Daniel Aloise | 2023 | ACM Computing Surveys | ACM Computing Surveys | `https://doi.org/10.1145/3586074` | 공식 DOI 확인 | 공식 서지 기준으로 논문 인용 |
+| P03 | 논문 / 확인 | A survey of transformers | A survey of transformers | Tianyang Lin, Yuxin Wang, Xiangyang Liu, Xipeng Qiu | 2022 | AI Open | AI Open | `https://doi.org/10.1016/j.aiopen.2022.10.001` | 공식 DOI 확인 | 공식 서지 기준으로 논문 인용 |
 | P04 | 논문 / 확인 | A Survey of Adversarial Defenses and Robustness in NLP | A Survey of Adversarial Defenses and Robustness in NLP | Shreya Goyal et al. | 2023 | ACM Computing Surveys | ACM Computing Surveys | `https://doi.org/10.1145/3593042` | 공식 DOI 확인 | 공식 서지 기준으로 논문 인용 |
 | P05 | 논문 / 확인 | Privacy Preserving Prompt Engineering: A Survey | Privacy Preserving Prompt Engineering: A Survey | Kennedy Edemacu, Xintao Wu | 2025 | ACM Computing Surveys | ACM Computing Surveys | `https://doi.org/10.1145/3729219` | 공식 DOI 확인 | 공식 서지 기준으로 논문 인용 |
 <!-- AUTO-RELATED-PAPER-REFLECTION:end -->

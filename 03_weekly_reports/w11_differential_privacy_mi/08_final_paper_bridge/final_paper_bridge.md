@@ -13,7 +13,7 @@
 | 논문 장 | 반영 가능 내용 |
 |---|---|
 | 서론 | AI 모델 학습에서 privacy protection과 utility trade-off를 동시에 평가해야 하는 문제의식 |
-| 관련연구 | DP misuse, centralized DP-DL, MI attack/defense survey, FL 확장 대체 문헌. 단 P03/P05는 지정 논문 원문 확보 전까지 대체 PDF로 분리 |
+| 관련연구 | DP misuse, centralized DP-DL, MI attack/defense survey, FL 확장 관련 보조 문헌. 단 P03/P05는 지정 논문 원문 확보 전까지 관련 논문 PDF로 분리 |
 | 연구문제 | privacy claim 검증을 위한 utility, MI risk, leakage, accounting, reproducibility의 결합 |
 | 연구방법 | synthetic toy 실험, threat model, DOI/PDF 검증표, seed/config/output log |
 | 분석/실험 | outputs 기준 baseline accuracy 0.956250, DP-like high utility drop 0.006250, medium leakage score 0.011769 비교 |

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-24 01:38:39 KST",
+  "generated_at": "2026-06-24 02:13:08 KST",
   "scope": "03_weekly_reports/w01-w15 only",
   "automatic_only": true,
   "excluded_manual_checks": [
@@ -9,14 +9,12 @@
     "final paper content edits"
   ],
   "changes": {
-    "generated_at": "2026-06-24 01:38:39 KST",
+    "generated_at": "2026-06-24 02:13:08 KST",
     "audit_backup": "AUDIT_REPORT_WEEKLY_SUBMISSIONS.backup.md (현재 감사 보고서로 갱신)",
     "created_dirs": [],
     "created_keep_files": [],
     "readme_created": [],
-    "readme_updated": [
-      "03_weekly_reports/w11_differential_privacy_mi/README.md"
-    ],
+    "readme_updated": [],
     "bridge_updated": [],
     "ai_disclosure_updated": [],
     "report_ai_note_files": []
@@ -2192,7 +2190,7 @@
       "created_dirs": [],
       "created_keep_files": [],
       "readme_created": false,
-      "readme_updated": true,
+      "readme_updated": false,
       "markdown_files": [
         "03_weekly_reports/w11_differential_privacy_mi/00_management/README.md",
         "03_weekly_reports/w11_differential_privacy_mi/00_management/grading_rubric.md",
@@ -2748,11 +2746,11 @@
       "reference_local_pdf_missing": 0,
       "reference_alternate": 0,
       "reference_mismatch": 0,
-      "reference_core_blocked": 1,
+      "reference_core_blocked": 0,
       "paper_rows": [
         {
           "ID": "P01",
-          "강의계획서 지정 문헌": "Daryna/Daria Oliynyk et al., \"I Know What You Trained Last Summer: A Survey on Stealing Machine Learning Models and Defences\", ACM Computing Surveys, 2023",
+          "강의계획서 강의자료 표기 문헌": "Daryna/Daria Oliynyk et al., \"I Know What You Trained Last Summer: A Survey on Stealing Machine Learning Models and Defences\", ACM Computing Surveys, 2023",
           "현재 로컬 PDF": "동일 제목의 arXiv/ACM accepted manuscript PDF",
           "공식 확인 결과": "DOI `10.1145/3595292`, ACM Computing Surveys, Vol. 55, Issue 14s, pp. 1-41, online 2023-07-17, print 2023-12-31. 제목은 `Defences` 표기",
           "검증 상태": "공식 DOI 확인 완료, 로컬 PDF는 VOR가 아닌 accepted/arXiv 계열 메타데이터 포함",
@@ -2786,7 +2784,7 @@
         },
         {
           "ID": "P04",
-          "강의계획서 지정 문헌": "Kaiyi Pang et al., \"ModelShield: Adaptive and Robust Watermark Against Model Extraction Attack\", IEEE TIFS, 2025",
+          "강의계획서 강의자료 표기 문헌": "Kaiyi Pang et al., \"ModelShield: Adaptive and Robust Watermark Against Model Extraction Attack\", IEEE TIFS, 2025",
           "현재 로컬 PDF": "arXiv:2405.02365v4 PDF",
           "공식 확인 결과": "DOI `10.1109/TIFS.2025.3530691`, IEEE Transactions on Information Forensics and Security, Vol. 20, pp. 1767-1782, 2025",
           "검증 상태": "arXiv판과 IEEE TIFS 출판판 제목·저자 일치 확인, 권호/쪽/DOI 확인 완료",

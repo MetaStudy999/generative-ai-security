@@ -4,17 +4,17 @@
 
 ## 핵심 요약
 
-W13는 query-response 기반 모델 추출 위험과 워터마크 기반 소유권 검증을 함께 다룬다. synthetic toy 실험에서 substitute query 500은 extraction fidelity 0.920000, watermark detection 1.000000을 보였지만 false positive proxy도 0.600000이었다. 따라서 검출률만으로 소유권을 단정하지 않고, 위양성·utility·재현성을 함께 보고해야 한다.
+W13는 query-response 기반 모델 추출 위험과 워터마크 기반 소유권 검증을 함께 다룬다. synthetic toy 실험에서 query budget 500은 extraction fidelity 0.920000, watermark detection 1.000000을 보였지만 false positive proxy도 0.600000이었다. 따라서 검출률만으로 소유권을 단정하지 않고, 위양성·utility·재현성을 함께 보고해야 한다.
 
 ## 초안 점검
 
 | 항목 | 상태 |
 |---|---|
-| 문헌 요약 | 완료, P02/P05 대체 PDF 표시 |
+| 문헌 요약 | 완료, P02/P05 관련 논문 PDF 표시 |
 | AI 원리/보안 이슈 | 완료 |
 | Research Track | 완료 |
 | 실험 코드/결과 | 완료 |
 | 제출본/발표본 | 완료 |
-| 최종 확인 필요 | DOI/URL 공식 대조, 대체 PDF 처리 |
+| 최종 확인 필요 | DOI/URL 공식 대조, 관련 논문 PDF 처리 |
 
 자세한 본문은 최종본을 기준으로 한다.

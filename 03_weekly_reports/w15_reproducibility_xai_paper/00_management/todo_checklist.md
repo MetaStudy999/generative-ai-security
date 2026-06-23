@@ -2,7 +2,7 @@
 
 | 항목 | 상태 | 비고 |
 |---|---|---|
-| 논문 5편 목록 정리 | 완료 | P03 대체 PDF와 DOI 부분 확인, P05 DOI 확인 표시 |
+| 논문 5편 목록 정리 | 완료 | P03 관련 논문 PDF와 DOI 부분 확인, P05 DOI 확인 표시 |
 | 논문 5편 요약 | 완료 | `02_paper_summaries/` |
 | 논문 비교표 작성 | 완료 | `paper_matrix.md` |
 | AI 원리 70% 정리 | 완료 | `03_theory_notes/ai_principle_70.md` |

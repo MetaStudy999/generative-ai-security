@@ -4,7 +4,7 @@
 |---|---|---|---|---|---|---|
 | 2026-06-22 | Codex | W11 보고서 구조 보완 및 초안 작성 | `W11` 프롬프트와 로컬 파일 상태 | 논문 요약, 이론노트, 보안노트, 실험 설계, 통합보고서 초안 | DOI/원문/수치 검증 항목 분리 | 로컬 PDF 파일명, 강의자료, DOI 검수보고서 |
 | 2026-06-22 | Codex | synthetic toy 실험 코드 작성 및 실행 | `04_experiment/configs/config.yaml` | `src/run_experiment.py`, `outputs/metrics_summary.csv`, `results.json`, `run_log.md` | `epsilon_proxy` 한계 명시 | 실행 로그와 보고서 수치 대조 |
-| 2026-06-22 | Codex | 제출용/발표용 산출물 작성 | 통합보고서와 outputs | `w11_submission_report.*`, `09_presentation/` | 수치 일치 여부와 대체 PDF 표시 확인 | `rg` placeholder 점검, 파일 목록 점검 |
+| 2026-06-22 | Codex | 제출용/발표용 산출물 작성 | 통합보고서와 outputs | `w11_submission_report.*`, `09_presentation/` | 수치 일치 여부와 관련 논문 PDF 표시 확인 | `rg` placeholder 점검, 파일 목록 점검 |
 
 ## 사용 원칙
 

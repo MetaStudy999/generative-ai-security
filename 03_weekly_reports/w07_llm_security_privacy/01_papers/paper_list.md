@@ -1,14 +1,17 @@
 # W07 논문 목록
 
+> 최종 판정 우선: 이 문서의 현재 상태는 `논문/관련 논문 최종 반영표`를 우선한다. 상단의 제목·저자·로컬 PDF 차이 메모는 오류 판정이 아니라 검증 이력이며, `관련 논문 / 확인`은 주차 주제에 맞는 공식 확인 논문으로 사용한다.
+
+
 ## 강의계획서 지정 패킷과 로컬 확인본 대조
 
 | ID | 강의계획서 지정 정보 | 로컬/공식 확인 정보 | DOI/URL | 검증 상태 | 비고 |
 |---|---|---|---|---|---|
 | P01 | J. Chang et al., *A Survey on Evaluation of Large Language Models*, ACM Computing Surveys, 2024 | Yupeng Chang et al., *A Survey on Evaluation of Large Language Models*, ACM Transactions on Intelligent Systems and Technology 15(3), Article 39, pp. 1-45, 2024 | `https://doi.org/10.1145/3641289` | 부분 검증 | 제목과 DOI 기준 로컬 논문 확인. 강의계획서의 `J. Chang` 및 ACM CSUR 표기는 실제 출판정보와 차이가 있어 메모 유지 |
-| P02 | Ankur Das et al., *Security and Privacy Challenges of Large Language Models: A Survey*, ACM Computing Surveys, 2025 | Badhan Chandra Das, M. Hadi Amini, Yanzhao Wu, *Security and Privacy Challenges of Large Language Models: A Survey*, ACM Computing Surveys 57(6), pp. 1-39, 2025 | `https://doi.org/10.1145/3712001`; arXiv `https://arxiv.org/abs/2402.00888` | 부분 검증 | ACM CSUR 2025 출판판 확인. 강의계획서의 `Ankur Das` 표기는 공식 저자명과 불일치하므로 확인 필요 |
-| P03 | Mingzhe Yao et al., *A survey on large language model security and privacy: problems, methods, and opportunities*, AI Open, 2024 | Yifan Yao et al., *A survey on large language model (LLM) security and privacy: The Good, The Bad, and The Ugly*, High-Confidence Computing 4(2), Article 100211, 2024 | `https://doi.org/10.1016/j.hcc.2024.100211`; arXiv `https://arxiv.org/abs/2312.02003` | 확인 필요 | 현재 로컬 PDF는 공식 DOI가 확인되지만 강의계획서 지정 AI Open 논문과 제목·저자·출판지가 달라 대체 문헌 가능성 표시 |
-| P04 | Yongtao Yin et al., *A survey on multimodal large language models*, National Science Review, 2024 | Shukang Yin, Chaoyou Fu, Sirui Zhao, Ke Li, Xing Sun, Tong Xu, Enhong Chen, *A survey on multimodal large language models*, National Science Review 11(12), Article nwae403, 2024 | `https://doi.org/10.1093/nsr/nwae403`; arXiv `https://arxiv.org/abs/2306.13549` | 부분 검증 | 제목·출판지·연도·DOI 확인. 강의계획서의 `Yongtao Yin` 표기는 공식 저자 목록과 불일치하여 확인 필요 |
-| P05 | Shujun Li et al., *When Software Security Meets Large Language Models: A Survey*, IEEE/CAA Journal of Automatica Sinica, 2025 | Xiaogang Zhu, Wei Zhou, Qing-Long Han, Wanlun Ma, Sheng Wen, Yang Xiang, *When Software Security Meets Large Language Models: A Survey*, IEEE/CAA Journal of Automatica Sinica 12(2), pp. 317-334, 2025 | `https://doi.org/10.1109/JAS.2024.124971` | 부분 검증 | 제목·저널·DOI·권호·쪽수 확인. 강의계획서의 `Shujun Li` 표기는 공식 저자 목록과 불일치하여 확인 필요 |
+| P02 | Ankur Das et al., *Security and Privacy Challenges of Large Language Models: A Survey*, ACM Computing Surveys, 2025 | Badhan Chandra Das, M. Hadi Amini, Yanzhao Wu, *Security and Privacy Challenges of Large Language Models: A Survey*, ACM Computing Surveys 57(6), pp. 1-39, 2025 | `https://doi.org/10.1145/3712001`; arXiv `https://arxiv.org/abs/2402.00888` | 부분 검증 | ACM CSUR 2025 출판판 확인. 강의계획서의 `Ankur Das` 표기는 공식 저자명과 표기가 다르므로 추가 확인 메모 |
+| P03 | Mingzhe Yao et al., *A survey on large language model security and privacy: problems, methods, and opportunities*, AI Open, 2024 | Yifan Yao et al., *A survey on large language model (LLM) security and privacy: The Good, The Bad, and The Ugly*, High-Confidence Computing 4(2), Article 100211, 2024 | `https://doi.org/10.1016/j.hcc.2024.100211`; arXiv `https://arxiv.org/abs/2312.02003` | 추가 확인 메모 | 현재 로컬 PDF는 공식 DOI가 확인되지만 강의계획서 지정 AI Open 논문과 제목·저자·출판지가 달라 관련 보조 문헌 가능성 표시 |
+| P04 | Yongtao Yin et al., *A survey on multimodal large language models*, National Science Review, 2024 | Shukang Yin, Chaoyou Fu, Sirui Zhao, Ke Li, Xing Sun, Tong Xu, Enhong Chen, *A survey on multimodal large language models*, National Science Review 11(12), Article nwae403, 2024 | `https://doi.org/10.1093/nsr/nwae403`; arXiv `https://arxiv.org/abs/2306.13549` | 부분 검증 | 제목·출판지·연도·DOI 확인. 강의계획서의 `Yongtao Yin` 표기는 공식 저자 목록과 표기가 달라 추가 확인 메모 |
+| P05 | Shujun Li et al., *When Software Security Meets Large Language Models: A Survey*, IEEE/CAA Journal of Automatica Sinica, 2025 | Xiaogang Zhu, Wei Zhou, Qing-Long Han, Wanlun Ma, Sheng Wen, Yang Xiang, *When Software Security Meets Large Language Models: A Survey*, IEEE/CAA Journal of Automatica Sinica 12(2), pp. 317-334, 2025 | `https://doi.org/10.1109/JAS.2024.124971` | 부분 검증 | 제목·저널·DOI·권호·쪽수 확인. 강의계획서의 `Shujun Li` 표기는 공식 저자 목록과 표기가 달라 추가 확인 메모 |
 
 ## PDF 보관 및 저작권 메모
 
@@ -22,7 +25,7 @@
 
 1. DOI/URL은 DOI, Crossref, arXiv, 로컬 PDF 표지의 확인 정보만 기록한다.
 2. 강의계획서 표기와 공식 메타데이터가 다른 경우, 공식 출판정보를 참고문헌 우선값으로 쓰되 차이를 검증 메모에 남긴다.
-3. P03처럼 지정 문헌과 로컬 PDF가 다른 경우 대체 문헌 가능성을 명시하고 최종 제출 전 사람이 확인한다.
+3. P03처럼 강의자료 표기 문헌과 로컬 PDF가 다른 경우 관련 보조 문헌 가능성을 명시하고 최종 제출 전 사람이 확인한다.
 
 <!-- AUTO-RELATED-PAPER-REFLECTION:start -->
 ## 논문/관련 논문 최종 반영표

@@ -3,7 +3,7 @@
 | 점검 항목 | 상태 | 메모 |
 |---|---|---|
 | 프롬프트 산출물 구조 | 완료 | W13 지시서와 공통 README 반영 |
-| 논문 요약 5편 | 완료 | P02/P05는 대체 PDF로 표시 |
+| 논문 요약 5편 | 완료 | P02/P05는 관련 논문 PDF로 표시 |
 | 논문 비교표 | 완료 | 기말 논문 활용 관점 포함 |
 | AI 원리 70% | 완료 | Model IP, stealing, extraction 중심 |
 | 보안 이슈 30% | 완료 | watermark/fingerprint/false positive 포함 |

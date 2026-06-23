@@ -8,7 +8,7 @@
 | 공격자의 지식 | White-box, Gray-box, Black-box 조건을 구분하되 본 주차 실습은 공격 재현이 아니라 통제항목 점검에 한정 |
 | 공격자의 능력 | 데이터 오염, 코드 변경, 의존성 조작, 모델 artifact 변조, 배포 설정 변경, 로그 삭제 또는 누락 유도 |
 | 공격 경로 | 데이터 파이프라인, Git/CI, 학습 job, artifact registry, deployment manifest, serving endpoint, monitoring/logging 시스템 |
-| 공격 성공 조건 | 오염된 모델 배포, hash 불일치 미탐지, drift 미탐지, rollback 불가, 감사 로그 부재, 서비스 장애 |
+| 공격 성공 조건 | 오염된 모델 배포, hash 표기 차이 미탐지, drift 미탐지, rollback 불가, 감사 로그 부재, 서비스 장애 |
 | 방어자 가정 | 버전관리, 접근통제, hash 검증, artifact inventory, audit log, drift monitoring, human approval gate를 적용할 수 있음 |
 | 제외 범위 | 실제 운영 서비스 침해, 무단 시스템 접근, 실제 악성 패키지 배포, 실제 개인정보 사용, 공격 payload 제공 |
 

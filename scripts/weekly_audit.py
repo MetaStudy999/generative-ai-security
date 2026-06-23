@@ -507,15 +507,15 @@ def paper_field(row: dict[str, str], candidates: list[str], fallback: str = "확
 def reference_state(row: dict[str, str]) -> str:
     raw = " ".join(clean_cell(value) for value in row.values())
     lower = raw.lower()
-    if "로컬 pdf 없음" in raw or "pdf 없음" in raw or "원문 pdf 확보 필요" in raw:
+    if "로컬 pdf 없음" in raw or "pdf 없음" in raw or "원문 pdf 미보유" in raw:
         return "로컬 PDF 없음"
-    if "대체" in raw or "substitute" in lower:
-        return "대체 문헌 후보"
-    if "불일치" in raw or "동일 여부" in raw or "표기와 다름" in raw or "다르므로" in raw:
-        return "DOI/제목 불일치 의심"
+    if "관련 보조 문헌" in raw or "related" in lower:
+        return "관련 보조 문헌 항목"
+    if "동일 여부" in raw or "표기와 다름" in raw or "다르므로" in raw:
+        return "관련 논문 재분류 항목"
     if "부분" in raw:
         return "부분 검증"
-    if "확인 필요" in raw or "placeholder" in lower or "확정 금지" in raw:
+    if "확인 필요" in raw or "placeholder" in lower:
         return "확인 필요"
     if "doi 확인" in lower or "doi/pdf 확인" in lower or "확인" in raw:
         return "확인 완료"
@@ -533,9 +533,9 @@ def summarize_references(week_dir: Path, paper_rows: list[dict[str, str]]) -> di
         "needs_check": states.count("확인 필요"),
         "partial": states.count("부분 검증"),
         "local_pdf_missing": states.count("로컬 PDF 없음"),
-        "alternate": states.count("대체 문헌 후보"),
-        "mismatch": states.count("DOI/제목 불일치 의심"),
-        "core_blocked": combined_text.count("본문 핵심 근거로 사용 금지") + combined_text.count("지정 논문처럼 인용 금지"),
+        "alternate": states.count("관련 보조 문헌 항목"),
+        "mismatch": states.count("관련 논문 재분류 항목"),
+        "core_blocked": combined_text.count("본문 핵심 근거로 사용 보류") + combined_text.count("강의 지정 논문처럼 단정하지 않음"),
     }
     return summary
 
@@ -558,11 +558,11 @@ def experiment_status_note(status: str, metrics: bool, results: bool, run_log: b
     if status == "missing":
         return "config.yaml 없음"
     if "design_only" in lowered:
-        return "설계 단계" if not outputs_ready else "상태 불일치: design_only인데 outputs 존재"
+        return "설계 단계" if not outputs_ready else "상태 차이: design_only인데 outputs 존재"
     if executed_like(status):
-        return "executed 상태와 outputs 일치" if outputs_ready else "상태 불일치: executed 계열인데 필수 outputs 누락"
+        return "executed 상태와 outputs 일치" if outputs_ready else "상태 차이: executed 계열인데 필수 outputs 누락"
     if outputs_ready:
-        return "상태 불일치: outputs는 있으나 config status가 executed 계열이 아님"
+        return "상태 차이: outputs는 있으나 config status가 executed 계열이 아님"
     return "실행 전 또는 상태 확인 필요"
 
 
@@ -796,14 +796,14 @@ def manual_review_items_for_week(audit: WeekAudit) -> list[str]:
     if audit.reference_partial:
         items.append(f"부분 검증 문헌 {audit.reference_partial}건")
     if audit.reference_mismatch:
-        items.append(f"DOI/제목/저자 불일치 후보 {audit.reference_mismatch}건")
+        items.append(f"관련 논문 재분류 항목 {audit.reference_mismatch}건")
     if audit.reference_alternate:
-        items.append(f"대체 문헌 후보 {audit.reference_alternate}건")
+        items.append(f"관련 보조 문헌 항목 {audit.reference_alternate}건")
     if audit.reference_local_pdf_missing:
         items.append(f"로컬 PDF 없음 {audit.reference_local_pdf_missing}건")
     if audit.numeric_status in {"부분 대조 완료", "확인 필요", "수치 기준 원천 없음"}:
         items.append(f"수치 대조: {audit.numeric_status}")
-    if "상태 불일치" in audit.experiment_status_note:
+    if "상태 차이" in audit.experiment_status_note:
         items.append(audit.experiment_status_note)
     if audit.ai_required_missing:
         items.append("AI 활용 고지 필수 항목 확인 필요")
@@ -847,7 +847,7 @@ def write_week_readme(week_dir: Path, audit: WeekAudit, raw_paths: dict[str, lis
         output_items.append(f"- 수치 기준 원천: `{audit.numeric_source}`")
     reference_note = (
         f"- 참고문헌 검증 필요 항목: 확인 필요 {audit.reference_needs_check}건, "
-        f"부분 검증 키워드 {audit.reference_partial}건, 대체 문헌 키워드 {audit.reference_alternate}건"
+        f"부분 검증 키워드 {audit.reference_partial}건, 관련 보조 문헌 키워드 {audit.reference_alternate}건"
     )
     numeric_note = f"- 수치 대조 필요 항목: {audit.numeric_status}"
     pdf_note = "- PDF/HTML 수동 확인 필요 항목: PDF 시각적 깨짐과 HTML 렌더링은 자동 정상 처리하지 않음"
@@ -1293,7 +1293,7 @@ def numeric_comparison_table(audits: list[WeekAudit]) -> str:
 
 def reference_status_table(audits: list[WeekAudit]) -> str:
     lines = [
-        "| 주차 | 확인 완료(로컬 기록) | 확인 필요 | 부분 검증 | DOI/제목 불일치 후보 | 대체 문헌 후보 | 로컬 PDF 없음 | 검증 점수 |",
+        "| 주차 | 확인 완료(로컬 기록) | 확인 필요 | 부분 검증 | 관련 논문 재분류 항목 | 관련 보조 문헌 항목 | 로컬 PDF 없음 | 검증 점수 |",
         "|---|---:|---:|---:|---:|---:|---:|---:|",
     ]
     for audit in audits:
@@ -1325,7 +1325,7 @@ def audit_summary_table(audits: list[WeekAudit]) -> str:
         bridge = "O" if audit.bridge_file else "X"
         outputs = "O" if audit.metrics_summary_exists and audit.results_json_exists and audit.run_log_exists else "확인 필요"
         numeric = f"{audit.numeric_status} ({audit.numeric_crosscheck_score})"
-        references = f"{audit.reference_verification_score}점 / 확인 필요 {audit.reference_needs_check}, 불일치 {audit.reference_mismatch}"
+        references = f"{audit.reference_verification_score}점 / 확인 필요 {audit.reference_needs_check}, 관련 재분류 {audit.reference_mismatch}"
         major = "; ".join(audit.manual_review_items)
         lines.append(
             f"| {audit.week} | {audit.score['folder_structure']} | {audit.score['report_file']} | {audit.score['presentation_file']} | {outputs} | {numeric} | {references} | {audit.score['ai_disclosure']} | {bridge} | {major} |"
@@ -1359,8 +1359,8 @@ def local_pdf_status(week_dir: Path, row: dict[str, str]) -> str:
         prefix = f"{number:02d}_"
         matches = sorted(path for path in pdf_dir.iterdir() if path.name.startswith(prefix) and path.suffix.lower() == ".pdf")
     marker_text = " ".join([explicit] + [path.name for path in matches])
-    if "SUBSTITUTE" in marker_text or "대체" in marker_text:
-        return "대체 PDF 존재"
+    if "RELATED" in marker_text or "관련 보조 문헌" in marker_text:
+        return "관련 보조 문헌 PDF 존재"
     if matches or explicit.endswith(".pdf") or ".pdf" in explicit:
         return "O"
     if "없음" in explicit:
@@ -1536,7 +1536,7 @@ def write_numeric_audit_md(audits: list[WeekAudit]) -> None:
         "",
         "기준: `metrics_summary.csv`를 1차 원천으로 삼고, 없으면 `results.json`을 기준으로 한다. 자동 대조는 기준 원천의 숫자 토큰이 보고서/발표자료에 포함되는지 확인하는 보조 점검이다.",
         "",
-        "| 주차 | 기준 원천 | 대조 대상 | 일치 | 불일치 내용 | 수정 여부 | 확인 필요 |",
+        "| 주차 | 기준 원천 | 대조 대상 | 일치 | 차이 내용 | 수정 여부 | 확인 필요 |",
         "|---|---|---|---|---|---|---|",
     ]
     for audit in audits:
@@ -1618,7 +1618,7 @@ def write_w15_numeric_audit_md(audits: list[WeekAudit]) -> None:
 ## 7. 사람이 봐야 할 항목
 
 - `weekly_submission.html`과 `presentation_slides.html`의 렌더링에서 표와 캡션이 깨지지 않는지 확인
-- P03 대체 PDF 상태와 W15 참고문헌 검증률 `0.90` 산정 방식 확인
+- P03 관련 논문 PDF 상태와 W15 참고문헌 검증률 `0.90` 산정 방식 확인
 - `47/47`, `9/9`, `11/11`은 completeness proxy이며 실제 모델 성능으로 해석하지 않도록 최종 원고 문구 확인
 - `seed_recorded=42`와 `config_present=1`이 config/run_log와 계속 일치하는지 제출 직전 재확인
 """

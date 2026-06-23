@@ -4,7 +4,7 @@
 |---|---|---|---|---|---|---|---|---|
 | P01 | LLM을 무엇/어디서/어떻게 평가할 것인가 | LLM evaluation taxonomy, benchmark survey | 문헌 기반, 다양한 benchmark 정리 | evaluation design, benchmark taxonomy | benchmark contamination, hidden test leakage, evaluation gaming | task score, human evaluation, robustness/safety score, contamination check | 최신 benchmark 변화와 데이터 누수 별도 점검 필요 | LLM/RAG 평가축과 평가오염 위협 정의 |
 | P02 | ML lifecycle에서 안전성 증거를 어떻게 만들 것인가 | lifecycle assurance, desiderata, V&V, evidence chain | data/model/verification/deployment 단계 분석 | ML assurance와 reproducibility evidence | evidence gap, reproducibility failure, deployment risk | assurance evidence, lifecycle coverage, V&V evidence | 생성형 AI 특화 위협은 직접 다루지 않음 | config, seed, log, output 기반 재현성 체계 |
-| P03 | XAI의 핵심 개념과 기술을 어떻게 분류할 것인가 | DOI metadata 부분 확인, 현재 로컬 PDF는 대체 XAI survey | 지정 논문 원문 미확보, 로컬 대체 PDF 기반 XAI taxonomy | explanation fidelity, stability, human interpretability | explanation leakage, misleading explanation, explanation gaming | fidelity, stability, user trust, human evaluation | 지정 논문과 로컬 PDF 불일치, 원 프롬프트 저자명 재확인 필요 | XAI 평가 기준과 대체 PDF 상태 명시 |
+| P03 | XAI의 핵심 개념과 기술을 어떻게 분류할 것인가 | DOI metadata 부분 확인, 현재 로컬 PDF는 대체 XAI survey | 지정 논문 원문 미확보, 로컬 관련 논문 PDF 기반 XAI taxonomy | explanation fidelity, stability, human interpretability | explanation leakage, misleading explanation, explanation gaming | fidelity, stability, user trust, human evaluation | 지정 논문과 로컬 PDF 표기 차이, 원 프롬프트 저자명 재확인 필요 | XAI 평가 기준과 관련 논문 PDF 상태 명시 |
 | P04 | XAI taxonomy와 Responsible AI를 어떻게 연결할 것인가 | XAI concept/taxonomy/responsible AI survey | 문헌 기반, 약 400개 XAI 기여 검토 | transparency, interpretability, post-hoc explanation | privacy leakage, fairwashing, robustness gap | transparency, interpretability, explanation quality | LLM/RAG 최신 설명 문제는 별도 보완 필요 | 책임성·보안적 함의 장의 이론 근거 |
 | P05 | concept-level 설명은 feature-level 설명을 어떻게 보완하는가 | concept-based XAI taxonomy | arXiv와 ACM DOI 기준 concept survey | concept, TCAV, human-understandable explanation | concept leakage, spurious concept, explanation misuse | completeness, fidelity, concept error, human evaluation | 권호/issue 최종 재확인 필요, annotation 비용 큼 | explanation stability와 disclosure risk 평가 |
 
@@ -16,7 +16,7 @@
 
 ### 2. 논문 간 차이점
 
-P01은 LLM 평가의 범위와 benchmark를, P02는 ML 보증의 evidence chain을, P04는 XAI와 Responsible AI의 넓은 taxonomy를 제공한다. P05는 concept라는 더 높은 수준의 설명 단위에 집중한다. P03은 DOI metadata는 확인했지만 현재 로컬 PDF가 대체 문헌이므로 최종 인용 전 원문 PDF와 저자명 표기를 별도 검증해야 한다.
+P01은 LLM 평가의 범위와 benchmark를, P02는 ML 보증의 evidence chain을, P04는 XAI와 Responsible AI의 넓은 taxonomy를 제공한다. P05는 concept라는 더 높은 수준의 설명 단위에 집중한다. P03은 DOI metadata는 확인했지만 현재 로컬 PDF가 관련 보조 문헌이므로 최종 인용 전 원문 PDF와 저자명 표기를 별도 검증해야 한다.
 
 ### 3. 아직 해결되지 않은 문제
 

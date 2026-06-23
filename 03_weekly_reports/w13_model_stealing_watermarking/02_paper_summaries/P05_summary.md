@@ -8,15 +8,15 @@
 | 공식 지정 후보 | Chenhan Zhang, Shui Yu, Zhiyi Tian, James J. Q. Yu, "Generative Adversarial Networks: A Survey on Attack and Defense Perspective" |
 | 공식 후보 DOI/출판정보 | DOI `10.1145/3615336`, ACM Computing Surveys, Vol. 56, Issue 4, pp. 1-35, online 2023-11-10, print 2024-04-30 |
 | 현재 로컬 PDF | Zhipeng Cai, Zuobin Xiong, Honghui Xu, Peng Wang, Wei Li, Yi Pan, "Generative Adversarial Networks: A Survey Towards Private and Secure Applications", arXiv:2106.03785v1 |
-| 검증 상태 | `SUBSTITUTE` PDF. 지정 후보 공식 DOI는 확인했지만 로컬 PDF와 불일치. |
+| 검증 상태 | 관련 논문 PDF. 지정 후보 공식 DOI는 확인했지만 로컬 PDF와 표기 차이. |
 
 ## 2. 필수 주의문
 
-주의: W13의 P05는 지정 논문과 로컬 PDF가 불일치한다. 현재 로컬 PDF는 Zhipeng Cai et al.의 GAN privacy/security application survey이므로, 최종 제출 전 Cheng/Chenhan Zhang et al.의 GAN attack/defense 지정 논문 원문 또는 공식 출판 페이지를 확보해야 한다.
+주의: W13의 P05는 지정 논문과 로컬 PDF가 표기 차이가 있다. 현재 로컬 PDF는 Zhipeng Cai et al.의 GAN privacy/security application survey이므로, 최종 제출 전 Cheng/Chenhan Zhang et al.의 GAN attack/defense 지정 논문 원문 또는 공식 출판 페이지를 확보해야 한다.
 
 ## 3. 한 문장 요약
 
-현재 로컬 PDF는 GAN의 game-theoretic generation 구조가 privacy/security 응용과 공격면에 어떻게 연결되는지 정리하며, W13에서는 생성모형 IP 보호와 misuse 위험을 보조적으로 설명하는 대체 문헌 역할을 한다[5].
+현재 로컬 PDF는 GAN의 game-theoretic generation 구조가 privacy/security 응용과 공격면에 어떻게 연결되는지 정리하며, W13에서는 생성모형 IP 보호와 misuse 위험을 보조적으로 설명하는 관련 보조 문헌 역할을 한다[5].
 
 ## 4. 연구문제
 

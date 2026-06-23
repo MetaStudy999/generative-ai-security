@@ -95,7 +95,7 @@ Model
 | P01 | 대규모 ML에서 어떤 최적화 방법이 확장성과 수렴성을 보장하는가 | SGD, noise reduction, second-order method review | 직접 보안 공격은 아님 | 수렴성, 계산 비용, 일반화 | poisoning 지표 직접 제공 없음 | 학습 데이터 조작이 목적함수와 gradient에 미치는 영향 설명 |
 | P02 | 모델을 더 작고 빠르고 효율적으로 만들려면 무엇을 고려해야 하는가 | 효율적 모델링, 압축, 시스템/하드웨어 survey | 효율화가 방어 비용과 검증 범위에 영향 | 정확도, latency, memory, FLOPs, cost | poisoning/backdoor 전용 문헌은 아님 | 방어 평가에 비용·속도·배포 가능성 추가 |
 | P03 | poisoning 공격과 대응책을 어떻게 분류할 수 있는가 | 공격/방어 taxonomy | poisoning, backdoor, federated poisoning | accuracy drop, ASR, detection, robustness | 개별 실험 재현은 별도 필요 | W02 위협모형과 평가방법의 중심 근거 |
-| P04 | training data poisoning 공격과 방어를 threat model 중심으로 어떻게 체계화할 수 있는가 | systematic survey, threat model 분석 | targeted/untargeted poisoning, clean-label, backdoor | clean accuracy, attack success, stealthiness, detection | 강의계획서 제목과 현재 로컬 PDF 제목 불일치 | 데이터 생명주기 기반 방어 체크리스트 |
+| P04 | training data poisoning 공격과 방어를 threat model 중심으로 어떻게 체계화할 수 있는가 | systematic survey, threat model 분석 | targeted/untargeted poisoning, clean-label, backdoor | clean accuracy, attack success, stealthiness, detection | 강의계획서 제목과 현재 로컬 PDF 제목 표기 차이 | 데이터 생명주기 기반 방어 체크리스트 |
 | P05 | DNN부터 LLM까지 backdoor 공격과 방어는 어떻게 발전했는가 | backdoor attack/detection/removal/LLM survey | trigger 기반 조건부 오분류 | clean accuracy, ASR, trigger stealthiness, removal effect | LLM 환경 최신성 지속 갱신 필요 | clean accuracy-ASR 동시 평가 프레임 |
 
 ## 7. Research Track 분석
@@ -327,7 +327,7 @@ The framework can be extended to later topics such as self-supervised backdoors,
 - External validity: digits dataset은 실제 보안 데이터, foundation model, LLM fine-tuning, data supply chain을 대표하지 않는다.
 - Construct validity: toy trigger ASR은 실제 공격 성공률이 아니라 평가축 설명용 지표다.
 - Reproducibility: outputs 파일과 보고서 수치의 일치가 필요하다.
-- Literature validity: P02/P04의 arXiv판과 최종 출판판 차이, P04 제목 불일치를 확인해야 한다.
+- Literature validity: P02/P04의 arXiv판과 최종 출판판 차이, P04 제목 표기 차이를 확인해야 한다.
 
 ### 13.11 Conclusion
 

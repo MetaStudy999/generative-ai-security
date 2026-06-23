@@ -22,7 +22,7 @@ W15는 LLM 평가, ML lifecycle assurance, XAI, concept-based explanation을 묶
 |---|---|
 | P01 | LLM 평가를 what/where/how로 나누고 benchmark contamination을 평가 위협으로 설명 |
 | P02 | ML lifecycle assurance를 통해 config, seed, log, outputs를 evidence chain으로 설명 |
-| P03 | XAI 핵심 개념 문헌이지만 현재 PDF가 대체 문헌이라는 검증 이슈를 보여주는 사례 |
+| P03 | XAI 핵심 개념 문헌이지만 현재 PDF가 관련 보조 문헌이라는 검증 이슈를 보여주는 사례 |
 | P04 | XAI taxonomy와 Responsible AI가 privacy, accountability, fairness와 연결되는 지점 |
 | P05 | concept-based XAI가 feature-level 설명을 보완하면서도 concept leakage 위험을 갖는 지점 |
 

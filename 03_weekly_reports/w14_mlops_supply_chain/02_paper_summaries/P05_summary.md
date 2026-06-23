@@ -19,7 +19,7 @@
 
 ## 2. 한 문장 요약
 
-> 대상 논문은 소프트웨어공학 문제에 딥러닝을 적용하는 연구 흐름을 정리하며, 로컬 대체 PDF는 DL model selection, optimization, SE task 적용, 남은 challenge를 survey로 정리한다.
+> 대상 논문은 소프트웨어공학 문제에 딥러닝을 적용하는 연구 흐름을 정리하며, 로컬 관련 논문 PDF는 DL model selection, optimization, SE task 적용, 남은 challenge를 survey로 정리한다.
 
 ## 3. 연구문제
 
@@ -39,7 +39,7 @@
 
 로컬 PDF는 2006년 이후 DL for SE 연구를 survey하고, 관련 기술과 research topic을 분류한다. DOI 10.1145/3505243도 Yang/Xia/Lo/Grundy 논문으로 확인되었으나, 수업자료는 Xiang Chen et al.으로 되어 있어 지정 논문 표기 재확인이 필요하다. 본 보고서에서는 대상 논문과 로컬 PDF의 서지 차이를 명시하고, 세부 task taxonomy는 공식 원문 확보 후 최종 확정한다.
 
-주의: W14의 P05는 수업자료의 Xiang Chen 표기와 DOI/로컬 PDF 기준 Yang/Xia/Lo/Grundy 계열 DL for software engineering 문헌이 불일치한다. 최종 제출 전 수업자료 지정 논문과 DOI 10.1145/3505243의 공식 출판정보를 재확인해야 한다.
+주의: W14의 P05는 수업자료의 Xiang Chen 표기와 DOI/로컬 PDF 기준 Yang/Xia/Lo/Grundy 계열 DL for software engineering 문헌이 표기 차이가 있다. 최종 제출 전 수업자료 지정 논문과 DOI 10.1145/3505243의 공식 출판정보를 재확인해야 한다.
 
 ### 5.1 핵심 수식 또는 알고리즘 설명
 

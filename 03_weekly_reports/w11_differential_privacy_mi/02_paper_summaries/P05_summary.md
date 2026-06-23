@@ -10,12 +10,12 @@
 | 지정 논문 DOI | `10.1145/3620667` |
 | 로컬 PDF 제목 | Membership Inference Attacks and Defenses in Federated Learning: A Survey |
 | 로컬 PDF 저자 | Li Bai, Haibo Hu, Qingqing Ye, Haoyang Li, Leixia Wang, Jianliang Xu |
-| PDF 파일명 | `05_SUBSTITUTE_Bai_et_al_2024_MIA_Attacks_Defenses_FL_Survey.pdf` |
-| 검증 상태 | DOI `10.1145/3620667` 확인. 강의자료 저자명/권호 표기는 공식 메타데이터와 달라 최종 확인 필요. 로컬 PDF는 지정 논문과 불일치 |
+| PDF 파일명 | `05_RELATED_Bai_et_al_2024_MIA_Attacks_Defenses_FL_Survey.pdf` |
+| 검증 상태 | DOI `10.1145/3620667` 확인. 강의자료 저자명/권호 표기는 공식 메타데이터와 달라 최종 확인 필요. 로컬 PDF는 지정 논문과 표기 차이 |
 
 ## 2. 한 문장 요약
 
-> 지정 논문은 MI 방어 전반의 survey로, 현재 로컬 대체 PDF는 federated learning에서 MI 공격/방어가 training phase와 client/server 역할에 따라 달라진다는 보완 관점을 제공한다.
+> 지정 논문은 MI 방어 전반의 survey로, 현재 로컬 관련 논문 PDF는 federated learning에서 MI 공격/방어가 training phase와 client/server 역할에 따라 달라진다는 보완 관점을 제공한다.
 
 ## 3. 연구문제
 
@@ -32,7 +32,7 @@ MI 방어가 regularization, output restriction, calibration, DP, FL protocol de
 
 ## 5. 방법론
 
-지정 논문은 MI defense taxonomy로 사용하고, 로컬 대체 PDF는 FL 환경에서 attacker/defender role과 attack phase가 중앙학습과 달라지는 사례로만 활용한다.
+지정 논문은 MI defense taxonomy로 사용하고, 로컬 관련 논문 PDF는 FL 환경에서 attacker/defender role과 attack phase가 중앙학습과 달라지는 사례로만 활용한다.
 
 ### 5.1 핵심 수식 또는 알고리즘 설명
 
@@ -60,7 +60,7 @@ P05는 W11의 utility-privacy trade-off를 설명하는 핵심 문헌이다. 방
 
 ## 8. 한계와 오픈문제
 
-주의: W11의 P05는 지정 논문과 로컬 PDF가 불일치한다. 현재 로컬 PDF는 Bai et al.의 FL-MIA survey이므로, 최종 제출 전 `Defenses to Membership Inference Attacks: A Survey`의 지정 논문 원문 PDF 또는 공식 출판 페이지를 확보해야 한다. DOI `10.1145/3620667`은 확인되었으나 공식 메타데이터는 `Li Hu et al.` 및 ACM CSUR 56(4), pp. 1-34로 확인되어, 강의자료의 `Hongsheng Hu et al.` 표기는 최종 확인 필요 상태로 둔다.
+주의: W11의 P05는 지정 논문과 로컬 PDF가 표기 차이가 있다. 현재 로컬 PDF는 Bai et al.의 FL-MIA survey이므로, 최종 제출 전 `Defenses to Membership Inference Attacks: A Survey`의 지정 논문 원문 PDF 또는 공식 출판 페이지를 확보해야 한다. DOI `10.1145/3620667`은 확인되었으나 공식 메타데이터는 `Li Hu et al.` 및 ACM CSUR 56(4), pp. 1-34로 확인되어, 강의자료의 `Hongsheng Hu et al.` 표기는 최종 확인 필요 상태로 둔다.
 
 ## 9. 기말 논문에 반영할 부분
 

@@ -10,12 +10,12 @@
 | 지정 논문 DOI | `10.1016/j.neucom.2024.127663` |
 | 로컬 PDF 제목 | Differentially Private Federated Learning: A Systematic Review |
 | 로컬 PDF 저자 | Jie Fu, Yuan Hong, Xinpeng Ling, Leixia Wang, Xun Ran, Zhiyu Sun, Wendy Hui Wang, Zhili Chen, Yang Cao |
-| PDF 파일명 | `03_SUBSTITUTE_Fu_et_al_2024_Differentially_Private_FL_Review.pdf` |
-| 검증 상태 | DOI는 Neurocomputing 지정 논문과 연결됨. 단 강의자료 저자명 표기와 공식 메타데이터가 달라 최종 확인 필요. 로컬 PDF는 지정 논문과 불일치 |
+| PDF 파일명 | `03_RELATED_Fu_et_al_2024_Differentially_Private_FL_Review.pdf` |
+| 검증 상태 | DOI는 Neurocomputing 지정 논문과 연결됨. 단 강의자료 저자명 표기와 공식 메타데이터가 달라 최종 확인 필요. 로컬 PDF는 지정 논문과 표기 차이 |
 
 ## 2. 한 문장 요약
 
-> 지정 논문은 deep learning 전반의 DP 적용을 다루는 문헌으로 쓰고, 현재 로컬 대체 PDF는 FL에서 DP model, 보호 대상, privacy level을 구분하는 보완 문헌으로 사용한다.
+> 지정 논문은 deep learning 전반의 DP 적용을 다루는 문헌으로 쓰고, 현재 로컬 관련 논문 PDF는 FL에서 DP model, 보호 대상, privacy level을 구분하는 보완 문헌으로 사용한다.
 
 ## 3. 연구문제
 
@@ -32,7 +32,7 @@
 
 ## 5. 방법론
 
-지정 논문은 deep learning DP survey로 다루고, 로컬 대체 PDF는 DP-FL systematic review로 별도 표시한다. 본 보고서에서는 대체 PDF의 내용을 FL 확장 한계와 privacy object 분류에만 제한적으로 사용한다.
+지정 논문은 deep learning DP survey로 다루고, 로컬 관련 논문 PDF는 DP-FL systematic review로 별도 표시한다. 본 보고서에서는 관련 논문 PDF의 내용을 FL 확장 한계와 privacy object 분류에만 제한적으로 사용한다.
 
 ### 5.1 핵심 수식 또는 알고리즘 설명
 
@@ -60,7 +60,7 @@ P03은 W11을 W10 연합학습 보안과 연결한다. membership inference risk
 
 ## 8. 한계와 오픈문제
 
-주의: W11의 P03은 지정 논문과 로컬 PDF가 불일치한다. 현재 로컬 PDF는 Fu et al.의 DP-FL systematic review이므로, 최종 제출 전 Pan et al.의 지정 논문 원문 PDF 또는 공식 출판 페이지를 확보해야 한다. 또한 DOI `10.1016/j.neucom.2024.127663`의 공식 메타데이터는 `Ke Pan et al.`로 확인되어, 강의자료의 `Zizheng Pan et al.` 표기는 최종 확인 필요 상태로 둔다.
+주의: W11의 P03은 지정 논문과 로컬 PDF가 표기 차이가 있다. 현재 로컬 PDF는 Fu et al.의 DP-FL systematic review이므로, 최종 제출 전 Pan et al.의 지정 논문 원문 PDF 또는 공식 출판 페이지를 확보해야 한다. 또한 DOI `10.1016/j.neucom.2024.127663`의 공식 메타데이터는 `Ke Pan et al.`로 확인되어, 강의자료의 `Zizheng Pan et al.` 표기는 최종 확인 필요 상태로 둔다.
 
 ## 9. 기말 논문에 반영할 부분
 

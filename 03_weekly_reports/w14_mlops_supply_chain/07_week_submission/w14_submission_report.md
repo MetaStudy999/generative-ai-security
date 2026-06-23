@@ -66,7 +66,7 @@ Dataset / Feature Pipeline -> Training Code + Config + Seed
 | P04 | Chen and Ran, `Deep Learning With Edge Computing` | edge deployment 제약 | DOI/권호/페이지 확인, 로컬 PDF 대체 |
 | P05 | Yang, Xia, Lo, Grundy, `A Survey on Deep Learning for Software Engineering` | AI-assisted SE와 pipeline 보안 | 수업자료 Xiang Chen 표기 확인 필요 |
 
-P03/P04/P05는 로컬 PDF가 대체문헌이므로 지정 논문처럼 인용하지 않는다.
+P03/P04/P05는 로컬 PDF가 관련 보조 문헌이므로 지정 논문처럼 인용하지 않는다.
 
 ## 6. 논문 5편 비교표
 
@@ -212,7 +212,7 @@ SCI 제목 후보는 `An Evidence-Set Framework for MLOps Supply-Chain Security 
 
 ## 14. 발표용 요약
 
-발표 핵심 메시지는 "운영형 AI 시스템 보안은 accuracy가 아니라 evidence set을 요구한다"이다. 발표자료는 `09_presentation/`에 있으며, P03/P04/P05의 대체 문헌 원문 상태와 drift score 해석 한계를 발표 중 명시한다.
+발표 핵심 메시지는 "운영형 AI 시스템 보안은 accuracy가 아니라 evidence set을 요구한다"이다. 발표자료는 `09_presentation/`에 있으며, P03/P04/P05의 관련 보조 문헌 원문 상태와 drift score 해석 한계를 발표 중 명시한다.
 
 ## 15. 참고문헌 검증표
 
@@ -235,12 +235,12 @@ PDF 보관 정책 점검 결과, `01_papers/pdf/`의 논문 PDF 원문은 로컬
 | AI 원리 70% 정리 | 완료 |  |
 | 보안 이슈 30% 정리 | 완료 |  |
 | 논문 5편 요약 | 완료 / 확인 필요 | P01/P03/P05 서지 차이 |
-| 논문 5편 비교표 보완 | 완료 / 확인 필요 | 대체 문헌 원문 상태 반영 |
+| 논문 5편 비교표 보완 | 완료 / 확인 필요 | 관련 보조 문헌 원문 상태 반영 |
 | Research Track 5요소 작성 | 완료 |  |
 | P01 공식 제목/저자명 검증 | 완료 / 확인 필요 | 수업자료 표기 차이 |
 | P02 DOI/URL 검증 | 완료 | Article 번호 재확인 |
-| P03 지정 논문 원문 확보 | 확인 필요 | 현재 대체 문헌 원문 |
-| P04 지정 논문 원문 확보 | 확인 필요 | 현재 대체 문헌 원문 |
+| P03 지정 논문 원문 확보 | 확인 필요 | 현재 관련 보조 문헌 원문 |
+| P04 지정 논문 원문 확보 | 확인 필요 | 현재 관련 보조 문헌 원문 |
 | P05 지정 논문 원문/저자 표기 | 확인 필요 | Xiang Chen 표기 |
 | 실험 outputs 파일 존재 확인 | 완료 | 6개 output 파일 |
 | 실험 결과와 보고서 수치 일치 | 완료 | outputs 기준 |

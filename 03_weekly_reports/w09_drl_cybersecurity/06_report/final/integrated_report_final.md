@@ -77,7 +77,7 @@ Reward manipulation은 공격자 또는 환경 조작자가 보상 신호를 의
 | [2] | Kiran et al., *Deep Reinforcement Learning for Autonomous Driving: A Survey* | IEEE TITS, 23(6), 4909-4926, 2022 | 안전중요 자동화, sim-to-real gap | 부분 검증: 로컬 PDF는 arXiv v2 |
 | [3] | Nguyen and Reddi, *Deep Reinforcement Learning for Cyber Security* | IEEE TNNLS, 34(8), 3779-3795, 2023 | cyber-defense DRL | 확인 필요: 강의계획서 저자명 차이 |
 | [4] | Adawadkar and Kulkarni, *Cyber-security and reinforcement learning -- A brief survey* | Engineering Applications of Artificial Intelligence, 114, Article 105116, 2022 | IDS/IPS, IoT, IAM 평가 | 확인 필요: 강의계획서 저자명 차이 |
-| [5] | Landers and Doryab, *Deep Reinforcement Learning Verification: A Survey* | ACM Computing Surveys, 55(14s), Article 330, 31 pages, 2023 | safety specification, robustness | 확인 필요: 강의계획서 `H. Yan et al.`과 불일치 |
+| [5] | Landers and Doryab, *Deep Reinforcement Learning Verification: A Survey* | ACM Computing Surveys, 55(14s), Article 330, 31 pages, 2023 | safety specification, robustness | 확인 필요: 강의계획서 `H. Yan et al.`과 표기 차이 |
 
 주의: W09의 P05는 강의계획서 지정 저자명 `H. Yan et al.`과 현재 로컬 PDF 기준 `Matthew Landers; Afsaneh Doryab`가 다르므로, 동일 논문 여부와 최종 ACM 출판정보를 확인 필요 상태로 유지한다.
 

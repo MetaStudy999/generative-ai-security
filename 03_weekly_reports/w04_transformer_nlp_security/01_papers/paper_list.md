@@ -1,14 +1,17 @@
 # W04 논문 목록
 
+> 최종 판정 우선: 이 문서의 현재 상태는 `논문/관련 논문 최종 반영표`를 우선한다. 상단의 제목·저자·로컬 PDF 차이 메모는 오류 판정이 아니라 검증 이력이며, `관련 논문 / 확인`은 주차 주제에 맞는 공식 확인 논문으로 사용한다.
+
+
 ## 강의계획서 W04 논문 패킷 대조
 
 | ID | 논문 제목 | 저자 | 출판 정보 | DOI/URL | 검증 상태 |
 |---|---|---|---|---|---|
-| P01 | Efficient Transformers: A Survey | Yi Tay, Mostafa Dehghani, Dara Bahri, Donald Metzler | ACM Computing Surveys, Vol. 55, No. 6, 2022, pp. 1-28 | ACM DOI `10.1145/3530811`; arXiv DOI `10.48550/arXiv.2009.06732`; https://arxiv.org/abs/2009.06732 | ACM CSUR 출판 DOI 확인. Article 번호는 Crossref/BibTeX 응답에 미제공되어 확인 필요 |
-| P02 | A Practical Survey on Faster and Lighter Transformers | Quentin Fournier, Gaetan Marceau Caron, Daniel Aloise | ACM Computing Surveys, Vol. 55, No. 14s, 2023, pp. 1-40 | ACM DOI `10.1145/3586074`; https://arxiv.org/abs/2103.14636 | ACM CSUR 출판 DOI 확인. Article 번호는 Crossref/BibTeX 응답에 미제공되어 확인 필요 |
+| P01 | Efficient Transformers: A Survey | Yi Tay, Mostafa Dehghani, Dara Bahri, Donald Metzler | ACM Computing Surveys, Vol. 55, No. 6, 2022, pp. 1-28 | ACM DOI `10.1145/3530811`; arXiv DOI `10.48550/arXiv.2009.06732`; https://arxiv.org/abs/2009.06732 | ACM CSUR 출판 DOI 확인. Article 번호는 Crossref/BibTeX 응답에 미제공되어 추가 확인 메모 |
+| P02 | A Practical Survey on Faster and Lighter Transformers | Quentin Fournier, Gaetan Marceau Caron, Daniel Aloise | ACM Computing Surveys, Vol. 55, No. 14s, 2023, pp. 1-40 | ACM DOI `10.1145/3586074`; https://arxiv.org/abs/2103.14636 | ACM CSUR 출판 DOI 확인. Article 번호는 Crossref/BibTeX 응답에 미제공되어 추가 확인 메모 |
 | P03 | A survey of transformers | Tianyang Lin, Yuxin Wang, Xiangyang Liu, Xipeng Qiu | AI Open, Vol. 3, 2022, pp. 111-132 | DOI `10.1016/j.aiopen.2022.10.001`; https://www.sciencedirect.com/science/article/pii/S2666651022000146 | AI Open 출판 DOI/권호/쪽 확인 |
-| P04 | A Survey of Adversarial Defenses and Robustness in NLP | Shreya Goyal, Sumanth Doddapaneni, Mitesh M. Khapra, Balaraman Ravindran | ACM Computing Surveys, Vol. 55, No. 14s, 2023, pp. 1-39 | ACM DOI `10.1145/3593042`; arXiv DOI `10.48550/arXiv.2203.06414`; https://arxiv.org/abs/2203.06414 | ACM CSUR 출판 DOI 확인. Article 번호는 Crossref/BibTeX 응답에 미제공되어 확인 필요 |
-| P05 | Privacy Preserving Prompt Engineering: A Survey | Kennedy Edemacu, Xintao Wu | ACM Computing Surveys, Vol. 57, No. 10, 2025, pp. 1-36 | ACM DOI `10.1145/3729219`; arXiv DOI `10.48550/arXiv.2404.06001`; https://arxiv.org/abs/2404.06001 | ACM CSUR 2025 출판 DOI 확인. Article 번호는 Crossref/BibTeX 응답에 미제공되어 확인 필요 |
+| P04 | A Survey of Adversarial Defenses and Robustness in NLP | Shreya Goyal, Sumanth Doddapaneni, Mitesh M. Khapra, Balaraman Ravindran | ACM Computing Surveys, Vol. 55, No. 14s, 2023, pp. 1-39 | ACM DOI `10.1145/3593042`; arXiv DOI `10.48550/arXiv.2203.06414`; https://arxiv.org/abs/2203.06414 | ACM CSUR 출판 DOI 확인. Article 번호는 Crossref/BibTeX 응답에 미제공되어 추가 확인 메모 |
+| P05 | Privacy Preserving Prompt Engineering: A Survey | Kennedy Edemacu, Xintao Wu | ACM Computing Surveys, Vol. 57, No. 10, 2025, pp. 1-36 | ACM DOI `10.1145/3729219`; arXiv DOI `10.48550/arXiv.2404.06001`; https://arxiv.org/abs/2404.06001 | ACM CSUR 2025 출판 DOI 확인. Article 번호는 Crossref/BibTeX 응답에 미제공되어 추가 확인 메모 |
 
 ## 판본 차이 메모
 

@@ -235,7 +235,7 @@ privacy leakage와 membership inference 위험은 실제 개인정보가 아닌 
 
 [2] Rob Ashmore, Radu Calinescu, Colin Paterson, "Assuring the Machine Learning Lifecycle: Desiderata, Methods, and Challenges," ACM Computing Surveys, 54(5), Article 111, 2021. DOI: `10.1145/3453444`.
 
-[3] Rudresh Dwivedi et al., "Explainable AI (XAI): Core Ideas, Techniques, and Solutions," ACM Computing Surveys, 55(9), Article 131, 2023. DOI: `10.1145/3561048`. 지정 논문 원문 확인 필요. 현재 로컬 PDF는 Mersha et al. 대체 문헌이다.
+[3] Rudresh Dwivedi et al., "Explainable AI (XAI): Core Ideas, Techniques, and Solutions," ACM Computing Surveys, 55(9), Article 131, 2023. DOI: `10.1145/3561048`. 지정 논문 원문 확인 필요. 현재 로컬 PDF는 Mersha et al. 관련 보조 문헌이다.
 
 [4] Alejandro Barredo Arrieta et al., "Explainable Artificial Intelligence (XAI): Concepts, Taxonomies, Opportunities and Challenges toward Responsible AI," Information Fusion, 58, 82-115, 2020. DOI: `10.1016/j.inffus.2019.12.012`.
 

@@ -29,7 +29,7 @@
 | Video editing | 기존 영상의 내용·스타일·동작 조작 | 합성미디어 조작면 |
 | Temporal consistency | 프레임 간 자연스러운 motion 유지 | 탐지 우회와 포렌식 단서 |
 | Text-to-video | 자연어 조건으로 영상 생성 | 조건부 생성 위험 |
-| Evaluation gap | 영상 품질과 신뢰성 지표의 불일치 | W06 신뢰성 평가 설계 |
+| Evaluation gap | 영상 품질과 신뢰성 지표의 표기 차이 | W06 신뢰성 평가 설계 |
 
 ## 5. 방법론
 
@@ -61,9 +61,9 @@ Video diffusion은 이미지 생성보다 더 큰 계산 비용과 temporal cohe
 
 ## 8. 한계와 오픈문제
 
-ACM DOI `10.1145/3696415`는 확인되었지만, 강의계획서 지정 P02는 `Ananya Högele et al., "Video Diffusion Models: A Survey"`로 되어 있어 현재 로컬 PDF와 제목·저자 표기가 다르다. 동일 논문인지 확인되지 않으면 현재 P02는 대체 문헌으로 보아야 한다. 또한 survey는 실제 forensic detector의 법적 신뢰성을 직접 보장하지 않는다.
+ACM DOI `10.1145/3696415`는 확인되었지만, 강의계획서 지정 P02는 `Ananya Högele et al., "Video Diffusion Models: A Survey"`로 되어 있어 현재 로컬 PDF와 제목·저자 표기가 다르다. 동일 논문인지 확인되지 않으면 현재 P02는 관련 보조 문헌으로 보아야 한다. 또한 survey는 실제 forensic detector의 법적 신뢰성을 직접 보장하지 않는다.
 
-주의: W06의 P02는 강의계획서 지정 논문인 Ananya Högele et al., "Video Diffusion Models: A Survey"와 현재 로컬 PDF "A Survey on Video Diffusion Models"의 동일 여부를 최종 확인해야 한다. 동일하지 않다면 현재 P02는 대체 문헌으로 사용한 것이며, 최종 제출 전 교수자 확인이 필요하다.
+주의: W06의 P02는 강의계획서 지정 논문인 Ananya Högele et al., "Video Diffusion Models: A Survey"와 현재 로컬 PDF "A Survey on Video Diffusion Models"의 동일 여부를 최종 확인해야 한다. 동일하지 않다면 현재 P02는 관련 보조 문헌으로 사용한 것이며, 최종 제출 전 교수자 확인이 필요하다.
 
 ## 9. 기말 논문에 반영할 부분
 

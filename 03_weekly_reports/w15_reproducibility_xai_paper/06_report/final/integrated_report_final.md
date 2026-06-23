@@ -66,13 +66,13 @@ W15는 W01-W14의 모든 학습·실습·문헌검토를 기말논문 제출 가
 |---|---|---|---|---|
 | P01 | A Survey on Evaluation of Large Language Models | `10.1145/3641289` | 확인. ACM TIST 15(3), Article 39 | LLM/RAG 평가축, benchmark contamination |
 | P02 | Assuring the Machine Learning Lifecycle | `10.1145/3453444` | 확인. ACM CSUR 54(5), Article 111 | config, seed, log, output evidence chain |
-| P03 | Explainable AI: Core Ideas, Techniques, and Solutions | `10.1145/3561048` | 부분 확인. 로컬 PDF는 Mersha et al. 대체 문헌 | XAI 평가 기준, 원문 확인 필요 사례 |
+| P03 | Explainable AI: Core Ideas, Techniques, and Solutions | `10.1145/3561048` | 부분 확인. 로컬 PDF는 Mersha et al. 관련 보조 문헌 | XAI 평가 기준, 원문 확인 필요 사례 |
 | P04 | Explainable Artificial Intelligence (XAI) | `10.1016/j.inffus.2019.12.012` | 확인. Information Fusion 58, 82-115 | Responsible XAI, privacy/accountability |
 | P05 | Concept-based Explainable Artificial Intelligence: A Survey | `10.1145/3774643`, arXiv `2312.12936` | 확인. 권호/issue 최종 확인 필요 | concept-based explanation, human evaluation |
 
 ## 6. 논문 5편 비교표
 
-P01은 평가 설계와 benchmark contamination 근거이고, P02는 lifecycle assurance와 evidence chain 근거다. P03은 DOI metadata와 로컬 PDF가 분리된 검증 사례이므로 대체 PDF를 지정 논문처럼 인용하지 않는다. P04는 XAI taxonomy와 Responsible AI 근거이며, P05는 concept-based XAI와 human-evaluable explanation 근거다.
+P01은 평가 설계와 benchmark contamination 근거이고, P02는 lifecycle assurance와 evidence chain 근거다. P03은 DOI metadata와 로컬 PDF가 분리된 검증 사례이므로 관련 논문 PDF를 지정 논문처럼 인용하지 않는다. P04는 XAI taxonomy와 Responsible AI 근거이며, P05는 concept-based XAI와 human-evaluable explanation 근거다.
 
 ## 7. Research Track 분석
 

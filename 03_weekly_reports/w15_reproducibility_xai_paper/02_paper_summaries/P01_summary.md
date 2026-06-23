@@ -18,7 +18,7 @@
 
 ## 3. 연구문제
 
-LLM의 능력과 위험을 task-level 평가만으로 판단하기 어렵기 때문에, 일반 NLP, 추론, 의료, 윤리, 교육, 과학, agent 응용 등 다양한 평가 영역을 체계화하는 것이 핵심 연구문제다. 기말논문 관점에서는 benchmark contamination, hidden test leakage, 평가 프로토콜 불일치가 성능 과대평가로 이어지는 지점을 확인하는 데 활용한다.
+LLM의 능력과 위험을 task-level 평가만으로 판단하기 어렵기 때문에, 일반 NLP, 추론, 의료, 윤리, 교육, 과학, agent 응용 등 다양한 평가 영역을 체계화하는 것이 핵심 연구문제다. 기말논문 관점에서는 benchmark contamination, hidden test leakage, 평가 프로토콜 표기 차이가 성능 과대평가로 이어지는 지점을 확인하는 데 활용한다.
 
 ## 4. 핵심 개념
 
@@ -27,7 +27,7 @@ LLM의 능력과 위험을 task-level 평가만으로 판단하기 어렵기 때
 | What to evaluate | 능력, 안전성, 도메인별 task 등 평가 대상 정의 | 평가 항목 설계 |
 | Where to evaluate | benchmark, 데이터셋, 평가 환경 선택 | benchmark contamination 점검 |
 | How to evaluate | 자동 지표, human evaluation, leaderboards, 실패 사례 분석 | 재현성 프로토콜 |
-| Evaluation risk | 평가셋 노출, 벤치마크 과적합, 측정 기준 불일치 | 보안 위협모형 |
+| Evaluation risk | 평가셋 노출, 벤치마크 과적합, 측정 기준 표기 차이 | 보안 위협모형 |
 
 ## 5. 방법론
 

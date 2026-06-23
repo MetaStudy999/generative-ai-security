@@ -10,10 +10,10 @@
 | 공식 URL | https://doi.org/10.1145/3617508 |
 | 공식 메타데이터 확인 | title과 Boudardara et al.는 일치하나, Crossref 기준 매체는 ACM Transactions on Embedded Computing Systems, Vol. 23, Issue 4, pp. 1-19, 2024 |
 | 강의 표기와 차이 | 강의자료의 ACM Computing Surveys 56(7), Article 151 표기와 충돌 |
-| 로컬 PDF | `01_SUBSTITUTE_Meng_et_al_2022_DNN_Robustness_Formal_Verification.pdf` |
+| 로컬 PDF | `01_RELATED_Meng_et_al_2022_DNN_Robustness_Formal_Verification.pdf` |
 | 로컬 PDF 상태 | Meng et al. 2022 arXiv formal verification survey. 지정 논문 원문 아님 |
 
-주의: W12의 P01은 지정 논문과 로컬 PDF가 불일치한다. 현재 로컬 PDF는 Meng et al. 2022 formal verification 관련 대체 문헌이므로, 최종 제출 전 Boudardara et al. 지정 논문 원문 PDF 또는 공식 출판 페이지를 확보해야 한다.
+주의: W12의 P01은 지정 논문과 로컬 PDF가 표기 차이가 있다. 현재 로컬 PDF는 Meng et al. 2022 formal verification 관련 보조 문헌이므로, 최종 제출 전 Boudardara et al. 지정 논문 원문 PDF 또는 공식 출판 페이지를 확보해야 한다.
 
 ## 2. 핵심 연구문제
 
@@ -37,7 +37,7 @@ W12 실험의 `certified_rate`는 P01식 formal verification 결과가 아니다
 
 - ACM/DOI 페이지에서 매체명, 권호, Article 번호, 페이지를 사람이 최종 확인한다.
 - 강의계획서의 ACM Computing Surveys 표기가 맞는지 재확인한다.
-- 로컬 SUBSTITUTE PDF를 지정 논문 원문처럼 인용하지 않는다.
+- 로컬 관련 논문 PDF를 지정 논문 원문처럼 인용하지 않는다.
 
 ### 5.1 핵심 수식 또는 알고리즘 설명
 

@@ -9,7 +9,7 @@
 | 학술지/학회 | ACM Computing Surveys 55(9), Article 131 |
 | 연도 | 2023 |
 | DOI/URL | `https://doi.org/10.1145/3561048` |
-| PDF 파일명 | `03_SUBSTITUTE_Mersha_et_al_2024_Explainable_AI_Survey.pdf` |
+| PDF 파일명 | `03_RELATED_Mersha_et_al_2024_Explainable_AI_Survey.pdf` |
 | 검증 상태 | DOI metadata는 부분 확인했으나 로컬 PDF는 Mersha et al., "Explainable Artificial Intelligence: A Survey of Needs, Techniques, Applications, and Future Direction" arXiv:2409.00265 대체 파일이다. 지정 논문 원문 PDF 확보 필요 |
 
 ## 2. 한 문장 요약
@@ -31,7 +31,7 @@ XAI가 어떤 사용자의 어떤 의사결정 문제를 설명해야 하는지,
 
 ## 5. 방법론
 
-지정 논문은 DOI metadata만 부분 확인했으므로 출판사 원문 확보 후 최종 요약을 확정한다. 현재 단계에서는 대체 PDF의 arXiv 첫 페이지와 본문 목차를 바탕으로 XAI survey의 공통 구조를 정리하되, 세부 인용은 확정하지 않는다.
+지정 논문은 DOI metadata만 부분 확인했으므로 출판사 원문 확보 후 최종 요약을 확정한다. 현재 단계에서는 관련 논문 PDF의 arXiv 첫 페이지와 본문 목차를 바탕으로 XAI survey의 공통 구조를 정리하되, 세부 인용은 확정하지 않는다.
 
 ### 5.1 핵심 수식 또는 알고리즘 설명
 

@@ -8,7 +8,7 @@
 | Privacy Leakage | leakage score | mean member confidence와 non-member confidence 차이 | model outputs | confidence gap proxy |
 | Utility Drop | accuracy drop | baseline 대비 DP-like 조건 accuracy 변화 | baseline/defense metrics | defense 비용 |
 | Stability | seed/config/output 보존 | 동일 seed 반복 가능성 확인 | config/logs | 재현성 |
-| Reference Integrity | DOI/PDF 일치 상태 | 로컬 PDF, 강의자료, DOI 표 대조 | `01_papers/` | 대체 PDF 표시 |
+| Reference Integrity | DOI/PDF 일치 상태 | 로컬 PDF, 강의자료, DOI 표 대조 | `01_papers/` | 관련 논문 PDF 표시 |
 
 ## W11 실행 결과 요약
 

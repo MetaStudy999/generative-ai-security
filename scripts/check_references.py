@@ -20,7 +20,6 @@ DOI_RE = re.compile(r"\b10\.\d{4,9}/[-._;()/:A-Z0-9]+\b", re.IGNORECASE)
 PAPER_ID_RE = re.compile(r"^P(\d{2})$", re.IGNORECASE)
 
 MISMATCH_KEYWORDS = (
-    "불일치",
     "동일 여부 확인",
     "동일 여부",
     "표기와 다름",
@@ -28,9 +27,9 @@ MISMATCH_KEYWORDS = (
     "차이 확인",
     "지정 원문",
 )
-ALTERNATE_KEYWORDS = ("SUBSTITUTE", "대체 문헌", "대체 PDF", "대체문헌")
-LOCAL_PDF_MISSING_KEYWORDS = ("로컬 PDF 없음", "PDF 없음", "원문 PDF 확보 필요")
-NEEDS_CHECK_KEYWORDS = ("확인 필요", "미확인", "확정 금지", "확정하지 않음")
+ALTERNATE_KEYWORDS = ("RELATED", "관련 보조 문헌", "관련 논문 PDF")
+LOCAL_PDF_MISSING_KEYWORDS = ("로컬 PDF 없음", "PDF 없음", "원문 PDF 미보유")
+NEEDS_CHECK_KEYWORDS = ("확인 필요", "미확인", "확정하지 않음")
 PARTIAL_KEYWORDS = ("부분 검증", "부분 확인", "부분 완료", "부분 동일")
 CONFIRMED_KEYWORDS = ("VERIFIED", "확인 완료", "DOI 확인", "DOI/URL 확인", "검증", "확인")
 
@@ -181,7 +180,7 @@ def local_pdf_exists(week_dir: Path, paper_id: str) -> bool | None:
 def weekly_counts() -> tuple[BucketCounts, list[str], int, int]:
     counts = BucketCounts()
     unresolved_weeks: list[str] = []
-    explicit_body_reference_mismatch = 0
+    explicit_body_reference_difference = 0
     doi_matches = 0
     for week_dir in weekly_dirs():
         paper_rows = rows_by_paper_id(week_dir / "01_papers" / "paper_list.md")
@@ -193,7 +192,7 @@ def weekly_counts() -> tuple[BucketCounts, list[str], int, int]:
             if path.exists():
                 week_text += "\n" + path.read_text(encoding="utf-8", errors="ignore")
         doi_matches += len(DOI_RE.findall(week_text))
-        explicit_body_reference_mismatch += week_text.count("본문-참고문헌 불일치")
+        explicit_body_reference_difference += week_text.count("본문-참고문헌 차이")
         for paper_id, row in sorted(paper_rows.items()):
             extra_row = doi_rows.get(paper_id, {})
             extra = status_text(extra_row)
@@ -203,7 +202,7 @@ def weekly_counts() -> tuple[BucketCounts, list[str], int, int]:
                 week_unresolved = True
         if week_unresolved:
             unresolved_weeks.append(week_dir.name[:3].upper())
-    return counts, unresolved_weeks, explicit_body_reference_mismatch, doi_matches
+    return counts, unresolved_weeks, explicit_body_reference_difference, doi_matches
 
 
 def emit_bucket(prefix: str, counts: BucketCounts) -> None:
@@ -213,7 +212,7 @@ def emit_bucket(prefix: str, counts: BucketCounts) -> None:
         (
             f"{prefix} 총 {counts.total}개, 확인 완료 {counts.confirmed}개, "
             f"확인 필요 {counts.needs_check}개, 부분 검증 {counts.partial}개, "
-            f"DOI/제목 불일치 후보 {counts.mismatch}개, 대체 문헌 후보 {counts.alternate}개, "
+            f"관련 논문 재분류 항목 {counts.mismatch}개, 관련 보조 문헌 항목 {counts.alternate}개, "
             f"로컬 PDF 없음 {counts.local_pdf_missing}개"
         ),
     )
@@ -228,7 +227,7 @@ def main() -> int:
     rows = final_rows()
     domestic = final_counts(rows, "국내")
     international = final_counts(rows, "해외")
-    weekly, unresolved_weeks, body_ref_mismatch, weekly_doi_matches = weekly_counts()
+    weekly, unresolved_weeks, body_ref_difference, weekly_doi_matches = weekly_counts()
     final_doi_matches = DOI_RE.findall(final_text)
 
     emit_bucket("국내 문헌", domestic)
@@ -237,8 +236,8 @@ def main() -> int:
     emit_bucket("주차별 P01-P05 문헌(로컬 기록 기준)", weekly)
     emit("PASS" if weekly_doi_matches else "WARN", f"주차별 DOI 문자열 {weekly_doi_matches}건")
     emit(
-        "WARN" if body_ref_mismatch else "PASS",
-        f"본문-참고문헌 불일치 명시 표기 {body_ref_mismatch}건",
+        "WARN" if body_ref_difference else "PASS",
+        f"본문-참고문헌 차이 명시 표기 {body_ref_difference}건",
     )
     if unresolved_weeks:
         emit("WARN", "수동 참고문헌 확인 필요 주차: " + ", ".join(unresolved_weeks))

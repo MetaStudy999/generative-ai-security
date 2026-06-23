@@ -8,7 +8,7 @@
 | 저자 | Shukang Yin, Chaoyou Fu, Sirui Zhao, Ke Li, Xing Sun, Tong Xu, Enhong Chen |
 | 출판정보 | National Science Review, 11(12), Article nwae403, 2024 |
 | DOI/URL | `https://doi.org/10.1093/nsr/nwae403`; arXiv `https://arxiv.org/abs/2306.13549` |
-| 검증 상태 | NSR 2024 공식판 확인. 강의계획서의 `Yongtao Yin et al.` 표기는 공식 저자 목록과 불일치하여 확인 필요 |
+| 검증 상태 | NSR 2024 공식판 확인. 강의계획서의 `Yongtao Yin et al.` 표기는 공식 저자 목록과 표기가 달라 확인 필요 |
 
 ## 2. 한 문장 요약
 

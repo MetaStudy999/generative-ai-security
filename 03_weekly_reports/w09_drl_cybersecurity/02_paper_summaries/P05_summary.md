@@ -59,7 +59,7 @@ W09의 보상조작 실험은 완전한 formal verification은 아니지만, 명
 
 ## 8. 한계와 오픈문제
 
-Verification survey는 실제 cyber-defense IDS benchmark를 제공하지 않는다. 기말 논문에서는 toy 실험, 문헌분석, 명세 기반 체크리스트를 결합하는 현실적인 범위로 제한해야 한다. 공식 DOI 메타데이터는 `Matthew Landers; Afsaneh Doryab`를 저자로 확인하지만, 강의계획서의 `H. Yan et al.` 표기와 불일치하므로 지정문헌 동일성 판단은 확인 필요 항목으로 유지한다.
+Verification survey는 실제 cyber-defense IDS benchmark를 제공하지 않는다. 기말 논문에서는 toy 실험, 문헌분석, 명세 기반 체크리스트를 결합하는 현실적인 범위로 제한해야 한다. 공식 DOI 메타데이터는 `Matthew Landers; Afsaneh Doryab`를 저자로 확인하지만, 강의계획서의 `H. Yan et al.` 표기와 표기가 다르므로 지정문헌 동일성 판단은 확인 필요 항목으로 유지한다.
 
 주의: W09의 P05는 강의계획서 지정 저자명 `H. Yan et al.`과 현재 로컬 PDF 기준 `Matthew Landers; Afsaneh Doryab`가 다르므로, 동일 논문 여부와 최종 ACM 출판정보를 확인 필요 상태로 유지한다.
 

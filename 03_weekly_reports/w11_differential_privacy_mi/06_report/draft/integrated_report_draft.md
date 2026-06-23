@@ -7,7 +7,7 @@
 | 핵심 메시지 | DP 보장은 선언이 아니라 accounting, utility, MI risk, leakage, 재현성 로그로 검증해야 한다. |
 | 실험 상태 | 실행 완료 |
 | 결과 근거 | `04_experiment/outputs/run_log.md` |
-| 주요 한계 | `epsilon_proxy`는 정식 DP 보장이 아니며 P03/P05 로컬 PDF는 대체 문헌이다. |
+| 주요 한계 | `epsilon_proxy`는 정식 DP 보장이 아니며 P03/P05 로컬 PDF는 관련 보조 문헌이다. |
 
 ## 실험 결과 요약
 

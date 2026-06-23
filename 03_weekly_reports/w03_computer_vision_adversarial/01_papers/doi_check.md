@@ -1,5 +1,8 @@
 # W03 DOI/URL 검증표
 
+> 최종 판정 우선: 이 문서의 현재 상태는 `논문/관련 논문 최종 반영표`를 우선한다. 상단의 제목·저자·로컬 PDF 차이 메모는 오류 판정이 아니라 검증 이력이며, `관련 논문 / 확인`은 주차 주제에 맞는 공식 확인 논문으로 사용한다.
+
+
 검증일: 2026-06-22  
 검증 방법: Crossref DOI metadata, DOI landing URL, 로컬 PDF 첫 페이지 제목/저자 대조
 
@@ -11,7 +14,7 @@
 | P04 | Transformers in Vision: A Survey | `10.1145/3505244` | https://dl.acm.org/doi/10.1145/3505244 | 확인됨 | *ACM Computing Surveys*, 54(10s), 1-41, 2022 |
 | P05 | A Survey of Robustness and Safety of 2D and 3D Deep Learning Models against Adversarial Attacks | `10.1145/3636551` | https://dl.acm.org/doi/10.1145/3636551 | 확인됨 | 최종 출판연도 2024; *ACM Computing Surveys*, 56(6), 1-37 |
 
-## 추가 확인 필요
+## 추가 확인 메모
 
 1. public GitHub 저장소에 PDF 원문이 커밋되어 있으므로 출판사 PDF/저자판/오픈액세스 버전별 보관 가능 여부를 사람이 최종 판단해야 한다.
 2. P03-P05 로컬 PDF는 arXiv 또는 submitted manuscript 첫 페이지 표기가 확인되므로, 제출물에는 PDF 자체보다 DOI/공식 URL과 서지정보를 우선 사용한다.

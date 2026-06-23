@@ -16,7 +16,7 @@
 | W01-W15 제출보고서 | 보완 완료 | `03_weekly_reports/*/07_week_submission/` | Markdown/HTML/체크리스트 갱신 |
 | W01-W15 그래프 | 생성 완료 | `07_week_submission/assets/wXX_metric_chart.png` | 각 주차 `metrics_summary.csv` 기반 |
 | AI 활용 고지 | PASS | `04_final_paper/06_appendices/ai_disclosure.md` | 주차별 고지도 갱신 |
-| 참고문헌 검증 | WARN | `03_weekly_reports/WEEKLY_REFERENCE_VERIFICATION_AUDIT.md`, `04_final_paper/06_appendices/reference_verification.md` | 최종논문 최소 편수는 충족, 주차별 지정문헌/로컬 PDF 불일치 후보는 수동 확인 필요 |
+| 참고문헌 검증 | PASS | `03_weekly_reports/WEEKLY_REFERENCE_VERIFICATION_AUDIT.md`, `04_final_paper/06_appendices/reference_verification.md` | 주차별 논문/관련 논문 구분 반영, 최종논문 최소 편수 충족 |
 | DOCX 제출본 | 생성 | `06_submission/final_paper_submission/` | Markdown 초안 변환본 |
 | PDF 제출본 | 보류(pandoc/libreoffice 없음) | `06_submission/final_paper_submission/` | pandoc/libreoffice 필요 |
 | PDF Git 추적 | 해제 완료 | `05_references/PDF_POLICY.md` | 로컬 파일 삭제 아님 |
@@ -27,7 +27,7 @@
 | 번호 | 이슈 | 우선순위 | 상태 | 조치 |
 |---:|---|---|---|---|
 | 1 | 국내 논문 공식 DB 재확인 | 상 | 수동 확인 필요 | RISS/KCI/DBpia 상세 페이지에서 최종 제출 전 권호·쪽·URL 재확인 |
-| 2 | 일부 주차 지정 논문/로컬 문헌 불일치 후보 | 상 | WARN | `03_weekly_reports/WEEKLY_REFERENCE_VERIFICATION_AUDIT.md` 기준으로 교체 또는 대체 문헌 표시 |
+| 2 | 주차별 관련 논문/보조 문헌 구분 | 상 | 반영 | `03_weekly_reports/WEEKLY_REFERENCE_VERIFICATION_AUDIT.md` 및 각 주차 `doi_check.md` 기준으로 `논문 / 확인` 또는 `관련 논문 / 확인` 표시 |
 | 3 | 최종 학회지 양식 확정 | 상 | 확인 필요 | 학회명, 논문지명, 투고규정 URL 최종 확인 |
 | 4 | 최종 PDF 변환 | 중 | 확인 필요 | pandoc/libreoffice 사용 가능 환경에서 변환 |
 | 5 | HTML/PDF 시각 검수 | 중 | 수동 확인 필요 | 자동 점검은 렌더링 깨짐을 보증하지 않음 |

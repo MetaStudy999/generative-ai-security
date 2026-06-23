@@ -1,5 +1,8 @@
 # W10 논문 목록
 
+> 최종 판정 우선: 이 문서의 현재 상태는 `논문/관련 논문 최종 반영표`를 우선한다. 상단의 제목·저자·로컬 PDF 차이 메모는 오류 판정이 아니라 검증 이력이며, `관련 논문 / 확인`은 주차 주제에 맞는 공식 확인 논문으로 사용한다.
+
+
 | ID | 논문 제목 | 저자 | 연도 | 공식 출판 정보 | 로컬 PDF | 검증 상태 |
 |---|---|---|---|---|---|---|
 | P01 | Federated Learning Survey: A Multi-Level Taxonomy of Aggregation Techniques, Experimental Insights, and Future Frontiers | Meriem Arbaoui, Mohamed-el-Amine Brahmia, Abdellatif Rahmoun, Mourad Zghal | 2024 | ACM Transactions on Intelligent Systems and Technology, 15(6), pp. 1-69 | 01_Arbaoui_et_al_2024_FL_Aggregation_Taxonomy.pdf | DOI 10.1145/3678182 확인. 수업자료/프롬프트의 ACM Computing Surveys 57(2) 표기와 공식 DOI 메타데이터/TIST 표기 차이 있음 |

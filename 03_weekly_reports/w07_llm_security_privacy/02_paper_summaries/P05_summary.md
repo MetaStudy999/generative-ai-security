@@ -8,7 +8,7 @@
 | 저자 | Xiaogang Zhu, Wei Zhou, Qing-Long Han, Wanlun Ma, Sheng Wen, Yang Xiang |
 | 출판정보 | IEEE/CAA Journal of Automatica Sinica, 12(2), pp. 317-334, 2025 |
 | DOI/URL | `https://doi.org/10.1109/JAS.2024.124971`; IEEE Xplore `https://ieeexplore.ieee.org/document/10846956/` |
-| 검증 상태 | DOI, 권호, 호수, 쪽수, 출판연도 확인. 강의계획서의 `Shujun Li et al.` 표기는 공식 저자 목록과 불일치하여 확인 필요 |
+| 검증 상태 | DOI, 권호, 호수, 쪽수, 출판연도 확인. 강의계획서의 `Shujun Li et al.` 표기는 공식 저자 목록과 표기가 달라 확인 필요 |
 
 ## 2. 한 문장 요약
 

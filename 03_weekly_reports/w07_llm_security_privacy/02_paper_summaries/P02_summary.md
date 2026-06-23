@@ -8,7 +8,7 @@
 | 저자 | Badhan Chandra Das, M. Hadi Amini, Yanzhao Wu |
 | 출판정보 | ACM Computing Surveys, 57(6), pp. 1-39, 2025 |
 | DOI/URL | `https://doi.org/10.1145/3712001`; arXiv `https://arxiv.org/abs/2402.00888` |
-| 검증 상태 | ACM CSUR 2025 출판판 확인. 강의계획서의 `Ankur Das et al.` 표기는 공식 저자명과 불일치하여 확인 필요 |
+| 검증 상태 | ACM CSUR 2025 출판판 확인. 강의계획서의 `Ankur Das et al.` 표기는 공식 저자명과 표기가 달라 확인 필요 |
 
 ## 2. 한 문장 요약
 

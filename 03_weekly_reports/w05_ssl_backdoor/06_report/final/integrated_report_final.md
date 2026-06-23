@@ -88,7 +88,7 @@ Reproducibility Evidence ---> seed, config, Docker, outputs, run_log
 | [4] | Wang et al., Threats to Training: A Survey of Poisoning Attacks and Defenses on Machine Learning Systems | ACM Computing Surveys 55(7), Article 134, 1-36, DOI `10.1145/3538707` | training-time poisoning taxonomy | DOI 확인. 강의계획서 제목/저자 표기 차이 확인 필요 |
 | [5] | Jin et al., A survey of backdoor attacks and defences: From deep neural networks to large language models | Journal of Electronic Science and Technology 23(3), Article 100326, DOI `10.1016/j.jnlest.2025.100326` | DNN-LLM backdoor taxonomy | DOI 확인. 강의계획서 `Z. Jin` 표기 확인 필요 |
 
-주의: W05의 P02는 강의계획서 지정 일반 자기지도학습 종합 서베이와 동일 여부를 최종 확인해야 한다. 현재 로컬 PDF는 추천 시스템 분야의 Self-Supervised Learning survey로 범위가 좁으므로, 최종 제출 전 대체 문헌 사용 여부를 확인한다.
+주의: W05의 P02는 강의계획서 지정 일반 자기지도학습 종합 서베이와 동일 여부를 최종 확인해야 한다. 현재 로컬 PDF는 추천 시스템 분야의 Self-Supervised Learning survey로 범위가 좁으므로, 최종 제출 전 관련 보조 문헌 사용 여부를 확인한다.
 
 ## 6. 논문 5편 비교표
 
@@ -151,7 +151,7 @@ Codex와 ChatGPT 계열 AI를 사용해 문헌 요약 보강, DOI/URL 검증 보
 1. 자기지도학습에서 라벨이 없더라도 pretraining corpus와 augmentation pair가 공격면이 되는 이유는 무엇인가?
 2. Clean accuracy가 유지되는 backdoor 조건에서 ASR과 representation shift 중 어떤 지표가 더 설득력 있는가?
 3. Consistency defense check가 toy threshold 실험을 넘어 실제 SSL encoder 방어로 확장되려면 어떤 검증이 필요한가?
-4. P02가 강의계획서 지정 일반 SSL survey가 아니라 추천 SSL survey라면, 최종 보고서에서 대체 문헌으로 사용할 수 있는가?
+4. P02가 강의계획서 지정 일반 SSL survey가 아니라 추천 SSL survey라면, 최종 보고서에서 관련 보조 문헌으로 사용할 수 있는가?
 
 ## 11. 기말논문 연결
 

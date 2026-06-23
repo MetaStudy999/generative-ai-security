@@ -1,6 +1,6 @@
 # 주차별 참고문헌 검증 감사표
 
-생성일: 2026-06-24 01:38:39 KST
+생성일: 2026-06-24 02:13:08 KST
 
 범위: W09, W07, W12, W14, W04, W05, W06, W08의 `01_papers/`, `02_paper_summaries/`, `06_report/`, `07_week_submission/`, `README.md` 로컬 기록 기반 자동 대조.
 
@@ -18,15 +18,15 @@
 | W07 | A survey on large language model (LLM) security and privacy: The Good, The Bad, and The Ugly | Yifan Yao et al. | 2024 | High-Confidence Computing | https://doi.org/10.1016/j.hcc.2024.100211 | O | O | O | 확인 완료(로컬 기록) | 공식 DOI 확인 |
 | W07 | A survey on multimodal large language models | Shukang Yin et al. | 2024 | National Science Review | https://doi.org/10.1093/nsr/nwae403 | O | O | O | 확인 완료(로컬 기록) | 공식 DOI 확인 |
 | W07 | When Software Security Meets Large Language Models: A Survey | Xiaogang Zhu et al. | 2025 | IEEE/CAA Journal of Automatica Sinica | https://doi.org/10.1109/JAS.2024.124971 | O | O | O | 확인 완료(로컬 기록) | 공식 DOI 확인 |
-| W12 | A Review of Abstraction Methods Toward Verifying Neural Networks | Fateh Boudardara et al. | 2024 | ACM Transactions on Embedded Computing Systems | https://doi.org/10.1145/3617508 | 대체 PDF 존재 | O | O | 확인 완료(로컬 기록) | 공식 DOI 확인 |
+| W12 | A Review of Abstraction Methods Toward Verifying Neural Networks | Fateh Boudardara et al. | 2024 | ACM Transactions on Embedded Computing Systems | https://doi.org/10.1145/3617508 | 관련 보조 문헌 PDF 존재 | O | O | 확인 완료(로컬 기록) | 공식 DOI 확인 |
 | W12 | Adversarial Attacks and Defenses in Deep Learning: From a Perspective of Cybersecurity | Shuai Zhou et al. | 2022 | ACM Computing Surveys | https://doi.org/10.1145/3547330 | O | O | O | 확인 완료(로컬 기록) | 공식 DOI 확인 |
-| W12 | Adversarial Attacks in Explainable Machine Learning: A Survey of Threats Against Models and Humans | Jon Vadillo et al. | 2024 | WIREs Data Mining and Knowledge Discovery | https://doi.org/10.1002/widm.1567 | 대체 PDF 존재 | O | O | 확인 완료(로컬 기록) | 공식 DOI 확인 |
-| W12 | Adversarial Robustness of Neural Networks from the Perspective of Lipschitz Calculus: A Survey | Monty-Maximilian Zuhlke, Daniel Kudenko | 2025 | ACM Computing Surveys | https://doi.org/10.1145/3648351 | 대체 PDF 존재 | O | O | 확인 완료(로컬 기록) | 공식 DOI 확인 |
-| W12 | Triangular Trade-off between Robustness, Accuracy, and Fairness in Deep Neural Networks: A Survey | Jingyang Li, Guoqiang Li | 2025 | ACM Computing Surveys | https://doi.org/10.1145/3645088 | 대체 PDF 존재 | O | O | 확인 완료(로컬 기록) | 공식 DOI 확인 |
+| W12 | Adversarial Attacks in Explainable Machine Learning: A Survey of Threats Against Models and Humans | Jon Vadillo et al. | 2024 | WIREs Data Mining and Knowledge Discovery | https://doi.org/10.1002/widm.1567 | 관련 보조 문헌 PDF 존재 | O | O | 확인 완료(로컬 기록) | 공식 DOI 확인 |
+| W12 | Adversarial Robustness of Neural Networks from the Perspective of Lipschitz Calculus: A Survey | Monty-Maximilian Zuhlke, Daniel Kudenko | 2025 | ACM Computing Surveys | https://doi.org/10.1145/3648351 | 관련 보조 문헌 PDF 존재 | O | O | 확인 완료(로컬 기록) | 공식 DOI 확인 |
+| W12 | Triangular Trade-off between Robustness, Accuracy, and Fairness in Deep Neural Networks: A Survey | Jingyang Li, Guoqiang Li | 2025 | ACM Computing Surveys | https://doi.org/10.1145/3645088 | 관련 보조 문헌 PDF 존재 | O | O | 확인 완료(로컬 기록) | 공식 DOI 확인 |
 | W14 | A Multivocal Review of MLOps Practices, Challenges and Open Issues | Beyza Eken et al. | 2025 | ACM Computing Surveys | https://doi.org/10.1145/3747346 | O | O | O | 확인 완료(로컬 기록) | 공식 DOI 확인 |
 | W14 | Challenges in Deploying Machine Learning: A Survey of Case Studies | Andrei Paleyes, Raoul-Gabriel Urma, Neil D. Lawrence | 2022 | ACM Computing Surveys | https://doi.org/10.1145/3533378 | O | O | O | 확인 완료(로컬 기록) | 공식 DOI 확인 |
-| W14 | A Joint Study of the Challenges, Opportunities, and Roadmap of MLOps and AIOps: A Systematic Survey | Josu Diaz-de-Arcaya et al. | 2023 | ACM Computing Surveys | https://doi.org/10.1145/3625289 | 대체 PDF 존재 | O | O | 확인 완료(로컬 기록) | 공식 DOI 확인 |
-| W14 | Deep Learning With Edge Computing: A Review | Jiasi Chen, Xukan Ran | 2019 | Proceedings of the IEEE | https://doi.org/10.1109/JPROC.2019.2921977 | 대체 PDF 존재 | O | O | 확인 완료(로컬 기록) | 공식 DOI 확인 |
+| W14 | A Joint Study of the Challenges, Opportunities, and Roadmap of MLOps and AIOps: A Systematic Survey | Josu Diaz-de-Arcaya et al. | 2023 | ACM Computing Surveys | https://doi.org/10.1145/3625289 | 관련 보조 문헌 PDF 존재 | O | O | 확인 완료(로컬 기록) | 공식 DOI 확인 |
+| W14 | Deep Learning With Edge Computing: A Review | Jiasi Chen, Xukan Ran | 2019 | Proceedings of the IEEE | https://doi.org/10.1109/JPROC.2019.2921977 | 관련 보조 문헌 PDF 존재 | O | O | 확인 완료(로컬 기록) | 공식 DOI 확인 |
 | W14 | A Survey on Deep Learning for Software Engineering | Yanming Yang, Xin Xia, David Lo, John Grundy | 2022 | ACM Computing Surveys | https://doi.org/10.1145/3505243 | O | O | O | 확인 완료(로컬 기록) | 공식 DOI 확인 |
 | W04 | Efficient Transformers: A Survey | Yi Tay, Mostafa Dehghani, Dara Bahri, Donald Metzler | 2022 | ACM Computing Surveys | https://doi.org/10.1145/3530811 | O | O | O | 확인 완료(로컬 기록) | 공식 DOI 확인 |
 | W04 | A Practical Survey on Faster and Lighter Transformers | Quentin Fournier, Gaetan Marceau Caron, Daniel Aloise | 2023 | ACM Computing Surveys | https://doi.org/10.1145/3586074 | O | O | O | 확인 완료(로컬 기록) | 공식 DOI 확인 |

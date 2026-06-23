@@ -2,7 +2,7 @@
 
 | 산출물 | 요약 | 검토 상태 |
 |---|---|---|
-| 논문 요약 | 모델 도난, DNN/LLM 워터마킹, ModelShield, GAN privacy/security 문헌을 W13 관점으로 정리 | P02/P05 대체 PDF 명시 |
+| 논문 요약 | 모델 도난, DNN/LLM 워터마킹, ModelShield, GAN privacy/security 문헌을 W13 관점으로 정리 | P02/P05 관련 논문 PDF 명시 |
 | 이론노트 | Model IP, model extraction, query-response substitute learning, watermark trade-off 정리 | 실험 지표와 연결 |
 | 보안노트 | CIA, query abuse, watermark removal/forgery, false positive 문제 정리 | safe scope 확인 |
 | 실험 코드 | synthetic toy victim model, 1NN substitute model, trigger-set detection 구현 | `py_compile` 및 실행 완료 |

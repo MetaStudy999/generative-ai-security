@@ -9,7 +9,7 @@
 | Model pipeline | 학습 코드, config, seed, model artifact, registry를 관리하는 흐름 | model hash와 re-run consistency로 평가 |
 | Model registry | 모델 artifact와 metadata를 버전별로 보관하는 저장소 | 본 실험은 local artifact inventory로 대체 |
 | Drift detection | 입력/출력/성능 분포가 기준과 달라졌는지 측정하는 절차 | toy 실험 drift score 0.307626, 공격 성공률 아님 |
-| AIOps | 운영 telemetry에 AI/ML을 적용해 이상탐지, 장애예측, RCA, 대응을 보조하는 영역 | P03 로컬 대체문헌 기준 보조 |
+| AIOps | 운영 telemetry에 AI/ML을 적용해 이상탐지, 장애예측, RCA, 대응을 보조하는 영역 | P03 로컬 관련 보조 문헌 기준 보조 |
 | Edge AI | 데이터 발생 지점 가까이에서 AI 추론 또는 학습을 수행하는 구조 | P04 배포 공격면 설명 |
 | DL for SE | 소프트웨어공학 task에 딥러닝을 적용하는 연구 영역 | P05 개발 pipeline 공격면 설명 |
 | ML supply chain risk | 데이터, 코드, 의존성, 모델, 배포 설정이 이어지는 공급망의 보안 위험 | W14 핵심 보안 이슈 |

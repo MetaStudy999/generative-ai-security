@@ -49,7 +49,7 @@
 
 - `certified_rate`는 toy logistic classifier의 선형 bound proxy이며 formal DNN verification certificate가 아니다.
 - `adversarial_features()`는 실제 PGD/FGSM 공격 구현이 아니라 교육용 perturbation proxy다.
-- P01~P05 DOI와 로컬 PDF에는 불일치가 있으므로 최종 원고에서 지정 논문처럼 단정 인용하지 않는다.
+- P01~P05 DOI와 로컬 PDF에는 표기 차이가 있으므로 최종 원고에서 지정 논문처럼 단정 인용하지 않는다.
 - public GitHub 저장소에 학술 PDF를 포함하기 전 저작권과 공개 범위를 사람이 확인해야 한다.
 
 <!-- AUTO-WEEKLY-BRIDGE-CHECK:start -->

@@ -1,58 +1,72 @@
-# P04 논문 요약
+# P04 Summary
 
-## 1. 서지와 검증 상태
+## Adversarial Robustness of Neural Networks from the Perspective of Lipschitz Calculus: A Survey — Monty-Maximilian Zuhlke, Daniel Kudenko, ACM Computing Surveys, 2025
 
-| 항목 | 내용 |
-|---|---|
-| 강의 지정 제목 | Adversarial Robustness of Neural Networks from Lipschitz Regularization: A Survey |
-| 강의 지정 저자 | Inaki Pérez et al. |
-| 공식 DOI 후보 | 확인 필요 |
-| 유사 공식 후보 | `10.1145/3648351`, "Adversarial Robustness of Neural Networks from the Perspective of Lipschitz Calculus: A Survey" |
-| 유사 후보 메타데이터 | Monty-Maximilian Zühlke and Daniel Kudenko, ACM Computing Surveys, Vol. 57, Issue 6, pp. 1-41, published 2025-02-10 |
-| 강의 표기와 차이 | 저자, 제목, 연도가 지정 P04와 일치하지 않아 DOI 최종 확인 전 보류 |
-| 로컬 PDF | `04_RELATED_Finlay_et_al_2018_Lipschitz_Adversarial_Robustness.pdf` |
-| 로컬 PDF 상태 | Finlay et al. 2018/2019 Lipschitz regularized DNN paper. 지정 논문 원문 아님 |
-
-주의: W12의 P04는 지정 논문과 로컬 PDF가 표기 차이가 있다. 현재 로컬 PDF는 Finlay et al. 2018 Lipschitz robustness 관련 보조 문헌이므로, 최종 제출 전 Inaki Pérez et al. 지정 논문 원문 PDF 또는 공식 출판 페이지를 확보해야 한다.
-
-## 2. 핵심 연구문제
-
-P04는 Lipschitz regularization이 adversarial robustness를 어떻게 설명하는지 다루는 문헌 축이다[4]. 핵심은 입력 변화가 출력 변화로 얼마나 증폭될 수 있는지 bound로 제한하고, margin, certified radius, robust accuracy를 함께 해석하는 것이다.
-
-## 3. W12에서의 역할
-
-| 관점 | 요약 |
-|---|---|
-| AI 원리 | Lipschitz constant, margin, regularization, certified radius |
-| 보안 연결 | perturbation amplification, robustness overclaim |
-| 평가 지표 | robust accuracy, Lipschitz bound, certified rate |
-| 한계 | 지정 P04 공식 DOI는 확인 필요. 로컬 PDF는 Finlay 관련 보조 문헌 |
-| 내 논문 활용 | toy certified rate proxy의 이론적 배경과 한계 설명 |
-
-## 4. 실습 연결
-
-W12의 `certified_rate`는 `signed_margin - epsilon * ||w||_1 > 0` 형태의 선형 모델 bound proxy다. 이 값은 formal verifier가 발급한 DNN certificate가 아니며, Lipschitz/regularization 개념을 교육용으로 연결하기 위한 최소 지표다.
-
-## 5. 최종 제출 전 확인 항목
-
-- Inaki Pérez et al. 지정 논문 공식 DOI를 재검색한다.
-- 유사 후보 DOI `10.1145/3648351`을 P04로 확정하지 않는다.
-- Finlay PDF는 관련 보조 문헌으로만 관리한다.
-
-### 5.1 핵심 수식 또는 알고리즘 설명
+## 0. 문헌 검증 상태
 
 | 항목 | 내용 |
 |---|---|
-| 수식/알고리즘 이름 | Lipschitz Robustness Bound |
-| 원문 위치 | 논문 세부 절/쪽/그림/알고리즘 번호 확인 필요. 로컬 DOI/URL 점검표로 문헌 대응만 확인. |
-| 작성 형식 | Markdown + LaTeX math |
-| 검산 도구 | 사용 안 함 |
-| 수식 또는 절차 | 표준 정의식 / 원문 직접 인용 아님.<br>$$\lVert f(x)-f(x_{alt})\rVert \le L\lVert x-x_{alt}\rVert$$ |
-| 기호·입력·출력 | \(L\): Lipschitz constant 또는 bound, \(x,x_{alt}\): 입력 쌍 |
-| 직관적 의미 | Lipschitz Robustness Bound는 Verification·XAI·Robustness 평가에서 핵심 원리나 평가 지표를 정량적으로 해석하기 위한 표준식이다. |
-| 보안 관점 해석 | Verification·XAI·Robustness 평가에서는 정상 성능과 보안 실패 조건을 분리해 보아야 한다. 이 항목은 공격·방어 원리 또는 운영 통제의 평가 기준을 명시하되, 실제 공격 절차나 무단 적용 단계는 포함하지 않는다. |
-| 평가 지표와 연결 | certified robustness, margin bound, robust accuracy |
-| 한계와 가정 | 표준 정의식 / 원문 직접 인용 아님. 논문별 변형, 정확한 수식 번호, 실험 설정은 원문 PDF에서 확인 필요다. |
-| 기말 논문 반영 여부 | 반영 |
+| 주차 | W12 Neural Network Verification & XAI Robustness |
+| 논문명 | Adversarial Robustness of Neural Networks from the Perspective of Lipschitz Calculus: A Survey |
+| 저자 | Monty-Maximilian Zuhlke, Daniel Kudenko |
+| 출판 정보 | ACM Computing Surveys, 2025 |
+| DOI | https://doi.org/10.1145/3648351 |
+| 검증 상태 | W12 `paper_list.md` 기준 관련 논문 공식 DOI 확인. 로컬 PDF는 Finlay et al. 2018 관련 문헌 메모 유지 |
 
+---
 
+## 1. 한 문장 요약
+
+이 논문은 Lipschitz calculus 관점에서 신경망 adversarial robustness를 **Lipschitz constant, certified bound, regularization, robustness-accuracy trade-off**로 정리하며, W12의 수학적 강건성 평가축을 제공한다.
+
+---
+
+## 2. 핵심 연구질문
+
+| 번호 | 연구질문 |
+|---|---|
+| RQ1 | Lipschitz constant는 입력 변화에 대한 출력 민감도를 어떻게 제한하는가? |
+| RQ2 | Lipschitz regularization은 adversarial robustness와 어떤 관계가 있는가? |
+| RQ3 | Robustness certificate와 empirical attack test는 어떻게 구분해야 하는가? |
+| RQ4 | Robustness 향상이 accuracy·fairness·cost와 어떤 trade-off를 만드는가? |
+
+---
+
+## 3. 핵심 수식
+
+### 3.1 Lipschitz Bound
+
+$$
+\|f(x)-f(x')\|\leq L\|x-x'\|
+$$
+
+### 3.2 Robust Margin 조건
+
+$$
+margin(x)>L\epsilon \Rightarrow f(x')=f(x), \quad \forall x'\in B_\epsilon(x)
+$$
+
+**보안 해석:** Lipschitz bound는 입력 교란에 대한 출력 변화의 상한을 제공하지만, 실제 모델 전체 안전성을 보장하려면 적용 범위와 가정을 명시해야 한다.
+
+---
+
+## 4. 위협모형·평가지표
+
+| 항목 | 내용 |
+|---|---|
+| 보호 자산 | decision boundary, margin, robustness certificate |
+| 공격자 목표 | small perturbation으로 decision boundary crossing |
+| 지표 | Lipschitz estimate, certified radius, robust accuracy, clean accuracy |
+| 재현성 | norm, epsilon, bound method, model architecture, solver 기록 |
+
+---
+
+## 5. 기말논문 연결
+
+P04는 W12에서 수학적 강건성을 설명하는 핵심 관련 문헌이다. 기말논문에서는 empirical robust accuracy와 certified bound를 분리하는 근거로 사용한다.
+
+---
+
+## 6. 최종 판단
+
+P04는 관련 문헌으로 사용하되, 로컬 PDF 차이와 강의자료 지정 차이 메모를 유지한다.

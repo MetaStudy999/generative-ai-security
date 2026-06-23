@@ -1,66 +1,67 @@
-# 논문 요약
+# P04 Summary
 
-## 1. 서지정보
+## Cyber-security and reinforcement learning — A brief survey — Amrin Maria Khan Adawadkar, Nilima Kulkarni, Engineering Applications of Artificial Intelligence, 2022
 
-| 항목 | 내용 |
-|---|---|
-| 논문 제목 | Cyber-security and reinforcement learning — A brief survey |
-| 저자 | Amrin Maria Khan Adawadkar; Nilima Kulkarni |
-| 학술지/학회 | Engineering Applications of Artificial Intelligence, Vol. 114, Article 105116 |
-| 연도 | 2022 |
-| DOI/URL | https://doi.org/10.1016/j.engappai.2022.105116 |
-| PDF 파일명 | 04_Adawadkar_Kulkarni_2022_Cybersecurity_RL_Survey.pdf |
-| 검증 상태 | DOI 확인 완료 / 강의계획서 저자명 표기 차이: 공식 DOI 저자명은 `Amrin Maria Khan Adawadkar; Nilima Kulkarni`, 강의계획서 저자명은 `Aditya Adawadkar et al.` |
-
-## 2. 한 문장 요약
-
-> 이 논문은 IDS/IPS, IoT, IAM 영역에서 reinforcement learning을 활용한 사이버보안 연구를 정리하며, 표준 평가 기준과 데이터셋 부족이 DRL 보안 연구의 큰 한계임을 보여준다.
-
-## 3. 연구문제
-
-RL이 침입탐지·침입방지·IoT·IAM 문제에 어떻게 적용되어 왔으며, 어떤 데이터셋과 평가 지표로 비교할 수 있는지가 핵심 질문이다.
-
-## 4. 핵심 개념
-
-| 개념 | 설명 | W09 연결 |
-|---|---|---|
-| IDS/IPS | 공격 이벤트를 탐지하거나 차단하는 보안 시스템이다. | cyber-defense 대상 |
-| IoT | 이동성과 자원 제약으로 상태공간과 공격면이 복잡하다. | synthetic state 설계 |
-| IAM | 접근 제어와 인증에 RL을 적용할 수 있지만 연구가 적다. | 자동 대응 범위 |
-| Evaluation criteria | detection rate, precision, accuracy 등이 비교 지표로 쓰인다. | Detection F1, FPR/FNR |
-
-## 5. 방법론
-
-2010-2021년 문헌을 대상으로 RL 기반 IDS/IPS, IoT, IAM 연구를 survey하고, 데이터셋과 알고리즘, 평가 지표를 정리한다.
-
-### 5.1 핵심 수식 또는 알고리즘 설명
+## 0. 문헌 검증 상태
 
 | 항목 | 내용 |
 |---|---|
-| 수식/알고리즘 이름 | Policy Gradient Objective |
-| 원문 위치 | 논문 세부 절/쪽/그림/알고리즘 번호 확인 필요. 로컬 DOI/URL 점검표로 문헌 대응만 확인. |
-| 작성 형식 | Markdown + LaTeX math |
-| 검산 도구 | 사용 안 함 |
-| 수식 또는 절차 | 표준 정의식 / 원문 직접 인용 아님.<br>$$\nabla_\theta J(\theta)=\mathbb{E}_{\pi_\theta}\left[\nabla_\theta\log\pi_\theta(a\mid s)G_t\right]$$ |
-| 기호·입력·출력 | \(\pi_\theta\): policy, \(G_t\): return estimate, \(a,s\): action/state |
-| 직관적 의미 | Policy Gradient Objective는 DRL 사이버보안 평가에서 핵심 원리나 평가 지표를 정량적으로 해석하기 위한 표준식이다. |
-| 보안 관점 해석 | DRL 사이버보안 평가에서는 정상 성능과 보안 실패 조건을 분리해 보아야 한다. 이 항목은 공격·방어 원리 또는 운영 통제의 평가 기준을 명시하되, 실제 공격 절차나 무단 적용 단계는 포함하지 않는다. |
-| 평가 지표와 연결 | return, safe action rate, reward manipulation impact |
-| 한계와 가정 | 표준 정의식 / 원문 직접 인용 아님. 논문별 변형, 정확한 수식 번호, 실험 설정은 원문 PDF에서 확인 필요다. |
-| 기말 논문 반영 여부 | 반영 |
+| 주차 | W09 DRL & Cybersecurity |
+| 논문명 | Cyber-security and reinforcement learning — A brief survey |
+| 저자 | Amrin Maria Khan Adawadkar, Nilima Kulkarni |
+| 출판 정보 | Engineering Applications of Artificial Intelligence, 114, Article 105116, 2022 |
+| DOI | https://doi.org/10.1016/j.engappai.2022.105116 |
+| 검증 상태 | W09 `paper_list.md` 기준 DOI 확인. 강의계획서 저자명 표기 차이 메모 유지 |
 
-## 6. 주요 결과
+---
 
-RL 사이버보안 연구는 IDS와 IoT 자원 최적화에 상대적으로 많이 집중되어 있고, IAM은 문헌이 적다. 평가 기준이 표준화되어 있지 않아 detection rate, precision, accuracy 같은 공통 지표를 함께 기록해야 한다.
+## 1. 한 문장 요약
 
-## 7. 보안 관점 분석
+이 논문은 reinforcement learning을 사이버보안 문제에 적용하는 사례를 **intrusion response, adaptive defense, cyber-physical security, game-like attacker-defender interaction** 관점에서 짧게 정리하며, W09의 보안 응용 범위를 넓히는 survey 문헌이다.
 
-P04는 W09 실험의 Detection F1 지표를 정당화한다. 다만 자동 대응 정책은 단순 탐지 성능만으로 평가할 수 없으므로, Safety Violation Rate와 Policy Robustness를 함께 둬야 한다.
+---
 
-## 8. 한계와 오픈문제
+## 2. 핵심 연구질문
 
-Survey 범위가 RL 전반에 넓게 퍼져 있어 DRL verification이나 reward hacking을 깊게 다루지는 않는다. W09에서는 P03/P05와 결합해 보상조작과 검증 관점을 보완한다. 공식 DOI 메타데이터는 `Amrin Maria Khan Adawadkar; Nilima Kulkarni`를 저자로 확인하지만, 강의계획서의 `Aditya Adawadkar et al.` 표기와 표기가 다르므로 오기인지 별도 지정 문헌을 뜻하는지는 확인 필요다.
+| 번호 | 연구질문 |
+|---|---|
+| RQ1 | RL은 사이버 공격-방어 상호작용을 어떻게 모델링할 수 있는가? |
+| RQ2 | Intrusion detection/response, access control, resource allocation에 RL을 적용할 때 어떤 장점과 위험이 있는가? |
+| RQ3 | 방어 에이전트의 잘못된 action과 reward 설계 오류는 어떤 운영 위험을 만드는가? |
 
-## 9. 기말 논문에 반영할 부분
+---
 
-기말 논문의 관련연구 표에서 IDS/IPS, IoT, IAM 관점의 RL 보안 연구 공백과 평가 지표 표준화 필요성을 설명하는 근거로 사용한다.
+## 3. 핵심 수식
+
+$$
+\pi^*(s)=\arg\max_a Q^*(s,a)
+$$
+
+$$
+Q^*(s,a)=\mathbb{E}\left[r+\gamma\max_{a'}Q^*(s',a')\mid s,a\right]
+$$
+
+**보안 해석:** 최적 정책은 reward 정의에 의존한다. reward가 실제 보안 목표를 반영하지 않으면 정책은 취약하거나 과잉 대응적일 수 있다.
+
+---
+
+## 4. 위협모형·평가지표
+
+| 항목 | 내용 |
+|---|---|
+| 보호 자산 | 방어 정책, alert stream, 네트워크 서비스, 사용자 가용성 |
+| 공격자 목표 | 방어 정책 예측, 상태 교란, 대응 비용 증가 |
+| 지표 | response success, FPR, missed attack rate, cost, policy stability |
+| 한계 | 실제 네트워크 방어 자동화는 simulation 검증과 human approval 필요 |
+
+---
+
+## 5. 기말논문 연결
+
+P04는 RL-보안 응용의 폭을 보여주는 보조 문헌이다. 기말논문에서는 자동 대응이 항상 안전하지 않으므로 action approval, rollback, audit log가 필요하다는 논리로 연결한다.
+
+---
+
+## 6. 최종 판단
+
+P04는 W09의 보안 응용 보조 문헌이다. P03과 함께 DRL cyber defense의 평가축을 구성한다.

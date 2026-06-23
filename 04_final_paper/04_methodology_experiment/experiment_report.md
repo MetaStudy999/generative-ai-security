@@ -8,10 +8,10 @@
 
 | 항목 | 내용 |
 |---|---|
-| 입력 데이터 | `data/synthetic_documents.csv` |
-| 설정 파일 | `configs/config.yaml` |
-| 실행 스크립트 | `src/run_analysis.py` |
-| 결과 파일 | `outputs/results.json`, `outputs/metrics_summary.csv`, `outputs/run_log.md` |
+| 입력 데이터 | `04_final_paper/04_methodology_experiment/data/synthetic_documents.csv` |
+| 설정 파일 | `04_final_paper/04_methodology_experiment/configs/config.yaml` |
+| 실행 스크립트 | `04_final_paper/04_methodology_experiment/src/run_analysis.py` |
+| 결과 파일 | `04_final_paper/04_methodology_experiment/outputs/results.json`, `04_final_paper/04_methodology_experiment/outputs/metrics_summary.csv`, `04_final_paper/04_methodology_experiment/outputs/run_log.md` |
 | 지표 | ASR, DPR, Leakage, RC |
 
 ## 3. 데이터 설명
@@ -35,4 +35,4 @@ python 04_final_paper/04_methodology_experiment/src/run_analysis.py
 
 ## 6. 결과 기록 원칙
 
-정량 결과는 `outputs/results.json`, `outputs/metrics_summary.csv`, `outputs/run_log.md`에 기록된 값만 사용한다. 논문 본문에는 이 값을 실제 모델 성능, 실제 공격 성공률, 실제 서비스 보안성 평가처럼 서술하지 않는다.
+정량 결과는 `04_final_paper/04_methodology_experiment/outputs/results.json`, `04_final_paper/04_methodology_experiment/outputs/metrics_summary.csv`, `04_final_paper/04_methodology_experiment/outputs/run_log.md`에 기록된 값만 사용한다. 논문 본문에는 이 값을 실제 모델 성능, 실제 공격 성공률, 실제 서비스 보안성 평가처럼 서술하지 않는다.

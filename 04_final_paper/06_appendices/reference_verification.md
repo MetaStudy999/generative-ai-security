@@ -1,33 +1,26 @@
 # 참고문헌 검증표
 
-| 번호 | 구분 | 문헌 | 검증 경로 | 검증 상태 | 반영 위치 | 최종 반영 |
-|---:|---|---|---|---|---|---|
-| 1 | 국내 | 국내 AI 보안 평가체계 관련 문헌 최종 선별 예정 | KCI / DBpia / RISS / Google Scholar / 출판사 홈페이지 | 확인 필요 | 2.1 국내 연구 | □ |
-| 2 | 국내 | 국내 LLM/RAG 보안 또는 정보보호 정책 관련 문헌 최종 선별 예정 | KCI / DBpia / RISS / Google Scholar / 출판사 홈페이지 | 확인 필요 | 2.1 국내 연구 | □ |
-| 3 | 국내 | 국내 AI 연구윤리·재현성 관련 문헌 최종 선별 예정 | KCI / DBpia / RISS / Google Scholar / 출판사 홈페이지 | 확인 필요 | 6.6 책임성 | □ |
-| 4 | 해외 | A Survey on Evaluation of Large Language Models | 로컬 PDF, DOI `10.1145/3641289`, arXiv `2307.03109` | 확인 | 2.2 해외 연구, 4.4 평가방법 | ■ |
-| 5 | 해외 | Security and Privacy Challenges of Large Language Models: A Survey | IEEE / ACM / Springer / Elsevier / Google Scholar | 확인 필요 | 2.2 해외 연구 | □ |
-| 6 | 해외 | Prompt Injection Attacks on Large Language Models: A Survey of Attack Methods, Root Causes, and Defense Strategies | IEEE / ACM / Springer / Elsevier / Google Scholar | 확인 필요 | 3.1 연구문제, 4.2 위협모형 | □ |
-| 7 | 해외 | Membership inference attacks on machine learning: a survey | IEEE / ACM / Springer / Elsevier / Google Scholar | 확인 필요 | 4.4 평가방법, 6.4 프라이버시 | □ |
-| 8 | 해외 | A Multivocal Literature Review of MLOps Practices | IEEE / ACM / Springer / Elsevier / Google Scholar | 확인 필요 | 4.3 분석 방법, 6.6 책임성 | □ |
-| 9 | 해외 | Assuring the Machine Learning Lifecycle: Desiderata, Methods, and Challenges | 로컬 PDF, White Rose accepted version, DOI `10.1145/3453444` | 확인 | 4.3 분석 방법, 5.2 재현성 | ■ |
-| 10 | 해외 | Explainable Artificial Intelligence (XAI): Concepts, Taxonomies, Opportunities and Challenges toward Responsible AI | 로컬 PDF, ScienceDirect, DOI `10.1016/j.inffus.2019.12.012` | 확인 | 2.2 해외 연구, 6.6 책임성 | ■ |
-| 11 | 해외 | Concept-based Explainable Artificial Intelligence: A Survey | 로컬 PDF, arXiv `2312.12936`, DOI `10.1145/3774643` | 확인 | 4.4 평가방법, 6.5 안전성 | ■ |
-| 12 | 해외 | Explainable AI: Core Ideas, Techniques, and Solutions | DOI `10.1145/3561048`, 로컬 PDF 불일치 | 부분 확인 | 2.2 해외 연구 후보 | □ |
+검증일: 2026-06-23
+
+| 번호 | 구분 | 문헌명 | 저자 | 연도 | 학술지/출판처 | DOI/URL | 검증 경로 | 본문 인용 위치 | 상태 |
+|---:|---|---|---|---:|---|---|---|---|---|
+| 1 | 국내 | 생성형 인공지능의 저작권 침해 통합대응 메커니즘 연구 | 전태석, 이용준, 안상수, 강장묵 | 2025 | 융합보안 논문지, Vol.25 No.5 | https://www.riss.kr/search/detail/DetailView.do?p_mat_type=1a0202e37d52c72d&control_no=dd11e036efb2ca277f7a54760bb41745 | RISS/KCI등재 표시 | 2장, 7장, AI 활용 고지 | VERIFIED |
+| 2 | 국내 | 국방 폐쇄망 환경에서 제어 가능한 생성형 AI 보안 감사 에이전트 설계 및 구현 | 최준석, 민병찬 | 2026 | 융합보안 논문지, Vol.26 No.2 | https://www.riss.kr/search/detail/DetailView.do?p_mat_type=1a0202e37d52c72d&control_no=e722c5b5e07b7ccf47de9c1710b0298d | RISS/KCI등재 표시 | 2장, 7장 | VERIFIED |
+| 3 | 국내 | 기업 내 생성형 AI 시스템의 보안 위협과 대응 방안 | 최정완 | 2024 | 융합보안 논문지, Vol.24 No.2 | https://www.riss.kr/search/detail/DetailView.do?p_mat_type=1a0202e37d52c72d&control_no=c0b01d79a5a10af047de9c1710b0298d | RISS/KCI등재 표시 | 1장, 2장 | VERIFIED |
+| 4 | 국내 | 생성형 AI 보안 취약점의 위험 전이와 위험기반 다층 거버넌스 설계: LLM·RAG·딥페이크 분석 프레임워크를 중심으로 | 이정찬, 윤철희, 이봉규 | 2026 | 정보통신정책연구, Vol.33 No.1 | https://www.riss.kr/search/detail/DetailView.do?p_mat_type=1a0202e37d52c72d&control_no=a1954f437a779a377ecd42904f0c5d65 | RISS/KCI등재 표시 | 2장, 3장 | VERIFIED |
+| 5 | 국내 | 업무용 생성형 AI 모델의 안전한 활용을 위한 중요 기술정보 개체명 인식 및 비식별화 기법 개발 연구 | 이혜성, 한유나 | 2026 | 한국산업보안연구, Vol.16 No.특별호 | https://www.riss.kr/search/detail/DetailView.do?p_mat_type=1a0202e37d52c72d&control_no=5cca443a21c8ca657ecd42904f0c5d65 | RISS/KCI등재 표시 | 2장, 4장 | VERIFIED |
+| 6 | 국내 | 검색증강생성(RAG) 기반 기업 맞춤형 챗봇(Chatbot) 시스템 구축 및 활용 | 최광미 | 2024 | 한국전자통신학회 논문지, Vol.19 No.6 | https://www.riss.kr/search/detail/DetailView.do?p_mat_type=1a0202e37d52c72d&control_no=943e24f897588c27b36097776a77e665 | RISS/KCI등재 표시 | 3장, 5장 | VERIFIED |
+| 7 | 해외 | A Survey on Evaluation of Large Language Models | Yupeng Chang et al. | 2024 | ACM Transactions on Intelligent Systems and Technology | https://doi.org/10.1145/3641289 | arXiv/DOI | 2장, 5장 | VERIFIED |
+| 8 | 해외 | Security and Privacy Challenges of Large Language Models: A Survey | Badhan Chandra Das, M. Hadi Amini, Yanzhao Wu | 2025 | ACM Computing Surveys | https://doi.org/10.1145/3712001 | arXiv/DOI | 2장 | VERIFIED |
+| 9 | 해외 | A survey on large language model (LLM) security and privacy: The Good, The Bad, and The Ugly | Yifan Yao et al. | 2024 | High-Confidence Computing | https://doi.org/10.1016/j.hcc.2024.100211 | ScienceDirect/DOI | 2장 | VERIFIED |
+| 10 | 해외 | Graph Retrieval-Augmented Generation: A Survey | Boci Peng et al. | 2024 | arXiv | https://arxiv.org/abs/2408.08921 | arXiv | 2장, 3장 | VERIFIED |
+| 11 | 해외 | Graph-Based Approaches and Functionalities in Retrieval-Augmented Generation: A Comprehensive Survey | Zulun Zhu et al. | 2026 | ACM Computing Surveys | https://doi.org/10.1145/3795880 | arXiv/DOI | 2장 | VERIFIED |
+| 12 | 해외 | Prompting Frameworks for Large Language Models: A Survey | Xiaoxia Liu et al. | 2026 | ACM Computing Surveys | https://doi.org/10.1145/3789253 | arXiv/DOI | 2장, 4장 | VERIFIED |
+| 13 | 해외 | Not what you've signed up for: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection | Kai Greshake et al. | 2023 | arXiv | https://arxiv.org/abs/2302.12173 | arXiv | 2장, 3장, 4장 | VERIFIED |
+| 14 | 해외 | Assuring the Machine Learning Lifecycle: Desiderata, Methods, and Challenges | Rob Ashmore, Radu Calinescu, Colin Paterson | 2021 | ACM Computing Surveys | https://doi.org/10.1145/3453444 | arXiv/DOI | 5장, 7장 | VERIFIED |
 
 ## 검증 원칙
 
-- 최종 참고문헌에는 검증 상태가 `확인`인 문헌을 우선 반영한다.
-- `부분 확인` 문헌은 DOI/권호/출판사 페이지와 로컬 PDF 일치 여부를 추가 확인한 뒤 확정한다.
-- `미검증` 문헌은 본문 핵심 근거로 쓰지 않는다.
-- 국내 문헌 3편 이상은 최종 제출 전 실제 검색과 원문 확인 후 채운다.
-
-## 본문 인용번호 대응
-
-| 인용번호 | 문헌 | 대응 상태 | 비고 |
-|---:|---|---|---|
-| [1] | Chang et al., A Survey on Evaluation of Large Language Models | 확인 | DOI `10.1145/3641289` |
-| [2] | Ashmore et al., Assuring the Machine Learning Lifecycle | 확인 | DOI `10.1145/3453444` |
-| [3] | Dwivedi et al., Explainable AI: Core Ideas, Techniques, and Solutions | 부분 확인 | DOI `10.1145/3561048`; 지정 논문 원문 확인 필요, 로컬 PDF는 Mersha et al. 대체 문헌 |
-| [4] | Arrieta et al., Explainable Artificial Intelligence (XAI) | 확인 | DOI `10.1016/j.inffus.2019.12.012` |
-| [5] | Poeta et al., Concept-based Explainable Artificial Intelligence | 확인 | DOI `10.1145/3774643`; 권호/issue 최종 확인 필요 |
+- DOI가 있는 해외 문헌은 DOI를 우선 기록하고, 접근 제한이 있는 경우 arXiv 또는 출판사 landing page를 보조로 기록했다.
+- 국내 문헌은 RISS 검색 결과의 KCI등재 표시와 상세 페이지 URL을 기준으로 기록했다.
+- 최종 제출 전에는 각 문헌의 권호, 페이지, 저자 표기를 원문 또는 공식 DB에서 다시 확인한다.

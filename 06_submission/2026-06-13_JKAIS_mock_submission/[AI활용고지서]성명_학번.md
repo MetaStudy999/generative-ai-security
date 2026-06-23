@@ -6,7 +6,7 @@
 | 사용 일자 | 2026-06-23 |
 | 사용 목적 | 저장소 구조 정리, 제목 후보 관리, 논문 목차 및 초안 작성 보조, synthetic 데이터셋 생성, baseline/제안 프레임워크 코드 작성, 참고문헌 검증표 초안 작성, 제출 체크리스트 작성 |
 | 주요 프롬프트 | JKAIS 투고형 AI 보안 모의논문 패키지 작성 지시문에 따라 논문 원고, 데이터, 실험 코드, 제출 부속서류를 구성하도록 요청 |
-| AI 산출물 반영 위치 | paper/, data/, experiments/, outputs/, references/, ethics/, submission/, README.md |
+| AI 산출물 반영 위치 | `04_final_paper/05_draft/`, `04_final_paper/04_methodology_experiment/`, `04_final_paper/03_related_work/`, `04_final_paper/06_appendices/`, `04_final_paper/07_final_submission/`, `README.md` |
 | 본인 수정 내용 | 연구질문, 데이터셋 설계, 참고문헌 최종 채택, 공식 학회 양식 적용, DOCX/HWP 최종 편집, PDF 변환 확인은 제출자가 최종 검토해야 함 |
 | 사실관계 검증 방법 | 한국산학기술학회 공식 홈페이지, KCI, RISS, DOI/출판사 페이지, 저장소 내 수업자료와 실행 로그 확인 |
 | 참고문헌 검증 방법 | DOI, 출판사 landing page, RISS 검색 결과, KCI 표시, 학술 DB 검색 결과를 대조 |

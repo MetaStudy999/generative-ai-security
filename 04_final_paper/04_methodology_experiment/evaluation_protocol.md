@@ -44,4 +44,4 @@ W01-W15 각 논문에 연결되는 대표 수식과 쉬운 설명은 `formula_me
 
 ## 결과 기록 원칙
 
-실험 전 상태는 `실행 전`으로 표시한다. 실험 완료 상태는 실행 로그가 있는 값만 사용하며, 주차별 `04_experiment/outputs/run_log.md`, `metrics_summary.csv`, `results.json`과 최종 보고서의 수치가 일치해야 한다.
+실험 전 상태는 `실행 전`으로 표시한다. 실험 완료 상태는 실행 로그가 있는 값만 사용하며, 주차별 `04_experiment/outputs/run_log.md` 또는 `04_final_paper/04_methodology_experiment/outputs/run_log.md`, `metrics_summary.csv`, `results.json`과 최종 보고서의 수치가 일치해야 한다.

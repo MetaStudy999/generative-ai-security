@@ -2,7 +2,7 @@
 
 ## 개요
 
-- 파일: [rag_security_dataset_100.csv](/home/ubuntu/generative-ai-security/data/rag_security_dataset_100.csv)
+- 파일: [rag_security_dataset_100.csv](/home/ubuntu/generative-ai-security/04_final_paper/04_methodology_experiment/data/rag_security_dataset_100.csv)
 - 목적: 기업용 RAG 기반 생성형 AI 챗봇의 문서 오염, 간접 프롬프트 인젝션, 민감정보 노출, 출처 충돌, 오래된 정책, 환각 유도 문서를 안전하게 모의 평가한다.
 - 규모: 100개 문서
 - 생성일: 2026-06-23

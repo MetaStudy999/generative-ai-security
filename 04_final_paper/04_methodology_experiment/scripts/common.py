@@ -8,9 +8,11 @@ from pathlib import Path
 from typing import Callable
 
 
-ROOT = Path(__file__).resolve().parents[1]
-DATASET_PATH = ROOT / "data" / "rag_security_dataset_100.csv"
-OUTPUT_DIR = ROOT / "outputs"
+ROOT = Path(__file__).resolve().parents[3]
+FINAL_PAPER_DIR = ROOT / "04_final_paper"
+METHOD_DIR = FINAL_PAPER_DIR / "04_methodology_experiment"
+DATASET_PATH = METHOD_DIR / "data" / "rag_security_dataset_100.csv"
+OUTPUT_DIR = METHOD_DIR / "outputs"
 SEED = 42
 
 DATASET_COLUMNS = [

@@ -36,4 +36,4 @@ W01-W15 final 보고서를 전체 배경으로 점검하고, W07, W08, W11, W14,
 
 ## 4. 방법론의 한계
 
-정량 실험은 실제 실행 전까지 결과를 작성하지 않는다. 실행한 경우에는 `outputs/run_log.md`, `metrics_summary.csv`, `results.json`을 근거로 결과표를 채우고, 사용한 config와 seed를 함께 보존한다. DOI/URL과 국내 문헌은 최종 검증 후 확정한다. 수식 보충표는 보고서 이해를 돕기 위한 대표 정의식이므로, 원문 수식으로 인용하려면 논문 원문 쪽/절 번호를 추가 확인한다.
+정량 실험은 실제 실행 전까지 결과를 작성하지 않는다. 실행한 경우에는 `04_final_paper/04_methodology_experiment/outputs/run_log.md`, `metrics_summary.csv`, `results.json`을 근거로 결과표를 채우고, 사용한 config와 seed를 함께 보존한다. DOI/URL과 국내 문헌은 최종 검증 후 확정한다. 수식 보충표는 보고서 이해를 돕기 위한 대표 정의식이므로, 원문 수식으로 인용하려면 논문 원문 쪽/절 번호를 추가 확인한다.

@@ -1,37 +1,45 @@
 # Run Log
 
-## 1. 실행 개요
+## Environment
 
-| 항목 | 내용 |
-|---|---|
-| 실행 일시 | 2026-06-23T11:56:15+09:00 |
-| 입력 파일 | `data/synthetic_documents.csv` |
-| 결과 파일 | `outputs/results.json`, `outputs/metrics_summary.csv` |
-| 분석 유형 | synthetic toy document static audit |
-| 실제 LLM 호출 | 수행하지 않음 |
-| 외부 API 호출 | 수행하지 않음 |
-| 실제 공격 자동화 | 수행하지 않음 |
-| 실제 개인정보 사용 | 수행하지 않음 |
+- run_timestamp_utc: 2026-06-23T12:39:11.187053+00:00
+- python: 3.12.3
+- platform: Linux-6.18.33.1-microsoft-standard-WSL2-x86_64-with-glibc2.39
+- os_name: posix
+- seed: 42
+- dataset: 04_final_paper/04_methodology_experiment/data/rag_security_dataset_100.csv
+- data_policy: all records are synthetic; no real personal data or real credentials
 
-## 2. 집계 결과
+## Commands
 
-| 항목 | 값 |
-|---|---:|
-| 전체 문서 수 | 5 |
-| high risk 문서 수 | 3 |
-| 차단 기대 사례 수 | 3 |
-| 차단 성공으로 계산한 high risk 사례 수 | 3 |
-| privacy 유형 문서 수 | 1 |
+```bash
+python3 04_final_paper/04_methodology_experiment/scripts/run_baseline_no_filter.py
+python3 04_final_paper/04_methodology_experiment/scripts/run_baseline_keyword.py
+python3 04_final_paper/04_methodology_experiment/scripts/run_baseline_regex.py
+python3 04_final_paper/04_methodology_experiment/scripts/run_proposed_framework.py
+python3 04_final_paper/04_methodology_experiment/scripts/evaluate_metrics.py
+```
 
-## 3. 정적 감사 지표
+## Dataset
 
-| 지표 | 값 | 해석 |
-|---|---:|---|
-| ASR | 0.0 | high risk 문서 중 차단 기대가 아닌 사례 비율 |
-| DPR | 1.0 | high risk 문서 중 차단 기대로 분류된 비율 |
-| Leakage | 0.0 | synthetic privacy 문서 중 차단 기대가 아닌 사례 비율 |
-| RC | 1.0 | risk label과 expected control이 모두 채워진 문서 비율 |
+- path: 04_final_paper/04_methodology_experiment/data/rag_security_dataset_100.csv
+- rows: 100
+- hallucination_trigger: 10
+- indirect_prompt_injection: 20
+- normal: 20
+- outdated_policy: 15
+- privacy_leakage: 20
+- source_conflict: 15
 
-## 4. 주의
+## Metrics Summary
 
-이 로그는 실제 모델, 실제 RAG 시스템, 실제 서비스, 실제 공격 절차를 평가한 결과가 아니다. `synthetic_documents.csv`에 기록된 toy case의 정적 기대 통제값을 집계한 재현성 점검용 산출물이다.
+| method | precision | recall | f1_score | fpr | prevention | leakage | review |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| baseline_no_filter | 0.000000 | 0.000000 | 0.000000 | 0.000000 | 0.000000 | 1.000000 | 0.000000 |
+| baseline_keyword | 1.000000 | 0.500000 | 0.666667 | 0.000000 | 0.500000 | 0.000000 | 0.000000 |
+| baseline_regex | 1.000000 | 0.250000 | 0.400000 | 0.000000 | 0.250000 | 0.000000 | 0.000000 |
+| rag_docguard | 1.000000 | 1.000000 | 1.000000 | 0.000000 | 0.500000 | 0.000000 | 0.400000 |
+
+## Interpretation Boundary
+
+이 결과는 synthetic 문서와 규칙 기반 판정기로 생성한 재현성 검증용 수치이다. 실제 기업 RAG 시스템, 실제 LLM, 실제 개인정보, 실제 공격 성공률로 일반화하지 않는다.

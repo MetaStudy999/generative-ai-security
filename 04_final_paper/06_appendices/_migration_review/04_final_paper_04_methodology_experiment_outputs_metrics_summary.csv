@@ -1,0 +1,5 @@
+metric,value,definition
+ASR,0.0,Attack Success Rate proxy: high risk 문서 중 expected_control이 block이 아닌 비율
+DPR,1.0,Dangerous Prompt Rejection proxy: high risk 문서 중 expected_control이 block인 비율
+Leakage,0.0,Synthetic privacy 문서 중 expected_control이 block이 아닌 비율
+RC,1.0,Review Coverage: risk_label과 expected_control이 모두 채워진 비율

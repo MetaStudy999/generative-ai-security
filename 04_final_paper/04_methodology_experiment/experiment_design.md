@@ -21,10 +21,10 @@ LLM/RAG 보안 평가 프레임워크가 성능, 공격 영향, 프라이버시,
 | 1 | baseline 평가 설계 | 기준 성능표 |
 | 2 | 안전한 위협 시나리오 정의 | 위협모형표 |
 | 3 | 방어·검토 절차 적용 | 평가 체크리스트 |
-| 4 | config, seed, outputs/logs 기록 | 재현성 패키지 |
+| 4 | config, seed, `04_final_paper/04_methodology_experiment/outputs/` 기록 | 재현성 패키지 |
 
 ## 4. 결과 작성 원칙
 
 - 실제 수행하지 않은 실험 결과는 결과처럼 작성하지 않는다.
-- 실제 수행한 실험 결과는 `outputs/run_log.md`, `metrics_summary.csv`, `results.json`과 대조 가능한 값만 작성한다.
+- 실제 수행한 실험 결과는 `04_final_paper/04_methodology_experiment/outputs/run_log.md`, `metrics_summary.csv`, `results.json`과 대조 가능한 값만 작성한다.
 - 재현 가능한 설정과 한계를 함께 기록한다.

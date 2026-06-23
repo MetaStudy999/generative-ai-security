@@ -14,10 +14,10 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.cidfonts import UnicodeCIDFont
 
 
-ROOT = Path(__file__).resolve().parents[1]
-SRC = ROOT / "paper" / "JKAIS_paper_draft.md"
-DOCX_OUT = ROOT / "paper" / "JKAIS_paper_draft.docx"
-PDF_OUT = ROOT / "paper" / "JKAIS_paper_draft.pdf"
+DRAFT_DIR = Path(__file__).resolve().parent
+SRC = DRAFT_DIR / "JKAIS_paper_draft.md"
+DOCX_OUT = DRAFT_DIR / "JKAIS_paper_draft.docx"
+PDF_OUT = DRAFT_DIR / "JKAIS_paper_draft.pdf"
 
 
 LINK_RE = re.compile(r"\[([^\]]+)\]\([^)]+\)")

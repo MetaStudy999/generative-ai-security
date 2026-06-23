@@ -1,5 +1,5 @@
-metric,value,definition
-ASR,0.0,Attack Success Rate proxy: high risk 문서 중 expected_control이 block이 아닌 비율
-DPR,1.0,Dangerous Prompt Rejection proxy: high risk 문서 중 expected_control이 block인 비율
-Leakage,0.0,Synthetic privacy 문서 중 expected_control이 block이 아닌 비율
-RC,1.0,Review Coverage: risk_label과 expected_control이 모두 채워진 비율
+method,documents,precision,recall,f1_score,false_positive_rate,dangerous_document_prevention_rate,leakage_rate,human_review_rate
+baseline_no_filter,100,0.000000,0.000000,0.000000,0.000000,0.000000,1.000000,0.000000
+baseline_keyword,100,1.000000,0.500000,0.666667,0.000000,0.500000,0.000000,0.000000
+baseline_regex,100,1.000000,0.250000,0.400000,0.000000,0.250000,0.000000,0.000000
+rag_docguard,100,1.000000,1.000000,1.000000,0.000000,0.500000,0.000000,0.400000

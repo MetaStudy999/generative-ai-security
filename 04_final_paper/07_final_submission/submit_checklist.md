@@ -17,12 +17,12 @@
 | □ | 국내 논문 3편 이상을 실제로 검증했다. |
 | □ | 해외 논문 5편 이상을 실제로 검증했다. 현재 W15 기준 P01/P02/P04/P05는 DOI 확인, P03은 DOI 부분 확인 및 원문 PDF 확보 필요 상태다. |
 | ■ | 주차별 보고서 2개 이상을 논문에 반영했다. |
-| □ | 반영한 주차별 실험 결과가 `outputs/run_log.md`, `metrics_summary.csv`, `results.json`과 일치한다. |
+| □ | 반영한 주차별 실험 결과가 `04_final_paper/04_methodology_experiment/outputs/run_log.md`, `metrics_summary.csv`, `results.json`과 일치한다. |
 | □ | 실행하지 않은 실험 결과를 결과처럼 작성하지 않았다. |
 | ■ | W15 발표가 필요한 주차는 `09_presentation/presentation_report.md` 또는 동등한 발표용 보고서를 포함했다. |
-| □ | 발표용 보고서의 실험 수치와 최종 보고서/`outputs/` 산출물이 일치한다. |
+| □ | 발표용 보고서의 실험 수치와 최종 보고서/`04_final_paper/04_methodology_experiment/outputs/` 산출물이 일치한다. |
 | ■ | W15 발표용 슬라이드 Markdown과 HTML이 `09_presentation/`에 정리되어 있다. |
-| □ | 발표용 슬라이드의 실험 수치와 발표용 보고서/`outputs/` 산출물이 일치한다. |
+| □ | 발표용 슬라이드의 실험 수치와 발표용 보고서/`04_final_paper/04_methodology_experiment/outputs/` 산출물이 일치한다. |
 | ■ | W15 발표자 대본, 예상 Q&A, 1페이지 요약을 `09_presentation/`에 정리했다. |
 | ■ | W15 주차별 제출용 보고서 Markdown과 HTML이 `07_week_submission/`에 정리되어 있다. |
 | □ | 제출용 HTML의 수치, DOI/URL 상태, AI 활용 고지가 Markdown 제출본과 일치한다. |

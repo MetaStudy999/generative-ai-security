@@ -1,70 +1,115 @@
-# 논문 요약
+# P03 Summary
 
-## 1. 서지정보
+## Generative Adversarial Networks in Computer Vision: A Survey and Taxonomy — Zhengwei Wang, Qi She, Tomas E. Ward, ACM Computing Surveys, 2021
+
+## 0. 문헌 검증 상태
 
 | 항목 | 내용 |
 |---|---|
-| 논문 제목 | Generative Adversarial Networks in Computer Vision: A Survey and Taxonomy |
+| 주차 | W06 확률생성모형(Diffusion/GAN) & 딥페이크 검출 |
+| 논문명 | Generative Adversarial Networks in Computer Vision: A Survey and Taxonomy |
 | 저자 | Zhengwei Wang, Qi She, Tomas E. Ward |
-| 학술지/학회 | ACM Computing Surveys |
-| 출판 정보 | Vol. 54, No. 2, Article 37, published 2021-02-09, print issue 2022-03-31 |
-| 연도 | 2021 online / 2022 print issue |
-| DOI/URL | https://doi.org/10.1145/3439723, https://doi.org/10.48550/arXiv.1906.01529, https://arxiv.org/abs/1906.01529 |
-| PDF 파일명 | 03_Wang_She_Ward_2021_GANs_Computer_Vision_Survey.pdf |
-| 검증 상태 | ACM/arXiv DOI 확인, 강의계획서 저자명 차이 확인 필요 |
+| 학술지 | ACM Computing Surveys |
+| 권호/쪽 | Vol. 54, No. 2, Article 37 |
+| 연도 | online 2021 / print 2022 |
+| DOI | https://doi.org/10.1145/3439723 |
+| 보조 URL | https://arxiv.org/abs/1906.01529 |
+| 로컬 PDF | `01_papers/pdf/03_Wang_She_Ward_2021_GANs_Computer_Vision_Survey.pdf` |
+| 검증 상태 | W06 `paper_list.md` 기준 출판 DOI 확인. 강의계획서 저자명 차이 메모 유지 |
 
-## 2. 한 문장 요약
+---
 
-> 이 논문은 computer vision에서 GAN 변형과 loss taxonomy를 정리하며, 고품질·다양성·학습 안정성 문제가 합성미디어와 딥페이크 탐지의 기초 위험으로 이어짐을 보여준다.
+## 1. 한 문장 요약
 
-## 3. 연구문제
+이 논문은 GAN을 **generator-discriminator minimax game, image synthesis, image-to-image translation, super-resolution, domain adaptation, evaluation** 관점에서 정리하고, W06에서 딥페이크 생성과 검출의 고전적 생성모형 배경을 제공한다.
 
-GAN은 generator와 discriminator의 경쟁 구조로 사실적인 데이터를 생성하지만 mode collapse, training instability, evaluation ambiguity가 반복적으로 나타난다. 이 논문은 GAN 연구를 architecture variant와 loss variant로 분류하고 computer vision application에서 어떤 문제가 남는지 묻는다.
+---
 
-## 4. 핵심 개념
+## 2. 핵심 연구질문
 
-| 개념 | 설명 | 기말 논문 연결 |
-|---|---|---|
-| Generator | latent vector 또는 condition에서 synthetic sample 생성 | 딥페이크 생성 원리 |
-| Discriminator | real/fake 구분을 학습하는 판별자 | 탐지기와 유사한 평가 관점 |
-| Minimax training | generator와 discriminator의 경쟁 학습 | 학습 안정성 문제 |
-| Mode collapse | 다양성이 줄고 일부 mode만 생성되는 현상 | 데이터 다양성 평가 |
-| FID/IS 한계 | 생성 품질 지표가 보안 신뢰성을 직접 보장하지 않음 | 탐지 신뢰성 지표 필요 |
+| 번호 | 연구질문 |
+|---|---|
+| RQ1 | GAN은 generator와 discriminator의 경쟁 학습으로 어떻게 데이터 분포를 학습하는가? |
+| RQ2 | GAN 변형은 컴퓨터비전 생성 task에 어떻게 확장되었는가? |
+| RQ3 | GAN 기반 생성물은 딥페이크·이미지 조작·검출 회피 문제와 어떻게 연결되는가? |
+| RQ4 | GAN 생성물 검출은 어떤 artifact와 평가 지표를 사용해야 하는가? |
 
-## 5. 방법론
+---
 
-GAN 연구를 architecture-variant와 loss-variant 중심으로 taxonomy화하고, computer vision application에서 품질·다양성·안정성을 비교한다. W06에서는 이 taxonomy를 diffusion과 비교하며 “생성 모델 평가”와 “포렌식 탐지 평가”를 구분한다.
+## 3. 핵심 수식
 
-### 5.1 핵심 수식 또는 알고리즘 설명
+### 3.1 GAN Minimax Objective
+
+$$
+\min_G \max_D V(D,G)=\mathbb{E}_{x\sim p_{data}}[\log D(x)] + \mathbb{E}_{z\sim p_z}[\log(1-D(G(z)))]
+$$
+
+| 기호 | 의미 |
+|---|---|
+| $G$ | generator |
+| $D$ | discriminator |
+| $z$ | latent noise |
+| $p_{data}$ | 실제 데이터 분포 |
+
+**보안 해석:** Discriminator가 진짜/가짜를 구분하도록 학습되는 구조는 딥페이크 검출기와 개념적으로 연결된다. 그러나 생성기가 발전하면 검출기도 계속 재학습해야 한다.
+
+### 3.2 생성물 검출 위험
+
+$$
+DetectionRate=\frac{TP_{fake}}{TP_{fake}+FN_{fake}}
+$$
+
+$$
+FPR=\frac{FP_{real}}{FP_{real}+TN_{real}}
+$$
+
+---
+
+## 4. AI 원리·보안 분석
+
+| 항목 | 분석 |
+|---|---|
+| Adversarial training | 생성기와 판별기가 경쟁하며 학습한다. |
+| Mode collapse | 생성 다양성 부족이 발생할 수 있다. |
+| Image translation | 얼굴·스타일·도메인 변환에 활용된다. |
+| Deepfake risk | 얼굴 합성·속성 조작·신원 사칭에 악용될 수 있다. |
+| Detector arms race | 생성기 품질이 오르면 검출기 성능이 낮아질 수 있다. |
+
+---
+
+## 5. 위협모형
 
 | 항목 | 내용 |
 |---|---|
-| 수식/알고리즘 이름 | GAN Min-Max Objective |
-| 원문 위치 | 논문 세부 절/쪽/그림/알고리즘 번호 확인 필요. 로컬 DOI/URL 점검표로 문헌 대응만 확인. |
-| 작성 형식 | Markdown + LaTeX math |
-| 검산 도구 | 사용 안 함 |
-| 수식 또는 절차 | 표준 정의식 / 원문 직접 인용 아님.<br>$$\min_G\max_D\ \mathbb{E}_{x\sim p_{data}}[\log D(x)]+\mathbb{E}_{z\sim p_z}[\log(1-D(G(z)))]$$ |
-| 기호·입력·출력 | \(G\): generator, \(D\): discriminator, \(z\): latent noise, \(p_{data}\): 실제 데이터 분포 |
-| 직관적 의미 | GAN Min-Max Objective는 Diffusion/GAN·Deepfake 평가에서 핵심 원리나 평가 지표를 정량적으로 해석하기 위한 표준식이다. |
-| 보안 관점 해석 | Diffusion/GAN·Deepfake 평가에서는 정상 성능과 보안 실패 조건을 분리해 보아야 한다. 이 항목은 공격·방어 원리 또는 운영 통제의 평가 기준을 명시하되, 실제 공격 절차나 무단 적용 단계는 포함하지 않는다. |
-| 평가 지표와 연결 | detection accuracy, FPR/FNR, FID, robustness |
-| 한계와 가정 | 표준 정의식 / 원문 직접 인용 아님. 논문별 변형, 정확한 수식 번호, 실험 설정은 원문 PDF에서 확인 필요다. |
-| 기말 논문 반영 여부 | 반영 |
+| 보호 대상 | 얼굴 이미지, 신원, 원본성, 생성물 provenance, 검출기 |
+| 공격자 목표 | 합성 이미지 생성, 판별기 회피, 허위 시각 증거 생성 |
+| 공격자 능력 | GAN 학습/사용, post-processing, 압축, style/identity transfer |
+| 제외 범위 | 실제 인물 사칭물 제작, 무단 얼굴 데이터 사용 |
 
-## 6. 주요 결과
+---
 
-GAN은 image synthesis, image-to-image translation, attribute manipulation 등에서 큰 성과를 냈지만 stable training과 diversity 보장은 계속 어려운 문제다. 이러한 특성은 딥페이크 생성의 발전과 탐지기의 artifact 의존성을 함께 설명한다.
+## 6. 평가방법 및 지표
 
-## 7. 보안 관점 분석
+| 지표 | 의미 |
+|---|---|
+| FID/IS | 생성 이미지 품질 평가 |
+| Detection AUC/F1 | GAN 생성물 검출 성능 |
+| Cross-dataset Generalization | 다른 생성기/데이터셋에서 검출 유지 여부 |
+| Robustness | 압축·크롭·재인코딩 후 검출 유지 |
+| Artifact Analysis | 주파수·텍스처·얼굴 경계 artifact 확인 |
 
-GAN discriminator는 탐지기처럼 보이지만 연구 목적의 discriminator와 forensic detector는 다르다. 실제 보안 평가는 FID나 visual quality가 아니라 FPR, FNR, cross-dataset generalization, human review routing까지 포함해야 한다.
+---
 
-## 8. 한계와 오픈문제
+## 7. 재현성·기말논문 연결
 
-ACM DOI `10.1145/3439723`와 Article 37은 확인되었다. 다만 강의계획서에는 `Tianqi Wang et al.`로 표기되어 있고, 로컬 PDF/arXiv/ACM 출판 정보는 `Zhengwei Wang, Qi She, Tomas E. Ward`로 되어 있어 표기 차이를 최종 확인해야 한다. 또한 GAN survey만으로 최신 diffusion 기반 딥페이크를 설명하기에는 부족하므로 P01/P02와 함께 읽어야 한다.
+| 항목 | 반영 내용 |
+|---|---|
+| 재현성 | 생성기 종류, latent seed, training data, post-processing, detector version 기록 |
+| 한계 | GAN survey이므로 최신 diffusion deepfake를 모두 대표하지 않음 |
+| 기말논문 | GAN 생성-검출 arms race, deepfake detector generalization 지표로 반영 |
 
-주의: W06의 P03은 강의계획서 지정 저자명과 현재 로컬 PDF/arXiv 저자명이 다르므로, 동일 논문 여부와 강의계획서 표기 오류 가능성을 확인 필요 상태로 유지한다.
+---
 
-## 9. 기말 논문에 반영할 부분
+## 8. 최종 판단
 
-GAN의 generator-discriminator 구조, mode collapse, training stability, 생성 품질 지표의 한계를 관련연구와 평가방법 장에 반영한다.
+P03은 W06에서 GAN 기반 생성과 딥페이크 검출의 역사적·기술적 배경을 제공한다. 최신 diffusion 기반 생성물은 P01/P02와 함께 비교한다.

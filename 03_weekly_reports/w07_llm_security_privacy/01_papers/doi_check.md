@@ -22,3 +22,17 @@
 2. arXiv 항목은 arXiv API 또는 arXiv 페이지의 제목·저자·버전을 확인했다.
 3. 로컬 PDF 표지에 기록된 DOI, 권호, 쪽수, arXiv 식별자를 보조 근거로 사용했다.
 4. DOI를 확인하지 못한 정보는 임의 생성하지 않고 `확인 필요`로 남겼다.
+
+<!-- AUTO-RELATED-PAPER-REFLECTION:start -->
+## 논문/관련 논문 최종 판정 반영표
+
+아래 표는 공식 DOI/arXiv 재검색 결과를 반영한 최종 판정이다. `논문 / 확인`은 공식 서지 기준으로 논문 인용, `관련 논문 / 확인`은 주차 주제 보강용 관련 논문 인용을 뜻한다.
+
+| ID | 구분 | 상태 | 공식 확인 기준 | 보고서 반영 |
+|---|---|---|---|---|
+| P01 | 논문 / 확인 | 공식 DOI 확인 | `https://doi.org/10.1145/3641289`; A Survey on Evaluation of Large Language Models; ACM Transactions on Intelligent Systems and Technology; 2024 | 공식 서지 기준으로 논문 인용 |
+| P02 | 논문 / 확인 | 공식 DOI 확인 | `https://doi.org/10.1145/3712001`; Security and Privacy Challenges of Large Language Models: A Survey; ACM Computing Surveys; 2025 | 공식 서지 기준으로 논문 인용 |
+| P03 | 관련 논문 / 확인 | 공식 DOI 확인 | `https://doi.org/10.1016/j.hcc.2024.100211`; A survey on large language model (LLM) security and privacy: The Good, The Bad, and The Ugly; High-Confidence Computing; 2024 | 주차 주제 보강용 관련 논문으로 인용 |
+| P04 | 논문 / 확인 | 공식 DOI 확인 | `https://doi.org/10.1093/nsr/nwae403`; A survey on multimodal large language models; National Science Review; 2024 | 공식 서지 기준으로 논문 인용 |
+| P05 | 논문 / 확인 | 공식 DOI 확인 | `https://doi.org/10.1109/JAS.2024.124971`; When Software Security Meets Large Language Models: A Survey; IEEE/CAA Journal of Automatica Sinica; 2025 | 공식 서지 기준으로 논문 인용 |
+<!-- AUTO-RELATED-PAPER-REFLECTION:end -->

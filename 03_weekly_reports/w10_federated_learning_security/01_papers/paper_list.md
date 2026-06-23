@@ -15,3 +15,13 @@
 - P03은 arXiv 제출본과 Information Fusion 출판본 제목이 실질적으로 동일하며, 출판본은 DOI 10.1016/j.inffus.2022.09.011, volume 90, pp. 148-173으로 확인했다.
 - P05는 arXiv 제출본과 Engineering Applications of Artificial Intelligence 출판본 제목이 실질적으로 동일하며, 출판본은 DOI 10.1016/j.engappai.2023.107166, volume 127, Article 107166으로 확인했다.
 - P01/P04의 Article 번호는 DOI 등록 메타데이터에서 별도 `article-number` 필드로 확인되지 않았다. 수업자료의 P04 `Article 230` 표기는 공식 DOI 메타데이터와 추가 대조가 필요하다.
+
+<!-- AUTO-RELATED-PAPER-REFLECTION:start -->
+## 논문/관련 논문 최종 반영표
+
+아래 표는 공식 DOI/arXiv 재검색 결과를 주차 보고서에 반영하기 위한 최종 판정이다. 기존 대조 기록은 보존하고, 보고서 본문과 참고문헌에서는 이 표의 `구분`과 `검증 상태`를 우선 사용한다.
+
+| ID | 구분 | 논문 제목 | 논문 | 저자 | 연도 | 학술지/학회 | 학술지/출처 | DOI/URL | 검증 상태 | 보고서 반영 |
+|---|---|---|---|---|---:|---|---|---|---|---|
+| P04 | 논문 / 확인 | The Federation Strikes Back: A Survey of Federated Learning Privacy Attacks, Defenses, Applications, and Policy Landscape | The Federation Strikes Back: A Survey of Federated Learning Privacy Attacks, Defenses, Applications, and Policy Landscape | Joshua C. Zhao et al. | 2025 | ACM Computing Surveys | ACM Computing Surveys | `https://doi.org/10.1145/3724113` | 공식 DOI 확인 | 공식 서지 기준으로 논문 인용 |
+<!-- AUTO-RELATED-PAPER-REFLECTION:end -->

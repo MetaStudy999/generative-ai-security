@@ -13,11 +13,11 @@
 
 | ID | 제목 | 저자 | 연도 | 학술지/학회명 | DOI 또는 URL | 확인 경로 | 확인일 | 상태 |
 |---|---|---|---:|---|---|---|---|---|
-| P01 | 확인 필요 | 확인 필요 | 확인 필요 | 확인 필요 | https://doi.org/10.1109/MSP.2017.2743240 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 부분 검증 |
-| P02 | 확인 필요 | 확인 필요 | 확인 필요 | 확인 필요 | https://doi.org/10.1109/TITS.2021.3054625 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 부분 검증 |
-| P03 | 확인 필요 | 확인 필요 | 확인 필요 | 확인 필요 | https://doi.org/10.1109/TNNLS.2021.3121870 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 필요 |
-| P04 | 확인 필요 | 확인 필요 | 확인 필요 | 확인 필요 | https://doi.org/10.1016/j.engappai.2022.105116 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | DOI/제목 불일치 의심 |
-| P05 | 확인 필요 | 확인 필요 | 확인 필요 | 확인 필요 | https://doi.org/10.1145/3596444 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 필요 |
+| P01 | Deep Reinforcement Learning: A Brief Survey | Kai Arulkumaran et al. | 2017 | IEEE Signal Processing Magazine | https://doi.org/10.1109/MSP.2017.2743240 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
+| P02 | Deep Reinforcement Learning for Autonomous Driving: A Survey | B. Ravi Kiran et al. | 2022 | IEEE Transactions on Intelligent Transportation Systems | https://doi.org/10.1109/TITS.2021.3054625 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
+| P03 | Deep Reinforcement Learning for Cyber Security | Thanh Thi Nguyen, Vijay Janapa Reddi | 2023 | IEEE TNNLS | https://doi.org/10.1109/TNNLS.2021.3121870 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
+| P04 | Cyber-security and reinforcement learning - A brief survey | Amrin Maria Khan Adawadkar, Nilima Kulkarni | 2022 | Engineering Applications of Artificial Intelligence | https://doi.org/10.1016/j.engappai.2022.105116 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
+| P05 | Deep Reinforcement Learning Verification: A Survey | Matthew Landers, Afsaneh Doryab | 2023 | ACM Computing Surveys | https://doi.org/10.1145/3596444 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
 
 주의: 현 세션에서는 인터넷으로 DOI/URL 실제 존재 여부를 재검증하지 않았으므로, 로컬 검증 기록이 있더라도 최종 제출 전 사람이 확인한다.
 
@@ -91,7 +91,7 @@
 
 ## 6. 확인 필요 항목
 
-- 참고문헌 검증 필요 항목: 확인 필요 2건, 부분 검증 키워드 2건, 대체 문헌 키워드 0건
+- 참고문헌 검증 필요 항목: 확인 필요 0건, 부분 검증 키워드 0건, 대체 문헌 키워드 0건
 - 수치 대조 필요 항목: 부분 대조 완료
 - PDF/HTML 수동 확인 필요 항목: PDF 시각적 깨짐과 HTML 렌더링은 자동 정상 처리하지 않음
 - 참고문헌 실제 존재 여부, 강의계획서 지정 문헌과 로컬 PDF 일치 여부, 최종 제출본 서식은 사람이 직접 확인해야 한다.

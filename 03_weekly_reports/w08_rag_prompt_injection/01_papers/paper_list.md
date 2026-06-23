@@ -28,3 +28,16 @@
 - P03은 DOI/Crossref와 로컬 PDF에서 Xiaoxia Liu et al., ACM Computing Surveys 58(10), Article 255, DOI `10.1145/3789253`을 확인했다. 강의계획서의 X. Liu et al. 표기는 Xiaoxia Liu et al.을 가리키는 것으로 보이나 최종 제출 전 수업자료와 대조한다.
 - P04는 DOI/Crossref와 로컬 PDF에서 Tongcheng Geng et al., Computers, Materials & Continua 87(1), DOI `10.32604/cmc.2025.074081`을 확인했다. 강의계획서의 Tianlei Geng 표기는 확인 필요로 둔다.
 - 주의: W08의 P05는 현재 로컬 PDF 기준 제목과 강의계획서 지정 제목이 다르므로, 동일 논문 여부와 최종 JAMA Network Open 서지정보를 확인 필요 상태로 유지한다.
+
+<!-- AUTO-RELATED-PAPER-REFLECTION:start -->
+## 논문/관련 논문 최종 반영표
+
+아래 표는 공식 DOI/arXiv 재검색 결과를 주차 보고서에 반영하기 위한 최종 판정이다. 기존 대조 기록은 보존하고, 보고서 본문과 참고문헌에서는 이 표의 `구분`과 `검증 상태`를 우선 사용한다.
+
+| ID | 구분 | 논문 제목 | 논문 | 저자 | 연도 | 학술지/학회 | 학술지/출처 | DOI/URL | 검증 상태 | 보고서 반영 |
+|---|---|---|---|---|---:|---|---|---|---|---|
+| P01 | 관련 논문 / 확인 | Graph Retrieval-Augmented Generation: A Survey | Graph Retrieval-Augmented Generation: A Survey | Boci Peng et al. | 2025 | ACM Transactions on Information Systems | ACM Transactions on Information Systems | `https://doi.org/10.1145/3777378` | 공식 DOI 확인 | 주차 주제 보강용 관련 논문으로 인용 |
+| P02 | 관련 논문 / 확인 | Graph-Based Approaches and Functionalities in Retrieval-Augmented Generation: A Comprehensive Survey | Graph-Based Approaches and Functionalities in Retrieval-Augmented Generation: A Comprehensive Survey | Zulun Zhu et al. | 2026 | ACM Computing Surveys | ACM Computing Surveys | `https://doi.org/10.1145/3795880` | 공식 DOI 확인 | 주차 주제 보강용 관련 논문으로 인용 |
+| P04 | 논문 / 확인 | Prompt Injection Attacks on Large Language Models: A Survey of Attack Methods, Root Causes, and Defense Strategies | Prompt Injection Attacks on Large Language Models: A Survey of Attack Methods, Root Causes, and Defense Strategies | Tongcheng Geng et al. | 2026 | Computers, Materials & Continua | Computers, Materials & Continua | `https://doi.org/10.32604/cmc.2025.074081` | 공식 DOI 확인 | 공식 서지 기준으로 논문 인용 |
+| P05 | 관련 논문 / 확인 | Vulnerability of Large Language Models to Prompt Injection When Providing Medical Advice | Vulnerability of Large Language Models to Prompt Injection When Providing Medical Advice | Ro Woon Lee et al. | 2025 | JAMA Network Open | JAMA Network Open | `https://doi.org/10.1001/jamanetworkopen.2025.49963` | 공식 DOI 확인 | 주차 주제 보강용 관련 논문으로 인용 |
+<!-- AUTO-RELATED-PAPER-REFLECTION:end -->

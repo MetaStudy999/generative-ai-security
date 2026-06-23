@@ -10,7 +10,7 @@
 | 연도 | 2022 |
 | DOI/URL | https://doi.org/10.1109/TITS.2021.3054625 |
 | PDF 파일명 | 02_Kiran_et_al_2022_DRL_Autonomous_Driving_Survey.pdf |
-| 검증 상태 | 부분 검증: DOI는 2021 등록/early access, 최종 출판판은 2022; 로컬 PDF는 arXiv v2 |
+| 검증 상태 | 부분 검증: 공식 DOI 메타데이터 확인 완료. DOI 등록/early access는 2021, 최종 출판판은 2022; 로컬 PDF는 arXiv v2 |
 
 ## 2. 한 문장 요약
 

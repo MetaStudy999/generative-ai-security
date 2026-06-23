@@ -11,7 +11,7 @@
 | 연도 | 2017 |
 | DOI/URL | https://doi.org/10.1109/MSP.2017.2743240 |
 | PDF 파일명 | 01_Arulkumaran_et_al_2017_Deep_Reinforcement_Learning_Survey.pdf |
-| 검증 상태 | 부분 검증: DOI/Crossref 기준 공식 제목은 `Deep Reinforcement Learning: A Brief Survey`, 로컬 PDF는 arXiv extended version |
+| 검증 상태 | 부분 검증: 공식 DOI 메타데이터 확인 완료. 로컬 PDF는 arXiv extended version이므로 출판판과 세부 차이 대조 필요 |
 
 ## 2. 한 문장 요약
 

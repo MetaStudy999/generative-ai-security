@@ -18,3 +18,17 @@
 - 주의: W14의 P05는 수업자료의 Xiang Chen 표기와 DOI/로컬 PDF 기준 Yang/Xia/Lo/Grundy 서지가 불일치한다. 최종 제출 전 수업자료의 지정 논문명과 DOI 10.1145/3505243의 공식 ACM 출판정보를 재확인해야 한다.
 - `SUBSTITUTE` PDF는 지정 논문 원문처럼 인용하지 않는다.
 - public GitHub 저장소에는 원칙적으로 PDF 원문 대신 DOI/URL, 서지정보, 요약만 남긴다. 현재 PDF 파일은 이미 Git 추적 중이므로 삭제 필요 상태로 보고하되, 사용자 승인 없이 삭제하지 않는다.
+
+<!-- AUTO-RELATED-PAPER-REFLECTION:start -->
+## 논문/관련 논문 최종 반영표
+
+아래 표는 공식 DOI/arXiv 재검색 결과를 주차 보고서에 반영하기 위한 최종 판정이다. 기존 대조 기록은 보존하고, 보고서 본문과 참고문헌에서는 이 표의 `구분`과 `검증 상태`를 우선 사용한다.
+
+| ID | 구분 | 논문 제목 | 논문 | 저자 | 연도 | 학술지/학회 | 학술지/출처 | DOI/URL | 검증 상태 | 보고서 반영 |
+|---|---|---|---|---|---:|---|---|---|---|---|
+| P01 | 논문 / 확인 | A Multivocal Review of MLOps Practices, Challenges and Open Issues | A Multivocal Review of MLOps Practices, Challenges and Open Issues | Beyza Eken et al. | 2025 | ACM Computing Surveys | ACM Computing Surveys | `https://doi.org/10.1145/3747346` | 공식 DOI 확인 | 공식 서지 기준으로 논문 인용 |
+| P02 | 논문 / 확인 | Challenges in Deploying Machine Learning: A Survey of Case Studies | Challenges in Deploying Machine Learning: A Survey of Case Studies | Andrei Paleyes, Raoul-Gabriel Urma, Neil D. Lawrence | 2022 | ACM Computing Surveys | ACM Computing Surveys | `https://doi.org/10.1145/3533378` | 공식 DOI 확인 | 공식 서지 기준으로 논문 인용 |
+| P03 | 논문 / 확인 | A Joint Study of the Challenges, Opportunities, and Roadmap of MLOps and AIOps: A Systematic Survey | A Joint Study of the Challenges, Opportunities, and Roadmap of MLOps and AIOps: A Systematic Survey | Josu Diaz-de-Arcaya et al. | 2023 | ACM Computing Surveys | ACM Computing Surveys | `https://doi.org/10.1145/3625289` | 공식 DOI 확인 | 공식 서지 기준으로 논문 인용 |
+| P04 | 논문 / 확인 | Deep Learning With Edge Computing: A Review | Deep Learning With Edge Computing: A Review | Jiasi Chen, Xukan Ran | 2019 | Proceedings of the IEEE | Proceedings of the IEEE | `https://doi.org/10.1109/JPROC.2019.2921977` | 공식 DOI 확인 | 공식 서지 기준으로 논문 인용 |
+| P05 | 관련 논문 / 확인 | A Survey on Deep Learning for Software Engineering | A Survey on Deep Learning for Software Engineering | Yanming Yang, Xin Xia, David Lo, John Grundy | 2022 | ACM Computing Surveys | ACM Computing Surveys | `https://doi.org/10.1145/3505243` | 공식 DOI 확인 | 주차 주제 보강용 관련 논문으로 인용 |
+<!-- AUTO-RELATED-PAPER-REFLECTION:end -->

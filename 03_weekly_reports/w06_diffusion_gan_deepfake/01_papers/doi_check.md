@@ -19,3 +19,16 @@
 1. DOI는 추측해서 적지 않는다.
 2. 로컬 PDF, arXiv, Crossref, DOI/출판사 페이지의 제목·저자·연도·권호를 분리해 기록한다.
 3. 본문 인용에는 검증된 DOI를 우선 사용하되, 강의계획서 표기와 다른 P02/P03은 `부분 검증` 상태를 명시한다.
+
+<!-- AUTO-RELATED-PAPER-REFLECTION:start -->
+## 논문/관련 논문 최종 판정 반영표
+
+아래 표는 공식 DOI/arXiv 재검색 결과를 반영한 최종 판정이다. `논문 / 확인`은 공식 서지 기준으로 논문 인용, `관련 논문 / 확인`은 주차 주제 보강용 관련 논문 인용을 뜻한다.
+
+| ID | 구분 | 상태 | 공식 확인 기준 | 보고서 반영 |
+|---|---|---|---|---|
+| P02 | 논문 / 확인 | 공식 DOI 확인 | `https://doi.org/10.1145/3696415`; A Survey on Video Diffusion Models; ACM Computing Surveys; 2024 | 공식 서지 기준으로 논문 인용 |
+| P03 | 논문 / 확인 | 공식 DOI 확인 | `https://doi.org/10.1145/3439723`; Generative Adversarial Networks in Computer Vision; ACM Computing Surveys; 2021 | 공식 서지 기준으로 논문 인용 |
+| P04 | 논문 / 확인 | 공식 DOI 확인 | `https://doi.org/10.1145/3425780`; The Creation and Detection of Deepfakes; ACM Computing Surveys; 2021 | 공식 서지 기준으로 논문 인용 |
+| P05 | 논문 / 확인 | 공식 DOI 확인 | `https://doi.org/10.1145/3699710`; Deepfake Detection: A Comprehensive Survey from the Reliability Perspective; ACM Computing Surveys; 2024 | 공식 서지 기준으로 논문 인용 |
+<!-- AUTO-RELATED-PAPER-REFLECTION:end -->

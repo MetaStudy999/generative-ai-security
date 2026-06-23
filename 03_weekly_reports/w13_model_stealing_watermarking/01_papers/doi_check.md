@@ -14,3 +14,15 @@
 2. P02/P05의 `SUBSTITUTE` PDF는 지정 논문 원문처럼 인용하지 않는다.
 3. P01/P03/P04/P05의 공식 DOI는 보고서 본문과 참고문헌에 반영하되, 강의계획서 표기 차이는 `확인 필요`로 남긴다.
 4. 공개 GitHub 저장소에는 PDF 원문 대신 DOI/URL과 요약을 남기는 방식을 권장한다.
+
+<!-- AUTO-RELATED-PAPER-REFLECTION:start -->
+## 논문/관련 논문 최종 판정 반영표
+
+아래 표는 공식 DOI/arXiv 재검색 결과를 반영한 최종 판정이다. `논문 / 확인`은 공식 서지 기준으로 논문 인용, `관련 논문 / 확인`은 주차 주제 보강용 관련 논문 인용을 뜻한다.
+
+| ID | 구분 | 상태 | 공식 확인 기준 | 보고서 반영 |
+|---|---|---|---|---|
+| P02 | 관련 논문 / 확인 | 공식 DOI 확인 | `https://doi.org/10.1145/3773028`; Securing Large Language Models: A Survey of Watermarking and Fingerprinting Techniques; ACM Computing Surveys; 2026 | 주차 주제 보강용 관련 논문으로 인용 |
+| P03 | 논문 / 확인 | 공식 DOI 확인 | `https://doi.org/10.1016/j.neucom.2021.07.051`; A survey of Deep Neural Network watermarking techniques; Neurocomputing; 2021 | 공식 서지 기준으로 논문 인용 |
+| P05 | 논문 / 확인 | 공식 DOI 확인 | `https://doi.org/10.1145/3615336`; Generative Adversarial Networks: A Survey on Attack and Defense Perspective; ACM Computing Surveys; 2023 | 공식 서지 기준으로 논문 인용 |
+<!-- AUTO-RELATED-PAPER-REFLECTION:end -->

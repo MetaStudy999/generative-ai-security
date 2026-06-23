@@ -23,3 +23,17 @@
 1. DOI/URL은 DOI, Crossref, arXiv, 로컬 PDF 표지의 확인 정보만 기록한다.
 2. 강의계획서 표기와 공식 메타데이터가 다른 경우, 공식 출판정보를 참고문헌 우선값으로 쓰되 차이를 검증 메모에 남긴다.
 3. P03처럼 지정 문헌과 로컬 PDF가 다른 경우 대체 문헌 가능성을 명시하고 최종 제출 전 사람이 확인한다.
+
+<!-- AUTO-RELATED-PAPER-REFLECTION:start -->
+## 논문/관련 논문 최종 반영표
+
+아래 표는 공식 DOI/arXiv 재검색 결과를 주차 보고서에 반영하기 위한 최종 판정이다. 기존 대조 기록은 보존하고, 보고서 본문과 참고문헌에서는 이 표의 `구분`과 `검증 상태`를 우선 사용한다.
+
+| ID | 구분 | 논문 제목 | 논문 | 저자 | 연도 | 학술지/학회 | 학술지/출처 | DOI/URL | 검증 상태 | 보고서 반영 |
+|---|---|---|---|---|---:|---|---|---|---|---|
+| P01 | 논문 / 확인 | A Survey on Evaluation of Large Language Models | A Survey on Evaluation of Large Language Models | Yupeng Chang et al. | 2024 | ACM Transactions on Intelligent Systems and Technology | ACM Transactions on Intelligent Systems and Technology | `https://doi.org/10.1145/3641289` | 공식 DOI 확인 | 공식 서지 기준으로 논문 인용 |
+| P02 | 논문 / 확인 | Security and Privacy Challenges of Large Language Models: A Survey | Security and Privacy Challenges of Large Language Models: A Survey | Badhan Chandra Das, M. Hadi Amini, Yanzhao Wu | 2025 | ACM Computing Surveys | ACM Computing Surveys | `https://doi.org/10.1145/3712001` | 공식 DOI 확인 | 공식 서지 기준으로 논문 인용 |
+| P03 | 관련 논문 / 확인 | A survey on large language model (LLM) security and privacy: The Good, The Bad, and The Ugly | A survey on large language model (LLM) security and privacy: The Good, The Bad, and The Ugly | Yifan Yao et al. | 2024 | High-Confidence Computing | High-Confidence Computing | `https://doi.org/10.1016/j.hcc.2024.100211` | 공식 DOI 확인 | 주차 주제 보강용 관련 논문으로 인용 |
+| P04 | 논문 / 확인 | A survey on multimodal large language models | A survey on multimodal large language models | Shukang Yin et al. | 2024 | National Science Review | National Science Review | `https://doi.org/10.1093/nsr/nwae403` | 공식 DOI 확인 | 공식 서지 기준으로 논문 인용 |
+| P05 | 논문 / 확인 | When Software Security Meets Large Language Models: A Survey | When Software Security Meets Large Language Models: A Survey | Xiaogang Zhu et al. | 2025 | IEEE/CAA Journal of Automatica Sinica | IEEE/CAA Journal of Automatica Sinica | `https://doi.org/10.1109/JAS.2024.124971` | 공식 DOI 확인 | 공식 서지 기준으로 논문 인용 |
+<!-- AUTO-RELATED-PAPER-REFLECTION:end -->

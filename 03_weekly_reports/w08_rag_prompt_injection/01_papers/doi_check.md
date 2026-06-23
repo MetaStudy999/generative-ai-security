@@ -25,3 +25,16 @@
 3. 최종 논문에는 DOI/URL 검증이 끝난 문헌만 확정 인용한다.
 4. P01처럼 DOI placeholder가 보이는 경우 DOI는 미확정으로 유지하고 arXiv URL만 사용한다.
 5. 참고문헌 번호는 보고서 본문에서 [1] P01, [2] P02, [3] P03, [4] P04, [5] P05에 대응시킨다.
+
+<!-- AUTO-RELATED-PAPER-REFLECTION:start -->
+## 논문/관련 논문 최종 판정 반영표
+
+아래 표는 공식 DOI/arXiv 재검색 결과를 반영한 최종 판정이다. `논문 / 확인`은 공식 서지 기준으로 논문 인용, `관련 논문 / 확인`은 주차 주제 보강용 관련 논문 인용을 뜻한다.
+
+| ID | 구분 | 상태 | 공식 확인 기준 | 보고서 반영 |
+|---|---|---|---|---|
+| P01 | 관련 논문 / 확인 | 공식 DOI 확인 | `https://doi.org/10.1145/3777378`; Graph Retrieval-Augmented Generation: A Survey; ACM Transactions on Information Systems; 2025 | 주차 주제 보강용 관련 논문으로 인용 |
+| P02 | 관련 논문 / 확인 | 공식 DOI 확인 | `https://doi.org/10.1145/3795880`; Graph-Based Approaches and Functionalities in Retrieval-Augmented Generation: A Comprehensive Survey; ACM Computing Surveys; 2026 | 주차 주제 보강용 관련 논문으로 인용 |
+| P04 | 논문 / 확인 | 공식 DOI 확인 | `https://doi.org/10.32604/cmc.2025.074081`; Prompt Injection Attacks on Large Language Models: A Survey of Attack Methods, Root Causes, and Defense Strategies; Computers, Materials & Continua; 2026 | 공식 서지 기준으로 논문 인용 |
+| P05 | 관련 논문 / 확인 | 공식 DOI 확인 | `https://doi.org/10.1001/jamanetworkopen.2025.49963`; Vulnerability of Large Language Models to Prompt Injection When Providing Medical Advice; JAMA Network Open; 2025 | 주차 주제 보강용 관련 논문으로 인용 |
+<!-- AUTO-RELATED-PAPER-REFLECTION:end -->

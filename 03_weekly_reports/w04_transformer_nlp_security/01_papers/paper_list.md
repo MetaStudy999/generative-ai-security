@@ -21,3 +21,16 @@
 ## 로컬 PDF 및 저작권 메모
 
 `01_papers/pdf/` 아래 PDF 5개가 Git 추적 대상으로 확인되었다. 공개 GitHub 저장소에서는 출판사 PDF 원문 대신 DOI/URL, 서지정보, 요약만 남기는 것이 안전하다. 사용자의 명시 승인 없이 PDF를 삭제하지 않았으며, 이미 추적 중인 PDF는 제출 전 삭제 또는 비공개 저장소 전환 검토가 필요하다.
+
+<!-- AUTO-RELATED-PAPER-REFLECTION:start -->
+## 논문/관련 논문 최종 반영표
+
+아래 표는 공식 DOI/arXiv 재검색 결과를 주차 보고서에 반영하기 위한 최종 판정이다. 기존 대조 기록은 보존하고, 보고서 본문과 참고문헌에서는 이 표의 `구분`과 `검증 상태`를 우선 사용한다.
+
+| ID | 구분 | 논문 제목 | 논문 | 저자 | 연도 | 학술지/학회 | 학술지/출처 | DOI/URL | 검증 상태 | 보고서 반영 |
+|---|---|---|---|---|---:|---|---|---|---|---|
+| P01 | 논문 / 확인 | Efficient Transformers: A Survey | Efficient Transformers: A Survey | Yi Tay, Mostafa Dehghani, Dara Bahri, Donald Metzler | 2022 | ACM Computing Surveys | ACM Computing Surveys | `https://doi.org/10.1145/3530811` | 공식 DOI 확인 | 공식 서지 기준으로 논문 인용 |
+| P02 | 논문 / 확인 | A Practical Survey on Faster and Lighter Transformers | A Practical Survey on Faster and Lighter Transformers | Quentin Fournier, Gaetan Marceau Caron, Daniel Aloise | 2023 | ACM Computing Surveys | ACM Computing Surveys | `https://doi.org/10.1145/3586074` | 공식 DOI 확인 | 공식 서지 기준으로 논문 인용 |
+| P04 | 논문 / 확인 | A Survey of Adversarial Defenses and Robustness in NLP | A Survey of Adversarial Defenses and Robustness in NLP | Shreya Goyal et al. | 2023 | ACM Computing Surveys | ACM Computing Surveys | `https://doi.org/10.1145/3593042` | 공식 DOI 확인 | 공식 서지 기준으로 논문 인용 |
+| P05 | 논문 / 확인 | Privacy Preserving Prompt Engineering: A Survey | Privacy Preserving Prompt Engineering: A Survey | Kennedy Edemacu, Xintao Wu | 2025 | ACM Computing Surveys | ACM Computing Surveys | `https://doi.org/10.1145/3729219` | 공식 DOI 확인 | 공식 서지 기준으로 논문 인용 |
+<!-- AUTO-RELATED-PAPER-REFLECTION:end -->

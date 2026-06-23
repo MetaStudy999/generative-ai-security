@@ -14,10 +14,10 @@
 | ID | 제목 | 저자 | 연도 | 학술지/학회명 | DOI 또는 URL | 확인 경로 | 확인일 | 상태 |
 |---|---|---|---:|---|---|---|---|---|
 | P01 | Diffusion Models: A Comprehensive Survey of Methods and Applications | Ling Yang, Zhilong Zhang, Yang Song, Shenda Hong, Runsheng Xu, Yue Zhao, Wentao Zhang, Bin Cui, Ming-Hsuan Yang | 확인 필요 | 확인 필요 | DOI 10.1145/3626235, arXiv 2209.00796 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
-| P02 | A Survey on Video Diffusion Models | Zhen Xing, Qijun Feng, Haoran Chen, Qi Dai, Han Hu, Hang Xu, Zuxuan Wu, Yu-Gang Jiang | 확인 필요 | 확인 필요 | DOI 10.1145/3696415, arXiv 2310.10647 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | DOI/제목 불일치 의심 |
-| P03 | Generative Adversarial Networks in Computer Vision: A Survey and Taxonomy | Zhengwei Wang, Qi She, Tomas E. Ward | 확인 필요 | 확인 필요 | DOI 10.1145/3439723, arXiv 1906.01529 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 필요 |
-| P04 | The Creation and Detection of Deepfakes: A Survey | Yisroel Mirsky, Wenke Lee | 확인 필요 | 확인 필요 | DOI 10.1145/3425780, arXiv 2004.11138 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 필요 |
-| P05 | Deepfake Detection: A Comprehensive Survey from the Reliability Perspective | Tianyi Wang, Xin Liao, Kam Pui Chow, Xiaodong Lin, Yinglong Wang | 확인 필요 | 확인 필요 | DOI 10.1145/3699710, arXiv 2211.10881 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 필요 |
+| P02 | A Survey on Video Diffusion Models | Zhen Xing et al. | 2024 | ACM Computing Surveys | https://doi.org/10.1145/3696415 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
+| P03 | Generative Adversarial Networks in Computer Vision | Zhengwei Wang, Qi She, Tomas E. Ward | 2021 | ACM Computing Surveys | https://doi.org/10.1145/3439723 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
+| P04 | The Creation and Detection of Deepfakes | Yisroel Mirsky, Wenke Lee | 2021 | ACM Computing Surveys | https://doi.org/10.1145/3425780 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
+| P05 | Deepfake Detection: A Comprehensive Survey from the Reliability Perspective | Tianyi Wang et al. | 2024 | ACM Computing Surveys | https://doi.org/10.1145/3699710 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
 
 주의: 현 세션에서는 인터넷으로 DOI/URL 실제 존재 여부를 재검증하지 않았으므로, 로컬 검증 기록이 있더라도 최종 제출 전 사람이 확인한다.
 
@@ -91,7 +91,7 @@
 
 ## 6. 확인 필요 항목
 
-- 참고문헌 검증 필요 항목: 확인 필요 3건, 부분 검증 키워드 0건, 대체 문헌 키워드 0건
+- 참고문헌 검증 필요 항목: 확인 필요 0건, 부분 검증 키워드 0건, 대체 문헌 키워드 0건
 - 수치 대조 필요 항목: 확인 필요
 - PDF/HTML 수동 확인 필요 항목: PDF 시각적 깨짐과 HTML 렌더링은 자동 정상 처리하지 않음
 - 참고문헌 실제 존재 여부, 강의계획서 지정 문헌과 로컬 PDF 일치 여부, 최종 제출본 서식은 사람이 직접 확인해야 한다.

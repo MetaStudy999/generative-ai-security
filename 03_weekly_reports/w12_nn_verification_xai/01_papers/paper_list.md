@@ -31,3 +31,17 @@
 ## 4. PDF 보관 정책
 
 `01_papers/pdf/`의 PDF 5개는 `git ls-files` 기준 이미 저장소 추적 대상이다. `.gitignore`에는 `03_weekly_reports/**/01_papers/pdf/*.pdf` 규칙이 있으나, 이미 추적 중인 PDF에는 적용되지 않는다. public GitHub 저장소에서는 출판사 PDF 원문 대신 DOI/URL, 서지정보, 요약만 공개하는 편이 안전하다. 삭제는 사용자 승인 후 별도 작업으로 처리한다.
+
+<!-- AUTO-RELATED-PAPER-REFLECTION:start -->
+## 논문/관련 논문 최종 반영표
+
+아래 표는 공식 DOI/arXiv 재검색 결과를 주차 보고서에 반영하기 위한 최종 판정이다. 기존 대조 기록은 보존하고, 보고서 본문과 참고문헌에서는 이 표의 `구분`과 `검증 상태`를 우선 사용한다.
+
+| ID | 구분 | 논문 제목 | 논문 | 저자 | 연도 | 학술지/학회 | 학술지/출처 | DOI/URL | 검증 상태 | 보고서 반영 |
+|---|---|---|---|---|---:|---|---|---|---|---|
+| P01 | 논문 / 확인 | A Review of Abstraction Methods Toward Verifying Neural Networks | A Review of Abstraction Methods Toward Verifying Neural Networks | Fateh Boudardara et al. | 2024 | ACM Transactions on Embedded Computing Systems | ACM Transactions on Embedded Computing Systems | `https://doi.org/10.1145/3617508` | 공식 DOI 확인 | 공식 서지 기준으로 논문 인용 |
+| P02 | 관련 논문 / 확인 | Adversarial Attacks and Defenses in Deep Learning: From a Perspective of Cybersecurity | Adversarial Attacks and Defenses in Deep Learning: From a Perspective of Cybersecurity | Shuai Zhou et al. | 2022 | ACM Computing Surveys | ACM Computing Surveys | `https://doi.org/10.1145/3547330` | 공식 DOI 확인 | 주차 주제 보강용 관련 논문으로 인용 |
+| P03 | 관련 논문 / 확인 | Adversarial Attacks in Explainable Machine Learning: A Survey of Threats Against Models and Humans | Adversarial Attacks in Explainable Machine Learning: A Survey of Threats Against Models and Humans | Jon Vadillo et al. | 2024 | WIREs Data Mining and Knowledge Discovery | WIREs Data Mining and Knowledge Discovery | `https://doi.org/10.1002/widm.1567` | 공식 DOI 확인 | 주차 주제 보강용 관련 논문으로 인용 |
+| P04 | 관련 논문 / 확인 | Adversarial Robustness of Neural Networks from the Perspective of Lipschitz Calculus: A Survey | Adversarial Robustness of Neural Networks from the Perspective of Lipschitz Calculus: A Survey | Monty-Maximilian Zuhlke, Daniel Kudenko | 2025 | ACM Computing Surveys | ACM Computing Surveys | `https://doi.org/10.1145/3648351` | 공식 DOI 확인 | 주차 주제 보강용 관련 논문으로 인용 |
+| P05 | 관련 논문 / 확인 | Triangular Trade-off between Robustness, Accuracy, and Fairness in Deep Neural Networks: A Survey | Triangular Trade-off between Robustness, Accuracy, and Fairness in Deep Neural Networks: A Survey | Jingyang Li, Guoqiang Li | 2025 | ACM Computing Surveys | ACM Computing Surveys | `https://doi.org/10.1145/3645088` | 공식 DOI 확인 | 주차 주제 보강용 관련 논문으로 인용 |
+<!-- AUTO-RELATED-PAPER-REFLECTION:end -->

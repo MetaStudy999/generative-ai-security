@@ -22,3 +22,13 @@
 3. 로컬 PDF와 강의 프롬프트의 출판 정보가 다른 항목은 로컬 PDF 및 DOI 메타데이터 기준 메모를 남긴다.
 4. 최종 논문에는 DOI/URL 검증이 끝난 문헌만 확정 인용한다.
 5. Article 번호가 DOI 등록 메타데이터에서 확인되지 않으면 `확인 필요`로 유지한다.
+
+<!-- AUTO-RELATED-PAPER-REFLECTION:start -->
+## 논문/관련 논문 최종 판정 반영표
+
+아래 표는 공식 DOI/arXiv 재검색 결과를 반영한 최종 판정이다. `논문 / 확인`은 공식 서지 기준으로 논문 인용, `관련 논문 / 확인`은 주차 주제 보강용 관련 논문 인용을 뜻한다.
+
+| ID | 구분 | 상태 | 공식 확인 기준 | 보고서 반영 |
+|---|---|---|---|---|
+| P04 | 논문 / 확인 | 공식 DOI 확인 | `https://doi.org/10.1145/3724113`; The Federation Strikes Back: A Survey of Federated Learning Privacy Attacks, Defenses, Applications, and Policy Landscape; ACM Computing Surveys; 2025 | 공식 서지 기준으로 논문 인용 |
+<!-- AUTO-RELATED-PAPER-REFLECTION:end -->

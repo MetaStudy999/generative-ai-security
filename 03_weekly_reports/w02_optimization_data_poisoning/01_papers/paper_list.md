@@ -26,3 +26,15 @@
 - P02의 최종 ACM판은 2023년 ACM Computing Surveys 판본을 우선 인용하고, arXiv는 보조 URL로 병기한다.
 - P04는 현재 로컬 PDF와 DOI 기준으로는 "Wild Patterns Reloaded"가 ACM Computing Surveys 최종판이다. 강의계획서 지정 제목과 완전히 동일한 출판물은 확인하지 못했으므로 최종 제출 전 사람이 한 번 더 대조한다.
 - 로컬 PDF 원문은 Git 추적 중이므로 public GitHub 공개 시 저작권 위험이 있다. 공개 저장소에는 원칙적으로 DOI/URL, 서지정보, 요약만 남긴다.
+
+<!-- AUTO-RELATED-PAPER-REFLECTION:start -->
+## 논문/관련 논문 최종 반영표
+
+아래 표는 공식 DOI/arXiv 재검색 결과를 주차 보고서에 반영하기 위한 최종 판정이다. 기존 대조 기록은 보존하고, 보고서 본문과 참고문헌에서는 이 표의 `구분`과 `검증 상태`를 우선 사용한다.
+
+| ID | 구분 | 논문 제목 | 논문 | 저자 | 연도 | 학술지/학회 | 학술지/출처 | DOI/URL | 검증 상태 | 보고서 반영 |
+|---|---|---|---|---|---:|---|---|---|---|---|
+| P02 | 논문 / 확인 | Efficient Deep Learning: A Survey on Making Deep Learning Models Smaller, Faster, and Better | Efficient Deep Learning: A Survey on Making Deep Learning Models Smaller, Faster, and Better | Gaurav Menghani | 2023 | ACM Computing Surveys | ACM Computing Surveys | `https://doi.org/10.1145/3578938` | 공식 DOI 확인 | 공식 서지 기준으로 논문 인용 |
+| P03 | 논문 / 확인 | A Comprehensive Survey on Poisoning Attacks and Countermeasures in Machine Learning | A Comprehensive Survey on Poisoning Attacks and Countermeasures in Machine Learning | Zhiyi Tian, Lei Cui, Jie Liang, Shui Yu | 2023 | ACM Computing Surveys | ACM Computing Surveys | `https://doi.org/10.1145/3551636` | 공식 DOI 확인 | 공식 서지 기준으로 논문 인용 |
+| P04 | 관련 논문 / 확인 | Wild Patterns Reloaded: A Survey of Machine Learning Security against Training Data Poisoning | Wild Patterns Reloaded: A Survey of Machine Learning Security against Training Data Poisoning | Antonio Emanuele Cina et al. | 2023 | ACM Computing Surveys | ACM Computing Surveys | `https://doi.org/10.1145/3585385` | 공식 DOI 확인 | 주차 주제 보강용 관련 논문으로 인용 |
+<!-- AUTO-RELATED-PAPER-REFLECTION:end -->

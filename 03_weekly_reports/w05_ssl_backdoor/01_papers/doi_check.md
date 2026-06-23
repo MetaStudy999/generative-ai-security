@@ -35,3 +35,16 @@
 1. DOI는 추측해서 적지 않는다.
 2. 프롬프트/강의계획서 제목과 로컬 PDF 제목이 다르면 정식 출판 제목을 우선하되, 동일 논문 여부가 불명확한 항목은 `확인 필요`로 남긴다.
 3. 최종 제출 전 P02 대체 문헌 사용 여부, P03 Article 번호, P04 동일 논문 여부, P05 저자 표기를 사람이 다시 확인한다.
+
+<!-- AUTO-RELATED-PAPER-REFLECTION:start -->
+## 논문/관련 논문 최종 판정 반영표
+
+아래 표는 공식 DOI/arXiv 재검색 결과를 반영한 최종 판정이다. `논문 / 확인`은 공식 서지 기준으로 논문 인용, `관련 논문 / 확인`은 주차 주제 보강용 관련 논문 인용을 뜻한다.
+
+| ID | 구분 | 상태 | 공식 확인 기준 | 보고서 반영 |
+|---|---|---|---|---|
+| P01 | 논문 / 확인 | 공식 DOI 확인 | `https://doi.org/10.1109/TPAMI.2024.3415112`; A Survey on Self-Supervised Learning: Algorithms, Applications, and Future Trends; IEEE TPAMI; 2024 | 공식 서지 기준으로 논문 인용 |
+| P02 | 관련 논문 / 확인 | 공식 DOI 확인 | `https://doi.org/10.1145/3746280`; A Comprehensive Survey on Self-Supervised Learning for Recommendation; ACM Computing Surveys; 2025 | 주차 주제 보강용 관련 논문으로 인용 |
+| P04 | 관련 논문 / 확인 | 공식 DOI 확인 | `https://doi.org/10.1145/3538707`; Threats to Training: A Survey of Poisoning Attacks and Defenses on Machine Learning Systems; ACM Computing Surveys; 2022 | 주차 주제 보강용 관련 논문으로 인용 |
+| P05 | 논문 / 확인 | 공식 DOI 확인 | `https://doi.org/10.1016/j.jnlest.2025.100326`; A survey of backdoor attacks and defences: From deep neural networks to large language models; Journal of Electronic Science and Technology; 2025 | 공식 서지 기준으로 논문 인용 |
+<!-- AUTO-RELATED-PAPER-REFLECTION:end -->

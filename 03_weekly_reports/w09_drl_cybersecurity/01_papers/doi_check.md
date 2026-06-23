@@ -1,24 +1,34 @@
 # W09 DOI/URL 검증표
 
-> 검증일: 2026-06-23. 검증 근거는 로컬 PDF 첫 페이지, DOI/Crossref 메타데이터, 실행 로그다. 공식 출판사 페이지에서 전문 접근권과 PDF 재배포 가능 여부는 별도 확인이 필요하다.
+> 검증일: 2026-06-24 KST. 검증 근거는 Crossref DOI 등록 메타데이터, DOI가 가리키는 출판사 primary URL, 기존 로컬 PDF 첫 페이지 기록이다. 공식 DOI 존재는 확인했지만, 강의계획서 지정 저자명과 공식 DOI 메타데이터가 충돌하는 항목은 `확인 필요`로 유지한다.
 
 | ID | 공식 제목 | DOI | 공식 출판정보 | 로컬 PDF 상태 | 상태 | 비고 |
 |---|---|---|---|---|---|---|
-| P01 | Deep Reinforcement Learning: A Brief Survey | https://doi.org/10.1109/MSP.2017.2743240 | IEEE Signal Processing Magazine, 34(6), 26-38, Nov. 2017 | arXiv extended version, 제목은 `A Brief Survey of Deep Reinforcement Learning` | 부분 검증 | 동일 저자·동일 주제의 확장본으로 판단하되, 참고문헌은 공식 출판판 제목/권호/쪽수 사용 |
-| P02 | Deep Reinforcement Learning for Autonomous Driving: A Survey | https://doi.org/10.1109/TITS.2021.3054625 | IEEE Transactions on Intelligent Transportation Systems, 23(6), 4909-4926, Jun. 2022 | arXiv v2, 2021-01-23 | 부분 검증 | DOI 등록/early access는 2021, 최종 출판판은 2022 |
-| P03 | Deep Reinforcement Learning for Cyber Security | https://doi.org/10.1109/TNNLS.2021.3121870 | IEEE Transactions on Neural Networks and Learning Systems, 34(8), 3779-3795, Aug. 2023 | IEEE early access/arXiv v4 표기 | 확인 필요 | DOI/PDF 저자 `Thanh Thi Nguyen; Vijay Janapa Reddi`와 강의계획서 `Ngoc-Tinh Nguyen et al.` 불일치 |
-| P04 | Cyber-security and reinforcement learning -- A brief survey | https://doi.org/10.1016/j.engappai.2022.105116 | Engineering Applications of Artificial Intelligence, 114, Article 105116, Sep. 2022 | Elsevier 출판판 PDF | 확인 필요 | DOI/PDF 저자 `Amrin Maria Khan Adawadkar; Nilima Kulkarni`와 강의계획서 `Aditya Adawadkar et al.` 불일치. 제목은 공식 메타데이터에서 em dash 사용 |
-| P05 | Deep Reinforcement Learning Verification: A Survey | https://doi.org/10.1145/3596444 | ACM Computing Surveys, 55(14s), Article 330, 31 pages, Jul. 2023 | ACM 출판판 PDF | 확인 필요 | DOI/PDF 저자 `Matthew Landers; Afsaneh Doryab`와 강의계획서 `H. Yan et al.` 불일치 |
+| P01 | Deep Reinforcement Learning: A Brief Survey | https://doi.org/10.1109/MSP.2017.2743240 | IEEE Signal Processing Magazine, 34(6), 26-38, Nov. 2017 | arXiv extended version, 제목은 `A Brief Survey of Deep Reinforcement Learning` | 부분 검증: 공식 DOI 확인 완료 | 동일 저자·동일 주제의 확장본으로 판단하되, 참고문헌은 공식 출판판 제목/권호/쪽수 사용 |
+| P02 | Deep Reinforcement Learning for Autonomous Driving: A Survey | https://doi.org/10.1109/TITS.2021.3054625 | IEEE Transactions on Intelligent Transportation Systems, 23(6), 4909-4926, Jun. 2022 | arXiv v2, 2021-01-23 | 부분 검증: 공식 DOI 확인 완료 | DOI 등록/early access는 2021, 최종 출판판은 2022 |
+| P03 | Deep Reinforcement Learning for Cyber Security | https://doi.org/10.1109/TNNLS.2021.3121870 | IEEE Transactions on Neural Networks and Learning Systems, 34(8), 3779-3795, Aug. 2023 | IEEE early access/arXiv v4 표기 | DOI 확인 완료 / 강의계획서 저자명 불일치 | DOI 저자 `Thanh Thi Nguyen; Vijay Janapa Reddi`와 강의계획서 `Ngoc-Tinh Nguyen et al.` 충돌 |
+| P04 | Cyber-security and reinforcement learning — A brief survey | https://doi.org/10.1016/j.engappai.2022.105116 | Engineering Applications of Artificial Intelligence, 114, Article 105116, Sep. 2022 | Elsevier 출판판 PDF | DOI 확인 완료 / 강의계획서 저자명 불일치 | DOI 저자 `Amrin Maria Khan Adawadkar; Nilima Kulkarni`와 강의계획서 `Aditya Adawadkar et al.` 충돌 |
+| P05 | Deep Reinforcement Learning Verification: A Survey | https://doi.org/10.1145/3596444 | ACM Computing Surveys, 55(14s), Article 330, pp. 1-31, online Jul. 17, 2023 | ACM 출판판 PDF | DOI 확인 완료 / 강의계획서 지정 저자 동일 여부 확인 필요 | DOI 저자 `Matthew Landers; Afsaneh Doryab`와 강의계획서 `H. Yan et al.` 충돌 |
+
+## 공식 DOI 메타데이터 확인
+
+| ID | Crossref publisher | 출판사 primary URL | DOI 메타데이터 대조 결과 |
+|---|---|---|---|
+| P01 | Institute of Electrical and Electronics Engineers (IEEE) | `https://ieeexplore.ieee.org/document/8103164/` | 제목, 저자, IEEE Signal Processing Magazine 34(6), 26-38, 2017 확인 |
+| P02 | Institute of Electrical and Electronics Engineers (IEEE) | `https://ieeexplore.ieee.org/document/9351818/` | 제목, 저자, IEEE TITS 23(6), 4909-4926, 2022 확인 |
+| P03 | Institute of Electrical and Electronics Engineers (IEEE) | `https://ieeexplore.ieee.org/document/9596578/` | 제목, 저자, IEEE TNNLS 34(8), 3779-3795, 2023 확인 |
+| P04 | Elsevier BV | `https://linkinghub.elsevier.com/retrieve/pii/S0952197622002512` | 제목, 저자, Engineering Applications of Artificial Intelligence 114, Article 105116, 2022 확인 |
+| P05 | Association for Computing Machinery (ACM) | `https://dl.acm.org/doi/10.1145/3596444` | 제목, 저자, ACM Computing Surveys 55(14s), Article 330, 2023 확인 |
 
 ## 강의계획서 패킷 대조
 
 | ID | 동일 여부 판단 | 남은 확인 |
 |---|---|---|
-| P01 | 부분 검증: 공식 제목과 로컬 arXiv 제목은 다르지만 동일 저자·동일 DOI 연결 문헌으로 처리 가능 | arXiv extended version과 출판판의 세부 차이(그림/쪽수/부록)는 최종 제출 전 확인 필요 |
-| P02 | 부분 검증: 로컬 arXiv v2와 IEEE TITS 출판판은 같은 제목/저자 흐름이나 출판판 정보가 우선 | arXiv v2와 최종 IEEE판의 세부 차이 확인 필요 |
-| P03 | 확인 필요: 제목·학술지·연도는 강의계획서와 맞지만 첫 저자명이 다름 | `Ngoc-Tinh Nguyen` 표기가 오기인지 대체 문헌인지 교수자/강의자료 원본 확인 필요 |
-| P04 | 확인 필요: 제목·학술지는 맞지만 첫 저자명이 다름 | `Aditya Adawadkar` 표기가 오기인지 대체 문헌인지 확인 필요 |
-| P05 | 확인 필요: 제목·학술지는 맞지만 저자명이 완전히 다름 | `H. Yan et al.` 지정 논문과 Landers/Doryab 문헌의 동일 여부 확인 필요 |
+| P01 | 부분 검증: 공식 제목과 로컬 arXiv 제목은 다르지만 동일 저자·동일 DOI 연결 문헌으로 처리 가능 | arXiv extended version과 출판판의 세부 차이(그림/쪽수/부록)는 최종 제출 전 판본 대조 필요 |
+| P02 | 부분 검증: 로컬 arXiv v2와 IEEE TITS 출판판은 같은 제목/저자 흐름이나 출판판 정보가 우선 | arXiv v2와 최종 IEEE판의 세부 차이 판본 대조 필요 |
+| P03 | DOI 확인 완료 / 강의계획서 저자명 불일치: 제목·학술지·연도는 강의계획서와 맞지만 첫 저자명이 다름 | `Ngoc-Tinh Nguyen` 표기가 오기인지, 별도 지정 문헌을 뜻하는지 교수자/강의자료 원본 확인 필요 |
+| P04 | DOI 확인 완료 / 강의계획서 저자명 불일치: 제목·학술지는 맞지만 첫 저자명이 다름 | `Aditya Adawadkar` 표기가 오기인지, 별도 지정 문헌을 뜻하는지 확인 필요 |
+| P05 | DOI 확인 완료 / 강의계획서 지정 저자 동일 여부 확인 필요: 제목·학술지는 맞지만 저자명이 완전히 다름 | `H. Yan et al.` 지정 논문과 Landers/Doryab 문헌의 동일 여부 확인 필요 |
 
 주의: W09의 P05는 강의계획서 지정 저자명 `H. Yan et al.`과 현재 로컬 PDF 기준 `Matthew Landers; Afsaneh Doryab`가 다르므로, 동일 논문 여부와 최종 ACM 출판정보를 확인 필요 상태로 유지한다.
 
@@ -35,3 +45,17 @@
 2. 로컬 PDF와 DOI 메타데이터가 다르면 공식 출판판 메타데이터를 우선하되, 로컬 PDF 차이를 비고에 남긴다.
 3. 강의계획서 저자명과 DOI/PDF 저자명이 충돌하는 항목은 `확인 필요`로 유지한다.
 4. 참고문헌 번호는 [1] P01, [2] P02, [3] P03, [4] P04, [5] P05에 대응시킨다.
+
+<!-- AUTO-RELATED-PAPER-REFLECTION:start -->
+## 논문/관련 논문 최종 판정 반영표
+
+아래 표는 공식 DOI/arXiv 재검색 결과를 반영한 최종 판정이다. `논문 / 확인`은 공식 서지 기준으로 논문 인용, `관련 논문 / 확인`은 주차 주제 보강용 관련 논문 인용을 뜻한다.
+
+| ID | 구분 | 상태 | 공식 확인 기준 | 보고서 반영 |
+|---|---|---|---|---|
+| P01 | 논문 / 확인 | 공식 DOI 확인 | `https://doi.org/10.1109/MSP.2017.2743240`; Deep Reinforcement Learning: A Brief Survey; IEEE Signal Processing Magazine; 2017 | 공식 서지 기준으로 논문 인용 |
+| P02 | 논문 / 확인 | 공식 DOI 확인 | `https://doi.org/10.1109/TITS.2021.3054625`; Deep Reinforcement Learning for Autonomous Driving: A Survey; IEEE Transactions on Intelligent Transportation Systems; 2022 | 공식 서지 기준으로 논문 인용 |
+| P03 | 논문 / 확인 | 공식 DOI 확인 | `https://doi.org/10.1109/TNNLS.2021.3121870`; Deep Reinforcement Learning for Cyber Security; IEEE TNNLS; 2023 | 공식 서지 기준으로 논문 인용 |
+| P04 | 논문 / 확인 | 공식 DOI 확인 | `https://doi.org/10.1016/j.engappai.2022.105116`; Cyber-security and reinforcement learning - A brief survey; Engineering Applications of Artificial Intelligence; 2022 | 공식 서지 기준으로 논문 인용 |
+| P05 | 논문 / 확인 | 공식 DOI 확인 | `https://doi.org/10.1145/3596444`; Deep Reinforcement Learning Verification: A Survey; ACM Computing Surveys; 2023 | 공식 서지 기준으로 논문 인용 |
+<!-- AUTO-RELATED-PAPER-REFLECTION:end -->

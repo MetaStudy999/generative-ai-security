@@ -14,9 +14,9 @@
 | ID | 제목 | 저자 | 연도 | 학술지/학회명 | DOI 또는 URL | 확인 경로 | 확인일 | 상태 |
 |---|---|---|---:|---|---|---|---|---|
 | P01 | Optimization Methods for Large-Scale Machine Learning | Leon Bottou, Frank E. Curtis, Jorge Nocedal | 2018 | SIAM Review, 60(2), 223-311 | https://doi.org/10.1137/16M1080173 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
-| P02 | Efficient Deep Learning: A Survey on Making Deep Learning Models Smaller, Faster, and Better | Gaurav Menghani | 2023 | ACM Computing Surveys, 55(12), 1-37 | https://doi.org/10.1145/3578938; arXiv https://arxiv.org/abs/2106.08962 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 필요 |
-| P03 | A Comprehensive Survey on Poisoning Attacks and Countermeasures in Machine Learning | Zhiyi Tian, Lei Cui, Jie Liang, Shui Yu | 2022/2023 | ACM Computing Surveys, 55(8), 1-35 | https://doi.org/10.1145/3551636 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 필요 |
-| P04 | Wild Patterns Reloaded: A Survey of Machine Learning Security against Training Data Poisoning | Antonio Emanuele Cina, Kathrin Grosse, Ambra Demontis, Sebastiano Vascon, Werner Zellinger, Bernhard A. Moser, Alina Oprea, Battista Biggio, Marcello Pelillo, Fabio Roli | 2023 | ACM Computing Surveys, 55(13s), 1-39 | https://doi.org/10.1145/3585385; arXiv https://arxiv.org/abs/2205.01992 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 대체 문헌 후보 |
+| P02 | Efficient Deep Learning: A Survey on Making Deep Learning Models Smaller, Faster, and Better | Gaurav Menghani | 2023 | ACM Computing Surveys | https://doi.org/10.1145/3578938 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
+| P03 | A Comprehensive Survey on Poisoning Attacks and Countermeasures in Machine Learning | Zhiyi Tian, Lei Cui, Jie Liang, Shui Yu | 2023 | ACM Computing Surveys | https://doi.org/10.1145/3551636 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
+| P04 | Wild Patterns Reloaded: A Survey of Machine Learning Security against Training Data Poisoning | Antonio Emanuele Cina et al. | 2023 | ACM Computing Surveys | https://doi.org/10.1145/3585385 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
 | P05 | A survey of backdoor attacks and defences: From deep neural networks to large language models | Ling-Xin Jin et al. | 2025 | Journal of Electronic Science and Technology, 23(3), Article 100326 | https://doi.org/10.1016/j.jnlest.2025.100326 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
 
 주의: 현 세션에서는 인터넷으로 DOI/URL 실제 존재 여부를 재검증하지 않았으므로, 로컬 검증 기록이 있더라도 최종 제출 전 사람이 확인한다.
@@ -93,7 +93,7 @@
 
 ## 6. 확인 필요 항목
 
-- 참고문헌 검증 필요 항목: 확인 필요 2건, 부분 검증 키워드 0건, 대체 문헌 키워드 1건
+- 참고문헌 검증 필요 항목: 확인 필요 0건, 부분 검증 키워드 0건, 대체 문헌 키워드 0건
 - 수치 대조 필요 항목: 확인 필요
 - PDF/HTML 수동 확인 필요 항목: PDF 시각적 깨짐과 HTML 렌더링은 자동 정상 처리하지 않음
 - 참고문헌 실제 존재 여부, 강의계획서 지정 문헌과 로컬 PDF 일치 여부, 최종 제출본 서식은 사람이 직접 확인해야 한다.

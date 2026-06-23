@@ -25,3 +25,16 @@
 2. ACM Article 번호처럼 확인되지 않은 필드는 `확인 필요`로 남긴다.
 3. 최종 제출 전 사람 검토자가 제목 표기, 저자명, 권호, 쪽, DOI 링크를 한 번 더 대조한다.
 4. 로컬 PDF는 인용 근거가 아니라 독해 편의 자료이며, 공개 저장소 배포 가능성은 별도로 판단한다.
+
+<!-- AUTO-RELATED-PAPER-REFLECTION:start -->
+## 논문/관련 논문 최종 판정 반영표
+
+아래 표는 공식 DOI/arXiv 재검색 결과를 반영한 최종 판정이다. `논문 / 확인`은 공식 서지 기준으로 논문 인용, `관련 논문 / 확인`은 주차 주제 보강용 관련 논문 인용을 뜻한다.
+
+| ID | 구분 | 상태 | 공식 확인 기준 | 보고서 반영 |
+|---|---|---|---|---|
+| P01 | 논문 / 확인 | 공식 DOI 확인 | `https://doi.org/10.1145/3530811`; Efficient Transformers: A Survey; ACM Computing Surveys; 2022 | 공식 서지 기준으로 논문 인용 |
+| P02 | 논문 / 확인 | 공식 DOI 확인 | `https://doi.org/10.1145/3586074`; A Practical Survey on Faster and Lighter Transformers; ACM Computing Surveys; 2023 | 공식 서지 기준으로 논문 인용 |
+| P04 | 논문 / 확인 | 공식 DOI 확인 | `https://doi.org/10.1145/3593042`; A Survey of Adversarial Defenses and Robustness in NLP; ACM Computing Surveys; 2023 | 공식 서지 기준으로 논문 인용 |
+| P05 | 논문 / 확인 | 공식 DOI 확인 | `https://doi.org/10.1145/3729219`; Privacy Preserving Prompt Engineering: A Survey; ACM Computing Surveys; 2025 | 공식 서지 기준으로 논문 인용 |
+<!-- AUTO-RELATED-PAPER-REFLECTION:end -->

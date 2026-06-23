@@ -29,3 +29,15 @@
 1. DOI/URL을 확인하지 못한 항목은 `확인 필요`로 표시한다.
 2. 제목이 강의계획서와 로컬 PDF에서 다를 경우, 출판사/DOI 메타데이터 제목을 우선 기록하고 차이를 메모로 남긴다.
 3. ACM 원문 페이지는 접근 제한이 있을 수 있으므로 Article 번호는 최종 제출 전 학교 네트워크 또는 도서관 접근으로 재확인한다.
+
+<!-- AUTO-RELATED-PAPER-REFLECTION:start -->
+## 논문/관련 논문 최종 판정 반영표
+
+아래 표는 공식 DOI/arXiv 재검색 결과를 반영한 최종 판정이다. `논문 / 확인`은 공식 서지 기준으로 논문 인용, `관련 논문 / 확인`은 주차 주제 보강용 관련 논문 인용을 뜻한다.
+
+| ID | 구분 | 상태 | 공식 확인 기준 | 보고서 반영 |
+|---|---|---|---|---|
+| P02 | 논문 / 확인 | 공식 DOI 확인 | `https://doi.org/10.1145/3578938`; Efficient Deep Learning: A Survey on Making Deep Learning Models Smaller, Faster, and Better; ACM Computing Surveys; 2023 | 공식 서지 기준으로 논문 인용 |
+| P03 | 논문 / 확인 | 공식 DOI 확인 | `https://doi.org/10.1145/3551636`; A Comprehensive Survey on Poisoning Attacks and Countermeasures in Machine Learning; ACM Computing Surveys; 2023 | 공식 서지 기준으로 논문 인용 |
+| P04 | 관련 논문 / 확인 | 공식 DOI 확인 | `https://doi.org/10.1145/3585385`; Wild Patterns Reloaded: A Survey of Machine Learning Security against Training Data Poisoning; ACM Computing Surveys; 2023 | 주차 주제 보강용 관련 논문으로 인용 |
+<!-- AUTO-RELATED-PAPER-REFLECTION:end -->

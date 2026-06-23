@@ -25,3 +25,15 @@
 - DOI/URL은 확인 가능한 범위에서만 입력했다. 출판사 페이지 접근이 제한된 항목은 로컬 PDF 메타데이터 또는 arXiv의 DOI 정보를 검증 근거로 남겼다.
 - `SUBSTITUTE`가 포함된 PDF는 W01 폴더에는 없다.
 - PDF 원문 5개가 Git 추적 대상에 포함되어 있어 공개 저장소에서는 저작권 위험이 있다. 공개 제출 전 DOI/URL과 서지정보만 남기고 PDF 삭제 또는 비공개 보관을 검토해야 한다.
+
+<!-- AUTO-RELATED-PAPER-REFLECTION:start -->
+## 논문/관련 논문 최종 반영표
+
+아래 표는 공식 DOI/arXiv 재검색 결과를 주차 보고서에 반영하기 위한 최종 판정이다. 기존 대조 기록은 보존하고, 보고서 본문과 참고문헌에서는 이 표의 `구분`과 `검증 상태`를 우선 사용한다.
+
+| ID | 구분 | 논문 제목 | 논문 | 저자 | 연도 | 학술지/학회 | 학술지/출처 | DOI/URL | 검증 상태 | 보고서 반영 |
+|---|---|---|---|---|---:|---|---|---|---|---|
+| P02 | 논문 / 확인 | Assuring the Machine Learning Lifecycle: Desiderata, Methods, and Challenges | Assuring the Machine Learning Lifecycle: Desiderata, Methods, and Challenges | Rob Ashmore, Radu Calinescu, Colin Paterson | 2021 | ACM Computing Surveys | ACM Computing Surveys | `https://doi.org/10.1145/3453444` | 공식 DOI 확인 | 공식 서지 기준으로 논문 인용 |
+| P04 | 관련 논문 / 확인 | Adversarial Attacks and Defenses in Machine Learning-Powered Networks: A Contemporary Survey | Adversarial Attacks and Defenses in Machine Learning-Powered Networks: A Contemporary Survey | Yulong Wang et al. | 2023 | arXiv | arXiv | `https://arxiv.org/abs/2303.06302` | 공식 arXiv 확인 | 주차 주제 보강용 관련 논문으로 인용 |
+| P05 | 논문 / 확인 | A Survey of Privacy Attacks in Machine Learning | A Survey of Privacy Attacks in Machine Learning | Maria Rigaki, Sebastian Garcia | 2023 | ACM Computing Surveys | ACM Computing Surveys | `https://doi.org/10.1145/3624010` | 공식 DOI 확인 | 공식 서지 기준으로 논문 인용 |
+<!-- AUTO-RELATED-PAPER-REFLECTION:end -->

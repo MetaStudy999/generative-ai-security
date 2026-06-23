@@ -16,3 +16,16 @@
 - P04는 DOI `10.1145/3425780`이 확인되지만 로컬 PDF는 arXiv/ACM 양식 preprint로 DOI placeholder가 남아 있다. 참고문헌에는 ACM DOI를 우선 사용한다.
 - P05는 출판사 기준 저자명이 `Tianyi Wang et al.`이며 강의계획서의 `J. Wang et al.` 표기는 축약 또는 오기 가능성이 있어 확인 필요로 남긴다.
 - `01_papers/pdf/` 아래 PDF 원문 5개는 git 추적 대상이다. public GitHub 저장소에서는 저작권 위험이 있으므로 DOI/URL과 요약만 남기고 PDF 원문 삭제를 사람이 별도 검토해야 한다.
+
+<!-- AUTO-RELATED-PAPER-REFLECTION:start -->
+## 논문/관련 논문 최종 반영표
+
+아래 표는 공식 DOI/arXiv 재검색 결과를 주차 보고서에 반영하기 위한 최종 판정이다. 기존 대조 기록은 보존하고, 보고서 본문과 참고문헌에서는 이 표의 `구분`과 `검증 상태`를 우선 사용한다.
+
+| ID | 구분 | 논문 제목 | 논문 | 저자 | 연도 | 학술지/학회 | 학술지/출처 | DOI/URL | 검증 상태 | 보고서 반영 |
+|---|---|---|---|---|---:|---|---|---|---|---|
+| P02 | 논문 / 확인 | A Survey on Video Diffusion Models | A Survey on Video Diffusion Models | Zhen Xing et al. | 2024 | ACM Computing Surveys | ACM Computing Surveys | `https://doi.org/10.1145/3696415` | 공식 DOI 확인 | 공식 서지 기준으로 논문 인용 |
+| P03 | 논문 / 확인 | Generative Adversarial Networks in Computer Vision | Generative Adversarial Networks in Computer Vision | Zhengwei Wang, Qi She, Tomas E. Ward | 2021 | ACM Computing Surveys | ACM Computing Surveys | `https://doi.org/10.1145/3439723` | 공식 DOI 확인 | 공식 서지 기준으로 논문 인용 |
+| P04 | 논문 / 확인 | The Creation and Detection of Deepfakes | The Creation and Detection of Deepfakes | Yisroel Mirsky, Wenke Lee | 2021 | ACM Computing Surveys | ACM Computing Surveys | `https://doi.org/10.1145/3425780` | 공식 DOI 확인 | 공식 서지 기준으로 논문 인용 |
+| P05 | 논문 / 확인 | Deepfake Detection: A Comprehensive Survey from the Reliability Perspective | Deepfake Detection: A Comprehensive Survey from the Reliability Perspective | Tianyi Wang et al. | 2024 | ACM Computing Surveys | ACM Computing Surveys | `https://doi.org/10.1145/3699710` | 공식 DOI 확인 | 공식 서지 기준으로 논문 인용 |
+<!-- AUTO-RELATED-PAPER-REFLECTION:end -->

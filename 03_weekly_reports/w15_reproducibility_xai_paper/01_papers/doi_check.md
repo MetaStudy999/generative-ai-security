@@ -19,3 +19,14 @@
 - P03은 `Explainable AI (XAI): Core Ideas, Techniques, and Solutions`라는 ACM Computing Surveys 논문의 DOI `10.1145/3561048`이 확인되었으나, 로컬 PDF는 `Mersha et al., Explainable Artificial Intelligence: A Survey of Needs, Techniques, Applications, and Future Direction`이므로 지정 논문 원문으로 취급하지 않는다.
 - P05는 arXiv `2312.12936` metadata가 DOI `10.1145/3774643`을 포함하고, Crossref metadata도 동일 제목과 저자, ACM Computing Surveys online publication을 반환하므로 DOI 확인 상태로 갱신한다.
 - ACM 원문 페이지는 네트워크 환경에서 Cloudflare challenge로 직접 열람이 제한될 수 있으므로, 최종 제출 전 브라우저에서 DOI landing page와 PDF 권한을 사람이 재확인한다.
+
+<!-- AUTO-RELATED-PAPER-REFLECTION:start -->
+## 논문/관련 논문 최종 판정 반영표
+
+아래 표는 공식 DOI/arXiv 재검색 결과를 반영한 최종 판정이다. `논문 / 확인`은 공식 서지 기준으로 논문 인용, `관련 논문 / 확인`은 주차 주제 보강용 관련 논문 인용을 뜻한다.
+
+| ID | 구분 | 상태 | 공식 확인 기준 | 보고서 반영 |
+|---|---|---|---|---|
+| P01 | 논문 / 확인 | 공식 DOI 확인 | `https://doi.org/10.1145/3641289`; A Survey on Evaluation of Large Language Models; ACM Transactions on Intelligent Systems and Technology; 2024 | 공식 서지 기준으로 논문 인용 |
+| P03 | 논문 / 확인 | 공식 DOI 확인 | `https://doi.org/10.1145/3561048`; Explainable AI (XAI): Core Ideas, Techniques, and Solutions; ACM Computing Surveys; 2023 | 공식 서지 기준으로 논문 인용 |
+<!-- AUTO-RELATED-PAPER-REFLECTION:end -->

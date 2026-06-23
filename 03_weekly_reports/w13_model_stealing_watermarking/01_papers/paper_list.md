@@ -19,3 +19,15 @@
 ## PDF 보관 위험
 
 `01_papers/pdf/`의 PDF 5개는 이미 git 추적 대상이다. 공개 GitHub 저장소에는 원칙적으로 출판사 PDF 원문 대신 DOI/URL, 서지정보, 요약만 남기는 것이 안전하다. 사용자 승인 없이 PDF를 삭제하지 않았으며, 최종 공개 전 삭제 또는 비공개 저장소 이전 검토가 필요하다.
+
+<!-- AUTO-RELATED-PAPER-REFLECTION:start -->
+## 논문/관련 논문 최종 반영표
+
+아래 표는 공식 DOI/arXiv 재검색 결과를 주차 보고서에 반영하기 위한 최종 판정이다. 기존 대조 기록은 보존하고, 보고서 본문과 참고문헌에서는 이 표의 `구분`과 `검증 상태`를 우선 사용한다.
+
+| ID | 구분 | 논문 제목 | 논문 | 저자 | 연도 | 학술지/학회 | 학술지/출처 | DOI/URL | 검증 상태 | 보고서 반영 |
+|---|---|---|---|---|---:|---|---|---|---|---|
+| P02 | 관련 논문 / 확인 | Securing Large Language Models: A Survey of Watermarking and Fingerprinting Techniques | Securing Large Language Models: A Survey of Watermarking and Fingerprinting Techniques | Peigen Ye et al. | 2026 | ACM Computing Surveys | ACM Computing Surveys | `https://doi.org/10.1145/3773028` | 공식 DOI 확인 | 주차 주제 보강용 관련 논문으로 인용 |
+| P03 | 논문 / 확인 | A survey of Deep Neural Network watermarking techniques | A survey of Deep Neural Network watermarking techniques | Yue Li, Hongxia Wang, Mauro Barni | 2021 | Neurocomputing | Neurocomputing | `https://doi.org/10.1016/j.neucom.2021.07.051` | 공식 DOI 확인 | 공식 서지 기준으로 논문 인용 |
+| P05 | 논문 / 확인 | Generative Adversarial Networks: A Survey on Attack and Defense Perspective | Generative Adversarial Networks: A Survey on Attack and Defense Perspective | Chenhan Zhang et al. | 2023 | ACM Computing Surveys | ACM Computing Surveys | `https://doi.org/10.1145/3615336` | 공식 DOI 확인 | 공식 서지 기준으로 논문 인용 |
+<!-- AUTO-RELATED-PAPER-REFLECTION:end -->

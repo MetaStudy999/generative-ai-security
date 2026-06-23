@@ -24,3 +24,17 @@
 - P03: DOI는 MLOps/AIOps systematic survey이지만 수업자료 제목과 DOI 메타데이터 제목이 다르다.
 - P04: DOI/권호/페이지가 확인되었다. 로컬 PDF만 대체문헌이다.
 - P05: DOI는 Yang/Xia/Lo/Grundy 논문으로 확인된다. 수업자료의 Xiang Chen 표기는 확인 필요다.
+
+<!-- AUTO-RELATED-PAPER-REFLECTION:start -->
+## 논문/관련 논문 최종 판정 반영표
+
+아래 표는 공식 DOI/arXiv 재검색 결과를 반영한 최종 판정이다. `논문 / 확인`은 공식 서지 기준으로 논문 인용, `관련 논문 / 확인`은 주차 주제 보강용 관련 논문 인용을 뜻한다.
+
+| ID | 구분 | 상태 | 공식 확인 기준 | 보고서 반영 |
+|---|---|---|---|---|
+| P01 | 논문 / 확인 | 공식 DOI 확인 | `https://doi.org/10.1145/3747346`; A Multivocal Review of MLOps Practices, Challenges and Open Issues; ACM Computing Surveys; 2025 | 공식 서지 기준으로 논문 인용 |
+| P02 | 논문 / 확인 | 공식 DOI 확인 | `https://doi.org/10.1145/3533378`; Challenges in Deploying Machine Learning: A Survey of Case Studies; ACM Computing Surveys; 2022 | 공식 서지 기준으로 논문 인용 |
+| P03 | 논문 / 확인 | 공식 DOI 확인 | `https://doi.org/10.1145/3625289`; A Joint Study of the Challenges, Opportunities, and Roadmap of MLOps and AIOps: A Systematic Survey; ACM Computing Surveys; 2023 | 공식 서지 기준으로 논문 인용 |
+| P04 | 논문 / 확인 | 공식 DOI 확인 | `https://doi.org/10.1109/JPROC.2019.2921977`; Deep Learning With Edge Computing: A Review; Proceedings of the IEEE; 2019 | 공식 서지 기준으로 논문 인용 |
+| P05 | 관련 논문 / 확인 | 공식 DOI 확인 | `https://doi.org/10.1145/3505243`; A Survey on Deep Learning for Software Engineering; ACM Computing Surveys; 2022 | 주차 주제 보강용 관련 논문으로 인용 |
+<!-- AUTO-RELATED-PAPER-REFLECTION:end -->

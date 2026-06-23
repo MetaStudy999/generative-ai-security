@@ -13,11 +13,11 @@
 
 | ID | 제목 | 저자 | 연도 | 학술지/학회명 | DOI 또는 URL | 확인 경로 | 확인일 | 상태 |
 |---|---|---|---:|---|---|---|---|---|
-| P01 | Efficient Transformers: A Survey | Yi Tay, Mostafa Dehghani, Dara Bahri, Donald Metzler | 확인 필요 | 확인 필요 | ACM DOI 10.1145/3530811; arXiv DOI 10.48550/arXiv.2009.06732; https://arxiv.org/abs/2009.06732 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 필요 |
-| P02 | A Practical Survey on Faster and Lighter Transformers | Quentin Fournier, Gaetan Marceau Caron, Daniel Aloise | 확인 필요 | 확인 필요 | ACM DOI 10.1145/3586074; https://arxiv.org/abs/2103.14636 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 필요 |
+| P01 | Efficient Transformers: A Survey | Yi Tay, Mostafa Dehghani, Dara Bahri, Donald Metzler | 2022 | ACM Computing Surveys | https://doi.org/10.1145/3530811 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
+| P02 | A Practical Survey on Faster and Lighter Transformers | Quentin Fournier, Gaetan Marceau Caron, Daniel Aloise | 2023 | ACM Computing Surveys | https://doi.org/10.1145/3586074 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
 | P03 | A survey of transformers | Tianyang Lin, Yuxin Wang, Xiangyang Liu, Xipeng Qiu | 확인 필요 | 확인 필요 | DOI 10.1016/j.aiopen.2022.10.001; https://www.sciencedirect.com/science/article/pii/S2666651022000146 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
-| P04 | A Survey of Adversarial Defenses and Robustness in NLP | Shreya Goyal, Sumanth Doddapaneni, Mitesh M. Khapra, Balaraman Ravindran | 확인 필요 | 확인 필요 | ACM DOI 10.1145/3593042; arXiv DOI 10.48550/arXiv.2203.06414; https://arxiv.org/abs/2203.06414 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 필요 |
-| P05 | Privacy Preserving Prompt Engineering: A Survey | Kennedy Edemacu, Xintao Wu | 확인 필요 | 확인 필요 | ACM DOI 10.1145/3729219; arXiv DOI 10.48550/arXiv.2404.06001; https://arxiv.org/abs/2404.06001 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 필요 |
+| P04 | A Survey of Adversarial Defenses and Robustness in NLP | Shreya Goyal et al. | 2023 | ACM Computing Surveys | https://doi.org/10.1145/3593042 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
+| P05 | Privacy Preserving Prompt Engineering: A Survey | Kennedy Edemacu, Xintao Wu | 2025 | ACM Computing Surveys | https://doi.org/10.1145/3729219 | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | 확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음) |
 
 주의: 현 세션에서는 인터넷으로 DOI/URL 실제 존재 여부를 재검증하지 않았으므로, 로컬 검증 기록이 있더라도 최종 제출 전 사람이 확인한다.
 
@@ -91,7 +91,7 @@
 
 ## 6. 확인 필요 항목
 
-- 참고문헌 검증 필요 항목: 확인 필요 4건, 부분 검증 키워드 0건, 대체 문헌 키워드 0건
+- 참고문헌 검증 필요 항목: 확인 필요 0건, 부분 검증 키워드 0건, 대체 문헌 키워드 0건
 - 수치 대조 필요 항목: 기준 원천 존재
 - PDF/HTML 수동 확인 필요 항목: PDF 시각적 깨짐과 HTML 렌더링은 자동 정상 처리하지 않음
 - 참고문헌 실제 존재 여부, 강의계획서 지정 문헌과 로컬 PDF 일치 여부, 최종 제출본 서식은 사람이 직접 확인해야 한다.

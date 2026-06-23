@@ -22,3 +22,15 @@
 - 현재 W01 P04 정보: Yulong Wang et al., "Adversarial Attacks and Defenses in Machine Learning-Powered Networks: A Contemporary Survey", arXiv:2303.06302, DOI 10.48550/arXiv.2303.06302.
 - 로컬 P04 PDF 첫 페이지와 arXiv 페이지는 현재 W01 P04 제목, 저자, arXiv 번호를 확인시켜 준다.
 - IEEE COMST 최종 출판 정보, DOI, 권호, 페이지는 현재 로컬 PDF와 접근 가능한 공개 페이지에서 확인하지 못했으므로 `확인 필요`로 남긴다.
+
+<!-- AUTO-RELATED-PAPER-REFLECTION:start -->
+## 논문/관련 논문 최종 판정 반영표
+
+아래 표는 공식 DOI/arXiv 재검색 결과를 반영한 최종 판정이다. `논문 / 확인`은 공식 서지 기준으로 논문 인용, `관련 논문 / 확인`은 주차 주제 보강용 관련 논문 인용을 뜻한다.
+
+| ID | 구분 | 상태 | 공식 확인 기준 | 보고서 반영 |
+|---|---|---|---|---|
+| P02 | 논문 / 확인 | 공식 DOI 확인 | `https://doi.org/10.1145/3453444`; Assuring the Machine Learning Lifecycle: Desiderata, Methods, and Challenges; ACM Computing Surveys; 2021 | 공식 서지 기준으로 논문 인용 |
+| P04 | 관련 논문 / 확인 | 공식 arXiv 확인 | `https://arxiv.org/abs/2303.06302`; Adversarial Attacks and Defenses in Machine Learning-Powered Networks: A Contemporary Survey; arXiv; 2023 | 주차 주제 보강용 관련 논문으로 인용 |
+| P05 | 논문 / 확인 | 공식 DOI 확인 | `https://doi.org/10.1145/3624010`; A Survey of Privacy Attacks in Machine Learning; ACM Computing Surveys; 2023 | 공식 서지 기준으로 논문 인용 |
+<!-- AUTO-RELATED-PAPER-REFLECTION:end -->

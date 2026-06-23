@@ -588,11 +588,13 @@ def format_paper_rows_for_readme(rows: list[dict[str, str]]) -> str:
         year = paper_field(row, ["연도"], "확인 필요")
         venue = paper_field(row, ["학술지/학회명", "학술지/학회", "학술지/출처", "출처"], "확인 필요")
         doi = paper_field(row, ["DOI/URL", "DOI/URL 상태"], "확인 필요")
+        check_path = paper_field(row, ["확인 경로"], "`01_papers/paper_list.md`, `01_papers/doi_check.md`")
+        checked_at = paper_field(row, ["확인일"], "현 세션 인터넷 미확인")
         state = reference_state(row)
         if state == "확인 완료":
             state = "확인 완료(로컬 검증 기록 기준, 현 세션 인터넷 재확인 없음)"
         lines.append(
-            f"| {paper_id} | {title} | {authors} | {year} | {venue} | {doi} | `01_papers/paper_list.md`, `01_papers/doi_check.md` | 현 세션 인터넷 미확인 | {state} |"
+            f"| {paper_id} | {title} | {authors} | {year} | {venue} | {doi} | {check_path} | {checked_at} | {state} |"
         )
     return "\n".join(lines) + "\n"
 
@@ -849,6 +851,13 @@ def write_week_readme(week_dir: Path, audit: WeekAudit, raw_paths: dict[str, lis
     )
     numeric_note = f"- 수치 대조 필요 항목: {audit.numeric_status}"
     pdf_note = "- PDF/HTML 수동 확인 필요 항목: PDF 시각적 깨짐과 HTML 렌더링은 자동 정상 처리하지 않음"
+    has_checked_at = any(paper_field(row, ["확인일"], "") for row in audit.paper_rows)
+    paper_caution = (
+        "주의: 위 표의 확인일이 있는 행은 공식 DOI 메타데이터와 출판사 primary URL을 대조했다. "
+        "다만 강의계획서 지정문헌 동일성, 로컬 PDF 판본 차이, 전문 접근권은 최종 제출 전 사람이 확인한다."
+        if has_checked_at
+        else "주의: 현 세션에서는 인터넷으로 DOI/URL 실제 존재 여부를 재검증하지 않았으므로, 로컬 검증 기록이 있더라도 최종 제출 전 사람이 확인한다."
+    )
 
     content = f"""{README_MARKER}
 # [{audit.week}] {audit.topic}
@@ -864,7 +873,7 @@ def write_week_readme(week_dir: Path, audit: WeekAudit, raw_paths: dict[str, lis
 ## 2. 주요 논문
 
 {format_paper_rows_for_readme(audit.paper_rows)}
-주의: 현 세션에서는 인터넷으로 DOI/URL 실제 존재 여부를 재검증하지 않았으므로, 로컬 검증 기록이 있더라도 최종 제출 전 사람이 확인한다.
+{paper_caution}
 
 ## 3. 주요 산출물
 

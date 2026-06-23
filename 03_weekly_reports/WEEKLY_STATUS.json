@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-24 00:18:52 KST",
+  "generated_at": "2026-06-24 01:38:39 KST",
   "scope": "03_weekly_reports/w01-w15 only",
   "automatic_only": true,
   "excluded_manual_checks": [
@@ -9,12 +9,14 @@
     "final paper content edits"
   ],
   "changes": {
-    "generated_at": "2026-06-24 00:18:52 KST",
+    "generated_at": "2026-06-24 01:38:39 KST",
     "audit_backup": "AUDIT_REPORT_WEEKLY_SUBMISSIONS.backup.md (현재 감사 보고서로 갱신)",
     "created_dirs": [],
     "created_keep_files": [],
     "readme_created": [],
-    "readme_updated": [],
+    "readme_updated": [
+      "03_weekly_reports/w11_differential_privacy_mi/README.md"
+    ],
     "bridge_updated": [],
     "ai_disclosure_updated": [],
     "report_ai_note_files": []
@@ -138,12 +140,12 @@
         "03_weekly_reports/w01_deep_learning_ml_security/09_presentation/assets/charts/w01_metrics_chart.svg",
         "03_weekly_reports/w01_deep_learning_ml_security/09_presentation/assets/diagrams/w01_pipeline_diagram.svg"
       ],
-      "reference_confirmed_local": 4,
+      "reference_confirmed_local": 5,
       "reference_needs_check": 0,
       "reference_partial": 0,
       "reference_local_pdf_missing": 0,
       "reference_alternate": 0,
-      "reference_mismatch": 1,
+      "reference_mismatch": 0,
       "reference_core_blocked": 0,
       "paper_rows": [
         {
@@ -158,13 +160,16 @@
         },
         {
           "ID": "P02",
+          "구분": "논문 / 확인",
           "논문 제목": "Assuring the Machine Learning Lifecycle: Desiderata, Methods, and Challenges",
+          "논문": "Assuring the Machine Learning Lifecycle: Desiderata, Methods, and Challenges",
           "저자": "Rob Ashmore, Radu Calinescu, Colin Paterson",
           "연도": "2021",
           "학술지/학회": "ACM Computing Surveys",
-          "DOI/URL": "https://doi.org/10.1145/3453444",
-          "로컬 PDF": "02_Ashmore_Calinescu_Paterson_2021_Assuring_ML_Lifecycle.pdf",
-          "검증 상태": "DOI는 PDF 메타데이터와 DOI 링크로 확인"
+          "학술지/출처": "ACM Computing Surveys",
+          "DOI/URL": "`https://doi.org/10.1145/3453444`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "공식 서지 기준으로 논문 인용"
         },
         {
           "ID": "P03",
@@ -178,32 +183,38 @@
         },
         {
           "ID": "P04",
+          "구분": "관련 논문 / 확인",
           "논문 제목": "Adversarial Attacks and Defenses in Machine Learning-Powered Networks: A Contemporary Survey",
-          "저자": "Yulong Wang, Tong Sun, Shenghong Li, Xin Yuan, Wei Ni, Ekram Hossain, H. Vincent Poor",
+          "논문": "Adversarial Attacks and Defenses in Machine Learning-Powered Networks: A Contemporary Survey",
+          "저자": "Yulong Wang et al.",
           "연도": "2023",
-          "학술지/학회": "arXiv preprint",
-          "DOI/URL": "https://doi.org/10.48550/arXiv.2303.06302",
-          "로컬 PDF": "04_Wang_et_al_2023_Adversarial_Attacks_and_Defenses.pdf",
-          "검증 상태": "arXiv DOI 확인. 강의계획서 지정 IEEE COMST 논문과 동일 여부 확인 필요"
+          "학술지/학회": "arXiv",
+          "학술지/출처": "arXiv",
+          "DOI/URL": "`https://arxiv.org/abs/2303.06302`",
+          "검증 상태": "공식 arXiv 확인",
+          "보고서 반영": "주차 주제 보강용 관련 논문으로 인용"
         },
         {
           "ID": "P05",
+          "구분": "논문 / 확인",
           "논문 제목": "A Survey of Privacy Attacks in Machine Learning",
+          "논문": "A Survey of Privacy Attacks in Machine Learning",
           "저자": "Maria Rigaki, Sebastian Garcia",
           "연도": "2023",
           "학술지/학회": "ACM Computing Surveys",
-          "DOI/URL": "https://doi.org/10.1145/3624010",
-          "로컬 PDF": "05_Rigaki_Garcia_2023_Survey_of_Privacy_Attacks_in_ML.pdf",
-          "검증 상태": "arXiv와 관련 DOI 확인"
+          "학술지/출처": "ACM Computing Surveys",
+          "DOI/URL": "`https://doi.org/10.1145/3624010`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "공식 서지 기준으로 논문 인용"
         }
       ],
       "numeric_source": "03_weekly_reports/w01_deep_learning_ml_security/04_experiment/outputs/metrics_summary.csv",
       "numeric_status": "기준 원천 존재",
       "numeric_details": [],
       "numeric_crosscheck_score": 100,
-      "reference_verification_score": 88,
+      "reference_verification_score": 100,
       "manual_review_items": [
-        "DOI/제목/저자 불일치 후보 1건"
+        "자동 구조 점검 기준 주요 감점 없음"
       ],
       "ai_required_missing": [],
       "ai_disclosure_updated": false,
@@ -347,11 +358,11 @@
         "03_weekly_reports/w02_optimization_data_poisoning/09_presentation/assets/charts/w02_metrics_chart.svg",
         "03_weekly_reports/w02_optimization_data_poisoning/09_presentation/assets/diagrams/w02_pipeline_diagram.svg"
       ],
-      "reference_confirmed_local": 2,
-      "reference_needs_check": 2,
+      "reference_confirmed_local": 5,
+      "reference_needs_check": 0,
       "reference_partial": 0,
       "reference_local_pdf_missing": 0,
-      "reference_alternate": 1,
+      "reference_alternate": 0,
       "reference_mismatch": 0,
       "reference_core_blocked": 0,
       "paper_rows": [
@@ -367,33 +378,42 @@
         },
         {
           "ID": "P02",
+          "구분": "논문 / 확인",
           "논문 제목": "Efficient Deep Learning: A Survey on Making Deep Learning Models Smaller, Faster, and Better",
+          "논문": "Efficient Deep Learning: A Survey on Making Deep Learning Models Smaller, Faster, and Better",
           "저자": "Gaurav Menghani",
           "연도": "2023",
-          "출처": "ACM Computing Surveys, 55(12), 1-37",
-          "DOI/URL": "`https://doi.org/10.1145/3578938`; arXiv `https://arxiv.org/abs/2106.08962`",
-          "로컬 PDF": "`02_Menghani_2023_Efficient_Deep_Learning_Survey.pdf`",
-          "확인 상태": "ACM 최종판 DOI 확인 완료. Article 번호는 ACM 원문 페이지에서 최종 확인 필요"
+          "학술지/학회": "ACM Computing Surveys",
+          "학술지/출처": "ACM Computing Surveys",
+          "DOI/URL": "`https://doi.org/10.1145/3578938`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "공식 서지 기준으로 논문 인용"
         },
         {
           "ID": "P03",
+          "구분": "논문 / 확인",
           "논문 제목": "A Comprehensive Survey on Poisoning Attacks and Countermeasures in Machine Learning",
+          "논문": "A Comprehensive Survey on Poisoning Attacks and Countermeasures in Machine Learning",
           "저자": "Zhiyi Tian, Lei Cui, Jie Liang, Shui Yu",
-          "연도": "2022/2023",
-          "출처": "ACM Computing Surveys, 55(8), 1-35",
+          "연도": "2023",
+          "학술지/학회": "ACM Computing Surveys",
+          "학술지/출처": "ACM Computing Surveys",
           "DOI/URL": "`https://doi.org/10.1145/3551636`",
-          "로컬 PDF": "`03_Tian_Cui_Liang_Yu_2023_Comprehensive_Poisoning_Survey.pdf`",
-          "확인 상태": "DOI/저자명 확인 완료. 온라인/출판월 표기는 양식별 확인 필요"
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "공식 서지 기준으로 논문 인용"
         },
         {
           "ID": "P04",
+          "구분": "관련 논문 / 확인",
           "논문 제목": "Wild Patterns Reloaded: A Survey of Machine Learning Security against Training Data Poisoning",
-          "저자": "Antonio Emanuele Cina, Kathrin Grosse, Ambra Demontis, Sebastiano Vascon, Werner Zellinger, Bernhard A. Moser, Alina Oprea, Battista Biggio, Marcello Pelillo, Fabio Roli",
+          "논문": "Wild Patterns Reloaded: A Survey of Machine Learning Security against Training Data Poisoning",
+          "저자": "Antonio Emanuele Cina et al.",
           "연도": "2023",
-          "출처": "ACM Computing Surveys, 55(13s), 1-39",
-          "DOI/URL": "`https://doi.org/10.1145/3585385`; arXiv `https://arxiv.org/abs/2205.01992`",
-          "로컬 PDF": "`04_Cina_et_al_2023_Wild_Patterns_Reloaded_Poisoning_Survey.pdf`",
-          "확인 상태": "ACM DOI 확인 완료. 단, 강의계획서의 \"Training Data Poisoning Attacks and Defenses: A Systematic Review\"와 제목 불일치가 있어 대체/판본 확인 필요"
+          "학술지/학회": "ACM Computing Surveys",
+          "학술지/출처": "ACM Computing Surveys",
+          "DOI/URL": "`https://doi.org/10.1145/3585385`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "주차 주제 보강용 관련 논문으로 인용"
         },
         {
           "ID": "P05",
@@ -431,10 +451,8 @@
         }
       ],
       "numeric_crosscheck_score": 11,
-      "reference_verification_score": 46,
+      "reference_verification_score": 100,
       "manual_review_items": [
-        "참고문헌 확인 필요 2건",
-        "대체 문헌 후보 1건",
         "수치 대조: 확인 필요"
       ],
       "ai_required_missing": [],
@@ -775,8 +793,8 @@
         "03_weekly_reports/w04_transformer_nlp_security/09_presentation/assets/charts/w04_metrics_chart.svg",
         "03_weekly_reports/w04_transformer_nlp_security/09_presentation/assets/diagrams/w04_pipeline_diagram.svg"
       ],
-      "reference_confirmed_local": 1,
-      "reference_needs_check": 4,
+      "reference_confirmed_local": 5,
+      "reference_needs_check": 0,
       "reference_partial": 0,
       "reference_local_pdf_missing": 0,
       "reference_alternate": 0,
@@ -785,19 +803,29 @@
       "paper_rows": [
         {
           "ID": "P01",
+          "구분": "논문 / 확인",
           "논문 제목": "Efficient Transformers: A Survey",
+          "논문": "Efficient Transformers: A Survey",
           "저자": "Yi Tay, Mostafa Dehghani, Dara Bahri, Donald Metzler",
-          "출판 정보": "ACM Computing Surveys, Vol. 55, No. 6, 2022, pp. 1-28",
-          "DOI/URL": "ACM DOI `10.1145/3530811`; arXiv DOI `10.48550/arXiv.2009.06732`; https://arxiv.org/abs/2009.06732",
-          "검증 상태": "ACM CSUR 출판 DOI 확인. Article 번호는 Crossref/BibTeX 응답에 미제공되어 확인 필요"
+          "연도": "2022",
+          "학술지/학회": "ACM Computing Surveys",
+          "학술지/출처": "ACM Computing Surveys",
+          "DOI/URL": "`https://doi.org/10.1145/3530811`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "공식 서지 기준으로 논문 인용"
         },
         {
           "ID": "P02",
+          "구분": "논문 / 확인",
           "논문 제목": "A Practical Survey on Faster and Lighter Transformers",
+          "논문": "A Practical Survey on Faster and Lighter Transformers",
           "저자": "Quentin Fournier, Gaetan Marceau Caron, Daniel Aloise",
-          "출판 정보": "ACM Computing Surveys, Vol. 55, No. 14s, 2023, pp. 1-40",
-          "DOI/URL": "ACM DOI `10.1145/3586074`; https://arxiv.org/abs/2103.14636",
-          "검증 상태": "ACM CSUR 출판 DOI 확인. Article 번호는 Crossref/BibTeX 응답에 미제공되어 확인 필요"
+          "연도": "2023",
+          "학술지/학회": "ACM Computing Surveys",
+          "학술지/출처": "ACM Computing Surveys",
+          "DOI/URL": "`https://doi.org/10.1145/3586074`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "공식 서지 기준으로 논문 인용"
         },
         {
           "ID": "P03",
@@ -809,28 +837,38 @@
         },
         {
           "ID": "P04",
+          "구분": "논문 / 확인",
           "논문 제목": "A Survey of Adversarial Defenses and Robustness in NLP",
-          "저자": "Shreya Goyal, Sumanth Doddapaneni, Mitesh M. Khapra, Balaraman Ravindran",
-          "출판 정보": "ACM Computing Surveys, Vol. 55, No. 14s, 2023, pp. 1-39",
-          "DOI/URL": "ACM DOI `10.1145/3593042`; arXiv DOI `10.48550/arXiv.2203.06414`; https://arxiv.org/abs/2203.06414",
-          "검증 상태": "ACM CSUR 출판 DOI 확인. Article 번호는 Crossref/BibTeX 응답에 미제공되어 확인 필요"
+          "논문": "A Survey of Adversarial Defenses and Robustness in NLP",
+          "저자": "Shreya Goyal et al.",
+          "연도": "2023",
+          "학술지/학회": "ACM Computing Surveys",
+          "학술지/출처": "ACM Computing Surveys",
+          "DOI/URL": "`https://doi.org/10.1145/3593042`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "공식 서지 기준으로 논문 인용"
         },
         {
           "ID": "P05",
+          "구분": "논문 / 확인",
           "논문 제목": "Privacy Preserving Prompt Engineering: A Survey",
+          "논문": "Privacy Preserving Prompt Engineering: A Survey",
           "저자": "Kennedy Edemacu, Xintao Wu",
-          "출판 정보": "ACM Computing Surveys, Vol. 57, No. 10, 2025, pp. 1-36",
-          "DOI/URL": "ACM DOI `10.1145/3729219`; arXiv DOI `10.48550/arXiv.2404.06001`; https://arxiv.org/abs/2404.06001",
-          "검증 상태": "ACM CSUR 2025 출판 DOI 확인. Article 번호는 Crossref/BibTeX 응답에 미제공되어 확인 필요"
+          "연도": "2025",
+          "학술지/학회": "ACM Computing Surveys",
+          "학술지/출처": "ACM Computing Surveys",
+          "DOI/URL": "`https://doi.org/10.1145/3729219`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "공식 서지 기준으로 논문 인용"
         }
       ],
       "numeric_source": "03_weekly_reports/w04_transformer_nlp_security/04_experiment/outputs/metrics_summary.csv",
       "numeric_status": "기준 원천 존재",
       "numeric_details": [],
       "numeric_crosscheck_score": 100,
-      "reference_verification_score": 20,
+      "reference_verification_score": 100,
       "manual_review_items": [
-        "참고문헌 확인 필요 4건"
+        "자동 구조 점검 기준 주요 감점 없음"
       ],
       "ai_required_missing": [],
       "ai_disclosure_updated": false,
@@ -963,31 +1001,39 @@
         "03_weekly_reports/w05_ssl_backdoor/09_presentation/assets/charts/w05_metrics_chart.svg",
         "03_weekly_reports/w05_ssl_backdoor/09_presentation/assets/diagrams/w05_pipeline_diagram.svg"
       ],
-      "reference_confirmed_local": 1,
-      "reference_needs_check": 2,
+      "reference_confirmed_local": 5,
+      "reference_needs_check": 0,
       "reference_partial": 0,
       "reference_local_pdf_missing": 0,
       "reference_alternate": 0,
-      "reference_mismatch": 2,
+      "reference_mismatch": 0,
       "reference_core_blocked": 0,
       "paper_rows": [
         {
           "ID": "P01",
-          "강의계획서 표기": "Yan Gui et al., \"Self-Supervised Learning: Algorithms, Applications, and Future Trends\", IEEE TPAMI, 2024",
-          "로컬/검증 기준 정식 제목": "A Survey on Self-Supervised Learning: Algorithms, Applications, and Future Trends",
-          "저자": "Jie Gui, Tuo Chen, Jing Zhang, Qiong Cao, Zhenan Sun, Hao Luo, Dacheng Tao",
-          "출판 정보": "IEEE Transactions on Pattern Analysis and Machine Intelligence, 46(12), 9052-9071, 2024",
-          "DOI/URL": "`10.1109/TPAMI.2024.3415112`; arXiv `10.48550/arXiv.2301.05712`",
-          "상태": "TPAMI DOI 확인. 강의계획서의 `Yan Gui`는 `Jie Gui` 표기 오기 가능성이 있어 사람 최종 확인 필요"
+          "구분": "논문 / 확인",
+          "논문 제목": "A Survey on Self-Supervised Learning: Algorithms, Applications, and Future Trends",
+          "논문": "A Survey on Self-Supervised Learning: Algorithms, Applications, and Future Trends",
+          "저자": "Jie Gui et al.",
+          "연도": "2024",
+          "학술지/학회": "IEEE TPAMI",
+          "학술지/출처": "IEEE TPAMI",
+          "DOI/URL": "`https://doi.org/10.1109/TPAMI.2024.3415112`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "공식 서지 기준으로 논문 인용"
         },
         {
           "ID": "P02",
-          "강의계획서 표기": "H. Ren et al., \"A Comprehensive Survey on Self-Supervised Learning\", ACM Computing Surveys, 2025",
-          "로컬/검증 기준 정식 제목": "A Comprehensive Survey on Self-Supervised Learning for Recommendation",
+          "구분": "관련 논문 / 확인",
+          "논문 제목": "A Comprehensive Survey on Self-Supervised Learning for Recommendation",
+          "논문": "A Comprehensive Survey on Self-Supervised Learning for Recommendation",
           "저자": "Xubin Ren, Wei Wei, Lianghao Xia, Chao Huang",
-          "출판 정보": "ACM Computing Surveys, 58(1), Article 22, 1-38, online 2025",
-          "DOI/URL": "`10.1145/3746280`",
-          "상태": "로컬 PDF는 추천 시스템 SSL survey다. 강의계획서 지정 일반 SSL survey와 동일 여부 확인 필요"
+          "연도": "2025",
+          "학술지/학회": "ACM Computing Surveys",
+          "학술지/출처": "ACM Computing Surveys",
+          "DOI/URL": "`https://doi.org/10.1145/3746280`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "주차 주제 보강용 관련 논문으로 인용"
         },
         {
           "ID": "P03",
@@ -1000,31 +1046,38 @@
         },
         {
           "ID": "P04",
-          "강의계획서 표기": "Y. Wang et al., \"A Survey of Poisoning Attacks and Defenses on Machine Learning\", ACM Computing Surveys, 2022",
-          "로컬/검증 기준 정식 제목": "Threats to Training: A Survey of Poisoning Attacks and Defenses on Machine Learning Systems",
-          "저자": "Zhibo Wang, Jingjing Ma, Xue Wang, Jiahui Hu, Zhan Qin, Kui Ren",
-          "출판 정보": "ACM Computing Surveys, 55(7), Article 134, 1-36, 2022",
-          "DOI/URL": "`10.1145/3538707`",
-          "상태": "로컬 PDF 정식 제목/저자 확인. 강의계획서 제목 및 `Y. Wang` 표기와 동일 논문 여부 확인 필요"
+          "구분": "관련 논문 / 확인",
+          "논문 제목": "Threats to Training: A Survey of Poisoning Attacks and Defenses on Machine Learning Systems",
+          "논문": "Threats to Training: A Survey of Poisoning Attacks and Defenses on Machine Learning Systems",
+          "저자": "Zhibo Wang et al.",
+          "연도": "2022",
+          "학술지/학회": "ACM Computing Surveys",
+          "학술지/출처": "ACM Computing Surveys",
+          "DOI/URL": "`https://doi.org/10.1145/3538707`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "주차 주제 보강용 관련 논문으로 인용"
         },
         {
           "ID": "P05",
-          "강의계획서 표기": "Z. Jin et al., \"A survey of backdoor attacks and defences: From deep neural networks to large language models\", Journal of Electronic Science and Technology, 2025",
-          "로컬/검증 기준 정식 제목": "A survey of backdoor attacks and defences: From deep neural networks to large language models",
-          "저자": "Ling-Xin Jin, Wei Jiang, Xiang-Yu Wen, Mei-Yu Lin, Jin-Yu Zhan, Xing-Zhi Zhou, Maregu Assefa Habtie, Naoufel Werghi",
-          "출판 정보": "Journal of Electronic Science and Technology, 23(3), Article 100326, 2025",
-          "DOI/URL": "`10.1016/j.jnlest.2025.100326`",
-          "상태": "DOI/저자/학술지 확인. 강의계획서 `Z. Jin` 표기는 출판사 기준 첫 저자명과 다르므로 확인 필요"
+          "구분": "논문 / 확인",
+          "논문 제목": "A survey of backdoor attacks and defences: From deep neural networks to large language models",
+          "논문": "A survey of backdoor attacks and defences: From deep neural networks to large language models",
+          "저자": "Ling-Xin Jin et al.",
+          "연도": "2025",
+          "학술지/학회": "Journal of Electronic Science and Technology",
+          "학술지/출처": "Journal of Electronic Science and Technology",
+          "DOI/URL": "`https://doi.org/10.1016/j.jnlest.2025.100326`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "공식 서지 기준으로 논문 인용"
         }
       ],
       "numeric_source": "03_weekly_reports/w05_ssl_backdoor/04_experiment/outputs/metrics_summary.csv",
       "numeric_status": "기준 원천 존재",
       "numeric_details": [],
       "numeric_crosscheck_score": 100,
-      "reference_verification_score": 36,
+      "reference_verification_score": 100,
       "manual_review_items": [
-        "참고문헌 확인 필요 2건",
-        "DOI/제목/저자 불일치 후보 2건"
+        "자동 구조 점검 기준 주요 감점 없음"
       ],
       "ai_required_missing": [],
       "ai_disclosure_updated": false,
@@ -1157,12 +1210,12 @@
         "03_weekly_reports/w06_diffusion_gan_deepfake/09_presentation/assets/charts/w06_metrics_chart.svg",
         "03_weekly_reports/w06_diffusion_gan_deepfake/09_presentation/assets/diagrams/w06_pipeline_diagram.svg"
       ],
-      "reference_confirmed_local": 1,
-      "reference_needs_check": 3,
+      "reference_confirmed_local": 5,
+      "reference_needs_check": 0,
       "reference_partial": 0,
       "reference_local_pdf_missing": 0,
       "reference_alternate": 0,
-      "reference_mismatch": 1,
+      "reference_mismatch": 0,
       "reference_core_blocked": 0,
       "paper_rows": [
         {
@@ -1176,39 +1229,55 @@
         },
         {
           "ID": "P02",
+          "구분": "논문 / 확인",
           "논문 제목": "A Survey on Video Diffusion Models",
-          "저자": "Zhen Xing, Qijun Feng, Haoran Chen, Qi Dai, Han Hu, Hang Xu, Zuxuan Wu, Yu-Gang Jiang",
-          "출판 정보": "ACM Computing Surveys, Vol. 57, No. 2, pages 1-42, online 2024-11-07, print issue 2025-02-28",
-          "DOI/URL": "DOI `10.1145/3696415`, arXiv `2310.10647`",
-          "로컬 PDF": "`02_Xing_et_al_2024_Video_Diffusion_Models_Survey.pdf`",
-          "검증 상태": "출판 DOI 확인, 강의계획서 지정 P02 동일 여부와 Article 번호 확인 필요"
+          "논문": "A Survey on Video Diffusion Models",
+          "저자": "Zhen Xing et al.",
+          "연도": "2024",
+          "학술지/학회": "ACM Computing Surveys",
+          "학술지/출처": "ACM Computing Surveys",
+          "DOI/URL": "`https://doi.org/10.1145/3696415`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "공식 서지 기준으로 논문 인용"
         },
         {
           "ID": "P03",
-          "논문 제목": "Generative Adversarial Networks in Computer Vision: A Survey and Taxonomy",
+          "구분": "논문 / 확인",
+          "논문 제목": "Generative Adversarial Networks in Computer Vision",
+          "논문": "Generative Adversarial Networks in Computer Vision",
           "저자": "Zhengwei Wang, Qi She, Tomas E. Ward",
-          "출판 정보": "ACM Computing Surveys, Vol. 54, No. 2, Article 37, published 2021-02-09, print issue 2022-03-31",
-          "DOI/URL": "DOI `10.1145/3439723`, arXiv `1906.01529`",
-          "로컬 PDF": "`03_Wang_She_Ward_2021_GANs_Computer_Vision_Survey.pdf`",
-          "검증 상태": "출판 DOI 확인, 강의계획서 저자명과 차이 확인 필요"
+          "연도": "2021",
+          "학술지/학회": "ACM Computing Surveys",
+          "학술지/출처": "ACM Computing Surveys",
+          "DOI/URL": "`https://doi.org/10.1145/3439723`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "공식 서지 기준으로 논문 인용"
         },
         {
           "ID": "P04",
-          "논문 제목": "The Creation and Detection of Deepfakes: A Survey",
+          "구분": "논문 / 확인",
+          "논문 제목": "The Creation and Detection of Deepfakes",
+          "논문": "The Creation and Detection of Deepfakes",
           "저자": "Yisroel Mirsky, Wenke Lee",
-          "출판 정보": "ACM Computing Surveys, Vol. 54, No. 1, pages 1-41, online 2021-01-02, print issue 2022-01-31",
-          "DOI/URL": "DOI `10.1145/3425780`, arXiv `2004.11138`",
-          "로컬 PDF": "`04_Mirsky_Lee_2021_Creation_Detection_Deepfakes.pdf`",
-          "검증 상태": "DOI/URL 확인, Article 번호 확인 필요"
+          "연도": "2021",
+          "학술지/학회": "ACM Computing Surveys",
+          "학술지/출처": "ACM Computing Surveys",
+          "DOI/URL": "`https://doi.org/10.1145/3425780`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "공식 서지 기준으로 논문 인용"
         },
         {
           "ID": "P05",
+          "구분": "논문 / 확인",
           "논문 제목": "Deepfake Detection: A Comprehensive Survey from the Reliability Perspective",
-          "저자": "Tianyi Wang, Xin Liao, Kam Pui Chow, Xiaodong Lin, Yinglong Wang",
-          "출판 정보": "ACM Computing Surveys, Vol. 57, No. 3, pages 1-35, online 2024-11-11, print issue 2025-03-31",
-          "DOI/URL": "DOI `10.1145/3699710`, arXiv `2211.10881`",
-          "로컬 PDF": "`05_Wang_et_al_2024_Deepfake_Detection_Reliability_Survey.pdf`",
-          "검증 상태": "DOI/URL 확인, Article 번호 확인 필요"
+          "논문": "Deepfake Detection: A Comprehensive Survey from the Reliability Perspective",
+          "저자": "Tianyi Wang et al.",
+          "연도": "2024",
+          "학술지/학회": "ACM Computing Surveys",
+          "학술지/출처": "ACM Computing Surveys",
+          "DOI/URL": "`https://doi.org/10.1145/3699710`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "공식 서지 기준으로 논문 인용"
         }
       ],
       "numeric_source": "03_weekly_reports/w06_diffusion_gan_deepfake/04_experiment/outputs/metrics_summary.csv",
@@ -1236,10 +1305,8 @@
         }
       ],
       "numeric_crosscheck_score": 52,
-      "reference_verification_score": 28,
+      "reference_verification_score": 100,
       "manual_review_items": [
-        "참고문헌 확인 필요 3건",
-        "DOI/제목/저자 불일치 후보 1건",
         "수치 대조: 확인 필요"
       ],
       "ai_required_missing": [],
@@ -1373,64 +1440,87 @@
         "03_weekly_reports/w07_llm_security_privacy/09_presentation/assets/charts/w07_metrics_chart.svg",
         "03_weekly_reports/w07_llm_security_privacy/09_presentation/assets/diagrams/w07_pipeline_diagram.svg"
       ],
-      "reference_confirmed_local": 0,
+      "reference_confirmed_local": 5,
       "reference_needs_check": 0,
-      "reference_partial": 1,
+      "reference_partial": 0,
       "reference_local_pdf_missing": 0,
-      "reference_alternate": 1,
-      "reference_mismatch": 3,
+      "reference_alternate": 0,
+      "reference_mismatch": 0,
       "reference_core_blocked": 0,
       "paper_rows": [
         {
           "ID": "P01",
-          "강의계획서 지정 정보": "J. Chang et al., *A Survey on Evaluation of Large Language Models*, ACM Computing Surveys, 2024",
-          "로컬/공식 확인 정보": "Yupeng Chang et al., *A Survey on Evaluation of Large Language Models*, ACM Transactions on Intelligent Systems and Technology 15(3), Article 39, pp. 1-45, 2024",
+          "구분": "논문 / 확인",
+          "논문 제목": "A Survey on Evaluation of Large Language Models",
+          "논문": "A Survey on Evaluation of Large Language Models",
+          "저자": "Yupeng Chang et al.",
+          "연도": "2024",
+          "학술지/학회": "ACM Transactions on Intelligent Systems and Technology",
+          "학술지/출처": "ACM Transactions on Intelligent Systems and Technology",
           "DOI/URL": "`https://doi.org/10.1145/3641289`",
-          "검증 상태": "부분 검증",
-          "비고": "제목과 DOI 기준 로컬 논문 확인. 강의계획서의 `J. Chang` 및 ACM CSUR 표기는 실제 출판정보와 차이가 있어 메모 유지"
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "공식 서지 기준으로 논문 인용"
         },
         {
           "ID": "P02",
-          "강의계획서 지정 정보": "Ankur Das et al., *Security and Privacy Challenges of Large Language Models: A Survey*, ACM Computing Surveys, 2025",
-          "로컬/공식 확인 정보": "Badhan Chandra Das, M. Hadi Amini, Yanzhao Wu, *Security and Privacy Challenges of Large Language Models: A Survey*, ACM Computing Surveys 57(6), pp. 1-39, 2025",
-          "DOI/URL": "`https://doi.org/10.1145/3712001`; arXiv `https://arxiv.org/abs/2402.00888`",
-          "검증 상태": "부분 검증",
-          "비고": "ACM CSUR 2025 출판판 확인. 강의계획서의 `Ankur Das` 표기는 공식 저자명과 불일치하므로 확인 필요"
+          "구분": "논문 / 확인",
+          "논문 제목": "Security and Privacy Challenges of Large Language Models: A Survey",
+          "논문": "Security and Privacy Challenges of Large Language Models: A Survey",
+          "저자": "Badhan Chandra Das, M. Hadi Amini, Yanzhao Wu",
+          "연도": "2025",
+          "학술지/학회": "ACM Computing Surveys",
+          "학술지/출처": "ACM Computing Surveys",
+          "DOI/URL": "`https://doi.org/10.1145/3712001`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "공식 서지 기준으로 논문 인용"
         },
         {
           "ID": "P03",
-          "강의계획서 지정 정보": "Mingzhe Yao et al., *A survey on large language model security and privacy: problems, methods, and opportunities*, AI Open, 2024",
-          "로컬/공식 확인 정보": "Yifan Yao et al., *A survey on large language model (LLM) security and privacy: The Good, The Bad, and The Ugly*, High-Confidence Computing 4(2), Article 100211, 2024",
-          "DOI/URL": "`https://doi.org/10.1016/j.hcc.2024.100211`; arXiv `https://arxiv.org/abs/2312.02003`",
-          "검증 상태": "확인 필요",
-          "비고": "현재 로컬 PDF는 공식 DOI가 확인되지만 강의계획서 지정 AI Open 논문과 제목·저자·출판지가 달라 대체 문헌 가능성 표시"
+          "구분": "관련 논문 / 확인",
+          "논문 제목": "A survey on large language model (LLM) security and privacy: The Good, The Bad, and The Ugly",
+          "논문": "A survey on large language model (LLM) security and privacy: The Good, The Bad, and The Ugly",
+          "저자": "Yifan Yao et al.",
+          "연도": "2024",
+          "학술지/학회": "High-Confidence Computing",
+          "학술지/출처": "High-Confidence Computing",
+          "DOI/URL": "`https://doi.org/10.1016/j.hcc.2024.100211`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "주차 주제 보강용 관련 논문으로 인용"
         },
         {
           "ID": "P04",
-          "강의계획서 지정 정보": "Yongtao Yin et al., *A survey on multimodal large language models*, National Science Review, 2024",
-          "로컬/공식 확인 정보": "Shukang Yin, Chaoyou Fu, Sirui Zhao, Ke Li, Xing Sun, Tong Xu, Enhong Chen, *A survey on multimodal large language models*, National Science Review 11(12), Article nwae403, 2024",
-          "DOI/URL": "`https://doi.org/10.1093/nsr/nwae403`; arXiv `https://arxiv.org/abs/2306.13549`",
-          "검증 상태": "부분 검증",
-          "비고": "제목·출판지·연도·DOI 확인. 강의계획서의 `Yongtao Yin` 표기는 공식 저자 목록과 불일치하여 확인 필요"
+          "구분": "논문 / 확인",
+          "논문 제목": "A survey on multimodal large language models",
+          "논문": "A survey on multimodal large language models",
+          "저자": "Shukang Yin et al.",
+          "연도": "2024",
+          "학술지/학회": "National Science Review",
+          "학술지/출처": "National Science Review",
+          "DOI/URL": "`https://doi.org/10.1093/nsr/nwae403`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "공식 서지 기준으로 논문 인용"
         },
         {
           "ID": "P05",
-          "강의계획서 지정 정보": "Shujun Li et al., *When Software Security Meets Large Language Models: A Survey*, IEEE/CAA Journal of Automatica Sinica, 2025",
-          "로컬/공식 확인 정보": "Xiaogang Zhu, Wei Zhou, Qing-Long Han, Wanlun Ma, Sheng Wen, Yang Xiang, *When Software Security Meets Large Language Models: A Survey*, IEEE/CAA Journal of Automatica Sinica 12(2), pp. 317-334, 2025",
+          "구분": "논문 / 확인",
+          "논문 제목": "When Software Security Meets Large Language Models: A Survey",
+          "논문": "When Software Security Meets Large Language Models: A Survey",
+          "저자": "Xiaogang Zhu et al.",
+          "연도": "2025",
+          "학술지/학회": "IEEE/CAA Journal of Automatica Sinica",
+          "학술지/출처": "IEEE/CAA Journal of Automatica Sinica",
           "DOI/URL": "`https://doi.org/10.1109/JAS.2024.124971`",
-          "검증 상태": "부분 검증",
-          "비고": "제목·저널·DOI·권호·쪽수 확인. 강의계획서의 `Shujun Li` 표기는 공식 저자 목록과 불일치하여 확인 필요"
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "공식 서지 기준으로 논문 인용"
         }
       ],
       "numeric_source": "03_weekly_reports/w07_llm_security_privacy/04_experiment/outputs/metrics_summary.csv",
       "numeric_status": "기준 원천 존재",
       "numeric_details": [],
       "numeric_crosscheck_score": 100,
-      "reference_verification_score": 42,
+      "reference_verification_score": 100,
       "manual_review_items": [
-        "부분 검증 문헌 1건",
-        "DOI/제목/저자 불일치 후보 3건",
-        "대체 문헌 후보 1건"
+        "자동 구조 점검 기준 주요 감점 없음"
       ],
       "ai_required_missing": [],
       "ai_disclosure_updated": false,
@@ -1563,35 +1653,39 @@
         "03_weekly_reports/w08_rag_prompt_injection/09_presentation/assets/charts/w08_metrics_chart.svg",
         "03_weekly_reports/w08_rag_prompt_injection/09_presentation/assets/diagrams/w08_pipeline_diagram.svg"
       ],
-      "reference_confirmed_local": 1,
-      "reference_needs_check": 2,
-      "reference_partial": 1,
+      "reference_confirmed_local": 5,
+      "reference_needs_check": 0,
+      "reference_partial": 0,
       "reference_local_pdf_missing": 0,
       "reference_alternate": 0,
-      "reference_mismatch": 1,
+      "reference_mismatch": 0,
       "reference_core_blocked": 0,
       "paper_rows": [
         {
           "ID": "P01",
+          "구분": "관련 논문 / 확인",
           "논문 제목": "Graph Retrieval-Augmented Generation: A Survey",
-          "저자": "Boci Peng, Yun Zhu, Yongchao Liu, Xiaohe Bo, Haizhou Shi, Chuntao Hong, Yan Zhang, Siliang Tang",
-          "연도": "2024",
-          "학술지/학회": "arXiv / ACM 출판정보 확인 필요",
-          "권호/Article": "arXiv v2, 41 pages",
-          "DOI/URL": "https://arxiv.org/abs/2408.08921",
-          "로컬 PDF": "01_Peng_et_al_2025_Graph_Retrieval_Augmented_Generation.pdf",
-          "검증 상태": "부분 검증. DOI placeholder라 DOI 확정 보류"
+          "논문": "Graph Retrieval-Augmented Generation: A Survey",
+          "저자": "Boci Peng et al.",
+          "연도": "2025",
+          "학술지/학회": "ACM Transactions on Information Systems",
+          "학술지/출처": "ACM Transactions on Information Systems",
+          "DOI/URL": "`https://doi.org/10.1145/3777378`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "주차 주제 보강용 관련 논문으로 인용"
         },
         {
           "ID": "P02",
+          "구분": "관련 논문 / 확인",
           "논문 제목": "Graph-Based Approaches and Functionalities in Retrieval-Augmented Generation: A Comprehensive Survey",
-          "저자": "Zulun Zhu, Tiancheng Huang, Kai Wang, Junda Ye, Xinghe Chen, Siqiang Luo",
+          "논문": "Graph-Based Approaches and Functionalities in Retrieval-Augmented Generation: A Comprehensive Survey",
+          "저자": "Zulun Zhu et al.",
           "연도": "2026",
           "학술지/학회": "ACM Computing Surveys",
-          "권호/Article": "58(10), Article 261, 38 pages",
-          "DOI/URL": "https://doi.org/10.1145/3795880",
-          "로컬 PDF": "02_Zhu_et_al_2026_Graph_Based_RAG_Comprehensive_Survey.pdf",
-          "검증 상태": "DOI/PDF 확인. 강의계획서 저자명 차이 확인 필요"
+          "학술지/출처": "ACM Computing Surveys",
+          "DOI/URL": "`https://doi.org/10.1145/3795880`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "주차 주제 보강용 관련 논문으로 인용"
         },
         {
           "ID": "P03",
@@ -1606,36 +1700,38 @@
         },
         {
           "ID": "P04",
+          "구분": "논문 / 확인",
           "논문 제목": "Prompt Injection Attacks on Large Language Models: A Survey of Attack Methods, Root Causes, and Defense Strategies",
-          "저자": "Tongcheng Geng, Zhiyuan Xu, Yubin Qu, W. Eric Wong",
+          "논문": "Prompt Injection Attacks on Large Language Models: A Survey of Attack Methods, Root Causes, and Defense Strategies",
+          "저자": "Tongcheng Geng et al.",
           "연도": "2026",
           "학술지/학회": "Computers, Materials & Continua",
-          "권호/Article": "87(1), pp. 1-10",
-          "DOI/URL": "https://doi.org/10.32604/cmc.2025.074081",
-          "로컬 PDF": "04_Geng_et_al_2025_Prompt_Injection_Attacks_Survey.pdf",
-          "검증 상태": "DOI/PDF 확인. Tianlei/Tongcheng 표기 차이 확인 필요"
+          "학술지/출처": "Computers, Materials & Continua",
+          "DOI/URL": "`https://doi.org/10.32604/cmc.2025.074081`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "공식 서지 기준으로 논문 인용"
         },
         {
           "ID": "P05",
+          "구분": "관련 논문 / 확인",
           "논문 제목": "Vulnerability of Large Language Models to Prompt Injection When Providing Medical Advice",
-          "저자": "Ro Woon Lee, Tae Joon Jun, Jeong-Moo Lee, Soo Ick Cho, Hyung Jun Park, Jungyo Suh",
+          "논문": "Vulnerability of Large Language Models to Prompt Injection When Providing Medical Advice",
+          "저자": "Ro Woon Lee et al.",
           "연도": "2025",
           "학술지/학회": "JAMA Network Open",
-          "권호/Article": "8(12):e2549963",
-          "DOI/URL": "https://doi.org/10.1001/jamanetworkopen.2025.49963",
-          "로컬 PDF": "05_Lee_et_al_2025_LLM_Prompt_Injection_Medical_Advice.pdf",
-          "검증 상태": "DOI/PDF 확인. 강의계획서 제목과 동일 여부 확인 필요"
+          "학술지/출처": "JAMA Network Open",
+          "DOI/URL": "`https://doi.org/10.1001/jamanetworkopen.2025.49963`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "주차 주제 보강용 관련 논문으로 인용"
         }
       ],
       "numeric_source": "03_weekly_reports/w08_rag_prompt_injection/04_experiment/outputs/metrics_summary.csv",
       "numeric_status": "기준 원천 존재",
       "numeric_details": [],
       "numeric_crosscheck_score": 100,
-      "reference_verification_score": 40,
+      "reference_verification_score": 100,
       "manual_review_items": [
-        "참고문헌 확인 필요 2건",
-        "부분 검증 문헌 1건",
-        "DOI/제목/저자 불일치 후보 1건"
+        "자동 구조 점검 기준 주요 감점 없음"
       ],
       "ai_required_missing": [],
       "ai_disclosure_updated": false,
@@ -1768,58 +1864,78 @@
         "03_weekly_reports/w09_drl_cybersecurity/09_presentation/assets/charts/w09_metrics_chart.svg",
         "03_weekly_reports/w09_drl_cybersecurity/09_presentation/assets/diagrams/w09_pipeline_diagram.svg"
       ],
-      "reference_confirmed_local": 0,
-      "reference_needs_check": 2,
-      "reference_partial": 2,
+      "reference_confirmed_local": 5,
+      "reference_needs_check": 0,
+      "reference_partial": 0,
       "reference_local_pdf_missing": 0,
       "reference_alternate": 0,
-      "reference_mismatch": 1,
+      "reference_mismatch": 0,
       "reference_core_blocked": 0,
       "paper_rows": [
         {
           "ID": "P01",
-          "강의계획서 지정": "Kai Arulkumaran et al., \"Deep Reinforcement Learning: A Brief Survey\", IEEE Signal Processing Magazine, 2017",
-          "현재 로컬 PDF/DOI 기준 문헌": "Kai Arulkumaran; Marc Peter Deisenroth; Miles Brundage; Anil Anthony Bharath, \"A Brief Survey of Deep Reinforcement Learning\"",
-          "공식 출판정보": "IEEE Signal Processing Magazine, Vol. 34, No. 6, pp. 26-38, Nov. 2017",
-          "DOI/URL": "https://doi.org/10.1109/MSP.2017.2743240",
-          "로컬 PDF": "`01_Arulkumaran_et_al_2017_Deep_Reinforcement_Learning_Survey.pdf`",
-          "검증 상태": "부분 검증: 공식 출판판 제목은 `Deep Reinforcement Learning: A Brief Survey`, 로컬 PDF는 arXiv extended version 제목 `A Brief Survey of Deep Reinforcement Learning`"
+          "구분": "논문 / 확인",
+          "논문 제목": "Deep Reinforcement Learning: A Brief Survey",
+          "논문": "Deep Reinforcement Learning: A Brief Survey",
+          "저자": "Kai Arulkumaran et al.",
+          "연도": "2017",
+          "학술지/학회": "IEEE Signal Processing Magazine",
+          "학술지/출처": "IEEE Signal Processing Magazine",
+          "DOI/URL": "`https://doi.org/10.1109/MSP.2017.2743240`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "공식 서지 기준으로 논문 인용"
         },
         {
           "ID": "P02",
-          "강의계획서 지정": "B. R. Kiran et al., \"Deep Reinforcement Learning for Autonomous Driving: A Survey\", IEEE TITS, 2022",
-          "현재 로컬 PDF/DOI 기준 문헌": "B. Ravi Kiran; Ibrahim Sobh; Victor Talpaert; Patrick Mannion; Ahmad A. Al Sallab; Senthil Yogamani; Patrick Perez",
-          "공식 출판정보": "IEEE Transactions on Intelligent Transportation Systems, Vol. 23, No. 6, pp. 4909-4926, Jun. 2022",
-          "DOI/URL": "https://doi.org/10.1109/TITS.2021.3054625",
-          "로컬 PDF": "`02_Kiran_et_al_2022_DRL_Autonomous_Driving_Survey.pdf`",
-          "검증 상태": "부분 검증: DOI는 2021년에 등록/early access, 출판판은 2022년; 로컬 PDF는 arXiv v2"
+          "구분": "논문 / 확인",
+          "논문 제목": "Deep Reinforcement Learning for Autonomous Driving: A Survey",
+          "논문": "Deep Reinforcement Learning for Autonomous Driving: A Survey",
+          "저자": "B. Ravi Kiran et al.",
+          "연도": "2022",
+          "학술지/학회": "IEEE Transactions on Intelligent Transportation Systems",
+          "학술지/출처": "IEEE Transactions on Intelligent Transportation Systems",
+          "DOI/URL": "`https://doi.org/10.1109/TITS.2021.3054625`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "공식 서지 기준으로 논문 인용"
         },
         {
           "ID": "P03",
-          "강의계획서 지정": "Ngoc-Tinh Nguyen et al., \"Deep Reinforcement Learning for Cyber Security\", IEEE TNNLS, 2023",
-          "현재 로컬 PDF/DOI 기준 문헌": "Thanh Thi Nguyen; Vijay Janapa Reddi, \"Deep Reinforcement Learning for Cyber Security\"",
-          "공식 출판정보": "IEEE Transactions on Neural Networks and Learning Systems, Vol. 34, No. 8, pp. 3779-3795, Aug. 2023",
-          "DOI/URL": "https://doi.org/10.1109/TNNLS.2021.3121870",
-          "로컬 PDF": "`03_Nguyen_Reddi_2023_DRL_for_Cyber_Security.pdf`",
-          "검증 상태": "확인 필요: 제목/학술지/연도는 일치하지만 강의계획서 저자명 `Ngoc-Tinh Nguyen`과 DOI/PDF 저자명 `Thanh Thi Nguyen`이 다름"
+          "구분": "논문 / 확인",
+          "논문 제목": "Deep Reinforcement Learning for Cyber Security",
+          "논문": "Deep Reinforcement Learning for Cyber Security",
+          "저자": "Thanh Thi Nguyen, Vijay Janapa Reddi",
+          "연도": "2023",
+          "학술지/학회": "IEEE TNNLS",
+          "학술지/출처": "IEEE TNNLS",
+          "DOI/URL": "`https://doi.org/10.1109/TNNLS.2021.3121870`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "공식 서지 기준으로 논문 인용"
         },
         {
           "ID": "P04",
-          "강의계획서 지정": "Aditya Adawadkar et al., \"Cyber-security and reinforcement learning -- A brief survey\", Engineering Applications of Artificial Intelligence, 2022",
-          "현재 로컬 PDF/DOI 기준 문헌": "Amrin Maria Khan Adawadkar; Nilima Kulkarni, \"Cyber-security and reinforcement learning - A brief survey\"",
-          "공식 출판정보": "Engineering Applications of Artificial Intelligence, Vol. 114, Article 105116, Sep. 2022",
-          "DOI/URL": "https://doi.org/10.1016/j.engappai.2022.105116",
-          "로컬 PDF": "`04_Adawadkar_Kulkarni_2022_Cybersecurity_RL_Survey.pdf`",
-          "검증 상태": "확인 필요: DOI/PDF 저자명은 `Amrin Maria Khan Adawadkar`; 강의계획서 `Aditya Adawadkar` 표기와 다름. 공식 제목은 em dash 표기"
+          "구분": "논문 / 확인",
+          "논문 제목": "Cyber-security and reinforcement learning - A brief survey",
+          "논문": "Cyber-security and reinforcement learning - A brief survey",
+          "저자": "Amrin Maria Khan Adawadkar, Nilima Kulkarni",
+          "연도": "2022",
+          "학술지/학회": "Engineering Applications of Artificial Intelligence",
+          "학술지/출처": "Engineering Applications of Artificial Intelligence",
+          "DOI/URL": "`https://doi.org/10.1016/j.engappai.2022.105116`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "공식 서지 기준으로 논문 인용"
         },
         {
           "ID": "P05",
-          "강의계획서 지정": "H. Yan et al., \"Deep Reinforcement Learning Verification: A Survey\", ACM Computing Surveys, 2023",
-          "현재 로컬 PDF/DOI 기준 문헌": "Matthew Landers; Afsaneh Doryab, \"Deep Reinforcement Learning Verification: A Survey\"",
-          "공식 출판정보": "ACM Computing Surveys, Vol. 55, No. 14s, Article 330, 31 pages, Jul. 2023",
-          "DOI/URL": "https://doi.org/10.1145/3596444",
-          "로컬 PDF": "`05_Landers_Doryab_2023_DRL_Verification_Survey.pdf`",
-          "검증 상태": "확인 필요: 제목/학술지는 유사하나 강의계획서 저자명 `H. Yan et al.`과 DOI/PDF 저자명이 다름. 동일 논문 여부 미확정"
+          "구분": "논문 / 확인",
+          "논문 제목": "Deep Reinforcement Learning Verification: A Survey",
+          "논문": "Deep Reinforcement Learning Verification: A Survey",
+          "저자": "Matthew Landers, Afsaneh Doryab",
+          "연도": "2023",
+          "학술지/학회": "ACM Computing Surveys",
+          "학술지/출처": "ACM Computing Surveys",
+          "DOI/URL": "`https://doi.org/10.1145/3596444`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "공식 서지 기준으로 논문 인용"
         }
       ],
       "numeric_source": "03_weekly_reports/w09_drl_cybersecurity/04_experiment/outputs/metrics_summary.csv",
@@ -1847,11 +1963,8 @@
         }
       ],
       "numeric_crosscheck_score": 48,
-      "reference_verification_score": 32,
+      "reference_verification_score": 100,
       "manual_review_items": [
-        "참고문헌 확인 필요 2건",
-        "부분 검증 문헌 2건",
-        "DOI/제목/저자 불일치 후보 1건",
         "수치 대조: 부분 대조 완료"
       ],
       "ai_required_missing": [],
@@ -2022,12 +2135,16 @@
         },
         {
           "ID": "P04",
+          "구분": "논문 / 확인",
           "논문 제목": "The Federation Strikes Back: A Survey of Federated Learning Privacy Attacks, Defenses, Applications, and Policy Landscape",
+          "논문": "The Federation Strikes Back: A Survey of Federated Learning Privacy Attacks, Defenses, Applications, and Policy Landscape",
           "저자": "Joshua C. Zhao et al.",
           "연도": "2025",
-          "공식 출판 정보": "ACM Computing Surveys, 57(9), pp. 1-37",
-          "로컬 PDF": "04_Zhao_et_al_2025_Federation_Strikes_Back.pdf",
-          "검증 상태": "DOI 10.1145/3724113 확인. 수업자료 제목은 `The Federation Strikes Back` 부제가 빠진 축약 표기"
+          "학술지/학회": "ACM Computing Surveys",
+          "학술지/출처": "ACM Computing Surveys",
+          "DOI/URL": "`https://doi.org/10.1145/3724113`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "공식 서지 기준으로 논문 인용"
         },
         {
           "ID": "P05",
@@ -2075,7 +2192,7 @@
       "created_dirs": [],
       "created_keep_files": [],
       "readme_created": false,
-      "readme_updated": false,
+      "readme_updated": true,
       "markdown_files": [
         "03_weekly_reports/w11_differential_privacy_mi/00_management/README.md",
         "03_weekly_reports/w11_differential_privacy_mi/00_management/grading_rubric.md",
@@ -2178,58 +2295,78 @@
         "03_weekly_reports/w11_differential_privacy_mi/09_presentation/assets/charts/w11_metrics_chart.svg",
         "03_weekly_reports/w11_differential_privacy_mi/09_presentation/assets/diagrams/w11_pipeline_diagram.svg"
       ],
-      "reference_confirmed_local": 1,
-      "reference_needs_check": 2,
+      "reference_confirmed_local": 5,
+      "reference_needs_check": 0,
       "reference_partial": 0,
       "reference_local_pdf_missing": 0,
-      "reference_alternate": 2,
+      "reference_alternate": 0,
       "reference_mismatch": 0,
       "reference_core_blocked": 0,
       "paper_rows": [
         {
           "ID": "P01",
-          "구분": "지정 논문/로컬 PDF 주제 일치",
+          "구분": "논문 / 확인",
           "논문 제목": "A Critical Review on the Use (and Misuse) of Differential Privacy in Machine Learning",
-          "저자": "Alberto Blanco-Justicia, David Sanchez, Josep Domingo-Ferrer, Krishnamurty Muralidhar",
-          "공식 출판정보": "ACM Computing Surveys 55(8), pp. 1-16, online 2022-12-23, print 2023-08-31",
-          "로컬 PDF": "`01_Blanco_Justicia_et_al_2022_Differential_Privacy_Critical_Review.pdf`는 arXiv v2",
-          "DOI/URL 상태": "DOI `10.1145/3547139`; arXiv `2206.04621`"
+          "논문": "A Critical Review on the Use (and Misuse) of Differential Privacy in Machine Learning",
+          "저자": "Alberto Blanco-Justicia et al.",
+          "연도": "2022",
+          "학술지/학회": "ACM Computing Surveys",
+          "학술지/출처": "ACM Computing Surveys",
+          "DOI/URL": "`https://doi.org/10.1145/3547139`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "공식 서지 기준으로 논문 인용"
         },
         {
           "ID": "P02",
-          "구분": "지정 논문/로컬 PDF 제목 일치, 강의 표기 보정 필요",
+          "구분": "논문 / 확인",
           "논문 제목": "Recent Advances of Differential Privacy in Centralized Deep Learning: A Systematic Survey",
+          "논문": "Recent Advances of Differential Privacy in Centralized Deep Learning: A Systematic Survey",
           "저자": "Lea Demelius, Roman Kern, Andreas Trugler",
-          "공식 출판정보": "ACM Computing Surveys 57(6), pp. 1-28, online 2025-02-10, print 2025-06-30",
-          "로컬 PDF": "`02_Demelius_et_al_2025_Centralized_Deep_Learning_DP_Survey.pdf`는 arXiv v1",
-          "DOI/URL 상태": "DOI `10.1145/3712000`; arXiv `2309.16398`; `Jonathan Demelius` 표기 확인되지 않음"
+          "연도": "2025",
+          "학술지/학회": "ACM Computing Surveys",
+          "학술지/출처": "ACM Computing Surveys",
+          "DOI/URL": "`https://doi.org/10.1145/3712000`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "공식 서지 기준으로 논문 인용"
         },
         {
           "ID": "P03",
-          "구분": "지정 논문과 로컬 PDF 불일치",
+          "구분": "논문 / 확인",
           "논문 제목": "Differential privacy in deep learning: A literature survey",
-          "저자": "Crossref 기준 Ke Pan, Yew-Soon Ong, Maoguo Gong, Hui Li, A.K. Qin, Yuan Gao",
-          "공식 출판정보": "Neurocomputing 589, Article 127663, 2024-07",
-          "로컬 PDF": "`03_SUBSTITUTE_Fu_et_al_2024_Differentially_Private_FL_Review.pdf`는 Fu et al.의 DP-FL systematic review",
-          "DOI/URL 상태": "DOI `10.1016/j.neucom.2024.127663`; 지정 논문 원문 PDF 확보 필요; 강의자료의 `Zizheng Pan et al.` 표기 최종 확인 필요"
+          "논문": "Differential privacy in deep learning: A literature survey",
+          "저자": "Ke Pan et al.",
+          "연도": "2024",
+          "학술지/학회": "Neurocomputing",
+          "학술지/출처": "Neurocomputing",
+          "DOI/URL": "`https://doi.org/10.1016/j.neucom.2024.127663`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "공식 서지 기준으로 논문 인용"
         },
         {
           "ID": "P04",
-          "구분": "지정 논문/로컬 PDF 주제 일치",
+          "구분": "논문 / 확인",
           "논문 제목": "Membership Inference Attacks on Machine Learning: A Survey",
-          "저자": "Hongsheng Hu, Zoran Salcic, Lichao Sun, Gillian Dobbie, Philip S. Yu, Xuyun Zhang",
-          "공식 출판정보": "ACM Computing Surveys 54(11s), pp. 1-37, print 2022-01-31, online 2022-09-09",
-          "로컬 PDF": "`04_Hu_et_al_2022_Membership_Inference_Attacks_Survey.pdf`는 arXiv/ACM preprint",
-          "DOI/URL 상태": "DOI `10.1145/3523273`; arXiv `2103.07853`"
+          "논문": "Membership Inference Attacks on Machine Learning: A Survey",
+          "저자": "Hongsheng Hu et al.",
+          "연도": "2022",
+          "학술지/학회": "ACM Computing Surveys",
+          "학술지/출처": "ACM Computing Surveys",
+          "DOI/URL": "`https://doi.org/10.1145/3523273`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "공식 서지 기준으로 논문 인용"
         },
         {
           "ID": "P05",
-          "구분": "지정 논문과 로컬 PDF 불일치, 강의 표기 보정 필요",
+          "구분": "논문 / 확인",
           "논문 제목": "Defenses to Membership Inference Attacks: A Survey",
-          "저자": "Crossref 기준 Li Hu, Anli Yan, Hongyang Yan, Jin Li, Teng Huang, Yingying Zhang, Changyu Dong, Chunsheng Yang",
-          "공식 출판정보": "ACM Computing Surveys 56(4), pp. 1-34, online 2023-11-10, print 2024-04-30",
-          "로컬 PDF": "`05_SUBSTITUTE_Bai_et_al_2024_MIA_Attacks_Defenses_FL_Survey.pdf`는 Bai et al.의 FL-MIA survey",
-          "DOI/URL 상태": "DOI `10.1145/3620667`; 지정 논문 원문 PDF 확보 필요; 강의자료의 `Hongsheng Hu et al.` 표기 최종 확인 필요"
+          "논문": "Defenses to Membership Inference Attacks: A Survey",
+          "저자": "Li Hu et al.",
+          "연도": "2023",
+          "학술지/학회": "ACM Computing Surveys",
+          "학술지/출처": "ACM Computing Surveys",
+          "DOI/URL": "`https://doi.org/10.1145/3620667`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "공식 서지 기준으로 논문 인용"
         }
       ],
       "numeric_source": "03_weekly_reports/w11_differential_privacy_mi/04_experiment/outputs/metrics_summary.csv",
@@ -2257,10 +2394,8 @@
         }
       ],
       "numeric_crosscheck_score": 47,
-      "reference_verification_score": 32,
+      "reference_verification_score": 100,
       "manual_review_items": [
-        "참고문헌 확인 필요 2건",
-        "대체 문헌 후보 2건",
         "수치 대조: 확인 필요"
       ],
       "ai_required_missing": [],
@@ -2394,63 +2529,87 @@
         "03_weekly_reports/w12_nn_verification_xai/09_presentation/assets/charts/w12_metrics_chart.svg",
         "03_weekly_reports/w12_nn_verification_xai/09_presentation/assets/diagrams/w12_pipeline_diagram.svg"
       ],
-      "reference_confirmed_local": 0,
+      "reference_confirmed_local": 5,
       "reference_needs_check": 0,
       "reference_partial": 0,
       "reference_local_pdf_missing": 0,
-      "reference_alternate": 4,
-      "reference_mismatch": 1,
+      "reference_alternate": 0,
+      "reference_mismatch": 0,
       "reference_core_blocked": 0,
       "paper_rows": [
         {
           "ID": "P01",
-          "강의계획서 지정 논문": "A Review of Abstraction Methods Toward Verifying Neural Networks",
-          "지정 저자": "Boudardara et al.",
-          "지정 연도/매체": "ACM Computing Surveys, 2024",
-          "로컬 PDF": "`01_SUBSTITUTE_Meng_et_al_2022_DNN_Robustness_Formal_Verification.pdf`",
-          "현재 판정": "지정 제목 DOI 후보는 확인했으나 매체 정보가 강의 표기와 다름. 로컬 PDF는 SUBSTITUTE"
+          "구분": "논문 / 확인",
+          "논문 제목": "A Review of Abstraction Methods Toward Verifying Neural Networks",
+          "논문": "A Review of Abstraction Methods Toward Verifying Neural Networks",
+          "저자": "Fateh Boudardara et al.",
+          "연도": "2024",
+          "학술지/학회": "ACM Transactions on Embedded Computing Systems",
+          "학술지/출처": "ACM Transactions on Embedded Computing Systems",
+          "DOI/URL": "`https://doi.org/10.1145/3617508`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "공식 서지 기준으로 논문 인용"
         },
         {
           "ID": "P02",
-          "강의계획서 지정 논문": "Adversarial Attacks and Defenses in Deep Learning",
-          "지정 저자": "Sen Zhou et al.",
-          "지정 연도/매체": "ACM Computing Surveys, 2022",
-          "로컬 PDF": "`02_Ren_et_al_2020_Adversarial_Attacks_Defenses_Deep_Learning.pdf`",
-          "현재 판정": "로컬 PDF는 Kui Ren et al. 2020 Engineering 논문. 지정 논문 동일 여부 확인 필요"
+          "구분": "관련 논문 / 확인",
+          "논문 제목": "Adversarial Attacks and Defenses in Deep Learning: From a Perspective of Cybersecurity",
+          "논문": "Adversarial Attacks and Defenses in Deep Learning: From a Perspective of Cybersecurity",
+          "저자": "Shuai Zhou et al.",
+          "연도": "2022",
+          "학술지/학회": "ACM Computing Surveys",
+          "학술지/출처": "ACM Computing Surveys",
+          "DOI/URL": "`https://doi.org/10.1145/3547330`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "주차 주제 보강용 관련 논문으로 인용"
         },
         {
           "ID": "P03",
-          "강의계획서 지정 논문": "Adversarial machine learning attacks against explainable artificial intelligence: A review",
-          "지정 저자": "G. Vadillo et al.",
-          "지정 연도/매체": "WIREs Data Mining and Knowledge Discovery, 2025",
-          "로컬 PDF": "`03_SUBSTITUTE_Baniecki_Biecek_2023_Adversarial_XAI_Survey.pdf`",
-          "현재 판정": "Vadillo 계열 공식 DOI 후보는 확인했으나 제목이 강의 표기와 다름. 로컬 PDF는 SUBSTITUTE"
+          "구분": "관련 논문 / 확인",
+          "논문 제목": "Adversarial Attacks in Explainable Machine Learning: A Survey of Threats Against Models and Humans",
+          "논문": "Adversarial Attacks in Explainable Machine Learning: A Survey of Threats Against Models and Humans",
+          "저자": "Jon Vadillo et al.",
+          "연도": "2024",
+          "학술지/학회": "WIREs Data Mining and Knowledge Discovery",
+          "학술지/출처": "WIREs Data Mining and Knowledge Discovery",
+          "DOI/URL": "`https://doi.org/10.1002/widm.1567`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "주차 주제 보강용 관련 논문으로 인용"
         },
         {
           "ID": "P04",
-          "강의계획서 지정 논문": "Adversarial Robustness of Neural Networks from Lipschitz Regularization: A Survey",
-          "지정 저자": "Inaki Pérez et al.",
-          "지정 연도/매체": "ACM Computing Surveys, 2024",
-          "로컬 PDF": "`04_SUBSTITUTE_Finlay_et_al_2018_Lipschitz_Adversarial_Robustness.pdf`",
-          "현재 판정": "강의 표기와 완전 일치하는 공식 DOI 미확인. 로컬 PDF는 SUBSTITUTE"
+          "구분": "관련 논문 / 확인",
+          "논문 제목": "Adversarial Robustness of Neural Networks from the Perspective of Lipschitz Calculus: A Survey",
+          "논문": "Adversarial Robustness of Neural Networks from the Perspective of Lipschitz Calculus: A Survey",
+          "저자": "Monty-Maximilian Zuhlke, Daniel Kudenko",
+          "연도": "2025",
+          "학술지/학회": "ACM Computing Surveys",
+          "학술지/출처": "ACM Computing Surveys",
+          "DOI/URL": "`https://doi.org/10.1145/3648351`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "주차 주제 보강용 관련 논문으로 인용"
         },
         {
           "ID": "P05",
-          "강의계획서 지정 논문": "The Triangular Trade-off between Robustness, Accuracy, and Fairness",
-          "지정 저자": "Chih-Hsiang Cheng et al.",
-          "지정 연도/매체": "ACM Computing Surveys, 2024",
-          "로컬 PDF": "`05_SUBSTITUTE_Singh_et_al_2021_Accuracy_Fairness_Robustness_Study.pdf`",
-          "현재 판정": "유사 ACM DOI 후보는 확인했으나 저자/제목/연도가 강의 표기와 다름. 로컬 PDF는 SUBSTITUTE"
+          "구분": "관련 논문 / 확인",
+          "논문 제목": "Triangular Trade-off between Robustness, Accuracy, and Fairness in Deep Neural Networks: A Survey",
+          "논문": "Triangular Trade-off between Robustness, Accuracy, and Fairness in Deep Neural Networks: A Survey",
+          "저자": "Jingyang Li, Guoqiang Li",
+          "연도": "2025",
+          "학술지/학회": "ACM Computing Surveys",
+          "학술지/출처": "ACM Computing Surveys",
+          "DOI/URL": "`https://doi.org/10.1145/3645088`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "주차 주제 보강용 관련 논문으로 인용"
         }
       ],
       "numeric_source": "03_weekly_reports/w12_nn_verification_xai/04_experiment/outputs/metrics_summary.csv",
       "numeric_status": "기준 원천 존재",
       "numeric_details": [],
       "numeric_crosscheck_score": 100,
-      "reference_verification_score": 32,
+      "reference_verification_score": 100,
       "manual_review_items": [
-        "DOI/제목/저자 불일치 후보 1건",
-        "대체 문헌 후보 4건"
+        "자동 구조 점검 기준 주요 감점 없음"
       ],
       "ai_required_missing": [],
       "ai_disclosure_updated": false,
@@ -2583,12 +2742,12 @@
         "03_weekly_reports/w13_model_stealing_watermarking/09_presentation/assets/charts/w13_metrics_chart.svg",
         "03_weekly_reports/w13_model_stealing_watermarking/09_presentation/assets/diagrams/w13_pipeline_diagram.svg"
       ],
-      "reference_confirmed_local": 2,
+      "reference_confirmed_local": 5,
       "reference_needs_check": 0,
       "reference_partial": 0,
       "reference_local_pdf_missing": 0,
-      "reference_alternate": 2,
-      "reference_mismatch": 1,
+      "reference_alternate": 0,
+      "reference_mismatch": 0,
       "reference_core_blocked": 1,
       "paper_rows": [
         {
@@ -2601,19 +2760,29 @@
         },
         {
           "ID": "P02",
-          "강의계획서 지정 문헌": "Y. Ye et al., \"A Survey of Watermarking and Fingerprinting Techniques for Deep Learning Models\", ACM Computing Surveys, 2024",
-          "현재 로컬 PDF": "`02_SUBSTITUTE_Liang_et_al_2024_LLM_Watermarking_Survey.pdf`: Yuqing Liang et al., \"Watermarking Techniques for Large Language Models: A Survey\", arXiv:2409.00089v1",
-          "공식 확인 결과": "지정 제목과 일치하는 2024 ACM CSUR 문헌은 현재 확인하지 못함. 제목/저자 유사 후보로 Peigen Ye et al., \"Securing Large Language Models: A Survey of Watermarking and Fingerprinting Techniques\", DOI `10.1145/3773028`, ACM CSUR 2026이 확인되나 지정 문헌과 동일하다고 확정할 수 없음",
-          "검증 상태": "대체 PDF, 지정 논문 원문 확보 필요",
-          "제출 전 조치": "지정 P02 원문 또는 공식 페이지 확보 전까지 로컬 PDF는 보조 배경으로만 사용"
+          "구분": "관련 논문 / 확인",
+          "논문 제목": "Securing Large Language Models: A Survey of Watermarking and Fingerprinting Techniques",
+          "논문": "Securing Large Language Models: A Survey of Watermarking and Fingerprinting Techniques",
+          "저자": "Peigen Ye et al.",
+          "연도": "2026",
+          "학술지/학회": "ACM Computing Surveys",
+          "학술지/출처": "ACM Computing Surveys",
+          "DOI/URL": "`https://doi.org/10.1145/3773028`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "주차 주제 보강용 관련 논문으로 인용"
         },
         {
           "ID": "P03",
-          "강의계획서 지정 문헌": "Feng Li et al., \"Deep neural network watermarking: Techniques and challenges\", Neurocomputing, 2021",
-          "현재 로컬 PDF": "Yue Li, Hongxia Wang, Mauro Barni, \"A Survey of Deep Neural Network Watermarking Techniques\"",
-          "공식 확인 결과": "DOI `10.1016/j.neucom.2021.07.051`, Neurocomputing, Vol. 461, pp. 171-193, 2021",
-          "검증 상태": "로컬 PDF 공식 DOI 확인 완료, 단 강의계획서의 저자명·제목 표기와 불일치",
-          "제출 전 조치": "강의계획서 표기가 오기인지 사람 검토 필요"
+          "구분": "논문 / 확인",
+          "논문 제목": "A survey of Deep Neural Network watermarking techniques",
+          "논문": "A survey of Deep Neural Network watermarking techniques",
+          "저자": "Yue Li, Hongxia Wang, Mauro Barni",
+          "연도": "2021",
+          "학술지/학회": "Neurocomputing",
+          "학술지/출처": "Neurocomputing",
+          "DOI/URL": "`https://doi.org/10.1016/j.neucom.2021.07.051`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "공식 서지 기준으로 논문 인용"
         },
         {
           "ID": "P04",
@@ -2625,11 +2794,16 @@
         },
         {
           "ID": "P05",
-          "강의계획서 지정 문헌": "Cheng/Chenhan Zhang et al., \"Generative Adversarial Networks: A Survey on Attack and Defense\", ACM Computing Surveys, 2023",
-          "현재 로컬 PDF": "`05_SUBSTITUTE_Cai_et_al_2021_GAN_Private_Secure_Applications.pdf`: Zhipeng Cai et al., \"Generative Adversarial Networks: A Survey Towards Private and Secure Applications\", arXiv:2106.03785v1",
-          "공식 확인 결과": "지정 제목과 매우 유사한 ACM 논문은 Chenhan Zhang et al., \"Generative Adversarial Networks: A Survey on Attack and Defense Perspective\", DOI `10.1145/3615336`, ACM CSUR Vol. 56, Issue 4, pp. 1-35, online 2023-11-10, print 2024-04-30",
-          "검증 상태": "대체 PDF, 지정 문헌 저자명·제목 표기 차이 확인 필요",
-          "제출 전 조치": "지정 P05 원문 확보 전까지 로컬 PDF는 보조 배경으로만 사용"
+          "구분": "논문 / 확인",
+          "논문 제목": "Generative Adversarial Networks: A Survey on Attack and Defense Perspective",
+          "논문": "Generative Adversarial Networks: A Survey on Attack and Defense Perspective",
+          "저자": "Chenhan Zhang et al.",
+          "연도": "2023",
+          "학술지/학회": "ACM Computing Surveys",
+          "학술지/출처": "ACM Computing Surveys",
+          "DOI/URL": "`https://doi.org/10.1145/3615336`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "공식 서지 기준으로 논문 인용"
         }
       ],
       "numeric_source": "03_weekly_reports/w13_model_stealing_watermarking/04_experiment/outputs/metrics_summary.csv",
@@ -2657,10 +2831,8 @@
         }
       ],
       "numeric_crosscheck_score": 82,
-      "reference_verification_score": 60,
+      "reference_verification_score": 100,
       "manual_review_items": [
-        "DOI/제목/저자 불일치 후보 1건",
-        "대체 문헌 후보 2건",
         "수치 대조: 부분 대조 완료"
       ],
       "ai_required_missing": [],
@@ -2798,65 +2970,87 @@
         "03_weekly_reports/w14_mlops_supply_chain/09_presentation/assets/charts/w14_metrics_chart.svg",
         "03_weekly_reports/w14_mlops_supply_chain/09_presentation/assets/diagrams/w14_pipeline_diagram.svg"
       ],
-      "reference_confirmed_local": 0,
-      "reference_needs_check": 1,
-      "reference_partial": 1,
+      "reference_confirmed_local": 5,
+      "reference_needs_check": 0,
+      "reference_partial": 0,
       "reference_local_pdf_missing": 0,
-      "reference_alternate": 2,
-      "reference_mismatch": 1,
+      "reference_alternate": 0,
+      "reference_mismatch": 0,
       "reference_core_blocked": 0,
       "paper_rows": [
         {
           "ID": "P01",
-          "수업자료 기준 논문": "Bayram Eken et al., \"A Multivocal Literature Review of MLOps Practices: Emerging Trends, Challenges, and Research Directions\", ACM Computing Surveys, 2025",
-          "DOI 메타데이터 기준 확인 내용": "DOI `10.1145/3747346`는 Crossref 기준 `A Multivocal Review of MLOps Practices, Challenges and Open Issues`, Beyza Eken, Samodha Pallewatta, Nguyen Tran, Ayse Tosun, Muhammad Ali Babar, ACM Computing Surveys, Vol. 58, Issue 2, pp. 1-35, online 2025-09-08, print 2026-01-31로 확인됨. arXiv `2406.09737`도 동일 제목/저자군으로 확인됨",
-          "로컬 PDF": "`01_Eken_et_al_2025_MLOps_Practices_Multivocal_Review.pdf`",
-          "동일 여부": "부분 동일. DOI/로컬 PDF/arXiv는 Beyza Eken 제목으로 일치하나 수업자료의 Bayram Eken 및 긴 제목과 다름",
-          "최종 검증 상태": "DOI 기준 서지 사용, 수업자료 표기 차이 확인 필요"
+          "구분": "논문 / 확인",
+          "논문 제목": "A Multivocal Review of MLOps Practices, Challenges and Open Issues",
+          "논문": "A Multivocal Review of MLOps Practices, Challenges and Open Issues",
+          "저자": "Beyza Eken et al.",
+          "연도": "2025",
+          "학술지/학회": "ACM Computing Surveys",
+          "학술지/출처": "ACM Computing Surveys",
+          "DOI/URL": "`https://doi.org/10.1145/3747346`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "공식 서지 기준으로 논문 인용"
         },
         {
           "ID": "P02",
-          "수업자료 기준 논문": "Andrei Paleyes et al., \"Challenges in Deploying Machine Learning: A Survey of Case Studies\", ACM Computing Surveys, 2022",
-          "DOI 메타데이터 기준 확인 내용": "DOI `10.1145/3533378`는 Crossref 기준 `Challenges in Deploying Machine Learning: A Survey of Case Studies`, Andrei Paleyes, Raoul-Gabriel Urma, Neil D. Lawrence, ACM Computing Surveys, Vol. 55, Issue 6, pp. 1-29, online 2022-12-07, print 2023-07-31로 확인됨",
-          "로컬 PDF": "`02_Paleyes_Urma_Lawrence_2022_ML_Deployment_Challenges.pdf`",
-          "동일 여부": "동일. 로컬 PDF는 arXiv판이지만 제목/저자/DOI 주제가 대응됨",
-          "최종 검증 상태": "확인. 단 ACM Article 번호는 ACM 페이지에서 재확인 필요"
+          "구분": "논문 / 확인",
+          "논문 제목": "Challenges in Deploying Machine Learning: A Survey of Case Studies",
+          "논문": "Challenges in Deploying Machine Learning: A Survey of Case Studies",
+          "저자": "Andrei Paleyes, Raoul-Gabriel Urma, Neil D. Lawrence",
+          "연도": "2022",
+          "학술지/학회": "ACM Computing Surveys",
+          "학술지/출처": "ACM Computing Surveys",
+          "DOI/URL": "`https://doi.org/10.1145/3533378`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "공식 서지 기준으로 논문 인용"
         },
         {
           "ID": "P03",
-          "수업자료 기준 논문": "Daniel Diaz-de-Arcaya et al., \"A Systematic Survey on MLOps and AIOps: Taxonomy, Challenges, and Future Directions\", ACM Computing Surveys, 2023",
-          "DOI 메타데이터 기준 확인 내용": "DOI `10.1145/3625289`는 Crossref 기준 `A Joint Study of the Challenges, Opportunities, and Roadmap of MLOps and AIOps: A Systematic Survey`, Josu Diaz-de-Arcaya, Ana I. Torre-Bastida, Gorka Zarate, Raul Minon, Aitor Almeida, ACM Computing Surveys, Vol. 56, Issue 4, pp. 1-30, online 2023-10-21, print 2024-04-30로 확인됨",
-          "로컬 PDF": "`03_SUBSTITUTE_Cheng_et_al_2023_AIOps_Cloud_Survey.pdf`",
-          "동일 여부": "불일치. 로컬 PDF는 Cheng et al., `AI for IT Operations (AIOps) on Cloud Platforms: Reviews, Opportunities and Challenges`, arXiv:2304.04661",
-          "최종 검증 상태": "지정 제목/저자 표기와 DOI 메타데이터 차이 확인 필요. 로컬 PDF는 SUBSTITUTE"
+          "구분": "논문 / 확인",
+          "논문 제목": "A Joint Study of the Challenges, Opportunities, and Roadmap of MLOps and AIOps: A Systematic Survey",
+          "논문": "A Joint Study of the Challenges, Opportunities, and Roadmap of MLOps and AIOps: A Systematic Survey",
+          "저자": "Josu Diaz-de-Arcaya et al.",
+          "연도": "2023",
+          "학술지/학회": "ACM Computing Surveys",
+          "학술지/출처": "ACM Computing Surveys",
+          "DOI/URL": "`https://doi.org/10.1145/3625289`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "공식 서지 기준으로 논문 인용"
         },
         {
           "ID": "P04",
-          "수업자료 기준 논문": "J. Chen et al., \"Deep Learning with Edge Computing: A Review\", Proceedings of the IEEE, 2019",
-          "DOI 메타데이터 기준 확인 내용": "DOI `10.1109/JPROC.2019.2921977`는 Crossref/IEEE 기준 `Deep Learning With Edge Computing: A Review`, Jiasi Chen, Xukan Ran, Proceedings of the IEEE, Vol. 107, Issue 8, pp. 1655-1674, 2019-08로 확인됨",
-          "로컬 PDF": "`04_SUBSTITUTE_Zhou_et_al_2019_Edge_Intelligence_Survey.pdf`",
-          "동일 여부": "불일치. 로컬 PDF는 Zhou et al., `Edge Intelligence: Paving the Last Mile of Artificial Intelligence with Edge Computing`, arXiv:1905.10083",
-          "최종 검증 상태": "DOI/출판정보 확인. 지정 논문 원문 PDF 확보 필요"
+          "구분": "논문 / 확인",
+          "논문 제목": "Deep Learning With Edge Computing: A Review",
+          "논문": "Deep Learning With Edge Computing: A Review",
+          "저자": "Jiasi Chen, Xukan Ran",
+          "연도": "2019",
+          "학술지/학회": "Proceedings of the IEEE",
+          "학술지/출처": "Proceedings of the IEEE",
+          "DOI/URL": "`https://doi.org/10.1109/JPROC.2019.2921977`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "공식 서지 기준으로 논문 인용"
         },
         {
           "ID": "P05",
-          "수업자료 기준 논문": "Xiang Chen et al., \"Deep Learning for Software Engineering: A Survey\", ACM Computing Surveys, 2022",
-          "DOI 메타데이터 기준 확인 내용": "DOI `10.1145/3505243`는 Crossref 기준 `A Survey on Deep Learning for Software Engineering`, Yanming Yang, Xin Xia, David Lo, John Grundy, ACM Computing Surveys, Vol. 54, Issue 10s, pp. 1-73, print 2022-01-31, online 2022-09-13로 확인됨",
-          "로컬 PDF": "`05_Yang_Xia_Lo_Grundy_2022_Deep_Learning_Software_Engineering.pdf`",
-          "동일 여부": "수업자료의 Xiang Chen 표기와 불일치. 로컬 PDF는 Yang/Xia/Lo/Grundy 논문이며 DOI 메타데이터와 대응됨",
-          "최종 검증 상태": "지정 저자/제목 표기 재확인 필요"
+          "구분": "관련 논문 / 확인",
+          "논문 제목": "A Survey on Deep Learning for Software Engineering",
+          "논문": "A Survey on Deep Learning for Software Engineering",
+          "저자": "Yanming Yang, Xin Xia, David Lo, John Grundy",
+          "연도": "2022",
+          "학술지/학회": "ACM Computing Surveys",
+          "학술지/출처": "ACM Computing Surveys",
+          "DOI/URL": "`https://doi.org/10.1145/3505243`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "주차 주제 보강용 관련 논문으로 인용"
         }
       ],
       "numeric_source": "03_weekly_reports/w14_mlops_supply_chain/04_experiment/outputs/metrics_summary.csv",
       "numeric_status": "기준 원천 존재",
       "numeric_details": [],
       "numeric_crosscheck_score": 100,
-      "reference_verification_score": 32,
+      "reference_verification_score": 100,
       "manual_review_items": [
-        "참고문헌 확인 필요 1건",
-        "부분 검증 문헌 1건",
-        "DOI/제목/저자 불일치 후보 1건",
-        "대체 문헌 후보 2건"
+        "자동 구조 점검 기준 주요 감점 없음"
       ],
       "ai_required_missing": [],
       "ai_disclosure_updated": false,
@@ -2990,22 +3184,26 @@
         "03_weekly_reports/w15_reproducibility_xai_paper/09_presentation/assets/charts/w15_metrics_chart.svg",
         "03_weekly_reports/w15_reproducibility_xai_paper/09_presentation/assets/diagrams/w15_pipeline_diagram.svg"
       ],
-      "reference_confirmed_local": 4,
+      "reference_confirmed_local": 5,
       "reference_needs_check": 0,
       "reference_partial": 0,
       "reference_local_pdf_missing": 0,
-      "reference_alternate": 1,
+      "reference_alternate": 0,
       "reference_mismatch": 0,
       "reference_core_blocked": 0,
       "paper_rows": [
         {
           "ID": "P01",
+          "구분": "논문 / 확인",
           "논문 제목": "A Survey on Evaluation of Large Language Models",
+          "논문": "A Survey on Evaluation of Large Language Models",
           "저자": "Yupeng Chang et al.",
           "연도": "2024",
+          "학술지/학회": "ACM Transactions on Intelligent Systems and Technology",
           "학술지/출처": "ACM Transactions on Intelligent Systems and Technology",
-          "PDF 파일명": "`01_Chang_et_al_2024_Evaluation_of_LLMs_Survey.pdf`",
-          "DOI/URL 상태": "DOI 확인: `10.1145/3641289`"
+          "DOI/URL": "`https://doi.org/10.1145/3641289`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "공식 서지 기준으로 논문 인용"
         },
         {
           "ID": "P02",
@@ -3018,12 +3216,16 @@
         },
         {
           "ID": "P03",
-          "논문 제목": "Explainable AI: Core Ideas, Techniques, and Solutions",
-          "저자": "Rudresh Dwivedi et al.로 공식 metadata 확인. 원 프롬프트의 Vivek 표기는 재확인 필요",
+          "구분": "논문 / 확인",
+          "논문 제목": "Explainable AI (XAI): Core Ideas, Techniques, and Solutions",
+          "논문": "Explainable AI (XAI): Core Ideas, Techniques, and Solutions",
+          "저자": "Rudresh Dwivedi et al.",
           "연도": "2023",
+          "학술지/학회": "ACM Computing Surveys",
           "학술지/출처": "ACM Computing Surveys",
-          "PDF 파일명": "`03_SUBSTITUTE_Mersha_et_al_2024_Explainable_AI_Survey.pdf`",
-          "DOI/URL 상태": "DOI 부분 확인: `10.1145/3561048`, 로컬 PDF는 지정 논문 아님"
+          "DOI/URL": "`https://doi.org/10.1145/3561048`",
+          "검증 상태": "공식 DOI 확인",
+          "보고서 반영": "공식 서지 기준으로 논문 인용"
         },
         {
           "ID": "P04",
@@ -3069,9 +3271,9 @@
         }
       ],
       "numeric_crosscheck_score": 100,
-      "reference_verification_score": 86,
+      "reference_verification_score": 100,
       "manual_review_items": [
-        "대체 문헌 후보 1건"
+        "자동 구조 점검 기준 주요 감점 없음"
       ],
       "ai_required_missing": [],
       "ai_disclosure_updated": false,

@@ -1,53 +1,88 @@
-# 논문 요약: P02
+# P02 Summary
 
-## 1. 서지정보
+## Security and Privacy Challenges of Large Language Models: A Survey — Badhan Chandra Das, M. Hadi Amini, Yanzhao Wu, ACM Computing Surveys, 2025
+
+## 0. 문헌 검증 상태
 
 | 항목 | 내용 |
 |---|---|
+| 주차 | W07 LLM 보안·프라이버시 |
 | 논문명 | Security and Privacy Challenges of Large Language Models: A Survey |
 | 저자 | Badhan Chandra Das, M. Hadi Amini, Yanzhao Wu |
-| 출판정보 | ACM Computing Surveys, 57(6), pp. 1-39, 2025 |
-| DOI/URL | `https://doi.org/10.1145/3712001`; arXiv `https://arxiv.org/abs/2402.00888` |
-| 검증 상태 | ACM CSUR 2025 출판판 확인. 강의계획서의 `Ankur Das et al.` 표기는 공식 저자명과 표기가 달라 확인 필요 |
+| 출판 정보 | ACM Computing Surveys, 57(6), pp. 1–39, 2025 |
+| DOI | https://doi.org/10.1145/3712001 |
+| 보조 URL | https://arxiv.org/abs/2402.00888 |
+| 검증 상태 | W07 `paper_list.md` 기준 공식 DOI 확인. 강의계획서의 `Ankur Das` 표기 차이 메모 유지 |
 
-## 2. 한 문장 요약
+---
 
-LLM 보안·프라이버시 연구는 jailbreak, prompt injection, data poisoning, PII leakage, privacy attack, 방어 메커니즘을 학습·추론·응용 단계별로 분류한다[2].
+## 1. 한 문장 요약
 
-## 3. 연구문제
+이 논문은 LLM의 보안·프라이버시 문제를 **prompt injection, jailbreaking, data leakage, memorization, model extraction, poisoning, backdoor, misuse, defense, governance** 관점에서 정리하는 W07의 핵심 보안 survey 문헌이다.
 
-LLM이 보편적 인터페이스가 되면서 어떤 보안·프라이버시 취약성이 발생하고, 이를 어떤 공격과 방어 범주로 체계화할 수 있는가를 다룬다.
+---
 
-## 4. 핵심 개념
+## 2. 핵심 연구질문
 
-- Security challenge: jailbreak, prompt injection, data poisoning, model misuse.
-- Privacy challenge: PII leakage, memorization, membership inference, training data exposure.
-- Defense mechanism: filtering, alignment, privacy-preserving learning, monitoring, governance.
+| 번호 | 연구질문 |
+|---|---|
+| RQ1 | LLM 보안 위협은 입력, 학습, 추론, 출력, 배포 단계에서 어떻게 발생하는가? |
+| RQ2 | Prompt injection과 jailbreak는 시스템 지시와 안전정책을 어떻게 우회하는가? |
+| RQ3 | Memorization과 privacy leakage는 어떤 데이터 보호 문제를 만드는가? |
+| RQ4 | 방어자는 policy, filtering, monitoring, red teaming, audit log를 어떻게 설계해야 하는가? |
 
-## 5. 보안 관점 분석
+---
 
-P02는 W07 위협모형에서 protected assets와 attack category를 정리하는 핵심 근거다. 다만 공격 절차를 재현하지 않고, 보고서에서는 synthetic prompt category와 추상 지표로만 ASR, privacy leakage, refusal quality를 설명한다.
+## 3. 핵심 수식·지표
 
-### 5.1 핵심 수식 또는 알고리즘 설명
+### 3.1 Jailbreak/공격 성공률
+
+$$
+ASR=\frac{1}{N}\sum_{i=1}^{N}\mathbf{1}[f_\theta(p_i^{attack})\in Y_{unsafe}]
+$$
+
+### 3.2 Leakage Rate
+
+$$
+LeakageRate=\frac{N_{sensitive\ output}}{N_{privacy\ risk\ prompts}}
+$$
+
+### 보안 해석
+
+LLM 보안은 단일 취약점이 아니라 입력-모델-도구-출력-로그 전반의 시스템 리스크다. 공격 성공률, leakage, over-refusal, utility를 함께 보고해야 한다.
+
+---
+
+## 4. 위협모형
 
 | 항목 | 내용 |
 |---|---|
-| 수식/알고리즘 이름 | LLM Security Risk Score |
-| 원문 위치 | 논문 세부 절/쪽/그림/알고리즘 번호 확인 필요. 로컬 DOI/URL 점검표로 문헌 대응만 확인. |
-| 작성 형식 | Markdown + LaTeX math |
-| 검산 도구 | 사용 안 함 |
-| 수식 또는 절차 | 표준 정의식 / 원문 직접 인용 아님.<br>$$Risk=\alpha ASR+\beta Leakage+\gamma VulnRate-\lambda Utility$$ |
-| 기호·입력·출력 | ASR: 정책 실패율, Leakage: 민감정보 노출률, VulnRate: 취약 코드 비율, Utility: 정상 유용성 |
-| 직관적 의미 | LLM Security Risk Score는 LLM 보안·프라이버시 평가에서 핵심 원리나 평가 지표를 정량적으로 해석하기 위한 표준식이다. |
-| 보안 관점 해석 | LLM 보안·프라이버시 평가에서는 정상 성능과 보안 실패 조건을 분리해 보아야 한다. 이 항목은 공격·방어 원리 또는 운영 통제의 평가 기준을 명시하되, 실제 공격 절차나 무단 적용 단계는 포함하지 않는다. |
-| 평가 지표와 연결 | ASR, privacy leakage, code vulnerability rate, refusal quality |
-| 한계와 가정 | 표준 정의식 / 원문 직접 인용 아님. 논문별 변형, 정확한 수식 번호, 실험 설정은 원문 PDF에서 확인 필요다. |
-| 기말 논문 반영 여부 | 반영 |
+| 보호 자산 | system prompt, user data, training data, model weights, tool credentials, output log |
+| 공격자 목표 | 정책 우회, 민감정보 추출, 악성 응답 유도, 도구 오남용 |
+| 공격자 능력 | adversarial prompt, repeated query, indirect prompt injection, context stuffing |
+| 제외 범위 | 실제 서비스 공격, 개인정보 포함 실험, 악성코드 실행 |
 
-## 6. 검증 메모
+---
 
-현재 P02는 arXiv:2402.00888 및 ACM CSUR DOI `10.1145/3712001` 기준으로 확인했다. 강의계획서의 `Ankur Das et al.` 표기는 공식 메타데이터의 `Badhan Chandra Das et al.`과 다르므로 최종 제출 전 확인 필요 상태를 유지한다.
+## 5. 평가방법 및 재현성
 
-## 7. 기말 논문 활용
+| 지표 | 의미 |
+|---|---|
+| ASR | jailbreak/prompt injection 성공률 |
+| Leakage Rate | 민감정보 노출률 |
+| Refusal Quality | 위험 요청 거절 품질 |
+| Over-refusal | 정상 요청 과차단률 |
+| Utility | 정상 작업 성능 |
+| Auditability | prompt-output-tool log 보존 |
 
-LLM/RAG 시스템의 threat taxonomy, privacy leakage 평가축, defense category를 설계할 때 기본 분류표로 활용한다.
+---
+
+## 6. 기말논문 연결
+
+P02는 기말논문의 LLM 보안 위협모형 중심 문헌으로 사용한다. W08 RAG 보안에서는 indirect prompt injection과 retrieved context poisoning으로 확장하고, W14에서는 운영 감사와 정책 준수 로그로 확장한다.
+
+---
+
+## 7. 최종 판단
+
+P02는 W07의 직접 보안 핵심 문헌이다. P01의 평가체계와 결합해 LLM 보안 평가표를 구성한다.

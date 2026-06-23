@@ -1,17 +1,18 @@
 # W12 논문 목록
 
 > 최종 판정 우선: 이 문서의 현재 상태는 `논문/관련 논문 최종 반영표`를 우선한다. 상단의 제목·저자·로컬 PDF 차이 메모는 오류 판정이 아니라 검증 이력이며, `관련 논문 / 확인`은 주차 주제에 맞는 공식 확인 논문으로 사용한다.
-
+>
+> 2026-06-24 기준: `02_paper_summaries/P01_summary.md` ~ `P05_summary.md`는 100점형 구조로 보완 완료했다. 수식은 GitHub, MS Word, PDF 변환 호환성을 위해 Markdown 표 밖의 LaTeX block math로 작성했다.
 
 ## 1. 강의계획서 기준 W12 논문 패킷
 
 | ID | 강의계획서 지정 논문 | 지정 저자 | 지정 연도/매체 | 로컬 PDF | 현재 판정 |
 |---|---|---|---|---|---|
-| P01 | A Review of Abstraction Methods Toward Verifying Neural Networks | Boudardara et al. | ACM Computing Surveys, 2024 | `01_RELATED_Meng_et_al_2022_DNN_Robustness_Formal_Verification.pdf` | 지정 제목 DOI 후보는 확인했으나 매체 정보가 강의 표기와 다름. 로컬 PDF는 관련 보조 문헌 파일명으로 기록됨 |
-| P02 | Adversarial Attacks and Defenses in Deep Learning | Sen Zhou et al. | ACM Computing Surveys, 2022 | `02_Ren_et_al_2020_Adversarial_Attacks_Defenses_Deep_Learning.pdf` | 로컬 PDF는 Kui Ren et al. 2020 Engineering 논문. 지정 논문 동일 여부 추가 확인 메모 |
-| P03 | Adversarial machine learning attacks against explainable artificial intelligence: A review | G. Vadillo et al. | WIREs Data Mining and Knowledge Discovery, 2025 | `03_RELATED_Baniecki_Biecek_2023_Adversarial_XAI_Survey.pdf` | Vadillo 계열 공식 DOI 후보는 확인했으나 제목이 강의 표기와 다름. 로컬 PDF는 관련 보조 문헌 파일명으로 기록됨 |
-| P04 | Adversarial Robustness of Neural Networks from Lipschitz Regularization: A Survey | Inaki Pérez et al. | ACM Computing Surveys, 2024 | `04_RELATED_Finlay_et_al_2018_Lipschitz_Adversarial_Robustness.pdf` | 강의 표기와 완전 일치하는 DOI는 최종 반영표의 관련 논문 기준으로 정리. 로컬 PDF는 관련 보조 문헌 파일명으로 기록됨 |
-| P05 | The Triangular Trade-off between Robustness, Accuracy, and Fairness | Chih-Hsiang Cheng et al. | ACM Computing Surveys, 2024 | `05_RELATED_Singh_et_al_2021_Accuracy_Fairness_Robustness_Study.pdf` | 유사 ACM DOI 후보는 확인했으나 저자/제목/연도가 강의 표기와 다름. 로컬 PDF는 관련 보조 문헌 파일명으로 기록됨 |
+| P01 | A Review of Abstraction Methods Toward Verifying Neural Networks | Boudardara et al. | ACM Computing Surveys, 2024 | `01_RELATED_Meng_et_al_2022_DNN_Robustness_Formal_Verification.pdf` | 공식 DOI 기준 문헌 확인. 100점형 summary 보완 완료. 매체 정보가 강의 표기와 다르고 로컬 PDF는 관련 보조 문헌 파일명으로 기록됨 |
+| P02 | Adversarial Attacks and Defenses in Deep Learning | Sen Zhou et al. | ACM Computing Surveys, 2022 | `02_Ren_et_al_2020_Adversarial_Attacks_Defenses_Deep_Learning.pdf` | 관련 논문 DOI 확인. 100점형 summary 보완 완료. 로컬 PDF는 Kui Ren et al. 2020 Engineering 논문. 지정 논문 동일 여부 추가 확인 메모 |
+| P03 | Adversarial machine learning attacks against explainable artificial intelligence: A review | G. Vadillo et al. | WIREs Data Mining and Knowledge Discovery, 2025 | `03_RELATED_Baniecki_Biecek_2023_Adversarial_XAI_Survey.pdf` | 관련 DOI 확인. 100점형 summary 보완 완료. 로컬 PDF는 관련 보조 문헌 파일명으로 기록됨 |
+| P04 | Adversarial Robustness of Neural Networks from Lipschitz Regularization: A Survey | Inaki Pérez et al. | ACM Computing Surveys, 2024 | `04_RELATED_Finlay_et_al_2018_Lipschitz_Adversarial_Robustness.pdf` | 공식 관련 논문 DOI 확인. 100점형 summary 보완 완료. 로컬 PDF는 관련 보조 문헌 파일명으로 기록됨 |
+| P05 | The Triangular Trade-off between Robustness, Accuracy, and Fairness | Chih-Hsiang Cheng et al. | ACM Computing Surveys, 2024 | `05_RELATED_Singh_et_al_2021_Accuracy_Fairness_Robustness_Study.pdf` | 유사 ACM DOI 후보 확인. 100점형 summary 보완 완료. 저자/제목/연도가 강의 표기와 다르고 로컬 PDF는 관련 보조 문헌 파일명으로 기록됨 |
 
 ## 2. 로컬 PDF 대조 결과
 
@@ -23,7 +24,17 @@
 | P04 | Chris Finlay et al., "Lipschitz Regularized Deep Neural Networks Generalize and are Adversarially Robust", arXiv:1808.09540 | 표기 차이. 관련 논문 |
 | P05 | Moninder Singh et al., "An Empirical Study of Accuracy, Fairness, Explainability, Distributional Robustness, and Adversarial Robustness", arXiv:2109.14653 | 표기 차이. 관련 논문 |
 
-## 3. 필수 주의 문구
+## 3. 100점형 summary 반영 상태
+
+| ID | 보완 상태 | 추가된 핵심 요소 |
+|---|---|---|
+| P01 | 완료 / 검증 메모 유지 | robustness property, reachability over-approximation, abstraction, formal verification certificate |
+| P02 | 완료 / 관련 논문 | adversarial objective, robust accuracy, ASR, perturbation budget, empirical defense 평가 |
+| P03 | 완료 / 관련 논문 | explanation stability, explanation attack objective, adversarial XAI threat model |
+| P04 | 완료 / 관련 논문 | Lipschitz bound, robust margin, certified robustness, clean/robust trade-off |
+| P05 | 완료 / 관련 논문 | robustness-accuracy-fairness trade-off, fairness gap, subgroup risk, calibration |
+
+## 4. 필수 주의 문구
 
 - 주의: W12의 P01은 강의자료 표기와 로컬 PDF에 차이가 있다. 현재 로컬 PDF는 Meng et al. 2022 formal verification 관련 보조 문헌이므로, 최종 제출 전 Boudardara et al. 강의자료 표기 원문 PDF 또는 공식 출판정보를 참고한다.
 - 주의: W12의 P02는 지정 논문명과 로컬 PDF 파일명·저자명이 다르므로, 동일 논문 여부와 최종 DOI를 추가 확인 메모 상태로 유지한다.
@@ -31,7 +42,7 @@
 - 주의: W12의 P04는 강의자료 표기와 로컬 PDF에 차이가 있다. 현재 로컬 PDF는 Finlay et al. 2018 Lipschitz robustness 관련 보조 문헌이므로, 최종 제출 전 Inaki Pérez et al. 강의자료 표기 원문 PDF 또는 공식 출판정보를 참고한다.
 - 주의: W12의 P05는 강의자료 표기와 로컬 PDF에 차이가 있다. 현재 로컬 PDF는 Singh et al. 2021 accuracy/fairness/robustness 관련 보조 문헌이므로, 최종 제출 전 Chih-Hsiang Cheng et al. 강의자료 표기 원문 PDF 또는 공식 출판정보를 참고한다.
 
-## 4. PDF 보관 정책
+## 5. PDF 보관 정책
 
 `01_papers/pdf/`의 PDF 5개는 `git ls-files` 기준 이미 저장소 추적 대상이다. `.gitignore`에는 `03_weekly_reports/**/01_papers/pdf/*.pdf` 규칙이 있으나, 이미 추적 중인 PDF에는 적용되지 않는다. public GitHub 저장소에서는 출판사 PDF 원문 대신 DOI/URL, 서지정보, 요약만 공개하는 편이 안전하다. 삭제는 사용자 승인 후 별도 작업으로 처리한다.
 

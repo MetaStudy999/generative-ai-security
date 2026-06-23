@@ -1,0 +1,34 @@
+{
+  "week": "W15",
+  "audit_type": "reproducibility_and_submission_readiness",
+  "executed_at_utc": "2026-06-23T01:54:55.937212+00:00",
+  "config": "configs/config.yaml",
+  "required_w15_files": {
+    "existing": 47,
+    "total": 47,
+    "rate": 1.0
+  },
+  "final_paper_link_files": {
+    "existing": 9,
+    "total": 9,
+    "rate": 1.0
+  },
+  "local_pdf_count": 5,
+  "doi_status": {
+    "total": 5,
+    "confirmed": 4,
+    "partial": 1,
+    "unverified": 0,
+    "weighted_rate": 0.9
+  },
+  "ai_disclosure": {
+    "total": 11,
+    "filled": 11,
+    "rate": 1.0
+  },
+  "security_scope": {
+    "personal_data_used": false,
+    "actual_attack_performed": false,
+    "benchmark_performance_claimed": false
+  }
+}

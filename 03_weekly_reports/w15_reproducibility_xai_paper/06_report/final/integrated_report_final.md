@@ -6,159 +6,198 @@
 |---|---|
 | 주차 | W15 |
 | 주제 | 연구평가·재현성·설명가능성(XAI)·논문 구성 |
-| AI 원리 | Evaluation, reproducibility, XAI, paper structure |
-| 보안 이슈 | Benchmark contamination, model leakage, policy/ethics risk |
-| 문서 상태 | 최종본 |
-| 실습 상태 | 로컬 재현성·제출 준비 감사 실행 완료 |
+| 실습 성격 | local repository metadata 기반 재현성·제출 준비 감사 |
+| 기준 산출물 | `04_experiment/outputs/metrics_summary.csv`, `results.json`, `run_log.md` |
+| 문서 상태 | 사람이 최종 검토할 제출용 최종 초안 |
 
 ## 1. 한 문장 요약
 
-W15는 LLM 평가, ML lifecycle assurance, XAI, concept-based explanation을 바탕으로 AI 보안 연구의 성능 주장, 설명 신뢰성, 참고문헌 검증, AI 활용 고지, 재현성 산출물을 하나의 evidence chain으로 묶는다.
+W15는 LLM 평가, ML lifecycle assurance, XAI, concept-based explanation을 바탕으로 성능 주장, 참고문헌 검증, 실험 로그, AI 활용 고지, 기여와 한계를 하나의 evidence chain으로 묶는 주차다.
 
-## 2. AI 원리 70% 정리
+## 2. 학습 배경과 주차 목표
 
-LLM 평가는 무엇을 평가할지, 어디서 평가할지, 어떻게 평가할지를 분리해야 한다. 재현성은 같은 config, seed, 데이터, 코드, 로그로 결과를 다시 검토할 수 있는 성질이다. XAI는 모델 판단 근거를 사람이 이해할 수 있게 하지만, 설명 자체도 fidelity, stability, completeness, leakage risk를 평가해야 한다.
+### 2.1 이번 주 주제의 위치
 
-| 개념 | 핵심 의미 | 관련 논문 |
+W15는 W01-W14의 모든 학습·실습·문헌검토를 기말논문 제출 가능한 evidence chain으로 정리하는 마무리 주차다. W01-W14가 AI 원리, 공격·방어, privacy, RAG, FL, DRL, MLOps, 모델 IP를 각각 다루었다면, W15는 성능 주장, 실험 로그, 참고문헌 검증, AI 활용 고지, 기여와 한계, 표와 그림, KCI 논문 형식을 하나로 연결한다.
+
+### 2.2 강의계획서상 학습목표
+
+- LLM evaluation, benchmark contamination, XAI, concept-based explanation, ML lifecycle assurance를 정리한다.
+- AI 보안 논문에서 성능 주장, 보안 주장, 참고문헌, 실험 로그가 서로 대응되어야 함을 이해한다.
+- 기말논문 제출을 위한 표, 그림, 참고문헌 검증표, AI 활용 고지서를 점검한다.
+- 주차별 보고서 2개 이상을 기말논문에 반영한다.
+- KCI 형식의 국내 학술지 모의투고 논문 구조로 전환한다.
+
+### 2.3 이번 주 핵심 질문
+
+1. AI 보안 연구에서 성능 주장과 실험 evidence는 어떻게 연결되어야 하는가?
+2. 참고문헌 DOI/URL 검증은 왜 연구윤리와 직접 연결되는가?
+3. AI 활용 고지는 어떤 수준까지 구체적으로 작성해야 하는가?
+4. 기말논문에서 표 1개, 그림 1개, 국내 논문 3편, 해외 논문 5편 조건은 충족되었는가?
+5. W01-W15를 종합할 때 최종 contribution은 무엇인가?
+
+## 3. AI 원리 70% 정리
+
+표 1. W15 핵심 개념과 보안 연결
+
+| 개념 | 핵심 의미 | 보안 연결 |
 |---|---|---|
-| Evaluation | 모델 능력과 위험을 기준에 따라 측정 | P01 |
-| Benchmark Contamination | 평가 데이터가 학습·튜닝에 노출되어 성능이 과대평가됨 | P01 |
-| Reproducibility | 동일 조건에서 결과와 결론을 재검토 가능 | P01, P02 |
-| ML Lifecycle Assurance | data/model/verification/deployment 단계별 증거 축적 | P02 |
-| XAI | 모델 판단 근거를 사람이 이해 가능하게 설명 | P03, P04, P05 |
-| Concept-based XAI | 사람이 이해 가능한 concept를 설명 단위로 사용 | P05 |
-| Contribution/Limitation | 연구의 기여와 해석 범위를 명확히 쓰는 논문 구성 요소 | 전체 |
+| LLM evaluation | 무엇을, 어디서, 어떻게 평가할지 분리 | benchmark contamination, hidden test leakage |
+| Reproducibility | 같은 config, seed, code, outputs로 결과 검토 가능 | 재현성 실패, 결과 과장 방지 |
+| ML lifecycle assurance | data/model/verification/deployment 단계별 evidence chain | 안전 주장과 검증 증거 대응 |
+| XAI | 모델 판단 근거를 사람이 이해하도록 설명 | explanation leakage, misleading explanation |
+| Concept-based XAI | 사람이 이해 가능한 concept 단위 설명 | concept leakage, human evaluation 비용 |
 
-### 2.1 핵심 수식 또는 알고리즘 쉬운 설명
+## 4. 보안 이슈 30% 정리
 
-아래 수식은 원문 수식의 직접 인용이 아니라, 각 논문의 핵심 개념을 보고서에서 설명하기 위한 대표 수식과 지표다. 최종 제출본에서 원문 수식으로 인용할 경우 논문 원문 쪽/절 번호를 추가 확인한다.
-
-| ID | 핵심 수식/알고리즘 | 쉬운 설명 | 보안 평가 연결 |
-|---|---|---|---|
-| P01 | $ContamRate=N_{overlap}/N_{eval}$ | 평가셋 오염은 평가 문항이 학습·튜닝에 노출된 비율로 점검할 수 있다. | benchmark contamination |
-| P02 | $AssuranceCoverage=N_{evidence}/N_{claims}$ | 연구 주장은 그 주장을 뒷받침하는 증거가 남아 있어야 한다. | lifecycle assurance |
-| P03 | $Fidelity=P(f(x)=g(E(x)))$ | 설명이 원 모델 판단을 얼마나 잘 대변하는지 fidelity로 본다. | XAI core ideas, 대체 PDF 주의 |
-| P04 | $Stability=1-\frac{1}{n}\sum_i\lVert E(x_i)-E(x_i')\rVert$ | 좋은 설명은 작은 입력 변화에 지나치게 흔들리지 않아야 한다. | responsible XAI |
-| P05 | $TCAV_{C,k,l}=\frac{\lvert\{x:S_{C,k,l}(x)>0\}\rvert}{n}$ | concept-based XAI는 사람이 이해하는 개념 방향이 특정 클래스 판단에 얼마나 영향을 주는지 본다. | concept-based explanation |
-
-## 3. 보안 이슈 30% 정리
-
-| 이슈 | 보안 의미 | 방어 또는 점검 |
+| 이슈 | 보안 의미 | 점검 방법 |
 |---|---|---|
-| Benchmark contamination | 평가 무결성 훼손 | 출처·중복·노출 여부 점검 |
-| Hidden test leakage | 평가셋 기밀성과 무결성 훼손 | 접근 통제와 질의 로그 |
-| Reproducibility failure | 결과 검증 불가 | Dockerfile, config, seed, outputs 보존 |
-| Model/explanation leakage | 모델 내부 단서 또는 민감 feature 노출 | 설명 공개 범위 제한 |
-| Fabricated citation | 연구윤리와 책임성 훼손 | DOI/URL/로컬 PDF 검증 |
-| Missing AI disclosure | AI 활용 책임 추적 실패 | AI 활용 고지와 human review |
+| Benchmark contamination | 평가 무결성 훼손 | benchmark provenance, 중복·노출 확인 |
+| Hidden test leakage | 평가셋 기밀성 훼손 | 접근 통제, 로그 보존 |
+| Fabricated citation | 연구윤리 훼손 | DOI/URL/원문 PDF 대조 |
+| Missing AI disclosure | 책임 추적 실패 | AI 활용 고지와 human review |
+| Explanation leakage | 모델·데이터 단서 노출 | 설명 공개 범위 제한 |
 
-## 4. 논문 5편 요약
+## 5. 논문 5편 요약
 
-| ID | 논문 | 역할 | 검증 상태 |
-|---|---|---|---|
-| P01 | A Survey on Evaluation of Large Language Models | LLM 평가 taxonomy와 benchmark contamination 근거 | DOI 확인 |
-| P02 | Assuring the Machine Learning Lifecycle | lifecycle assurance와 evidence chain 근거 | DOI 확인 |
-| P03 | Explainable AI: Core Ideas, Techniques, and Solutions | XAI 핵심 문헌, 현재 로컬 PDF는 대체 문헌 | 미검증 |
-| P04 | Explainable Artificial Intelligence (XAI): Concepts, Taxonomies... | XAI taxonomy와 Responsible AI 근거 | DOI 확인 |
-| P05 | Concept-based Explainable Artificial Intelligence: A Survey | concept-based XAI와 설명 평가 지표 근거 | 부분 확인 |
+표 2. 관련 문헌 5편 요약
 
-## 5. 논문 5편 비교
+| ID | 논문 | 공식 DOI/URL | 검증 상태 | 기말논문 활용 |
+|---|---|---|---|---|
+| P01 | A Survey on Evaluation of Large Language Models | `10.1145/3641289` | 확인. ACM TIST 15(3), Article 39 | LLM/RAG 평가축, benchmark contamination |
+| P02 | Assuring the Machine Learning Lifecycle | `10.1145/3453444` | 확인. ACM CSUR 54(5), Article 111 | config, seed, log, output evidence chain |
+| P03 | Explainable AI: Core Ideas, Techniques, and Solutions | `10.1145/3561048` | 부분 확인. 로컬 PDF는 Mersha et al. 대체 문헌 | XAI 평가 기준, 원문 확인 필요 사례 |
+| P04 | Explainable Artificial Intelligence (XAI) | `10.1016/j.inffus.2019.12.012` | 확인. Information Fusion 58, 82-115 | Responsible XAI, privacy/accountability |
+| P05 | Concept-based Explainable Artificial Intelligence: A Survey | `10.1145/3774643`, arXiv `2312.12936` | 확인. 권호/issue 최종 확인 필요 | concept-based explanation, human evaluation |
 
-P01은 평가 데이터와 benchmark의 신뢰성을, P02는 재현성 증거를, P04/P05는 설명가능성과 책임성을 다룬다. P03은 지정 논문과 로컬 PDF가 일치하지 않는 검증 실패 사례로 남겨 최종 인용 전 원문 확보가 필요하다.
+## 6. 논문 5편 비교표
 
-## 6. Research Track
+P01은 평가 설계와 benchmark contamination 근거이고, P02는 lifecycle assurance와 evidence chain 근거다. P03은 DOI metadata와 로컬 PDF가 분리된 검증 사례이므로 대체 PDF를 지정 논문처럼 인용하지 않는다. P04는 XAI taxonomy와 Responsible AI 근거이며, P05는 concept-based XAI와 human-evaluable explanation 근거다.
 
-### 6.1 연구문제
+## 7. Research Track 분석
 
-RQ1. LLM/RAG 기반 AI 시스템의 생명주기에서 prompt injection, benchmark contamination, privacy leakage는 각각 어느 단계에서 발생하는가?
+표 3. W15 Research Track 요약
 
-RQ2. AI 보안 연구에서 clean performance, attack impact, privacy leakage, reproducibility를 함께 평가하려면 어떤 공통 평가 항목이 필요한가?
+| 항목 | 내용 |
+|---|---|
+| 연구문제 | LLM/RAG 생명주기에서 prompt injection, benchmark contamination, privacy leakage가 발생하는 단계와 최소 평가항목 정의 |
+| 보호 자산 | benchmark, hidden test, model version, prompt/template, retrieval context, explanation output, reference list, AI worklog |
+| 평가 지표 | reference verification rate, reproducibility evidence coverage, AI disclosure completeness, explanation stability, limitation coverage |
+| 제외 범위 | 실제 개인정보, 실제 서비스 침해, 무단 API 공격, 실제 benchmark 오염 실험 |
 
-RQ3. 허위 인용, 실험결과 조작, AI 활용 은폐를 줄이기 위한 참고문헌·실험·AI 고지 체크리스트는 어떻게 구성되어야 하는가?
+## 8. 실습 보고서
 
-### 6.2 위협모형
-
-대상 시스템은 AI 모델 평가 시스템, XAI 분석 시스템, AI 보안 논문 작성 프로세스다. 보호 자산은 benchmark, hidden test, model version, prompt/template, explanation output, reference list, AI worklog이다. 공격 성공 조건은 성능 과대평가, 검증 불가능한 결과 제출, 설명 결과의 민감정보 또는 모델 우회 단서 노출이다.
-
-### 6.3 평가방법
-
-| 평가 항목 | 지표 | 근거 |
-|---|---|---|
-| Evaluation Reliability | benchmark 오염·대체 PDF 여부 | `01_papers/doi_check.md` |
-| Reproducibility | evidence coverage | `04_experiment/outputs/` |
-| Reference Validity | weighted verification rate | `01_papers/doi_check.md` |
-| AI Disclosure Quality | disclosure completeness | `05_ai_worklog/ai_disclosure_draft.md` |
-| Limitation Clarity | 확인 필요 항목 명시 | `03_theory_notes/open_problems.md` |
-
-### 6.4 재현성
-
-W15는 `configs/config.yaml`, `src/run_experiment.py`, `outputs/metrics_summary.csv`, `outputs/results.json`, `outputs/run_log.md`를 보존한다. 로컬 실행에서는 `python3`로 검증했으며, 컨테이너 실행 예시는 `python src/run_experiment.py --config configs/config.yaml`이다.
-
-### 6.5 한계와 오픈문제
-
-P03 지정 논문 원문, P05 최종 DOI, 국내 문헌 3편 이상, 기말논문 표/그림 실제 삽입은 최종 제출 전 보완해야 한다. W15 감사는 모델 성능 실험이 아니므로 benchmark 성능을 주장하지 않는다.
-
-## 7. 실습 요약
-
-W15 실습은 로컬 재현성·제출 준비 감사로 실행했다.
+표 4. W15 감사 결과
 
 | 점검 항목 | 결과 | 상태 |
 |---|---:|---|
 | W15 필수 산출물 | 47/47 | complete |
 | 기말논문 연결 파일 | 9/9 | complete |
 | 로컬 PDF | 5 | complete |
-| DOI 확인 | 3 | partial |
+| DOI 확인 | 4 | complete |
 | DOI 부분 확인 | 1 | partial |
-| DOI 미검증 | 1 | attention |
-| 가중 참고문헌 검증률 | 0.70 | partial |
-| AI 활용 고지 완성도 | 9/9 | complete |
+| DOI 미검증 | 0 | complete |
+| 가중 참고문헌 검증률 | 0.90 | partial |
+| AI 활용 고지 완성도 | 11/11 | complete |
 
-개인정보 사용, 실제 공격 수행, benchmark 성능 주장은 모두 없음으로 기록했다.
+이 결과는 로컬 산출물 존재 여부, DOI/URL 검증 상태, AI 활용 고지 완성도, 제출/발표 패키지 준비 상태를 확인하는 감사 결과이며, LLM 또는 XAI 모델의 성능, 실제 benchmark contamination 측정, 실제 보안 공격 실험으로 일반화하지 않는다.
 
-## 8. AI 활용 기록 요약
+## 9. AI 도구 활용 기록
 
-Codex를 사용해 공통 지침 확인, PDF/DOI 상태 대조, 보고서 구조 보완, 로컬 감사 스크립트 작성, 제출본과 발표자료 작성을 수행했다. AI 산출물은 사람 검토와 원문 대조를 거쳐 반영하며, 최종 책임은 작성자에게 있다.
+표 6. AI 활용 고지 요약표
 
-## 9. 토론 질문
+| 항목 | 내용 |
+|---|---|
+| 사용 도구 | Codex, ChatGPT 계열 도구 |
+| 사용 목적 | 문헌 요약, DOI/URL 검증 보조, 실험 코드 작성, 보고서 구조화, 기말논문 초안 작성, 발표자료 작성 |
+| 검증 방법 | DOI/URL/출판사 페이지/로컬 PDF/실행 로그 대조 |
+| 사용하지 않은 것 | 허위 인용 생성, 실제 공격 실행, 개인정보 사용, 결과 조작 |
+| 최종 책임 | 최종 제출자는 원고 내용, 인용, 실험결과, 연구윤리 책임을 확인한다. |
+
+## 10. 토론 질문
 
 1. benchmark contamination을 소규모 연구에서 어느 수준까지 검증해야 하는가?
 2. XAI 설명은 신뢰성 증거인가, 모델·데이터 누수 위험인가?
 3. AI 활용 고지와 참고문헌 검증을 평가 루브릭에 정량 항목으로 넣을 수 있는가?
 
-## 10. 기말 논문 연결
+## 11. 기말논문 연결
 
-최종 주제는 "AI 보안 연구의 재현 가능한 생명주기 기반 평가 프레임워크: LLM·RAG·프라이버시 위협 중심"이다. W15는 연구방법, 평가방법, 보안적 함의, 부록의 참고문헌 검증과 AI 활용 고지에 연결된다.
+기말논문 추천 제목은 `LLM/RAG 기반 AI 시스템의 생명주기별 보안 위협과 재현성 중심 평가 프레임워크 연구`다. W15는 연구방법, 평가방법, 보안적 함의, 부록의 참고문헌 검증표와 AI 활용 고지서에 직접 연결된다.
 
-## 11. 참고문헌 검증표
+그림 1. LLM/RAG 기반 AI 보안 평가 프레임워크
 
-| 항목 | 수량 | 상태 |
-|---|---:|---|
-| DOI 확인 | 3 | P01, P02, P04 |
-| 부분 확인 | 1 | P05 arXiv 확인, 최종 DOI 필요 |
-| 미검증 | 1 | P03 지정 논문 원문 필요 |
-| 가중 검증률 | 0.70 | 확인 1점, 부분 확인 0.5점 |
+```mermaid
+flowchart TD
+    A[Data / Document / Prompt] --> B[Retrieval / Context Construction]
+    B --> C[LLM / RAG / Agent Output]
+    C --> D[Security Evaluation]
+    D --> D1[Prompt Injection]
+    D --> D2[Privacy Leakage]
+    D --> D3[Benchmark Contamination]
+    D --> D4[Hallucination / Unsafe Output]
+    D --> E[Reproducibility Evidence]
+    E --> E1[seed / config / code]
+    E --> E2[outputs / run_log]
+    E --> E3[reference verification]
+    E --> E4[AI disclosure]
+    E --> F[Human Review / Submission Checklist]
+```
 
-## 12. 자기 점검
+## 12. KCI 기말논문 형식 전환
 
-| 항목 | 상태 |
-|---|---|
-| 논문 5편 요약 | 완료 |
-| 비교표 | 완료 |
-| AI 원리 70% | 완료 |
-| 보안 이슈 30% | 완료 |
-| Research Track | 완료 |
-| 로컬 감사 outputs | 완료 |
-| 제출용 Markdown/HTML | 완료 |
-| 발표 패키지 | 완료 |
-| DOI 임의 생성 방지 | 완료, 미검증 항목 표시 |
-| AI 사용 은폐 방지 | 완료, AI 활용 고지서 작성 |
+표 7. KCI 기말논문 제목 후보
 
-## 13. 기말 논문 최종 Contribution 후보
+| 번호 | 국문 제목 후보 | 영문 제목 후보 | 핵심 대상 | 연구방법 | 예상 기여 |
+|---:|---|---|---|---|---|
+| 1 | LLM/RAG 기반 AI 시스템의 생명주기별 보안 위협과 재현성 중심 평가 프레임워크 연구 | A Lifecycle-Based Security Threat and Reproducibility-Centered Evaluation Framework for LLM/RAG-Based AI Systems | LLM/RAG 보안 평가 | 문헌분석 + 주차별 toy evidence 종합 | 생명주기 기반 평가표 |
+| 2 | AI 보안 연구의 재현성을 위한 참고문헌·실험로그·AI 활용 고지 통합 체크리스트 연구 | An Integrated Checklist of Reference Verification, Experiment Logs, and AI Disclosure for Reproducible AI Security Research | AI 보안 논문 작성 절차 | 문헌분석 + 제출 감사 | 연구윤리·재현성 체크리스트 |
+| 3 | 생성형 AI 보안 평가에서 Prompt Injection, Privacy Leakage, Benchmark Contamination의 통합 분석 | An Integrated Analysis of Prompt Injection, Privacy Leakage, and Benchmark Contamination in Generative AI Security Evaluation | 생성형 AI 보안 위협 | 문헌분석 + 평가 프로토콜 | 위협-평가-재현성 연결 |
 
-### 후보 1
+추천 제목은 1번이다. 국문초록은 LLM/RAG 기반 AI 시스템의 데이터, 평가, 프롬프트, 검색, 출력, 로그 생명주기에서 발생할 수 있는 보안 위협을 분석하고, 재현성 중심의 평가 프레임워크를 제안하는 방향으로 작성한다.
 
-본 연구는 LLM/RAG 기반 AI 시스템의 데이터·평가·프롬프트 생명주기에서 prompt injection, benchmark contamination, privacy leakage 위협을 분석하고, 재현성 중심의 보안 평가 체크리스트를 제안한다.
+## 13. SCI 확장 가능성
 
-### 후보 2
+### 13.1 SCI 제목 후보
 
-본 연구는 기존 AI 보안 survey가 위협 분류와 실험 재현성의 연결을 충분히 제공하지 못하는 한계를 보완하기 위해 clean performance, attack impact, leakage, reproducibility, human review를 포함한 통합 평가 기준을 제시한다.
+A Reproducibility-Centered Lifecycle Evaluation Framework for Security Threats in LLM/RAG-Based AI Systems
+
+표 8. SCI 확장 가능성 점검표
+
+| 항목 | 현재 상태 | SCI 확장 보완 |
+|---|---|---|
+| 실제 benchmark 검증 | 없음 | 공개 benchmark contamination audit 추가 |
+| 실제 RAG 실험 | toy 수준 | 공개 문서 기반 RAG 실험 추가 |
+| privacy leakage 평가 | 주차별 toy evidence | 표준 MI/PII leakage benchmark 추가 |
+| XAI stability 평가 | 문헌 중심 | 실제 explanation stability metric 실험 추가 |
+| 통계 검정 | 부족 | 반복 seed, confidence interval, ablation 추가 |
+| 외부 검증 | 없음 | 공개 코드와 artifact release 필요 |
+
+## 14. 발표용 요약
+
+발표 핵심은 “평가와 설명은 결과가 아니라 증거이며, 증거는 DOI, config, seed, log, output, AI disclosure와 함께 남을 때 신뢰할 수 있다”이다. 발표자료는 `09_presentation/`에 있으며 수치는 outputs 기준으로 통일한다.
+
+## 15. 참고문헌 검증표
+
+표 5. 참고문헌 검증표
+
+| 인용번호 | 문헌 | 상태 | 비고 |
+|---:|---|---|---|
+| [1] | Chang et al., A Survey on Evaluation of Large Language Models | 확인 | DOI `10.1145/3641289` |
+| [2] | Ashmore et al., Assuring the Machine Learning Lifecycle | 확인 | DOI `10.1145/3453444` |
+| [3] | Dwivedi et al., Explainable AI: Core Ideas, Techniques, and Solutions | 부분 확인 | DOI `10.1145/3561048`; 지정 논문 원문 확인 필요 |
+| [4] | Arrieta et al., Explainable Artificial Intelligence (XAI) | 확인 | DOI `10.1016/j.inffus.2019.12.012` |
+| [5] | Poeta et al., Concept-based Explainable Artificial Intelligence | 확인 | DOI `10.1145/3774643`; 권호/issue 최종 확인 필요 |
+
+## 16. 자기 점검표
+
+| 점검 항목 | 상태 | 비고 |
+|---|---|---|
+| W15 필수 산출물 47개 확인 | 완료 | outputs 기준 |
+| 기말논문 연결 파일 9개 확인 | 완료 | `04_final_paper/` 기준 |
+| 국내 논문 3편 이상 포함 | 확인 필요 | KCI/DBpia/RISS 실제 검색 필요 |
+| 해외 논문 5편 이상 포함 | 부분 완료 | P03 원문 PDF 확보 필요 |
+| 표 1개 이상 삽입 | 완료 | 기말논문 본문 표 1 |
+| 그림 1개 이상 삽입 | 완료 | Mermaid 그림 1 |
+| AI 활용 고지서 작성 | 완료 | 11/11 |
+| 참고문헌 검증표 작성 | 완료 | P03 부분 확인 표시 |
+| public GitHub PDF 저작권 위험 | 확인 필요 | PDF 원문은 이미 git 추적 중, 사용자 승인 없이 삭제하지 않음 |

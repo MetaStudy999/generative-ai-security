@@ -12,6 +12,13 @@
 
 AI 보안 연구의 재현 가능한 생명주기 기반 평가 프레임워크: LLM·RAG·프라이버시 위협 중심
 
+## 2.1 KCI 제출형 추천 제목
+
+| 구분 | 제목 |
+|---|---|
+| 국문 | LLM/RAG 기반 AI 시스템의 생명주기별 보안 위협과 재현성 중심 평가 프레임워크 연구 |
+| 영문 | A Lifecycle-Based Security Threat and Reproducibility-Centered Evaluation Framework for LLM/RAG-Based AI Systems |
+
 ## 3. 선택 이유
 
 W07 LLM 보안, W08 RAG·프롬프트 인젝션, W11 프라이버시·멤버십 추론, W14 MLOps 공급망, W15 재현성·연구윤리를 하나의 생명주기 평가 프레임워크로 묶을 수 있다. 실제 공격 절차를 다루기보다 보호 자산, 공격자 능력, 평가 지표, 재현성 기록을 정리하는 방향이라 수업 제출물과 연구윤리 조건에도 맞다.

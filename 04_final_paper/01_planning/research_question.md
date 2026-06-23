@@ -12,6 +12,14 @@
 
 > RQ3. 허위 인용, 실험결과 조작, AI 활용 은폐를 줄이기 위한 참고문헌·실험·AI 고지 체크리스트는 어떻게 구성되어야 하는가?
 
+## 2.1 KCI 제출형 연구문제
+
+> RQ1. LLM/RAG 기반 AI 시스템의 생명주기에서 prompt injection, benchmark contamination, privacy leakage는 어느 단계에서 발생하는가?
+
+> RQ2. AI 보안 연구에서 clean performance, attack impact, leakage, reproducibility, human review를 함께 평가하기 위한 최소 항목은 무엇인가?
+
+> RQ3. 참고문헌 검증표와 AI 활용 고지서는 AI 보안 연구의 재현성과 연구윤리를 어떻게 강화하는가?
+
 ## 3. 연구범위
 
 | 항목 | 포함 | 제외 |

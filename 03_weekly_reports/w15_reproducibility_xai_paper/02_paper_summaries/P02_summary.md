@@ -6,11 +6,11 @@
 |---|---|
 | 논문 제목 | Assuring the Machine Learning Lifecycle: Desiderata, Methods, and Challenges |
 | 저자 | Rob Ashmore, Radu Calinescu, Colin Paterson |
-| 학술지/학회 | ACM Computing Surveys |
+| 학술지/학회 | ACM Computing Surveys 54(5), Article 111 |
 | 연도 | 2021 |
 | DOI/URL | `https://doi.org/10.1145/3453444` |
 | PDF 파일명 | `02_Ashmore_Calinescu_Paterson_2021_Assuring_ML_Lifecycle.pdf` |
-| 검증 상태 | White Rose accepted version 표지에서 DOI 확인 |
+| 검증 상태 | White Rose accepted version 표지와 DOI/Crossref metadata에서 확인. 로컬 PDF는 최종 출판본이 아니라 accepted version |
 
 ## 2. 한 문장 요약
 

@@ -6,11 +6,11 @@
 |---|---|
 | 논문 제목 | A Survey on Evaluation of Large Language Models |
 | 저자 | Yupeng Chang, Xu Wang, Jindong Wang, Yuan Wu, Linyi Yang, Kaijie Zhu, Hao Chen, Xiaoyuan Yi, Cunxiang Wang, Yidong Wang, Wei Ye, Yue Zhang, Yi Chang, Philip S. Yu, Qiang Yang, Xing Xie |
-| 학술지/학회 | ACM Transactions on Intelligent Systems and Technology |
+| 학술지/학회 | ACM Transactions on Intelligent Systems and Technology 15(3), Article 39 |
 | 연도 | 2024 |
 | DOI/URL | `https://doi.org/10.1145/3641289` |
 | PDF 파일명 | `01_Chang_et_al_2024_Evaluation_of_LLMs_Survey.pdf` |
-| 검증 상태 | 로컬 PDF 첫 페이지에서 DOI와 ACM reference format 확인 |
+| 검증 상태 | 로컬 PDF 첫 페이지와 DOI/Crossref metadata에서 DOI, TIST 15(3), Article 39 확인. 원 프롬프트의 ACM Computing Surveys 표기와 차이 있음 |
 
 ## 2. 한 문장 요약
 

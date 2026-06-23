@@ -12,7 +12,8 @@
 | 8 | 해외 | A Multivocal Literature Review of MLOps Practices | Bayram Eken et al. | 2025 | MLOps 실무와 연구공백 | Multivocal review | 보안 체크리스트와 추가 연결 필요 | 재현성·artifact 관리 기준에 활용 | 확인 필요 |
 | 9 | 해외 | Assuring the Machine Learning Lifecycle: Desiderata, Methods, and Challenges | Rob Ashmore, Radu Calinescu, Colin Paterson | 2021 | ML lifecycle assurance | Survey | 생성형 AI 특화 위협은 별도 보완 필요 | config, seed, log, outputs 기반 evidence chain 근거 | DOI 확인: `10.1145/3453444` |
 | 10 | 해외 | Explainable Artificial Intelligence (XAI): Concepts, Taxonomies, Opportunities and Challenges toward Responsible AI | Alejandro Barredo Arrieta et al. | 2020 | XAI taxonomy와 Responsible AI | Survey | LLM/RAG 최신 설명 문제는 별도 보완 필요 | XAI 설명 신뢰성과 disclosure risk 평가축 | DOI 확인: `10.1016/j.inffus.2019.12.012` |
-| 11 | 해외 | Concept-based Explainable Artificial Intelligence: A Survey | Eleonora Poeta et al. | 2023/2025 확인 필요 | Concept-based XAI | Survey | 최종 DOI/권호 확인 필요 | concept completeness, explanation stability 평가축 | 부분 확인: arXiv `2312.12936` |
+| 11 | 해외 | Concept-based Explainable Artificial Intelligence: A Survey | Eleonora Poeta et al. | 2023/2025 | Concept-based XAI | Survey | 권호/issue와 최종 formatted PDF 확인 필요 | concept completeness, explanation stability 평가축 | DOI 확인: `10.1145/3774643`, arXiv `2312.12936` |
+| 12 | 해외 | Explainable AI: Core Ideas, Techniques, and Solutions | Rudresh Dwivedi et al. | 2023 | XAI core ideas | Survey | 로컬 PDF가 Mersha et al. 대체 문헌 | P03 상태를 투명하게 남기는 검증 사례 | 부분 확인: DOI `10.1145/3561048`, 원문 PDF 확보 필요 |
 
 ## 종합 분석
 

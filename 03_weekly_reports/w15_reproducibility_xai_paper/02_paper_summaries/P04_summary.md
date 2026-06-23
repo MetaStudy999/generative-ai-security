@@ -6,11 +6,11 @@
 |---|---|
 | 논문 제목 | Explainable Artificial Intelligence (XAI): Concepts, Taxonomies, Opportunities and Challenges toward Responsible AI |
 | 저자 | Alejandro Barredo Arrieta, Natalia Díaz-Rodríguez, Javier Del Ser, Adrien Bennetot, Siham Tabik, Alberto Barbado, Salvador Garcia, Sergio Gil-Lopez, Daniel Molina, Richard Benjamins, Raja Chatila, Francisco Herrera |
-| 학술지/학회 | Information Fusion |
+| 학술지/학회 | Information Fusion 58, 82-115 |
 | 연도 | 2020 |
 | DOI/URL | `https://doi.org/10.1016/j.inffus.2019.12.012` |
 | PDF 파일명 | `04_Arrieta_et_al_2020_Explainable_AI_Concepts_Taxonomies.pdf` |
-| 검증 상태 | 로컬 arXiv preprint와 ScienceDirect DOI 확인 |
+| 검증 상태 | ScienceDirect article page와 DOI/Crossref metadata에서 Information Fusion 58, 82-115 확인. 로컬 PDF는 arXiv preprint |
 
 ## 2. 한 문장 요약
 

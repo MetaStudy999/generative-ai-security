@@ -150,9 +150,9 @@ def main() -> None:
         metric_row("artifact", "w15_required_files", f"{required_existing}/{len(REQUIRED_W15_FILES)}", "complete" if required_rate == 1 else "partial", "03_weekly_reports/w15_reproducibility_xai_paper"),
         metric_row("artifact", "final_paper_link_files", f"{final_existing}/{len(FINAL_PAPER_FILES)}", "complete" if final_rate == 1 else "partial", "04_final_paper"),
         metric_row("paper", "local_pdf_count", pdf_count, "complete" if pdf_count >= 5 else "partial", "01_papers/pdf"),
-        metric_row("reference", "doi_confirmed", doi_status["confirmed"], "partial", "01_papers/doi_check.md"),
-        metric_row("reference", "doi_partial", doi_status["partial"], "partial", "01_papers/doi_check.md"),
-        metric_row("reference", "doi_unverified", doi_status["unverified"], "attention", "01_papers/doi_check.md"),
+        metric_row("reference", "doi_confirmed", doi_status["confirmed"], "complete" if doi_status["confirmed"] >= 4 else "partial", "01_papers/doi_check.md"),
+        metric_row("reference", "doi_partial", doi_status["partial"], "partial" if doi_status["partial"] else "complete", "01_papers/doi_check.md"),
+        metric_row("reference", "doi_unverified", doi_status["unverified"], "attention" if doi_status["unverified"] else "complete", "01_papers/doi_check.md"),
         metric_row("reference", "weighted_reference_verification_rate", f"{doi_status['weighted_rate']:.2f}", "partial", "01_papers/doi_check.md"),
         metric_row("ai_disclosure", "ai_disclosure_completeness", f"{ai_disclosure['filled']}/{ai_disclosure['total']}", "complete" if ai_disclosure["rate"] == 1 else "partial", "05_ai_worklog/ai_disclosure_draft.md"),
         metric_row("reproducibility", "config_present", int((experiment_dir / args.config).exists()), "complete", args.config),
@@ -160,7 +160,7 @@ def main() -> None:
     ]
 
     with (outputs_dir / "metrics_summary.csv").open("w", encoding="utf-8", newline="") as file:
-        writer = csv.DictWriter(file, fieldnames=["category", "metric", "value", "status", "evidence"])
+        writer = csv.DictWriter(file, fieldnames=["category", "metric", "value", "status", "evidence"], lineterminator="\n")
         writer.writeheader()
         writer.writerows(metrics)
 
@@ -205,8 +205,8 @@ def main() -> None:
             "## 해석",
             "",
             "W15 필수 산출물과 기말논문 연결 파일의 존재 여부, DOI/URL 검증 상태, AI 활용 고지 완성도를 점검했다.",
-            "P03은 지정 논문 원문과 로컬 대체 PDF가 일치하지 않아 미검증으로 유지한다.",
-            "P05는 arXiv URL은 확인했지만 최종 출판 DOI가 확인되지 않아 부분 확인으로 둔다.",
+            "P03은 공식 DOI 메타데이터를 확인했지만 로컬 PDF가 Mersha et al. 대체 문헌이므로 부분 확인으로 유지한다.",
+            "P05는 arXiv와 최종 ACM DOI가 연결되어 DOI 확인 상태로 갱신했다.",
         ]
     )
     (outputs_dir / "run_log.md").write_text("\n".join(run_log) + "\n", encoding="utf-8")

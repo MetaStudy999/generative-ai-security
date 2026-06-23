@@ -1,0 +1,11 @@
+category,metric,value,status,evidence
+artifact,w15_required_files,47/47,complete,03_weekly_reports/w15_reproducibility_xai_paper
+artifact,final_paper_link_files,9/9,complete,04_final_paper
+paper,local_pdf_count,5,complete,01_papers/pdf
+reference,doi_confirmed,4,complete,01_papers/doi_check.md
+reference,doi_partial,1,partial,01_papers/doi_check.md
+reference,doi_unverified,0,complete,01_papers/doi_check.md
+reference,weighted_reference_verification_rate,0.90,partial,01_papers/doi_check.md
+ai_disclosure,ai_disclosure_completeness,11/11,complete,05_ai_worklog/ai_disclosure_draft.md
+reproducibility,config_present,1,complete,configs/config.yaml
+reproducibility,seed_recorded,42,complete,configs/config.yaml

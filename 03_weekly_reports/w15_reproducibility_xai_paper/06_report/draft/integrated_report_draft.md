@@ -13,11 +13,11 @@ W15는 LLM 평가, ML lifecycle assurance, XAI, concept-based explanation을 연
 | W15 필수 산출물 | 47/47 | complete |
 | 기말논문 연결 파일 | 9/9 | complete |
 | 로컬 PDF | 5 | complete |
-| DOI 확인 | 3 | partial |
+| DOI 확인 | 4 | complete |
 | DOI 부분 확인 | 1 | partial |
-| DOI 미검증 | 1 | attention |
-| 가중 참고문헌 검증률 | 0.70 | partial |
-| AI 활용 고지 완성도 | 9/9 | complete |
+| DOI 미검증 | 0 | complete |
+| 가중 참고문헌 검증률 | 0.90 | partial |
+| AI 활용 고지 완성도 | 11/11 | complete |
 
 ## 초안 검토 메모
 

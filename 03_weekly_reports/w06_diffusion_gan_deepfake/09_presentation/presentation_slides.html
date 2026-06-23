@@ -62,6 +62,21 @@
       .slide-nav { right: 12px; bottom: 12px; }
     }
   </style>
+<!-- formula-visual-mathjax:start -->
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+.formula-visual-supplement .math-block { border-left: 5px solid #0f766e; background: #eef8f6; padding: 14px 18px; margin: 12px 0; font-size: 20px; overflow-x: auto; }
+.formula-visual-supplement .caption { font-size: 16px; line-height: 1.35; color: #53616f; }
+.formula-visual-supplement img { max-width: 100%; max-height: 390px; object-fit: contain; border: 1px solid #d8e0e8; border-radius: 8px; background: #fff; }
+.formula-visual-supplement .media-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
+</style>
+<!-- formula-visual-mathjax:end -->
 </head>
 <body>
   <section>

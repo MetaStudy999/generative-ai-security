@@ -308,6 +308,21 @@
       .controls { display: none; }
     }
   </style>
+<!-- formula-visual-mathjax:start -->
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+.formula-visual-supplement .math-block { border-left: 5px solid #0f766e; background: #eef8f6; padding: 14px 18px; margin: 12px 0; font-size: 20px; overflow-x: auto; }
+.formula-visual-supplement .caption { font-size: 16px; line-height: 1.35; color: #53616f; }
+.formula-visual-supplement img { max-width: 100%; max-height: 390px; object-fit: contain; border: 1px solid #d8e0e8; border-radius: 8px; background: #fff; }
+.formula-visual-supplement .media-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
+</style>
+<!-- formula-visual-mathjax:end -->
 </head>
 <body>
   <main class="deck">
@@ -506,6 +521,42 @@
       <div class="message">실습 코드, Docker 실행 결과, 제출 문서가 모두 정리되었다.</div>
       <div class="footer"><span>W02 complete</span><span></span></div>
     </section>
+  <!-- formula-visual-html:start -->
+    <section class="slide formula-visual-supplement">
+      <div class="slide-header">Formula / W02</div>
+      <h2>핵심 수식과 기호</h2>
+      <h3>ERM, Poisoned Empirical Risk, SGD Update</h3>
+      <div class="math-block">
+      $$
+      \hat{R}(\theta)=\frac{1}{n}\sum_{i=1}^{n}\ell(f_\theta(x_i),y_i),
+      \qquad
+      \hat{R}_{poison}(\theta)=\frac{1}{n+m}\left(\sum_{i=1}^{n}\ell(f_\theta(x_i),y_i)+\sum_{j=1}^{m}\ell(f_\theta(\tilde{x}_j),\tilde{y}_j)\right)
+      $$
+      </div>
+      <p>훈련 단계 위협은 모델 파라미터와 decision boundary를 바꾸며, 검증셋이 clean-only이면 위험이 숨을 수 있다.</p>
+      <h3>Accuracy Drop와 ASR</h3>
+      <div class="math-block">
+      $$
+      \Delta Acc=Acc_{clean}-Acc_{poison},
+      \qquad
+      ASR=\frac{1}{m}\sum_{j=1}^{m}\mathbf{1}[f_\theta(\tilde{x}_j)=y^{target}]
+      $$
+      </div>
+      <p>보안 보고에서는 clean accuracy와 ASR을 같은 표에 두되 같은 의미로 합치지 않는다.</p>
+      <div class="message">수식은 표준 정의식이며 원문 위치와 formal guarantee는 최종 검토 대상이다.</div>
+      <div class="footer"><span>W02 formula supplement</span><span></span></div>
+    </section>
+
+    <section class="slide formula-visual-supplement">
+      <div class="slide-header">Visual / W02</div>
+      <h2>그래프와 Pipeline Diagram</h2>
+      <div class="media-grid">
+        <div><img src="assets/charts/w02_metrics_chart.png" alt="W02 metrics chart"><p class="caption">그래프는 `metrics_summary.csv`의 clean accuracy, macro F1, ASR을 조건별로 그린 것이다. Label-flip 조건에서는 오염률 증가와 함께 clean 성능 저하를 비교할 수 있고, toy backdoor 조건은 clean 성능과 ASR을 분리해 보아야 함을 보여준다. 표에 없는 실험 조건이나 수치는 추가하지 않았다.</p></div>
+        <div><img src="assets/diagrams/w02_pipeline_diagram.svg" alt="W02 pipeline diagram"><p class="caption">AI-assisted conceptual diagram. See assets/figure_manifest.md.</p></div>
+      </div>
+      <div class="footer"><span>Source: outputs/metrics_summary.csv</span><span>training-data poisoning evaluation flow</span></div>
+    </section>
+<!-- formula-visual-html:end -->
   </main>
 
   <div class="controls" aria-label="slide controls">
@@ -525,6 +576,9 @@
         slide.classList.toggle("active", slideIndex === index);
       });
       counter.textContent = `${index + 1} / ${slides.length}`;
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        window.MathJax.typesetPromise([slides[index]]).catch(() => {});
+      }
       document.title = `W02 발표자료 (${index + 1}/${slides.length})`;
     }
 

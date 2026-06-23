@@ -65,3 +65,15 @@ Transformer 변형 & NLP 대적공격·프라이버시
 | `speaker_notes.md` | 슬라이드별 발표자 대본 |
 | `qna.md` | 예상 질문과 답변 |
 | `04_experiment/outputs/run_log.md` | 실험 수치 근거 |
+
+<!-- formula-visual-handout:start -->
+## 수식·그래프·그림 보강 요약
+
+| 항목 | 반영 내용 |
+|---|---|
+| 핵심 수식 | Scaled Dot-Product Attention, Attention Complexity 비교 |
+| 그래프 | `assets/charts/w04_metrics_chart.png` (`metrics_summary.csv` 기반) |
+| 다이어그램 | `assets/diagrams/w04_pipeline_diagram.svg` (Transformer security evaluation flow) |
+| 기호 정의 | 통합보고서와 발표 슬라이드의 수식 블록에 포함 |
+| 주의사항 | efficient attention 복잡도는 구조별로 달라 표준 비교식으로만 제시한다. |
+<!-- formula-visual-handout:end -->

@@ -64,3 +64,15 @@
 | `speaker_notes.md` | 슬라이드별 발표자 대본 |
 | `qna.md` | 예상 질문과 답변 |
 | `04_experiment/outputs/run_log.md` | 실험 수치 근거 |
+
+<!-- formula-visual-handout:start -->
+## 수식·그래프·그림 보강 요약
+
+| 항목 | 반영 내용 |
+|---|---|
+| 핵심 수식 | Contrastive Loss와 Representation Shift, Backdoor Trigger Success Metric |
+| 그래프 | `assets/charts/w05_metrics_chart.png` (`metrics_summary.csv` 기반) |
+| 다이어그램 | `assets/diagrams/w05_pipeline_diagram.svg` (SSL backdoor evaluation flow) |
+| 기호 정의 | 통합보고서와 발표 슬라이드의 수식 블록에 포함 |
+| 주의사항 | trigger 관련 설명은 공개 toy/synthetic 범위이며 실제 악용 가능한 절차를 제공하지 않는다. |
+<!-- formula-visual-handout:end -->

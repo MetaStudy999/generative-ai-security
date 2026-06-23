@@ -18,3 +18,13 @@
 - 모든 수치는 `04_experiment/outputs/run_log.md` 기준이라고 밝힌다.
 - P03/P05 출판 DOI는 확인했지만, 최종 제출 전 DOI landing page를 사람이 다시 확인한다고 말한다.
 - P01은 수업자료의 ACM Computing Surveys 표기와 공식 TIST DOI 메타데이터 차이가 있음을 짧게 언급한다.
+
+<!-- formula-visual-speaker-notes:start -->
+## 수식·그래프·그림 발표자 노트
+
+- 핵심 수식: FedAvg Aggregation과 Client Update, Update Norm Leakage/Poisoning Proxy. 수식은 표준 정의식이며, 원문 위치나 formal guarantee가 확인되지 않은 부분은 확인 필요로 말한다.
+- 기호 정의표는 청중이 식을 해석할 수 있도록 먼저 읽고, 이후 보안 지표와 연결한다.
+- 그래프 설명: 그래프는 global_accuracy, global_f1, ASR, privacy_leakage_proxy, mean_update_norm을 조건별로 보여준다. FL에서는 중앙 성능만이 아니라 malicious client rate, update norm, leakage proxy를 함께 기록해야 한다. CSV에 없는 client-level raw data는 만들지 않았다.
+- 다이어그램 설명: `FL aggregation structure`는 threat model 또는 평가 pipeline을 한 장으로 보여주는 보조 그림이다.
+- 한계 고지: privacy_leakage_proxy는 실제 gradient inversion 성공률이 아니며 proxy로만 해석한다.
+<!-- formula-visual-speaker-notes:end -->

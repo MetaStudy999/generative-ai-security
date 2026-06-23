@@ -365,3 +365,83 @@ PDF 보관 정책: GitHub API 기준 원격 저장소는 public이며, W03 PDF 5
 | AI 활용 고지 작성 | 완료 | `05_ai_worklog/ai_disclosure_draft.md` |
 | PDF 저작권 위험 점검 | 완료 | public 저장소에 PDF 추적됨, 삭제 필요 |
 | 최종 사람이 검토할 항목 표시 | 완료 | PDF 삭제, 국내 참고문헌, 최종 제출 여부 |
+
+<!-- formula-visual-supplement:start -->
+## 수식·그래프·그림 보강
+
+- 보강 일자: 2026-06-23
+- 수식은 표준 정의식 또는 검증 가능한 평가식으로만 작성했다.
+- 그래프는 `04_experiment/outputs/metrics_summary.csv`의 기존 수치만 사용했다.
+- 다이어그램은 AI-assisted conceptual diagram이며 사실 자료나 실험 결과처럼 해석하지 않는다.
+
+### 핵심 수식: Adversarial Perturbation Constraint
+
+$$
+x' = x+\delta,
+\qquad
+\lVert \delta \rVert_p \le \epsilon
+$$
+
+| 기호 | 의미 |
+|---|---|
+| `x` | 원본 입력 |
+| `x'` | 교란된 입력 |
+| `\delta` | 입력 교란 |
+| `\epsilon` | 허용 교란 반경 |
+
+**직관적 의미:**  
+대적 예시는 작은 입력 교란이 예측을 바꿀 수 있는지를 보는 평가 개념이다. 핵심은 교란 크기와 모델 실패 여부를 함께 기록하는 것이다.
+
+**보안 관점 해석:**  
+보안 관점에서는 입력 검증, 강건성 평가, defense 비용이 연결된다.
+
+**평가 지표 연결:**  
+robust accuracy, attack_success_rate, robust_drop, defense 여부와 연결한다.
+
+**한계와 가정:**  
+toy image setting이며 실제 운영 비전 시스템을 우회하는 절차가 아니다.
+
+### 핵심 수식: Robust Accuracy와 Robust Drop
+
+$$
+RA_\epsilon=\frac{1}{n}\sum_{i=1}^{n}\mathbf{1}\left[f_\theta(x_i+\delta_i)=y_i\right],
+\qquad
+Drop=Acc_{clean}-RA_\epsilon
+$$
+
+| 기호 | 의미 |
+|---|---|
+| `RA_\epsilon` | 교란 조건에서의 정확도 |
+| `Acc_{clean}` | 정상 입력 정확도 |
+| `Drop` | 강건성 저하량 |
+| `n` | 평가 표본 수 |
+
+**직관적 의미:**  
+강건성은 정상 정확도에서 얼마나 유지되는지로 해석한다. Drop이 클수록 clean-only 평가가 위험을 감춘다.
+
+**보안 관점 해석:**  
+공격 조건 성능과 방어 후 성능을 같은 표에 연결한다.
+
+**평가 지표 연결:**  
+accuracy, attack_success_rate, robust_drop, n_samples와 연결한다.
+
+**한계와 가정:**  
+공식 인증 강건성은 아니며 실험적 toy proxy로 표시한다.
+
+### 표 수치 기반 그래프
+
+![W03 metrics chart](../../09_presentation/assets/charts/w03_metrics_chart.png)
+
+그래프는 condition별 accuracy, attack_success_rate, robust_drop을 `metrics_summary.csv`에서 읽어 시각화한다. epsilon 또는 defense 조건별 변화는 robust accuracy를 clean accuracy와 분리해 보아야 함을 보여준다. 이미 존재하는 output 수치만 사용했다.
+
+### Threat Model / Pipeline Diagram
+
+![W03 pipeline diagram](../../09_presentation/assets/diagrams/w03_pipeline_diagram.svg)
+
+이 다이어그램은 `adversarial evaluation flow`를 발표용으로 요약한 개념도다. 데이터 흐름, 평가 지표, 한계 표시는 `../../09_presentation/assets/figure_manifest.md`에도 기록했다.
+
+### 확인 필요
+
+- 대적 교란은 toy evaluation 범위로 설명하며 실제 시스템 우회 절차로 쓰지 않는다.
+- 논문별 원문 절·쪽·그림 번호는 최종 제출 전 사람 검토가 필요하다.
+<!-- formula-visual-supplement:end -->

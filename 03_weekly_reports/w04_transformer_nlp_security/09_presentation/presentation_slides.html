@@ -69,6 +69,21 @@
       .slide-controls { bottom: 12px; }
     }
   </style>
+<!-- formula-visual-mathjax:start -->
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+.formula-visual-supplement .math-block { border-left: 5px solid #0f766e; background: #eef8f6; padding: 14px 18px; margin: 12px 0; font-size: 20px; overflow-x: auto; }
+.formula-visual-supplement .caption { font-size: 16px; line-height: 1.35; color: #53616f; }
+.formula-visual-supplement img { max-width: 100%; max-height: 390px; object-fit: contain; border: 1px solid #d8e0e8; border-radius: 8px; background: #fff; }
+.formula-visual-supplement .media-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
+</style>
+<!-- formula-visual-mathjax:end -->
 </head>
 <body>
   <main>
@@ -208,6 +223,40 @@
         </ul>
       </div>
     </section>
+  <!-- formula-visual-html:start -->
+    <section class="slide formula-visual-supplement">
+      <div class="slide-header">Formula / W04</div>
+      <h2>핵심 수식과 기호</h2>
+      <h3>Scaled Dot-Product Attention</h3>
+      <div class="math-block">
+      $$
+      Attention(Q,K,V)=softmax\left(\frac{QK^\top}{\sqrt{d_k}}\right)V
+      $$
+      </div>
+      <p>입력 문맥이 길거나 오염되면 정보 흐름과 취약 응답이 달라질 수 있다.</p>
+      <h3>Attention Complexity 비교</h3>
+      <div class="math-block">
+      $$
+      C_{full}=O(n^2d),
+      \qquad
+      C_{efficient}\in\{O(nd), O(nrd)\}
+      $$
+      </div>
+      <p>비용 절감은 더 넓은 보안 평가를 가능하게 하지만, 근사 구조의 취약성 검토가 필요하다.</p>
+      <div class="message">수식은 표준 정의식이며 원문 위치와 formal guarantee는 최종 검토 대상이다.</div>
+      <div class="footer"><span>W04 formula supplement</span><span></span></div>
+    </section>
+
+    <section class="slide formula-visual-supplement">
+      <div class="slide-header">Visual / W04</div>
+      <h2>그래프와 Pipeline Diagram</h2>
+      <div class="media-grid">
+        <div><img src="assets/charts/w04_metrics_chart.png" alt="W04 metrics chart"><p class="caption">그래프는 clean_score, attack_success_rate, privacy_leakage, utility_score를 조건별로 비교한다. Transformer 평가에서는 유틸리티와 보안 위험이 동시에 움직일 수 있으므로 단일 점수로 결론을 내리지 않는다. 수치는 `metrics_summary.csv`에서만 가져왔다.</p></div>
+        <div><img src="assets/diagrams/w04_pipeline_diagram.svg" alt="W04 pipeline diagram"><p class="caption">AI-assisted conceptual diagram. See assets/figure_manifest.md.</p></div>
+      </div>
+      <div class="footer"><span>Source: outputs/metrics_summary.csv</span><span>Transformer security evaluation flow</span></div>
+    </section>
+<!-- formula-visual-html:end -->
   </main>
   <div class="slide-controls" aria-label="슬라이드 이동 버튼">
     <button type="button" id="prevSlide" aria-label="이전 슬라이드">이전</button>

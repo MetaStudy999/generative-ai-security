@@ -83,3 +83,81 @@ W14는 운영형 AI 시스템의 보안·재현성 보증을 위한 evidence set
 ## 결론
 
 MLOps 공급망 보안은 모델 성능을 넘어 데이터, 모델, config, 로그, 모니터링, 검증 절차를 함께 남기는 문제다.
+
+<!-- formula-visual-supplement:start -->
+# 수식·그래프·그림 보강
+
+- 보강 일자: 2026-06-23
+- 수식은 표준 정의식 또는 검증 가능한 평가식으로만 작성했다.
+- 그래프는 `04_experiment/outputs/metrics_summary.csv`의 기존 수치만 사용했다.
+- 다이어그램은 AI-assisted conceptual diagram이며 사실 자료나 실험 결과처럼 해석하지 않는다.
+
+### 핵심 수식: Artifact Integrity Check
+
+$$
+pass(a)=\mathbf{1}[H(a)=H_{ref}(a)]
+$$
+
+| 기호 | 의미 |
+|---|---|
+| `a` | artifact |
+| `H` | hash function |
+| `H_{ref}` | 기준 hash |
+| `pass(a)` | 무결성 확인 결과 |
+
+**직관적 의미:**  
+공급망 보안은 artifact가 기준 hash와 일치하는지 확인하는 것에서 시작한다.
+
+**보안 관점 해석:**  
+데이터, 모델, config의 변경 여부를 추적해야 재현성과 책임성이 유지된다.
+
+**평가 지표 연결:**  
+model_hash_match, dataset_sha256, inventory_coverage와 연결한다.
+
+**한계와 가정:**  
+hash 검증은 무결성 근거이지 모델 안전성 전체 보증이 아니다.
+
+### 핵심 수식: Drift와 Audit Coverage
+
+$$
+d=\lVert \mu_{new}-\mu_{train}\rVert_2,
+\qquad
+Coverage=\frac{|\{\mathrm{required\ logs\ present}\}|}{|\{\mathrm{required\ logs}\}|}
+$$
+
+| 기호 | 의미 |
+|---|---|
+| `d` | 분포 이동 proxy |
+| `\mu_{new}` | 새 입력 평균 특징 |
+| `\mu_{train}` | 훈련 기준 평균 특징 |
+| `Coverage` | 필수 로그 보존률 |
+
+**직관적 의미:**  
+Drift는 배포 후 입력 분포 변화를 감시하는 간단한 proxy다. Audit coverage는 최소 증거가 남아 있는지를 본다.
+
+**보안 관점 해석:**  
+공급망 공격은 성능보다 provenance와 audit evidence 부족에서 먼저 드러날 수 있다.
+
+**평가 지표 연결:**  
+mean_standardized_feature_shift, audit_coverage, inventory_coverage와 연결한다.
+
+**한계와 가정:**  
+toy MLOps inventory이며 실제 조직의 완전한 SBOM/AI BOM은 별도 검토가 필요하다.
+
+### 표 수치 기반 그래프
+
+![W14 metrics chart](assets/charts/w14_metrics_chart.png)
+
+그래프는 numeric value로 변환 가능한 MLOps 점검 항목만 표시한다. Hash 문자열이나 boolean pass는 그래프에서 제외하고 manifest와 로그 근거로 남겼다. 값은 `metrics_summary.csv`에서만 읽었다.
+
+### Threat Model / Pipeline Diagram
+
+![W14 pipeline diagram](assets/diagrams/w14_pipeline_diagram.svg)
+
+이 다이어그램은 `MLOps supply-chain map`를 발표용으로 요약한 개념도다. 데이터 흐름, 평가 지표, 한계 표시는 `assets/figure_manifest.md`에도 기록했다.
+
+### 확인 필요
+
+- hash/pass 항목은 시각화에서 제외했으며 원본 CSV와 artifact inventory를 함께 확인해야 한다.
+- 논문별 원문 절·쪽·그림 번호는 최종 제출 전 사람 검토가 필요하다.
+<!-- formula-visual-supplement:end -->

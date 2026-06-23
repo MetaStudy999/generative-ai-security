@@ -360,3 +360,83 @@ W06는 diffusion/GAN 생성모형과 딥페이크 탐지 신뢰성 평가를 분
 | AI 활용 고지 작성 | 완료 | 별도 파일 보완 |
 | PDF 저작권 위험 점검 | 완료 / 확인 필요 | PDF 5개 git 추적, 삭제는 미수행 |
 | 최종 사람이 검토할 항목 표시 | 완료 | 최종 제출 확정 아님 |
+
+<!-- formula-visual-supplement:start -->
+## 수식·그래프·그림 보강
+
+- 보강 일자: 2026-06-23
+- 수식은 표준 정의식 또는 검증 가능한 평가식으로만 작성했다.
+- 그래프는 `04_experiment/outputs/metrics_summary.csv`의 기존 수치만 사용했다.
+- 다이어그램은 AI-assisted conceptual diagram이며 사실 자료나 실험 결과처럼 해석하지 않는다.
+
+### 핵심 수식: Diffusion Forward Process와 Denoising Objective
+
+$$
+q(x_t|x_{t-1})=\mathcal{N}\left(\sqrt{1-\beta_t}x_{t-1},\beta_t I\right),
+\qquad
+\mathcal{L}_{simple}=\mathbb{E}_{t,x_0,\epsilon}\left[\lVert \epsilon-\epsilon_\theta(x_t,t)\rVert_2^2\right]
+$$
+
+| 기호 | 의미 |
+|---|---|
+| `x_t` | time step t의 noisy sample |
+| `\beta_t` | noise schedule |
+| `\epsilon` | 주입된 noise |
+| `\epsilon_\theta` | denoising model prediction |
+
+**직관적 의미:**  
+Diffusion은 점진적으로 noise를 더하고 이를 되돌리는 학습 문제로 볼 수 있다.
+
+**보안 관점 해석:**  
+보안 발표에서는 생성 원리보다 탐지와 검증 지표를 중심에 둔다.
+
+**평가 지표 연결:**  
+AUROC, FPR, FNR, review_rate와 연결한다.
+
+**한계와 가정:**  
+표준식이며 특정 생성 모델의 원문 수치를 새로 주장하지 않는다.
+
+### 핵심 수식: GAN Min-Max와 FPR/FNR
+
+$$
+\min_G\max_D\ \mathbb{E}_{x\sim p_{data}}\log D(x)+\mathbb{E}_{z\sim p_z}\log(1-D(G(z))),
+\qquad
+FPR=\frac{FP}{FP+TN},\quad FNR=\frac{FN}{FN+TP}
+$$
+
+| 기호 | 의미 |
+|---|---|
+| `G,D` | generator와 discriminator |
+| `FP,FN` | 오탐과 미탐 |
+| `TP,TN` | 정탐과 정상 판정 |
+| `FPR,FNR` | 오탐률과 미탐률 |
+
+**직관적 의미:**  
+GAN 목적식은 생성자와 판별자의 경쟁을 표현한다. 탐지 평가는 판별 정확도보다 오탐·미탐의 균형이 중요하다.
+
+**보안 관점 해석:**  
+미탐은 악성 생성물을 놓칠 위험이고, 오탐은 정상 콘텐츠 차단 위험이다.
+
+**평가 지표 연결:**  
+false_positive_rate, false_negative_rate, AUROC, expected_calibration_error와 연결한다.
+
+**한계와 가정:**  
+detector toy evaluation이며 실제 미디어 판별 보증으로 해석하지 않는다.
+
+### 표 수치 기반 그래프
+
+![W06 metrics chart](../../09_presentation/assets/charts/w06_metrics_chart.png)
+
+그래프는 deepfake detector의 accuracy, F1, FPR, FNR, AUROC를 조건별로 비교한다. 탐지 문제에서는 false positive와 false negative의 보안 비용이 다르므로 accuracy만으로 결론을 내리지 않는다. source는 `metrics_summary.csv`이다.
+
+### Threat Model / Pipeline Diagram
+
+![W06 pipeline diagram](../../09_presentation/assets/diagrams/w06_pipeline_diagram.svg)
+
+이 다이어그램은 `generated-media detection pipeline`를 발표용으로 요약한 개념도다. 데이터 흐름, 평가 지표, 한계 표시는 `../../09_presentation/assets/figure_manifest.md`에도 기록했다.
+
+### 확인 필요
+
+- 생성 모델 수식은 표준 학습 목적 설명이며 deepfake 제작 절차를 안내하지 않는다.
+- 논문별 원문 절·쪽·그림 번호는 최종 제출 전 사람 검토가 필요하다.
+<!-- formula-visual-supplement:end -->

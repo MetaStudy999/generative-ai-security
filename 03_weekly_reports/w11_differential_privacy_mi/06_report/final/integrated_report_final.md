@@ -200,7 +200,7 @@ Confidentiality 관점에서 membership inference는 학습 데이터 포함 여
 | 연구문제 작성 | 완료 |
 | 연구방법 작성 | 완료 |
 | 표 1개 이상 포함 | 완료 |
-| 그림 1개 이상 포함 | 확인 필요 |
+| 그림 1개 이상 포함 | 완료 |
 | 국내 참고문헌 3편 이상 | 확인 필요 |
 | 해외 참고문헌 5편 이상 | W11 기준 완료, P03/P05 원문 확보 필요 |
 | AI 활용 고지 | 보완 완료, 사람 검토 필요 |
@@ -341,3 +341,83 @@ W11은 AI 보안 연구에서 privacy claim을 검증하기 위해 단일 epsilo
 | AI 활용 고지 작성 | 완료 | 사람 검토 필요 |
 | PDF 저작권 위험 점검 | 완료 / 조치 필요 | PDF 5개 Git 추적 중, 삭제는 미수행 |
 | 최종 사람이 검토할 항목 표시 | 완료 | 최종 제출 확정 아님 |
+
+<!-- formula-visual-supplement:start -->
+## 수식·그래프·그림 보강
+
+- 보강 일자: 2026-06-23
+- 수식은 표준 정의식 또는 검증 가능한 평가식으로만 작성했다.
+- 그래프는 `04_experiment/outputs/metrics_summary.csv`의 기존 수치만 사용했다.
+- 다이어그램은 AI-assisted conceptual diagram이며 사실 자료나 실험 결과처럼 해석하지 않는다.
+
+### 핵심 수식: Differential Privacy Definition
+
+$$
+\Pr[M(D)\in S]\le e^{\varepsilon}\Pr[M(D')\in S]+\delta
+$$
+
+| 기호 | 의미 |
+|---|---|
+| `M` | 무작위 알고리즘 또는 학습 절차 |
+| `D,D'` | 한 레코드만 다른 adjacent datasets |
+| `S` | 가능한 출력 사건 |
+| `\varepsilon,\delta` | DP privacy parameters |
+
+**직관적 의미:**  
+DP는 한 개인 레코드의 포함 여부가 출력 분포를 크게 바꾸지 않도록 제한하는 표준 정의다.
+
+**보안 관점 해석:**  
+Membership inference 위험을 줄이려는 privacy claim은 이 정의와 accountant 근거가 있어야 한다.
+
+**평가 지표 연결:**  
+epsilon, delta, privacy_leakage_score, mi_attack_accuracy와 연결한다.
+
+**한계와 가정:**  
+현재 CSV의 `epsilon_proxy`는 formal accountant 결과가 아니므로 보증값으로 쓰지 않는다.
+
+### 핵심 수식: DP-SGD Clipping/Noise와 MI Advantage
+
+$$
+\bar{g}_i=\frac{g_i}{\max(1,\lVert g_i\rVert_2/C)},
+\qquad
+\tilde{g}=\frac{1}{B}\left(\sum_{i=1}^{B}\bar{g}_i+\mathcal{N}(0,\sigma^2C^2I)\right),
+\qquad
+Adv_{MI}=TPR-FPR
+$$
+
+| 기호 | 의미 |
+|---|---|
+| `g_i,\bar{g}_i` | 개별 gradient와 clipping 후 gradient |
+| `C` | clipping norm |
+| `\sigma` | noise multiplier |
+| `Adv_{MI}` | membership inference advantage |
+
+**직관적 의미:**  
+DP-SGD는 gradient 크기를 제한하고 noise를 더해 개별 레코드 영향을 줄인다. MI advantage는 멤버와 비멤버를 구분하는 공격자의 이득을 요약한다.
+
+**보안 관점 해석:**  
+프라이버시 방어는 utility drop과 leakage 감소를 함께 보고해야 한다.
+
+**평가 지표 연결:**  
+accuracy, utility_drop, privacy_leakage_score, mi_attack_accuracy, noise_multiplier와 연결한다.
+
+**한계와 가정:**  
+표준식 설명이며 이 실습은 정식 DP accountant를 실행하지 않은 toy evaluation이다.
+
+### 표 수치 기반 그래프
+
+![W11 metrics chart](../../09_presentation/assets/charts/w11_metrics_chart.png)
+
+그래프는 accuracy, MI attack accuracy, epsilon_proxy, leakage score, utility_drop, noise_multiplier를 조건별로 비교한다. `epsilon_proxy`는 formal DP accountant 결과가 아니므로 privacy guarantee로 읽으면 안 된다. 수치는 W11 outputs의 toy 결과 그대로다.
+
+### Threat Model / Pipeline Diagram
+
+![W11 pipeline diagram](../../09_presentation/assets/diagrams/w11_pipeline_diagram.svg)
+
+이 다이어그램은 `DP-SGD and MI audit flow`를 발표용으로 요약한 개념도다. 데이터 흐름, 평가 지표, 한계 표시는 `../../09_presentation/assets/figure_manifest.md`에도 기록했다.
+
+### 확인 필요
+
+- `epsilon_proxy`는 formal DP accountant 값이 아니며 formal DP guarantee로 쓰지 않는다.
+- 논문별 원문 절·쪽·그림 번호는 최종 제출 전 사람 검토가 필요하다.
+<!-- formula-visual-supplement:end -->

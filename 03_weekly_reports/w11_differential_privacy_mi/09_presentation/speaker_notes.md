@@ -89,3 +89,13 @@ Baseline accuracy는 0.956250이고 high noise accuracy는 0.950000입니다. Le
 예상 시간: 0:30
 
 DP는 구현 설정과 accounting까지 보고해야 합니다. MI 위험은 별도 보안 지표로 평가해야 합니다. 수치는 `outputs/` 로그가 있을 때만 주장합니다.
+
+<!-- formula-visual-speaker-notes:start -->
+## 수식·그래프·그림 발표자 노트
+
+- 핵심 수식: Differential Privacy Definition, DP-SGD Clipping/Noise와 MI Advantage. 수식은 표준 정의식이며, 원문 위치나 formal guarantee가 확인되지 않은 부분은 확인 필요로 말한다.
+- 기호 정의표는 청중이 식을 해석할 수 있도록 먼저 읽고, 이후 보안 지표와 연결한다.
+- 그래프 설명: 그래프는 accuracy, MI attack accuracy, epsilon_proxy, leakage score, utility_drop, noise_multiplier를 조건별로 비교한다. `epsilon_proxy`는 formal DP accountant 결과가 아니므로 privacy guarantee로 읽으면 안 된다. 수치는 W11 outputs의 toy 결과 그대로다.
+- 다이어그램 설명: `DP-SGD and MI audit flow`는 threat model 또는 평가 pipeline을 한 장으로 보여주는 보조 그림이다.
+- 한계 고지: `epsilon_proxy`는 formal DP accountant 값이 아니며 formal DP guarantee로 쓰지 않는다.
+<!-- formula-visual-speaker-notes:end -->

@@ -46,3 +46,15 @@ W14는 운영형 AI 시스템 보안을 위한 evidence set으로 연결된다. 
 ## 확인 필요
 
 P03/P04/P05는 로컬 PDF가 대상 논문과 다르므로 최종 인용 전 공식 원문 PDF를 확보해야 한다.
+
+<!-- formula-visual-handout:start -->
+## 수식·그래프·그림 보강 요약
+
+| 항목 | 반영 내용 |
+|---|---|
+| 핵심 수식 | Artifact Integrity Check, Drift와 Audit Coverage |
+| 그래프 | `assets/charts/w14_metrics_chart.png` (`metrics_summary.csv` 기반) |
+| 다이어그램 | `assets/diagrams/w14_pipeline_diagram.svg` (MLOps supply-chain map) |
+| 기호 정의 | 통합보고서와 발표 슬라이드의 수식 블록에 포함 |
+| 주의사항 | hash/pass 항목은 시각화에서 제외했으며 원본 CSV와 artifact inventory를 함께 확인해야 한다. |
+<!-- formula-visual-handout:end -->

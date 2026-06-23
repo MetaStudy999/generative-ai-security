@@ -59,6 +59,21 @@
       .slide-controls { bottom: 12px; }
     }
   </style>
+<!-- formula-visual-mathjax:start -->
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+.formula-visual-supplement .math-block { border-left: 5px solid #0f766e; background: #eef8f6; padding: 14px 18px; margin: 12px 0; font-size: 20px; overflow-x: auto; }
+.formula-visual-supplement .caption { font-size: 16px; line-height: 1.35; color: #53616f; }
+.formula-visual-supplement img { max-width: 100%; max-height: 390px; object-fit: contain; border: 1px solid #d8e0e8; border-radius: 8px; background: #fff; }
+.formula-visual-supplement .media-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
+</style>
+<!-- formula-visual-mathjax:end -->
 </head>
 <body>
   <main>
@@ -212,6 +227,42 @@
         </ul>
       </div>
     </section>
+  <!-- formula-visual-html:start -->
+    <section class="slide formula-visual-supplement">
+      <div class="slide-header">Formula / W05</div>
+      <h2>핵심 수식과 기호</h2>
+      <h3>Contrastive Loss와 Representation Shift</h3>
+      <div class="math-block">
+      $$
+      \mathcal{L}_{NCE}=-\log
+      \frac{\exp(sim(z_i,z_i^+)/\tau)}
+      {\sum_{j}\exp(sim(z_i,z_j)/\tau)},
+      \qquad
+      \Delta_z=\lVert \mu_{clean}-\mu_{trigger}\rVert_2
+      $$
+      </div>
+      <p>은닉 trigger가 representation에 남으면 downstream classifier에서 조건부 실패가 생길 수 있다.</p>
+      <h3>Backdoor Trigger Success Metric</h3>
+      <div class="math-block">
+      $$
+      ASR=\frac{1}{m}\sum_{j=1}^{m}\mathbf{1}[f_\theta(T(x_j))=y^{target}]
+      $$
+      </div>
+      <p>clean 성능이 유지되어도 ASR이 높으면 보안적으로 실패할 수 있다.</p>
+      <div class="message">수식은 표준 정의식이며 원문 위치와 formal guarantee는 최종 검토 대상이다.</div>
+      <div class="footer"><span>W05 formula supplement</span><span></span></div>
+    </section>
+
+    <section class="slide formula-visual-supplement">
+      <div class="slide-header">Visual / W05</div>
+      <h2>그래프와 Pipeline Diagram</h2>
+      <div class="media-grid">
+        <div><img src="assets/charts/w05_metrics_chart.png" alt="W05 metrics chart"><p class="caption">그래프는 representation_shift, trigger_detection_rate, attack_success_rate 같은 SSL/backdoor 관련 지표를 한 화면에서 비교한다. Clean accuracy만으로는 representation 내부 변화나 trigger 조건 성능을 설명할 수 없다. 모든 값은 기존 CSV의 수치 열에서 가져왔다.</p></div>
+        <div><img src="assets/diagrams/w05_pipeline_diagram.svg" alt="W05 pipeline diagram"><p class="caption">AI-assisted conceptual diagram. See assets/figure_manifest.md.</p></div>
+      </div>
+      <div class="footer"><span>Source: outputs/metrics_summary.csv</span><span>SSL backdoor evaluation flow</span></div>
+    </section>
+<!-- formula-visual-html:end -->
   </main>
   <div class="slide-controls" aria-label="슬라이드 이동 버튼">
     <button type="button" id="prevSlide" aria-label="이전 슬라이드">이전</button>

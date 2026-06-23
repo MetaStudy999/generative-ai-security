@@ -21,6 +21,21 @@
     .nav button:disabled { background: #475569; cursor: default; }
     .counter { min-width: 64px; text-align: center; color: #e2e8f0; font-variant-numeric: tabular-nums; }
   </style>
+<!-- formula-visual-mathjax:start -->
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+.formula-visual-supplement .math-block { border-left: 5px solid #0f766e; background: #eef8f6; padding: 14px 18px; margin: 12px 0; font-size: 20px; overflow-x: auto; }
+.formula-visual-supplement .caption { font-size: 16px; line-height: 1.35; color: #53616f; }
+.formula-visual-supplement img { max-width: 100%; max-height: 390px; object-fit: contain; border: 1px solid #d8e0e8; border-radius: 8px; background: #fff; }
+.formula-visual-supplement .media-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
+</style>
+<!-- formula-visual-mathjax:end -->
 </head>
 <body>
   <section class="slide"><h1>W09 심층강화학습(DRL) &amp; 사이버보안</h1><p>Reward가 흔들리면 높은 점수 뒤에 안전하지 않은 정책이 숨어 있을 수 있다.</p></section>

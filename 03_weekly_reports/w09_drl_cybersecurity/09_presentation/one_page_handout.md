@@ -39,3 +39,15 @@ Detection F1만으로 DRL 방어 정책을 평가하면 부족하다. true rewar
 ## 기말논문 연결
 
 DRL 기반 사이버 방어 에이전트의 보상조작 위협과 안전성 평가 프레임워크.
+
+<!-- formula-visual-handout:start -->
+## 수식·그래프·그림 보강 요약
+
+| 항목 | 반영 내용 |
+|---|---|
+| 핵심 수식 | MDP Tuple, Return, Bellman Equation, Reward Manipulation Proxy |
+| 그래프 | `assets/charts/w09_metrics_chart.png` (`metrics_summary.csv` 기반) |
+| 다이어그램 | `assets/diagrams/w09_pipeline_diagram.svg` (MDP security evaluation flow) |
+| 기호 정의 | 통합보고서와 발표 슬라이드의 수식 블록에 포함 |
+| 주의사항 | DRL 환경은 toy simulation이며 실제 네트워크 공격 자동화 절차를 제공하지 않는다. |
+<!-- formula-visual-handout:end -->

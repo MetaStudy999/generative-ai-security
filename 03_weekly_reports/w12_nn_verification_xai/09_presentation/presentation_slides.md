@@ -87,3 +87,85 @@ Certified rate는 toy 선형 모델의 bound proxy이며 실제 DNN formal verif
 ## 결론
 
 W12의 핵심은 "정확도 중심 보고"에서 "보증 가능한 다중지표 보고"로 관점을 바꾸는 것이다.
+
+<!-- formula-visual-supplement:start -->
+# 수식·그래프·그림 보강
+
+- 보강 일자: 2026-06-23
+- 수식은 표준 정의식 또는 검증 가능한 평가식으로만 작성했다.
+- 그래프는 `04_experiment/outputs/metrics_summary.csv`의 기존 수치만 사용했다.
+- 다이어그램은 AI-assisted conceptual diagram이며 사실 자료나 실험 결과처럼 해석하지 않는다.
+
+### 핵심 수식: Robustness Objective와 Certified Radius
+
+$$
+\min_\theta \mathbb{E}_{(x,y)}\left[\max_{\lVert \delta\rVert\le \epsilon}\ell(f_\theta(x+\delta),y)\right],
+\qquad
+\forall \delta:\lVert\delta\rVert\le r,\ f(x+\delta)=f(x)
+$$
+
+| 기호 | 의미 |
+|---|---|
+| `\epsilon` | 학습 또는 평가 교란 반경 |
+| `r` | certified radius |
+| `\delta` | 입력 교란 |
+| `\ell` | 손실 함수 |
+
+**직관적 의미:**  
+강건 학습은 허용 교란 안에서 최악의 손실을 낮추려는 목표로 표현된다. Certified radius는 주어진 반경 안에서 예측이 바뀌지 않음을 보장하려는 개념이다.
+
+**보안 관점 해석:**  
+보안 주장에는 empirical robustness와 formal certificate를 구분해야 한다.
+
+**평가 지표 연결:**  
+robust_accuracy, certified_rate, mean_bound_margin, verification_cost_ms와 연결한다.
+
+**한계와 가정:**  
+현재 실습의 certified_rate는 formal verification인지 toy proxy인지 최종 검토가 필요하다.
+
+### 핵심 수식: Explanation Stability, Fairness Gap, Verification Cost
+
+$$
+Stability=sim(A(x),A(x')),
+\qquad
+FairGap=\left|\Pr(\hat{y}=1|G=0)-\Pr(\hat{y}=1|G=1)\right|,
+\qquad
+Cost=\frac{1}{n}\sum_{i=1}^{n}t_i
+$$
+
+| 기호 | 의미 |
+|---|---|
+| `A(x)` | 입력 x에 대한 explanation/attribution |
+| `sim` | 설명 간 유사도 |
+| `G` | 민감 또는 비교 그룹 변수 |
+| `t_i` | verification runtime |
+
+**직관적 의미:**  
+설명이 안정적이어야 방어 분석의 근거로 사용할 수 있다. 공정성 gap과 verification cost는 강건성 외의 배포 제약을 나타낸다.
+
+**보안 관점 해석:**  
+보안 검증은 robust accuracy 하나가 아니라 explanation stability와 fairness/cost를 함께 본다.
+
+**평가 지표 연결:**  
+explanation_stability, fairness_gap, verification_cost_ms와 연결한다.
+
+**한계와 가정:**  
+toy binary classification 설정이며 formal proof로 일반화하지 않는다.
+
+### 표 수치 기반 그래프
+
+![W12 metrics chart](assets/charts/w12_metrics_chart.png)
+
+그래프는 clean_accuracy, robust_accuracy, explanation_stability, certified_rate, fairness_gap, verification_cost_ms를 조건별로 표시한다. certified_rate가 toy proxy인지 formal verification 결과인지 문서에서 명확히 구분해야 한다. 모든 값은 W12 output CSV에서 읽었다.
+
+### Threat Model / Pipeline Diagram
+
+![W12 pipeline diagram](assets/diagrams/w12_pipeline_diagram.svg)
+
+이 다이어그램은 `verification-XAI robustness flow`를 발표용으로 요약한 개념도다. 데이터 흐름, 평가 지표, 한계 표시는 `assets/figure_manifest.md`에도 기록했다.
+
+### 확인 필요
+
+- `certified_rate`는 toy proxy 또는 제한 실험인지 formal verification인지 최종 원문 확인이 필요하다.
+- 논문별 원문 절·쪽·그림 번호는 최종 제출 전 사람 검토가 필요하다.
+<!-- formula-visual-supplement:end -->

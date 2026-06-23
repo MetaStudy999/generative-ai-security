@@ -40,3 +40,15 @@ DP 보장은 “noise를 넣었다”는 선언이 아니라 accounting, utility
 ## 기말논문 연결
 
 W11은 기말논문의 관련연구, 위협모형, 평가방법, 보안적 함의에 연결된다. 핵심 기여 후보는 privacy claim 다중지표 평가 프레임워크다.
+
+<!-- formula-visual-handout:start -->
+## 수식·그래프·그림 보강 요약
+
+| 항목 | 반영 내용 |
+|---|---|
+| 핵심 수식 | Differential Privacy Definition, DP-SGD Clipping/Noise와 MI Advantage |
+| 그래프 | `assets/charts/w11_metrics_chart.png` (`metrics_summary.csv` 기반) |
+| 다이어그램 | `assets/diagrams/w11_pipeline_diagram.svg` (DP-SGD and MI audit flow) |
+| 기호 정의 | 통합보고서와 발표 슬라이드의 수식 블록에 포함 |
+| 주의사항 | `epsilon_proxy`는 formal DP accountant 값이 아니며 formal DP guarantee로 쓰지 않는다. |
+<!-- formula-visual-handout:end -->

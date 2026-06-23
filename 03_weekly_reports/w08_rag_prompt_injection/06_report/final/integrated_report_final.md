@@ -392,3 +392,83 @@ PDF 보관 정책 점검: `01_papers/pdf/`에 PDF 5개가 존재하며 `git ls-f
 | AI 활용 고지 작성 | 완료 |  |
 | PDF 저작권 위험 점검 | 완료 / 확인 필요 | PDF 삭제는 사용자 승인 필요 |
 | 최종 사람이 검토할 항목 표시 | 완료 | 최종 제출 확정 아님 |
+
+<!-- formula-visual-supplement:start -->
+## 수식·그래프·그림 보강
+
+- 보강 일자: 2026-06-23
+- 수식은 표준 정의식 또는 검증 가능한 평가식으로만 작성했다.
+- 그래프는 `04_experiment/outputs/metrics_summary.csv`의 기존 수치만 사용했다.
+- 다이어그램은 AI-assisted conceptual diagram이며 사실 자료나 실험 결과처럼 해석하지 않는다.
+
+### 핵심 수식: Retrieval Score와 Context-Conditioned Generation
+
+$$
+s(q,d)=\frac{e(q)^\top e(d)}{\lVert e(q)\rVert_2\lVert e(d)\rVert_2},
+\qquad
+p(y|q,C)=\prod_{t=1}^{T}p_\theta(y_t|y_{<t},q,C)
+$$
+
+| 기호 | 의미 |
+|---|---|
+| `q,d` | query와 retrieved document |
+| `e(\cdot)` | embedding function |
+| `C` | retrieved context set |
+| `y_t` | 생성 응답의 t번째 토큰 |
+
+**직관적 의미:**  
+RAG는 query와 문서의 유사도로 context를 고르고, 그 context에 조건화해 답을 생성한다.
+
+**보안 관점 해석:**  
+검색된 context가 오염되면 생성 단계가 공격 문맥에 영향을 받을 수 있다.
+
+**평가 지표 연결:**  
+retrieval_relevance, faithfulness, source_verification_rate와 연결한다.
+
+**한계와 가정:**  
+표준 RAG 구조 설명이며 특정 벤치마크 수치를 새로 만들지 않는다.
+
+### 핵심 수식: Injection Success와 Contamination Rate
+
+$$
+PISR=\frac{\#\{\mathrm{policy\ violating\ injected\ outputs}\}}{\#\{\mathrm{injection\ test\ prompts}\}},
+\qquad
+RCR=\frac{\#\{\mathrm{retrieved\ contaminated\ contexts}\}}{\#\{\mathrm{retrieved\ contexts}\}}
+$$
+
+| 기호 | 의미 |
+|---|---|
+| `PISR` | prompt injection success rate |
+| `RCR` | retrieval contamination rate |
+| `\#` | 해당 조건 개수 |
+| `contexts` | 검색된 문맥 |
+
+**직관적 의미:**  
+Injection success와 retrieval contamination은 검색 품질과 다른 위험축이다.
+
+**보안 관점 해석:**  
+방어 평가는 source verification, block rate, tool misuse를 함께 본다.
+
+**평가 지표 연결:**  
+attack_success_rate, tool_misuse_rate, source_block_rate, human_block_rate와 연결한다.
+
+**한계와 가정:**  
+toy/synthetic prompt set 기준 proxy이며 실제 시스템 침투 절차가 아니다.
+
+### 표 수치 기반 그래프
+
+![W08 metrics chart](../../09_presentation/assets/charts/w08_metrics_chart.png)
+
+그래프는 RAG 조건별 retrieval_relevance, attack_success_rate, source_verification_rate, tool_misuse_rate, faithfulness를 비교한다. 검색 품질이 좋아도 injection이나 contamination 위험이 별도로 존재할 수 있다. 차트는 output CSV의 수치만 사용한다.
+
+### Threat Model / Pipeline Diagram
+
+![W08 pipeline diagram](../../09_presentation/assets/diagrams/w08_pipeline_diagram.svg)
+
+이 다이어그램은 `RAG pipeline threat model`를 발표용으로 요약한 개념도다. 데이터 흐름, 평가 지표, 한계 표시는 `../../09_presentation/assets/figure_manifest.md`에도 기록했다.
+
+### 확인 필요
+
+- prompt injection은 방어 평가 관점으로만 설명하고 실제 우회 절차는 제공하지 않는다.
+- 논문별 원문 절·쪽·그림 번호는 최종 제출 전 사람 검토가 필요하다.
+<!-- formula-visual-supplement:end -->

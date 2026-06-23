@@ -19,3 +19,23 @@ Prompt injection이 단순한 답변 품질 문제가 아니라 safety-critical 
 ## Q5. 이 실험 수치를 실제 시스템에 적용할 수 있나요?
 
 아니요. W08 수치는 synthetic toy evaluator 결과입니다. 실제 시스템 적용 전에는 공개 benchmark, 복수 모델, 복수 seed, 사람 평가가 필요합니다.
+
+<!-- formula-visual-qna:start -->
+## 수식·그래프·그림 보강 Q&A
+
+### Q. 그래프 수치는 어디에서 온 것인가?
+
+A. `04_experiment/outputs/metrics_summary.csv`의 기존 수치만 사용했다. CSV에 없는 값, 실행하지 않은 실험, 외부 논문 실험 수치는 추가하지 않았다.
+
+### Q. 이 수식은 해당 논문의 원문 수식인가?
+
+A. 발표 보강용 수식은 표준 정의식 또는 검증 가능한 평가식이다. 논문별 원문 절·쪽·그림 번호가 필요한 경우 최종 제출 전 사람 검토로 확인한다.
+
+### Q. 다이어그램은 실험 결과인가?
+
+A. 아니다. `RAG pipeline threat model` 다이어그램은 AI-assisted conceptual diagram이며 threat model과 pipeline 설명을 위한 보조 그림이다.
+
+### Q. 보안적으로 가장 조심해야 할 해석은 무엇인가?
+
+A. prompt injection은 방어 평가 관점으로만 설명하고 실제 우회 절차는 제공하지 않는다. 또한 모든 실습은 공개 데이터, synthetic/toy 데이터, 로컬 모의실험 범위로만 해석한다.
+<!-- formula-visual-qna:end -->

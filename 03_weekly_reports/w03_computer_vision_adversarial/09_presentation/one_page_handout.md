@@ -61,3 +61,15 @@
 | `speaker_notes.md` | 슬라이드별 발표자 대본 |
 | `qna.md` | 예상 질문과 답변 |
 | `04_experiment/outputs/run_log.md` | 실험 수치 근거 |
+
+<!-- formula-visual-handout:start -->
+## 수식·그래프·그림 보강 요약
+
+| 항목 | 반영 내용 |
+|---|---|
+| 핵심 수식 | Adversarial Perturbation Constraint, Robust Accuracy와 Robust Drop |
+| 그래프 | `assets/charts/w03_metrics_chart.png` (`metrics_summary.csv` 기반) |
+| 다이어그램 | `assets/diagrams/w03_pipeline_diagram.svg` (adversarial evaluation flow) |
+| 기호 정의 | 통합보고서와 발표 슬라이드의 수식 블록에 포함 |
+| 주의사항 | 대적 교란은 toy evaluation 범위로 설명하며 실제 시스템 우회 절차로 쓰지 않는다. |
+<!-- formula-visual-handout:end -->

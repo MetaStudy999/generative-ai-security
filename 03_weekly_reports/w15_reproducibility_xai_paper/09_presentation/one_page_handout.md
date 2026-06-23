@@ -41,3 +41,15 @@ AI 보안 연구의 신뢰성은 단일 성능 수치가 아니라 평가 데이
 ## 남은 확인 항목
 
 P03 지정 논문 원문 PDF 확보, P05 권호/issue 확인, 국내 문헌 3편 이상 검증, public GitHub PDF 보관 정책 검토.
+
+<!-- formula-visual-handout:start -->
+## 수식·그래프·그림 보강 요약
+
+| 항목 | 반영 내용 |
+|---|---|
+| 핵심 수식 | Reproducibility Completion Rate, Reference Verification와 Explanation Consistency Proxy |
+| 그래프 | `assets/charts/w15_metrics_chart.png` (`metrics_summary.csv` 기반) |
+| 다이어그램 | `assets/diagrams/w15_pipeline_diagram.svg` (reproducibility workflow) |
+| 기호 정의 | 통합보고서와 발표 슬라이드의 수식 블록에 포함 |
+| 주의사항 | 비율 변환 값은 local completeness proxy이며 학술적 품질 보증 점수가 아니다. |
+<!-- formula-visual-handout:end -->

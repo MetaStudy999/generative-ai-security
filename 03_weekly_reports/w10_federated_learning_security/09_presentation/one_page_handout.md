@@ -33,3 +33,15 @@
 ## 기말논문 연결
 
 W10는 utility, attack success, privacy exposure, reproducibility를 함께 기록하는 AI 보안 평가표의 근거가 된다.
+
+<!-- formula-visual-handout:start -->
+## 수식·그래프·그림 보강 요약
+
+| 항목 | 반영 내용 |
+|---|---|
+| 핵심 수식 | FedAvg Aggregation과 Client Update, Update Norm Leakage/Poisoning Proxy |
+| 그래프 | `assets/charts/w10_metrics_chart.png` (`metrics_summary.csv` 기반) |
+| 다이어그램 | `assets/diagrams/w10_pipeline_diagram.svg` (FL aggregation structure) |
+| 기호 정의 | 통합보고서와 발표 슬라이드의 수식 블록에 포함 |
+| 주의사항 | privacy_leakage_proxy는 실제 gradient inversion 성공률이 아니며 proxy로만 해석한다. |
+<!-- formula-visual-handout:end -->

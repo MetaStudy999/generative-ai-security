@@ -51,3 +51,13 @@ Code security prompts에서는 code vulnerability rate가 0.200000이고 over-re
 ## 13. 결론
 
 마지막으로 네 가지를 강조합니다. LLM 보안 평가는 다중지표 문제이고, ASR 단독 평가는 부족하며, utility 단독 평가도 위험합니다. 그리고 수치는 실행 로그가 있을 때만 주장해야 합니다.
+
+<!-- formula-visual-speaker-notes:start -->
+## 수식·그래프·그림 발표자 노트
+
+- 핵심 수식: Language Modeling Objective와 Perplexity, Privacy Leakage Proxy. 수식은 표준 정의식이며, 원문 위치나 formal guarantee가 확인되지 않은 부분은 확인 필요로 말한다.
+- 기호 정의표는 청중이 식을 해석할 수 있도록 먼저 읽고, 이후 보안 지표와 연결한다.
+- 그래프 설명: 그래프는 LLM 평가의 utility, attack_success_rate, privacy_leakage_rate, code_vulnerability_rate를 비교한다. 유용성 향상과 안전성 저하가 동시에 나타날 수 있으므로 refusal quality와 leakage를 분리해서 해석해야 한다. 수치는 기존 output CSV 기반이다.
+- 다이어그램 설명: `LLM privacy/safety evaluation flow`는 threat model 또는 평가 pipeline을 한 장으로 보여주는 보조 그림이다.
+- 한계 고지: privacy leakage는 toy/proxy metric이며 실제 개인정보 추출 실험으로 해석하지 않는다.
+<!-- formula-visual-speaker-notes:end -->

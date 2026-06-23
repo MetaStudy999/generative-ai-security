@@ -39,3 +39,13 @@
 ## 슬라이드 10. 결론
 
 40초. 평가와 설명은 결과가 아니라 증거라는 메시지로 마무리한다. 질문을 받을 때는 P03 DOI 부분 확인과 대체 PDF 상태를 먼저 투명하게 인정한다.
+
+<!-- formula-visual-speaker-notes:start -->
+## 수식·그래프·그림 발표자 노트
+
+- 핵심 수식: Reproducibility Completion Rate, Reference Verification와 Explanation Consistency Proxy. 수식은 표준 정의식이며, 원문 위치나 formal guarantee가 확인되지 않은 부분은 확인 필요로 말한다.
+- 기호 정의표는 청중이 식을 해석할 수 있도록 먼저 읽고, 이후 보안 지표와 연결한다.
+- 그래프 설명: 그래프는 numeric 또는 ratio로 변환 가능한 reproducibility evidence만 표시한다. `47/47`, `9/9`, `11/11` 같은 비율은 1.0으로 환산해 completeness proxy로만 그렸다. 원문 DOI 세부 검증과 citation 형식은 별도 사람 검토가 필요하다.
+- 다이어그램 설명: `reproducibility workflow`는 threat model 또는 평가 pipeline을 한 장으로 보여주는 보조 그림이다.
+- 한계 고지: 비율 변환 값은 local completeness proxy이며 학술적 품질 보증 점수가 아니다.
+<!-- formula-visual-speaker-notes:end -->

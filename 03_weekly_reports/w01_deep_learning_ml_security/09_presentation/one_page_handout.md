@@ -43,3 +43,14 @@
 
 기말논문 후보 주제는 “ML 생명주기 기반 AI 보안 평가 프레임워크”이다. W01은 이후 주차의 공격과 방어를 데이터 관리, 학습, 검증, 배포·운영 단계에 매핑하는 기준을 제공한다.
 
+<!-- formula-visual-handout:start -->
+## 수식·그래프·그림 보강 요약
+
+| 항목 | 반영 내용 |
+|---|---|
+| 핵심 수식 | Empirical Risk와 Generalization Gap, Robust Accuracy와 ASR |
+| 그래프 | `assets/charts/w01_metrics_chart.png` (`metrics_summary.csv` 기반) |
+| 다이어그램 | `assets/diagrams/w01_pipeline_diagram.svg` (ML lifecycle threat model) |
+| 기호 정의 | 통합보고서와 발표 슬라이드의 수식 블록에 포함 |
+| 주의사항 | 원문 논문별 절·쪽·그림 번호와 formal guarantee 여부는 확인 필요. |
+<!-- formula-visual-handout:end -->

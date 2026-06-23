@@ -149,3 +149,81 @@ W07 결론:
 - 공격 성공률만 보면 utility와 over-refusal을 놓친다.
 - Utility만 보면 leakage와 code risk를 놓친다.
 - 실행 로그 없는 수치는 주장하지 않는다.
+
+<!-- formula-visual-supplement:start -->
+# 수식·그래프·그림 보강
+
+- 보강 일자: 2026-06-23
+- 수식은 표준 정의식 또는 검증 가능한 평가식으로만 작성했다.
+- 그래프는 `04_experiment/outputs/metrics_summary.csv`의 기존 수치만 사용했다.
+- 다이어그램은 AI-assisted conceptual diagram이며 사실 자료나 실험 결과처럼 해석하지 않는다.
+
+### 핵심 수식: Language Modeling Objective와 Perplexity
+
+$$
+\mathcal{L}_{LM}=-\sum_{t=1}^{T}\log p_\theta(x_t|x_{<t}),
+\qquad
+PPL=\exp\left(\frac{1}{T}\mathcal{L}_{LM}\right)
+$$
+
+| 기호 | 의미 |
+|---|---|
+| `x_t` | t번째 토큰 |
+| `x_{<t}` | 이전 토큰 문맥 |
+| `p_\theta` | 언어모델 확률 |
+| `PPL` | perplexity |
+
+**직관적 의미:**  
+언어모델은 이전 문맥을 보고 다음 토큰 확률을 높이는 방향으로 학습된다. Perplexity는 언어모델링 품질을 보는 표준 지표다.
+
+**보안 관점 해석:**  
+보안 평가에서는 품질 지표와 privacy leakage, unsafe completion을 분리해야 한다.
+
+**평가 지표 연결:**  
+utility, answer_rate, privacy_leakage_rate, code_vulnerability_rate와 연결한다.
+
+**한계와 가정:**  
+실습 수치는 toy prompt set 기준 proxy이며 실제 서비스 위험률이 아니다.
+
+### 핵심 수식: Privacy Leakage Proxy
+
+$$
+LeakageRate=\frac{\#\{\mathrm{responses\ with\ disallowed\ sensitive\ disclosure}\}}{\#\{\mathrm{evaluated\ prompts}\}}
+$$
+
+| 기호 | 의미 |
+|---|---|
+| `LeakageRate` | 평가 prompt 중 민감정보 노출 비율 |
+| `\#` | 조건을 만족하는 개수 |
+| `responses` | 모델 응답 |
+| `prompts` | 평가 입력 |
+
+**직관적 의미:**  
+Leakage proxy는 응답 중 금지된 민감정보 노출이 얼마나 발견되는지 세는 방식이다.
+
+**보안 관점 해석:**  
+프라이버시 위험은 유용성 점수와 독립적으로 보고해야 한다.
+
+**평가 지표 연결:**  
+privacy_leakage_rate, over_refusal_rate, mean_risk_score와 연결한다.
+
+**한계와 가정:**  
+실제 개인정보를 사용하지 않는 안전한 toy audit이다.
+
+### 표 수치 기반 그래프
+
+![W07 metrics chart](assets/charts/w07_metrics_chart.png)
+
+그래프는 LLM 평가의 utility, attack_success_rate, privacy_leakage_rate, code_vulnerability_rate를 비교한다. 유용성 향상과 안전성 저하가 동시에 나타날 수 있으므로 refusal quality와 leakage를 분리해서 해석해야 한다. 수치는 기존 output CSV 기반이다.
+
+### Threat Model / Pipeline Diagram
+
+![W07 pipeline diagram](assets/diagrams/w07_pipeline_diagram.svg)
+
+이 다이어그램은 `LLM privacy/safety evaluation flow`를 발표용으로 요약한 개념도다. 데이터 흐름, 평가 지표, 한계 표시는 `assets/figure_manifest.md`에도 기록했다.
+
+### 확인 필요
+
+- privacy leakage는 toy/proxy metric이며 실제 개인정보 추출 실험으로 해석하지 않는다.
+- 논문별 원문 절·쪽·그림 번호는 최종 제출 전 사람 검토가 필요하다.
+<!-- formula-visual-supplement:end -->

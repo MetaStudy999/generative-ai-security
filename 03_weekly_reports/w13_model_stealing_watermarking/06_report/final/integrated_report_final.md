@@ -390,3 +390,83 @@ PDF 5개는 이미 git 추적 대상이다. 공개 GitHub 저장소에는 원칙
 | AI 활용 고지 작성 | 완료 | 별도 고지서 보완 |
 | PDF 저작권 위험 점검 | 완료 / 조치 필요 | 삭제는 미수행 |
 | 최종 사람이 검토할 항목 표시 | 완료 | 제출 확정 아님 |
+
+<!-- formula-visual-supplement:start -->
+## 수식·그래프·그림 보강
+
+- 보강 일자: 2026-06-23
+- 수식은 표준 정의식 또는 검증 가능한 평가식으로만 작성했다.
+- 그래프는 `04_experiment/outputs/metrics_summary.csv`의 기존 수치만 사용했다.
+- 다이어그램은 AI-assisted conceptual diagram이며 사실 자료나 실험 결과처럼 해석하지 않는다.
+
+### 핵심 수식: Model Extraction Query Objective
+
+$$
+\min_{\hat{\theta}}\frac{1}{|Q|}\sum_{x\in Q}\ell(f_{\hat{\theta}}(x), f_{\theta^\star}(x))
+$$
+
+| 기호 | 의미 |
+|---|---|
+| `f_{\theta^\star}` | target model |
+| `f_{\hat{\theta}}` | substitute model |
+| `Q` | 허용된 toy query set |
+| `\ell` | target output과 substitute output 차이 |
+
+**직관적 의미:**  
+Extraction 평가는 query로 얻은 출력에 substitute model을 얼마나 맞추는지 보는 문제로 표현할 수 있다.
+
+**보안 관점 해석:**  
+보안 관점에서는 query budget, fidelity, watermark detection을 함께 본다.
+
+**평가 지표 연결:**  
+extraction_fidelity, substitute_accuracy, query_budget와 연결한다.
+
+**한계와 가정:**  
+허가된 toy setting 설명이며 무단 API 수집 절차가 아니다.
+
+### 핵심 수식: Watermark Detection Rate, FPR/FNR, Utility Loss
+
+$$
+TPR=\frac{TP}{TP+FN},
+\qquad
+FPR=\frac{FP}{FP+TN},
+\qquad
+\Delta U=U_{base}-U_{protected}
+$$
+
+| 기호 | 의미 |
+|---|---|
+| `TP,FP,TN,FN` | 탐지 혼동행렬 항목 |
+| `TPR` | watermark detection rate |
+| `FPR` | false positive rate |
+| `\Delta U` | 보호 적용 후 utility loss |
+
+**직관적 의미:**  
+Watermark는 탐지만 높으면 충분하지 않고 false positive와 utility 손실을 함께 봐야 한다.
+
+**보안 관점 해석:**  
+오탐이 높으면 정상 모델을 잘못 침해로 판단할 위험이 있다.
+
+**평가 지표 연결:**  
+watermark_detection, false_positive_rate, utility_accuracy와 연결한다.
+
+**한계와 가정:**  
+toy watermark audit이며 법적 소유권 판단을 자동화하지 않는다.
+
+### 표 수치 기반 그래프
+
+![W13 metrics chart](../../09_presentation/assets/charts/w13_metrics_chart.png)
+
+그래프는 extraction_fidelity, substitute_accuracy, watermark_detection, false_positive_rate, utility_accuracy를 조건별로 비교한다. Watermark detection은 utility loss와 false positive risk를 함께 보아야 한다. 수치는 output CSV 그대로다.
+
+### Threat Model / Pipeline Diagram
+
+![W13 pipeline diagram](../../09_presentation/assets/diagrams/w13_pipeline_diagram.svg)
+
+이 다이어그램은 `model extraction and watermark audit flow`를 발표용으로 요약한 개념도다. 데이터 흐름, 평가 지표, 한계 표시는 `../../09_presentation/assets/figure_manifest.md`에도 기록했다.
+
+### 확인 필요
+
+- model extraction은 방어 평가 관점의 toy query objective로만 설명한다.
+- 논문별 원문 절·쪽·그림 번호는 최종 제출 전 사람 검토가 필요하다.
+<!-- formula-visual-supplement:end -->

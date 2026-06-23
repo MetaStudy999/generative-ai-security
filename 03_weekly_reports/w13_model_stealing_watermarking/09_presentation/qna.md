@@ -9,3 +9,23 @@
 | P03은 검증 완료인가? | 로컬 PDF의 DOI는 `10.1016/j.neucom.2021.07.051`로 확인했지만, 강의계획서의 저자명·제목 표기 차이는 사람 검토가 필요하다. |
 | PDF 원문을 GitHub에 올려도 되는가? | public 저장소라면 위험하다. 현재 PDF 5개는 이미 git 추적 대상이므로 공개 전 삭제 또는 비공개 보관 전환을 검토해야 한다. |
 | 기말논문에서 가장 쓸 만한 기여는 무엇인가? | extraction fidelity, query budget, watermark detection, false positive, utility, reproducibility를 함께 보고하는 모델 IP 보호 평가 프레임워크다. |
+
+<!-- formula-visual-qna:start -->
+## 수식·그래프·그림 보강 Q&A
+
+### Q. 그래프 수치는 어디에서 온 것인가?
+
+A. `04_experiment/outputs/metrics_summary.csv`의 기존 수치만 사용했다. CSV에 없는 값, 실행하지 않은 실험, 외부 논문 실험 수치는 추가하지 않았다.
+
+### Q. 이 수식은 해당 논문의 원문 수식인가?
+
+A. 발표 보강용 수식은 표준 정의식 또는 검증 가능한 평가식이다. 논문별 원문 절·쪽·그림 번호가 필요한 경우 최종 제출 전 사람 검토로 확인한다.
+
+### Q. 다이어그램은 실험 결과인가?
+
+A. 아니다. `model extraction and watermark audit flow` 다이어그램은 AI-assisted conceptual diagram이며 threat model과 pipeline 설명을 위한 보조 그림이다.
+
+### Q. 보안적으로 가장 조심해야 할 해석은 무엇인가?
+
+A. model extraction은 방어 평가 관점의 toy query objective로만 설명한다. 또한 모든 실습은 공개 데이터, synthetic/toy 데이터, 로컬 모의실험 범위로만 해석한다.
+<!-- formula-visual-qna:end -->

@@ -42,3 +42,15 @@
 3. 불확실 구간은 자동판정보다 human review로 넘기는 설계가 필요하다.
 4. 이번 수치는 synthetic toy 결과이며 실제 포렌식 성능 주장이 아니다.
 5. P02/P03은 ACM DOI가 확인되었지만 강의계획서 지정 문헌 표기와 로컬/출판사 메타데이터 차이를 최종 확인해야 한다.
+
+<!-- formula-visual-handout:start -->
+## 수식·그래프·그림 보강 요약
+
+| 항목 | 반영 내용 |
+|---|---|
+| 핵심 수식 | Diffusion Forward Process와 Denoising Objective, GAN Min-Max와 FPR/FNR |
+| 그래프 | `assets/charts/w06_metrics_chart.png` (`metrics_summary.csv` 기반) |
+| 다이어그램 | `assets/diagrams/w06_pipeline_diagram.svg` (generated-media detection pipeline) |
+| 기호 정의 | 통합보고서와 발표 슬라이드의 수식 블록에 포함 |
+| 주의사항 | 생성 모델 수식은 표준 학습 목적 설명이며 deepfake 제작 절차를 안내하지 않는다. |
+<!-- formula-visual-handout:end -->

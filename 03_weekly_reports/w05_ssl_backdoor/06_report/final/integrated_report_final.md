@@ -361,3 +361,83 @@ PDF 원문은 `01_papers/pdf/`에 존재하고 Git 추적 중이다. public GitH
 | AI 활용 고지 작성 | 완료 |  |
 | PDF 저작권 위험 점검 | 완료 / 확인 필요 | PDF 5개 Git 추적 중, 삭제는 미수행 |
 | 최종 사람이 검토할 항목 표시 | 완료 | 최종 제출 확정 아님 |
+
+<!-- formula-visual-supplement:start -->
+## 수식·그래프·그림 보강
+
+- 보강 일자: 2026-06-23
+- 수식은 표준 정의식 또는 검증 가능한 평가식으로만 작성했다.
+- 그래프는 `04_experiment/outputs/metrics_summary.csv`의 기존 수치만 사용했다.
+- 다이어그램은 AI-assisted conceptual diagram이며 사실 자료나 실험 결과처럼 해석하지 않는다.
+
+### 핵심 수식: Contrastive Loss와 Representation Shift
+
+$$
+\mathcal{L}_{NCE}=-\log
+\frac{\exp(sim(z_i,z_i^+)/\tau)}
+{\sum_{j}\exp(sim(z_i,z_j)/\tau)},
+\qquad
+\Delta_z=\lVert \mu_{clean}-\mu_{trigger}\rVert_2
+$$
+
+| 기호 | 의미 |
+|---|---|
+| `z_i,z_i^+` | 같은 샘플 또는 양성 쌍의 표현 |
+| `sim` | 표현 간 유사도 |
+| `\tau` | temperature |
+| `\Delta_z` | clean/trigger 표현 중심 차이 |
+
+**직관적 의미:**  
+Contrastive learning은 가까워야 할 표현과 멀어져야 할 표현을 구분한다. Backdoor 평가는 clean 성능뿐 아니라 표현 공간 이동을 함께 확인한다.
+
+**보안 관점 해석:**  
+은닉 trigger가 representation에 남으면 downstream classifier에서 조건부 실패가 생길 수 있다.
+
+**평가 지표 연결:**  
+representation_shift, clean_accuracy, attack_success_rate, trigger_detection_rate와 연결한다.
+
+**한계와 가정:**  
+표준 contrastive objective와 proxy shift이며 formal backdoor guarantee가 아니다.
+
+### 핵심 수식: Backdoor Trigger Success Metric
+
+$$
+ASR=\frac{1}{m}\sum_{j=1}^{m}\mathbf{1}[f_\theta(T(x_j))=y^{target}]
+$$
+
+| 기호 | 의미 |
+|---|---|
+| `T(x)` | toy trigger 변환이 적용된 평가 입력 |
+| `y^{target}` | 목표 라벨 |
+| `m` | trigger 평가 표본 수 |
+| `ASR` | 조건부 실패율 |
+
+**직관적 의미:**  
+ASR은 trigger 조건에서 목표 오분류가 얼마나 일어나는지 보는 지표다.
+
+**보안 관점 해석:**  
+clean 성능이 유지되어도 ASR이 높으면 보안적으로 실패할 수 있다.
+
+**평가 지표 연결:**  
+attack_success_rate, attack_after_defense, clean_false_positive_rate와 연결한다.
+
+**한계와 가정:**  
+실제 공격 절차가 아니라 안전한 toy 평가 지표 설명이다.
+
+### 표 수치 기반 그래프
+
+![W05 metrics chart](../../09_presentation/assets/charts/w05_metrics_chart.png)
+
+그래프는 representation_shift, trigger_detection_rate, attack_success_rate 같은 SSL/backdoor 관련 지표를 한 화면에서 비교한다. Clean accuracy만으로는 representation 내부 변화나 trigger 조건 성능을 설명할 수 없다. 모든 값은 기존 CSV의 수치 열에서 가져왔다.
+
+### Threat Model / Pipeline Diagram
+
+![W05 pipeline diagram](../../09_presentation/assets/diagrams/w05_pipeline_diagram.svg)
+
+이 다이어그램은 `SSL backdoor evaluation flow`를 발표용으로 요약한 개념도다. 데이터 흐름, 평가 지표, 한계 표시는 `../../09_presentation/assets/figure_manifest.md`에도 기록했다.
+
+### 확인 필요
+
+- trigger 관련 설명은 공개 toy/synthetic 범위이며 실제 악용 가능한 절차를 제공하지 않는다.
+- 논문별 원문 절·쪽·그림 번호는 최종 제출 전 사람 검토가 필요하다.
+<!-- formula-visual-supplement:end -->

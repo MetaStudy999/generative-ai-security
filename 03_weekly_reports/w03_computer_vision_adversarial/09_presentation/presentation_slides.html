@@ -254,6 +254,21 @@
       .bar-row { grid-template-columns: 1fr; }
     }
   </style>
+<!-- formula-visual-mathjax:start -->
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+.formula-visual-supplement .math-block { border-left: 5px solid #0f766e; background: #eef8f6; padding: 14px 18px; margin: 12px 0; font-size: 20px; overflow-x: auto; }
+.formula-visual-supplement .caption { font-size: 16px; line-height: 1.35; color: #53616f; }
+.formula-visual-supplement img { max-width: 100%; max-height: 390px; object-fit: contain; border: 1px solid #d8e0e8; border-radius: 8px; background: #fff; }
+.formula-visual-supplement .media-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
+</style>
+<!-- formula-visual-mathjax:end -->
 </head>
 <body>
 <main class="deck">
@@ -425,7 +440,43 @@
       <li>W03는 재현성 중심 평가 프레임워크를 보강하는 사례다.</li>
     </ul>
   </section>
-</main>
+<!-- formula-visual-html:start -->
+    <section class="slide formula-visual-supplement">
+      <div class="slide-header">Formula / W03</div>
+      <h2>핵심 수식과 기호</h2>
+      <h3>Adversarial Perturbation Constraint</h3>
+      <div class="math-block">
+      $$
+      x&#x27; = x+\delta,
+      \qquad
+      \lVert \delta \rVert_p \le \epsilon
+      $$
+      </div>
+      <p>보안 관점에서는 입력 검증, 강건성 평가, defense 비용이 연결된다.</p>
+      <h3>Robust Accuracy와 Robust Drop</h3>
+      <div class="math-block">
+      $$
+      RA_\epsilon=\frac{1}{n}\sum_{i=1}^{n}\mathbf{1}\left[f_\theta(x_i+\delta_i)=y_i\right],
+      \qquad
+      Drop=Acc_{clean}-RA_\epsilon
+      $$
+      </div>
+      <p>공격 조건 성능과 방어 후 성능을 같은 표에 연결한다.</p>
+      <div class="message">수식은 표준 정의식이며 원문 위치와 formal guarantee는 최종 검토 대상이다.</div>
+      <div class="footer"><span>W03 formula supplement</span><span></span></div>
+    </section>
+
+    <section class="slide formula-visual-supplement">
+      <div class="slide-header">Visual / W03</div>
+      <h2>그래프와 Pipeline Diagram</h2>
+      <div class="media-grid">
+        <div><img src="assets/charts/w03_metrics_chart.png" alt="W03 metrics chart"><p class="caption">그래프는 condition별 accuracy, attack_success_rate, robust_drop을 `metrics_summary.csv`에서 읽어 시각화한다. epsilon 또는 defense 조건별 변화는 robust accuracy를 clean accuracy와 분리해 보아야 함을 보여준다. 이미 존재하는 output 수치만 사용했다.</p></div>
+        <div><img src="assets/diagrams/w03_pipeline_diagram.svg" alt="W03 pipeline diagram"><p class="caption">AI-assisted conceptual diagram. See assets/figure_manifest.md.</p></div>
+      </div>
+      <div class="footer"><span>Source: outputs/metrics_summary.csv</span><span>adversarial evaluation flow</span></div>
+    </section>
+<!-- formula-visual-html:end -->
+  </main>
 
 <div class="controls" aria-label="slide controls">
   <button id="prev" type="button">Prev</button>

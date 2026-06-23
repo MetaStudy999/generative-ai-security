@@ -360,3 +360,81 @@ W04는 Transformer 효율화, NLP 대적공격, prompt privacy를 clean score, A
 | AI 활용 고지 작성 | 완료 | `05_ai_worklog/ai_disclosure_draft.md` |
 | PDF 저작권 위험 점검 | 완료 | PDF 5개 Git 추적 중, 삭제 검토 필요 |
 | 최종 사람이 검토할 항목 표시 | 완료 | 최종 제출 확정 아님 |
+
+<!-- formula-visual-supplement:start -->
+## 수식·그래프·그림 보강
+
+- 보강 일자: 2026-06-23
+- 수식은 표준 정의식 또는 검증 가능한 평가식으로만 작성했다.
+- 그래프는 `04_experiment/outputs/metrics_summary.csv`의 기존 수치만 사용했다.
+- 다이어그램은 AI-assisted conceptual diagram이며 사실 자료나 실험 결과처럼 해석하지 않는다.
+
+### 핵심 수식: Scaled Dot-Product Attention
+
+$$
+Attention(Q,K,V)=softmax\left(\frac{QK^\top}{\sqrt{d_k}}\right)V
+$$
+
+| 기호 | 의미 |
+|---|---|
+| `Q,K,V` | query, key, value 행렬 |
+| `d_k` | key 벡터 차원 |
+| `softmax` | 토큰 간 가중치 정규화 |
+| `V` | 가중합 대상 값 표현 |
+
+**직관적 의미:**  
+Attention은 각 토큰이 다른 토큰을 얼마나 참고할지 계산한다. 보안 평가에서는 이 의존성이 prompt, context, leakage 위험과 연결된다.
+
+**보안 관점 해석:**  
+입력 문맥이 길거나 오염되면 정보 흐름과 취약 응답이 달라질 수 있다.
+
+**평가 지표 연결:**  
+clean_score, attack_success_rate, privacy_leakage, utility_score와 연결한다.
+
+**한계와 가정:**  
+표준 Transformer 수식이며 특정 논문 실험 수치를 새로 주장하지 않는다.
+
+### 핵심 수식: Attention Complexity 비교
+
+$$
+C_{full}=O(n^2d),
+\qquad
+C_{efficient}\in\{O(nd), O(nrd)\}
+$$
+
+| 기호 | 의미 |
+|---|---|
+| `n` | sequence length |
+| `d` | hidden dimension |
+| `r` | 저랭크 또는 landmark 수 |
+| `C` | 계산 복잡도 |
+
+**직관적 의미:**  
+Full attention은 토큰 쌍을 모두 비교하므로 길이에 대해 이차 비용이 든다. 효율적 attention은 구조에 따라 선형 또는 저랭크 비용으로 줄일 수 있다.
+
+**보안 관점 해석:**  
+비용 절감은 더 넓은 보안 평가를 가능하게 하지만, 근사 구조의 취약성 검토가 필요하다.
+
+**평가 지표 연결:**  
+utility_score, latency/cost proxy, attack_success_rate와 연결한다.
+
+**한계와 가정:**  
+효율화 방식마다 복잡도가 다르므로 구체 구조 확인이 필요하다.
+
+### 표 수치 기반 그래프
+
+![W04 metrics chart](../../09_presentation/assets/charts/w04_metrics_chart.png)
+
+그래프는 clean_score, attack_success_rate, privacy_leakage, utility_score를 조건별로 비교한다. Transformer 평가에서는 유틸리티와 보안 위험이 동시에 움직일 수 있으므로 단일 점수로 결론을 내리지 않는다. 수치는 `metrics_summary.csv`에서만 가져왔다.
+
+### Threat Model / Pipeline Diagram
+
+![W04 pipeline diagram](../../09_presentation/assets/diagrams/w04_pipeline_diagram.svg)
+
+이 다이어그램은 `Transformer security evaluation flow`를 발표용으로 요약한 개념도다. 데이터 흐름, 평가 지표, 한계 표시는 `../../09_presentation/assets/figure_manifest.md`에도 기록했다.
+
+### 확인 필요
+
+- efficient attention 복잡도는 구조별로 달라 표준 비교식으로만 제시한다.
+- 논문별 원문 절·쪽·그림 번호는 최종 제출 전 사람 검토가 필요하다.
+<!-- formula-visual-supplement:end -->

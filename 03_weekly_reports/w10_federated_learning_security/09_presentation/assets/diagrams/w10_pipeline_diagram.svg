@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="360" viewBox="0 0 1120 360" role="img" aria-label="W10 FL aggregation structure">
+<defs>
+<marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+<path d="M2,2 L10,6 L2,10 Z" fill="#245a73"/>
+</marker>
+</defs>
+<rect width="100%" height="100%" fill="#f8fafc"/>
+<text x="50" y="48" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#1f2933">W10 FL aggregation structure</text>
+<text x="50" y="78" font-family="Arial, sans-serif" font-size="14" fill="#53616f">AI-assisted conceptual diagram; not empirical evidence. See figure_manifest.md for source and limitations.</text>
+<rect x="50.0" y="130" width="170" height="108" rx="8" fill="#ffffff" stroke="#bfd0dd" stroke-width="2"/>
+<text x="135.0" y="164" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#0f5f73">Clients</text>
+<text x="135.0" y="208" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#596775">data stays local</text>
+<line x1="228.0" y1="184.0" x2="254.5" y2="184.0" stroke="#245a73" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="262.5" y="130" width="170" height="108" rx="8" fill="#ffffff" stroke="#bfd0dd" stroke-width="2"/>
+<text x="347.5" y="164" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#0f5f73">Local Update</text>
+<text x="347.5" y="208" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#596775">Delta theta</text>
+<line x1="440.5" y1="184.0" x2="467.0" y2="184.0" stroke="#245a73" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="475.0" y="130" width="170" height="108" rx="8" fill="#ffffff" stroke="#bfd0dd" stroke-width="2"/>
+<text x="560.0" y="164" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#0f5f73">Aggregation</text>
+<text x="560.0" y="208" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#596775">FedAvg</text>
+<line x1="653.0" y1="184.0" x2="679.5" y2="184.0" stroke="#245a73" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="687.5" y="130" width="170" height="108" rx="8" fill="#ffffff" stroke="#bfd0dd" stroke-width="2"/>
+<text x="772.5" y="164" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#0f5f73">Global Model</text>
+<text x="772.5" y="208" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#596775">round t+1</text>
+<line x1="865.5" y1="184.0" x2="892.0" y2="184.0" stroke="#245a73" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="900.0" y="130" width="170" height="108" rx="8" fill="#ffffff" stroke="#bfd0dd" stroke-width="2"/>
+<text x="985.0" y="164" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#0f5f73">Security Eval</text>
+<text x="985.0" y="208" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#596775">ASR/leakage</text>
+<text x="50" y="310" font-family="Arial, sans-serif" font-size="15" fill="#394a59">Safety scope: public, synthetic, toy, or local evaluation only; no operational attack procedure.</text>
+</svg>

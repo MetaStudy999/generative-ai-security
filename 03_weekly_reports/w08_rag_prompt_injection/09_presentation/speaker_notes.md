@@ -35,3 +35,13 @@ Poisoned document 조건의 ASR은 0.575000입니다. Source filter 적용 후 0
 ## Slide 9
 
 결론은 간단합니다. RAG 보안은 검색, 출처, prompt boundary, tool 권한, 로그가 모두 연결된 시스템 설계 문제입니다.
+
+<!-- formula-visual-speaker-notes:start -->
+## 수식·그래프·그림 발표자 노트
+
+- 핵심 수식: Retrieval Score와 Context-Conditioned Generation, Injection Success와 Contamination Rate. 수식은 표준 정의식이며, 원문 위치나 formal guarantee가 확인되지 않은 부분은 확인 필요로 말한다.
+- 기호 정의표는 청중이 식을 해석할 수 있도록 먼저 읽고, 이후 보안 지표와 연결한다.
+- 그래프 설명: 그래프는 RAG 조건별 retrieval_relevance, attack_success_rate, source_verification_rate, tool_misuse_rate, faithfulness를 비교한다. 검색 품질이 좋아도 injection이나 contamination 위험이 별도로 존재할 수 있다. 차트는 output CSV의 수치만 사용한다.
+- 다이어그램 설명: `RAG pipeline threat model`는 threat model 또는 평가 pipeline을 한 장으로 보여주는 보조 그림이다.
+- 한계 고지: prompt injection은 방어 평가 관점으로만 설명하고 실제 우회 절차는 제공하지 않는다.
+<!-- formula-visual-speaker-notes:end -->

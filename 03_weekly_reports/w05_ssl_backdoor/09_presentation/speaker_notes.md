@@ -51,3 +51,13 @@ Clean baseline accuracy는 1.000000입니다. Poisoned/backdoor 조건에서도 
 ## 13. 결론
 
 마지막으로 네 가지를 강조합니다. 표현공간은 보호 자산이고, backdoor 평가는 clean 성능과 trigger 조건을 분리해야 하며, representation shift는 중요한 평가축이고, 수치는 실행 근거가 있을 때만 주장해야 합니다.
+
+<!-- formula-visual-speaker-notes:start -->
+## 수식·그래프·그림 발표자 노트
+
+- 핵심 수식: Contrastive Loss와 Representation Shift, Backdoor Trigger Success Metric. 수식은 표준 정의식이며, 원문 위치나 formal guarantee가 확인되지 않은 부분은 확인 필요로 말한다.
+- 기호 정의표는 청중이 식을 해석할 수 있도록 먼저 읽고, 이후 보안 지표와 연결한다.
+- 그래프 설명: 그래프는 representation_shift, trigger_detection_rate, attack_success_rate 같은 SSL/backdoor 관련 지표를 한 화면에서 비교한다. Clean accuracy만으로는 representation 내부 변화나 trigger 조건 성능을 설명할 수 없다. 모든 값은 기존 CSV의 수치 열에서 가져왔다.
+- 다이어그램 설명: `SSL backdoor evaluation flow`는 threat model 또는 평가 pipeline을 한 장으로 보여주는 보조 그림이다.
+- 한계 고지: trigger 관련 설명은 공개 toy/synthetic 범위이며 실제 악용 가능한 절차를 제공하지 않는다.
+<!-- formula-visual-speaker-notes:end -->

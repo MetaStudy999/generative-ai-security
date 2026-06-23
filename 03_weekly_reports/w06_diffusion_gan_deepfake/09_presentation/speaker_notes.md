@@ -53,3 +53,13 @@ In-domain accuracy와 F1은 1.000000입니다. 하지만 cross-domain에서는 a
 ## 13. 결론
 
 마지막으로 네 가지를 강조합니다. 생성 품질과 탐지 신뢰성은 다르고, accuracy 단독 평가는 위험하며, FPR/FNR과 review routing을 함께 기록해야 하고, 수치는 실행 로그가 있을 때만 주장해야 합니다.
+
+<!-- formula-visual-speaker-notes:start -->
+## 수식·그래프·그림 발표자 노트
+
+- 핵심 수식: Diffusion Forward Process와 Denoising Objective, GAN Min-Max와 FPR/FNR. 수식은 표준 정의식이며, 원문 위치나 formal guarantee가 확인되지 않은 부분은 확인 필요로 말한다.
+- 기호 정의표는 청중이 식을 해석할 수 있도록 먼저 읽고, 이후 보안 지표와 연결한다.
+- 그래프 설명: 그래프는 deepfake detector의 accuracy, F1, FPR, FNR, AUROC를 조건별로 비교한다. 탐지 문제에서는 false positive와 false negative의 보안 비용이 다르므로 accuracy만으로 결론을 내리지 않는다. source는 `metrics_summary.csv`이다.
+- 다이어그램 설명: `generated-media detection pipeline`는 threat model 또는 평가 pipeline을 한 장으로 보여주는 보조 그림이다.
+- 한계 고지: 생성 모델 수식은 표준 학습 목적 설명이며 deepfake 제작 절차를 안내하지 않는다.
+<!-- formula-visual-speaker-notes:end -->

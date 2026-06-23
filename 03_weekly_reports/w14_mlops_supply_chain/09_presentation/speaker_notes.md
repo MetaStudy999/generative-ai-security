@@ -39,3 +39,13 @@ Drift score가 threshold를 넘었다고 해서 공격이라고 단정하지 않
 ## 10. 결론
 
 W14의 결론은 단순합니다. MLOps 공급망 보안은 모델 하나를 잘 만드는 문제가 아니라, 모델이 만들어지고 배포되고 감시되는 전체 증거를 남기는 문제입니다.
+
+<!-- formula-visual-speaker-notes:start -->
+## 수식·그래프·그림 발표자 노트
+
+- 핵심 수식: Artifact Integrity Check, Drift와 Audit Coverage. 수식은 표준 정의식이며, 원문 위치나 formal guarantee가 확인되지 않은 부분은 확인 필요로 말한다.
+- 기호 정의표는 청중이 식을 해석할 수 있도록 먼저 읽고, 이후 보안 지표와 연결한다.
+- 그래프 설명: 그래프는 numeric value로 변환 가능한 MLOps 점검 항목만 표시한다. Hash 문자열이나 boolean pass는 그래프에서 제외하고 manifest와 로그 근거로 남겼다. 값은 `metrics_summary.csv`에서만 읽었다.
+- 다이어그램 설명: `MLOps supply-chain map`는 threat model 또는 평가 pipeline을 한 장으로 보여주는 보조 그림이다.
+- 한계 고지: hash/pass 항목은 시각화에서 제외했으며 원본 CSV와 artifact inventory를 함께 확인해야 한다.
+<!-- formula-visual-speaker-notes:end -->

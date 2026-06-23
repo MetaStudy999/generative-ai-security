@@ -147,3 +147,83 @@ W01 결론:
 기말논문 후보:
 
 ML 생명주기 기반 AI 보안 평가 프레임워크
+
+<!-- formula-visual-supplement:start -->
+# 수식·그래프·그림 보강
+
+- 보강 일자: 2026-06-23
+- 수식은 표준 정의식 또는 검증 가능한 평가식으로만 작성했다.
+- 그래프는 `04_experiment/outputs/metrics_summary.csv`의 기존 수치만 사용했다.
+- 다이어그램은 AI-assisted conceptual diagram이며 사실 자료나 실험 결과처럼 해석하지 않는다.
+
+### 핵심 수식: Empirical Risk와 Generalization Gap
+
+$$
+\hat{R}(\theta)=\frac{1}{n}\sum_{i=1}^{n}\ell(f_\theta(x_i),y_i),
+\qquad
+Gap=R_{\mathrm{test}}(\theta)-\hat{R}_{\mathrm{train}}(\theta)
+$$
+
+| 기호 | 의미 |
+|---|---|
+| `\theta` | 모델 파라미터 |
+| `n` | 학습 표본 수 |
+| `\ell` | 손실 함수 |
+| `Gap` | 훈련 손실과 테스트 위험의 차이 |
+
+**직관적 의미:**  
+딥러닝 평가는 학습 표본 평균 손실을 낮추는 과정으로 출발한다. Generalization gap은 훈련 성능과 테스트 성능이 얼마나 벌어지는지 보는 기본 렌즈다.
+
+**보안 관점 해석:**  
+보안 관점에서는 clean 성능이 높아도 공격·교란·privacy 조건의 위험이 별도로 남을 수 있다. 따라서 lifecycle 평가에서는 데이터, 학습, 검증, 배포 로그를 함께 본다.
+
+**평가 지표 연결:**  
+clean accuracy, F1, robust accuracy, leakage score, reproducibility evidence를 서로 다른 축으로 연결한다.
+
+**한계와 가정:**  
+W01 실습은 synthetic/toy setting이며 formal robustness나 privacy guarantee를 제공하지 않는다.
+
+### 핵심 수식: Robust Accuracy와 ASR
+
+$$
+RA_\epsilon=\Pr_{(x,y)\sim D}\left[f_\theta(x+\delta)=y,\ \forall \delta \in \Delta_\epsilon\right],
+\qquad
+ASR=\frac{1}{m}\sum_{j=1}^{m}\mathbf{1}[f_\theta(\tilde{x}_j)=y_j^{target}]
+$$
+
+| 기호 | 의미 |
+|---|---|
+| `RA_\epsilon` | 허용 교란 집합 안에서의 강건 정확도 |
+| `\Delta_\epsilon` | 크기 epsilon 이하 교란 집합 |
+| `\tilde{x}_j` | 평가용 toy 공격 조건 입력 |
+| `ASR` | 공격 성공률 |
+
+**직관적 의미:**  
+정상 정확도와 강건 정확도는 같은 지표가 아니다. ASR은 공격 조건에서 목표 실패가 얼마나 자주 발생하는지 별도로 본다.
+
+**보안 관점 해석:**  
+보안 평가는 clean accuracy 하나로 끝나지 않고 robustness와 privacy leakage를 분리해야 한다.
+
+**평가 지표 연결:**  
+robust accuracy, robust drop, ASR, leakage score와 연결한다.
+
+**한계와 가정:**  
+여기서는 안전한 평가 개념을 설명하는 표준식이며 실제 시스템 공격 절차를 제공하지 않는다.
+
+### 표 수치 기반 그래프
+
+![W01 metrics chart](assets/charts/w01_metrics_chart.png)
+
+그래프는 `metrics_summary.csv`의 condition별 accuracy와 F1만 시각화한다. Clean baseline, label-noise training, toy feature perturbation 조건을 같은 축에 두어 정상 성능만으로 보안성을 단정하기 어렵다는 점을 보여준다. synthetic/toy 평가 결과이므로 실제 운영 시스템 보증으로 해석하지 않는다.
+
+### Threat Model / Pipeline Diagram
+
+![W01 pipeline diagram](assets/diagrams/w01_pipeline_diagram.svg)
+
+이 다이어그램은 `ML lifecycle threat model`를 발표용으로 요약한 개념도다. 데이터 흐름, 평가 지표, 한계 표시는 `assets/figure_manifest.md`에도 기록했다.
+
+### 확인 필요
+
+- 원문 논문별 절·쪽·그림 번호와 formal guarantee 여부는 확인 필요.
+- 논문별 원문 절·쪽·그림 번호는 최종 제출 전 사람 검토가 필요하다.
+<!-- formula-visual-supplement:end -->

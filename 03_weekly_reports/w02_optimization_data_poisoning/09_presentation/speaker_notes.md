@@ -61,3 +61,13 @@ Digits toy experiment는 실제 대규모 모델을 대표하지 않습니다. L
 ## Slide 14. 결론
 
 마지막 결론입니다. 최적화는 데이터로 움직이고, 데이터 오염은 그 최적화 경로를 바꿉니다. Backdoor 평가는 clean accuracy와 ASR을 분리해야 하며, 안전한 실습은 Docker, config, seed, outputs를 남겨야 합니다. W02는 실습 코드, 실행 결과, 제출 문서까지 정리된 상태입니다.
+
+<!-- formula-visual-speaker-notes:start -->
+## 수식·그래프·그림 발표자 노트
+
+- 핵심 수식: ERM, Poisoned Empirical Risk, SGD Update, Accuracy Drop와 ASR. 수식은 표준 정의식이며, 원문 위치나 formal guarantee가 확인되지 않은 부분은 확인 필요로 말한다.
+- 기호 정의표는 청중이 식을 해석할 수 있도록 먼저 읽고, 이후 보안 지표와 연결한다.
+- 그래프 설명: 그래프는 `metrics_summary.csv`의 clean accuracy, macro F1, ASR을 조건별로 그린 것이다. Label-flip 조건에서는 오염률 증가와 함께 clean 성능 저하를 비교할 수 있고, toy backdoor 조건은 clean 성능과 ASR을 분리해 보아야 함을 보여준다. 표에 없는 실험 조건이나 수치는 추가하지 않았다.
+- 다이어그램 설명: `training-data poisoning evaluation flow`는 threat model 또는 평가 pipeline을 한 장으로 보여주는 보조 그림이다.
+- 한계 고지: toy backdoor는 공개 toy 데이터 기반 안전 실습이며 실제 시스템 악용 절차로 일반화하지 않는다.
+<!-- formula-visual-speaker-notes:end -->

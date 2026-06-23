@@ -170,3 +170,83 @@ W02 결론:
 - 안전한 실습은 Docker, config, seed, outputs를 남겨야 한다.
 
 실습 코드, Docker 실행 결과, 제출 문서가 모두 정리되었다.
+
+<!-- formula-visual-supplement:start -->
+# 수식·그래프·그림 보강
+
+- 보강 일자: 2026-06-23
+- 수식은 표준 정의식 또는 검증 가능한 평가식으로만 작성했다.
+- 그래프는 `04_experiment/outputs/metrics_summary.csv`의 기존 수치만 사용했다.
+- 다이어그램은 AI-assisted conceptual diagram이며 사실 자료나 실험 결과처럼 해석하지 않는다.
+
+### 핵심 수식: ERM, Poisoned Empirical Risk, SGD Update
+
+$$
+\hat{R}(\theta)=\frac{1}{n}\sum_{i=1}^{n}\ell(f_\theta(x_i),y_i),
+\qquad
+\hat{R}_{poison}(\theta)=\frac{1}{n+m}\left(\sum_{i=1}^{n}\ell(f_\theta(x_i),y_i)+\sum_{j=1}^{m}\ell(f_\theta(\tilde{x}_j),\tilde{y}_j)\right)
+$$
+
+| 기호 | 의미 |
+|---|---|
+| `\hat{R}` | 정상 학습 데이터의 empirical risk |
+| `\hat{R}_{poison}` | 오염 샘플을 포함한 empirical risk |
+| `m` | 오염 또는 toy trigger 샘플 수 |
+| `(\tilde{x},\tilde{y})` | 오염 조건의 입력과 라벨 |
+
+**직관적 의미:**  
+데이터 오염은 단순히 입력 하나를 바꾸는 문제가 아니라 학습 목적함수 자체를 바꾼다. SGD는 이 목적함수의 gradient를 따라 이동하므로 오염 샘플은 업데이트 방향에 영향을 준다.
+
+**보안 관점 해석:**  
+훈련 단계 위협은 모델 파라미터와 decision boundary를 바꾸며, 검증셋이 clean-only이면 위험이 숨을 수 있다.
+
+**평가 지표 연결:**  
+accuracy drop, macro F1, ASR, poisoning rate, n_poisoned와 연결한다.
+
+**한계와 가정:**  
+오염 조건은 scikit-learn digits toy setting이며 실제 서비스 공격 절차가 아니다.
+
+### 핵심 수식: Accuracy Drop와 ASR
+
+$$
+\Delta Acc=Acc_{clean}-Acc_{poison},
+\qquad
+ASR=\frac{1}{m}\sum_{j=1}^{m}\mathbf{1}[f_\theta(\tilde{x}_j)=y^{target}]
+$$
+
+| 기호 | 의미 |
+|---|---|
+| `\Delta Acc` | 오염 조건에서의 정상 정확도 감소량 |
+| `Acc_{clean}` | clean baseline 정확도 |
+| `Acc_{poison}` | 오염 조건 정확도 |
+| `ASR` | trigger 조건 공격 성공률 |
+
+**직관적 의미:**  
+Label flipping은 clean 성능 저하를, backdoor는 clean 성능 유지와 조건부 실패를 함께 볼 때 의미가 분명해진다.
+
+**보안 관점 해석:**  
+보안 보고에서는 clean accuracy와 ASR을 같은 표에 두되 같은 의미로 합치지 않는다.
+
+**평가 지표 연결:**  
+clean accuracy, macro F1, ASR, stealthiness와 연결한다.
+
+**한계와 가정:**  
+ASR은 로컬 toy trigger 테스트셋 기준이며 실제 공격 성공률을 주장하지 않는다.
+
+### 표 수치 기반 그래프
+
+![W02 metrics chart](assets/charts/w02_metrics_chart.png)
+
+그래프는 `metrics_summary.csv`의 clean accuracy, macro F1, ASR을 조건별로 그린 것이다. Label-flip 조건에서는 오염률 증가와 함께 clean 성능 저하를 비교할 수 있고, toy backdoor 조건은 clean 성능과 ASR을 분리해 보아야 함을 보여준다. 표에 없는 실험 조건이나 수치는 추가하지 않았다.
+
+### Threat Model / Pipeline Diagram
+
+![W02 pipeline diagram](assets/diagrams/w02_pipeline_diagram.svg)
+
+이 다이어그램은 `training-data poisoning evaluation flow`를 발표용으로 요약한 개념도다. 데이터 흐름, 평가 지표, 한계 표시는 `assets/figure_manifest.md`에도 기록했다.
+
+### 확인 필요
+
+- toy backdoor는 공개 toy 데이터 기반 안전 실습이며 실제 시스템 악용 절차로 일반화하지 않는다.
+- 논문별 원문 절·쪽·그림 번호는 최종 제출 전 사람 검토가 필요하다.
+<!-- formula-visual-supplement:end -->

@@ -312,6 +312,21 @@
       }
     }
   </style>
+<!-- formula-visual-mathjax:start -->
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+.formula-visual-supplement .math-block { border-left: 5px solid #0f766e; background: #eef8f6; padding: 14px 18px; margin: 12px 0; font-size: 20px; overflow-x: auto; }
+.formula-visual-supplement .caption { font-size: 16px; line-height: 1.35; color: #53616f; }
+.formula-visual-supplement img { max-width: 100%; max-height: 390px; object-fit: contain; border: 1px solid #d8e0e8; border-radius: 8px; background: #fff; }
+.formula-visual-supplement .media-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
+</style>
+<!-- formula-visual-mathjax:end -->
 </head>
 <body>
   <div class="controls" aria-label="슬라이드 이동">
@@ -492,6 +507,42 @@
       </ul>
       <div class="callout">기말논문 후보: ML 생명주기 기반 AI 보안 평가 프레임워크</div>
     </section>
+  <!-- formula-visual-html:start -->
+    <section class="slide formula-visual-supplement">
+      <div class="slide-header">Formula / W01</div>
+      <h2>핵심 수식과 기호</h2>
+      <h3>Empirical Risk와 Generalization Gap</h3>
+      <div class="math-block">
+      $$
+      \hat{R}(\theta)=\frac{1}{n}\sum_{i=1}^{n}\ell(f_\theta(x_i),y_i),
+      \qquad
+      Gap=R_{\mathrm{test}}(\theta)-\hat{R}_{\mathrm{train}}(\theta)
+      $$
+      </div>
+      <p>보안 관점에서는 clean 성능이 높아도 공격·교란·privacy 조건의 위험이 별도로 남을 수 있다. 따라서 lifecycle 평가에서는 데이터, 학습, 검증, 배포 로그를 함께 본다.</p>
+      <h3>Robust Accuracy와 ASR</h3>
+      <div class="math-block">
+      $$
+      RA_\epsilon=\Pr_{(x,y)\sim D}\left[f_\theta(x+\delta)=y,\ \forall \delta \in \Delta_\epsilon\right],
+      \qquad
+      ASR=\frac{1}{m}\sum_{j=1}^{m}\mathbf{1}[f_\theta(\tilde{x}_j)=y_j^{target}]
+      $$
+      </div>
+      <p>보안 평가는 clean accuracy 하나로 끝나지 않고 robustness와 privacy leakage를 분리해야 한다.</p>
+      <div class="message">수식은 표준 정의식이며 원문 위치와 formal guarantee는 최종 검토 대상이다.</div>
+      <div class="footer"><span>W01 formula supplement</span><span></span></div>
+    </section>
+
+    <section class="slide formula-visual-supplement">
+      <div class="slide-header">Visual / W01</div>
+      <h2>그래프와 Pipeline Diagram</h2>
+      <div class="media-grid">
+        <div><img src="assets/charts/w01_metrics_chart.png" alt="W01 metrics chart"><p class="caption">그래프는 `metrics_summary.csv`의 condition별 accuracy와 F1만 시각화한다. Clean baseline, label-noise training, toy feature perturbation 조건을 같은 축에 두어 정상 성능만으로 보안성을 단정하기 어렵다는 점을 보여준다. synthetic/toy 평가 결과이므로 실제 운영 시스템 보증으로 해석하지 않는다.</p></div>
+        <div><img src="assets/diagrams/w01_pipeline_diagram.svg" alt="W01 pipeline diagram"><p class="caption">AI-assisted conceptual diagram. See assets/figure_manifest.md.</p></div>
+      </div>
+      <div class="footer"><span>Source: outputs/metrics_summary.csv</span><span>ML lifecycle threat model</span></div>
+    </section>
+<!-- formula-visual-html:end -->
   </main>
 
   <div class="footer">
@@ -510,6 +561,9 @@
         slide.classList.toggle("active", slideIndex === index);
       });
       counter.textContent = `${index + 1} / ${slides.length}`;
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        window.MathJax.typesetPromise([slides[index]]).catch(() => {});
+      }
       document.title = `W01 발표자료 (${index + 1}/${slides.length})`;
     }
 

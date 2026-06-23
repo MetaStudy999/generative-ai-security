@@ -31,3 +31,15 @@ P01은 최적화, P02는 효율성, P03은 poisoning taxonomy, P04는 training d
 추천 주제: 학습 데이터 오염과 backdoor 평가를 위한 다중지표 프레임워크
 
 핵심 지표: clean accuracy, macro F1, ASR, stealthiness, detection rate, efficiency cost, reproducibility evidence
+
+<!-- formula-visual-handout:start -->
+## 수식·그래프·그림 보강 요약
+
+| 항목 | 반영 내용 |
+|---|---|
+| 핵심 수식 | ERM, Poisoned Empirical Risk, SGD Update, Accuracy Drop와 ASR |
+| 그래프 | `assets/charts/w02_metrics_chart.png` (`metrics_summary.csv` 기반) |
+| 다이어그램 | `assets/diagrams/w02_pipeline_diagram.svg` (training-data poisoning evaluation flow) |
+| 기호 정의 | 통합보고서와 발표 슬라이드의 수식 블록에 포함 |
+| 주의사항 | toy backdoor는 공개 toy 데이터 기반 안전 실습이며 실제 시스템 악용 절차로 일반화하지 않는다. |
+<!-- formula-visual-handout:end -->

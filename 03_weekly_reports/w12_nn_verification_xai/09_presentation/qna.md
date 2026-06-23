@@ -23,3 +23,23 @@
 ## Q6. 참고문헌과 PDF는 그대로 제출해도 되나요?
 
 아직 그대로 확정하면 안 됩니다. P01, P03, P04, P05는 로컬 PDF가 지정 논문과 다르거나 `SUBSTITUTE` 상태이고, P02도 원문 대조가 필요합니다. 공개 저장소에 학술 PDF를 포함하기 전 저작권과 공개 범위도 확인해야 합니다.
+
+<!-- formula-visual-qna:start -->
+## 수식·그래프·그림 보강 Q&A
+
+### Q. 그래프 수치는 어디에서 온 것인가?
+
+A. `04_experiment/outputs/metrics_summary.csv`의 기존 수치만 사용했다. CSV에 없는 값, 실행하지 않은 실험, 외부 논문 실험 수치는 추가하지 않았다.
+
+### Q. 이 수식은 해당 논문의 원문 수식인가?
+
+A. 발표 보강용 수식은 표준 정의식 또는 검증 가능한 평가식이다. 논문별 원문 절·쪽·그림 번호가 필요한 경우 최종 제출 전 사람 검토로 확인한다.
+
+### Q. 다이어그램은 실험 결과인가?
+
+A. 아니다. `verification-XAI robustness flow` 다이어그램은 AI-assisted conceptual diagram이며 threat model과 pipeline 설명을 위한 보조 그림이다.
+
+### Q. 보안적으로 가장 조심해야 할 해석은 무엇인가?
+
+A. `certified_rate`는 toy proxy 또는 제한 실험인지 formal verification인지 최종 원문 확인이 필요하다. 또한 모든 실습은 공개 데이터, synthetic/toy 데이터, 로컬 모의실험 범위로만 해석한다.
+<!-- formula-visual-qna:end -->

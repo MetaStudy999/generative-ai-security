@@ -1,58 +1,72 @@
-# P03 논문 요약
+# P03 Summary
 
-## 1. 서지와 검증 상태
+## Adversarial Attacks in Explainable Machine Learning: A Survey of Threats Against Models and Humans — Jon Vadillo et al., WIREs Data Mining and Knowledge Discovery, 2024
 
-| 항목 | 내용 |
-|---|---|
-| 강의 지정 제목 | Adversarial machine learning attacks against explainable artificial intelligence: A review |
-| 강의 지정 저자 | G. Vadillo et al. |
-| 공식 DOI 후보 | `10.1002/widm.1567` |
-| 공식 URL | https://doi.org/10.1002/widm.1567 |
-| 공식 메타데이터 | Jon Vadillo, Roberto Santana, Jose A. Lozano, "Adversarial Attacks in Explainable Machine Learning: A Survey of Threats Against Models and Humans", WIREs Data Mining and Knowledge Discovery, Vol. 15, Issue 1, Article e1567 |
-| 강의 표기와 차이 | 공식 published title이 강의 표기 제목과 다름 |
-| 로컬 PDF | `03_RELATED_Baniecki_Biecek_2023_Adversarial_XAI_Survey.pdf` |
-| 로컬 PDF 상태 | Baniecki/Biecek adversarial XAI survey. 지정 논문 원문 아님 |
-
-주의: W12의 P03은 지정 논문과 로컬 PDF가 표기 차이가 있다. 현재 로컬 PDF는 Baniecki/Biecek 2023 adversarial XAI 관련 보조 문헌이므로, 최종 제출 전 G. Vadillo et al. 지정 논문 원문 PDF 또는 공식 출판 페이지를 확보해야 한다.
-
-## 2. 핵심 연구문제
-
-P03은 XAI 설명이 대적 조작의 대상이 될 수 있음을 다룬다[3]. 예측 결과가 유지되는 것처럼 보여도 saliency, feature attribution, counterfactual explanation이 크게 바뀌면 human review와 accountability가 약해진다.
-
-## 3. W12에서의 역할
-
-| 관점 | 요약 |
-|---|---|
-| AI 원리 | feature attribution, saliency, explanation stability, explanation similarity |
-| 보안 연결 | misleading explanation, fairwashing, accountability failure |
-| 평가 지표 | explanation stability, attribution similarity, explanation robustness |
-| 한계 | 로컬 PDF가 지정 Vadillo 논문이 아니라 관련 보조 문헌임 |
-| 내 논문 활용 | XAI stability를 별도 보안 평가축으로 넣는 근거 |
-
-## 4. 실습 연결
-
-W12 실험은 feature attribution의 cosine similarity로 `explanation_stability`를 계산한다. 이 값은 실제 모든 XAI 공격 방어를 의미하지 않는다. 설명 조작 가능성을 안전하게 보여주는 toy 지표다.
-
-## 5. 최종 제출 전 확인 항목
-
-- WIREs 공식 페이지에서 최종 제목, 권호, Article e1567, DOI를 대조한다.
-- Baniecki/Biecek PDF는 RELATED로 표시한다.
-- 본문에서 P03을 인용할 때 공식 제목 차이를 각주 또는 검증표에 남긴다.
-
-### 5.1 핵심 수식 또는 알고리즘 설명
+## 0. 문헌 검증 상태
 
 | 항목 | 내용 |
 |---|---|
-| 수식/알고리즘 이름 | Attribution Consistency |
-| 원문 위치 | 논문 세부 절/쪽/그림/알고리즘 번호 확인 필요. 로컬 DOI/URL 점검표로 문헌 대응만 확인. |
-| 작성 형식 | Markdown + LaTeX math |
-| 검산 도구 | 사용 안 함 |
-| 수식 또는 절차 | 표준 정의식 / 원문 직접 인용 아님.<br>$$Consist=sim(A(x),A(x_{alt}))$$ |
-| 기호·입력·출력 | \(A(x)\): attribution/explanation, \(x_{alt}\): 의미 보존 변형, \(sim\): 유사도 |
-| 직관적 의미 | Attribution Consistency는 Verification·XAI·Robustness 평가에서 핵심 원리나 평가 지표를 정량적으로 해석하기 위한 표준식이다. |
-| 보안 관점 해석 | Verification·XAI·Robustness 평가에서는 정상 성능과 보안 실패 조건을 분리해 보아야 한다. 이 항목은 공격·방어 원리 또는 운영 통제의 평가 기준을 명시하되, 실제 공격 절차나 무단 적용 단계는 포함하지 않는다. |
-| 평가 지표와 연결 | explanation stability, fidelity, attack success against XAI |
-| 한계와 가정 | 표준 정의식 / 원문 직접 인용 아님. 논문별 변형, 정확한 수식 번호, 실험 설정은 원문 PDF에서 확인 필요다. |
-| 기말 논문 반영 여부 | 참고만 |
+| 주차 | W12 Neural Network Verification & XAI Robustness |
+| 논문명 | Adversarial Attacks in Explainable Machine Learning: A Survey of Threats Against Models and Humans |
+| 저자 | Jon Vadillo et al. |
+| 출판 정보 | WIREs Data Mining and Knowledge Discovery, 2024 |
+| DOI | https://doi.org/10.1002/widm.1567 |
+| 검증 상태 | W12 `paper_list.md` 기준 관련 논문 공식 DOI 확인. 로컬 PDF는 Baniecki/Biecek 2023 관련 문헌 메모 유지 |
 
+---
 
+## 1. 한 문장 요약
+
+이 논문은 XAI에 대한 adversarial attack을 **model explanation manipulation, explanation attack, human trust manipulation, adversarial examples against explanations** 관점에서 정리하며, W12에서 설명가능성이 공격면이 될 수 있음을 보여주는 핵심 관련 문헌이다.
+
+---
+
+## 2. 핵심 연구질문
+
+| 번호 | 연구질문 |
+|---|---|
+| RQ1 | 공격자는 모델 예측뿐 아니라 설명 결과도 조작할 수 있는가? |
+| RQ2 | XAI가 사용자의 과신을 유발하면 어떤 보안 위험이 발생하는가? |
+| RQ3 | Explanation robustness는 prediction robustness와 어떻게 다른가? |
+| RQ4 | AI 보안 보고서에서 설명가능성은 어떤 검증 지표와 함께 제시해야 하는가? |
+
+---
+
+## 3. 핵심 수식
+
+### 3.1 Explanation Stability
+
+$$
+Stability=1-\frac{\|E(x)-E(x')\|}{\|x-x'\|+\epsilon}
+$$
+
+### 3.2 Explanation Attack Objective
+
+$$
+\max_{x'\in B_\epsilon(x)} Dist(E(x),E(x')) \quad \text{s.t.}\quad f(x')=f(x)
+$$
+
+**보안 해석:** 예측은 유지되지만 설명만 바뀌면 사용자는 잘못된 원인을 믿을 수 있다. XAI도 검증 대상이다.
+
+---
+
+## 4. 위협모형·평가지표
+
+| 항목 | 내용 |
+|---|---|
+| 보호 자산 | model explanation, saliency map, feature attribution, human trust |
+| 공격자 목표 | 설명 왜곡, 책임 회피, 위험 feature 은폐, 사용자 판단 오도 |
+| 지표 | explanation stability, attribution similarity, prediction consistency, human trust error |
+| 재현성 | explainer version, baseline, perturbation, seed, visualization setting 기록 |
+
+---
+
+## 5. 기말논문 연결
+
+P03은 기말논문에서 XAI를 단순 시각화가 아니라 보안 평가 대상으로 다루는 근거다. RAG/LLM에서도 citation/explanation이 조작될 수 있으므로 evidence explanation audit로 확장한다.
+
+---
+
+## 6. 최종 판단
+
+P03은 W12의 XAI robustness 핵심 관련 문헌이다. 로컬 PDF 차이 메모를 유지하고 공식 DOI 기준 관련 논문으로 사용한다.

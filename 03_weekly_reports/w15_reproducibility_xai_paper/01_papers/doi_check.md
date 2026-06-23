@@ -1,15 +1,16 @@
 # W15 DOI/URL 검증표
 
 > 최종 판정 우선: 이 문서의 현재 상태는 `논문/관련 논문 최종 반영표`를 우선한다. 상단의 제목·저자·로컬 PDF 차이 메모는 오류 판정이 아니라 검증 이력이며, `관련 논문 / 확인`은 주차 주제에 맞는 공식 확인 논문으로 사용한다.
-
+>
+> 2026-06-24 기준: `02_paper_summaries/P01_summary.md` ~ `P05_summary.md`는 100점형 구조로 보완 완료했다. 수식은 GitHub, MS Word, PDF 변환 호환성을 위해 Markdown 표 밖의 LaTeX block math로 작성했다.
 
 | ID | 논문 제목 | DOI/URL | 검증 근거 | 상태 | 비고 |
 |---|---|---|---|---|---|
-| P01 | A Survey on Evaluation of Large Language Models | `https://doi.org/10.1145/3641289` | 로컬 PDF 첫 페이지, DOI/Crossref metadata | 확인 | ACM Transactions on Intelligent Systems and Technology 15(3), Article 39. 원 프롬프트의 ACM Computing Surveys 표기와 다름 |
-| P02 | Assuring the Machine Learning Lifecycle: Desiderata, Methods, and Challenges | `https://doi.org/10.1145/3453444` | White Rose accepted version 표지, DOI/Crossref metadata | 확인 | ACM Computing Surveys 54(5), Article 111. 로컬 PDF는 accepted version |
-| P03 | Explainable AI: Core Ideas, Techniques, and Solutions | `https://doi.org/10.1145/3561048` | Crossref metadata에서 ACM Computing Surveys 55(9), Article 131 확인. 로컬 PDF는 Mersha et al. 관련 보조 문헌 | 공식 DOI 확인 / PDF 차이 기록 | 공식 metadata의 제1저자는 Rudresh Dwivedi로 확인된다. 원 프롬프트의 Vivek Dwivedi 표기와 로컬 PDF 차이는 최종 반영표 기준 공식 출판정보로 정리 |
-| P04 | Explainable Artificial Intelligence (XAI): Concepts, Taxonomies, Opportunities and Challenges toward Responsible AI | `https://doi.org/10.1016/j.inffus.2019.12.012` | ScienceDirect article page 및 로컬 arXiv preprint 대조 | 확인 | Information Fusion 58, 82-115 |
-| P05 | Concept-based Explainable Artificial Intelligence: A Survey | `https://doi.org/10.1145/3774643`, `https://arxiv.org/abs/2312.12936` | arXiv API와 Crossref metadata에서 동일 제목·저자 및 최종 ACM DOI 확인 | 확인 | ACM Computing Surveys, online publication 2025-11-08, Article 3774643. 권호/issue는 최종 제출 전 ACM 페이지에서 재확인 |
+| P01 | A Survey on Evaluation of Large Language Models | `https://doi.org/10.1145/3641289` | 로컬 PDF 첫 페이지, DOI/Crossref metadata | 확인 / 100점형 summary 보완 완료 | ACM Transactions on Intelligent Systems and Technology 15(3), Article 39. 원 프롬프트의 ACM Computing Surveys 표기와 다름 |
+| P02 | Assuring the Machine Learning Lifecycle: Desiderata, Methods, and Challenges | `https://doi.org/10.1145/3453444` | White Rose accepted version 표지, DOI/Crossref metadata | 확인 / 100점형 summary 보완 완료 | ACM Computing Surveys 54(5), Article 111. 로컬 PDF는 accepted version |
+| P03 | Explainable AI: Core Ideas, Techniques, and Solutions | `https://doi.org/10.1145/3561048` | Crossref metadata에서 ACM Computing Surveys 55(9), Article 131 확인. 로컬 PDF는 Mersha et al. 관련 보조 문헌 | 공식 DOI 확인 / PDF 차이 기록 / 100점형 summary 보완 완료 | 공식 metadata의 제1저자는 Rudresh Dwivedi로 확인된다. 원 프롬프트의 Vivek Dwivedi 표기와 로컬 PDF 차이는 최종 반영표 기준 공식 출판정보로 정리 |
+| P04 | Explainable Artificial Intelligence (XAI): Concepts, Taxonomies, Opportunities and Challenges toward Responsible AI | `https://doi.org/10.1016/j.inffus.2019.12.012` | ScienceDirect article page 및 로컬 arXiv preprint 대조 | 확인 / 100점형 summary 보완 완료 | Information Fusion 58, 82-115 |
+| P05 | Concept-based Explainable Artificial Intelligence: A Survey | `https://doi.org/10.1145/3774643`, `https://arxiv.org/abs/2312.12936` | arXiv API와 Crossref metadata에서 동일 제목·저자 및 최종 ACM DOI 확인 | 확인 / 100점형 summary 보완 완료 | ACM Computing Surveys, online publication 2025-11-08, Article 3774643. 권호/issue는 최종 제출 전 ACM 페이지에서 재확인 |
 
 ## 허위 인용 방지 원칙
 

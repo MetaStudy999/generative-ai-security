@@ -40,3 +40,11 @@
 KCI형 논문은 국문 문제의식과 평가 프레임워크를 중심으로 구성한다. 국내 참고문헌 3편 이상은 아직 확인 필요다.
 
 SCI형 논문은 multi-metric safety evaluation framework를 중심으로 Background, Problem, Method, Results, Contribution, Implications 구조를 사용할 수 있다. 단, 현재 W09 실험은 tabular Q-learning과 synthetic state 기반이므로 실제 IDS/IPS 또는 neural DRL policy 성능으로 주장하지 않는다.
+
+<!-- AUTO-WEEKLY-BRIDGE-CHECK:start -->
+## 자동 보완: 기말논문 연결 3문장
+
+1. 이 주차에서 기말논문에 반영할 개념: 심층강화학습(DRL) & 사이버보안 적용·보상조작의 핵심 개념을 LLM/RAG 시스템 생명주기별 위협·통제 항목으로 반영한다.
+2. 이 주차에서 기말논문에 반영할 표·그림·실험: 주차별 실험표, metrics_summary.csv 기반 그래프, config/seed/run_log 재현성 증거를 표·그림 후보로 반영한다.
+3. 이 주차가 RAG 문서 오염/LLM 보안 감사 프레임워크와 연결되는 지점: 문서 오염, 프롬프트/컨텍스트 변조, 모델·운영 로그 감사 항목을 분리하는 LLM 보안 감사 체크포인트와 연결된다.
+<!-- AUTO-WEEKLY-BRIDGE-CHECK:end -->

@@ -247,3 +247,9 @@ Federated learning enables distributed model training without centralizing raw c
 | PDF 저작권 위험 점검 | 완료 / 확인 필요 | PDF tracked 상태 |
 | Docker/pyproject/config/code 정합성 점검 | 완료 | pyproject 의존성 `pyyaml`로 최소화. 로컬 실행, Docker build, docker compose run 확인 |
 | 최종 사람이 검토할 항목 표시 | 완료 | 제출 확정 아님 |
+
+<!-- AUTO-WEEKLY-AI-DISCLOSURE-NOTE:start -->
+## AI 활용 고지 확인
+
+본 주차 보고서에서 생성형 AI는 영어 논문 요약 초안, 수식 설명, 표 구조화, 문장 교정에 사용하였다. 최종 인용, 수치, 실험 결과, 보안적 해석은 작성자가 직접 검토하였다.
+<!-- AUTO-WEEKLY-AI-DISCLOSURE-NOTE:end -->

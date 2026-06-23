@@ -42,3 +42,11 @@ SCI형 원고는 structured abstract, threat model, methodology, threats to vali
 ## 6. 후속 주차 연결 방식
 
 W14의 MLOps/supply-chain 보안과 연결하면 모델 배포, API 로그, 질의 제한, 워터마크 검증 절차를 운영 통제 관점으로 확장할 수 있다. W15의 재현성/XAI 주제와 연결하면 DOI 검증, 대체 PDF 표시, AI 활용 고지, 실행 로그 보존을 연구윤리 장으로 묶을 수 있다.
+
+<!-- AUTO-WEEKLY-BRIDGE-CHECK:start -->
+## 자동 보완: 기말논문 연결 3문장
+
+1. 이 주차에서 기말논문에 반영할 개념: 모델 지식재산(IP)·모델 도난·모델 추출 위협의 핵심 개념을 LLM/RAG 시스템 생명주기별 위협·통제 항목으로 반영한다.
+2. 이 주차에서 기말논문에 반영할 표·그림·실험: 주차별 실험표, metrics_summary.csv 기반 그래프, config/seed/run_log 재현성 증거를 표·그림 후보로 반영한다.
+3. 이 주차가 RAG 문서 오염/LLM 보안 감사 프레임워크와 연결되는 지점: 문서 오염, 프롬프트/컨텍스트 변조, 모델·운영 로그 감사 항목을 분리하는 LLM 보안 감사 체크포인트와 연결된다.
+<!-- AUTO-WEEKLY-BRIDGE-CHECK:end -->

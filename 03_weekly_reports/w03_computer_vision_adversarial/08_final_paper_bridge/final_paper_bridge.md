@@ -46,3 +46,11 @@
 ## 6. W03 outputs 기반 연결 문장
 
 W03 toy experiment shows that small centroid-direction perturbations do not change predictions in the synthetic setting, while epsilon 0.45 crosses the two-class toy decision boundary and produces a complete label flip. This result should not be interpreted as real-world CNN/ViT attack performance; its value is to demonstrate structured adversarial robustness reporting.
+
+<!-- AUTO-WEEKLY-BRIDGE-CHECK:start -->
+## 자동 보완: 기말논문 연결 3문장
+
+1. 이 주차에서 기말논문에 반영할 개념: 컴퓨터비전 표현학습 & 비전 대적공격의 핵심 개념을 LLM/RAG 시스템 생명주기별 위협·통제 항목으로 반영한다.
+2. 이 주차에서 기말논문에 반영할 표·그림·실험: 주차별 실험표, metrics_summary.csv 기반 그래프, config/seed/run_log 재현성 증거를 표·그림 후보로 반영한다.
+3. 이 주차가 RAG 문서 오염/LLM 보안 감사 프레임워크와 연결되는 지점: 문서 오염, 프롬프트/컨텍스트 변조, 모델·운영 로그 감사 항목을 분리하는 LLM 보안 감사 체크포인트와 연결된다.
+<!-- AUTO-WEEKLY-BRIDGE-CHECK:end -->

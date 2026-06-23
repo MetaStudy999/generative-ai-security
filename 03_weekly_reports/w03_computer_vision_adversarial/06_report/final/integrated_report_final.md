@@ -445,3 +445,9 @@ accuracy, attack_success_rate, robust_drop, n_samples와 연결한다.
 - 대적 교란은 toy evaluation 범위로 설명하며 실제 시스템 우회 절차로 쓰지 않는다.
 - 논문별 원문 절·쪽·그림 번호는 최종 제출 전 사람 검토가 필요하다.
 <!-- formula-visual-supplement:end -->
+
+<!-- AUTO-WEEKLY-AI-DISCLOSURE-NOTE:start -->
+## AI 활용 고지 확인
+
+본 주차 보고서에서 생성형 AI는 영어 논문 요약 초안, 수식 설명, 표 구조화, 문장 교정에 사용하였다. 최종 인용, 수치, 실험 결과, 보안적 해석은 작성자가 직접 검토하였다.
+<!-- AUTO-WEEKLY-AI-DISCLOSURE-NOTE:end -->

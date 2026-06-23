@@ -32,3 +32,11 @@
 - P02가 강의계획서 지정 `Ananya Högele et al., "Video Diffusion Models: A Survey"`와 동일한지 확인한다.
 - P03의 강의계획서 `Tianqi Wang et al.` 표기와 출판사 메타데이터 `Zhengwei Wang et al.` 차이를 확인한다.
 - PDF 원문을 public GitHub에 보관할지 삭제할지 사람이 결정한다.
+
+<!-- AUTO-WEEKLY-BRIDGE-CHECK:start -->
+## 자동 보완: 기말논문 연결 3문장
+
+1. 이 주차에서 기말논문에 반영할 개념: 확률생성모형(Diffusion/GAN) & 딥페이크 검출의 핵심 개념을 LLM/RAG 시스템 생명주기별 위협·통제 항목으로 반영한다.
+2. 이 주차에서 기말논문에 반영할 표·그림·실험: 주차별 실험표, metrics_summary.csv 기반 그래프, config/seed/run_log 재현성 증거를 표·그림 후보로 반영한다.
+3. 이 주차가 RAG 문서 오염/LLM 보안 감사 프레임워크와 연결되는 지점: 문서 오염, 프롬프트/컨텍스트 변조, 모델·운영 로그 감사 항목을 분리하는 LLM 보안 감사 체크포인트와 연결된다.
+<!-- AUTO-WEEKLY-BRIDGE-CHECK:end -->

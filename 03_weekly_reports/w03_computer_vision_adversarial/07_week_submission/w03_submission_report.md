@@ -251,3 +251,9 @@ PDF 보관 점검: 원격 저장소가 public일 수 있으므로 W03 논문 PDF
 | AI 활용 고지 작성 | 완료 |  |
 | PDF 저작권 위험 점검 | 완료 | public 저장소 PDF 추적, 삭제 필요 |
 | 최종 사람이 검토할 항목 표시 | 완료 | PDF 삭제, 국내 참고문헌, 최종 제출 여부 |
+
+<!-- AUTO-WEEKLY-AI-DISCLOSURE-NOTE:start -->
+## AI 활용 고지 확인
+
+본 주차 보고서에서 생성형 AI는 영어 논문 요약 초안, 수식 설명, 표 구조화, 문장 교정에 사용하였다. 최종 인용, 수치, 실험 결과, 보안적 해석은 작성자가 직접 검토하였다.
+<!-- AUTO-WEEKLY-AI-DISCLOSURE-NOTE:end -->

@@ -51,3 +51,11 @@
 - `adversarial_features()`는 실제 PGD/FGSM 공격 구현이 아니라 교육용 perturbation proxy다.
 - P01~P05 DOI와 로컬 PDF에는 불일치가 있으므로 최종 원고에서 지정 논문처럼 단정 인용하지 않는다.
 - public GitHub 저장소에 학술 PDF를 포함하기 전 저작권과 공개 범위를 사람이 확인해야 한다.
+
+<!-- AUTO-WEEKLY-BRIDGE-CHECK:start -->
+## 자동 보완: 기말논문 연결 3문장
+
+1. 이 주차에서 기말논문에 반영할 개념: 신경망 검증·정형방법 & 대적방어·XAI·강건성 트레이드오프의 핵심 개념을 LLM/RAG 시스템 생명주기별 위협·통제 항목으로 반영한다.
+2. 이 주차에서 기말논문에 반영할 표·그림·실험: 주차별 실험표, metrics_summary.csv 기반 그래프, config/seed/run_log 재현성 증거를 표·그림 후보로 반영한다.
+3. 이 주차가 RAG 문서 오염/LLM 보안 감사 프레임워크와 연결되는 지점: 문서 오염, 프롬프트/컨텍스트 변조, 모델·운영 로그 감사 항목을 분리하는 LLM 보안 감사 체크포인트와 연결된다.
+<!-- AUTO-WEEKLY-BRIDGE-CHECK:end -->

@@ -50,3 +50,11 @@
 | P04 저자명 | 확인 필요 | Tianlei/Tongcheng Geng 차이를 출판사 페이지로 재확인한다. |
 | P05 제목 | 확인 필요 | 강의계획서 지정 제목과 JAMA DOI 기준 제목의 동일 여부를 확인한다. |
 | PDF 원문 보관 | 위험 있음 | public GitHub에서는 PDF 원문 대신 DOI/URL과 요약만 남기는 방안을 검토한다. |
+
+<!-- AUTO-WEEKLY-BRIDGE-CHECK:start -->
+## 자동 보완: 기말논문 연결 3문장
+
+1. 이 주차에서 기말논문에 반영할 개념: RAG 검색 문서, prompt template, tool 권한, human approval gate를 문서 오염·간접 프롬프트 인젝션 통제 개념으로 반영한다.
+2. 이 주차에서 기말논문에 반영할 표·그림·실험: 주차별 실험표, metrics_summary.csv 기반 그래프, config/seed/run_log 재현성 증거를 표·그림 후보로 반영한다.
+3. 이 주차가 RAG 문서 오염/LLM 보안 감사 프레임워크와 연결되는 지점: 오염 문서 유입, 출처 검증 실패, tool misuse를 직접 평가하는 핵심 주차로서 RAG 문서 오염 감사 프레임워크의 중심 근거가 된다.
+<!-- AUTO-WEEKLY-BRIDGE-CHECK:end -->

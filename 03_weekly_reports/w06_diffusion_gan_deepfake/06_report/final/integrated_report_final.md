@@ -440,3 +440,9 @@ detector toy evaluation이며 실제 미디어 판별 보증으로 해석하지 
 - 생성 모델 수식은 표준 학습 목적 설명이며 deepfake 제작 절차를 안내하지 않는다.
 - 논문별 원문 절·쪽·그림 번호는 최종 제출 전 사람 검토가 필요하다.
 <!-- formula-visual-supplement:end -->
+
+<!-- AUTO-WEEKLY-AI-DISCLOSURE-NOTE:start -->
+## AI 활용 고지 확인
+
+본 주차 보고서에서 생성형 AI는 영어 논문 요약 초안, 수식 설명, 표 구조화, 문장 교정에 사용하였다. 최종 인용, 수치, 실험 결과, 보안적 해석은 작성자가 직접 검토하였다.
+<!-- AUTO-WEEKLY-AI-DISCLOSURE-NOTE:end -->

@@ -234,3 +234,9 @@ SCI형 논문은 Background, Problem, Method, Results, Contribution, Implication
 [4] Antonio Emanuele Cina et al., "Wild Patterns Reloaded: A Survey of Machine Learning Security against Training Data Poisoning," ACM Computing Surveys, 55(13s), 1-39, 2023. DOI: `10.1145/3585385`. 강의계획서 P04 제목과 동일 여부 확인 필요.
 
 [5] Ling-Xin Jin et al., "A survey of backdoor attacks and defences: From deep neural networks to large language models," Journal of Electronic Science and Technology, 23(3), Article 100326, 2025. DOI: `10.1016/j.jnlest.2025.100326`.
+
+<!-- AUTO-WEEKLY-AI-DISCLOSURE-NOTE:start -->
+## AI 활용 고지 확인
+
+본 주차 보고서에서 생성형 AI는 영어 논문 요약 초안, 수식 설명, 표 구조화, 문장 교정에 사용하였다. 최종 인용, 수치, 실험 결과, 보안적 해석은 작성자가 직접 검토하였다.
+<!-- AUTO-WEEKLY-AI-DISCLOSURE-NOTE:end -->

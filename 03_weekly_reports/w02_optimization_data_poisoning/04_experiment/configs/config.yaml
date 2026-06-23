@@ -1,7 +1,7 @@
 week: "W02"
 topic: "대규모 최적화 & 데이터 오염 위협"
 seed: 42
-status: "ready_to_run_in_docker"
+status: "executed"
 
 data:
   name: "sklearn_digits"

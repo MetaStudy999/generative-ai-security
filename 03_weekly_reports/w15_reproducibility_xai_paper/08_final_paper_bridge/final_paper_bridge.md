@@ -39,3 +39,11 @@ P03 지정 논문 원문 PDF, P05 권호/issue, 국내 문헌 3편 이상은 최
 | KCI 제목 | LLM/RAG 기반 AI 시스템의 생명주기별 보안 위협과 재현성 중심 평가 프레임워크 연구 |
 | KCI 형식 | 국문/영문 제목, 국문/영문 초록, 키워드, 서론-관련연구-연구방법-분석-보안적 함의-결론 구조 |
 | SCI 확장 | 공개 benchmark contamination audit, 공개 문서 기반 RAG 실험, XAI stability metric, 반복 seed와 confidence interval 필요 |
+
+<!-- AUTO-WEEKLY-BRIDGE-CHECK:start -->
+## 자동 보완: 기말논문 연결 3문장
+
+1. 이 주차에서 기말논문에 반영할 개념: 재현성, 평가 프로토콜, 참고문헌 검증, AI 활용 고지를 기말논문 제출 품질관리 체계로 반영한다.
+2. 이 주차에서 기말논문에 반영할 표·그림·실험: 주차별 실험표, metrics_summary.csv 기반 그래프, config/seed/run_log 재현성 증거를 표·그림 후보로 반영한다.
+3. 이 주차가 RAG 문서 오염/LLM 보안 감사 프레임워크와 연결되는 지점: metrics/config/run_log/reference verification을 묶어 LLM 보안 감사 프레임워크의 증거 체인과 한계 고지 원칙으로 연결한다.
+<!-- AUTO-WEEKLY-BRIDGE-CHECK:end -->

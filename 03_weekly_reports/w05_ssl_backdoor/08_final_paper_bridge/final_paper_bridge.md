@@ -43,3 +43,11 @@
 - P02가 강의계획서 지정 일반 SSL survey인지 대체 문헌인지 확인한다.
 - P03 Article 번호와 P04 제목/저자 표기를 원문 기준으로 확인한다.
 - PDF 원문은 public GitHub 저장소에서 제거 또는 추적 해제할지 결정한다.
+
+<!-- AUTO-WEEKLY-BRIDGE-CHECK:start -->
+## 자동 보완: 기말논문 연결 3문장
+
+1. 이 주차에서 기말논문에 반영할 개념: 자기지도학습·파운데이션 모델 & Poisoning/Backdoor의 핵심 개념을 LLM/RAG 시스템 생명주기별 위협·통제 항목으로 반영한다.
+2. 이 주차에서 기말논문에 반영할 표·그림·실험: 주차별 실험표, metrics_summary.csv 기반 그래프, config/seed/run_log 재현성 증거를 표·그림 후보로 반영한다.
+3. 이 주차가 RAG 문서 오염/LLM 보안 감사 프레임워크와 연결되는 지점: 문서 오염, 프롬프트/컨텍스트 변조, 모델·운영 로그 감사 항목을 분리하는 LLM 보안 감사 체크포인트와 연결된다.
+<!-- AUTO-WEEKLY-BRIDGE-CHECK:end -->

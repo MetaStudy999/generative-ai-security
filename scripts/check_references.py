@@ -16,20 +16,27 @@ def emit(status: str, message: str) -> None:
     print(f"[{status}] {message}")
 
 
-def parse_reference_rows(text: str) -> list[list[str]]:
-    rows: list[list[str]] = []
+def parse_reference_rows(text: str) -> list[dict[str, str]]:
+    rows: list[dict[str, str]] = []
+    header: list[str] = []
     for line in text.splitlines():
         stripped = line.strip()
         if not stripped.startswith("|") or "---" in stripped:
             continue
         cells = [cell.strip() for cell in stripped.strip("|").split("|")]
-        if len(cells) >= 7 and cells[0].isdigit():
-            rows.append(cells)
+        if not cells:
+            continue
+        if cells[0] in {"번호", "No", "No."}:
+            header = cells
+            continue
+        if header and cells[0].isdigit():
+            rows.append({header[idx]: cells[idx] for idx in range(min(len(header), len(cells)))})
     return rows
 
 
 def is_confirmed(status: str) -> bool:
-    return status.replace("`", "").strip() == "확인"
+    normalized = status.replace("`", "").strip().upper()
+    return normalized in {"확인", "확인 완료", "VERIFIED"}
 
 
 def main() -> int:
@@ -39,10 +46,10 @@ def main() -> int:
 
     text = TARGET.read_text(encoding="utf-8")
     rows = parse_reference_rows(text)
-    domestic_rows = [row for row in rows if row[1] == "국내"]
-    international_rows = [row for row in rows if row[1] == "해외"]
-    domestic_confirmed = [row for row in domestic_rows if is_confirmed(row[4])]
-    international_confirmed = [row for row in international_rows if is_confirmed(row[4])]
+    domestic_rows = [row for row in rows if row.get("구분") == "국내"]
+    international_rows = [row for row in rows if row.get("구분") == "해외"]
+    domestic_confirmed = [row for row in domestic_rows if is_confirmed(row.get("상태", ""))]
+    international_confirmed = [row for row in international_rows if is_confirmed(row.get("상태", ""))]
     has_needs_check = "확인 필요" in text
     has_partial_check = "부분 확인" in text
     doi_matches = DOI_RE.findall(text)

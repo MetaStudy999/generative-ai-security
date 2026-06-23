@@ -14,7 +14,7 @@ compose:
 verify:
 	docker run --rm -it --gpus all -v "$$PWD":/workspace aisec-uv-cuda132 python scripts/verify_gpu.py
 
-check: refs submission ai
+check: refs ai submission
 	@echo "All checks completed."
 
 refs:

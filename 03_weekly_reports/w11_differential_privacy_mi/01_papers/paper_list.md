@@ -1,15 +1,26 @@
 # W11 논문 목록
 
 > 최종 판정 우선: 이 문서의 현재 상태는 `논문/관련 논문 최종 반영표`를 우선한다. 상단의 제목·저자·로컬 PDF 차이 메모는 오류 판정이 아니라 검증 이력이며, `관련 논문 / 확인`은 주차 주제에 맞는 공식 확인 논문으로 사용한다.
-
+>
+> 2026-06-24 기준: `02_paper_summaries/P01_summary.md` ~ `P05_summary.md`는 100점형 구조로 보완 완료했다. 수식은 GitHub, MS Word, PDF 변환 호환성을 위해 Markdown 표 밖의 LaTeX block math로 작성했다.
 
 | ID | 구분 | 논문 제목 | 저자 | 공식 출판정보 | 로컬 PDF | DOI/URL 상태 |
 |---|---|---|---|---|---|---|
-| P01 | 지정 논문/로컬 PDF 주제 일치 | A Critical Review on the Use (and Misuse) of Differential Privacy in Machine Learning | Alberto Blanco-Justicia, David Sanchez, Josep Domingo-Ferrer, Krishnamurty Muralidhar | ACM Computing Surveys 55(8), pp. 1-16, online 2022-12-23, print 2023-08-31 | `01_Blanco_Justicia_et_al_2022_Differential_Privacy_Critical_Review.pdf`는 arXiv v2 | DOI `10.1145/3547139`; arXiv `2206.04621` |
-| P02 | 지정 논문/로컬 PDF 제목 일치, 강의 표기 보정 필요 | Recent Advances of Differential Privacy in Centralized Deep Learning: A Systematic Survey | Lea Demelius, Roman Kern, Andreas Trugler | ACM Computing Surveys 57(6), pp. 1-28, online 2025-02-10, print 2025-06-30 | `02_Demelius_et_al_2025_Centralized_Deep_Learning_DP_Survey.pdf`는 arXiv v1 | DOI `10.1145/3712000`; arXiv `2309.16398`; `Jonathan Demelius` 표기 확인되지 않음 |
-| P03 | 강의자료 표기와 로컬 PDF 차이 | Differential privacy in deep learning: A literature survey | Crossref 기준 Ke Pan, Yew-Soon Ong, Maoguo Gong, Hui Li, A.K. Qin, Yuan Gao | Neurocomputing 589, Article 127663, 2024-07 | `03_RELATED_Fu_et_al_2024_Differentially_Private_FL_Review.pdf`는 Fu et al.의 DP-FL systematic review | DOI `10.1016/j.neucom.2024.127663`; 최종 반영표 기준 공식 출판정보로 정리; 강의자료의 `Zizheng Pan et al.` 표기 최종 추가 확인 메모 |
-| P04 | 지정 논문/로컬 PDF 주제 일치 | Membership Inference Attacks on Machine Learning: A Survey | Hongsheng Hu, Zoran Salcic, Lichao Sun, Gillian Dobbie, Philip S. Yu, Xuyun Zhang | ACM Computing Surveys 54(11s), pp. 1-37, print 2022-01-31, online 2022-09-09 | `04_Hu_et_al_2022_Membership_Inference_Attacks_Survey.pdf`는 arXiv/ACM preprint | DOI `10.1145/3523273`; arXiv `2103.07853` |
-| P05 | 강의자료 표기와 로컬 PDF 차이, 강의 표기 보정 필요 | Defenses to Membership Inference Attacks: A Survey | Crossref 기준 Li Hu, Anli Yan, Hongyang Yan, Jin Li, Teng Huang, Yingying Zhang, Changyu Dong, Chunsheng Yang | ACM Computing Surveys 56(4), pp. 1-34, online 2023-11-10, print 2024-04-30 | `05_RELATED_Bai_et_al_2024_MIA_Attacks_Defenses_FL_Survey.pdf`는 Bai et al.의 FL-MIA survey | DOI `10.1145/3620667`; 최종 반영표 기준 공식 출판정보로 정리; 강의자료의 `Hongsheng Hu et al.` 표기 최종 추가 확인 메모 |
+| P01 | 지정 논문/로컬 PDF 주제 일치 | A Critical Review on the Use (and Misuse) of Differential Privacy in Machine Learning | Alberto Blanco-Justicia, David Sanchez, Josep Domingo-Ferrer, Krishnamurty Muralidhar | ACM Computing Surveys 55(8), pp. 1-16, online 2022-12-23, print 2023-08-31 | `01_Blanco_Justicia_et_al_2022_Differential_Privacy_Critical_Review.pdf`는 arXiv v2 | DOI `10.1145/3547139`; arXiv `2206.04621`; 100점형 summary 보완 완료 |
+| P02 | 지정 논문/로컬 PDF 제목 일치, 강의 표기 보정 필요 | Recent Advances of Differential Privacy in Centralized Deep Learning: A Systematic Survey | Lea Demelius, Roman Kern, Andreas Trugler | ACM Computing Surveys 57(6), pp. 1-28, online 2025-02-10, print 2025-06-30 | `02_Demelius_et_al_2025_Centralized_Deep_Learning_DP_Survey.pdf`는 arXiv v1 | DOI `10.1145/3712000`; arXiv `2309.16398`; `Jonathan Demelius` 표기 확인되지 않음; 100점형 summary 보완 완료 |
+| P03 | 강의자료 표기와 로컬 PDF 차이 | Differential privacy in deep learning: A literature survey | Crossref 기준 Ke Pan, Yew-Soon Ong, Maoguo Gong, Hui Li, A.K. Qin, Yuan Gao | Neurocomputing 589, Article 127663, 2024-07 | `03_RELATED_Fu_et_al_2024_Differentially_Private_FL_Review.pdf`는 Fu et al.의 DP-FL systematic review | DOI `10.1016/j.neucom.2024.127663`; 최종 반영표 기준 공식 출판정보로 정리; 강의자료의 `Zizheng Pan et al.` 표기 최종 추가 확인 메모; 100점형 summary 보완 완료 |
+| P04 | 지정 논문/로컬 PDF 주제 일치 | Membership Inference Attacks on Machine Learning: A Survey | Hongsheng Hu, Zoran Salcic, Lichao Sun, Gillian Dobbie, Philip S. Yu, Xuyun Zhang | ACM Computing Surveys 54(11s), pp. 1-37, print 2022-01-31, online 2022-09-09 | `04_Hu_et_al_2022_Membership_Inference_Attacks_Survey.pdf`는 arXiv/ACM preprint | DOI `10.1145/3523273`; arXiv `2103.07853`; 100점형 summary 보완 완료 |
+| P05 | 강의자료 표기와 로컬 PDF 차이, 강의 표기 보정 필요 | Defenses to Membership Inference Attacks: A Survey | Crossref 기준 Li Hu, Anli Yan, Hongyang Yan, Jin Li, Teng Huang, Yingying Zhang, Changyu Dong, Chunsheng Yang | ACM Computing Surveys 56(4), pp. 1-34, online 2023-11-10, print 2024-04-30 | `05_RELATED_Bai_et_al_2024_MIA_Attacks_Defenses_FL_Survey.pdf`는 Bai et al.의 FL-MIA survey | DOI `10.1145/3620667`; 최종 반영표 기준 공식 출판정보로 정리; 강의자료의 `Hongsheng Hu et al.` 표기 최종 추가 확인 메모; 100점형 summary 보완 완료 |
+
+## 100점형 summary 반영 상태
+
+| ID | 보완 상태 | 추가된 핵심 요소 |
+|---|---|---|
+| P01 | 완료 | DP 정의식, epsilon/delta 해석, DP 오용 방지, privacy-utility trade-off |
+| P02 | 완료 | DP-SGD, gradient clipping, noise addition, privacy accountant, utility drop |
+| P03 | 완료 / 로컬 PDF 차이 | DP deep learning survey, utility drop, official DOI 기준 서지 관리 |
+| P04 | 완료 | MI advantage, attack accuracy, black/white-box MIA 위협모형 |
+| P05 | 완료 / 로컬 PDF 차이 | defense gain, utility loss, MIA 방어 taxonomy, DP/regularization/output restriction |
 
 ## 검증 메모
 

@@ -18,5 +18,5 @@
 
 ## 관리 원칙
 
-- 최종 제목은 [paper_metadata.yaml](/home/ubuntu/generative-ai-security/04_final_paper/01_planning/paper_metadata.yaml)에서 관리한다.
+- 최종 제목은 [paper_metadata.yaml](paper_metadata.yaml)에서 관리한다.
 - 원고와 제출 파일명은 최종 제출 직전에 메타데이터와 일치하는지 확인한다.

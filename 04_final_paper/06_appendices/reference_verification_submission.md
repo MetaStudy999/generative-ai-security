@@ -1,6 +1,6 @@
 # 참고문헌 검증표
 
-최종 관리본: [04_final_paper/06_appendices/reference_verification.md](/home/ubuntu/generative-ai-security/04_final_paper/06_appendices/reference_verification.md)
+최종 관리본: [reference_verification.md](reference_verification.md)
 
 검증일: 2026-06-23
 

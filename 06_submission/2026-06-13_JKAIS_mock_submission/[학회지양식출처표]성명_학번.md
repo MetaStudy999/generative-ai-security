@@ -10,7 +10,7 @@
 | KCI 확인 URL | https://www.kci.go.kr/kciportal/po/search/poCitaView.kci?sereId=001653 |
 | 논문투고 안내 URL | https://www.kais99.org/paper/korea/korea.kais |
 | 양식 자료실 URL | https://www.kais99.org/paper/data/list.kais |
-| 논문 양식 다운로드 URL | POST https://www.kais99.org/download/download.kais (`filePath=/data/jkais/ROOT/kais99//down/`, `fileName=Audit.zip`), POST https://www.kais99.org/download/download.kais (`filePath=/data/jkais/ROOT/kais99/down/`, `fileName=final.zip`) |
+| 논문 양식 다운로드 | [양식 자료실](https://www.kais99.org/paper/data/list.kais)에서 다운로드. 서버 POST 엔드포인트: `https://www.kais99.org/download/download.kais` (`filePath=/data/jkais/ROOT/kais99//down/`, `fileName=Audit.zip`; `filePath=/data/jkais/ROOT/kais99/down/`, `fileName=final.zip`) |
 | 투고/심사/윤리규정 URL | https://www.kais99.org/paper/info/info.kais |
 | 연구윤리규정 URL | https://www.kais99.org/paper/info/info.kais |
 | 확인일 | 2026-06-23 |

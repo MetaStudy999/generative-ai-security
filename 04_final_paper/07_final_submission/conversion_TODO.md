@@ -14,12 +14,12 @@
 
 ## 변환 방식
 
-시스템 패키지 설치는 `sudo` 비밀번호 요구로 진행하지 못했다. 대신 프로젝트 `.venv`에 `python-docx`와 `reportlab`를 설치하고 [04_final_paper/05_draft/build_docx_pdf.py](/home/ubuntu/generative-ai-security/04_final_paper/05_draft/build_docx_pdf.py)로 DOCX/PDF 초안을 생성했다.
+시스템 패키지 설치는 `sudo` 비밀번호 요구로 진행하지 못했다. 대신 프로젝트 `.venv`에 `python-docx`와 `reportlab`를 설치하고 [04_final_paper/05_draft/build_docx_pdf.py](../05_draft/build_docx_pdf.py)로 DOCX/PDF 초안을 생성했다.
 
 ## 수동 절차
 
 1. `04_final_paper/00_journal_format/journal_template/심사용논문서식-국문(2019).hwp` 또는 `04_final_paper/00_journal_format/journal_template/최종논문서식-국문[2019].hwp`를 연다.
-2. [04_final_paper/05_draft/JKAIS_paper_draft.md](/home/ubuntu/generative-ai-security/04_final_paper/05_draft/JKAIS_paper_draft.md)의 내용을 공식 양식에 맞게 붙여 넣는다.
+2. [04_final_paper/05_draft/JKAIS_paper_draft.md](../05_draft/JKAIS_paper_draft.md)의 내용을 공식 양식에 맞게 붙여 넣는다.
 3. 저자명, 소속, 학번, 교신저자 정보를 입력한다.
 4. 표와 그림 제목이 JKAIS 요구대로 영문 제목인지 확인한다.
 5. HWP 또는 DOCX 원본을 저장한다.

@@ -1,70 +1,116 @@
-# 논문 요약
+# P05 Summary
 
-## 1. 서지정보
+## Deepfake Detection: A Comprehensive Survey from the Reliability Perspective — Tianyi Wang et al., ACM Computing Surveys, 2025
 
-| 항목 | 내용 |
-|---|---|
-| 논문 제목 | Deepfake Detection: A Comprehensive Survey from the Reliability Perspective |
-| 저자 | Tianyi Wang, Xin Liao, Kam Pui Chow, Xiaodong Lin, Yinglong Wang |
-| 학술지/학회 | ACM Computing Surveys |
-| 출판 정보 | Vol. 57, No. 3, pages 1-35, online 2024-11-11, print issue 2025-03-31 |
-| 연도 | 2024 online / 2025 print issue |
-| DOI/URL | https://doi.org/10.1145/3699710, https://arxiv.org/abs/2211.10881 |
-| PDF 파일명 | 05_Wang_et_al_2024_Deepfake_Detection_Reliability_Survey.pdf |
-| 검증 상태 | DOI/URL 확인, 강의계획서 `J. Wang et al.` 표기 대응 확인 필요 |
-
-## 2. 한 문장 요약
-
-> 이 논문은 deepfake detection을 reliability 관점에서 재정리하며, transferability, interpretability, robustness가 실제 포렌식 활용의 핵심 조건임을 제시한다.
-
-## 3. 연구문제
-
-딥페이크 탐지기는 benchmark 성능이 높아도 unseen dataset, 압축, post-processing, 실제 사건 맥락에서 신뢰성을 잃을 수 있다. 이 논문은 탐지 모델의 reliability를 어떻게 정의하고, 임의의 의심 사례에 대해 어떤 근거로 판단할 수 있는지 묻는다.
-
-## 4. 핵심 개념
-
-| 개념 | 설명 | 기말 논문 연결 |
-|---|---|---|
-| Transferability | 학습 데이터 밖 생성기·데이터셋으로 일반화 | cross-domain generalization |
-| Interpretability | 탐지 판단의 근거 설명 가능성 | 포렌식 신뢰성 |
-| Robustness | 압축·노이즈·후처리에 대한 안정성 | 보안 평가 조건 |
-| Reliability metric | 탐지 결과를 실제 사용 맥락에서 신뢰할 수 있는지 평가 | W06 toy 실험 |
-| Case study | 실제 사건 맥락에서 탐지기 사용 가능성 검토 | 보안적 함의 |
-
-## 5. 방법론
-
-기존 deepfake detection 연구를 reliability 중심으로 재분류한다. 본 W06 실험은 이 관점을 축소해, synthetic score distribution에서 in-domain과 cross-domain 성능 차이, review-band triage 효과를 수치로 기록했다.
-
-### 5.1 핵심 수식 또는 알고리즘 설명
+## 0. 문헌 검증 상태
 
 | 항목 | 내용 |
 |---|---|
-| 수식/알고리즘 이름 | Reliability 관점 Balanced Error |
-| 원문 위치 | 논문 세부 절/쪽/그림/알고리즘 번호 확인 필요. 로컬 DOI/URL 점검표로 문헌 대응만 확인. |
-| 작성 형식 | Markdown + LaTeX math |
-| 검산 도구 | 사용 안 함 |
-| 수식 또는 절차 | 표준 정의식 / 원문 직접 인용 아님.<br>$$BalancedError=\frac{FPR+FNR}{2}$$ |
-| 기호·입력·출력 | FPR: 정상 콘텐츠 오탐률, FNR: deepfake 미탐률 |
-| 직관적 의미 | Reliability 관점 Balanced Error는 Diffusion/GAN·Deepfake 평가에서 핵심 원리나 평가 지표를 정량적으로 해석하기 위한 표준식이다. |
-| 보안 관점 해석 | Diffusion/GAN·Deepfake 평가에서는 정상 성능과 보안 실패 조건을 분리해 보아야 한다. 이 항목은 공격·방어 원리 또는 운영 통제의 평가 기준을 명시하되, 실제 공격 절차나 무단 적용 단계는 포함하지 않는다. |
-| 평가 지표와 연결 | FPR, FNR, balanced error, compression robustness |
-| 한계와 가정 | 표준 정의식 / 원문 직접 인용 아님. 논문별 변형, 정확한 수식 번호, 실험 설정은 원문 PDF에서 확인 필요다. |
-| 기말 논문 반영 여부 | 반영 |
+| 주차 | W06 확률생성모형(Diffusion/GAN) & 딥페이크 검출 |
+| 논문명 | Deepfake Detection: A Comprehensive Survey from the Reliability Perspective |
+| 저자 | Tianyi Wang et al. |
+| 학술지 | ACM Computing Surveys |
+| 권호/쪽 | Vol. 57, No. 3, pp. 1–35 |
+| 연도 | online 2024 / print 2025 |
+| DOI | https://doi.org/10.1145/3699710 |
+| 보조 URL | https://arxiv.org/abs/2211.10881 |
+| 로컬 PDF | `01_papers/pdf/05_Wang_et_al_2024_Deepfake_Detection_Reliability_Survey.pdf` |
+| 검증 상태 | W06 `paper_list.md` 기준 DOI/URL 확인. 강의계획서 저자 축약/오기 가능성 메모 유지 |
 
-## 6. 주요 결과
+---
 
-Deepfake detection의 주요 과제는 transferability, interpretability, robustness로 요약된다. 특히 실제 포렌식에서는 단일 confidence score보다 불확실 구간의 human review, false positive/false negative trade-off가 중요하다.
+## 1. 한 문장 요약
 
-## 7. 보안 관점 분석
+이 논문은 딥페이크 검출을 단순 이진분류가 아니라 **generalization, robustness, interpretability, calibration, fairness, open-set detection, reliability** 관점에서 재정의하고, W06에서 검출기의 실제 운영 신뢰성을 평가하는 핵심 기준을 제공한다.
 
-P05는 W06 실험 설계와 가장 직접적으로 연결된다. cross-domain reliability stress에서 accuracy가 0.816667로 낮아지고 FNR이 0.200000으로 증가한 결과는, 탐지기 신뢰성을 domain shift 관점에서 분리 기록해야 함을 보여주는 toy 근거다.
+---
 
-## 8. 한계와 오픈문제
+## 2. 핵심 연구질문
 
-본 보고서의 실험은 실제 deepfake benchmark가 아닌 synthetic score 분포다. 따라서 P05의 reliability 개념을 설명하는 데만 사용하며, 실제 법적·포렌식 증거능력을 주장하지 않는다.
+| 번호 | 연구질문 |
+|---|---|
+| RQ1 | 딥페이크 검출기의 높은 in-domain 성능이 실제 환경 신뢰성을 보장하지 않는 이유는 무엇인가? |
+| RQ2 | 생성기·데이터셋·압축·플랫폼 변화가 검출 일반화에 어떤 영향을 주는가? |
+| RQ3 | Robustness, calibration, interpretability, fairness는 검출 reliability와 어떻게 연결되는가? |
+| RQ4 | 실제 운영 검출 시스템은 threshold, human review, provenance evidence를 어떻게 기록해야 하는가? |
 
-출판사 기준 첫 저자는 `Tianyi Wang`으로 확인된다. 강의계획서의 `J. Wang et al.` 표기는 현재 확인된 출판사 메타데이터와 다르므로 최종 제출 전 강의계획서 표기와 매칭 여부를 확인한다.
+---
 
-## 9. 기말 논문에 반영할 부분
+## 3. 핵심 수식
 
-기말 논문에서는 P05의 reliability 관점을 평가 프레임워크 핵심으로 삼고, FPR/FNR, AUROC, ECE, review rate, auto coverage를 함께 기록하는 절차를 제시한다.
+### 3.1 Reliability-Aware Detection Risk
+
+$$
+Risk_{det}=\alpha FN+\beta FP+\gamma ECE+\lambda Cost
+$$
+
+| 기호 | 의미 |
+|---|---|
+| $FN$ | fake를 real로 놓치는 미탐 |
+| $FP$ | real을 fake로 오탐 |
+| $ECE$ | Expected Calibration Error |
+| $Cost$ | 검출 지연·검토 비용 |
+
+### 3.2 Calibration Error
+
+$$
+ECE=\sum_{m=1}^{M}\frac{|B_m|}{n}\left|acc(B_m)-conf(B_m)\right|
+$$
+
+**보안 해석:** 검출 확률이 과신되면 운영자가 잘못된 판단을 내릴 수 있다. 딥페이크 검출은 맞고 틀림뿐 아니라 confidence calibration도 평가해야 한다.
+
+---
+
+## 4. Reliability 평가축
+
+| 축 | 의미 |
+|---|---|
+| Generalization | 보지 못한 생성기·데이터셋에서 성능 유지 |
+| Robustness | 압축·노이즈·크롭·재인코딩 후 성능 유지 |
+| Interpretability | 검출 근거가 artifact나 의미 있는 단서인지 설명 가능 |
+| Calibration | confidence가 실제 정확도와 일치하는지 |
+| Fairness | 얼굴 속성·조명·품질·집단별 성능 편차 점검 |
+| Open-set | 새로운 생성 방식 등장 시 unknown 처리 가능성 |
+
+---
+
+## 5. 위협모형
+
+| 항목 | 내용 |
+|---|---|
+| 보호 대상 | 검출기 신뢰성, 검출 로그, 실제 영상, 합성 영상, 사용자 권리 |
+| 공격자 목표 | 검출 회피, 낮은 품질 변환으로 detector 무력화, false accusation 유도 |
+| 공격자 능력 | 압축, blur, crop, noise, adversarial post-processing, 생성기 변경 |
+| 방어자 능력 | cross-dataset test, calibration, human review, provenance 확인 |
+| 제외 범위 | 실제 딥페이크 배포, 개인 영상 수집, 검출기 우회 절차 제공 |
+
+---
+
+## 6. 평가방법 및 지표
+
+| 지표 | 의미 |
+|---|---|
+| AUC / F1 | 기본 검출 성능 |
+| Cross-dataset AUC | 일반화 성능 |
+| Robustness Drop | 변환 후 성능 하락 |
+| ECE | calibration 품질 |
+| FPR/FNR | 오탐·미탐 비용 |
+| Subgroup Performance | 집단별 성능 편차 |
+| Explanation Consistency | 설명 근거 안정성 |
+| Provenance Coverage | 생성·편집·검토 로그 보존 정도 |
+
+---
+
+## 7. 재현성·기말논문 연결
+
+| 항목 | 반영 내용 |
+|---|---|
+| 재현성 | 데이터셋 버전, 생성기, 압축 조건, threshold, detector checkpoint 기록 |
+| 한계 | 실험실 성능을 소셜미디어·실제 수사·법적 판단 성능으로 과장하지 않음 |
+| 기말논문 | 딥페이크 검출 reliability 평가표, calibration, human-in-the-loop 설계에 반영 |
+
+---
+
+## 8. 최종 판단
+
+P05는 W06의 검출 신뢰성 핵심 문헌이다. P04가 딥페이크 생성·검출 taxonomy를 제공한다면 P05는 실제 운영 신뢰성, 일반화, calibration, robustness를 평가하는 기준을 제공한다.

@@ -8,9 +8,9 @@
 
 API 뒤에 모델이 숨겨져 있어도 출력은 계속 노출됩니다. 그래서 입력과 출력을 반복해서 모으면 모델 행동을 어느 정도 모방할 수 있습니다. 동시에 워터마크 검출률이 높다고 해서 바로 강한 증거가 되는지도 따져봐야 합니다.
 
-## 3. 문헌 역할
+## 3. 문헌 역할과 검증 상태
 
-P01은 모델 도난과 추출 taxonomy를 제공합니다. P03은 DNN 워터마킹의 trade-off를 설명합니다. P04는 ModelShield로 extraction 이후 소유권 검증을 다룹니다. P02와 P05는 로컬 PDF가 대체 문헌이라 보조 배경으로만 사용했습니다.
+P01은 모델 도난과 추출 taxonomy를 제공하며 DOI가 확인됐습니다. P03은 DNN 워터마킹 trade-off 문헌으로 DOI가 확인됐지만 강의계획서 표기 차이가 남아 있습니다. P04는 ModelShield로 extraction 이후 소유권 검증을 다루며 IEEE TIFS DOI가 확인됐습니다. P02와 P05는 로컬 PDF가 대체 문헌이라 보조 배경으로만 사용했습니다.
 
 ## 4. AI 원리
 
@@ -28,7 +28,7 @@ P01은 모델 도난과 추출 taxonomy를 제공합니다. P03은 DNN 워터마
 
 query 100에서는 fidelity 0.864000, detection 0.700000입니다. query 500에서는 fidelity 0.920000, detection 1.000000입니다. query 1000에서는 fidelity 0.902000입니다. 1NN toy 구조라 단조 증가가 보장되지는 않습니다.
 
-## 8. 해석
+## 8. False Positive 해석
 
 중요한 점은 false positive proxy가 0.600000으로 높다는 것입니다. 즉, detection이 높아도 오탐이 높으면 소유권 주장이 약합니다. 이 결과는 방어 성공 선언이 아니라 평가표에 FPR을 포함해야 한다는 근거입니다.
 

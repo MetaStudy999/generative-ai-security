@@ -355,7 +355,7 @@ def run(config: dict[str, Any]) -> dict[str, Any]:
             "watermark_detection": trigger_detection(victim_predict, triggers),
             "false_positive_rate": false_positive_rate,
             "utility_accuracy": victim_accuracy,
-            "interpretation": "Trigger-set check is evidence for ownership in this toy setting only.",
+            "interpretation": "Trigger-set check is a toy ownership signal check, not ownership evidence.",
         }
     )
 

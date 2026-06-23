@@ -1,6 +1,6 @@
 # W13 모델 지식재산·모델 도난·모델 추출 위협
 
-모델 추출 위험은 fidelity로, 소유권 검증은 detection과 false positive로 본다.
+모델 추출 위험은 fidelity로, 소유권 검증은 detection과 false positive를 함께 본다.
 
 ---
 
@@ -12,15 +12,15 @@
 
 ---
 
-## 문헌 5편의 역할
+## 문헌 5편의 상태
 
-| 문헌 | 역할 |
-|---|---|
-| P01 | model stealing taxonomy |
-| P02 | LLM watermarking |
-| P03 | DNN watermarking trade-off |
-| P04 | ModelShield |
-| P05 | GAN privacy/security |
+| 문헌 | 역할 | 검증 상태 |
+|---|---|---|
+| P01 | model stealing taxonomy | DOI `10.1145/3595292` 확인 |
+| P02 | watermarking/fingerprinting | 현재 LLM watermarking SUBSTITUTE |
+| P03 | DNN watermarking trade-off | DOI `10.1016/j.neucom.2021.07.051` 확인, 표기 차이 |
+| P04 | ModelShield | DOI `10.1109/TIFS.2025.3530691` 확인 |
+| P05 | GAN attack/defense | 현재 GAN privacy/security SUBSTITUTE |
 
 ---
 
@@ -62,13 +62,24 @@
 | Query 500 | 0.920000 | 0.840000 | 1.000000 | 0.600000 |
 | Query 1000 | 0.902000 | 0.822000 | 1.000000 | 0.600000 |
 
+Baseline victim utility accuracy: 0.868000
+
 ---
 
-## 해석
+## False Positive 해석
 
-- query-response만으로 victim behavior에 접근할 수 있다.
-- detection이 높아도 false positive가 높으면 소유권 증거가 약하다.
-- 본 결과는 실제 API가 아닌 synthetic toy 평가다.
+- detection이 1.000000이어도 FPR이 0.600000이면 소유권 증거가 약하다.
+- clean control, unrelated model, random trigger, multiple seeds가 필요하다.
+- 본 결과는 “소유권 검증 성공”이 아니라 “FPR을 함께 기록해야 한다”는 교육용 근거다.
+
+---
+
+## 안전 범위
+
+- 실제 API 공격 아님
+- 실제 LLM 또는 상용 모델 탈취 아님
+- 무단 대량 질의 없음
+- 개인정보 기반 평가 없음
 
 ---
 

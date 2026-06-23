@@ -1,13 +1,9 @@
 [project]
 name = "w13-model-stealing-watermarking-experiment"
 version = "0.1.0"
-description = "Week 13 AI security experiment environment"
+description = "Week 13 AI security toy experiment environment"
 requires-python = ">=3.11,<3.12"
 dependencies = [
-    "numpy",
-    "pandas",
-    "scikit-learn",
-    "matplotlib",
     "pyyaml",
 ]
 

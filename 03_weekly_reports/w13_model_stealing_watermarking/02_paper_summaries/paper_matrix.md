@@ -1,27 +1,25 @@
 # W13 논문 5편 비교표
 
-| 논문 | 연구문제 | 핵심 방법 | 데이터/실험 | 보안 위협 | 평가 지표 | 한계 | 내 논문 활용 |
-|---|---|---|---|---|---|---|---|
-| P01 | 모델 도난/추출 공격과 방어를 어떻게 체계화할 것인가 | model stealing taxonomy, attack/defense guideline | 문헌조사, 원문 세부 표 대조 필요 | model stealing, model extraction | fidelity, query cost, attack goal, defense coverage | 최신 LLM 방어는 추가 문헌 필요 | 위협모형과 query budget 지표 |
-| P02 | LLM 생성물과 모델 IP를 watermarking으로 어떻게 추적할 것인가 | LLM watermarking survey, modality/function 분류 | 문헌조사, 대체 PDF | watermark removal, paraphrasing, semantic shift | detection, robustness, quality, system cost | 프롬프트 지정 P02와 로컬 PDF 불일치 | LLM watermarking 보조 배경 |
-| P03 | DNN watermarking의 요구조건과 taxonomy는 무엇인가 | fidelity-robustness-capacity trade-off, static/dynamic 분류 | 문헌조사 | watermark removal, forgery, false positive | fidelity, robustness, capacity, detection reliability | LLM extraction 방어는 추가 문헌 필요 | 워터마크 평가 지표 정의 |
-| P04 | 모델 추출 이후에도 LLM 소유권 신호를 검출할 수 있는가 | ModelShield, self-watermarking, robust detection | PDF 기준 LLM/QA 벤치마크 실험, 수치 원문 대조 필요 | imitation/model extraction | watermark detection, robustness, quality degradation | 법적 증거력과 adaptive removal 기준 필요 | toy trigger-set 실험의 직접 배경 |
-| P05 | 생성모형을 privacy/security 관점에서 어떻게 분류할 것인가 | GAN privacy/security survey | 문헌조사, 대체 PDF | 생성모형 오용, 데이터 누출 | 적용 영역별 위험/효용 | 프롬프트 지정 P05와 로컬 PDF 불일치 | 생성모형 보호 자산 보조 배경 |
+| 논문 | 연구문제 | 핵심 방법 | 데이터/실험 | AI 원리 기여 | 보안 위협 연결 | 평가 지표 | 한계 | 내 논문 활용 |
+|---|---|---|---|---|---|---|---|---|
+| P01 | 모델 도난·모델 추출 공격과 방어를 어떻게 체계화할 것인가 | model stealing taxonomy, attack goal, defense selection guideline | 문헌조사, ACM CSUR DOI 확인 완료 | query-response learning, substitute model, fidelity 개념 | model extraction, query abuse, behavior leakage | extraction fidelity, query cost, attack goal, defense coverage | 최신 LLM/생성모형 방어는 추가 문헌 필요 | 위협모형과 query budget 지표 |
+| P02 | Deep learning model watermarking/fingerprinting 또는 LLM watermarking을 어떻게 분류할 것인가 | watermarking/fingerprinting survey, detection/robustness taxonomy | 현재 로컬 PDF는 LLM watermarking 대체 문헌 | watermark signal, fingerprint, traceability | watermark removal, paraphrasing, semantic shift, false positive | detection rate, robustness, quality, FPR, system cost | 지정 P02와 로컬 PDF 불일치 | LLM watermarking 보조 배경, 지정 논문처럼 인용 금지 |
+| P03 | DNN watermarking의 요구조건과 taxonomy는 무엇인가 | fidelity-robustness-capacity trade-off, static/dynamic watermarking 분류 | Neurocomputing 461, 171-193, DOI 확인 완료 | model watermark/fingerprint 기본 요구조건 | watermark removal, forgery, ownership ambiguity | fidelity, robustness, capacity, detection reliability, FPR | 강의계획서 저자명·제목 차이 확인 필요 | 워터마크 평가 지표 정의 |
+| P04 | 모델 추출 이후에도 소유권 신호를 안정적으로 검출할 수 있는가 | ModelShield, adaptive watermark, robust ownership check | IEEE TIFS 20, 1767-1782, DOI 확인 완료 | extraction 이후 watermark inheritance와 detection | imitation/model extraction, watermark removal | watermark detection, robustness, utility degradation, FPR | 법적 증거력·adaptive removal 기준 별도 필요 | toy trigger-set 실험의 직접 배경 |
+| P05 | GAN 또는 생성모형의 attack/defense와 privacy/security를 어떻게 분류할 것인가 | GAN security/privacy survey 또는 attack/defense survey | 현재 로컬 PDF는 GAN private/security application 대체 문헌 | generative model misuse, model/data leakage, provenance | 생성모형 오용, 데이터 누출, 생성물 출처 모호성 | application risk, privacy/security metric | 지정 P05와 로컬 PDF 불일치 | 생성모형 보호 자산 보조 배경, 지정 논문처럼 인용 금지 |
 
 ## 종합 비교
 
-### 1. 공통적으로 다루는 문제
+P01은 model stealing/extraction taxonomy 문헌이다. P02는 현재 LLM watermarking 대체 문헌이며, 지정 논문과 분리해야 한다. P03은 DNN watermarking 요구조건과 trade-off 문헌이다. P04는 extraction 이후 ownership check를 다루는 직접 관련 문헌이다. P05는 현재 GAN privacy/security 대체 문헌이며, 지정 논문과 분리해야 한다.
 
-다섯 문헌은 모델이 단순한 파일이 아니라 학습 데이터, 파라미터, 출력 행동, 생성물, 운영 로그가 결합된 지식재산이라는 점을 공유한다. 공격자는 query-response 쌍을 모아 모델 행동을 모방하거나, 워터마크를 제거·희석하거나, 생성물을 오용할 수 있다.
+W13의 핵심 연결부는 query budget, extraction fidelity, substitute accuracy, watermark detection, false positive rate, utility accuracy를 함께 보고하는 것이다. watermark detection이 높아도 false positive가 높으면 소유권 검증 신뢰도가 낮다. W13 toy 실험은 실제 API 공격이나 상용 모델 탈취가 아니라 synthetic query-response evaluation이다.
 
-### 2. 논문 간 차이점
+## False Positive 기반 차별성
 
-P01은 모델 도난 공격과 방어 taxonomy, P03은 DNN 워터마킹 이론, P04는 LLM extraction 이후 소유권 검출이라는 실전형 방어를 담당한다. P02와 P05는 로컬 확보본이 프롬프트 지정 문헌과 달라 LLM watermarking과 GAN privacy/security의 보조 문헌으로만 사용한다.
-
-### 3. 아직 해결되지 않은 문제
-
-워터마크 검출률이 높아도 false positive가 높으면 소유권 주장의 신뢰도가 약하다. 또한 watermarking은 모델 품질, 의미 보존, robustness, 운영 비용 사이의 trade-off를 만든다. 프롬프트 지정 문헌과 로컬 PDF 불일치도 최종 제출 전 해결해야 한다.
-
-### 4. 기말 논문 주제로 발전 가능한 연결부
-
-W13는 “query budget, extraction fidelity, watermark detection, false positive, utility loss를 함께 보고하는 모델 IP 보호 평가표”로 발전시키기 좋다. 실제 공격 절차는 배제하고 synthetic toy 실험과 문헌 기반 threat model로 제한한다.
+| 검증 항목 | 단독 해석 위험 | 보완 지표 |
+|---|---|---|
+| Watermark Detection | 높으면 소유권 증거처럼 보일 수 있음 | FPR, FNR, p-value, 대조군 |
+| False Positive Rate | 높으면 무관 모델도 소유 모델처럼 판단될 수 있음 | unrelated model control, random trigger control |
+| Extraction Fidelity | 높으면 추출 위험을 보여주지만 ownership 증거는 아님 | query budget, utility, trigger inheritance |
+| Utility Accuracy | 워터마크 삽입이 모델 성능을 해치지 않는지 확인 | clean accuracy, task score |
+| Query Budget | 공격 비용과 위험 노출 범위 | rate limit, monitoring, logging |

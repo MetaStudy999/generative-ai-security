@@ -4,15 +4,15 @@
 
 모델 추출 위험은 victim/substitute 출력 일치율인 fidelity로 보고, 워터마크 기반 소유권 검증은 detection rate와 false positive rate를 함께 봐야 한다.
 
-## 핵심 개념
+## 문헌 상태
 
-| 개념 | 의미 |
-|---|---|
-| Model IP | 파라미터, 구조, 학습 데이터, 출력 행동, 생성물 출처에 담긴 지식재산 |
-| Model extraction | query-response 쌍으로 원 모델 행동을 근사하는 대체 모델 학습 |
-| Watermarking | 모델 또는 생성물에 소유권 검증 신호를 삽입하는 기술 |
-| Extraction fidelity | victim과 substitute의 출력 일치율 |
-| False positive | 무관 모델이 워터마크 signature와 우연히 일치하는 경우 |
+| ID | 역할 | 상태 |
+|---|---|---|
+| P01 | model stealing taxonomy | DOI 확인 |
+| P02 | watermarking/fingerprinting | SUBSTITUTE, 원문 확보 필요 |
+| P03 | DNN watermarking trade-off | DOI 확인, 표기 차이 |
+| P04 | ModelShield | IEEE TIFS DOI 확인 |
+| P05 | GAN attack/defense | SUBSTITUTE, 지정 후보 DOI 확인 |
 
 ## 실험 결과
 
@@ -24,11 +24,9 @@
 
 Baseline victim utility accuracy는 0.868000이다. 실험은 synthetic toy 환경에서만 수행했으며 실제 API, 실제 LLM, 개인정보, 무단 질의는 포함하지 않는다.
 
-## 토론 포인트
+## False Positive 해석
 
-1. Detection이 높고 FPR도 높을 때 소유권 검증 기준은 어떻게 잡아야 하는가?
-2. Query budget을 보고할 때 공격 재현성과 악용 방지 사이의 균형은 어디에 둘 것인가?
-3. P02/P05처럼 대체 PDF가 있을 때 최종 참고문헌 검증표에는 무엇을 남겨야 하는가?
+FPR 0.600000은 trigger-set detection만으로 소유권을 강하게 주장하기 어렵다는 신호다. clean control, unrelated model, random trigger control, multiple seeds, statistical testing이 필요하다.
 
 ## 기말논문 연결
 

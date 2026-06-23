@@ -1,7 +1,8 @@
 # W02 논문 목록
 
 > 최종 판정 우선: 이 문서의 현재 상태는 `논문/관련 논문 최종 반영표`를 우선한다. 상단의 제목·저자·로컬 PDF 차이 메모는 오류 판정이 아니라 검증 이력이며, `관련 논문 / 확인`은 주차 주제에 맞는 공식 확인 논문으로 사용한다.
-
+>
+> 2026-06-24 기준: `02_paper_summaries/P01_summary.md` ~ `P05_summary.md`는 100점형 구조로 보완 완료했다. 수식은 GitHub, MS Word, PDF 변환 호환성을 위해 Markdown 표 밖의 LaTeX block math로 작성했다.
 
 ## 강의계획서 패킷 대조 결과
 
@@ -17,11 +18,21 @@
 
 | ID | 논문 제목 | 저자 | 연도 | 출처 | DOI/URL | 로컬 PDF | 확인 상태 |
 |---|---|---|---:|---|---|---|---|
-| P01 | Optimization Methods for Large-Scale Machine Learning | Leon Bottou, Frank E. Curtis, Jorge Nocedal | 2018 | SIAM Review, 60(2), 223-311 | `https://doi.org/10.1137/16M1080173` | `01_Bottou_Curtis_Nocedal_2018_Optimization_Methods_Large_Scale_ML.pdf` | DOI/권호/쪽 확인 완료 |
-| P02 | Efficient Deep Learning: A Survey on Making Deep Learning Models Smaller, Faster, and Better | Gaurav Menghani | 2023 | ACM Computing Surveys, 55(12), 1-37 | `https://doi.org/10.1145/3578938`; arXiv `https://arxiv.org/abs/2106.08962` | `02_Menghani_2023_Efficient_Deep_Learning_Survey.pdf` | ACM 최종판 DOI 확인 완료. Article 번호는 ACM 원문 페이지에서 최종 추가 확인 메모 |
-| P03 | A Comprehensive Survey on Poisoning Attacks and Countermeasures in Machine Learning | Zhiyi Tian, Lei Cui, Jie Liang, Shui Yu | 2022/2023 | ACM Computing Surveys, 55(8), 1-35 | `https://doi.org/10.1145/3551636` | `03_Tian_Cui_Liang_Yu_2023_Comprehensive_Poisoning_Survey.pdf` | DOI/저자명 확인 완료. 온라인/출판월 표기는 양식별 추가 확인 메모 |
-| P04 | Wild Patterns Reloaded: A Survey of Machine Learning Security against Training Data Poisoning | Antonio Emanuele Cina, Kathrin Grosse, Ambra Demontis, Sebastiano Vascon, Werner Zellinger, Bernhard A. Moser, Alina Oprea, Battista Biggio, Marcello Pelillo, Fabio Roli | 2023 | ACM Computing Surveys, 55(13s), 1-39 | `https://doi.org/10.1145/3585385`; arXiv `https://arxiv.org/abs/2205.01992` | `04_Cina_et_al_2023_Wild_Patterns_Reloaded_Poisoning_Survey.pdf` | ACM DOI 확인 완료. 단, 강의계획서의 "Training Data Poisoning Attacks and Defenses: A Systematic Review"와 제목 표기 차이가 있어 관련 논문/판본 차이 추가 확인 메모 |
-| P05 | A survey of backdoor attacks and defences: From deep neural networks to large language models | Ling-Xin Jin et al. | 2025 | Journal of Electronic Science and Technology, 23(3), Article 100326 | `https://doi.org/10.1016/j.jnlest.2025.100326` | `05_Jin_et_al_2025_Backdoor_Attacks_and_Defences_Survey.pdf` | DOI/저자명/학술지 확인 완료 |
+| P01 | Optimization Methods for Large-Scale Machine Learning | Leon Bottou, Frank E. Curtis, Jorge Nocedal | 2018 | SIAM Review, 60(2), 223-311 | `https://doi.org/10.1137/16M1080173` | `01_Bottou_Curtis_Nocedal_2018_Optimization_Methods_Large_Scale_ML.pdf` | DOI/권호/쪽 확인 완료. 100점형 summary 보완 완료 |
+| P02 | Efficient Deep Learning: A Survey on Making Deep Learning Models Smaller, Faster, and Better | Gaurav Menghani | 2023 | ACM Computing Surveys, 55(12), 1-37 | `https://doi.org/10.1145/3578938`; arXiv `https://arxiv.org/abs/2106.08962` | `02_Menghani_2023_Efficient_Deep_Learning_Survey.pdf` | ACM 최종판 DOI 확인 완료. 100점형 summary 보완 완료. Article 번호는 ACM 원문 페이지에서 최종 추가 확인 메모 |
+| P03 | A Comprehensive Survey on Poisoning Attacks and Countermeasures in Machine Learning | Zhiyi Tian, Lei Cui, Jie Liang, Shui Yu | 2022/2023 | ACM Computing Surveys, 55(8), 1-35 | `https://doi.org/10.1145/3551636` | `03_Tian_Cui_Liang_Yu_2023_Comprehensive_Poisoning_Survey.pdf` | DOI/저자명 확인 완료. 100점형 summary 보완 완료. 온라인/출판월 표기는 양식별 추가 확인 메모 |
+| P04 | Wild Patterns Reloaded: A Survey of Machine Learning Security against Training Data Poisoning | Antonio Emanuele Cina, Kathrin Grosse, Ambra Demontis, Sebastiano Vascon, Werner Zellinger, Bernhard A. Moser, Alina Oprea, Battista Biggio, Marcello Pelillo, Fabio Roli | 2023 | ACM Computing Surveys, 55(13s), 1-39 | `https://doi.org/10.1145/3585385`; arXiv `https://arxiv.org/abs/2205.01992` | `04_Cina_et_al_2023_Wild_Patterns_Reloaded_Poisoning_Survey.pdf` | ACM DOI 확인 완료. 100점형 summary 보완 완료. 단, 강의계획서의 "Training Data Poisoning Attacks and Defenses: A Systematic Review"와 제목 표기 차이가 있어 관련 논문/판본 차이 추가 확인 메모 |
+| P05 | A survey of backdoor attacks and defences: From deep neural networks to large language models | Ling-Xin Jin et al. | 2025 | Journal of Electronic Science and Technology, 23(3), Article 100326 | `https://doi.org/10.1016/j.jnlest.2025.100326` | `05_Jin_et_al_2025_Backdoor_Attacks_and_Defences_Survey.pdf` | DOI/저자명/학술지 확인 완료. 100점형 summary 보완 완료 |
+
+## 100점형 summary 반영 상태
+
+| ID | 보완 상태 | 추가된 핵심 요소 |
+|---|---|---|
+| P01 | 완료 | 기대위험, 경험위험, 오염 데이터 경험위험, SGD, mini-batch gradient, regularization, 최적화 기반 poisoning 해석 |
+| P02 | 완료 | utility-cost score, compression ratio, security-efficiency score, latency/size/memory/energy, 보안-효율 trade-off |
+| P03 | 완료 | poisoned ERM, poison rate, bilevel poisoning objective, clean accuracy-ASR 분리, poisoning taxonomy, defense metric |
+| P04 | 완료 / 검증 필요 | training data poisoning threat model, targeted poisoning objective, stealthiness, defense FPR, provenance checklist |
+| P05 | 완료 | backdoor trigger 함수, backdoor 학습 목적, ASR, utility drop, stealth risk, DNN-to-LLM hidden behavior 평가 |
 
 ## 작성 기준
 
@@ -37,7 +48,9 @@
 
 | ID | 구분 | 논문 제목 | 논문 | 저자 | 연도 | 학술지/학회 | 학술지/출처 | DOI/URL | 검증 상태 | 보고서 반영 |
 |---|---|---|---|---|---:|---|---|---|---|---|
+| P01 | 논문 / 확인 | Optimization Methods for Large-Scale Machine Learning | Optimization Methods for Large-Scale Machine Learning | Leon Bottou, Frank E. Curtis, Jorge Nocedal | 2018 | SIAM Review | SIAM Review | `https://doi.org/10.1137/16M1080173` | 공식 DOI 확인 | 공식 서지 기준으로 논문 인용 |
 | P02 | 논문 / 확인 | Efficient Deep Learning: A Survey on Making Deep Learning Models Smaller, Faster, and Better | Efficient Deep Learning: A Survey on Making Deep Learning Models Smaller, Faster, and Better | Gaurav Menghani | 2023 | ACM Computing Surveys | ACM Computing Surveys | `https://doi.org/10.1145/3578938` | 공식 DOI 확인 | 공식 서지 기준으로 논문 인용 |
 | P03 | 논문 / 확인 | A Comprehensive Survey on Poisoning Attacks and Countermeasures in Machine Learning | A Comprehensive Survey on Poisoning Attacks and Countermeasures in Machine Learning | Zhiyi Tian, Lei Cui, Jie Liang, Shui Yu | 2023 | ACM Computing Surveys | ACM Computing Surveys | `https://doi.org/10.1145/3551636` | 공식 DOI 확인 | 공식 서지 기준으로 논문 인용 |
-| P04 | 관련 논문 / 확인 | Wild Patterns Reloaded: A Survey of Machine Learning Security against Training Data Poisoning | Wild Patterns Reloaded: A Survey of Machine Learning Security against Training Data Poisoning | Antonio Emanuele Cina et al. | 2023 | ACM Computing Surveys | ACM Computing Surveys | `https://doi.org/10.1145/3585385` | 공식 DOI 확인 | 주차 주제 보강용 관련 논문으로 인용 |
+| P04 | 관련 논문 / 확인 | Wild Patterns Reloaded: A Survey of Machine Learning Security against Training Data Poisoning | Wild Patterns Reloaded: A Survey of Machine Learning Security against Training Data Poisoning | Antonio Emanuele Cina et al. | 2023 | ACM Computing Surveys | ACM Computing Surveys | `https://doi.org/10.1145/3585385` | 공식 DOI 확인. 강의계획서 지정 제목과 동일성 확인 필요 | 주차 주제 보강용 관련 논문으로 인용. 최종 제출 전 지정 논문 교체 여부 결정 |
+| P05 | 논문 / 확인 | A survey of backdoor attacks and defences: From deep neural networks to large language models | A survey of backdoor attacks and defences: From deep neural networks to large language models | Ling-Xin Jin et al. | 2025 | Journal of Electronic Science and Technology | Journal of Electronic Science and Technology | `https://doi.org/10.1016/j.jnlest.2025.100326` | 공식 DOI 확인 | 공식 서지 기준으로 논문 인용 |
 <!-- AUTO-RELATED-PAPER-REFLECTION:end -->

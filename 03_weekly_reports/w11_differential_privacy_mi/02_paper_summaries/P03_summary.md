@@ -1,67 +1,68 @@
-# P03 논문 요약
+# P03 Summary
 
-## 1. 서지정보
+## Differential privacy in deep learning: A literature survey — Ke Pan et al., Neurocomputing, 2024
 
-| 항목 | 내용 |
-|---|---|
-| 지정 논문 제목 | Differential Privacy in Deep Learning: A Literature Survey |
-| 지정 논문 저자 | 강의자료: Zizheng Pan et al.; Crossref 공식 메타데이터: Ke Pan, Yew-Soon Ong, Maoguo Gong, Hui Li, A.K. Qin, Yuan Gao |
-| 지정 논문 학술지 | Neurocomputing 589, Article 127663, 2024-07 |
-| 지정 논문 DOI | `10.1016/j.neucom.2024.127663` |
-| 로컬 PDF 제목 | Differentially Private Federated Learning: A Systematic Review |
-| 로컬 PDF 저자 | Jie Fu, Yuan Hong, Xinpeng Ling, Leixia Wang, Xun Ran, Zhiyu Sun, Wendy Hui Wang, Zhili Chen, Yang Cao |
-| PDF 파일명 | `03_RELATED_Fu_et_al_2024_Differentially_Private_FL_Review.pdf` |
-| 검증 상태 | DOI는 Neurocomputing 지정 논문과 연결됨. 단 강의자료 저자명 표기와 공식 메타데이터가 달라 최종 확인 필요. 로컬 PDF는 지정 논문과 표기 차이 |
-
-## 2. 한 문장 요약
-
-> 지정 논문은 deep learning 전반의 DP 적용을 다루는 문헌으로 쓰고, 현재 로컬 관련 논문 PDF는 FL에서 DP model, 보호 대상, privacy level을 구분하는 보완 문헌으로 사용한다.
-
-## 3. 연구문제
-
-딥러닝 또는 연합학습에서 DP가 어느 지점의 정보를 보호하는지, central DP/local DP/shuffle model의 차이가 threat model과 평가 지표에 어떤 차이를 만드는지를 묻는다.
-
-## 4. 핵심 개념
-
-| 개념 | 설명 | 기말 논문 연결 |
-|---|---|---|
-| Central DP | 신뢰 가능한 중앙 주체가 noise/accounting을 관리하는 가정 | 중앙 학습 위협모형 |
-| Local DP | 데이터 제공자 쪽에서 randomization을 수행하는 가정 | 사용자 단말 보호 |
-| Shuffle model | local randomization과 중앙 분석 사이의 중간 모델 | 시스템 설계 대안 |
-| FL privacy object | sample, client, update 등 보호 대상의 층위 구분 | W10/W11 연결 |
-
-## 5. 방법론
-
-지정 논문은 deep learning DP survey로 다루고, 로컬 관련 논문 PDF는 DP-FL systematic review로 별도 표시한다. 본 보고서에서는 관련 논문 PDF의 내용을 FL 확장 한계와 privacy object 분류에만 제한적으로 사용한다.
-
-### 5.1 핵심 수식 또는 알고리즘 설명
+## 0. 문헌 검증 상태
 
 | 항목 | 내용 |
 |---|---|
-| 수식/알고리즘 이름 | Gaussian Mechanism |
-| 원문 위치 | 논문 세부 절/쪽/그림/알고리즘 번호 확인 필요. 로컬 DOI/URL 점검표로 문헌 대응만 확인. |
-| 작성 형식 | Markdown + LaTeX math |
-| 검산 도구 | 사용 안 함 |
-| 수식 또는 절차 | 표준 정의식 / 원문 직접 인용 아님.<br>$$M(x)=f(x)+\mathcal{N}(0,\sigma^2\Delta_2(f)^2I)$$ |
-| 기호·입력·출력 | \(f\): 질의 또는 통계 함수, \(\Delta_2(f)\): L2 sensitivity, \(\sigma\): noise scale |
-| 직관적 의미 | Gaussian Mechanism는 Differential Privacy·Membership Inference 평가에서 핵심 원리나 평가 지표를 정량적으로 해석하기 위한 표준식이다. |
-| 보안 관점 해석 | Differential Privacy·Membership Inference 평가에서는 정상 성능과 보안 실패 조건을 분리해 보아야 한다. 이 항목은 공격·방어 원리 또는 운영 통제의 평가 기준을 명시하되, 실제 공격 절차나 무단 적용 단계는 포함하지 않는다. |
-| 평가 지표와 연결 | epsilon/delta, noise multiplier, utility drop, MI risk |
-| 한계와 가정 | 표준 정의식 / 원문 직접 인용 아님. 논문별 변형, 정확한 수식 번호, 실험 설정은 원문 PDF에서 확인 필요다. |
-| 기말 논문 반영 여부 | 반영 |
+| 주차 | W11 Differential Privacy & Membership Inference |
+| 논문명 | Differential privacy in deep learning: A literature survey |
+| 저자 | Ke Pan et al. |
+| 출판 정보 | Neurocomputing, 589, Article 127663, 2024 |
+| DOI | https://doi.org/10.1016/j.neucom.2024.127663 |
+| 검증 상태 | W11 `paper_list.md` 기준 공식 DOI 확인. 로컬 PDF는 관련 DP-FL 문헌이라 지정 논문처럼 인용하지 않는 메모 유지 |
 
-## 6. 주요 결과
+---
 
-DP는 적용 위치와 공격자 가정에 따라 의미가 달라진다. 같은 epsilon이라도 중앙 학습, local collection, federated update 보호에서 해석과 유틸리티 손실이 달라질 수 있다.
+## 1. 한 문장 요약
 
-## 7. 보안 관점 분석
+이 논문은 deep learning에서 differential privacy 적용을 **training algorithm, model architecture, noise mechanism, privacy accounting, utility loss, application domain** 관점에서 정리하며, W11에서 DP를 딥러닝 보안 평가로 연결하는 종합 문헌이다.
 
-P03은 W11을 W10 연합학습 보안과 연결한다. membership inference risk는 학습 완료 후 model output뿐 아니라 FL training update에서도 고려될 수 있으므로 보호 자산을 명확히 적어야 한다.
+---
 
-## 8. 한계와 오픈문제
+## 2. 핵심 연구질문
 
-주의: W11의 P03은 지정 논문과 로컬 PDF가 표기 차이가 있다. 현재 로컬 PDF는 Fu et al.의 DP-FL systematic review이므로, 최종 제출 전 Pan et al.의 지정 논문 원문 PDF 또는 공식 출판 페이지를 확보해야 한다. 또한 DOI `10.1016/j.neucom.2024.127663`의 공식 메타데이터는 `Ke Pan et al.`로 확인되어, 강의자료의 `Zizheng Pan et al.` 표기는 최종 확인 필요 상태로 둔다.
+| 번호 | 연구질문 |
+|---|---|
+| RQ1 | Deep learning에서 DP는 어떤 단계에 적용될 수 있는가? |
+| RQ2 | Noise mechanism과 clipping은 모델 성능과 개인정보 보호에 어떤 trade-off를 만드는가? |
+| RQ3 | DP deep learning 평가에서 utility, privacy, robustness를 어떻게 함께 보고해야 하는가? |
+| RQ4 | 로컬 PDF와 공식 DOI 문헌이 다른 경우 참고문헌 관리를 어떻게 해야 하는가? |
 
-## 9. 기말 논문에 반영할 부분
+---
 
-DP 평가표에 `보호 대상`, `적용 위치`, `공격자 관측 가능성`, `accounting 단위`를 추가하는 근거로 사용한다.
+## 3. 핵심 수식
+
+$$
+\Pr[M(D)\in S]\leq e^{\epsilon}\Pr[M(D')\in S]+\delta
+$$
+
+$$
+UtilityDrop=Acc_{nonDP}-Acc_{DP}
+$$
+
+**보안 해석:** DP 적용은 이론적 개인정보 보호를 제공할 수 있지만, utility drop과 empirical leakage reduction을 별도로 확인해야 한다.
+
+---
+
+## 4. 위협모형·평가지표
+
+| 항목 | 내용 |
+|---|---|
+| 보호 자산 | 학습 데이터, gradient, model output, confidence score |
+| 공격자 목표 | membership inference, model inversion, attribute inference |
+| 방어 | DP-SGD, output perturbation, objective perturbation, clipping/noise |
+| 지표 | epsilon, delta, utility drop, MI advantage, privacy accountant |
+
+---
+
+## 5. 기말논문 연결
+
+P03은 DP in DL의 넓은 문헌 맥락을 제공한다. 최종 보고서에서는 공식 DOI 논문과 로컬 관련 PDF를 혼동하지 않고, 공식 서지 기준으로 인용한다.
+
+---
+
+## 6. 최종 판단
+
+P03은 W11의 DP deep learning 종합 문헌이다. 로컬 PDF 차이 메모를 유지하면서 공식 DOI 기준으로 사용한다.

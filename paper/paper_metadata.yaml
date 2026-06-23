@@ -1,0 +1,54 @@
+journal:
+  korean_name: "한국산학기술학회논문지"
+  english_name: "Journal of the Korea Academia-Industrial cooperation Society"
+  abbreviation: "JKAIS"
+  society: "한국산학기술학회"
+  target_type: "KCI domestic journal mock submission"
+  confirmed_on: "2026-06-23"
+
+paper:
+  title_ko: "기업용 생성형 AI 챗봇의 RAG 문서 오염 위험 탐지를 위한 재현성 중심 보안 감사 프레임워크 연구"
+  title_en: "A Reproducibility-Centered Security Audit Framework for Detecting RAG Document Contamination Risks in Enterprise Generative AI Chatbots"
+  title_version: "v1"
+  title_change_allowed: true
+  author_placeholder: "성명/소속/학번 입력 필요"
+  corresponding_author_placeholder: "교신저자 정보 입력 필요"
+  keywords_ko:
+    - "생성형 AI 보안"
+    - "RAG"
+    - "프롬프트 인젝션"
+    - "문서 오염"
+    - "민감정보 노출"
+    - "보안 감사"
+    - "재현성"
+  keywords_en:
+    - "Generative AI Security"
+    - "Retrieval-Augmented Generation"
+    - "Prompt Injection"
+    - "Document Contamination"
+    - "Sensitive Information Leakage"
+    - "Security Audit"
+    - "Reproducibility"
+
+framework:
+  name: "RAG-DOCGUARD"
+  meaning_ko: "RAG 문서 오염 위험 탐지를 위한 재현성 중심 보안 감사 프레임워크"
+  decision_policy:
+    allow: "0-29"
+    review: "30-59"
+    block: "60+"
+
+assignment_requirements:
+  domestic_references_min: 3
+  international_references_min: 5
+  target_domestic_references: 5
+  target_international_references: 8
+  min_tables: 1
+  target_tables: 5
+  min_figures: 1
+  target_figures: 3
+  weekly_reports_min: 2
+  requires_ai_disclosure: true
+  requires_reference_verification: true
+  requires_pdf: true
+  requires_docx_or_hwp: true

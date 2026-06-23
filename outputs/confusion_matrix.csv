@@ -1,0 +1,5 @@
+method,tp,fp,tn,fn
+baseline_no_filter,0,0,20,80
+baseline_keyword,40,0,20,40
+baseline_regex,20,0,20,60
+rag_docguard,80,0,20,0

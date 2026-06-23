@@ -1,0 +1,49 @@
+journal:
+  korean_name: "한국산학기술학회논문지"
+  english_name: "Journal of the Korea Academia-Industrial cooperation Society"
+  abbreviation: "JKAIS"
+  society: "한국산학기술학회"
+  target_type: "KCI domestic journal mock submission"
+
+paper:
+  metadata_file: "paper/paper_metadata.yaml"
+  title_version: "v1"
+  title_change_allowed: true
+  framework_name: "RAG-DOCGUARD"
+  draft_file: "paper/JKAIS_paper_draft.md"
+  docx_file: "paper/JKAIS_paper_draft.docx"
+  pdf_file: "paper/JKAIS_paper_draft.pdf"
+
+paths:
+  dataset: "data/rag_security_dataset_100.csv"
+  label_schema: "data/label_schema.md"
+  dataset_card: "data/dataset_card.md"
+  experiments: "experiments/"
+  outputs: "outputs/"
+  references: "references/"
+  submission: "submission/"
+
+assignment_requirements:
+  domestic_references_min: 3
+  international_references_min: 5
+  target_domestic_references: 5
+  target_international_references: 8
+  min_tables: 1
+  target_tables: 5
+  min_figures: 1
+  target_figures: 3
+  weekly_reports_min: 2
+  target_weekly_reports: 4
+  synthetic_dataset_rows: 100
+  baseline_methods_min: 3
+  requires_ai_disclosure: true
+  requires_reference_verification: true
+  requires_pdf: true
+  requires_docx_or_hwp: true
+
+ethics:
+  no_real_personal_data: true
+  no_real_api_keys: true
+  no_false_references: true
+  no_fabricated_experiment_results: true
+  disclose_ai_use: true

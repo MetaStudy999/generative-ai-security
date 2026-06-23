@@ -12,8 +12,8 @@
 | W08 | `03_weekly_reports/w08_rag_prompt_injection/` | 2장, 3장, 4장 | RAG 및 prompt injection 위협모형 | 원문 세부 사례 대조 |
 | W09 | `03_weekly_reports/w09_drl_cybersecurity/` | 4장, 6장 | DRL reward, safety violation, cyber defense | toy 결과 일반화 제한 명시 |
 | W10 | `03_weekly_reports/w10_federated_learning_security/` | 4장, 6장 | FL aggregation, privacy/backdoor 평가 | P03/P05 출판 DOI 확인 |
-| W11 | `03_weekly_reports/w11_differential_privacy_mi/` | 4장, 6장 | privacy leakage와 utility trade-off | 대체 PDF 여부 확인 |
-| W12 | `03_weekly_reports/w12_nn_verification_xai/` | 4장, 6장 | NN verification, XAI stability, trade-off | SUBSTITUTE PDF 원문 대조 |
-| W13 | `03_weekly_reports/w13_model_stealing_watermarking/` | 2장, 6장 | model extraction, watermark ownership check | SUBSTITUTE PDF 원문 대조 |
-| W14 | `03_weekly_reports/w14_mlops_supply_chain/` | 4장, 5장 | 재현성·공급망·artifact 관리 | 대체 PDF 항목 확인 |
+| W11 | `03_weekly_reports/w11_differential_privacy_mi/` | 4장, 6장 | privacy leakage와 utility trade-off | 대체 문헌 원문 여부 확인 |
+| W12 | `03_weekly_reports/w12_nn_verification_xai/` | 4장, 6장 | NN verification, XAI stability, trade-off | 대체 문헌 원문 원문 대조 |
+| W13 | `03_weekly_reports/w13_model_stealing_watermarking/` | 2장, 6장 | model extraction, watermark ownership check | 대체 문헌 원문 원문 대조 |
+| W14 | `03_weekly_reports/w14_mlops_supply_chain/` | 4장, 5장 | 재현성·공급망·artifact 관리 | 대체 문헌 원문 항목 확인 |
 | W15 | `03_weekly_reports/w15_reproducibility_xai_paper/` | 5장, 6장, 부록 | 참고문헌·AI 활용·재현성 점검 | 최종 제출 직전 확인 |

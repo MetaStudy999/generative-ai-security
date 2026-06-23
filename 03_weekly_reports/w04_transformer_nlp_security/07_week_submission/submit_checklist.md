@@ -1,39 +1,19 @@
-# 제출 체크리스트
+# W04 제출 체크리스트
 
-| 항목 | 상태 | 비고 |
+| 점검 항목 | 상태 | 근거/비고 |
 |---|---|---|
-| 최종 보고서 확인 | 완료 | `06_report/final/integrated_report_final.md` |
-| 제출용 보고서 확인 | 완료 | `w04_submission_report.md` |
-| 참고문헌 확인 | 완료 / 확인 필요 | DOI 확인 완료, ACM Article 번호 일부 확인 필요 |
-| 본문 인용번호 확인 | 완료 | [1]-[5] 참고문헌 대응 |
-| 실험 결과 확인 | 완료 | `04_experiment/outputs/` 기준 수치 반영 |
-| 발표자료 수치 확인 | 완료 | outputs 기준 수치와 일치 |
-| AI 활용기록 확인 | 완료 | `05_ai_worklog/ai_disclosure_draft.md` |
-| PDF 보관 정책 확인 | 완료 / 조치 필요 | PDF 5개 Git 추적 중, 삭제 또는 비공개 전환 검토 필요 |
-| 최종 제출 확정 | 확인 필요 | 사람이 검토한 뒤 확정 |
+| Markdown 제출보고서 | 완료 | 03_weekly_reports/w04_transformer_nlp_security/07_week_submission/w04_submission_report.md |
+| HTML 제출보고서 | 완료 | 03_weekly_reports/w04_transformer_nlp_security/07_week_submission/w04_submission_report.html |
+| metrics_summary.csv | 완료 | 03_weekly_reports/w04_transformer_nlp_security/04_experiment/outputs/metrics_summary.csv |
+| results.json | 완료 | 03_weekly_reports/w04_transformer_nlp_security/04_experiment/outputs/results.json |
+| run_log.md | 완료 | 03_weekly_reports/w04_transformer_nlp_security/04_experiment/outputs/run_log.md |
+| AI 활용 고지 | 완료 | 03_weekly_reports/w04_transformer_nlp_security/05_ai_worklog/ai_disclosure_draft.md |
+| metrics 기반 그래프 | 완료 | 생성 |
+| 참고문헌 검증표 | 완료 | 보고서 15장 |
+| 기말논문 연결 | 완료 | 보고서 11장 |
 
-## 최종 자기 점검표
+## 제출 전 유의사항
 
-| 점검 항목 | 상태 | 비고 |
-|---|---|---|
-| 1장 한 문장 요약 작성 | 완료 |  |
-| 2장 학습 배경과 주차 목표 작성 | 완료 |  |
-| AI 원리 70% 정리 | 완료 |  |
-| 보안 이슈 30% 정리 | 완료 |  |
-| 논문 5편 요약 | 완료 |  |
-| 논문 5편 비교표 보완 | 완료 | P01-P05 차별성 반영 |
-| Research Track 5요소 작성 | 완료 | 연구문제, 위협모형, 평가방법, 재현성, 오픈문제 |
-| P01 출판 DOI 검증 | 완료 | ACM DOI `10.1145/3530811`, Article 번호 확인 필요 |
-| P02 출판 DOI 검증 | 완료 | ACM DOI `10.1145/3586074`, Article 번호 확인 필요 |
-| P03 출판 DOI 검증 | 완료 | DOI `10.1016/j.aiopen.2022.10.001` |
-| P04 출판 DOI 검증 | 완료 / 확인 필요 | ACM DOI `10.1145/3593042`, 강의자료 `N. Goyal` 표기 확인 필요 |
-| P05 출판 DOI 검증 | 완료 | ACM DOI `10.1145/3729219`, Article 번호 확인 필요 |
-| 실험 outputs 파일 존재 확인 | 완료 | CSV/JSON/run_log 존재 |
-| 실험 결과와 보고서 수치 일치 | 완료 | outputs 기준 |
-| KCI 논문 형식 전환 작성 | 완료 | 국내 참고문헌 확인 필요 |
-| SCI 논문 형식 전환 작성 | 완료 |  |
-| 본문 인용과 참고문헌 대응 | 완료 |  |
-| 표·그림 번호 정리 | 완료 | 표 1-7, 그림 1 |
-| AI 활용 고지 작성 | 완료 |  |
-| PDF 저작권 위험 점검 | 완료 / 조치 필요 | PDF 원문 5개 Git 추적 중 |
-| 최종 사람이 검토할 항목 표시 | 완료 | 최종 제출 확정 아님 |
+- 그래프와 실험 수치는 `04_experiment/outputs/metrics_summary.csv`, `results.json`, `run_log.md` 기준으로 해석한다.
+- `확인 필요` 문헌은 핵심 근거로 일반화하지 않고 참고문헌 검증표 또는 한계 섹션에서만 다룬다.
+- 논문 PDF 원문은 public GitHub 추적 대상에서 제외하고 DOI/URL 중심으로 관리한다.

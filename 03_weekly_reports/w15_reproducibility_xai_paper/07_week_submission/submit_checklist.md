@@ -1,39 +1,19 @@
-# 제출 체크리스트
+# W15 제출 체크리스트
 
-| 항목 | 상태 | 비고 |
+| 점검 항목 | 상태 | 근거/비고 |
 |---|---|---|
-| 최종 보고서 확인 | 완료 | `06_report/final/integrated_report_final.md` |
-| 참고문헌 확인 | 부분 완료 | P01/P02/P04/P05 확인, P03 부분 확인 및 로컬 PDF 불일치 |
-| AI 활용기록 확인 | 완료 | `05_ai_worklog/` |
-| 파일명 확인 | 완료 | 영문, 숫자, 언더바 중심 |
-| 실험 결과 확인 | 완료 | 로컬 감사 outputs 생성, 모델 성능 실험 아님 |
-| 제출용 Markdown/HTML 확인 | 완료 | `w15_submission_report.md`, `w15_submission_report.html` |
-| 발표자료 확인 | 완료 | `09_presentation/` 기본 패키지 작성 |
-| 실험 수치 일치 | 완료 | `outputs/run_log.md`, `metrics_summary.csv`, `results.json` 값 일치 |
-| 표/그림 삽입 | 완료 | 기말논문 본문 표 1개, Mermaid 그림 1개 작성 |
-| PDF 저작권/보관 정책 | 확인 필요 | PDF 원문은 이미 git 추적 중, 삭제는 사용자 승인 필요 |
-| 남은 확인 항목 | 확인 필요 | P03 지정 논문 원문 PDF, P05 권호/issue, 국내 문헌 |
+| Markdown 제출보고서 | 완료 | 03_weekly_reports/w15_reproducibility_xai_paper/07_week_submission/w15_submission_report.md |
+| HTML 제출보고서 | 완료 | 03_weekly_reports/w15_reproducibility_xai_paper/07_week_submission/w15_submission_report.html |
+| metrics_summary.csv | 완료 | 03_weekly_reports/w15_reproducibility_xai_paper/04_experiment/outputs/metrics_summary.csv |
+| results.json | 완료 | 03_weekly_reports/w15_reproducibility_xai_paper/04_experiment/outputs/results.json |
+| run_log.md | 완료 | 03_weekly_reports/w15_reproducibility_xai_paper/04_experiment/outputs/run_log.md |
+| AI 활용 고지 | 완료 | 03_weekly_reports/w15_reproducibility_xai_paper/05_ai_worklog/ai_disclosure_draft.md |
+| metrics 기반 그래프 | 완료 | 생성 |
+| 참고문헌 검증표 | 완료 | 보고서 15장 |
+| 기말논문 연결 | 완료 | 보고서 11장 |
 
-## 최종 자기 점검표
+## 제출 전 유의사항
 
-| 점검 항목 | 상태 | 비고 |
-|---|---|---|
-| W15 필수 산출물 47개 확인 | 완료 | outputs 기준 |
-| 기말논문 연결 파일 9개 확인 | 완료 | `04_final_paper/` 기준 |
-| P01 DOI 검증 | 완료 | `10.1145/3641289` |
-| P02 DOI 검증 | 완료 | `10.1145/3453444` |
-| P03 지정 논문 원문 확보 | 확인 필요 | DOI `10.1145/3561048`, 현재 대체 PDF |
-| P04 DOI 검증 | 완료 | `10.1016/j.inffus.2019.12.012` |
-| P05 최종 DOI 검증 | 완료 | `10.1145/3774643`, 권호/issue 최종 확인 필요 |
-| 국내 논문 3편 이상 포함 | 확인 필요 | 기말논문 조건 |
-| 해외 논문 5편 이상 포함 | 부분 완료 | P03 원문 PDF 확인 필요 |
-| 표 1개 이상 삽입 | 완료 | 본문 표 |
-| 그림 1개 이상 삽입 | 완료 | Mermaid 프레임워크 그림 |
-| AI 활용 고지서 작성 | 완료 | 11/11 |
-| 참고문헌 검증표 작성 | 완료 | P03 부분 확인 표시 |
-| 실험/감사 outputs 존재 | 완료 | metrics_summary, results, run_log |
-| 모델 성능 실험 아님 명시 | 완료 | W15 감사 한계 |
-| 실제 개인정보 사용 없음 | 완료 |  |
-| 실제 공격 수행 없음 | 완료 |  |
-| benchmark 성능 주장 없음 | 완료 |  |
-| 최종 사람이 검토할 항목 표시 | 완료 |  |
+- 그래프와 실험 수치는 `04_experiment/outputs/metrics_summary.csv`, `results.json`, `run_log.md` 기준으로 해석한다.
+- `확인 필요` 문헌은 핵심 근거로 일반화하지 않고 참고문헌 검증표 또는 한계 섹션에서만 다룬다.
+- 논문 PDF 원문은 public GitHub 추적 대상에서 제외하고 DOI/URL 중심으로 관리한다.

@@ -1,24 +1,16 @@
-# AI 활용 고지서
+# W09 AI 활용 고지 초안
 
-| 항목 | 작성 내용 |
+| 항목 | 내용 |
 |---|---|
-| 사용한 AI 도구명 | Codex, ChatGPT 계열 AI 도구 |
-| 사용 일자 | 2026-06-22 초안 작성, 2026-06-23 최종 보완 |
-| 사용 목적 | 논문 요약 보강, DOI/URL 검증 보조, 개념 설명, 문장 구조화, synthetic DRL cyber-defense 실험 코드 작성, 발표자료 작성, KCI/SCI 섹션 보완 |
-| 주요 프롬프트 1 | W09 보고서 최종 보완 지시 |
-| 주요 프롬프트 2 | P05 논문 동일 여부 및 DOI 검증 요청 |
-| 주요 프롬프트 3 | KCI/SCI 논문 형식 전환 섹션 작성 요청 |
-| AI 산출물 반영 위치 | W09 하위 Markdown, Python, HTML, 실험 보고서 파일 |
-| 본인 수정 내용 | DOI/URL 검증 상태 분리, 실험 범위 제한, outputs 수치 대조, 실제 공격/트래픽/개인정보 제외 |
-| 사실관계 검증 방법 | DOI/Crossref 메타데이터, 로컬 PDF 첫 페이지 및 `pdftotext` 추출, 실행 로그, 수업자료 대조 |
-| 참고문헌 검증 방법 | 제목, 저자, 연도, 학술지, 권호, 페이지, DOI/URL 대조 |
-| 실험결과 처리 | `metrics_summary.csv`, `results.json`, `run_log.md`를 재생성하고 보고서/발표자료 수치와 대조 |
-| 아직 검토 필요한 항목 | P03/P04/P05 강의계획서 저자명 차이, 국내 참고문헌, PDF 저작권/공개 저장소 보관 상태 |
-| 최종 책임 확인 | 최종 제출자는 원고의 내용, 인용, 실험결과, 연구윤리 책임을 확인해야 한다. |
+| 사용 도구명 | Codex, ChatGPT 계열 도구 |
+| 사용 일자 | 2026-06-23 |
+| 사용 목적 | 문헌 요약, 보고서 구조화, 안전한 toy/synthetic 실험 코드와 outputs 점검, 그래프 생성, 제출 체크리스트 보완 |
+| 주요 프롬프트 요약 | W09 제출 보고서 보완, 참고문헌 검증 상태 정리, `metrics_summary.csv` 기반 그래프 생성, HTML 재생성 |
+| AI 산출물 반영 위치 | `07_week_submission/w09_submission_report.md`, `07_week_submission/w09_submission_report.html`, `07_week_submission/assets/w09_metric_chart.png` |
+| 본인 수정 내용 | 문헌 검증 상태와 미확정 항목 구분, 실험 수치와 outputs 대조, 안전 범위 및 한계 표현 확인 |
+| 사실관계 검증 방법 | `01_papers/paper_list.md`, `01_papers/doi_check.md`, `05_references/doi_index.md`, `00_class_materials/weekly_paper_list.md` 대조 |
+| 참고문헌 검증 방법 | 제목, 저자, 연도, 학술지/학회, DOI/URL, 본문 인용번호와 참고문헌 목록 대응 확인 |
+| 실험결과 검증 방법 | `04_experiment/outputs/metrics_summary.csv`, `results.json`, `run_log.md`를 기준 파일로 사용 |
+| 최종 책임 확인 | AI 도구는 초안 보조에만 사용했으며 최종 제출자는 인용, 수치, 결론, 연구윤리 책임을 확인한다. |
 
-## 사용 범위 제한
-
-- AI가 생성한 문장은 제출 전 사람이 사실관계, 문체, 인용 대응을 검토해야 한다.
-- DOI/URL을 확인하지 못한 사항은 임의로 확정하지 않고 `확인 필요`로 남겼다.
-- 실제 시스템 침해, 실제 네트워크 공격, 실제 트래픽 수집, 개인정보 사용, exploit 실행, 무단 스캔, 공격 자동화 절차는 포함하지 않았다.
-- 실험은 synthetic cyber-defense state/action/reward 기반 안전 toy protocol에 한정했다.
+AI 도구는 문헌 요약, 코드 점검, 문장 구조화, 그래프 생성 보조에 사용하였다. 모든 DOI/URL, 실험 수치, 본문 인용, 결론은 작성자가 outputs 파일과 공식 문헌 정보를 대조하여 검증한다.

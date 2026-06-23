@@ -5,36 +5,425 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>W15 제출용 보고서</title>
   <style>
-    body { margin: 0; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #1f252c; background: #f6f7f9; }
-    main { max-width: 1080px; margin: 0 auto; padding: 44px 24px 72px; background: #fff; }
-    h1 { font-size: 34px; margin: 0 0 24px; }
-    h2 { font-size: 24px; margin: 34px 0 14px; border-bottom: 2px solid #d8dee8; padding-bottom: 8px; }
-    p, li { font-size: 16px; line-height: 1.7; }
-    table { border-collapse: collapse; width: 100%; margin: 12px 0 20px; font-size: 15px; }
-    th, td { border: 1px solid #c8d0dc; padding: 9px 10px; text-align: left; vertical-align: top; }
-    th { background: #eef2f6; }
-    code { background: #eef2f6; padding: 1px 4px; border-radius: 4px; }
-    @media print { body { background: #fff; } main { padding: 0; } }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.65; max-width: 1040px; margin: 32px auto; padding: 0 24px; color: #17202a; }
+    h1, h2, h3 { line-height: 1.25; }
+    table { border-collapse: collapse; width: 100%; margin: 18px 0; font-size: 0.95rem; }
+    th, td { border: 1px solid #d0d7de; padding: 7px 9px; vertical-align: top; }
+    th { background: #f6f8fa; }
+    code { background: #f6f8fa; padding: 0.1rem 0.25rem; border-radius: 4px; }
+    pre { background: #f6f8fa; padding: 16px; overflow-x: auto; border-radius: 6px; }
+    img { max-width: 100%; height: auto; border: 1px solid #d0d7de; border-radius: 6px; }
   </style>
 </head>
 <body>
-<main>
-  <h1>W15 제출용 보고서</h1>
-  <h2>0. 메타정보</h2>
-  <table><tr><th>항목</th><th>내용</th></tr><tr><td>주차</td><td>W15</td></tr><tr><td>보고서 제목</td><td>연구평가·재현성·설명가능성(XAI)·논문 구성</td></tr><tr><td>작성일</td><td>2026-06-23</td></tr><tr><td>문서 상태</td><td>제출용 최종 초안</td></tr><tr><td>실험 근거</td><td><code>04_experiment/outputs/run_log.md</code></td></tr></table>
-  <h2>1. 한 문장 요약</h2>
-  <p>W15는 AI 보안 연구의 성능 주장, 참고문헌 검증, 실행 로그, AI 활용 고지, 기말논문 표·그림을 제출 가능한 evidence chain으로 묶는 감사 주차다.</p>
-  <h2>2. 학습 배경과 주차 목표</h2>
-  <p>본 실습은 모델 성능이나 공격 성공률을 측정하는 실험이 아니라, 기말논문 제출 직전의 재현성·참고문헌·AI 활용 고지·제출 산출물 준비 상태를 점검하는 local repository metadata 기반 안전 감사이다.</p>
-  <h2>5. 논문 5편 요약</h2>
-  <table><tr><th>ID</th><th>논문</th><th>DOI/URL 상태</th></tr><tr><td>P01</td><td>A Survey on Evaluation of Large Language Models</td><td>확인: <code>10.1145/3641289</code></td></tr><tr><td>P02</td><td>Assuring the Machine Learning Lifecycle</td><td>확인: <code>10.1145/3453444</code></td></tr><tr><td>P03</td><td>Explainable AI: Core Ideas, Techniques, and Solutions</td><td>부분 확인: <code>10.1145/3561048</code>; 로컬 PDF 불일치</td></tr><tr><td>P04</td><td>Explainable Artificial Intelligence (XAI)</td><td>확인: <code>10.1016/j.inffus.2019.12.012</code></td></tr><tr><td>P05</td><td>Concept-based Explainable Artificial Intelligence</td><td>확인: <code>10.1145/3774643</code>, arXiv <code>2312.12936</code></td></tr></table>
-  <h2>8. 실습 보고서</h2>
-  <table><tr><th>점검 항목</th><th>결과</th><th>상태</th></tr><tr><td>W15 필수 산출물</td><td>47/47</td><td>complete</td></tr><tr><td>기말논문 연결 파일</td><td>9/9</td><td>complete</td></tr><tr><td>로컬 PDF</td><td>5</td><td>complete</td></tr><tr><td>DOI 확인</td><td>4</td><td>complete</td></tr><tr><td>DOI 부분 확인</td><td>1</td><td>partial</td></tr><tr><td>DOI 미검증</td><td>0</td><td>complete</td></tr><tr><td>가중 참고문헌 검증률</td><td>0.90</td><td>partial</td></tr><tr><td>AI 활용 고지 완성도</td><td>11/11</td><td>complete</td></tr></table>
-  <p>이 결과는 로컬 산출물 존재 여부, DOI/URL 검증 상태, AI 활용 고지 완성도, 제출/발표 패키지 준비 상태를 확인하는 감사 결과이며, LLM 또는 XAI 모델의 성능으로 해석하지 않는다.</p>
-  <h2>12. KCI 기말논문 형식 전환</h2>
-  <table><tr><th>항목</th><th>내용</th></tr><tr><td>국문 제목</td><td>LLM/RAG 기반 AI 시스템의 생명주기별 보안 위협과 재현성 중심 평가 프레임워크 연구</td></tr><tr><td>영문 제목</td><td>A Lifecycle-Based Security Threat and Reproducibility-Centered Evaluation Framework for LLM/RAG-Based AI Systems</td></tr><tr><td>키워드</td><td>LLM 보안, RAG, 재현성, 참고문헌 검증, AI 활용 고지, 벤치마크 오염</td></tr></table>
-  <h2>16. 자기 점검표</h2>
-  <table><tr><th>점검 항목</th><th>상태</th><th>비고</th></tr><tr><td>기말논문 표 1개 이상</td><td>완료</td><td>본문 표 1</td></tr><tr><td>기말논문 그림 1개 이상</td><td>완료</td><td>Mermaid 그림 1</td></tr><tr><td>국내 논문 3편 이상</td><td>확인 필요</td><td>허위 인용 방지를 위해 미확정</td></tr><tr><td>P03 지정 논문 원문 PDF</td><td>확인 필요</td><td>현재 로컬 PDF 불일치</td></tr><tr><td>PDF 저작권/보관 정책</td><td>확인 필요</td><td>PDF 원문은 이미 git 추적 중</td></tr></table>
-</main>
+<h1 id="w15">W15 제출용 보고서</h1>
+<h2 id="0">0. 메타정보</h2>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>주차</td>
+<td>W15</td>
+</tr>
+<tr>
+<td>작성자</td>
+<td>박영세</td>
+</tr>
+<tr>
+<td>학번</td>
+<td>26200122</td>
+</tr>
+<tr>
+<td>보고서 제목</td>
+<td>연구평가·재현성·설명가능성(XAI)·논문 구성</td>
+</tr>
+<tr>
+<td>작성일</td>
+<td>2026-06-23</td>
+</tr>
+<tr>
+<td>보완일</td>
+<td>2026-06-23</td>
+</tr>
+<tr>
+<td>문서 상태</td>
+<td>제출용 보고서</td>
+</tr>
+<tr>
+<td>기준 산출물</td>
+<td><code>04_experiment/outputs/run_log.md</code></td>
+</tr>
+<tr>
+<td>## 1. 한 문장 요약</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>W15는 AI 보안 연구의 성능 주장, 참고문헌 검증, 실행 로그, AI 활용 고지, 기말논문 표·그림을 제출 가능한 evidence chain으로 묶는 감사 주차다.</p>
+<h2 id="2">2. 학습 배경과 주차 목표</h2>
+<p>본 실습은 모델 성능이나 공격 성공률을 측정하는 실험이 아니라, 기말논문 제출 직전의 재현성·참고문헌·AI 활용 고지·제출 산출물 준비 상태를 점검하는 local repository metadata 기반 안전 감사이다. 따라서 결과는 W15 필수 산출물 존재 여부, 기말논문 연결 파일 존재 여부, DOI/URL 검증 상태, AI 활용 고지 완성도만을 의미하며, LLM 또는 XAI 모델의 성능으로 해석하지 않는다.</p>
+<h2 id="3-ai-70">3. AI 원리 70% 정리</h2>
+<table>
+<thead>
+<tr>
+<th>구분</th>
+<th>핵심 내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>평가</td>
+<td>LLM evaluation은 평가 대상, benchmark, 평가 방식을 분리한다[1].</td>
+</tr>
+<tr>
+<td>재현성</td>
+<td>ML lifecycle assurance는 데이터, 모델, 검증, 배포 단계별 evidence chain을 요구한다[2].</td>
+</tr>
+<tr>
+<td>XAI</td>
+<td>XAI 연구는 설명의 fidelity, stability, user trust를 함께 고려해야 한다[3].</td>
+</tr>
+<tr>
+<td>Responsible XAI</td>
+<td>설명가능성은 transparency뿐 아니라 privacy, fairness, accountability와 연결된다[4].</td>
+</tr>
+<tr>
+<td>Concept-based XAI</td>
+<td>concept 단위 설명은 human evaluation 가능성을 높이지만 concept leakage와 비용 문제가 있다[5].</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-30">4. 보안 이슈 30% 정리</h2>
+<table>
+<thead>
+<tr>
+<th>이슈</th>
+<th>제출 전 점검</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Benchmark contamination</td>
+<td>평가셋 출처와 노출 가능성 명시</td>
+</tr>
+<tr>
+<td>Hidden test leakage</td>
+<td>hidden test 보호와 반복 질의 위험 명시</td>
+</tr>
+<tr>
+<td>Fabricated citation</td>
+<td>DOI/URL/로컬 PDF 검증표 작성</td>
+</tr>
+<tr>
+<td>Explanation leakage</td>
+<td>XAI 공개 범위와 human review 필요</td>
+</tr>
+<tr>
+<td>Missing AI disclosure</td>
+<td>AI 활용 고지서 작성</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-5">5. 논문 5편 요약</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>논문</th>
+<th>DOI/URL 상태</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P01</td>
+<td>A Survey on Evaluation of Large Language Models</td>
+<td>확인: <code>10.1145/3641289</code>; ACM TIST</td>
+</tr>
+<tr>
+<td>P02</td>
+<td>Assuring the Machine Learning Lifecycle</td>
+<td>확인: <code>10.1145/3453444</code>; ACM CSUR</td>
+</tr>
+<tr>
+<td>P03</td>
+<td>Explainable AI: Core Ideas, Techniques, and Solutions</td>
+<td>부분 확인: <code>10.1145/3561048</code>; 로컬 PDF는 Mersha et al. 대체 문헌</td>
+</tr>
+<tr>
+<td>P04</td>
+<td>Explainable Artificial Intelligence (XAI)</td>
+<td>확인: <code>10.1016/j.inffus.2019.12.012</code></td>
+</tr>
+<tr>
+<td>P05</td>
+<td>Concept-based Explainable Artificial Intelligence</td>
+<td>확인: <code>10.1145/3774643</code>, arXiv <code>2312.12936</code>; 권호/issue 최종 확인 필요</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-5">6. 논문 5편 비교표</h2>
+<p>P01은 평가오염 근거, P02는 재현성 근거, P04는 Responsible XAI 근거, P05는 concept-based explanation 근거다. P03은 DOI metadata는 확인했지만 로컬 PDF가 지정 논문과 다르므로 대체 문헌 원문 상태를 숨기지 않는다.</p>
+<h2 id="7-research-track">7. Research Track 분석</h2>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>연구문제</td>
+<td>LLM/RAG 생명주기에서 prompt injection, benchmark contamination, privacy leakage가 발생하는 단계와 최소 평가항목 정의</td>
+</tr>
+<tr>
+<td>평가 지표</td>
+<td>reference verification rate, reproducibility evidence coverage, AI disclosure completeness</td>
+</tr>
+<tr>
+<td>제외 범위</td>
+<td>실제 개인정보, 실제 서비스 침해, 무단 API 공격, 실제 benchmark 오염 실험</td>
+</tr>
+</tbody>
+</table>
+<h2 id="8">8. 실습 보고서</h2>
+<table>
+<thead>
+<tr>
+<th>점검 항목</th>
+<th style="text-align: right;">결과</th>
+<th>상태</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>W15 필수 산출물</td>
+<td style="text-align: right;">47/47</td>
+<td>complete</td>
+</tr>
+<tr>
+<td>기말논문 연결 파일</td>
+<td style="text-align: right;">9/9</td>
+<td>complete</td>
+</tr>
+<tr>
+<td>로컬 PDF</td>
+<td style="text-align: right;">5</td>
+<td>complete</td>
+</tr>
+<tr>
+<td>DOI 확인</td>
+<td style="text-align: right;">4</td>
+<td>complete</td>
+</tr>
+<tr>
+<td>DOI 부분 확인</td>
+<td style="text-align: right;">1</td>
+<td>partial</td>
+</tr>
+<tr>
+<td>DOI 미검증</td>
+<td style="text-align: right;">0</td>
+<td>complete</td>
+</tr>
+<tr>
+<td>가중 참고문헌 검증률</td>
+<td style="text-align: right;">0.90</td>
+<td>partial</td>
+</tr>
+<tr>
+<td>AI 활용 고지 완성도</td>
+<td style="text-align: right;">11/11</td>
+<td>complete</td>
+</tr>
+</tbody>
+</table>
+<!-- submission-metric-chart:start -->
+<p><strong>그림 7. W15 metrics summary chart</strong></p>
+<p><img alt="W15 metrics summary chart" src="assets/w15_metric_chart.png"></p>
+<p>출처: <code>04_experiment/outputs/metrics_summary.csv</code>. 이 그래프는 공개 toy/synthetic 산출물 기반이며 실제 공격 성능이나 운영 환경 성능으로 일반화하지 않는다.</p>
+<!-- submission-metric-chart:end -->
+
+<h2 id="9-ai">9. AI 도구 활용 기록</h2>
+<p>AI 도구는 문헌 요약, 코드 점검, 문장 구조화, 그래프 생성 보조에 사용하였다. 모든 DOI/URL, 실험 수치, 본문 인용, 결론은 작성자가 outputs 파일과 로컬 참고문헌 검증표를 대조하여 검증한다.</p>
+<p><strong>표. W15 AI 도구 활용 및 검증 기록</strong></p>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>사용 도구명</td>
+<td>Codex, ChatGPT 계열 도구</td>
+</tr>
+<tr>
+<td>사용 일자</td>
+<td>2026-06-23</td>
+</tr>
+<tr>
+<td>사용 목적</td>
+<td>문헌 요약 정리, 보고서 구조화, 안전한 toy/synthetic 실험 결과 표기 점검, 그래프 생성 보조, 제출 전 체크리스트 정리</td>
+</tr>
+<tr>
+<td>주요 프롬프트 요약</td>
+<td>주차별 제출 보고서 보완, 참고문헌 검증표 정리, metrics_summary.csv 기반 그래프 생성, AI 활용 고지 작성</td>
+</tr>
+<tr>
+<td>AI 산출물 반영 위치</td>
+<td><code>07_week_submission/w15_submission_report.md</code>, <code>07_week_submission/assets/w15_metric_chart.png</code>, <code>05_ai_worklog/ai_disclosure_draft.md</code></td>
+</tr>
+<tr>
+<td>본인 수정 내용</td>
+<td>주차별 문헌 상태 확인, 실험 수치와 outputs 대조, 안전 범위와 한계 문장 확인, 최종 제출 전 미확정 문헌 분리</td>
+</tr>
+<tr>
+<td>사실관계 검증 방법</td>
+<td><code>01_papers/paper_list.md</code>, <code>01_papers/doi_check.md</code>, <code>05_references/doi_index.md</code>, 강의계획서 문헌표 대조</td>
+</tr>
+<tr>
+<td>참고문헌 검증 방법</td>
+<td>제목, 저자, 연도, 학술지/학회, DOI/URL, 본문 인용번호와 참고문헌 목록 대응 확인</td>
+</tr>
+<tr>
+<td>실험결과 검증 방법</td>
+<td><code>04_experiment/outputs/metrics_summary.csv</code>, <code>results.json</code>, <code>run_log.md</code>의 수치와 보고서 표기 대조</td>
+</tr>
+<tr>
+<td>최종 책임 확인</td>
+<td>AI 산출물은 초안 보조이며 최종 제출자는 원고 내용, 인용, 실험결과, 연구윤리 책임을 확인한다.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="10">10. 토론 질문</h2>
+<ol>
+<li>benchmark contamination을 소규모 수업 과제에서 어떻게 안전하게 점검할 것인가?</li>
+<li>XAI 설명은 보안 증거인가, 새로운 정보노출 공격면인가?</li>
+<li>AI 활용 고지와 참고문헌 검증을 평가 루브릭에 넣을 수 있는가?</li>
+</ol>
+<h2 id="11">11. 기말논문 연결</h2>
+<p>최종 주제는 <code>LLM/RAG 기반 AI 시스템의 생명주기별 보안 위협과 재현성 중심 평가 프레임워크 연구</code>다. W15는 연구방법, 평가방법, 보안적 함의, 참고문헌 검증표, AI 활용 고지서에 반영된다.</p>
+<h2 id="12-kci">12. KCI 기말논문 형식 전환</h2>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>초안</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>국문 제목</td>
+<td>LLM/RAG 기반 AI 시스템의 생명주기별 보안 위협과 재현성 중심 평가 프레임워크 연구</td>
+</tr>
+<tr>
+<td>영문 제목</td>
+<td>A Lifecycle-Based Security Threat and Reproducibility-Centered Evaluation Framework for LLM/RAG-Based AI Systems</td>
+</tr>
+<tr>
+<td>연구방법</td>
+<td>문헌분석, 위협모형, W15 산출물 감사, 한계분석</td>
+</tr>
+<tr>
+<td>키워드</td>
+<td>LLM 보안, RAG, 재현성, 참고문헌 검증, AI 활용 고지, 벤치마크 오염</td>
+</tr>
+</tbody>
+</table>
+<h2 id="13-sci">13. SCI 확장 가능성</h2>
+<p>SCI 확장을 위해서는 공개 benchmark contamination audit, 공개 문서 기반 RAG 실험, privacy leakage benchmark, XAI stability metric, 반복 seed와 confidence interval, 공개 artifact release가 필요하다.</p>
+<h2 id="14">14. 발표용 요약</h2>
+<p>발표자료는 <code>09_presentation/</code>에 정리되어 있다. 핵심 메시지는 “평가와 설명은 결과가 아니라 증거이며, 증거는 DOI, config, seed, log, output, AI disclosure와 함께 남을 때 신뢰할 수 있다”이다.</p>
+<h2 id="15">15. 참고문헌 검증표</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">인용번호</th>
+<th>문헌</th>
+<th>상태</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">[1]</td>
+<td>Chang et al., A Survey on Evaluation of Large Language Models</td>
+<td>확인</td>
+</tr>
+<tr>
+<td style="text-align: right;">[2]</td>
+<td>Ashmore et al., Assuring the Machine Learning Lifecycle</td>
+<td>확인</td>
+</tr>
+<tr>
+<td style="text-align: right;">[3]</td>
+<td>Dwivedi et al., Explainable AI: Core Ideas, Techniques, and Solutions</td>
+<td>부분 확인, 지정 논문 원문 확인 필요</td>
+</tr>
+<tr>
+<td style="text-align: right;">[4]</td>
+<td>Arrieta et al., Explainable Artificial Intelligence (XAI)</td>
+<td>확인</td>
+</tr>
+<tr>
+<td style="text-align: right;">[5]</td>
+<td>Poeta et al., Concept-based Explainable Artificial Intelligence</td>
+<td>확인, 권호/issue 최종 확인 필요</td>
+</tr>
+</tbody>
+</table>
+<h2 id="16">16. 자기 점검표</h2>
+<table>
+<thead>
+<tr>
+<th>점검 항목</th>
+<th>상태</th>
+<th>비고</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>통합보고서 최종본 작성</td>
+<td>완료</td>
+<td><code>06_report/final/</code></td>
+</tr>
+<tr>
+<td>로컬 감사 outputs 생성</td>
+<td>완료</td>
+<td><code>04_experiment/outputs/</code></td>
+</tr>
+<tr>
+<td>기말논문 표 1개 이상</td>
+<td>완료</td>
+<td><code>04_final_paper/05_draft/paper_draft.md</code></td>
+</tr>
+<tr>
+<td>기말논문 그림 1개 이상</td>
+<td>완료</td>
+<td>Mermaid 그림 1</td>
+</tr>
+<tr>
+<td>국내 논문 3편 이상</td>
+<td>확인 필요</td>
+<td>허위 인용 방지를 위해 미확정</td>
+</tr>
+<tr>
+<td>P03 지정 논문 원문 PDF</td>
+<td>확인 필요</td>
+<td>현재 로컬 PDF 불일치</td>
+</tr>
+<tr>
+<td>PDF 저작권/보관 정책</td>
+<td>확인 필요</td>
+<td>PDF 원문은 Git 추적 해제 대상으로 분류했고 보관 정책을 문서화했다</td>
+</tr>
+</tbody>
+</table>
 </body>
 </html>

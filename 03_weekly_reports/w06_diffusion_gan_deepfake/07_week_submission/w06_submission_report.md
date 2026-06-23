@@ -6,7 +6,7 @@
 - 보고서 제목: 확률생성모형(Diffusion/GAN) & 딥페이크 검출
 - 작성일: 2026-06-22
 - 최종 보완 점검일: 2026-06-23 (Asia/Seoul)
-- 문서 상태: 제출용 최종 초안, 사람 검토 필요
+- 문서 상태: 제출용 보고서, 작성자 확인 필요
 - 최종 제출 확정 여부: 미확정
 - 관련 산출물 위치: `03_weekly_reports/w06_diffusion_gan_deepfake/`
 
@@ -14,6 +14,8 @@
 
 본 보고서는 diffusion model, video diffusion, GAN의 생성 원리와 딥페이크 탐지 신뢰성 문제를 구분해 분석한다. 문헌 5편을 검토하고, 실제 딥페이크 생성 없이 synthetic real/fake detector score 분포 기반 안전 toy 실험으로 in-domain baseline, cross-domain reliability stress, review-band triage를 비교하였다. In-domain accuracy는 1.000000이었으나 cross-domain accuracy는 0.816667, FNR은 0.200000으로 저하되었다. Review-band triage는 auto coverage 0.641667, review rate 0.358333을 기록하였다. 이 수치는 실제 포렌식 성능이 아니라 평가 형식 검증용이다.
 
+| 학번 | 26200122 |
+| 보완일 | 2026-06-23 |
 ## 1. 한 문장 요약
 
 W06는 생성모형 품질 평가와 딥페이크 탐지기 신뢰성 평가를 분리하고, FPR/FNR·AUROC·ECE·review routing을 함께 기록하는 평가 구조를 제안한다.
@@ -111,9 +113,32 @@ P01-P03은 생성모형 원리와 생성 품질 평가 문헌이고, P04-P05는 
 
 이 결과는 synthetic detector score toy 실험의 평가 형식 검증용 수치이며, 실제 딥페이크 데이터셋, 실제 탐지 모델, 법적 포렌식 증거능력, 운영 서비스의 보안 성능으로 일반화하지 않는다.
 
+<!-- submission-metric-chart:start -->
+**그림 7. W06 metrics summary chart**
+
+![W06 metrics summary chart](assets/w06_metric_chart.png)
+
+출처: `04_experiment/outputs/metrics_summary.csv`. 이 그래프는 공개 toy/synthetic 산출물 기반이며 실제 공격 성능이나 운영 환경 성능으로 일반화하지 않는다.
+<!-- submission-metric-chart:end -->
+
 ## 9. AI 도구 활용 기록
 
-Codex를 사용해 논문 요약 보강, DOI/URL 검증 보조, 개념 설명, 문장 구조화, synthetic detector score 실험 코드 작성, 발표자료 작성, KCI/SCI 섹션 보완을 수행했다. 정량값은 `04_experiment/outputs/` 산출물과 일치하는 값만 사용했다.
+AI 도구는 문헌 요약, 코드 점검, 문장 구조화, 그래프 생성 보조에 사용하였다. 모든 DOI/URL, 실험 수치, 본문 인용, 결론은 작성자가 outputs 파일과 로컬 참고문헌 검증표를 대조하여 검증한다.
+
+**표. W06 AI 도구 활용 및 검증 기록**
+
+| 항목 | 내용 |
+|---|---|
+| 사용 도구명 | Codex, ChatGPT 계열 도구 |
+| 사용 일자 | 2026-06-23 |
+| 사용 목적 | 문헌 요약 정리, 보고서 구조화, 안전한 toy/synthetic 실험 결과 표기 점검, 그래프 생성 보조, 제출 전 체크리스트 정리 |
+| 주요 프롬프트 요약 | 주차별 제출 보고서 보완, 참고문헌 검증표 정리, metrics_summary.csv 기반 그래프 생성, AI 활용 고지 작성 |
+| AI 산출물 반영 위치 | `07_week_submission/w06_submission_report.md`, `07_week_submission/assets/w06_metric_chart.png`, `05_ai_worklog/ai_disclosure_draft.md` |
+| 본인 수정 내용 | 주차별 문헌 상태 확인, 실험 수치와 outputs 대조, 안전 범위와 한계 문장 확인, 최종 제출 전 미확정 문헌 분리 |
+| 사실관계 검증 방법 | `01_papers/paper_list.md`, `01_papers/doi_check.md`, `05_references/doi_index.md`, 강의계획서 문헌표 대조 |
+| 참고문헌 검증 방법 | 제목, 저자, 연도, 학술지/학회, DOI/URL, 본문 인용번호와 참고문헌 목록 대응 확인 |
+| 실험결과 검증 방법 | `04_experiment/outputs/metrics_summary.csv`, `results.json`, `run_log.md`의 수치와 보고서 표기 대조 |
+| 최종 책임 확인 | AI 산출물은 초안 보조이며 최종 제출자는 원고 내용, 인용, 실험결과, 연구윤리 책임을 확인한다. |
 
 ## 10. 토론 질문
 
@@ -199,5 +224,5 @@ Structured abstract는 Background, Problem, Method, Results, Contribution, Impli
 | 본문 인용과 참고문헌 대응 | 완료 / 확인 필요 | P02/P03 부분 검증 표시 |
 | 표·그림 번호 정리 | 완료 |  |
 | AI 활용 고지 작성 | 완료 |  |
-| PDF 저작권 위험 점검 | 완료 / 확인 필요 | PDF 5개 git 추적, 삭제 미수행 |
-| 최종 사람이 검토할 항목 표시 | 완료 | 최종 제출 확정 아님 |
+| PDF 저작권 위험 점검 | 완료 / 확인 필요 | PDF 원문 Git 추적 해제 완료(로컬 파일 보존) |
+| 최종 사람이 검토할 항목 표시 | 완료 | 제출 전 작성자 확인 항목 있음 |

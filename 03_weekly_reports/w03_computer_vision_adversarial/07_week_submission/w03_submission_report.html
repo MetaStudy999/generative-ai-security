@@ -5,189 +5,661 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>W03 제출용 보고서</title>
   <style>
-    :root { --ink:#1f2933; --muted:#5d6b78; --line:#d8e0e7; --soft:#eef6f2; --accent:#24745f; --warn:#fff7ed; --warn-line:#c2410c; --paper:#fff; --bg:#f6f7f9; }
-    * { box-sizing: border-box; }
-    body { margin:0; background:var(--bg); color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR",Arial,sans-serif; line-height:1.65; letter-spacing:0; }
-    main { width:min(980px,calc(100% - 32px)); margin:32px auto; background:var(--paper); border:1px solid var(--line); padding:48px 56px; }
-    h1 { margin:0 0 20px; font-size:34px; line-height:1.25; color:var(--accent); letter-spacing:0; }
-    h2 { margin:32px 0 12px; padding-top:8px; border-top:2px solid var(--line); font-size:23px; letter-spacing:0; }
-    h3 { margin:20px 0 8px; font-size:18px; letter-spacing:0; }
-    p { margin:0 0 12px; font-size:16px; }
-    table { width:100%; border-collapse:collapse; margin:12px 0 18px; font-size:14px; }
-    th,td { border:1px solid var(--line); padding:8px 10px; vertical-align:top; text-align:left; }
-    th { background:#edf2f5; }
-    .num { text-align:right; font-variant-numeric:tabular-nums; }
-    .abstract { padding:16px 18px; background:var(--soft); border-left:5px solid var(--accent); margin-bottom:18px; }
-    .notice { padding:14px 16px; background:var(--warn); border-left:5px solid var(--warn-line); margin:14px 0 18px; }
-    pre { overflow:auto; background:#f4f6f8; padding:14px; border:1px solid var(--line); }
-    code { font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; background:#f0f3f5; padding:1px 4px; border-radius:3px; }
-    ol,ul { padding-left:24px; }
-    li { margin:5px 0; font-size:16px; }
-    .small { color:var(--muted); font-size:14px; }
-    @media print { body{background:white;} main{width:auto;margin:0;border:0;padding:18mm;} h2,table,.abstract,.notice{page-break-inside:avoid;} }
-    @media (max-width:720px){ main{width:calc(100% - 20px); margin:10px auto; padding:28px 22px;} h1{font-size:28px;} table{font-size:13px;} }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.65; max-width: 1040px; margin: 32px auto; padding: 0 24px; color: #17202a; }
+    h1, h2, h3 { line-height: 1.25; }
+    table { border-collapse: collapse; width: 100%; margin: 18px 0; font-size: 0.95rem; }
+    th, td { border: 1px solid #d0d7de; padding: 7px 9px; vertical-align: top; }
+    th { background: #f6f8fa; }
+    code { background: #f6f8fa; padding: 0.1rem 0.25rem; border-radius: 4px; }
+    pre { background: #f6f8fa; padding: 16px; overflow-x: auto; border-radius: 6px; }
+    img { max-width: 100%; height: auto; border: 1px solid #d0d7de; border-radius: 6px; }
   </style>
 </head>
 <body>
-<main>
-  <h1>W03 제출용 보고서</h1>
-  <div class="abstract">
-    본 보고서는 컴퓨터비전 표현학습과 비전 대적공격을 연결하여 정상 조건 성능과 공격 조건 성능을 분리해 평가해야 함을 정리한다. 실습은 synthetic 8×8 막대 이미지 기반 안전 toy 실험과 nearest-centroid model을 사용했으며, 실제 CNN/ViT 공격 재현이나 운영 시스템 공격은 포함하지 않는다. 본 문서는 제출용 최종 초안이며 최종 제출 전 사람이 DOI, PDF 보관 정책, 인용, HTML 인쇄 상태를 확인해야 한다.
-  </div>
-
-  <h2>0. 메타정보</h2>
-  <table>
-    <tr><th>항목</th><th>내용</th></tr>
-    <tr><td>주차</td><td>W03</td></tr>
-    <tr><td>제목</td><td>컴퓨터비전 표현학습 &amp; 비전 대적공격</td></tr>
-    <tr><td>작성일</td><td>2026-06-22</td></tr>
-    <tr><td>문서 상태</td><td>제출용 최종 초안, 최종 제출 확정 아님</td></tr>
-  </table>
-
-  <h2>1. 한 문장 요약</h2>
-  <p>W03는 비전 모델의 표현학습 원리를 CNN/ViT/멀티모달 Transformer 관점에서 정리하고, 공격 조건에서는 clean accuracy와 robust accuracy, ASR을 분리해 보고해야 함을 safe toy 실험으로 확인한다.</p>
-
-  <h2>2. 학습 배경과 주차 목표</h2>
-  <p>W03는 W01의 ML 생명주기 보안 평가와 W02의 학습 데이터 오염 위협을 비전 모델의 입력·표현·추론 단계로 확장한다. 핵심 목표는 CNN과 ViT의 inductive bias, 멀티모달 Transformer 구조, 비전 대적평가 지표를 정리하는 것이다.</p>
-
-  <h2>3. AI 원리 70% 정리</h2>
-  <p>CNN은 지역 receptive field와 gradient 기반 학습을 통해 이미지의 계층적 표현을 학습한다[1]. 딥러닝 기반 컴퓨터비전은 classification, detection, segmentation 등으로 확장되었다[2]. 멀티모달 Transformer는 서로 다른 modality를 attention 기반으로 정합한다[3]. Vision Transformer는 이미지를 patch token으로 변환해 Transformer 구조에 입력한다[4].</p>
-  <p><strong>표 1. W03 핵심 개념과 보안 연결</strong></p>
-  <table>
-    <tr><th>개념</th><th>원리</th><th>보안 연결</th></tr>
-    <tr><td>CNN</td><td>지역성과 weight sharing</td><td>gradient 기반 교란 배경</td></tr>
-    <tr><td>ViT</td><td>patch token과 self-attention</td><td>patch/attention 취약성</td></tr>
-    <tr><td>Multimodal Transformer</td><td>cross-modal alignment</td><td>image-text mismatch</td></tr>
-  </table>
-
-  <h2>4. 보안 이슈 30% 정리</h2>
-  <p>비전 모델의 보안성 평가는 clean accuracy뿐 아니라 robust accuracy, ASR, 2D/3D safety 지표를 함께 고려해야 한다[5]. 본 보고서는 실제 서비스 침해, 개인정보 이미지, 무단 API 질의, 악용 가능한 공격 절차를 제외한다.</p>
-  <p><strong>그림 1. 비전 대적공격 평가 흐름</strong></p>
-  <pre>Clean Image
-  ↓
+<h1 id="w03">W03 제출용 보고서</h1>
+<h2 id="_1">초록</h2>
+<p>본 보고서는 컴퓨터비전 표현학습과 비전 대적공격을 연결하여 정상 조건 성능과 공격 조건 성능을 분리해 평가해야 함을 정리한다. CNN, Vision Transformer, 멀티모달 Transformer, 2D/3D 비전 강건성 문헌을 비교하고, clean accuracy, robust accuracy, ASR, robust drop, confusion matrix, reproducibility evidence를 핵심 평가축으로 제시한다. 실습은 synthetic 8×8 막대 이미지 기반 안전 toy 실험과 nearest-centroid model을 사용했으며, 실제 CNN/ViT 공격 재현이나 운영 시스템 공격은 포함하지 않는다. 본 문서는 제출용 보고서이며 최종 제출 전 사람이 DOI, PDF 보관 정책, 인용, HTML 인쇄 상태를 확인해야 한다.</p>
+<p><strong>키워드:</strong> 컴퓨터비전, CNN, Vision Transformer, 대적공격, robust accuracy, ASR, 재현성</p>
+<h2 id="0">0. 메타정보</h2>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>주차</td>
+<td>W03</td>
+</tr>
+<tr>
+<td>작성자</td>
+<td>박영세</td>
+</tr>
+<tr>
+<td>학번</td>
+<td>26200122</td>
+</tr>
+<tr>
+<td>보고서 제목</td>
+<td>컴퓨터비전 표현학습 &amp; 비전 대적공격</td>
+</tr>
+<tr>
+<td>작성일</td>
+<td>2026-06-22</td>
+</tr>
+<tr>
+<td>보완일</td>
+<td>2026-06-23</td>
+</tr>
+<tr>
+<td>문서 상태</td>
+<td>제출용 보고서</td>
+</tr>
+<tr>
+<td>관련 산출물 위치</td>
+<td><code>03_weekly_reports/w03_computer_vision_adversarial/</code></td>
+</tr>
+<tr>
+<td>## 1. 한 문장 요약</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>W03는 비전 모델의 표현학습 원리를 CNN/ViT/멀티모달 Transformer 관점에서 정리하고, 공격 조건에서는 clean accuracy와 robust accuracy, ASR을 분리해 보고해야 함을 safe toy 실험으로 확인한다.</p>
+<h2 id="2">2. 학습 배경과 주차 목표</h2>
+<h3 id="21">2.1 이번 주 주제의 위치</h3>
+<p>W03는 W01의 ML 생명주기 보안 평가와 W02의 학습 데이터 오염 위협을 비전 모델의 입력·표현·추론 단계로 확장하는 주차다. W01이 AI 보안 평가의 기본 프레임을 세웠고, W02가 학습 단계 오염을 다루었다면, W03는 이미지 입력과 시각 표현이 공격 조건에서 어떻게 흔들릴 수 있는지를 다룬다. 이후 W04 Transformer/NLP 보안, W05 self-supervised/backdoor, W06 deepfake, W07 multimodal LLM 보안과 연결된다.</p>
+<h3 id="22">2.2 강의계획서상 학습목표</h3>
+<ul>
+<li>비전 학습의 inductive bias를 CNN과 ViT 관점에서 이해한다.</li>
+<li>멀티모달 Transformer의 구조와 학습 규약을 정리한다.</li>
+<li>비전 대적평가 벤치마크와 지표를 논문 수준으로 재구성한다.</li>
+</ul>
+<h3 id="23">2.3 이번 주 핵심 질문</h3>
+<ol>
+<li>CNN과 ViT는 어떤 inductive bias 차이를 가지는가?</li>
+<li>이미지 입력의 작은 교란은 모델 표현과 decision boundary에 어떤 영향을 줄 수 있는가?</li>
+<li>clean accuracy와 robust accuracy, ASR은 왜 분리해 보고해야 하는가?</li>
+<li>2D/3D 비전 강건성 평가는 어떤 위협모형과 평가 지표를 요구하는가?</li>
+<li>W03의 toy 실험을 KCI 또는 SCI 논문 주제로 발전시키려면 어떤 연구문제가 적절한가?</li>
+</ol>
+<h2 id="3-ai-70">3. AI 원리 70% 정리</h2>
+<p>CNN은 지역 receptive field와 gradient 기반 학습을 통해 이미지의 계층적 표현을 학습한다[1]. 딥러닝 기반 컴퓨터비전은 classification, detection, segmentation 등 다양한 응용으로 확장되었다[2]. 멀티모달 Transformer는 이미지와 텍스트 등 서로 다른 modality를 attention 기반으로 정합한다[3]. Vision Transformer는 이미지를 patch token으로 변환해 Transformer 구조에 입력한다[4].</p>
+<p>표 1. W03 핵심 개념과 보안 연결</p>
+<table>
+<thead>
+<tr>
+<th>개념</th>
+<th>원리</th>
+<th>보안 연결</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CNN</td>
+<td>지역성과 weight sharing</td>
+<td>gradient 기반 교란 배경</td>
+</tr>
+<tr>
+<td>ViT</td>
+<td>patch token과 self-attention</td>
+<td>patch/attention 취약성</td>
+</tr>
+<tr>
+<td>Multimodal Transformer</td>
+<td>cross-modal alignment</td>
+<td>image-text mismatch</td>
+</tr>
+<tr>
+<td>Clean/robust metric separation</td>
+<td>정상 조건과 공격 조건 분리</td>
+<td>안전성 과장 방지</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-30">4. 보안 이슈 30% 정리</h2>
+<p>비전 대적공격은 입력 이미지 또는 센서 입력을 변형해 예측을 바꾸는 위협이다. 비전 모델의 보안성 평가는 clean accuracy뿐 아니라 robust accuracy, ASR, 2D/3D safety 지표를 함께 고려해야 한다[5]. 본 보고서는 공격 절차가 아니라 보호 자산, 공격자 가정, 평가 지표, 재현성 근거를 중심으로 작성한다.</p>
+<p>그림 1. 비전 대적공격 평가 흐름</p>
+<pre><code class="language-text">Clean Image
+    ↓
 Vision Model / Representation
-  ↓
-Clean Evaluation → Clean Accuracy, Macro F1
-  ↓
+    ↓
+Clean Evaluation ──&gt; Clean Accuracy, Macro F1
+    ↓
 Perturbed Image
-  ↓
-Robust Evaluation → Robust Accuracy, ASR, Robust Drop, Confusion Matrix
-  ↓
-Defense/Check → Feature Squeezing Result
-  ↓
-Reproducibility Evidence → seed, config, Docker, outputs, PGM examples</pre>
+    ↓
+Robust Evaluation ──&gt; Robust Accuracy, ASR, Robust Drop, Confusion Matrix
+    ↓
+Defense/Check ──&gt; Feature Squeezing Result
+    ↓
+Reproducibility Evidence ──&gt; seed, config, Docker, outputs, PGM examples
+</code></pre>
+<h2 id="5-5">5. 논문 5편 요약</h2>
+<p>표 2. 관련 문헌 5편 요약</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">번호</th>
+<th>논문</th>
+<th>최종 서지 핵심</th>
+<th>활용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">[1]</td>
+<td>LeCun et al., 1998</td>
+<td><em>Proceedings of the IEEE</em>, 86(11), 2278-2324</td>
+<td>CNN/gradient 학습</td>
+</tr>
+<tr>
+<td style="text-align: right;">[2]</td>
+<td>Voulodimos et al., 2018</td>
+<td><em>Computational Intelligence and Neuroscience</em>, Article ID 7068349</td>
+<td>CV 딥러닝 응용</td>
+</tr>
+<tr>
+<td style="text-align: right;">[3]</td>
+<td>Xu et al., 2023</td>
+<td><em>IEEE TPAMI</em>, 45(10), 12113-12132</td>
+<td>멀티모달 Transformer</td>
+</tr>
+<tr>
+<td style="text-align: right;">[4]</td>
+<td>Khan et al., 2022</td>
+<td><em>ACM Computing Surveys</em>, 54(10s), 1-41</td>
+<td>Vision Transformer</td>
+</tr>
+<tr>
+<td style="text-align: right;">[5]</td>
+<td>Li et al., 2024</td>
+<td><em>ACM Computing Surveys</em>, 56(6), 1-37</td>
+<td>2D/3D adversarial robustness</td>
+</tr>
+</tbody>
+</table>
+<p>P02의 저자는 <code>Athanasios Voulodimos</code>로 정정했고, P05의 최종 출판연도는 2024년으로 확인했다.</p>
+<h2 id="6-5">6. 논문 5편 비교표</h2>
+<p>P01-P04는 AI 원리 중심, P05는 보안 평가 중심이다. P01은 CNN, P02는 CV 딥러닝 응용, P03은 멀티모달 Transformer, P04는 ViT, P05는 2D/3D adversarial robustness를 담당한다. CNN은 지역성과 translation bias를 강하게 갖고, ViT는 patch token과 attention을 통해 전역 관계를 학습한다. 멀티모달 학습은 image-text alignment 장점과 mismatch 위험을 동시에 가진다.</p>
+<h2 id="7-research-track">7. Research Track 분석</h2>
+<p>표 3. W03 Research Track 요약</p>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>연구문제</td>
+<td>비전 모델의 clean 성능과 공격 조건 성능을 어떻게 분리해 기록할 것인가</td>
+</tr>
+<tr>
+<td>대상 시스템</td>
+<td>이미지 분류 모델, ViT, 멀티모달 비전 모델</td>
+</tr>
+<tr>
+<td>보호 자산</td>
+<td>입력 이미지, 표현, 모델, 출력, 평가셋, 로그</td>
+</tr>
+<tr>
+<td>위협</td>
+<td>white-box/black-box perturbation, transfer, physical, 3D attack</td>
+</tr>
+<tr>
+<td>지표</td>
+<td>clean accuracy, robust accuracy, ASR, robust drop, confusion matrix</td>
+</tr>
+<tr>
+<td>제외 범위</td>
+<td>개인정보, 운영 서비스, 무단 API, 악용 가능한 공격 절차</td>
+</tr>
+</tbody>
+</table>
+<h2 id="8">8. 실습 보고서</h2>
+<p>실습은 <code>04_experiment/src/run_experiment.py</code>로 실행했다. nearest-centroid model을 사용한 이유는 실제 공격 성능을 주장하기 위해서가 아니라, 작은 synthetic 데이터에서 clean condition과 perturbation condition의 지표 분리 방식을 재현 가능하게 설명하기 위해서다.</p>
+<p>표 4. W03 실습 설계</p>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dataset</td>
+<td><code>synthetic_8x8_bar_images</code></td>
+</tr>
+<tr>
+<td>Model</td>
+<td><code>nearest_centroid</code></td>
+</tr>
+<tr>
+<td>Attack condition</td>
+<td><code>centroid_direction_linf</code></td>
+</tr>
+<tr>
+<td>Defense/check</td>
+<td><code>feature_squeeze_2_levels</code></td>
+</tr>
+<tr>
+<td>Seed</td>
+<td>42</td>
+</tr>
+<tr>
+<td>실행 명령</td>
+<td><code>python3 src/run_experiment.py --config configs/config.yaml</code></td>
+</tr>
+</tbody>
+</table>
+<p>표 5. W03 실습 결과</p>
+<table>
+<thead>
+<tr>
+<th>조건</th>
+<th style="text-align: right;">Epsilon</th>
+<th>Defense</th>
+<th style="text-align: right;">N</th>
+<th style="text-align: right;">Accuracy</th>
+<th style="text-align: right;">Macro F1</th>
+<th style="text-align: right;">ASR</th>
+<th style="text-align: right;">Robust Drop</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Clean baseline</td>
+<td style="text-align: right;">0.00</td>
+<td>none</td>
+<td style="text-align: right;">120</td>
+<td style="text-align: right;">1.000000</td>
+<td style="text-align: right;">1.000000</td>
+<td style="text-align: right;">N/A</td>
+<td style="text-align: right;">0.000000</td>
+</tr>
+<tr>
+<td>Adversarial perturbation</td>
+<td style="text-align: right;">0.05</td>
+<td>none</td>
+<td style="text-align: right;">120</td>
+<td style="text-align: right;">1.000000</td>
+<td style="text-align: right;">1.000000</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">0.000000</td>
+</tr>
+<tr>
+<td>Adversarial perturbation</td>
+<td style="text-align: right;">0.15</td>
+<td>none</td>
+<td style="text-align: right;">120</td>
+<td style="text-align: right;">1.000000</td>
+<td style="text-align: right;">1.000000</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">0.000000</td>
+</tr>
+<tr>
+<td>Adversarial perturbation</td>
+<td style="text-align: right;">0.30</td>
+<td>none</td>
+<td style="text-align: right;">120</td>
+<td style="text-align: right;">1.000000</td>
+<td style="text-align: right;">1.000000</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">0.000000</td>
+</tr>
+<tr>
+<td>Adversarial perturbation</td>
+<td style="text-align: right;">0.45</td>
+<td>none</td>
+<td style="text-align: right;">120</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">1.000000</td>
+<td style="text-align: right;">1.000000</td>
+</tr>
+<tr>
+<td>Feature squeezing check</td>
+<td style="text-align: right;">0.30</td>
+<td>feature_squeeze_2_levels</td>
+<td style="text-align: right;">120</td>
+<td style="text-align: right;">1.000000</td>
+<td style="text-align: right;">1.000000</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">0.000000</td>
+</tr>
+</tbody>
+</table>
+<p>epsilon 0.45 결과는 실제 CNN/ViT 공격 성공이 아니라 synthetic two-class toy decision boundary 전환이다.</p>
+<p>그림 2. Clean/adversarial/feature-squeezed toy image 예시</p>
+<table>
+<thead>
+<tr>
+<th>예시</th>
+<th>파일 위치</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Clean</td>
+<td><code>04_experiment/outputs/clean_example.pgm</code></td>
+</tr>
+<tr>
+<td>Adversarial</td>
+<td><code>04_experiment/outputs/adversarial_eps_0_30.pgm</code></td>
+</tr>
+<tr>
+<td>Feature-squeezed</td>
+<td><code>04_experiment/outputs/feature_squeezed_eps_0_30.pgm</code></td>
+</tr>
+</tbody>
+</table>
+<!-- submission-metric-chart:start -->
+<p><strong>그림 8. W03 metrics summary chart</strong></p>
+<p><img alt="W03 metrics summary chart" src="assets/w03_metric_chart.png"></p>
+<p>출처: <code>04_experiment/outputs/metrics_summary.csv</code>. 이 그래프는 공개 toy/synthetic 산출물 기반이며 실제 공격 성능이나 운영 환경 성능으로 일반화하지 않는다.</p>
+<!-- submission-metric-chart:end -->
 
-  <h2>5. 논문 5편 요약</h2>
-  <p><strong>표 2. 관련 문헌 5편 요약</strong></p>
-  <table>
-    <tr><th>번호</th><th>논문</th><th>활용</th><th>상태</th></tr>
-    <tr><td>[1]</td><td>LeCun et al., 1998</td><td>CNN/gradient 학습</td><td>확인됨</td></tr>
-    <tr><td>[2]</td><td>Voulodimos et al., 2018</td><td>CV 딥러닝 응용</td><td>확인됨</td></tr>
-    <tr><td>[3]</td><td>Xu et al., 2023</td><td>멀티모달 Transformer</td><td>확인됨</td></tr>
-    <tr><td>[4]</td><td>Khan et al., 2022</td><td>Vision Transformer</td><td>확인됨</td></tr>
-    <tr><td>[5]</td><td>Li et al., 2024</td><td>2D/3D adversarial robustness</td><td>확인됨</td></tr>
-  </table>
-
-  <h2>6. 논문 5편 비교표</h2>
-  <p>P01-P04는 AI 원리 중심, P05는 보안 평가 중심이다. CNN은 지역성과 translation bias를 강하게 갖고, ViT는 patch token과 attention으로 전역 관계를 학습한다. 멀티모달 학습은 image-text alignment 장점과 mismatch 위험을 동시에 가진다.</p>
-
-  <h2>7. Research Track 분석</h2>
-  <p><strong>표 3. W03 Research Track 요약</strong></p>
-  <table>
-    <tr><th>항목</th><th>내용</th></tr>
-    <tr><td>연구문제</td><td>비전 모델의 clean 성능과 공격 조건 성능을 어떻게 분리해 기록할 것인가</td></tr>
-    <tr><td>대상 시스템</td><td>이미지 분류 모델, ViT, 멀티모달 비전 모델</td></tr>
-    <tr><td>지표</td><td>clean accuracy, robust accuracy, ASR, robust drop, confusion matrix</td></tr>
-    <tr><td>제외 범위</td><td>개인정보, 운영 서비스, 무단 API, 악용 가능한 공격 절차</td></tr>
-  </table>
-
-  <h2>8. 실습 보고서</h2>
-  <p><strong>표 4. W03 실습 설계</strong></p>
-  <table>
-    <tr><th>항목</th><th>내용</th></tr>
-    <tr><td>Dataset</td><td><code>synthetic_8x8_bar_images</code></td></tr>
-    <tr><td>Model</td><td><code>nearest_centroid</code></td></tr>
-    <tr><td>Attack condition</td><td><code>centroid_direction_linf</code></td></tr>
-    <tr><td>Defense/check</td><td><code>feature_squeeze_2_levels</code></td></tr>
-    <tr><td>Seed</td><td>42</td></tr>
-  </table>
-  <p><strong>표 5. W03 실습 결과</strong></p>
-  <table>
-    <tr><th>조건</th><th>Epsilon</th><th>Defense</th><th>N</th><th>Accuracy</th><th>Macro F1</th><th>ASR</th><th>Robust Drop</th></tr>
-    <tr><td>Clean baseline</td><td class="num">0.00</td><td>none</td><td class="num">120</td><td class="num">1.000000</td><td class="num">1.000000</td><td>N/A</td><td class="num">0.000000</td></tr>
-    <tr><td>Adversarial perturbation</td><td class="num">0.05</td><td>none</td><td class="num">120</td><td class="num">1.000000</td><td class="num">1.000000</td><td class="num">0.000000</td><td class="num">0.000000</td></tr>
-    <tr><td>Adversarial perturbation</td><td class="num">0.15</td><td>none</td><td class="num">120</td><td class="num">1.000000</td><td class="num">1.000000</td><td class="num">0.000000</td><td class="num">0.000000</td></tr>
-    <tr><td>Adversarial perturbation</td><td class="num">0.30</td><td>none</td><td class="num">120</td><td class="num">1.000000</td><td class="num">1.000000</td><td class="num">0.000000</td><td class="num">0.000000</td></tr>
-    <tr><td>Adversarial perturbation</td><td class="num">0.45</td><td>none</td><td class="num">120</td><td class="num">0.000000</td><td class="num">0.000000</td><td class="num">1.000000</td><td class="num">1.000000</td></tr>
-    <tr><td>Feature squeezing check</td><td class="num">0.30</td><td>feature_squeeze_2_levels</td><td class="num">120</td><td class="num">1.000000</td><td class="num">1.000000</td><td class="num">0.000000</td><td class="num">0.000000</td></tr>
-  </table>
-  <p>epsilon 0.45 결과는 실제 CNN/ViT 공격 성공이 아니라 synthetic two-class toy decision boundary 전환이다.</p>
-  <p><strong>그림 2. Clean/adversarial/feature-squeezed toy image 예시</strong></p>
-  <table>
-    <tr><th>예시</th><th>파일 위치</th></tr>
-    <tr><td>Clean</td><td><code>04_experiment/outputs/clean_example.pgm</code></td></tr>
-    <tr><td>Adversarial</td><td><code>04_experiment/outputs/adversarial_eps_0_30.pgm</code></td></tr>
-    <tr><td>Feature-squeezed</td><td><code>04_experiment/outputs/feature_squeezed_eps_0_30.pgm</code></td></tr>
-  </table>
-
-  <h2>9. AI 도구 활용 기록</h2>
-  <p>Codex와 ChatGPT를 사용해 논문 요약 보강, 문장 구조화, code/config 일치성 점검, synthetic toy 실험 코드 및 보고서 보완, KCI/SCI 섹션 작성을 수행했다.</p>
-
-  <h2>10. 토론 질문</h2>
-  <ol>
-    <li>CNN과 ViT의 구조 차이는 어떤 공격면 차이로 이어지는가?</li>
-    <li>clean accuracy가 높아도 robust accuracy를 별도로 보고해야 하는 이유는 무엇인가?</li>
-    <li>synthetic toy 실험 결과를 실제 모델 성능으로 일반화하지 않아야 하는 이유는 무엇인가?</li>
-  </ol>
-
-  <h2>11. 기말논문 연결</h2>
-  <p>W03는 clean performance, attack impact, reproducibility evidence를 분리해 기록하는 프레임워크의 비전 사례로 활용할 수 있다.</p>
-
-  <h2>12. KCI 논문 형식 전환</h2>
-  <p><strong>표 6. KCI 논문 제목 후보</strong></p>
-  <table>
-    <tr><th>번호</th><th>국문 제목 후보</th><th>예상 기여</th></tr>
-    <tr><td>1</td><td>컴퓨터비전 모델의 대적공격 평가를 위한 다중지표 프레임워크 연구</td><td>clean/robust/ASR 분리 평가</td></tr>
-    <tr><td>2</td><td>CNN과 Vision Transformer 기반 비전 모델의 보안 평가 항목 비교 연구</td><td>inductive bias와 보안 평가 연결</td></tr>
-    <tr><td>3</td><td>AI 보안 평가에서 비전 대적공격의 Clean Accuracy와 Robust Accuracy 분리 기록 필요성 연구</td><td>제출 가능형 평가 체크리스트</td></tr>
-  </table>
-
-  <h2>13. SCI 논문 형식 전환</h2>
-  <p>SCI 제목 후보는 “A Multi-Metric Evaluation Framework for Vision Adversarial Robustness: Separating Clean Accuracy, Robust Accuracy, Attack Success Rate, and Reproducibility Evidence”이다.</p>
-  <p><strong>표 7. SCI Related Work 축</strong></p>
-  <table>
-    <tr><th>연구축</th><th>대표 논문</th><th>역할</th></tr>
-    <tr><td>CNN and gradient-based learning</td><td>LeCun et al.</td><td>CNN 구조와 gradient 기반 학습 원리</td></tr>
-    <tr><td>Deep learning for computer vision</td><td>Voulodimos et al.</td><td>CV task와 딥러닝 응용</td></tr>
-    <tr><td>Multimodal Transformers</td><td>Xu et al.</td><td>이미지-텍스트/멀티모달 표현학습</td></tr>
-    <tr><td>Vision Transformers</td><td>Khan et al.</td><td>ViT 구조와 CNN 대비 특징</td></tr>
-    <tr><td>Vision adversarial robustness</td><td>Li et al.</td><td>2D/3D 비전 대적공격과 안전성 평가</td></tr>
-  </table>
-
-  <h2>14. 발표용 요약</h2>
-  <p>발표 핵심은 “비전 모델 보안 평가는 clean accuracy 하나로 끝나지 않는다”이다. outputs 기준 발표 수치는 Markdown 보고서와 동일하다.</p>
-
-  <h2>15. 참고문헌 검증표</h2>
-  <table>
-    <tr><th>번호</th><th>참고문헌</th><th>DOI/URL</th><th>상태</th></tr>
-    <tr><td>[1]</td><td>LeCun et al., 1998</td><td>https://doi.org/10.1109/5.726791</td><td>확인됨</td></tr>
-    <tr><td>[2]</td><td>Voulodimos et al., 2018</td><td>https://doi.org/10.1155/2018/7068349</td><td>확인됨</td></tr>
-    <tr><td>[3]</td><td>Xu et al., 2023</td><td>https://doi.org/10.1109/TPAMI.2023.3275156</td><td>확인됨</td></tr>
-    <tr><td>[4]</td><td>Khan et al., 2022</td><td>https://doi.org/10.1145/3505244</td><td>확인됨</td></tr>
-    <tr><td>[5]</td><td>Li et al., 2024</td><td>https://doi.org/10.1145/3636551</td><td>확인됨</td></tr>
-  </table>
-  <div class="notice">GitHub API 기준 원격 저장소는 public이고 W03 PDF 5개는 git 추적 대상이다. 최종 제출 전 PDF 삭제 또는 DOI/URL 대체를 사람이 검토해야 한다.</div>
-
-  <h2>16. 자기 점검표</h2>
-  <table>
-    <tr><th>점검 항목</th><th>상태</th><th>비고</th></tr>
-    <tr><td>논문 5편 요약 및 비교표</td><td>완료</td><td>P01-P05 차별성 반영</td></tr>
-    <tr><td>DOI/URL 검증</td><td>완료</td><td>Crossref/출판사 URL 기준</td></tr>
-    <tr><td>실험 결과와 보고서 수치 일치</td><td>완료</td><td>outputs 기준</td></tr>
-    <tr><td>KCI/SCI 전환 섹션</td><td>완료</td><td>요약형 반영</td></tr>
-    <tr><td>AI 활용 고지</td><td>완료</td><td>별도 파일 작성</td></tr>
-    <tr><td>PDF 저작권 위험 점검</td><td>완료</td><td>public 저장소 PDF 추적, 삭제 필요</td></tr>
-  </table>
-</main>
+<h2 id="9-ai">9. AI 도구 활용 기록</h2>
+<p>AI 도구는 문헌 요약, 코드 점검, 문장 구조화, 그래프 생성 보조에 사용하였다. 모든 DOI/URL, 실험 수치, 본문 인용, 결론은 작성자가 outputs 파일과 로컬 참고문헌 검증표를 대조하여 검증한다.</p>
+<p><strong>표. W03 AI 도구 활용 및 검증 기록</strong></p>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>사용 도구명</td>
+<td>Codex, ChatGPT 계열 도구</td>
+</tr>
+<tr>
+<td>사용 일자</td>
+<td>2026-06-23</td>
+</tr>
+<tr>
+<td>사용 목적</td>
+<td>문헌 요약 정리, 보고서 구조화, 안전한 toy/synthetic 실험 결과 표기 점검, 그래프 생성 보조, 제출 전 체크리스트 정리</td>
+</tr>
+<tr>
+<td>주요 프롬프트 요약</td>
+<td>주차별 제출 보고서 보완, 참고문헌 검증표 정리, metrics_summary.csv 기반 그래프 생성, AI 활용 고지 작성</td>
+</tr>
+<tr>
+<td>AI 산출물 반영 위치</td>
+<td><code>07_week_submission/w03_submission_report.md</code>, <code>07_week_submission/assets/w03_metric_chart.png</code>, <code>05_ai_worklog/ai_disclosure_draft.md</code></td>
+</tr>
+<tr>
+<td>본인 수정 내용</td>
+<td>주차별 문헌 상태 확인, 실험 수치와 outputs 대조, 안전 범위와 한계 문장 확인, 최종 제출 전 미확정 문헌 분리</td>
+</tr>
+<tr>
+<td>사실관계 검증 방법</td>
+<td><code>01_papers/paper_list.md</code>, <code>01_papers/doi_check.md</code>, <code>05_references/doi_index.md</code>, 강의계획서 문헌표 대조</td>
+</tr>
+<tr>
+<td>참고문헌 검증 방법</td>
+<td>제목, 저자, 연도, 학술지/학회, DOI/URL, 본문 인용번호와 참고문헌 목록 대응 확인</td>
+</tr>
+<tr>
+<td>실험결과 검증 방법</td>
+<td><code>04_experiment/outputs/metrics_summary.csv</code>, <code>results.json</code>, <code>run_log.md</code>의 수치와 보고서 표기 대조</td>
+</tr>
+<tr>
+<td>최종 책임 확인</td>
+<td>AI 산출물은 초안 보조이며 최종 제출자는 원고 내용, 인용, 실험결과, 연구윤리 책임을 확인한다.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="10">10. 토론 질문</h2>
+<ol>
+<li>CNN과 ViT의 구조 차이는 어떤 공격면 차이로 이어지는가?</li>
+<li>clean accuracy가 높아도 robust accuracy를 별도로 보고해야 하는 이유는 무엇인가?</li>
+<li>멀티모달 입력 정합 실패는 이미지 perturbation과 어떻게 다른 위협인가?</li>
+<li>synthetic toy 실험 결과를 실제 모델 성능으로 일반화하지 않아야 하는 이유는 무엇인가?</li>
+</ol>
+<h2 id="11">11. 기말논문 연결</h2>
+<p>W03는 기말논문의 관련연구, 위협모형, 평가방법, 분석/실험 장에 연결된다. 특히 <code>clean performance</code>, <code>attack impact</code>, <code>reproducibility evidence</code>를 분리해 기록하는 프레임워크의 비전 사례로 활용할 수 있다.</p>
+<h2 id="12-kci">12. KCI 논문 형식 전환</h2>
+<p>표 6. KCI 논문 제목 후보</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">번호</th>
+<th>국문 제목 후보</th>
+<th>영문 제목 후보</th>
+<th>예상 기여</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td>컴퓨터비전 모델의 대적공격 평가를 위한 다중지표 프레임워크 연구</td>
+<td>A Multi-Metric Evaluation Framework for Adversarial Attacks on Computer Vision Models</td>
+<td>clean/robust/ASR 분리 평가</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td>CNN과 Vision Transformer 기반 비전 모델의 보안 평가 항목 비교 연구</td>
+<td>A Comparative Study on Security Evaluation Criteria for CNN and Vision Transformer-Based Vision Models</td>
+<td>inductive bias와 보안 평가 연결</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td>AI 보안 평가에서 비전 대적공격의 Clean Accuracy와 Robust Accuracy 분리 기록 필요성 연구</td>
+<td>A Study on the Need to Separately Report Clean Accuracy and Robust Accuracy for Vision Adversarial Attacks</td>
+<td>제출 가능형 평가 체크리스트</td>
+</tr>
+</tbody>
+</table>
+<p>추천 제목은 “컴퓨터비전 모델의 대적공격 평가를 위한 다중지표 프레임워크 연구”이다. 국문초록은 정상 성능과 공격 조건 성능을 분리하는 다중지표 프레임워크, W03 문헌 비교, safe toy experiment, 재현성 증거 보존을 중심으로 구성한다.</p>
+<h2 id="13-sci">13. SCI 논문 형식 전환</h2>
+<p>SCI 제목 후보는 “A Multi-Metric Evaluation Framework for Vision Adversarial Robustness: Separating Clean Accuracy, Robust Accuracy, Attack Success Rate, and Reproducibility Evidence”이다.</p>
+<p>표 7. SCI Related Work 축</p>
+<table>
+<thead>
+<tr>
+<th>연구축</th>
+<th>대표 논문</th>
+<th>역할</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CNN and gradient-based learning</td>
+<td>LeCun et al.</td>
+<td>CNN 구조와 gradient 기반 학습 원리</td>
+</tr>
+<tr>
+<td>Deep learning for computer vision</td>
+<td>Voulodimos et al.</td>
+<td>CV task와 딥러닝 응용</td>
+</tr>
+<tr>
+<td>Multimodal Transformers</td>
+<td>Xu et al.</td>
+<td>이미지-텍스트/멀티모달 표현학습</td>
+</tr>
+<tr>
+<td>Vision Transformers</td>
+<td>Khan et al.</td>
+<td>ViT 구조와 CNN 대비 특징</td>
+</tr>
+<tr>
+<td>Vision adversarial robustness</td>
+<td>Li et al.</td>
+<td>2D/3D 비전 대적공격과 안전성 평가</td>
+</tr>
+</tbody>
+</table>
+<p>SCI형 구성은 Background, Problem, Method, Results, Contribution, Implications의 structured abstract와 threat model, methodology, experimental setup, limitations를 포함한다.</p>
+<h2 id="14">14. 발표용 요약</h2>
+<p>발표 핵심은 “비전 모델 보안 평가는 clean accuracy 하나로 끝나지 않는다”이다. outputs 기준 발표 수치는 clean baseline accuracy 1.000000, epsilon 0.30 accuracy 1.000000/ASR 0.000000, epsilon 0.45 accuracy 0.000000/ASR 1.000000, feature squeezing epsilon 0.30 accuracy 1.000000/ASR 0.000000이다. epsilon 0.45는 toy decision boundary 전환으로 설명한다.</p>
+<h2 id="15">15. 참고문헌 검증표</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">번호</th>
+<th>참고문헌</th>
+<th>DOI/URL</th>
+<th>상태</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">[1]</td>
+<td>LeCun et al., “Gradient-Based Learning Applied to Document Recognition,” 1998.</td>
+<td>https://doi.org/10.1109/5.726791</td>
+<td>확인됨</td>
+</tr>
+<tr>
+<td style="text-align: right;">[2]</td>
+<td>Voulodimos et al., “Deep Learning for Computer Vision: A Brief Review,” 2018.</td>
+<td>https://doi.org/10.1155/2018/7068349</td>
+<td>확인됨</td>
+</tr>
+<tr>
+<td style="text-align: right;">[3]</td>
+<td>Xu et al., “Multimodal Learning With Transformers: A Survey,” 2023.</td>
+<td>https://doi.org/10.1109/TPAMI.2023.3275156</td>
+<td>확인됨</td>
+</tr>
+<tr>
+<td style="text-align: right;">[4]</td>
+<td>Khan et al., “Transformers in Vision: A Survey,” 2022.</td>
+<td>https://doi.org/10.1145/3505244</td>
+<td>확인됨</td>
+</tr>
+<tr>
+<td style="text-align: right;">[5]</td>
+<td>Li et al., “A Survey of Robustness and Safety of 2D and 3D Deep Learning Models against Adversarial Attacks,” 2024.</td>
+<td>https://doi.org/10.1145/3636551</td>
+<td>확인됨</td>
+</tr>
+</tbody>
+</table>
+<p>PDF 보관 점검: 원격 저장소가 public일 수 있으므로 W03 논문 PDF 원문은 로컬 파일로 보존하되 Git 추적은 해제했다. <code>.gitignore</code>의 PDF 제외 규칙과 PDF 보관 정책을 적용한다.</p>
+<h2 id="16">16. 자기 점검표</h2>
+<table>
+<thead>
+<tr>
+<th>점검 항목</th>
+<th>상태</th>
+<th>비고</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1장 한 문장 요약 작성</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>2장 학습 배경과 주차 목표 작성</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>AI 원리 70% 정리</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>보안 이슈 30% 정리</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>논문 5편 요약</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>논문 5편 비교표 보완</td>
+<td>완료</td>
+<td>P01-P05 차별성 반영</td>
+</tr>
+<tr>
+<td>Research Track 5요소 작성</td>
+<td>완료</td>
+<td>연구문제, 위협모형, 평가방법, 재현성, 오픈문제</td>
+</tr>
+<tr>
+<td>P01 DOI/URL 검증</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>P02 DOI/URL 검증</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>P03 DOI/URL 검증</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>P04 DOI/URL 검증</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>P05 DOI/URL 검증</td>
+<td>완료</td>
+<td>출판연도 2024</td>
+</tr>
+<tr>
+<td>실험 outputs 파일 존재 확인</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>실험 결과와 보고서 수치 일치</td>
+<td>완료</td>
+<td>outputs 기준</td>
+</tr>
+<tr>
+<td>KCI 논문 형식 전환 작성</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>SCI 논문 형식 전환 작성</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>본문 인용과 참고문헌 대응</td>
+<td>완료</td>
+<td>[1]-[5]</td>
+</tr>
+<tr>
+<td>표·그림 번호 정리</td>
+<td>완료</td>
+<td>표 1-7, 그림 1-2</td>
+</tr>
+<tr>
+<td>AI 활용 고지 작성</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>PDF 저작권 위험 점검</td>
+<td>완료</td>
+<td>public 저장소 PDF 추적, 삭제 필요</td>
+</tr>
+<tr>
+<td>최종 사람이 검토할 항목 표시</td>
+<td>완료</td>
+<td>PDF 삭제, 국내 참고문헌, 최종 제출 여부</td>
+</tr>
+</tbody>
+</table>
 </body>
 </html>

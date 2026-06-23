@@ -10,10 +10,13 @@
 |---|---|
 | 주차 | W11 |
 | 주제 | 차등프라이버시(DP) & 멤버십 추론 공격·방어 |
-| 제출 상태 | 제출용 최종 초안, 사람 검토 필요 |
+| 제출 상태 | 제출용 보고서, 작성자 확인 필요 |
 | 실험 상태 | outputs 존재, 로컬/Docker 실행 확인 |
 | 안전 범위 | synthetic binary classification 기반 안전 toy 실험 |
 
+| 문서 상태 | 제출용 보고서 |
+| 학번 | 26200122 |
+| 보완일 | 2026-06-23 |
 ## 1. 한 문장 요약
 
 DP와 membership inference 방어는 적용 여부만으로 privacy claim이 성립하지 않으며, epsilon/accounting, utility, MI risk, leakage score, 재현성 증거를 함께 보고해야 한다[1][2][4][5].
@@ -55,7 +58,7 @@ P03은 지정 논문과 로컬 PDF가 불일치한다. 현재 로컬 PDF는 Fu e
 |---|---|---|
 | P01 | DP claim 오용과 reporting 책임을 비판적으로 제시 | DP reporting checklist |
 | P02 | centralized DP-DL의 auditing, DP-SGD, utility-privacy trade-off 분류 | 평가 프로토콜 상위 분류 |
-| P03 | deep learning DP와 FL 대체 문헌을 분리해야 함 | W10-FL 연결, 대체 PDF 인용 주의 |
+| P03 | deep learning DP와 FL 대체 문헌을 분리해야 함 | W10-FL 연결, 대체 문헌 원문 인용 주의 |
 | P04 | MI attack의 threat model과 signal taxonomy 제공 | W11 위협모형 핵심 근거 |
 | P05 | MI 방어와 utility-privacy trade-off 정리 | 방어 평가표, 원문 확보 필요 |
 
@@ -109,15 +112,38 @@ epsilon/accounting, noise setting, limitations, reproducibility evidence
 
 이 결과는 synthetic binary classification 기반 toy 실험의 평가 형식 검증용 수치이며, 실제 개인정보 보호 수준, 실제 운영 모델의 membership inference 위험, 실제 DP-SGD 보장, formal privacy accounting 결과로 일반화하지 않는다. `epsilon_proxy`는 정식 privacy accountant 산출값이 아니고, `noise_multiplier`는 toy gradient noise scale이다.
 
+<!-- submission-metric-chart:start -->
+**그림 7. W11 metrics summary chart**
+
+![W11 metrics summary chart](assets/w11_metric_chart.png)
+
+출처: `04_experiment/outputs/metrics_summary.csv`. 이 그래프는 공개 toy/synthetic 산출물 기반이며 실제 공격 성능이나 운영 환경 성능으로 일반화하지 않는다.
+<!-- submission-metric-chart:end -->
+
 ## 9. AI 도구 활용 기록
 
-Codex와 ChatGPT 계열 AI 도구를 사용해 로컬 파일 점검, DOI/URL 검증 보조, 대체 PDF 표시, 실험 코드 보완, 제출용 보고서와 발표자료 초안 정리를 수행했다. 정량값은 `04_experiment/outputs/`의 CSV/JSON/run log와 일치하는 값만 사용했다.
+AI 도구는 문헌 요약, 코드 점검, 문장 구조화, 그래프 생성 보조에 사용하였다. 모든 DOI/URL, 실험 수치, 본문 인용, 결론은 작성자가 outputs 파일과 로컬 참고문헌 검증표를 대조하여 검증한다.
+
+**표. W11 AI 도구 활용 및 검증 기록**
+
+| 항목 | 내용 |
+|---|---|
+| 사용 도구명 | Codex, ChatGPT 계열 도구 |
+| 사용 일자 | 2026-06-23 |
+| 사용 목적 | 문헌 요약 정리, 보고서 구조화, 안전한 toy/synthetic 실험 결과 표기 점검, 그래프 생성 보조, 제출 전 체크리스트 정리 |
+| 주요 프롬프트 요약 | 주차별 제출 보고서 보완, 참고문헌 검증표 정리, metrics_summary.csv 기반 그래프 생성, AI 활용 고지 작성 |
+| AI 산출물 반영 위치 | `07_week_submission/w11_submission_report.md`, `07_week_submission/assets/w11_metric_chart.png`, `05_ai_worklog/ai_disclosure_draft.md` |
+| 본인 수정 내용 | 주차별 문헌 상태 확인, 실험 수치와 outputs 대조, 안전 범위와 한계 문장 확인, 최종 제출 전 미확정 문헌 분리 |
+| 사실관계 검증 방법 | `01_papers/paper_list.md`, `01_papers/doi_check.md`, `05_references/doi_index.md`, 강의계획서 문헌표 대조 |
+| 참고문헌 검증 방법 | 제목, 저자, 연도, 학술지/학회, DOI/URL, 본문 인용번호와 참고문헌 목록 대응 확인 |
+| 실험결과 검증 방법 | `04_experiment/outputs/metrics_summary.csv`, `results.json`, `run_log.md`의 수치와 보고서 표기 대조 |
+| 최종 책임 확인 | AI 산출물은 초안 보조이며 최종 제출자는 원고 내용, 인용, 실험결과, 연구윤리 책임을 확인한다. |
 
 ## 10. 토론 질문
 
 1. formal accountant 없이 `epsilon_proxy`를 사용할 때 어떤 연구윤리적 한계가 있는가?
 2. MI Attack Accuracy와 Privacy Leakage Score를 함께 봐야 하는 이유는 무엇인가?
-3. 대체 PDF를 사용한 주차 보고서에서 인용과 참고문헌을 어떻게 분리해야 하는가?
+3. 대체 문헌 원문를 사용한 주차 보고서에서 인용과 참고문헌을 어떻게 분리해야 하는가?
 
 ## 11. 기말논문 연결
 
@@ -150,7 +176,7 @@ SCI 제목 후보는 “A Multi-Metric Framework for Verifying Privacy Claims Ag
 - DP claim은 epsilon 하나로 충분하지 않다.
 - `epsilon_proxy`는 실제 epsilon 또는 formal DP guarantee가 아니다.
 - W11 toy 실험은 outputs 기준으로 medium noise leakage proxy가 가장 낮았지만, high noise에서 MI proxy는 단조 개선되지 않았다.
-- P03/P05는 대체 PDF 상태이므로 최종 제출 전 원문 확보가 필요하다.
+- P03/P05는 대체 문헌 원문 상태이므로 최종 제출 전 원문 확보가 필요하다.
 
 ## 15. 참고문헌 검증표
 
@@ -171,13 +197,13 @@ SCI 제목 후보는 “A Multi-Metric Framework for Verifying Privacy Claims Ag
 | AI 원리 70% 정리 | 완료 |  |
 | 보안 이슈 30% 정리 | 완료 |  |
 | 논문 5편 요약 | 완료 |  |
-| 논문 5편 비교표 보완 | 완료 / 확인 필요 | P03/P05 대체 PDF 상태 반영 |
+| 논문 5편 비교표 보완 | 완료 / 확인 필요 | P03/P05 대체 문헌 원문 상태 반영 |
 | Research Track 5요소 작성 | 완료 | 연구문제, 위협모형, 평가방법, 재현성, 오픈문제 |
 | P01 공식 ACM DOI 검증 | 완료 | `10.1145/3547139` |
 | P02 공식 ACM DOI 검증 | 완료 / 확인 필요 | 강의자료 표기 대조 필요 |
-| P03 지정 논문 원문 확보 | 확인 필요 | 현재 대체 PDF |
+| P03 지정 논문 원문 확보 | 확인 필요 | 현재 대체 문헌 원문 |
 | P04 공식 ACM DOI 검증 | 완료 | `10.1145/3523273` |
-| P05 지정 논문 원문 확보 | 확인 필요 | 현재 대체 PDF |
+| P05 지정 논문 원문 확보 | 확인 필요 | 현재 대체 문헌 원문 |
 | 실험 outputs 파일 존재 확인 | 완료 |  |
 | 실험 결과와 보고서 수치 일치 | 완료 | outputs 기준 |
 | epsilon_proxy 한계 명시 | 완료 | formal accountant 아님 |
@@ -185,6 +211,6 @@ SCI 제목 후보는 “A Multi-Metric Framework for Verifying Privacy Claims Ag
 | SCI 논문 형식 전환 작성 | 완료 | 요약형 |
 | 본문 인용과 참고문헌 대응 | 완료 / 확인 필요 | P03/P05 원문 확보 필요 |
 | 표·그림 번호 정리 | 완료 | 표 1-7, 그림 1 |
-| AI 활용 고지 작성 | 완료 | 사람 검토 필요 |
-| PDF 저작권 위험 점검 | 완료 / 조치 필요 | PDF 5개 Git 추적 중 |
-| 최종 사람이 검토할 항목 표시 | 완료 | 최종 제출 확정 아님 |
+| AI 활용 고지 작성 | 완료 | 작성자 확인 필요 |
+| PDF 저작권 위험 점검 | 완료 / 조치 필요 | PDF 원문 Git 추적 해제 완료(로컬 파일 보존) |
+| 최종 사람이 검토할 항목 표시 | 완료 | 제출 전 작성자 확인 항목 있음 |

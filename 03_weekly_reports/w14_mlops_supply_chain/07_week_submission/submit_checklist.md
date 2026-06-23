@@ -1,27 +1,19 @@
-# 최종 자기 점검표
+# W14 제출 체크리스트
 
-| 점검 항목 | 상태 | 비고 |
+| 점검 항목 | 상태 | 근거/비고 |
 |---|---|---|
-| 1장 한 문장 요약 작성 | 완료 |  |
-| 2장 학습 배경과 주차 목표 작성 | 완료 |  |
-| AI 원리 70% 정리 | 완료 |  |
-| 보안 이슈 30% 정리 | 완료 |  |
-| 논문 5편 요약 | 완료 / 확인 필요 | P01/P03/P05 서지 차이, P03/P04/P05 원문 세부 대조 필요 |
-| 논문 5편 비교표 보완 | 완료 / 확인 필요 | 대체 PDF 상태 반영 |
-| Research Track 5요소 작성 | 완료 | 연구문제, 위협모형, 평가방법, 재현성, 오픈문제 |
-| P01 공식 제목/저자명 검증 | 완료 / 확인 필요 | DOI 10.1145/3747346 대조, 수업자료 표기 차이 |
-| P02 DOI/URL 검증 | 완료 | ACM Article 번호 재확인 필요 |
-| P03 지정 논문 원문 확보 | 확인 필요 | 현재 대체 PDF |
-| P04 지정 논문 원문 확보 | 확인 필요 | 현재 대체 PDF |
-| P05 지정 논문 원문/저자 표기 | 확인 필요 | 수업자료 Xiang Chen 표기와 DOI 메타데이터 불일치 |
-| 실험 outputs 파일 존재 확인 | 완료 | 6개 output 파일 |
-| 실험 결과와 보고서 수치 일치 | 완료 | outputs 기준 |
-| drift score 해석 보완 | 완료 | 공격 성공률 아님 |
-| AI BOM 확장표 추가 | 완료 | 운영 확장 항목 포함 |
-| KCI 논문 형식 전환 작성 | 완료 |  |
-| SCI 논문 형식 전환 작성 | 완료 |  |
-| 본문 인용과 참고문헌 대응 | 완료 / 확인 필요 | [1]-[5] 대응, 서지 차이 표시 |
-| 표·그림 번호 정리 | 완료 | 표 1-9, 그림 1 |
-| AI 활용 고지 작성 | 완료 |  |
-| PDF 저작권 위험 점검 | 완료 / 조치 필요 | PDF 5개 Git 추적 중, 삭제는 승인 필요 |
-| 최종 사람이 검토할 항목 표시 | 완료 | 제출 확정 전 재검토 필요 |
+| Markdown 제출보고서 | 완료 | 03_weekly_reports/w14_mlops_supply_chain/07_week_submission/w14_submission_report.md |
+| HTML 제출보고서 | 완료 | 03_weekly_reports/w14_mlops_supply_chain/07_week_submission/w14_submission_report.html |
+| metrics_summary.csv | 완료 | 03_weekly_reports/w14_mlops_supply_chain/04_experiment/outputs/metrics_summary.csv |
+| results.json | 완료 | 03_weekly_reports/w14_mlops_supply_chain/04_experiment/outputs/results.json |
+| run_log.md | 완료 | 03_weekly_reports/w14_mlops_supply_chain/04_experiment/outputs/run_log.md |
+| AI 활용 고지 | 완료 | 03_weekly_reports/w14_mlops_supply_chain/05_ai_worklog/ai_disclosure_draft.md |
+| metrics 기반 그래프 | 완료 | 생성 |
+| 참고문헌 검증표 | 완료 | 보고서 15장 |
+| 기말논문 연결 | 완료 | 보고서 11장 |
+
+## 제출 전 유의사항
+
+- 그래프와 실험 수치는 `04_experiment/outputs/metrics_summary.csv`, `results.json`, `run_log.md` 기준으로 해석한다.
+- `확인 필요` 문헌은 핵심 근거로 일반화하지 않고 참고문헌 검증표 또는 한계 섹션에서만 다룬다.
+- 논문 PDF 원문은 public GitHub 추적 대상에서 제외하고 DOI/URL 중심으로 관리한다.

@@ -5,9 +5,12 @@
 | 항목 | 내용 |
 |---|---|
 | 주차 | W05 |
+| 작성자 | 박영세 |
+| 학번 | 26200122 |
 | 보고서 제목 | 자기지도학습·파운데이션 모델 & Poisoning/Backdoor |
 | 작성일 | 2026-06-22 |
-| 문서 상태 | 제출용 최종 초안, 최종 제출 확정 아님 |
+| 보완일 | 2026-06-23 |
+| 문서 상태 | 제출용 보고서 |
 | 관련 산출물 | `03_weekly_reports/w05_ssl_backdoor/` |
 
 ### 초록
@@ -15,7 +18,6 @@
 본 보고서는 자기지도학습과 파운데이션 모델의 사전학습 표현공간을 보안 자산으로 보고, poisoning/backdoor 위협을 평가하기 위한 다중지표 구조를 정리한다. 문헌 5편을 통해 SSL 알고리즘, 추천/비디오 SSL, poisoning, backdoor taxonomy를 비교하고, synthetic 2차원 표현공간 클러스터 기반 안전 toy 실험으로 clean accuracy, poisoned clean accuracy, ASR, mean shift, detection rate, clean FPR을 분리 기록했다. 본 수치는 실제 SSL/foundation model 보안 성능 주장이 아니라 재현 가능한 평가 형식 검증이다.
 
 **키워드:** self-supervised learning, representation learning, foundation model, poisoning, backdoor, ASR, reproducibility
-
 ## 1. 한 문장 요약
 
 W05는 라벨 없는 pretraining 환경에서도 데이터 수집, augmentation, pair 구성, representation space가 공격면이 될 수 있음을 정리하고, clean accuracy와 ASR을 분리해 보고하는 안전한 평가 구조를 제시한다.
@@ -144,9 +146,32 @@ P01-P03은 SSL/표현학습 원리와 응용 문헌이고, P04-P05는 poisoning/
 
 이 결과는 synthetic 2D representation toy 실험의 평가 형식 검증용 수치이며, 실제 SSL 모델, foundation model, 상용 시스템의 poisoning/backdoor 보안 성능으로 일반화하지 않는다.
 
+<!-- submission-metric-chart:start -->
+**그림 7. W05 metrics summary chart**
+
+![W05 metrics summary chart](assets/w05_metric_chart.png)
+
+출처: `04_experiment/outputs/metrics_summary.csv`. 이 그래프는 공개 toy/synthetic 산출물 기반이며 실제 공격 성능이나 운영 환경 성능으로 일반화하지 않는다.
+<!-- submission-metric-chart:end -->
+
 ## 9. AI 도구 활용 기록
 
-Codex와 ChatGPT 계열 AI를 사용해 문헌 요약 구조화, DOI/URL 검증 보조, synthetic 실험 코드 작성, 제출용 보고서 및 발표자료 작성을 수행했다. 정량값은 `04_experiment/outputs/run_log.md`, `metrics_summary.csv`, `results.json`과 일치하는 값만 사용했다.
+AI 도구는 문헌 요약, 코드 점검, 문장 구조화, 그래프 생성 보조에 사용하였다. 모든 DOI/URL, 실험 수치, 본문 인용, 결론은 작성자가 outputs 파일과 로컬 참고문헌 검증표를 대조하여 검증한다.
+
+**표. W05 AI 도구 활용 및 검증 기록**
+
+| 항목 | 내용 |
+|---|---|
+| 사용 도구명 | Codex, ChatGPT 계열 도구 |
+| 사용 일자 | 2026-06-23 |
+| 사용 목적 | 문헌 요약 정리, 보고서 구조화, 안전한 toy/synthetic 실험 결과 표기 점검, 그래프 생성 보조, 제출 전 체크리스트 정리 |
+| 주요 프롬프트 요약 | 주차별 제출 보고서 보완, 참고문헌 검증표 정리, metrics_summary.csv 기반 그래프 생성, AI 활용 고지 작성 |
+| AI 산출물 반영 위치 | `07_week_submission/w05_submission_report.md`, `07_week_submission/assets/w05_metric_chart.png`, `05_ai_worklog/ai_disclosure_draft.md` |
+| 본인 수정 내용 | 주차별 문헌 상태 확인, 실험 수치와 outputs 대조, 안전 범위와 한계 문장 확인, 최종 제출 전 미확정 문헌 분리 |
+| 사실관계 검증 방법 | `01_papers/paper_list.md`, `01_papers/doi_check.md`, `05_references/doi_index.md`, 강의계획서 문헌표 대조 |
+| 참고문헌 검증 방법 | 제목, 저자, 연도, 학술지/학회, DOI/URL, 본문 인용번호와 참고문헌 목록 대응 확인 |
+| 실험결과 검증 방법 | `04_experiment/outputs/metrics_summary.csv`, `results.json`, `run_log.md`의 수치와 보고서 표기 대조 |
+| 최종 책임 확인 | AI 산출물은 초안 보조이며 최종 제출자는 원고 내용, 인용, 실험결과, 연구윤리 책임을 확인한다. |
 
 ## 10. 토론 질문
 
@@ -215,7 +240,7 @@ SCI형 논문은 Introduction, Related Work, Threat Model, Methodology, Experime
 | [4] | Zhibo Wang et al., Threats to Training: A Survey of Poisoning Attacks and Defenses on Machine Learning Systems | `10.1145/3538707` | DOI 확인, 강의계획서 제목/저자 차이 확인 필요 |
 | [5] | Ling-Xin Jin et al., A survey of backdoor attacks and defences: From deep neural networks to large language models | `10.1016/j.jnlest.2025.100326` | DOI 확인, 강의계획서 `Z. Jin` 표기 확인 필요 |
 
-PDF 원문은 `01_papers/pdf/`에 존재하고 Git 추적 중이다. public GitHub 저장소에는 PDF 원문 대신 DOI/URL, 서지정보, 요약만 남기는 것이 안전하며, 삭제 또는 추적 해제는 사용자 승인 후 수행한다.
+PDF 원문은 `01_papers/pdf/`에 로컬 보존하되 Git 추적은 해제했다. public GitHub 저장소에는 PDF 원문 대신 DOI/URL, 서지정보, 요약만 남기는 정책을 적용한다.
 
 ## 16. 자기 점검표
 
@@ -240,5 +265,5 @@ PDF 원문은 `01_papers/pdf/`에 존재하고 Git 추적 중이다. public GitH
 | 본문 인용과 참고문헌 대응 | 완료 / 확인 필요 | P02/P03/P04 검증 메모 유지 |
 | 표·그림 번호 정리 | 완료 | 표 1-7, 그림 1 |
 | AI 활용 고지 작성 | 완료 |  |
-| PDF 저작권 위험 점검 | 완료 / 확인 필요 | PDF 5개 Git 추적 중, 삭제는 미수행 |
-| 최종 사람이 검토할 항목 표시 | 완료 | 최종 제출 확정 아님 |
+| PDF 저작권 위험 점검 | 완료 / 확인 필요 | PDF 원문 Git 추적 해제 완료(로컬 파일 보존) |
+| 최종 사람이 검토할 항목 표시 | 완료 | 제출 전 작성자 확인 항목 있음 |

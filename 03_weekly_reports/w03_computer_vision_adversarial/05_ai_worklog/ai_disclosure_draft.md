@@ -1,35 +1,16 @@
-# AI 활용 고지서
+# W03 AI 활용 고지 초안
 
-| 항목 | 작성 내용 |
+| 항목 | 내용 |
 |---|---|
-| 사용한 AI 도구명 | Codex, ChatGPT |
-| 사용 일자 | 2026-06-22 |
-| 사용 목적 | 논문 요약 보강, 개념 설명, 문장 구조화, 코드 작성, synthetic toy 실험 실행, 발표자료 작성, KCI/SCI 섹션 보완 |
-| 주요 프롬프트 1 | W03 보고서 최종 보완 지시 |
-| 주요 프롬프트 2 | P01-P05 DOI/URL 검증 요청 |
-| 주요 프롬프트 3 | KCI/SCI 논문 형식 전환 섹션 작성 요청 |
-| AI 산출물 반영 위치 | W03 하위 Markdown, Python, HTML, 실험 보고서 파일 |
-| 본인 수정 내용 | DOI/URL 검증 상태 분리, 실험 범위 제한, outputs 수치 대조, 악용 가능 절차 제외 |
-| 사실관계 검증 방법 | DOI/Crossref/출판사 페이지, 로컬 PDF 첫 페이지, 실행 로그, 수업자료 대조 |
-| 참고문헌 검증 방법 | 제목, 저자, 연도, 학술지, 권호/쪽, DOI/URL 대조 |
-| 실험결과 처리 | `outputs/metrics_summary.csv`, `outputs/results.json`, `outputs/run_log.md` 수치 대조 |
-| 아직 검토 필요한 항목 | PDF 원문 삭제 여부, 국내 참고문헌 보강, HTML 인쇄 확인, 최종 제출 여부 |
-| 최종 책임 확인 | 최종 제출자는 원고의 내용, 인용, 실험결과, 연구윤리 책임을 확인해야 한다. |
+| 사용 도구명 | Codex, ChatGPT 계열 도구 |
+| 사용 일자 | 2026-06-23 |
+| 사용 목적 | 문헌 요약, 보고서 구조화, 안전한 toy/synthetic 실험 코드와 outputs 점검, 그래프 생성, 제출 체크리스트 보완 |
+| 주요 프롬프트 요약 | W03 제출 보고서 보완, 참고문헌 검증 상태 정리, `metrics_summary.csv` 기반 그래프 생성, HTML 재생성 |
+| AI 산출물 반영 위치 | `07_week_submission/w03_submission_report.md`, `07_week_submission/w03_submission_report.html`, `07_week_submission/assets/w03_metric_chart.png` |
+| 본인 수정 내용 | 문헌 검증 상태와 미확정 항목 구분, 실험 수치와 outputs 대조, 안전 범위 및 한계 표현 확인 |
+| 사실관계 검증 방법 | `01_papers/paper_list.md`, `01_papers/doi_check.md`, `05_references/doi_index.md`, `00_class_materials/weekly_paper_list.md` 대조 |
+| 참고문헌 검증 방법 | 제목, 저자, 연도, 학술지/학회, DOI/URL, 본문 인용번호와 참고문헌 목록 대응 확인 |
+| 실험결과 검증 방법 | `04_experiment/outputs/metrics_summary.csv`, `results.json`, `run_log.md`를 기준 파일로 사용 |
+| 최종 책임 확인 | AI 도구는 초안 보조에만 사용했으며 최종 제출자는 인용, 수치, 결론, 연구윤리 책임을 확인한다. |
 
-## 활용 범위와 제한
-
-- AI는 초안 작성, 구조화, consistency check, 안전한 toy 실험 코드 보조에 사용되었다.
-- 실행하지 않은 실험 결과는 결과처럼 작성하지 않았다.
-- 실제 개인정보, 실제 운영 서비스, 무단 API 질의, 악용 가능한 공격 절차는 포함하지 않았다.
-- DOI/URL은 Crossref/DOI metadata와 로컬 PDF 첫 페이지를 대조한 결과만 반영했다.
-- public GitHub 저장소에 PDF 원문이 추적되고 있어 저작권 위험을 별도 표시했다.
-
-## 사람 검토 필요
-
-| 항목 | 상태 | 비고 |
-|---|---|---|
-| P01-P05 서지정보 | 확인됨 | Crossref/DOI 기준 |
-| 본문 인용과 참고문헌 대응 | 확인 필요 | 최종 PDF/HTML 인쇄 전 재확인 |
-| PDF 원문 보관 정책 | 확인 필요 | public 저장소에서는 삭제 권고 |
-| 국내 KCI 참고문헌 | 확인 필요 | W03 범위에서는 후보만 작성 |
-| 최종 제출 확정 | 확인 필요 | 본 문서는 제출용 최종 초안 |
+AI 도구는 문헌 요약, 코드 점검, 문장 구조화, 그래프 생성 보조에 사용하였다. 모든 DOI/URL, 실험 수치, 본문 인용, 결론은 작성자가 outputs 파일과 공식 문헌 정보를 대조하여 검증한다.

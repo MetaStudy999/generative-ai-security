@@ -1,29 +1,19 @@
-# 제출 체크리스트
+# W01 제출 체크리스트
 
-## 최종 자기 점검표
-
-| 점검 항목 | 상태 | 비고 |
+| 점검 항목 | 상태 | 근거/비고 |
 |---|---|---|
-| 1장 한 문장 요약 작성 | 완료 |  |
-| 2장 학습 배경과 주차 목표 작성 | 완료 |  |
-| AI 원리 70% 정리 | 완료 |  |
-| 보안 이슈 30% 정리 | 완료 |  |
-| 논문 5편 요약 | 완료 |  |
-| 논문 5편 비교표 | 완료 |  |
-| Research Track 5요소 작성 | 완료 | 연구문제, 위협모형, 평가방법, 재현성, 오픈문제 |
-| P04 논문 지정 여부 검증 | 확인 필요 | arXiv P04와 강의계획서 지정 IEEE COMST 논문 동일 여부 미확정 |
-| 실험 outputs 파일 존재 확인 | 완료 | `metrics_summary.csv`, `results.json`, `run_log.md` 존재 |
-| 실험 결과와 보고서 수치 일치 | 완료 | outputs 기준으로 보고서 수치 반영 |
-| KCI 논문 형식 전환 작성 | 완료 |  |
-| SCI 논문 형식 전환 작성 | 완료 |  |
-| 본문 인용과 참고문헌 대응 | 완료 / 확인 필요 | P04 최종 출판정보 확인 필요 |
-| 표·그림 번호 정리 | 완료 | 표 1-7, 그림 1 |
-| AI 활용 고지 작성 | 완료 | `05_ai_worklog/ai_disclosure_draft.md` |
-| PDF 저작권 위험 점검 | 완료 / 조치 필요 | PDF 원문 5개가 Git 추적 중 |
-| 최종 사람이 검토할 항목 표시 | 완료 | P04, PDF, 국내 참고문헌, 작성일 |
+| Markdown 제출보고서 | 완료 | 03_weekly_reports/w01_deep_learning_ml_security/07_week_submission/w01_submission_report.md |
+| HTML 제출보고서 | 완료 | 03_weekly_reports/w01_deep_learning_ml_security/07_week_submission/w01_submission_report.html |
+| metrics_summary.csv | 완료 | 03_weekly_reports/w01_deep_learning_ml_security/04_experiment/outputs/metrics_summary.csv |
+| results.json | 완료 | 03_weekly_reports/w01_deep_learning_ml_security/04_experiment/outputs/results.json |
+| run_log.md | 완료 | 03_weekly_reports/w01_deep_learning_ml_security/04_experiment/outputs/run_log.md |
+| AI 활용 고지 | 완료 | 03_weekly_reports/w01_deep_learning_ml_security/05_ai_worklog/ai_disclosure_draft.md |
+| metrics 기반 그래프 | 완료 | 생성 |
+| 참고문헌 검증표 | 완료 | 보고서 15장 |
+| 기말논문 연결 | 완료 | 보고서 11장 |
 
-## 제출 메모
+## 제출 전 유의사항
 
-- W01은 문헌 기반 보고서와 synthetic 기반 안전 모의실험 설계까지 완료했다.
-- 정량 실험 결과는 outputs 파일 기준이며 실제 시스템 성능으로 일반화하지 않는다.
-- 최종 제출 확정 전 P04 지정 논문 동일 여부, 국내 참고문헌 보강, PDF 원문 공개 저장소 보관 여부를 사람이 검토해야 한다.
+- 그래프와 실험 수치는 `04_experiment/outputs/metrics_summary.csv`, `results.json`, `run_log.md` 기준으로 해석한다.
+- `확인 필요` 문헌은 핵심 근거로 일반화하지 않고 참고문헌 검증표 또는 한계 섹션에서만 다룬다.
+- 논문 PDF 원문은 public GitHub 추적 대상에서 제외하고 DOI/URL 중심으로 관리한다.

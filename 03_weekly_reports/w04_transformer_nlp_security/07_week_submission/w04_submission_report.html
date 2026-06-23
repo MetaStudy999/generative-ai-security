@@ -5,77 +5,232 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>W04 제출용 보고서</title>
   <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.65; margin: 40px auto; max-width: 1080px; padding: 0 20px; color: #1f2937; }
-    h1, h2, h3 { color: #111827; }
-    table { border-collapse: collapse; width: 100%; margin: 16px 0 28px; font-size: 14px; }
-    th, td { border: 1px solid #d1d5db; padding: 8px 10px; vertical-align: top; }
-    th { background: #f3f4f6; }
-    code, pre { background: #f3f4f6; border-radius: 4px; }
-    code { padding: 2px 4px; }
-    pre { padding: 14px; overflow-x: auto; }
-    .note { border-left: 4px solid #2563eb; padding: 10px 14px; background: #eff6ff; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.65; max-width: 1040px; margin: 32px auto; padding: 0 24px; color: #17202a; }
+    h1, h2, h3 { line-height: 1.25; }
+    table { border-collapse: collapse; width: 100%; margin: 18px 0; font-size: 0.95rem; }
+    th, td { border: 1px solid #d0d7de; padding: 7px 9px; vertical-align: top; }
+    th { background: #f6f8fa; }
+    code { background: #f6f8fa; padding: 0.1rem 0.25rem; border-radius: 4px; }
+    pre { background: #f6f8fa; padding: 16px; overflow-x: auto; border-radius: 6px; }
+    img { max-width: 100%; height: auto; border: 1px solid #d0d7de; border-radius: 6px; }
   </style>
 </head>
 <body>
-  <h1>W04 제출용 보고서</h1>
-
-  <h2>0. 메타정보</h2>
-  <table>
-    <tr><th>항목</th><th>내용</th></tr>
-    <tr><td>주차</td><td>W04</td></tr>
-    <tr><td>주제</td><td>Transformer 변형 &amp; NLP 대적공격·프라이버시</td></tr>
-    <tr><td>상태</td><td>제출용 최종 초안, 사람 검토 필요</td></tr>
-    <tr><td>보완일</td><td>2026-06-22</td></tr>
-    <tr><td>실험 산출물</td><td><code>04_experiment/outputs/metrics_summary.csv</code>, <code>results.json</code>, <code>run_log.md</code></td></tr>
-  </table>
-
-  <h2>1. 한 문장 요약</h2>
-  <p>W04는 Transformer 효율화, NLP 대적공격, prompt privacy를 연결하여 clean score, attack success rate, privacy leakage, utility score, reproducibility evidence를 분리 보고하는 평가 구조를 제시한다.</p>
-
-  <h2>2. 학습 배경과 주차 목표</h2>
-  <p>W04는 W03의 비전 Transformer와 robust evaluation을 NLP Transformer와 프롬프트 기반 보안 문제로 확장하는 주차이다. 이후 W07 LLM 보안, W08 RAG 프롬프트 인젝션, W11 차등프라이버시, W14 MLOps 로그 거버넌스와 연결된다.</p>
-
-  <h2>3. AI 원리 70% 정리</h2>
-  <p>Efficient Transformer 연구는 self-attention의 계산 복잡도와 긴 시퀀스 처리 비용을 줄이는 구조적 접근을 분류한다[1]. Faster/lighter Transformer 연구는 speed, memory, latency, 경량화 전략을 정리한다[2]. Transformer survey는 구조와 응용 taxonomy를 제공한다[3].</p>
-  <h3>표 1. W04 핵심 개념과 보안 연결</h3>
-  <table>
-    <tr><th>핵심 개념</th><th>AI 원리</th><th>보안 연결</th></tr>
-    <tr><td>Self-attention</td><td>토큰 간 관계를 Q/K/V로 계산</td><td>긴 프롬프트와 로그 처리 비용 증가</td></tr>
-    <tr><td>Efficient Transformer</td><td>sparse, low-rank, kernelized attention</td><td>보안 필터 latency와 감사 비용 영향</td></tr>
-    <tr><td>Transformer taxonomy</td><td>구조와 응용 분류</td><td>입력·출력·로그별 공격면 분리</td></tr>
-  </table>
-
-  <h2>4. 보안 이슈 30% 정리</h2>
-  <p>NLP 대적공격 연구는 단어 치환, 문장 재구성, transfer attack을 다룬다[4]. Prompt privacy 연구는 프롬프트 입력과 ICL 예시의 민감정보 노출 위험을 다룬다[5].</p>
-
-  <h2>5. 논문 5편 요약</h2>
-  <h3>표 2. 관련 문헌 5편 요약</h3>
-  <table>
-    <tr><th>ID</th><th>논문</th><th>핵심 역할</th><th>검증 상태</th></tr>
-    <tr><td>P01</td><td>Efficient Transformers: A Survey</td><td>긴 입력 attention 비용과 X-former 분류</td><td>ACM DOI <code>10.1145/3530811</code> 확인</td></tr>
-    <tr><td>P02</td><td>A Practical Survey on Faster and Lighter Transformers</td><td>speed, memory, latency, 경량화 전략</td><td>ACM DOI <code>10.1145/3586074</code> 확인</td></tr>
-    <tr><td>P03</td><td>A survey of transformers</td><td>Transformer 구조와 응용 taxonomy</td><td>DOI <code>10.1016/j.aiopen.2022.10.001</code> 확인</td></tr>
-    <tr><td>P04</td><td>A Survey of Adversarial Defenses and Robustness in NLP</td><td>NLP adversarial robustness와 ASR</td><td>ACM DOI <code>10.1145/3593042</code> 확인, 강의자료 표기 확인 필요</td></tr>
-    <tr><td>P05</td><td>Privacy Preserving Prompt Engineering: A Survey</td><td>prompt privacy와 ICL leakage</td><td>ACM DOI <code>10.1145/3729219</code> 확인</td></tr>
-  </table>
-
-  <h2>6. 논문 5편 비교표</h2>
-  <p>P01-P03은 Transformer 구조·효율화·taxonomy 문헌이고, P04는 NLP adversarial robustness 문헌이며, P05는 prompt privacy와 ICL privacy 문헌이다.</p>
-
-  <h2>7. Research Track 분석</h2>
-  <h3>표 3. W04 Research Track 요약</h3>
-  <table>
-    <tr><th>요소</th><th>내용</th></tr>
-    <tr><td>연구문제</td><td>프롬프트 기반 AI 시스템의 민감정보 보호를 어떤 최소 지표로 평가할 것인가</td></tr>
-    <tr><td>위협모형</td><td>prompt/log observer, word substitution attacker</td></tr>
-    <tr><td>평가방법</td><td>synthetic prompt, keyword detector, word substitution, regex masking</td></tr>
-    <tr><td>재현성</td><td>seed, config, Docker, outputs, run_log 보존</td></tr>
-  </table>
-
-  <h2>8. 실습 보고서</h2>
-  <p>본 실습은 실제 Transformer 또는 LLM 공격 재현이 아니라 W04의 핵심인 프롬프트 프라이버시 평가축을 안전하게 설명하기 위한 최소 toy protocol이다.</p>
-  <h3>그림 1. 프롬프트 기반 NLP 보안 평가 흐름</h3>
-  <pre>User Prompt / ICL Examples
+<h1 id="w04">W04 제출용 보고서</h1>
+<h2 id="0">0. 메타정보</h2>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>주차</td>
+<td>W04</td>
+</tr>
+<tr>
+<td>주제</td>
+<td>Transformer 변형 &amp; NLP 대적공격·프라이버시</td>
+</tr>
+<tr>
+<td>상태</td>
+<td>제출용 보고서, 작성자 확인 필요</td>
+</tr>
+<tr>
+<td>보완일</td>
+<td>2026-06-22</td>
+</tr>
+<tr>
+<td>실험 산출물</td>
+<td><code>04_experiment/outputs/metrics_summary.csv</code>, <code>results.json</code>, <code>run_log.md</code></td>
+</tr>
+</tbody>
+</table>
+<p>| 문서 상태 | 제출용 보고서 |
+| 학번 | 26200122 |</p>
+<h2 id="1">1. 한 문장 요약</h2>
+<p>W04는 Transformer 효율화, NLP 대적공격, prompt privacy를 연결하여 clean score, attack success rate, privacy leakage, utility score, reproducibility evidence를 분리 보고하는 평가 구조를 제시한다.</p>
+<h2 id="2">2. 학습 배경과 주차 목표</h2>
+<p>W04는 W03의 비전 Transformer와 robust evaluation을 NLP Transformer와 프롬프트 기반 보안 문제로 확장하는 주차이다. W04는 self-attention 구조, 긴 입력 처리 비용, 단어 치환 기반 NLP 대적공격, 프롬프트 프라이버시, ICL leakage를 연결하며, 이후 W07 LLM 보안, W08 RAG 프롬프트 인젝션, W11 차등프라이버시, W14 MLOps 로그 거버넌스와 이어진다.</p>
+<ul>
+<li>Attention 복잡도 병목의 수학적 해소기법을 비교한다.</li>
+<li>NLP 강건성의 공격면과 방어면을 매핑한다.</li>
+<li>프롬프트 입력의 민감정보 보호기법 평가항목을 정의한다.</li>
+</ul>
+<h2 id="3-ai-70">3. AI 원리 70% 정리</h2>
+<p>Efficient Transformer 연구는 self-attention의 계산 복잡도와 긴 시퀀스 처리 비용을 줄이는 여러 구조적 접근을 분류한다[1]. Faster and lighter Transformer 연구는 속도, 메모리, latency, 경량화 관점에서 실용적 효율화 전략을 정리한다[2]. Transformer survey는 Transformer 계열 구조와 응용을 taxonomy 관점에서 정리한다[3].</p>
+<p><strong>표 1. W04 핵심 개념과 보안 연결</strong></p>
+<table>
+<thead>
+<tr>
+<th>핵심 개념</th>
+<th>AI 원리</th>
+<th>보안 연결</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Self-attention</td>
+<td>토큰 간 관계를 Q/K/V로 계산한다.</td>
+<td>긴 프롬프트와 로그 처리 비용이 커진다.</td>
+</tr>
+<tr>
+<td>Efficient Transformer</td>
+<td>sparse, low-rank, kernelized attention을 활용한다.</td>
+<td>보안 필터 latency와 감사 비용에 영향을 준다.</td>
+</tr>
+<tr>
+<td>Faster/lighter Transformer</td>
+<td>distillation, pruning, quantization을 활용한다.</td>
+<td>방어 기능의 배포 가능성을 높인다.</td>
+</tr>
+<tr>
+<td>Transformer taxonomy</td>
+<td>구조와 응용을 분류한다.</td>
+<td>입력·출력·로그별 공격면을 분리한다.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-30">4. 보안 이슈 30% 정리</h2>
+<p>NLP 대적공격 연구는 의미를 크게 유지하면서 모델 판단을 바꾸는 단어 치환, 문장 재구성, transfer attack을 다룬다[4]. Prompt privacy 연구는 프롬프트 입력과 ICL 예시에서 민감정보가 노출될 수 있음을 지적한다[5].</p>
+<p>보호 자산은 prompt input, ICL examples, model output, logs, tool-call arguments, user intent이다. 제외 범위는 실제 서비스 침해, 실제 개인정보 사용, 무단 API 질의, 악용 가능한 공격 절차이다.</p>
+<h2 id="5-5">5. 논문 5편 요약</h2>
+<p><strong>표 2. 관련 문헌 5편 요약</strong></p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>논문</th>
+<th>핵심 역할</th>
+<th>검증 상태</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P01</td>
+<td>Efficient Transformers: A Survey</td>
+<td>긴 입력 attention 비용과 X-former 분류</td>
+<td>ACM DOI <code>10.1145/3530811</code> 확인</td>
+</tr>
+<tr>
+<td>P02</td>
+<td>A Practical Survey on Faster and Lighter Transformers</td>
+<td>speed, memory, latency, 경량화 전략</td>
+<td>ACM DOI <code>10.1145/3586074</code> 확인</td>
+</tr>
+<tr>
+<td>P03</td>
+<td>A survey of transformers</td>
+<td>Transformer 구조와 응용 taxonomy</td>
+<td>DOI <code>10.1016/j.aiopen.2022.10.001</code> 확인</td>
+</tr>
+<tr>
+<td>P04</td>
+<td>A Survey of Adversarial Defenses and Robustness in NLP</td>
+<td>NLP adversarial robustness와 ASR</td>
+<td>ACM DOI <code>10.1145/3593042</code> 확인, 강의자료 표기 확인 필요</td>
+</tr>
+<tr>
+<td>P05</td>
+<td>Privacy Preserving Prompt Engineering: A Survey</td>
+<td>prompt privacy와 ICL leakage</td>
+<td>ACM DOI <code>10.1145/3729219</code> 확인</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-5">6. 논문 5편 비교표</h2>
+<table>
+<thead>
+<tr>
+<th>논문</th>
+<th>연구문제</th>
+<th>핵심 방법</th>
+<th>보안 위협 연결</th>
+<th>평가 지표</th>
+<th>내 논문 활용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P01</td>
+<td>긴 시퀀스 attention 병목 완화</td>
+<td>sparse/low-rank/kernelized attention</td>
+<td>긴 프롬프트·로그 노출면</td>
+<td>complexity, memory, latency</td>
+<td>긴 입력 보안 평가 비용</td>
+</tr>
+<tr>
+<td>P02</td>
+<td>더 빠르고 가벼운 Transformer</td>
+<td>distillation/pruning/quantization</td>
+<td>보안 필터 배포 가능성</td>
+<td>speedup, latency, parameter count</td>
+<td>방어 비용과 utility</td>
+</tr>
+<tr>
+<td>P03</td>
+<td>Transformer taxonomy</td>
+<td>구조·pre-training·응용 survey</td>
+<td>공격면 분해</td>
+<td>task performance, complexity</td>
+<td>이론 배경</td>
+</tr>
+<tr>
+<td>P04</td>
+<td>NLP 공격·방어 분류</td>
+<td>adversarial robustness survey</td>
+<td>word substitution, paraphrase</td>
+<td>ASR, robust accuracy</td>
+<td>위협모형</td>
+</tr>
+<tr>
+<td>P05</td>
+<td>프롬프트 민감정보 보호</td>
+<td>masking, rewriting, policy</td>
+<td>prompt leakage, ICL leakage</td>
+<td>leakage, utility, compliance</td>
+<td>prompt privacy</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-research-track">7. Research Track 분석</h2>
+<p><strong>표 3. W04 Research Track 요약</strong></p>
+<table>
+<thead>
+<tr>
+<th>요소</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>연구문제</td>
+<td>프롬프트 기반 AI 시스템의 민감정보 보호를 어떤 최소 지표로 평가할 것인가</td>
+</tr>
+<tr>
+<td>위협모형</td>
+<td>prompt/log observer, word substitution attacker</td>
+</tr>
+<tr>
+<td>평가방법</td>
+<td>synthetic prompt, keyword detector, word substitution, regex masking</td>
+</tr>
+<tr>
+<td>재현성</td>
+<td>seed, config, Docker, outputs, run_log 보존</td>
+</tr>
+<tr>
+<td>오픈문제</td>
+<td>실제 LLM/RAG/agent 환경, 의미 유사도, 복수 seed, 정책 준수 평가</td>
+</tr>
+</tbody>
+</table>
+<h2 id="8">8. 실습 보고서</h2>
+<p>본 실습은 실제 Transformer 또는 LLM 공격 재현이 아니라 W04의 핵심인 프롬프트 프라이버시 평가축을 안전하게 설명하기 위한 최소 toy protocol이다. 따라서 synthetic 프라이버시 위험 프롬프트와 keyword privacy-risk detector를 사용하되, 평가 구조는 이후 LLM, RAG, ICL, 에이전트형 도구 호출 환경에도 확장 가능하도록 clean score, attack success rate, privacy leakage, utility score, reproducibility evidence로 분리하였다.</p>
+<p><strong>그림 1. 프롬프트 기반 NLP 보안 평가 흐름</strong></p>
+<pre><code class="language-text">User Prompt / ICL Examples
         ↓
 Transformer / NLP System
         ↓
@@ -89,79 +244,418 @@ Masking / Privacy-Preserving Prompt Wrapper
         ↓
 Privacy Evaluation ──&gt; Privacy Leakage, Utility Score
         ↓
-Reproducibility Evidence ──&gt; seed, config, Docker, outputs, run_log</pre>
-  <h3>표 4. W04 실습 설계</h3>
-  <table>
-    <tr><th>항목</th><th>내용</th></tr>
-    <tr><td>Dataset</td><td>Synthetic privacy-risk prompts</td></tr>
-    <tr><td>Model/checker</td><td>Keyword privacy-risk detector</td></tr>
-    <tr><td>Attack scenario</td><td>Word substitution</td></tr>
-    <tr><td>Defense/check</td><td>Regex masking and privacy-preserving prompt wrapper</td></tr>
-  </table>
-  <h3>표 5. W04 실습 결과</h3>
-  <table>
-    <tr><th>조건</th><th>Clean Score</th><th>Attack Success Rate</th><th>Privacy Leakage</th><th>Utility Score</th></tr>
-    <tr><td>Clean baseline</td><td>1.000000</td><td>해당 없음</td><td>해당 없음</td><td>1.000000</td></tr>
-    <tr><td>Word substitution</td><td>0.625000</td><td>0.750000</td><td>해당 없음</td><td>1.000000</td></tr>
-    <tr><td>Prompt masking</td><td>해당 없음</td><td>해당 없음</td><td>0.000000</td><td>1.000000</td></tr>
-    <tr><td>Privacy-preserving prompt</td><td>해당 없음</td><td>해당 없음</td><td>0.000000</td><td>1.000000</td></tr>
-  </table>
-  <p class="note">이 결과는 synthetic toy 실험의 평가 형식 검증용 수치이며 실제 Transformer, LLM, 상용 NLP 시스템의 강건성 또는 프라이버시 보호 성능으로 일반화하지 않는다.</p>
+Reproducibility Evidence ──&gt; seed, config, Docker, outputs, run_log
+</code></pre>
+<p><strong>표 4. W04 실습 설계</strong></p>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dataset</td>
+<td>Synthetic privacy-risk prompts</td>
+</tr>
+<tr>
+<td>Model/checker</td>
+<td>Keyword privacy-risk detector</td>
+</tr>
+<tr>
+<td>Baseline</td>
+<td>Clean baseline</td>
+</tr>
+<tr>
+<td>Attack scenario</td>
+<td>Word substitution</td>
+</tr>
+<tr>
+<td>Defense/check</td>
+<td>Regex masking and privacy-preserving prompt wrapper</td>
+</tr>
+<tr>
+<td>Metrics</td>
+<td>Clean score, attack success rate, privacy leakage, utility score</td>
+</tr>
+</tbody>
+</table>
+<p><strong>표 5. W04 실습 결과</strong></p>
+<table>
+<thead>
+<tr>
+<th>조건</th>
+<th style="text-align: right;">Clean Score</th>
+<th style="text-align: right;">Attack Success Rate</th>
+<th style="text-align: right;">Privacy Leakage</th>
+<th style="text-align: right;">Utility Score</th>
+<th>해석</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Clean baseline</td>
+<td style="text-align: right;">1.000000</td>
+<td style="text-align: right;">해당 없음</td>
+<td style="text-align: right;">해당 없음</td>
+<td style="text-align: right;">1.000000</td>
+<td>정상 입력에서 keyword detector가 synthetic 라벨을 모두 맞춤</td>
+</tr>
+<tr>
+<td>Word substitution</td>
+<td style="text-align: right;">0.625000</td>
+<td style="text-align: right;">0.750000</td>
+<td style="text-align: right;">해당 없음</td>
+<td style="text-align: right;">1.000000</td>
+<td>민감 키워드 우회로 일부 privacy-risk 입력이 benign으로 오분류</td>
+</tr>
+<tr>
+<td>Prompt masking</td>
+<td style="text-align: right;">해당 없음</td>
+<td style="text-align: right;">해당 없음</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">1.000000</td>
+<td>정규식 마스킹 후 synthetic 민감값 노출 없음</td>
+</tr>
+<tr>
+<td>Privacy-preserving prompt</td>
+<td style="text-align: right;">해당 없음</td>
+<td style="text-align: right;">해당 없음</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">1.000000</td>
+<td>마스킹과 정책 지시를 결합해 입력 의도만 유지</td>
+</tr>
+</tbody>
+</table>
+<p>이 결과는 synthetic toy 실험의 평가 형식 검증용 수치이며, 실제 Transformer, LLM, 상용 NLP 시스템의 강건성 또는 프라이버시 보호 성능으로 일반화하지 않는다. Word substitution 결과는 실제 NLP adversarial robustness 수치가 아니며, Prompt masking leakage 0.000000은 synthetic regex check 결과일 뿐 실제 개인정보보호 보증이 아니다.</p>
+<!-- submission-metric-chart:start -->
+<p><strong>그림 7. W04 metrics summary chart</strong></p>
+<p><img alt="W04 metrics summary chart" src="assets/w04_metric_chart.png"></p>
+<p>출처: <code>04_experiment/outputs/metrics_summary.csv</code>. 이 그래프는 공개 toy/synthetic 산출물 기반이며 실제 공격 성능이나 운영 환경 성능으로 일반화하지 않는다.</p>
+<!-- submission-metric-chart:end -->
 
-  <h2>9. AI 도구 활용 기록</h2>
-  <p>Codex와 ChatGPT 등 AI 도구를 사용해 논문 요약 보강, DOI/URL 검증 보조, 문장 구조화, synthetic prompt 실험 코드 작성, KCI/SCI 섹션 보완을 수행했다.</p>
-
-  <h2>10. 토론 질문</h2>
-  <ol>
-    <li>Efficient Transformer의 비용 절감은 보안 필터 운영에 어떤 의미가 있는가?</li>
-    <li>Word substitution ASR 해석에서 semantic similarity와 utility가 필요한 이유는 무엇인가?</li>
-    <li>Prompt masking leakage 0.000000을 실제 프라이버시 보증으로 오해하지 않으려면 무엇을 검증해야 하는가?</li>
-  </ol>
-
-  <h2>11. 기말논문 연결</h2>
-  <p>추천 주제는 “프롬프트 기반 AI 시스템의 민감정보 보호 평가체계 연구”이다.</p>
-
-  <h2>12. KCI 논문 형식 전환</h2>
-  <h3>표 6. KCI 논문 제목 후보</h3>
-  <table>
-    <tr><th>번호</th><th>국문 제목 후보</th><th>영문 제목 후보</th></tr>
-    <tr><td>1</td><td>프롬프트 기반 AI 시스템의 민감정보 보호 평가체계 연구</td><td>A Study on an Evaluation Framework for Sensitive Information Protection in Prompt-Based AI Systems</td></tr>
-    <tr><td>2</td><td>NLP 대적공격과 프롬프트 프라이버시 평가를 위한 다중지표 프레임워크 연구</td><td>A Multi-Metric Framework for Evaluating NLP Adversarial Attacks and Prompt Privacy</td></tr>
-  </table>
-
-  <h2>13. SCI 논문 형식 전환</h2>
-  <p><strong>Title:</strong> A Multi-Metric Evaluation Framework for Prompt Privacy in Transformer-Based NLP Systems: Integrating Clean Score, Attack Success Rate, Privacy Leakage, Utility, and Reproducibility Evidence</p>
-  <h3>표 7. SCI Related Work 축</h3>
-  <table>
-    <tr><th>연구축</th><th>대표 논문</th><th>역할</th></tr>
-    <tr><td>Efficient Transformers</td><td>Tay et al.</td><td>attention 복잡도 완화와 X-former 분류</td></tr>
-    <tr><td>Faster and lighter Transformers</td><td>Fournier et al.</td><td>속도·메모리·경량화 전략</td></tr>
-    <tr><td>Transformer taxonomy</td><td>Lin et al.</td><td>Transformer 구조와 응용 전체 지도</td></tr>
-    <tr><td>NLP adversarial robustness</td><td>Goyal et al.</td><td>단어 치환·문장 재구성·semantic-preserving attack</td></tr>
-    <tr><td>Prompt privacy</td><td>Edemacu et al.</td><td>prompt privacy, ICL leakage, masking/policy control</td></tr>
-  </table>
-
-  <h2>14. 발표용 요약</h2>
-  <p>핵심 메시지는 clean score 하나로 프롬프트 기반 NLP 보안을 설명할 수 없다는 점이다. 발표 수치는 Clean 1.000000, Word substitution ASR 0.750000, Prompt masking leakage 0.000000이다.</p>
-
-  <h2>15. 참고문헌 검증표</h2>
-  <table>
-    <tr><th>번호</th><th>참고문헌</th><th>DOI/URL</th><th>검증 상태</th></tr>
-    <tr><td>[1]</td><td>Tay et al., Efficient Transformers: A Survey.</td><td><code>10.1145/3530811</code></td><td>출판 DOI 확인, Article 번호 확인 필요</td></tr>
-    <tr><td>[2]</td><td>Fournier et al., A Practical Survey on Faster and Lighter Transformers.</td><td><code>10.1145/3586074</code></td><td>출판 DOI 확인, Article 번호 확인 필요</td></tr>
-    <tr><td>[3]</td><td>Lin et al., A survey of transformers.</td><td><code>10.1016/j.aiopen.2022.10.001</code></td><td>출판 DOI 확인</td></tr>
-    <tr><td>[4]</td><td>Goyal et al., A Survey of Adversarial Defenses and Robustness in NLP.</td><td><code>10.1145/3593042</code></td><td>출판 DOI 확인, 강의자료 표기 확인 필요</td></tr>
-    <tr><td>[5]</td><td>Edemacu and Wu, Privacy Preserving Prompt Engineering: A Survey.</td><td><code>10.1145/3729219</code></td><td>출판 DOI 확인, Article 번호 확인 필요</td></tr>
-  </table>
-
-  <h2>16. 자기 점검표</h2>
-  <table>
-    <tr><th>점검 항목</th><th>상태</th><th>비고</th></tr>
-    <tr><td>16장 목차 반영</td><td>완료</td><td>0-16장 구성</td></tr>
-    <tr><td>실험 outputs 확인</td><td>완료</td><td>CSV/JSON/run_log 존재</td></tr>
-    <tr><td>본문 인용과 참고문헌 대응</td><td>완료</td><td>[1]-[5]</td></tr>
-    <tr><td>PDF 저작권 위험 점검</td><td>완료 / 조치 필요</td><td>PDF 5개 Git 추적 중</td></tr>
-    <tr><td>최종 제출 확정</td><td>확인 필요</td><td>사람 검토 후 확정</td></tr>
-  </table>
+<h2 id="9-ai">9. AI 도구 활용 기록</h2>
+<p>AI 도구는 문헌 요약, 코드 점검, 문장 구조화, 그래프 생성 보조에 사용하였다. 모든 DOI/URL, 실험 수치, 본문 인용, 결론은 작성자가 outputs 파일과 로컬 참고문헌 검증표를 대조하여 검증한다.</p>
+<p><strong>표. W04 AI 도구 활용 및 검증 기록</strong></p>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>사용 도구명</td>
+<td>Codex, ChatGPT 계열 도구</td>
+</tr>
+<tr>
+<td>사용 일자</td>
+<td>2026-06-23</td>
+</tr>
+<tr>
+<td>사용 목적</td>
+<td>문헌 요약 정리, 보고서 구조화, 안전한 toy/synthetic 실험 결과 표기 점검, 그래프 생성 보조, 제출 전 체크리스트 정리</td>
+</tr>
+<tr>
+<td>주요 프롬프트 요약</td>
+<td>주차별 제출 보고서 보완, 참고문헌 검증표 정리, metrics_summary.csv 기반 그래프 생성, AI 활용 고지 작성</td>
+</tr>
+<tr>
+<td>AI 산출물 반영 위치</td>
+<td><code>07_week_submission/w04_submission_report.md</code>, <code>07_week_submission/assets/w04_metric_chart.png</code>, <code>05_ai_worklog/ai_disclosure_draft.md</code></td>
+</tr>
+<tr>
+<td>본인 수정 내용</td>
+<td>주차별 문헌 상태 확인, 실험 수치와 outputs 대조, 안전 범위와 한계 문장 확인, 최종 제출 전 미확정 문헌 분리</td>
+</tr>
+<tr>
+<td>사실관계 검증 방법</td>
+<td><code>01_papers/paper_list.md</code>, <code>01_papers/doi_check.md</code>, <code>05_references/doi_index.md</code>, 강의계획서 문헌표 대조</td>
+</tr>
+<tr>
+<td>참고문헌 검증 방법</td>
+<td>제목, 저자, 연도, 학술지/학회, DOI/URL, 본문 인용번호와 참고문헌 목록 대응 확인</td>
+</tr>
+<tr>
+<td>실험결과 검증 방법</td>
+<td><code>04_experiment/outputs/metrics_summary.csv</code>, <code>results.json</code>, <code>run_log.md</code>의 수치와 보고서 표기 대조</td>
+</tr>
+<tr>
+<td>최종 책임 확인</td>
+<td>AI 산출물은 초안 보조이며 최종 제출자는 원고 내용, 인용, 실험결과, 연구윤리 책임을 확인한다.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="10">10. 토론 질문</h2>
+<ol>
+<li>Efficient Transformer의 비용 절감은 보안 필터를 실제 운영 경로에 넣는 데 어떤 의미가 있는가?</li>
+<li>Word substitution ASR을 해석할 때 semantic similarity와 utility를 함께 보아야 하는 이유는 무엇인가?</li>
+<li>Prompt masking leakage 0.000000을 실제 프라이버시 보증으로 오해하지 않으려면 어떤 검증이 필요한가?</li>
+</ol>
+<h2 id="11">11. 기말논문 연결</h2>
+<p>추천 주제는 “프롬프트 기반 AI 시스템의 민감정보 보호 평가체계 연구”이다. W04는 관련연구, 위협모형, synthetic prompt toy protocol, clean/ASR/leakage/utility/reproducibility 평가축을 제공한다.</p>
+<h2 id="12-kci">12. KCI 논문 형식 전환</h2>
+<p><strong>표 6. KCI 논문 제목 후보</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">번호</th>
+<th>국문 제목 후보</th>
+<th>영문 제목 후보</th>
+<th>대상 시스템</th>
+<th>보안 위협</th>
+<th>연구방법</th>
+<th>예상 기여</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td>프롬프트 기반 AI 시스템의 민감정보 보호 평가체계 연구</td>
+<td>A Study on an Evaluation Framework for Sensitive Information Protection in Prompt-Based AI Systems</td>
+<td>LLM 프롬프트 시스템</td>
+<td>Prompt privacy, ICL leakage</td>
+<td>문헌분석 + synthetic prompt 실험</td>
+<td>민감정보 보호 평가표</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td>NLP 대적공격과 프롬프트 프라이버시 평가를 위한 다중지표 프레임워크 연구</td>
+<td>A Multi-Metric Framework for Evaluating NLP Adversarial Attacks and Prompt Privacy</td>
+<td>Transformer 기반 NLP 시스템</td>
+<td>Word substitution, prompt leakage</td>
+<td>toy 실험 + 위협모형</td>
+<td>clean/ASR/leakage/utility 분리</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td>Efficient Transformer 환경에서 프롬프트 민감정보 보호와 유용성의 상충관계 연구</td>
+<td>A Study on the Trade-off Between Prompt Privacy Protection and Utility in Efficient Transformer Settings</td>
+<td>긴 입력 NLP/LLM 시스템</td>
+<td>긴 프롬프트 민감정보 노출</td>
+<td>문헌분석 + 체크리스트</td>
+<td>비용·보안·유용성 평가</td>
+</tr>
+</tbody>
+</table>
+<p>추천 제목은 “프롬프트 기반 AI 시스템의 민감정보 보호 평가체계 연구”이다. 연구문제는 프롬프트 기반 AI 시스템에서 민감정보 보호를 평가하기 위한 최소 지표, 단어 치환 공격의 clean score와 ASR 영향, prompt masking과 prompt wrapper의 leakage/utility 영향으로 구성한다. 국내 참고문헌 3편 이상은 추가 확인이 필요하다.</p>
+<h2 id="13-sci">13. SCI 논문 형식 전환</h2>
+<h3 id="131-sci">13.1 SCI 제목 후보</h3>
+<p>A Multi-Metric Evaluation Framework for Prompt Privacy in Transformer-Based NLP Systems: Integrating Clean Score, Attack Success Rate, Privacy Leakage, Utility, and Reproducibility Evidence</p>
+<h3 id="132-structured-abstract">13.2 Structured Abstract</h3>
+<p>Background: Transformer-based NLP and prompt-based AI systems increasingly process long and sensitive user inputs, but their security and privacy cannot be evaluated solely through task performance.</p>
+<p>Problem: Existing evaluations often separate model efficiency, adversarial robustness, prompt privacy, utility preservation, and reproducibility.</p>
+<p>Method: This study synthesizes five representative studies and uses a safe synthetic toy experiment to illustrate separate reporting of clean score, ASR, privacy leakage, utility score, and reproducibility evidence.</p>
+<p>Results: The W04 toy experiment records Clean Score 1.000000, Word substitution ASR 0.750000, and synthetic leakage 0.000000 after masking and prompt wrapping. These results are structured reporting examples, not real-world LLM robustness claims.</p>
+<p>Contribution: The main contribution is a multi-metric evaluation structure for prompt-based NLP security evaluation.</p>
+<h3 id="133-related-work">13.3 Related Work 축</h3>
+<p><strong>표 7. SCI Related Work 축</strong></p>
+<table>
+<thead>
+<tr>
+<th>연구축</th>
+<th>대표 논문</th>
+<th>역할</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Efficient Transformers</td>
+<td>Tay et al.</td>
+<td>attention 복잡도 완화와 X-former 분류</td>
+</tr>
+<tr>
+<td>Faster and lighter Transformers</td>
+<td>Fournier et al.</td>
+<td>속도·메모리·경량화 전략</td>
+</tr>
+<tr>
+<td>Transformer taxonomy</td>
+<td>Lin et al.</td>
+<td>Transformer 구조와 응용 전체 지도</td>
+</tr>
+<tr>
+<td>NLP adversarial robustness</td>
+<td>Goyal et al.</td>
+<td>단어 치환·문장 재구성·semantic-preserving attack</td>
+</tr>
+<tr>
+<td>Prompt privacy</td>
+<td>Edemacu et al.</td>
+<td>prompt privacy, ICL leakage, masking/policy control</td>
+</tr>
+</tbody>
+</table>
+<h3 id="134-limitations">13.4 Limitations</h3>
+<p>Keyword detector는 실제 Transformer나 LLM의 판단 구조를 대표하지 않는다. Synthetic prompts는 실제 사용자 프롬프트, RAG 문서, tool-call 로그를 대표하지 않는다. Privacy leakage는 regex 기반 synthetic check이며 실제 memorization/privacy attack을 의미하지 않는다. ACM Article 번호와 P04 강의자료 표기 차이는 사람 검토가 필요하다.</p>
+<h2 id="14">14. 발표용 요약</h2>
+<ul>
+<li>핵심 메시지: clean score 하나로 프롬프트 기반 NLP 보안을 설명할 수 없다.</li>
+<li>문헌 구조: P01-P03은 Transformer 구조·효율화·taxonomy, P04는 NLP robustness, P05는 prompt privacy이다.</li>
+<li>실습 수치: Clean 1.000000, Word substitution ASR 0.750000, Prompt masking leakage 0.000000.</li>
+<li>주의: 수치는 outputs 기준이며 실제 LLM 보안 성능으로 일반화하지 않는다.</li>
+</ul>
+<h2 id="15">15. 참고문헌 검증표</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">번호</th>
+<th>참고문헌</th>
+<th>DOI/URL</th>
+<th>검증 상태</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">[1]</td>
+<td>Tay et al., Efficient Transformers: A Survey. ACM Computing Surveys, 55(6), 2022, 1-28.</td>
+<td><code>10.1145/3530811</code>; arXiv <code>10.48550/arXiv.2009.06732</code></td>
+<td>출판 DOI 확인, Article 번호 확인 필요</td>
+</tr>
+<tr>
+<td style="text-align: right;">[2]</td>
+<td>Fournier et al., A Practical Survey on Faster and Lighter Transformers. ACM Computing Surveys, 55(14s), 2023, 1-40.</td>
+<td><code>10.1145/3586074</code></td>
+<td>출판 DOI 확인, Article 번호 확인 필요</td>
+</tr>
+<tr>
+<td style="text-align: right;">[3]</td>
+<td>Lin et al., A survey of transformers. AI Open, 3, 2022, 111-132.</td>
+<td><code>10.1016/j.aiopen.2022.10.001</code></td>
+<td>출판 DOI 확인</td>
+</tr>
+<tr>
+<td style="text-align: right;">[4]</td>
+<td>Goyal et al., A Survey of Adversarial Defenses and Robustness in NLP. ACM Computing Surveys, 55(14s), 2023, 1-39.</td>
+<td><code>10.1145/3593042</code>; arXiv <code>10.48550/arXiv.2203.06414</code></td>
+<td>출판 DOI 확인, 강의자료 표기 확인 필요</td>
+</tr>
+<tr>
+<td style="text-align: right;">[5]</td>
+<td>Edemacu and Wu, Privacy Preserving Prompt Engineering: A Survey. ACM Computing Surveys, 57(10), 2025, 1-36.</td>
+<td><code>10.1145/3729219</code>; arXiv <code>10.48550/arXiv.2404.06001</code></td>
+<td>출판 DOI 확인, Article 번호 확인 필요</td>
+</tr>
+</tbody>
+</table>
+<h2 id="16">16. 자기 점검표</h2>
+<table>
+<thead>
+<tr>
+<th>점검 항목</th>
+<th>상태</th>
+<th>비고</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1장 한 문장 요약 작성</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>2장 학습 배경과 주차 목표 작성</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>AI 원리 70% 정리</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>보안 이슈 30% 정리</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>논문 5편 요약</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>논문 5편 비교표 보완</td>
+<td>완료</td>
+<td>P01-P05 차별성 반영</td>
+</tr>
+<tr>
+<td>Research Track 5요소 작성</td>
+<td>완료</td>
+<td>연구문제, 위협모형, 평가방법, 재현성, 오픈문제</td>
+</tr>
+<tr>
+<td>P01 출판 DOI 검증</td>
+<td>완료</td>
+<td>Article 번호 확인 필요</td>
+</tr>
+<tr>
+<td>P02 출판 DOI 검증</td>
+<td>완료</td>
+<td>Article 번호 확인 필요</td>
+</tr>
+<tr>
+<td>P03 출판 DOI 검증</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>P04 출판 DOI 검증</td>
+<td>완료</td>
+<td><code>N. Goyal</code> 표기 확인 필요</td>
+</tr>
+<tr>
+<td>P05 출판 DOI 검증</td>
+<td>완료</td>
+<td>Article 번호 확인 필요</td>
+</tr>
+<tr>
+<td>실험 outputs 파일 존재 확인</td>
+<td>완료</td>
+<td>CSV/JSON/run_log 존재</td>
+</tr>
+<tr>
+<td>실험 결과와 보고서 수치 일치</td>
+<td>완료</td>
+<td>outputs 기준</td>
+</tr>
+<tr>
+<td>KCI 논문 형식 전환 작성</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>SCI 논문 형식 전환 작성</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>본문 인용과 참고문헌 대응</td>
+<td>완료</td>
+<td>[1]-[5] 대응</td>
+</tr>
+<tr>
+<td>표·그림 번호 정리</td>
+<td>완료</td>
+<td>표 1-7, 그림 1</td>
+</tr>
+<tr>
+<td>AI 활용 고지 작성</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>PDF 저작권 위험 점검</td>
+<td>완료</td>
+<td>PDF 원문 Git 추적 해제 완료(로컬 파일 보존)</td>
+</tr>
+<tr>
+<td>최종 사람이 검토할 항목 표시</td>
+<td>완료</td>
+<td>제출 전 작성자 확인 항목 있음</td>
+</tr>
+</tbody>
+</table>
 </body>
 </html>

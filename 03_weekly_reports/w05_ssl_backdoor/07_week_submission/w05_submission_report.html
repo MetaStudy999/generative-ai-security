@@ -5,156 +5,662 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>W05 제출용 보고서</title>
   <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.65; margin: 40px auto; max-width: 1080px; padding: 0 20px; color: #1f2937; }
-    h1, h2, h3 { color: #111827; }
-    table { border-collapse: collapse; width: 100%; margin: 16px 0 28px; font-size: 14px; }
-    th, td { border: 1px solid #d1d5db; padding: 8px 10px; vertical-align: top; }
-    th { background: #f3f4f6; }
-    code, pre { background: #f3f4f6; padding: 2px 4px; border-radius: 4px; }
-    pre { padding: 14px; overflow-x: auto; }
-    .note { border-left: 4px solid #2563eb; padding: 10px 14px; background: #eff6ff; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.65; max-width: 1040px; margin: 32px auto; padding: 0 24px; color: #17202a; }
+    h1, h2, h3 { line-height: 1.25; }
+    table { border-collapse: collapse; width: 100%; margin: 18px 0; font-size: 0.95rem; }
+    th, td { border: 1px solid #d0d7de; padding: 7px 9px; vertical-align: top; }
+    th { background: #f6f8fa; }
+    code { background: #f6f8fa; padding: 0.1rem 0.25rem; border-radius: 4px; }
+    pre { background: #f6f8fa; padding: 16px; overflow-x: auto; border-radius: 6px; }
+    img { max-width: 100%; height: auto; border: 1px solid #d0d7de; border-radius: 6px; }
   </style>
 </head>
 <body>
-  <h1>W05 제출용 보고서</h1>
-
-  <h2>0. 메타정보</h2>
-  <table>
-    <tr><th>항목</th><th>내용</th></tr>
-    <tr><td>주차</td><td>W05</td></tr>
-    <tr><td>보고서 제목</td><td>자기지도학습·파운데이션 모델 &amp; Poisoning/Backdoor</td></tr>
-    <tr><td>작성일</td><td>2026-06-22</td></tr>
-    <tr><td>문서 상태</td><td>제출용 최종 초안, 최종 제출 확정 아님</td></tr>
-  </table>
-  <p>본 보고서는 자기지도학습과 파운데이션 모델의 사전학습 표현공간을 보안 자산으로 보고, poisoning/backdoor 위협을 평가하기 위한 다중지표 구조를 정리한다. synthetic 2차원 표현공간 클러스터 기반 안전 toy 실험으로 clean accuracy, poisoned clean accuracy, ASR, mean shift, detection rate, clean FPR을 분리 기록했다.</p>
-
-  <h2>1. 한 문장 요약</h2>
-  <p>라벨 없는 pretraining 환경에서도 데이터 수집, augmentation, pair 구성, representation space가 공격면이 될 수 있으므로 clean accuracy와 ASR을 분리해 보고해야 한다.</p>
-
-  <h2>2. 학습 배경과 주차 목표</h2>
-  <p>W05는 W01-W04의 생명주기 보안, 데이터 오염, 표현공간 교란, Transformer/NLP 보안 논의를 SSL/foundation pretraining 단계로 확장한다. 학습목표는 contrastive/masked/predictive SSL 이해, 비디오 SSL 전이평가 이해, poisoning/backdoor representation 평가축 설계다.</p>
-
-  <h2>3. AI 원리 70% 정리</h2>
-  <p>자기지도학습은 라벨 없이 contrastive, generative, predictive objective를 통해 표현을 학습한다[1]. 추천 SSL과 비디오 SSL은 도메인별 데이터 구조와 temporal/cross-modal signal을 활용한다[2][3].</p>
-  <table>
-    <caption>표 1. W05 핵심 개념과 보안 연결</caption>
-    <tr><th>개념</th><th>AI 원리</th><th>보안 연결</th></tr>
-    <tr><td>Contrastive learning</td><td>positive/negative pair로 표현공간 구조를 만든다</td><td>pair 오염, augmentation poisoning</td></tr>
-    <tr><td>Representation learning</td><td>downstream task에 전이 가능한 embedding을 만든다</td><td>representation shift</td></tr>
-    <tr><td>Foundation pretraining</td><td>대규모 corpus에서 범용 표현을 학습한다</td><td>데이터 거버넌스와 재현성</td></tr>
-  </table>
-
-  <h2>4. 보안 이슈 30% 정리</h2>
-  <p>Poisoning은 학습 데이터 조작으로 최적화와 판단을 왜곡하고[4], backdoor는 clean accuracy가 유지되어도 trigger 조건에서 ASR이 높아질 수 있다[5].</p>
-  <p><strong>그림 1. 자기지도학습 기반 표현공간 보안 평가 흐름</strong></p>
-  <pre>Pretraining Data / Augmentation Pairs
+<h1 id="w05">W05 제출용 보고서</h1>
+<h2 id="0">0. 메타정보</h2>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>주차</td>
+<td>W05</td>
+</tr>
+<tr>
+<td>작성자</td>
+<td>박영세</td>
+</tr>
+<tr>
+<td>학번</td>
+<td>26200122</td>
+</tr>
+<tr>
+<td>보고서 제목</td>
+<td>자기지도학습·파운데이션 모델 &amp; Poisoning/Backdoor</td>
+</tr>
+<tr>
+<td>작성일</td>
+<td>2026-06-22</td>
+</tr>
+<tr>
+<td>보완일</td>
+<td>2026-06-23</td>
+</tr>
+<tr>
+<td>문서 상태</td>
+<td>제출용 보고서</td>
+</tr>
+<tr>
+<td>관련 산출물</td>
+<td><code>03_weekly_reports/w05_ssl_backdoor/</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_1">초록</h3>
+<p>본 보고서는 자기지도학습과 파운데이션 모델의 사전학습 표현공간을 보안 자산으로 보고, poisoning/backdoor 위협을 평가하기 위한 다중지표 구조를 정리한다. 문헌 5편을 통해 SSL 알고리즘, 추천/비디오 SSL, poisoning, backdoor taxonomy를 비교하고, synthetic 2차원 표현공간 클러스터 기반 안전 toy 실험으로 clean accuracy, poisoned clean accuracy, ASR, mean shift, detection rate, clean FPR을 분리 기록했다. 본 수치는 실제 SSL/foundation model 보안 성능 주장이 아니라 재현 가능한 평가 형식 검증이다.</p>
+<p><strong>키워드:</strong> self-supervised learning, representation learning, foundation model, poisoning, backdoor, ASR, reproducibility</p>
+<h2 id="1">1. 한 문장 요약</h2>
+<p>W05는 라벨 없는 pretraining 환경에서도 데이터 수집, augmentation, pair 구성, representation space가 공격면이 될 수 있음을 정리하고, clean accuracy와 ASR을 분리해 보고하는 안전한 평가 구조를 제시한다.</p>
+<h2 id="2">2. 학습 배경과 주차 목표</h2>
+<h3 id="21">2.1 이번 주 주제의 위치</h3>
+<p>W05는 W01의 ML 생명주기 보안 평가, W02의 데이터 오염, W03의 표현공간과 입력 교란, W04의 Transformer/NLP 보안 논의를 자기지도학습과 파운데이션 모델의 pretraining 단계로 확장하는 주차다. W05의 핵심은 라벨이 없는 사전학습 환경에서도 데이터 수집, augmentation, positive/negative pair 구성, pretraining corpus, representation space가 보안 자산이 된다는 점이다. 이후 W06 생성모형/딥페이크, W07 LLM 보안, W10 연합학습 poisoning, W13 모델 도난 및 워터마킹과 연결된다.</p>
+<h3 id="22">2.2 강의계획서상 학습목표</h3>
+<ul>
+<li>Self-supervised learning의 contrastive, masked, predictive 문제정의를 정리한다.</li>
+<li>비디오 SSL의 사전학습-전이학습 평가 구조를 이해한다.</li>
+<li>Poisoning/backdoor가 representation space에 미치는 영향을 측정하는 평가축을 설계한다.</li>
+</ul>
+<h3 id="23">2.3 이번 주 핵심 질문</h3>
+<ol>
+<li>자기지도학습은 라벨 없이 어떤 supervision signal을 만드는가?</li>
+<li>Pretraining corpus와 augmentation 과정은 어떤 공격면을 만드는가?</li>
+<li>Poisoning/backdoor는 downstream classifier보다 representation space를 어떻게 먼저 왜곡할 수 있는가?</li>
+<li>Clean accuracy가 유지되더라도 ASR과 representation shift가 크면 왜 보안적으로 실패인가?</li>
+<li>W05의 synthetic representation 실험을 KCI 또는 SCI 논문 주제로 발전시키려면 어떤 연구문제가 적절한가?</li>
+</ol>
+<h2 id="3-ai-70">3. AI 원리 70% 정리</h2>
+<p>자기지도학습은 라벨 없이 contrastive, generative, predictive objective를 통해 표현을 학습한다[1]. 추천 시스템 SSL은 사용자-아이템 구조에서 supervision signal을 구성할 수 있고[2], 비디오 SSL은 시간적 일관성과 cross-modal signal을 활용한다[3].</p>
+<p><strong>표 1. W05 핵심 개념과 보안 연결</strong></p>
+<table>
+<thead>
+<tr>
+<th>개념</th>
+<th>AI 원리</th>
+<th>보안 연결</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Contrastive learning</td>
+<td>positive/negative pair로 표현공간 구조를 만든다</td>
+<td>pair 오염, augmentation poisoning</td>
+</tr>
+<tr>
+<td>Masked/generative learning</td>
+<td>입력 일부를 복원하거나 문맥을 예측한다</td>
+<td>corpus contamination</td>
+</tr>
+<tr>
+<td>Representation learning</td>
+<td>downstream task에 전이 가능한 embedding을 만든다</td>
+<td>representation shift</td>
+</tr>
+<tr>
+<td>Foundation pretraining</td>
+<td>대규모 corpus에서 범용 표현을 학습한다</td>
+<td>데이터 거버넌스와 재현성</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-30">4. 보안 이슈 30% 정리</h2>
+<p>Poisoning 공격은 학습 데이터 조작을 통해 모델의 최적화 경로와 최종 판단을 왜곡한다[4]. Backdoor 공격은 clean accuracy가 유지되더라도 trigger 조건에서 ASR이 높아질 수 있으므로 별도 평가가 필요하다[5].</p>
+<p><strong>그림 1. 자기지도학습 기반 표현공간 보안 평가 흐름</strong></p>
+<pre><code class="language-text">Pretraining Data / Augmentation Pairs
         |
         v
 Self-Supervised Representation Learning
         |
         v
-Clean Representation Evaluation ---> Clean Accuracy
+Clean Representation Evaluation ---&gt; Clean Accuracy
         |
         v
 Poisoned Sample / Trigger Vector
         |
         v
-Backdoor Representation Evaluation ---> Poisoned Clean Accuracy, ASR, Mean Shift
+Backdoor Representation Evaluation ---&gt; Poisoned Clean Accuracy, ASR, Mean Shift
         |
         v
-Consistency Defense Check ---> ASR after Defense, Detection Rate, Clean FPR
+Consistency Defense Check ---&gt; ASR after Defense, Detection Rate, Clean FPR
         |
         v
-Reproducibility Evidence ---> seed, config, Docker, outputs, run_log</pre>
+Reproducibility Evidence ---&gt; seed, config, Docker, outputs, run_log
+</code></pre>
+<h2 id="5-5">5. 논문 5편 요약</h2>
+<p><strong>표 2. 관련 문헌 5편 요약</strong></p>
+<table>
+<thead>
+<tr>
+<th>번호</th>
+<th>문헌</th>
+<th>DOI/URL 상태</th>
+<th>활용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[1]</td>
+<td>Gui et al., A Survey on Self-Supervised Learning: Algorithms, Applications, and Future Trends</td>
+<td>TPAMI DOI <code>10.1109/TPAMI.2024.3415112</code>, arXiv DOI 확인</td>
+<td>SSL 알고리즘과 응용 taxonomy</td>
+</tr>
+<tr>
+<td>[2]</td>
+<td>Ren et al., A Comprehensive Survey on Self-Supervised Learning for Recommendation</td>
+<td>DOI <code>10.1145/3746280</code> 확인, 지정 일반 SSL survey 동일 여부 확인 필요</td>
+<td>추천 시스템 SSL survey</td>
+</tr>
+<tr>
+<td>[3]</td>
+<td>Schiappa et al., Self-Supervised Learning for Videos: A Survey</td>
+<td>DOI <code>10.1145/3577925</code>, arXiv URL 확인</td>
+<td>video SSL과 temporal/cross-modal representation</td>
+</tr>
+<tr>
+<td>[4]</td>
+<td>Wang et al., Threats to Training: A Survey of Poisoning Attacks and Defenses on Machine Learning Systems</td>
+<td>DOI <code>10.1145/3538707</code> 확인, 강의계획서 제목/저자 차이 확인 필요</td>
+<td>poisoning 공격·방어 taxonomy</td>
+</tr>
+<tr>
+<td>[5]</td>
+<td>Jin et al., A survey of backdoor attacks and defences</td>
+<td>DOI <code>10.1016/j.jnlest.2025.100326</code> 확인</td>
+<td>DNN부터 LLM까지 backdoor 분류</td>
+</tr>
+</tbody>
+</table>
+<p>주의: W05의 P02는 강의계획서 지정 일반 자기지도학습 종합 서베이와 동일 여부를 최종 확인해야 한다. 현재 로컬 PDF는 추천 시스템 분야의 Self-Supervised Learning survey로 범위가 좁으므로, 최종 제출 전 대체 문헌 사용 여부를 확인한다.</p>
+<h2 id="6-5">6. 논문 5편 비교표</h2>
+<table>
+<thead>
+<tr>
+<th>논문</th>
+<th>차별성</th>
+<th>보안 연결</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P01</td>
+<td>일반 SSL taxonomy</td>
+<td>pretraining representation 보호 자산화</td>
+</tr>
+<tr>
+<td>P02</td>
+<td>추천 시스템 SSL 특화 또는 대체 문헌</td>
+<td>사용자-아이템 표현 오염과 추천 편향</td>
+</tr>
+<tr>
+<td>P03</td>
+<td>video SSL과 temporal/cross-modal signal</td>
+<td>temporal trigger, augmentation poisoning</td>
+</tr>
+<tr>
+<td>P04</td>
+<td>training-time poisoning taxonomy</td>
+<td>data/model/federated poisoning 위협모형</td>
+</tr>
+<tr>
+<td>P05</td>
+<td>DNN-LLM backdoor taxonomy</td>
+<td>clean accuracy와 ASR 분리</td>
+</tr>
+</tbody>
+</table>
+<p>P01-P03은 SSL/표현학습 원리와 응용 문헌이고, P04-P05는 poisoning/backdoor 보안 문헌이다. W05 toy 실험은 실제 SSL/foundation model 실험이 아니라 표현공간 평가축 설명용이다.</p>
+<h2 id="7-research-track">7. Research Track 분석</h2>
+<p><strong>표 3. W05 Research Track 요약</strong></p>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>연구문제</td>
+<td>SSL/foundation pretraining 표현공간에서 poisoning/backdoor 평가를 위한 최소 지표는 무엇인가</td>
+</tr>
+<tr>
+<td>대상 시스템</td>
+<td>SSL representation learner, foundation pretraining pipeline, downstream classifier</td>
+</tr>
+<tr>
+<td>위협</td>
+<td>poisoned sample, trigger injection, augmentation manipulation, corpus contamination</td>
+</tr>
+<tr>
+<td>평가 지표</td>
+<td>clean accuracy, poisoned clean accuracy, ASR, ASR after defense, mean shift, detection rate, clean FPR</td>
+</tr>
+<tr>
+<td>재현성</td>
+<td>seed, config, Docker, CSV/JSON/run_log 보존</td>
+</tr>
+<tr>
+<td>제외 범위</td>
+<td>실제 서비스 공격, 개인정보 사용, 악용 가능한 backdoor 제작 절차</td>
+</tr>
+</tbody>
+</table>
+<h2 id="8">8. 실습 보고서</h2>
+<p>본 실습은 실제 SSL encoder 또는 파운데이션 모델 backdoor 공격 재현이 아니라 W05의 핵심인 표현공간 오염 평가축을 안전하게 설명하기 위한 최소 toy protocol이다. 따라서 synthetic 2차원 표현공간 클러스터와 nearest-centroid representation classifier를 사용하되, 평가 구조는 이후 SSL encoder, 비디오 표현학습, LLM/foundation model pretraining에도 확장 가능하도록 clean accuracy, poisoned clean accuracy, ASR, mean representation shift, detection rate, clean FPR, reproducibility evidence로 분리하였다.</p>
+<p><strong>표 4. W05 실습 설계</strong></p>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>데이터</td>
+<td>synthetic 2D representation clusters</td>
+</tr>
+<tr>
+<td>모델/검사기</td>
+<td>nearest-centroid representation classifier</td>
+</tr>
+<tr>
+<td>보안 시나리오</td>
+<td>trigger vector가 source embedding을 target centroid 방향으로 이동</td>
+</tr>
+<tr>
+<td>방어 점검</td>
+<td>paired-view consistency distance threshold</td>
+</tr>
+<tr>
+<td>산출물</td>
+<td><code>metrics_summary.csv</code>, <code>results.json</code>, <code>run_log.md</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>표 5. W05 실습 결과</strong></p>
+<table>
+<thead>
+<tr>
+<th>조건</th>
+<th style="text-align: right;">Clean Acc.</th>
+<th style="text-align: right;">Poisoned Clean Acc.</th>
+<th style="text-align: right;">ASR</th>
+<th style="text-align: right;">ASR after defense</th>
+<th style="text-align: right;">Mean Shift</th>
+<th style="text-align: right;">Detection Rate</th>
+<th style="text-align: right;">Clean FPR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Clean representation baseline</td>
+<td style="text-align: right;">1.000000</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>Poisoned/backdoor representation</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;">1.000000</td>
+<td style="text-align: right;">1.000000</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;">2.418677</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>Consistency defense check</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">0.090597</td>
+<td style="text-align: right;">1.000000</td>
+<td style="text-align: right;">0.000000</td>
+</tr>
+</tbody>
+</table>
+<p>이 결과는 synthetic 2D representation toy 실험의 평가 형식 검증용 수치이며, 실제 SSL 모델, foundation model, 상용 시스템의 poisoning/backdoor 보안 성능으로 일반화하지 않는다.</p>
+<!-- submission-metric-chart:start -->
+<p><strong>그림 7. W05 metrics summary chart</strong></p>
+<p><img alt="W05 metrics summary chart" src="assets/w05_metric_chart.png"></p>
+<p>출처: <code>04_experiment/outputs/metrics_summary.csv</code>. 이 그래프는 공개 toy/synthetic 산출물 기반이며 실제 공격 성능이나 운영 환경 성능으로 일반화하지 않는다.</p>
+<!-- submission-metric-chart:end -->
 
-  <h2>5. 논문 5편 요약</h2>
-  <table>
-    <caption>표 2. 관련 문헌 5편 요약</caption>
-    <tr><th>번호</th><th>문헌</th><th>DOI/URL 상태</th><th>활용</th></tr>
-    <tr><td>[1]</td><td>Gui et al., A Survey on Self-Supervised Learning</td><td>TPAMI DOI <code>10.1109/TPAMI.2024.3415112</code></td><td>SSL taxonomy</td></tr>
-    <tr><td>[2]</td><td>Ren et al., A Comprehensive Survey on Self-Supervised Learning for Recommendation</td><td>DOI <code>10.1145/3746280</code>, 지정 일반 SSL survey 동일 여부 확인 필요</td><td>추천 SSL</td></tr>
-    <tr><td>[3]</td><td>Schiappa et al., Self-Supervised Learning for Videos</td><td>DOI <code>10.1145/3577925</code>, Article 번호 확인 필요</td><td>video SSL</td></tr>
-    <tr><td>[4]</td><td>Wang et al., Threats to Training</td><td>DOI <code>10.1145/3538707</code>, 강의계획서 표기 확인 필요</td><td>poisoning taxonomy</td></tr>
-    <tr><td>[5]</td><td>Jin et al., A survey of backdoor attacks and defences</td><td>DOI <code>10.1016/j.jnlest.2025.100326</code></td><td>backdoor taxonomy</td></tr>
-  </table>
-  <p class="note">주의: P02는 현재 로컬 PDF가 추천 시스템 SSL survey이므로, 강의계획서 지정 일반 SSL survey와 동일 여부를 최종 확인해야 한다.</p>
-
-  <h2>6. 논문 5편 비교표</h2>
-  <p>P01-P03은 SSL/표현학습 원리와 응용 문헌이고, P04-P05는 poisoning/backdoor 보안 문헌이다. W05 toy 실험은 실제 SSL/foundation model 실험이 아니라 표현공간 평가축 설명용이다.</p>
-
-  <h2>7. Research Track 분석</h2>
-  <table>
-    <caption>표 3. W05 Research Track 요약</caption>
-    <tr><th>항목</th><th>내용</th></tr>
-    <tr><td>연구문제</td><td>SSL/foundation pretraining 표현공간에서 poisoning/backdoor 평가를 위한 최소 지표는 무엇인가</td></tr>
-    <tr><td>위협</td><td>poisoned sample, trigger injection, augmentation manipulation, corpus contamination</td></tr>
-    <tr><td>평가 지표</td><td>clean accuracy, poisoned clean accuracy, ASR, ASR after defense, mean shift, detection rate, clean FPR</td></tr>
-  </table>
-
-  <h2>8. 실습 보고서</h2>
-  <table>
-    <caption>표 4. W05 실습 설계</caption>
-    <tr><th>항목</th><th>내용</th></tr>
-    <tr><td>데이터</td><td>synthetic 2D representation clusters</td></tr>
-    <tr><td>모델/검사기</td><td>nearest-centroid representation classifier</td></tr>
-    <tr><td>산출물</td><td><code>metrics_summary.csv</code>, <code>results.json</code>, <code>run_log.md</code></td></tr>
-  </table>
-  <table>
-    <caption>표 5. W05 실습 결과</caption>
-    <tr><th>조건</th><th>Clean Acc.</th><th>Poisoned Clean Acc.</th><th>ASR</th><th>ASR after defense</th><th>Mean Shift</th><th>Detection Rate</th><th>Clean FPR</th></tr>
-    <tr><td>Clean representation baseline</td><td>1.000000</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-    <tr><td>Poisoned/backdoor representation</td><td></td><td>1.000000</td><td>1.000000</td><td></td><td>2.418677</td><td></td><td></td></tr>
-    <tr><td>Consistency defense check</td><td></td><td></td><td></td><td>0.000000</td><td>0.090597</td><td>1.000000</td><td>0.000000</td></tr>
-  </table>
-  <p class="note">이 결과는 synthetic 2D representation toy 실험의 평가 형식 검증용 수치이며, 실제 SSL 모델, foundation model, 상용 시스템의 poisoning/backdoor 보안 성능으로 일반화하지 않는다.</p>
-
-  <h2>9. AI 도구 활용 기록</h2>
-  <p>Codex와 ChatGPT 계열 AI를 사용해 문헌 요약 구조화, DOI/URL 검증 보조, synthetic 실험 코드 작성, 제출용 보고서 및 발표자료 작성을 수행했다.</p>
-
-  <h2>10. 토론 질문</h2>
-  <ol>
-    <li>라벨 없는 SSL 환경에서 augmentation pair는 왜 공격면이 되는가?</li>
-    <li>Clean accuracy와 ASR이 동시에 높게 나올 때 보안 평가는 어떻게 해석해야 하는가?</li>
-    <li>P02가 지정 문헌과 다르면 대체 문헌으로 인정 가능한가?</li>
-  </ol>
-
-  <h2>11. 기말논문 연결</h2>
-  <p>추천 주제는 “표현학습 기반 AI 시스템의 poisoning/backdoor 평가 프레임워크”이다.</p>
-
-  <h2>12. KCI 논문 형식 전환</h2>
-  <table>
-    <caption>표 6. KCI 논문 제목 후보</caption>
-    <tr><th>번호</th><th>국문 제목 후보</th><th>영문 제목 후보</th></tr>
-    <tr><td>1</td><td>자기지도학습 기반 AI 시스템의 Poisoning/Backdoor 평가 프레임워크 연구</td><td>A Study on a Poisoning and Backdoor Evaluation Framework for Self-Supervised AI Systems</td></tr>
-    <tr><td>2</td><td>표현학습 공간에서 Backdoor Trigger가 공격 성공률과 탐지율에 미치는 영향 분석</td><td>An Analysis of the Impact of Backdoor Triggers on Attack Success Rate and Detection Rate in Representation Space</td></tr>
-  </table>
-
-  <h2>13. SCI 논문 형식 전환</h2>
-  <p>SCI 제목 후보: <em>A Multi-Metric Evaluation Framework for Representation-Level Poisoning and Backdoor Threats in Self-Supervised Learning Systems</em></p>
-  <table>
-    <caption>표 7. SCI Related Work 축</caption>
-    <tr><th>연구축</th><th>대표 논문</th><th>역할</th></tr>
-    <tr><td>Self-supervised learning</td><td>Gui et al.</td><td>SSL taxonomy</td></tr>
-    <tr><td>SSL for recommendation 또는 general SSL</td><td>Ren et al.</td><td>P02 검증 필요</td></tr>
-    <tr><td>Video SSL</td><td>Schiappa et al.</td><td>temporal/cross-modal representation</td></tr>
-    <tr><td>Poisoning attacks</td><td>Wang et al.</td><td>training-time threat model</td></tr>
-    <tr><td>Backdoor attacks</td><td>Jin et al.</td><td>DNN-LLM backdoor taxonomy</td></tr>
-  </table>
-
-  <h2>14. 발표용 요약</h2>
-  <p>표현학습 기반 모델의 보안 평가는 clean 성능 하나로 끝나지 않으며, trigger 조건의 ASR, representation shift, defense check, 재현성 근거를 분리해야 한다.</p>
-
-  <h2>15. 참고문헌 검증표</h2>
-  <p>세부 DOI/URL 검증표는 <code>01_papers/doi_check.md</code>에 있다. PDF 원문 5개는 Git 추적 중이므로 public GitHub 저장소에서는 제거 또는 추적 해제가 필요하다.</p>
-
-  <h2>16. 자기 점검표</h2>
-  <table>
-    <tr><th>점검 항목</th><th>상태</th><th>비고</th></tr>
-    <tr><td>16장 목차</td><td>완료</td><td>최종 제출 확정 아님</td></tr>
-    <tr><td>실험 outputs</td><td>완료</td><td>3개 파일 존재</td></tr>
-    <tr><td>P01 DOI</td><td>완료</td><td><code>10.1109/TPAMI.2024.3415112</code></td></tr>
-    <tr><td>P02/P03/P04/P05 표기</td><td>확인 필요</td><td>강의계획서와 출판 메타데이터 차이</td></tr>
-    <tr><td>PDF 저작권 위험</td><td>확인 필요</td><td>PDF 5개 Git 추적 중</td></tr>
-  </table>
+<h2 id="9-ai">9. AI 도구 활용 기록</h2>
+<p>AI 도구는 문헌 요약, 코드 점검, 문장 구조화, 그래프 생성 보조에 사용하였다. 모든 DOI/URL, 실험 수치, 본문 인용, 결론은 작성자가 outputs 파일과 로컬 참고문헌 검증표를 대조하여 검증한다.</p>
+<p><strong>표. W05 AI 도구 활용 및 검증 기록</strong></p>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>사용 도구명</td>
+<td>Codex, ChatGPT 계열 도구</td>
+</tr>
+<tr>
+<td>사용 일자</td>
+<td>2026-06-23</td>
+</tr>
+<tr>
+<td>사용 목적</td>
+<td>문헌 요약 정리, 보고서 구조화, 안전한 toy/synthetic 실험 결과 표기 점검, 그래프 생성 보조, 제출 전 체크리스트 정리</td>
+</tr>
+<tr>
+<td>주요 프롬프트 요약</td>
+<td>주차별 제출 보고서 보완, 참고문헌 검증표 정리, metrics_summary.csv 기반 그래프 생성, AI 활용 고지 작성</td>
+</tr>
+<tr>
+<td>AI 산출물 반영 위치</td>
+<td><code>07_week_submission/w05_submission_report.md</code>, <code>07_week_submission/assets/w05_metric_chart.png</code>, <code>05_ai_worklog/ai_disclosure_draft.md</code></td>
+</tr>
+<tr>
+<td>본인 수정 내용</td>
+<td>주차별 문헌 상태 확인, 실험 수치와 outputs 대조, 안전 범위와 한계 문장 확인, 최종 제출 전 미확정 문헌 분리</td>
+</tr>
+<tr>
+<td>사실관계 검증 방법</td>
+<td><code>01_papers/paper_list.md</code>, <code>01_papers/doi_check.md</code>, <code>05_references/doi_index.md</code>, 강의계획서 문헌표 대조</td>
+</tr>
+<tr>
+<td>참고문헌 검증 방법</td>
+<td>제목, 저자, 연도, 학술지/학회, DOI/URL, 본문 인용번호와 참고문헌 목록 대응 확인</td>
+</tr>
+<tr>
+<td>실험결과 검증 방법</td>
+<td><code>04_experiment/outputs/metrics_summary.csv</code>, <code>results.json</code>, <code>run_log.md</code>의 수치와 보고서 표기 대조</td>
+</tr>
+<tr>
+<td>최종 책임 확인</td>
+<td>AI 산출물은 초안 보조이며 최종 제출자는 원고 내용, 인용, 실험결과, 연구윤리 책임을 확인한다.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="10">10. 토론 질문</h2>
+<ol>
+<li>라벨이 없는 SSL 환경에서 augmentation pair는 왜 공격면이 되는가?</li>
+<li>Clean accuracy와 ASR이 동시에 높게 나올 때 보안 평가는 어떻게 해석해야 하는가?</li>
+<li>Consistency defense check가 실제 SSL 방어로 확장되려면 어떤 검증이 필요한가?</li>
+<li>P02가 지정 문헌과 다르면 대체 문헌으로 인정 가능한가?</li>
+</ol>
+<h2 id="11">11. 기말논문 연결</h2>
+<p>추천 주제는 “표현학습 기반 AI 시스템의 poisoning/backdoor 평가 프레임워크”이다. 기여 후보는 SSL/foundation pretraining 위협모형, representation shift 기반 toy 평가표, clean performance와 ASR의 분리 기록, seed/config/output 기반 재현성 체크리스트다.</p>
+<h2 id="12-kci">12. KCI 논문 형식 전환</h2>
+<p><strong>표 6. KCI 논문 제목 후보</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">번호</th>
+<th>국문 제목 후보</th>
+<th>영문 제목 후보</th>
+<th>대상 시스템</th>
+<th>보안 위협</th>
+<th>연구방법</th>
+<th>예상 기여</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td>자기지도학습 기반 AI 시스템의 Poisoning/Backdoor 평가 프레임워크 연구</td>
+<td>A Study on a Poisoning and Backdoor Evaluation Framework for Self-Supervised AI Systems</td>
+<td>SSL/foundation model</td>
+<td>Poisoning, Backdoor</td>
+<td>문헌분석 + synthetic representation 실험</td>
+<td>representation shift 기반 평가표</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td>표현학습 공간에서 Backdoor Trigger가 공격 성공률과 탐지율에 미치는 영향 분석</td>
+<td>An Analysis of the Impact of Backdoor Triggers on Attack Success Rate and Detection Rate in Representation Space</td>
+<td>표현학습 모델</td>
+<td>Trigger injection, representation shift</td>
+<td>toy 실험 + 평가 프로토콜</td>
+<td>ASR·mean shift·detection rate 분리</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td>파운데이션 모델 사전학습 단계의 데이터 오염 위협과 재현성 평가 연구</td>
+<td>A Study on Data Poisoning Threats and Reproducibility Evaluation in Foundation Model Pretraining</td>
+<td>foundation/pretraining pipeline</td>
+<td>corpus poisoning, data governance risk</td>
+<td>문헌분석 + 체크리스트</td>
+<td>pretraining governance 평가</td>
+</tr>
+</tbody>
+</table>
+<p>추천 최종 제목은 “자기지도학습 기반 AI 시스템의 Poisoning/Backdoor 평가 프레임워크 연구”이다. 국문초록은 W05 문헌분석, synthetic representation toy experiment, clean accuracy/ASR/mean shift/detection rate/clean FPR 분리 보고를 중심으로 구성한다. 국내 참고문헌 3편 이상은 확인 필요다.</p>
+<h2 id="13-sci">13. SCI 논문 형식 전환</h2>
+<h3 id="131-sci">13.1 SCI 제목 후보</h3>
+<p>A Multi-Metric Evaluation Framework for Representation-Level Poisoning and Backdoor Threats in Self-Supervised Learning Systems</p>
+<h3 id="132-structured-abstract">13.2 Structured Abstract 요약</h3>
+<p>Background: Self-supervised learning and foundation models rely on large-scale pretraining data and learned representations, making representation space a security asset.</p>
+<p>Problem: Existing evaluations may overemphasize downstream clean accuracy without separating representation shift, ASR, detection rate, clean FPR, and reproducibility evidence.</p>
+<p>Method: This study synthesizes five representative studies and uses a safe synthetic toy experiment to illustrate clean, poisoned/backdoor, defense, and reproducibility reporting.</p>
+<p>Results: Outputs record clean accuracy 1.000000, poisoned clean accuracy 1.000000, ASR 1.000000, ASR after defense 0.000000, mean shift 2.418677/0.090597, detection rate 1.000000, clean FPR 0.000000. These are toy reporting values, not real-world SSL security performance.</p>
+<p>Contribution: The contribution is a multi-metric evaluation structure separating clean performance, poisoned performance, attack success rate, representation shift, defense effect, and reproducibility evidence.</p>
+<p><strong>표 7. SCI Related Work 축</strong></p>
+<table>
+<thead>
+<tr>
+<th>연구축</th>
+<th>대표 논문</th>
+<th>역할</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Self-supervised learning</td>
+<td>Gui et al.</td>
+<td>SSL 알고리즘과 응용 taxonomy</td>
+</tr>
+<tr>
+<td>SSL for recommendation 또는 general SSL</td>
+<td>Ren et al.</td>
+<td>SSL 응용 도메인 또는 일반 SSL survey, P02 검증 필요</td>
+</tr>
+<tr>
+<td>Video SSL</td>
+<td>Schiappa et al.</td>
+<td>temporal/cross-modal representation learning</td>
+</tr>
+<tr>
+<td>Poisoning attacks</td>
+<td>Wang et al.</td>
+<td>training-time poisoning threat model</td>
+</tr>
+<tr>
+<td>Backdoor attacks</td>
+<td>Jin et al.</td>
+<td>DNN-LLM backdoor attack/defense taxonomy</td>
+</tr>
+</tbody>
+</table>
+<p>SCI형 논문은 Introduction, Related Work, Threat Model, Methodology, Experimental Setup, Results, Discussion, Limitations and Threats to Validity, Conclusion 순서로 전환할 수 있다.</p>
+<h2 id="14">14. 발표용 요약</h2>
+<p>발표 핵심 메시지는 “표현학습 기반 모델의 보안 평가는 clean 성능 하나로 끝나지 않으며, trigger 조건의 ASR, representation shift, defense check, 재현성 근거를 분리해야 한다”이다. 발표자료는 <code>09_presentation/</code>에 정리했다.</p>
+<h2 id="15">15. 참고문헌 검증표</h2>
+<table>
+<thead>
+<tr>
+<th>번호</th>
+<th>참고문헌</th>
+<th>DOI/URL</th>
+<th>상태</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[1]</td>
+<td>Jie Gui et al., A Survey on Self-Supervised Learning: Algorithms, Applications, and Future Trends</td>
+<td><code>10.1109/TPAMI.2024.3415112</code>, <code>10.48550/arXiv.2301.05712</code></td>
+<td>DOI 확인, 강의계획서 저자 표기 확인 필요</td>
+</tr>
+<tr>
+<td>[2]</td>
+<td>Xubin Ren et al., A Comprehensive Survey on Self-Supervised Learning for Recommendation</td>
+<td><code>10.1145/3746280</code></td>
+<td>DOI 확인, 지정 일반 SSL survey 동일 여부 확인 필요</td>
+</tr>
+<tr>
+<td>[3]</td>
+<td>Madeline C. Schiappa et al., Self-Supervised Learning for Videos: A Survey</td>
+<td><code>10.1145/3577925</code></td>
+<td>DOI 확인, 제목 차이/Article 번호 확인 필요</td>
+</tr>
+<tr>
+<td>[4]</td>
+<td>Zhibo Wang et al., Threats to Training: A Survey of Poisoning Attacks and Defenses on Machine Learning Systems</td>
+<td><code>10.1145/3538707</code></td>
+<td>DOI 확인, 강의계획서 제목/저자 차이 확인 필요</td>
+</tr>
+<tr>
+<td>[5]</td>
+<td>Ling-Xin Jin et al., A survey of backdoor attacks and defences: From deep neural networks to large language models</td>
+<td><code>10.1016/j.jnlest.2025.100326</code></td>
+<td>DOI 확인, 강의계획서 <code>Z. Jin</code> 표기 확인 필요</td>
+</tr>
+</tbody>
+</table>
+<p>PDF 원문은 <code>01_papers/pdf/</code>에 로컬 보존하되 Git 추적은 해제했다. public GitHub 저장소에는 PDF 원문 대신 DOI/URL, 서지정보, 요약만 남기는 정책을 적용한다.</p>
+<h2 id="16">16. 자기 점검표</h2>
+<table>
+<thead>
+<tr>
+<th>점검 항목</th>
+<th>상태</th>
+<th>비고</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1장 한 문장 요약 작성</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>2장 학습 배경과 주차 목표 작성</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>AI 원리 70% 정리</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>보안 이슈 30% 정리</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>논문 5편 요약</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>논문 5편 비교표 보완</td>
+<td>완료 / 확인 필요</td>
+<td>P01-P05 차별성 반영</td>
+</tr>
+<tr>
+<td>Research Track 5요소 작성</td>
+<td>완료</td>
+<td>연구문제, 위협모형, 평가방법, 재현성, 오픈문제</td>
+</tr>
+<tr>
+<td>P01 IEEE TPAMI DOI 검증</td>
+<td>완료</td>
+<td><code>10.1109/TPAMI.2024.3415112</code></td>
+</tr>
+<tr>
+<td>P02 지정 논문 동일 여부 검증</td>
+<td>확인 필요</td>
+<td>현재 로컬 PDF는 추천 SSL survey</td>
+</tr>
+<tr>
+<td>P03 제목/출판정보 검증</td>
+<td>완료 / 확인 필요</td>
+<td>DOI 확인, Article 번호 확인 필요</td>
+</tr>
+<tr>
+<td>P04 제목/출판정보 검증</td>
+<td>완료 / 확인 필요</td>
+<td>DOI 확인, 강의계획서 표기 확인 필요</td>
+</tr>
+<tr>
+<td>P05 DOI/URL 검증</td>
+<td>완료 / 확인 필요</td>
+<td>DOI 확인, 강의계획서 저자 표기 확인 필요</td>
+</tr>
+<tr>
+<td>실험 outputs 파일 존재 확인</td>
+<td>완료</td>
+<td>3개 파일 존재</td>
+</tr>
+<tr>
+<td>실험 결과와 보고서 수치 일치</td>
+<td>완료</td>
+<td>outputs 기준</td>
+</tr>
+<tr>
+<td>KCI 논문 형식 전환 작성</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>SCI 논문 형식 전환 작성</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>본문 인용과 참고문헌 대응</td>
+<td>완료 / 확인 필요</td>
+<td>P02/P03/P04 검증 메모 유지</td>
+</tr>
+<tr>
+<td>표·그림 번호 정리</td>
+<td>완료</td>
+<td>표 1-7, 그림 1</td>
+</tr>
+<tr>
+<td>AI 활용 고지 작성</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>PDF 저작권 위험 점검</td>
+<td>완료 / 확인 필요</td>
+<td>PDF 원문 Git 추적 해제 완료(로컬 파일 보존)</td>
+</tr>
+<tr>
+<td>최종 사람이 검토할 항목 표시</td>
+<td>완료</td>
+<td>제출 전 작성자 확인 항목 있음</td>
+</tr>
+</tbody>
+</table>
 </body>
 </html>

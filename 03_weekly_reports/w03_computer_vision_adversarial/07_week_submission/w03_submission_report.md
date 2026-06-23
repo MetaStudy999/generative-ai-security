@@ -2,7 +2,7 @@
 
 ## 초록
 
-본 보고서는 컴퓨터비전 표현학습과 비전 대적공격을 연결하여 정상 조건 성능과 공격 조건 성능을 분리해 평가해야 함을 정리한다. CNN, Vision Transformer, 멀티모달 Transformer, 2D/3D 비전 강건성 문헌을 비교하고, clean accuracy, robust accuracy, ASR, robust drop, confusion matrix, reproducibility evidence를 핵심 평가축으로 제시한다. 실습은 synthetic 8×8 막대 이미지 기반 안전 toy 실험과 nearest-centroid model을 사용했으며, 실제 CNN/ViT 공격 재현이나 운영 시스템 공격은 포함하지 않는다. 본 문서는 제출용 최종 초안이며 최종 제출 전 사람이 DOI, PDF 보관 정책, 인용, HTML 인쇄 상태를 확인해야 한다.
+본 보고서는 컴퓨터비전 표현학습과 비전 대적공격을 연결하여 정상 조건 성능과 공격 조건 성능을 분리해 평가해야 함을 정리한다. CNN, Vision Transformer, 멀티모달 Transformer, 2D/3D 비전 강건성 문헌을 비교하고, clean accuracy, robust accuracy, ASR, robust drop, confusion matrix, reproducibility evidence를 핵심 평가축으로 제시한다. 실습은 synthetic 8×8 막대 이미지 기반 안전 toy 실험과 nearest-centroid model을 사용했으며, 실제 CNN/ViT 공격 재현이나 운영 시스템 공격은 포함하지 않는다. 본 문서는 제출용 보고서이며 최종 제출 전 사람이 DOI, PDF 보관 정책, 인용, HTML 인쇄 상태를 확인해야 한다.
 
 **키워드:** 컴퓨터비전, CNN, Vision Transformer, 대적공격, robust accuracy, ASR, 재현성
 
@@ -11,11 +11,13 @@
 | 항목 | 내용 |
 |---|---|
 | 주차 | W03 |
+| 작성자 | 박영세 |
+| 학번 | 26200122 |
 | 보고서 제목 | 컴퓨터비전 표현학습 & 비전 대적공격 |
 | 작성일 | 2026-06-22 |
-| 문서 상태 | 제출용 최종 초안, 최종 제출 확정 아님 |
+| 보완일 | 2026-06-23 |
+| 문서 상태 | 제출용 보고서 |
 | 관련 산출물 위치 | `03_weekly_reports/w03_computer_vision_adversarial/` |
-
 ## 1. 한 문장 요약
 
 W03는 비전 모델의 표현학습 원리를 CNN/ViT/멀티모달 Transformer 관점에서 정리하고, 공격 조건에서는 clean accuracy와 robust accuracy, ASR을 분리해 보고해야 함을 safe toy 실험으로 확인한다.
@@ -142,9 +144,32 @@ epsilon 0.45 결과는 실제 CNN/ViT 공격 성공이 아니라 synthetic two-c
 | Adversarial | `04_experiment/outputs/adversarial_eps_0_30.pgm` |
 | Feature-squeezed | `04_experiment/outputs/feature_squeezed_eps_0_30.pgm` |
 
+<!-- submission-metric-chart:start -->
+**그림 8. W03 metrics summary chart**
+
+![W03 metrics summary chart](assets/w03_metric_chart.png)
+
+출처: `04_experiment/outputs/metrics_summary.csv`. 이 그래프는 공개 toy/synthetic 산출물 기반이며 실제 공격 성능이나 운영 환경 성능으로 일반화하지 않는다.
+<!-- submission-metric-chart:end -->
+
 ## 9. AI 도구 활용 기록
 
-Codex와 ChatGPT를 사용해 논문 요약 보강, 문장 구조화, code/config 일치성 점검, synthetic toy 실험 코드 및 보고서 보완, KCI/SCI 섹션 작성을 수행했다. 상세 고지는 `05_ai_worklog/ai_disclosure_draft.md`에 작성했다.
+AI 도구는 문헌 요약, 코드 점검, 문장 구조화, 그래프 생성 보조에 사용하였다. 모든 DOI/URL, 실험 수치, 본문 인용, 결론은 작성자가 outputs 파일과 로컬 참고문헌 검증표를 대조하여 검증한다.
+
+**표. W03 AI 도구 활용 및 검증 기록**
+
+| 항목 | 내용 |
+|---|---|
+| 사용 도구명 | Codex, ChatGPT 계열 도구 |
+| 사용 일자 | 2026-06-23 |
+| 사용 목적 | 문헌 요약 정리, 보고서 구조화, 안전한 toy/synthetic 실험 결과 표기 점검, 그래프 생성 보조, 제출 전 체크리스트 정리 |
+| 주요 프롬프트 요약 | 주차별 제출 보고서 보완, 참고문헌 검증표 정리, metrics_summary.csv 기반 그래프 생성, AI 활용 고지 작성 |
+| AI 산출물 반영 위치 | `07_week_submission/w03_submission_report.md`, `07_week_submission/assets/w03_metric_chart.png`, `05_ai_worklog/ai_disclosure_draft.md` |
+| 본인 수정 내용 | 주차별 문헌 상태 확인, 실험 수치와 outputs 대조, 안전 범위와 한계 문장 확인, 최종 제출 전 미확정 문헌 분리 |
+| 사실관계 검증 방법 | `01_papers/paper_list.md`, `01_papers/doi_check.md`, `05_references/doi_index.md`, 강의계획서 문헌표 대조 |
+| 참고문헌 검증 방법 | 제목, 저자, 연도, 학술지/학회, DOI/URL, 본문 인용번호와 참고문헌 목록 대응 확인 |
+| 실험결과 검증 방법 | `04_experiment/outputs/metrics_summary.csv`, `results.json`, `run_log.md`의 수치와 보고서 표기 대조 |
+| 최종 책임 확인 | AI 산출물은 초안 보조이며 최종 제출자는 원고 내용, 인용, 실험결과, 연구윤리 책임을 확인한다. |
 
 ## 10. 토론 질문
 
@@ -199,7 +224,7 @@ SCI형 구성은 Background, Problem, Method, Results, Contribution, Implication
 | [4] | Khan et al., “Transformers in Vision: A Survey,” 2022. | https://doi.org/10.1145/3505244 | 확인됨 |
 | [5] | Li et al., “A Survey of Robustness and Safety of 2D and 3D Deep Learning Models against Adversarial Attacks,” 2024. | https://doi.org/10.1145/3636551 | 확인됨 |
 
-PDF 보관 점검: GitHub API 기준 원격 저장소는 public이고 W03 PDF 5개는 git 추적 대상이다. `.gitignore`에는 PDF 제외 규칙이 있으나 이미 추적된 PDF는 삭제 검토가 필요하다. 사용자의 승인 없이 PDF를 삭제하지 않았다.
+PDF 보관 점검: 원격 저장소가 public일 수 있으므로 W03 논문 PDF 원문은 로컬 파일로 보존하되 Git 추적은 해제했다. `.gitignore`의 PDF 제외 규칙과 PDF 보관 정책을 적용한다.
 
 ## 16. 자기 점검표
 

@@ -5,53 +5,196 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>W11 제출용 보고서</title>
   <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.6; color: #1f2937; background: #f8fafc; margin: 0; }
-    main { max-width: 1080px; margin: 0 auto; background: #fff; padding: 36px 22px 56px; }
-    h1 { border-bottom: 3px solid #0f766e; padding-bottom: 12px; }
-    h2 { margin-top: 32px; color: #0f172a; }
-    table { border-collapse: collapse; width: 100%; margin: 12px 0 22px; font-size: 0.94rem; }
-    th, td { border: 1px solid #d1d5db; padding: 8px 10px; vertical-align: top; }
-    th { background: #dff5f1; }
-    code { background: #ecfeff; padding: 1px 4px; border-radius: 4px; }
-    pre { background: #f1f5f9; padding: 14px; overflow: auto; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.65; max-width: 1040px; margin: 32px auto; padding: 0 24px; color: #17202a; }
+    h1, h2, h3 { line-height: 1.25; }
+    table { border-collapse: collapse; width: 100%; margin: 18px 0; font-size: 0.95rem; }
+    th, td { border: 1px solid #d0d7de; padding: 7px 9px; vertical-align: top; }
+    th { background: #f6f8fa; }
+    code { background: #f6f8fa; padding: 0.1rem 0.25rem; border-radius: 4px; }
+    pre { background: #f6f8fa; padding: 16px; overflow-x: auto; border-radius: 6px; }
+    img { max-width: 100%; height: auto; border: 1px solid #d0d7de; border-radius: 6px; }
   </style>
 </head>
 <body>
-<main>
-  <h1>W11 제출용 보고서</h1>
-  <h2>0. 메타정보</h2>
-  <table>
-    <tr><th>항목</th><th>내용</th></tr>
-    <tr><td>주차</td><td>W11</td></tr>
-    <tr><td>주제</td><td>차등프라이버시(DP) &amp; 멤버십 추론 공격·방어</td></tr>
-    <tr><td>문서 상태</td><td>제출용 최종 초안, 사람 검토 필요</td></tr>
-    <tr><td>실험 근거</td><td><code>04_experiment/outputs/metrics_summary.csv</code>, <code>results.json</code>, <code>run_log.md</code></td></tr>
-  </table>
-
-  <h2>초록</h2>
-  <p>본 보고서는 DP와 membership inference 공격·방어를 AI 원리와 보안 평가 관점에서 통합 정리한다. DP는 강력한 privacy 개념이지만 epsilon, accounting, utility, attack risk가 함께 보고되지 않으면 privacy claim이 과장될 수 있다. W11은 문헌 5편과 synthetic binary classification 기반 안전 toy 실험을 통해 accuracy, train accuracy, MI attack accuracy, privacy leakage score, utility drop, epsilon/accounting, reproducibility evidence를 분리 기록한다. <code>epsilon_proxy</code>는 formal DP accountant 값이 아니다.</p>
-
-  <h2>문헌 검증</h2>
-  <table>
-    <tr><th>ID</th><th>문헌</th><th>DOI/URL 상태</th><th>주의</th></tr>
-    <tr><td>P01</td><td>A Critical Review on the Use (and Misuse) of Differential Privacy in Machine Learning</td><td><code>10.1145/3547139</code></td><td>로컬 PDF는 arXiv 판</td></tr>
-    <tr><td>P02</td><td>Recent Advances of Differential Privacy in Centralized Deep Learning</td><td><code>10.1145/3712000</code></td><td>강의자료의 저자/권호 표기 대조 필요</td></tr>
-    <tr><td>P03</td><td>Differential privacy in deep learning: A literature survey</td><td><code>10.1016/j.neucom.2024.127663</code></td><td>로컬 PDF는 Fu et al. 대체 PDF, 원문 확보 필요</td></tr>
-    <tr><td>P04</td><td>Membership Inference Attacks on Machine Learning</td><td><code>10.1145/3523273</code></td><td>로컬 PDF는 arXiv/ACM preprint 판</td></tr>
-    <tr><td>P05</td><td>Defenses to Membership Inference Attacks</td><td><code>10.1145/3620667</code></td><td>로컬 PDF는 Bai et al. 대체 PDF, 원문 확보 필요</td></tr>
-  </table>
-
-  <h2>실험 결과</h2>
-  <table>
-    <tr><th>조건</th><th>Accuracy</th><th>Train Accuracy</th><th>MI Attack Accuracy</th><th>Epsilon Proxy</th><th>Utility Drop</th><th>Privacy Leakage Score</th></tr>
-    <tr><td>Non-DP baseline</td><td>0.956250</td><td>0.965625</td><td>0.515625</td><td>해당 없음</td><td>0.000000</td><td>0.014833</td></tr>
-    <tr><td>DP-like noise low</td><td>0.956250</td><td>0.965625</td><td>0.515625</td><td>8.000000</td><td>0.000000</td><td>0.014494</td></tr>
-    <tr><td>DP-like noise medium</td><td>0.962500</td><td>0.965625</td><td>0.512500</td><td>3.000000</td><td>0.000000</td><td>0.011769</td></tr>
-    <tr><td>DP-like noise high</td><td>0.950000</td><td>0.962500</td><td>0.521875</td><td>1.000000</td><td>0.006250</td><td>0.016482</td></tr>
-  </table>
-
-  <h2>그림 1. 평가 흐름</h2>
-  <pre>Synthetic Train/Test Data
+<h1 id="w11">W11 제출용 보고서</h1>
+<h2 id="_1">초록</h2>
+<p>본 보고서는 차등프라이버시(DP)와 membership inference 공격·방어를 AI 원리와 보안 평가 관점에서 통합 정리한다. DP는 개별 레코드의 영향을 제한하는 강력한 privacy 개념이지만, 실제 ML/DL 연구에서 epsilon, accounting, utility, attack risk가 함께 보고되지 않으면 privacy claim이 과장될 수 있다. 이에 W11 문헌 5편을 DP misuse, centralized DP-DL, DP deep learning, MI attack, MI defense 축으로 비교하고, 실제 개인정보 없이 synthetic binary classification 기반 안전 toy 실험으로 accuracy, train accuracy, MI attack accuracy, privacy leakage score, utility drop, epsilon/accounting, reproducibility evidence를 분리 기록하였다. 단, <code>epsilon_proxy</code>는 formal DP accountant 값이 아니며 실제 DP 보장으로 해석하지 않는다.</p>
+<h2 id="0">0. 메타정보</h2>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>주차</td>
+<td>W11</td>
+</tr>
+<tr>
+<td>주제</td>
+<td>차등프라이버시(DP) &amp; 멤버십 추론 공격·방어</td>
+</tr>
+<tr>
+<td>제출 상태</td>
+<td>제출용 보고서, 작성자 확인 필요</td>
+</tr>
+<tr>
+<td>실험 상태</td>
+<td>outputs 존재, 로컬/Docker 실행 확인</td>
+</tr>
+<tr>
+<td>안전 범위</td>
+<td>synthetic binary classification 기반 안전 toy 실험</td>
+</tr>
+</tbody>
+</table>
+<p>| 문서 상태 | 제출용 보고서 |
+| 학번 | 26200122 |
+| 보완일 | 2026-06-23 |</p>
+<h2 id="1">1. 한 문장 요약</h2>
+<p>DP와 membership inference 방어는 적용 여부만으로 privacy claim이 성립하지 않으며, epsilon/accounting, utility, MI risk, leakage score, 재현성 증거를 함께 보고해야 한다[1][2][4][5].</p>
+<h2 id="2">2. 학습 배경과 주차 목표</h2>
+<p>W11은 W10의 연합학습 privacy leakage 논의를 DP와 membership inference 평가로 확장한다. 이번 주 목표는 epsilon/delta, DP-SGD, privacy accounting, MI attack/defense taxonomy를 정리하고, 안전한 synthetic toy protocol로 utility와 privacy risk proxy를 분리해 보고하는 것이다.</p>
+<h2 id="3-ai-70">3. AI 원리 70% 정리</h2>
+<p>DP는 인접 데이터셋의 출력 분포 차이를 제한하여 개별 레코드의 영향력을 줄이는 privacy 보장 개념이다[1]. 중앙집중형 deep learning에서 DP-SGD는 gradient clipping, noise injection, privacy accounting을 함께 요구한다[2]. Deep learning에서 DP 적용 위치는 sample-level, client-level, update-level에 따라 달라질 수 있다[3].</p>
+<table>
+<thead>
+<tr>
+<th>표 1. W11 핵심 개념과 보안 연결</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Differential Privacy</td>
+<td>개별 레코드 포함 여부가 출력에 주는 영향을 제한한다.</td>
+</tr>
+<tr>
+<td>DP-SGD</td>
+<td>clipping과 noise를 사용하지만 accountant 없이는 formal 보장을 말할 수 없다.</td>
+</tr>
+<tr>
+<td>Membership Inference</td>
+<td>모델 출력이나 confidence score로 학습 포함 여부를 추론한다.</td>
+</tr>
+<tr>
+<td>Privacy Claim</td>
+<td>epsilon, utility, leakage, 재현성을 함께 보고해야 검증 가능하다.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-30">4. 보안 이슈 30% 정리</h2>
+<p>Membership inference attack은 모델 출력이나 confidence score로 학습 데이터 포함 여부를 추론한다[4]. Membership inference 방어는 privacy risk를 낮출 수 있지만 utility drop과 calibration 변화를 함께 고려해야 한다[5]. 본 보고서는 실제 개인정보, 실제 개인 대상 membership inference, 운영 모델/API 무단 질의, 실제 서비스 privacy probing을 포함하지 않는다.</p>
+<h2 id="5-5">5. 논문 5편 요약</h2>
+<table>
+<thead>
+<tr>
+<th>표 2. 관련 문헌 5편 요약</th>
+<th>핵심 역할</th>
+<th>검증 상태</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P01 Blanco-Justicia et al.[1]</td>
+<td>DP misuse와 reporting 책임</td>
+<td>DOI <code>10.1145/3547139</code> 확인</td>
+</tr>
+<tr>
+<td>P02 Demelius et al.[2]</td>
+<td>centralized DP-DL와 privacy auditing</td>
+<td>DOI <code>10.1145/3712000</code> 확인, 강의자료 표기 대조 필요</td>
+</tr>
+<tr>
+<td>P03 Pan et al.[3]</td>
+<td>DP deep learning survey</td>
+<td>DOI <code>10.1016/j.neucom.2024.127663</code> 확인, 로컬 PDF 대체 상태</td>
+</tr>
+<tr>
+<td>P04 Hu et al.[4]</td>
+<td>MI attack taxonomy</td>
+<td>DOI <code>10.1145/3523273</code> 확인</td>
+</tr>
+<tr>
+<td>P05 Hu/Li Hu et al.[5]</td>
+<td>MI defense taxonomy</td>
+<td>DOI <code>10.1145/3620667</code> 확인, 로컬 PDF 대체 상태 및 저자 표기 대조 필요</td>
+</tr>
+</tbody>
+</table>
+<p>P03은 지정 논문과 로컬 PDF가 불일치한다. 현재 로컬 PDF는 Fu et al.의 DP-FL systematic review이므로, 최종 제출 전 지정 논문 원문 PDF 또는 공식 출판 페이지를 확보해야 한다. P05도 지정 논문과 로컬 PDF가 불일치하며, 현재 로컬 PDF는 Bai et al.의 FL-MIA survey이다.</p>
+<h2 id="6-5">6. 논문 5편 비교표</h2>
+<table>
+<thead>
+<tr>
+<th>논문</th>
+<th>차별성</th>
+<th>내 논문 활용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P01</td>
+<td>DP claim 오용과 reporting 책임을 비판적으로 제시</td>
+<td>DP reporting checklist</td>
+</tr>
+<tr>
+<td>P02</td>
+<td>centralized DP-DL의 auditing, DP-SGD, utility-privacy trade-off 분류</td>
+<td>평가 프로토콜 상위 분류</td>
+</tr>
+<tr>
+<td>P03</td>
+<td>deep learning DP와 FL 대체 문헌을 분리해야 함</td>
+<td>W10-FL 연결, 대체 문헌 원문 인용 주의</td>
+</tr>
+<tr>
+<td>P04</td>
+<td>MI attack의 threat model과 signal taxonomy 제공</td>
+<td>W11 위협모형 핵심 근거</td>
+</tr>
+<tr>
+<td>P05</td>
+<td>MI 방어와 utility-privacy trade-off 정리</td>
+<td>방어 평가표, 원문 확보 필요</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-research-track">7. Research Track 분석</h2>
+<table>
+<thead>
+<tr>
+<th>표 3. W11 Research Track 요약</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>연구문제</td>
+<td>privacy claim 검증을 위한 다중지표 보고체계</td>
+</tr>
+<tr>
+<td>위협모형</td>
+<td>black-box output observer, gray-box evaluator, internal auditor</td>
+</tr>
+<tr>
+<td>평가방법</td>
+<td>synthetic split 기반 utility와 MI proxy 분리</td>
+</tr>
+<tr>
+<td>재현성</td>
+<td>seed, config, CSV, JSON, run log 보존</td>
+</tr>
+<tr>
+<td>오픈문제</td>
+<td>formal DP-SGD accountant, P03/P05 원문 확보, 반복 실험</td>
+</tr>
+</tbody>
+</table>
+<p>그림 1. DP와 Membership Inference 평가 흐름</p>
+<pre><code class="language-text">Synthetic Train/Test Data
         ↓
 Toy Logistic Regression
         ↓
@@ -61,10 +204,400 @@ Model Output Confidence
         ↓
 Membership Inference Proxy
         ↓
-Metrics and Privacy Claim Check</pre>
+Metrics
+Accuracy, Train Accuracy, MI Attack Accuracy, Leakage Score, Utility Drop
+        ↓
+Privacy Claim Check
+epsilon/accounting, noise setting, limitations, reproducibility evidence
+</code></pre>
+<h2 id="8">8. 실습 보고서</h2>
+<p>본 실습은 실제 개인정보나 실제 운영 모델을 대상으로 한 membership inference 공격 재현이 아니라 W11의 핵심인 privacy claim 평가축을 안전하게 설명하기 위한 최소 toy protocol이다. 따라서 synthetic binary classification과 toy logistic regression을 사용하되, 평가 구조는 이후 formal DP-SGD, privacy accountant, membership inference benchmark에도 확장 가능하도록 accuracy, train accuracy, MI attack accuracy, privacy leakage score, utility drop, epsilon/accounting, reproducibility evidence로 분리하였다.</p>
+<table>
+<thead>
+<tr>
+<th>표 4. W11 실습 설계</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dataset</td>
+<td>Synthetic binary classification</td>
+</tr>
+<tr>
+<td>Model</td>
+<td>Toy logistic regression</td>
+</tr>
+<tr>
+<td>Conditions</td>
+<td>Non-DP baseline, DP-like noise low/medium/high</td>
+</tr>
+<tr>
+<td>Output files</td>
+<td><code>metrics_summary.csv</code>, <code>results.json</code>, <code>run_log.md</code></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>표 5. W11 실습 결과</th>
+<th style="text-align: right;">Accuracy</th>
+<th style="text-align: right;">Train Accuracy</th>
+<th style="text-align: right;">MI Attack Accuracy</th>
+<th style="text-align: right;">Epsilon Proxy</th>
+<th style="text-align: right;">Utility Drop</th>
+<th style="text-align: right;">Privacy Leakage Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Non-DP baseline</td>
+<td style="text-align: right;">0.956250</td>
+<td style="text-align: right;">0.965625</td>
+<td style="text-align: right;">0.515625</td>
+<td style="text-align: right;">해당 없음</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">0.014833</td>
+</tr>
+<tr>
+<td>DP-like noise low</td>
+<td style="text-align: right;">0.956250</td>
+<td style="text-align: right;">0.965625</td>
+<td style="text-align: right;">0.515625</td>
+<td style="text-align: right;">8.000000</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">0.014494</td>
+</tr>
+<tr>
+<td>DP-like noise medium</td>
+<td style="text-align: right;">0.962500</td>
+<td style="text-align: right;">0.965625</td>
+<td style="text-align: right;">0.512500</td>
+<td style="text-align: right;">3.000000</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">0.011769</td>
+</tr>
+<tr>
+<td>DP-like noise high</td>
+<td style="text-align: right;">0.950000</td>
+<td style="text-align: right;">0.962500</td>
+<td style="text-align: right;">0.521875</td>
+<td style="text-align: right;">1.000000</td>
+<td style="text-align: right;">0.006250</td>
+<td style="text-align: right;">0.016482</td>
+</tr>
+</tbody>
+</table>
+<p>이 결과는 synthetic binary classification 기반 toy 실험의 평가 형식 검증용 수치이며, 실제 개인정보 보호 수준, 실제 운영 모델의 membership inference 위험, 실제 DP-SGD 보장, formal privacy accounting 결과로 일반화하지 않는다. <code>epsilon_proxy</code>는 정식 privacy accountant 산출값이 아니고, <code>noise_multiplier</code>는 toy gradient noise scale이다.</p>
+<!-- submission-metric-chart:start -->
+<p><strong>그림 7. W11 metrics summary chart</strong></p>
+<p><img alt="W11 metrics summary chart" src="assets/w11_metric_chart.png"></p>
+<p>출처: <code>04_experiment/outputs/metrics_summary.csv</code>. 이 그래프는 공개 toy/synthetic 산출물 기반이며 실제 공격 성능이나 운영 환경 성능으로 일반화하지 않는다.</p>
+<!-- submission-metric-chart:end -->
 
-  <h2>핵심 한계</h2>
-  <p>이 결과는 synthetic binary classification 기반 toy 실험의 평가 형식 검증용 수치이며, 실제 개인정보 보호 수준, 실제 운영 모델의 membership inference 위험, 실제 DP-SGD 보장, formal privacy accounting 결과로 일반화하지 않는다. PDF 5개는 현재 Git 추적 대상이므로 public 저장소에서는 저작권 위험 검토가 필요하다.</p>
-</main>
+<h2 id="9-ai">9. AI 도구 활용 기록</h2>
+<p>AI 도구는 문헌 요약, 코드 점검, 문장 구조화, 그래프 생성 보조에 사용하였다. 모든 DOI/URL, 실험 수치, 본문 인용, 결론은 작성자가 outputs 파일과 로컬 참고문헌 검증표를 대조하여 검증한다.</p>
+<p><strong>표. W11 AI 도구 활용 및 검증 기록</strong></p>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>사용 도구명</td>
+<td>Codex, ChatGPT 계열 도구</td>
+</tr>
+<tr>
+<td>사용 일자</td>
+<td>2026-06-23</td>
+</tr>
+<tr>
+<td>사용 목적</td>
+<td>문헌 요약 정리, 보고서 구조화, 안전한 toy/synthetic 실험 결과 표기 점검, 그래프 생성 보조, 제출 전 체크리스트 정리</td>
+</tr>
+<tr>
+<td>주요 프롬프트 요약</td>
+<td>주차별 제출 보고서 보완, 참고문헌 검증표 정리, metrics_summary.csv 기반 그래프 생성, AI 활용 고지 작성</td>
+</tr>
+<tr>
+<td>AI 산출물 반영 위치</td>
+<td><code>07_week_submission/w11_submission_report.md</code>, <code>07_week_submission/assets/w11_metric_chart.png</code>, <code>05_ai_worklog/ai_disclosure_draft.md</code></td>
+</tr>
+<tr>
+<td>본인 수정 내용</td>
+<td>주차별 문헌 상태 확인, 실험 수치와 outputs 대조, 안전 범위와 한계 문장 확인, 최종 제출 전 미확정 문헌 분리</td>
+</tr>
+<tr>
+<td>사실관계 검증 방법</td>
+<td><code>01_papers/paper_list.md</code>, <code>01_papers/doi_check.md</code>, <code>05_references/doi_index.md</code>, 강의계획서 문헌표 대조</td>
+</tr>
+<tr>
+<td>참고문헌 검증 방법</td>
+<td>제목, 저자, 연도, 학술지/학회, DOI/URL, 본문 인용번호와 참고문헌 목록 대응 확인</td>
+</tr>
+<tr>
+<td>실험결과 검증 방법</td>
+<td><code>04_experiment/outputs/metrics_summary.csv</code>, <code>results.json</code>, <code>run_log.md</code>의 수치와 보고서 표기 대조</td>
+</tr>
+<tr>
+<td>최종 책임 확인</td>
+<td>AI 산출물은 초안 보조이며 최종 제출자는 원고 내용, 인용, 실험결과, 연구윤리 책임을 확인한다.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="10">10. 토론 질문</h2>
+<ol>
+<li>formal accountant 없이 <code>epsilon_proxy</code>를 사용할 때 어떤 연구윤리적 한계가 있는가?</li>
+<li>MI Attack Accuracy와 Privacy Leakage Score를 함께 봐야 하는 이유는 무엇인가?</li>
+<li>대체 문헌 원문를 사용한 주차 보고서에서 인용과 참고문헌을 어떻게 분리해야 하는가?</li>
+</ol>
+<h2 id="11">11. 기말논문 연결</h2>
+<p>기말논문 주제는 “AI 보안 연구에서 Privacy Claim 검증을 위한 다중지표 평가 프레임워크”로 발전 가능하다. 핵심 기여는 accuracy, train accuracy, MI attack accuracy, privacy leakage score, utility drop, epsilon/accounting, reproducibility evidence를 분리 보고하는 구조이다.</p>
+<h2 id="12-kci">12. KCI 논문 형식 전환</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">표 6. KCI 논문 제목 후보</th>
+<th>국문 제목 후보</th>
+<th>영문 제목 후보</th>
+<th>예상 기여</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td>AI 보안 연구에서 Privacy Claim 검증을 위한 다중지표 평가 프레임워크 연구</td>
+<td>A Multi-Metric Evaluation Framework for Verifying Privacy Claims in AI Security Research</td>
+<td>DP reporting checklist</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td>차등프라이버시 기반 학습에서 Utility와 Membership Inference 위험의 Trade-off 분석</td>
+<td>An Analysis of the Trade-off Between Utility and Membership Inference Risk in Differential Privacy-Based Learning</td>
+<td>utility-risk 동시 평가</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td>Membership Inference 방어 평가를 위한 Accuracy·Leakage·Accounting 통합 보고체계 연구</td>
+<td>An Integrated Reporting Framework of Accuracy, Leakage, and Accounting for Membership Inference Defense Evaluation</td>
+<td>재현성 중심 claim 검증</td>
+</tr>
+</tbody>
+</table>
+<p>추천 제목은 “AI 보안 연구에서 Privacy Claim 검증을 위한 다중지표 평가 프레임워크 연구”이다. 국문초록은 DP misuse, DP-DL, MI attack/defense 문헌을 비교하고 synthetic toy 실험으로 privacy claim 검증 항목을 제안하는 방향으로 구성한다. KCI 제출 가능성은 국내 참고문헌 3편 이상과 그림 보완은 assets manifest 기준으로 완료했으며 국내 참고문헌 검토가 추가로 필요하다.</p>
+<h2 id="13-sci">13. SCI 논문 형식 전환</h2>
+<p>SCI 제목 후보는 “A Multi-Metric Framework for Verifying Privacy Claims Against Membership Inference Risk in Differentially Private Machine Learning”이다. Background는 DP claim의 불완전성, Problem은 accounting·MI risk·utility·reproducibility 동시 보고 부족, Method는 5편 문헌 matrix와 synthetic toy experiment, Results는 medium noise의 leakage proxy 감소와 high noise의 utility drop, Contribution은 다중지표 reporting framework로 구성한다.</p>
+<table>
+<thead>
+<tr>
+<th>표 7. SCI Related Work 축</th>
+<th>대표 논문</th>
+<th>역할</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DP misuse and reporting</td>
+<td>Blanco-Justicia et al.[1]</td>
+<td>DP claim misuse</td>
+</tr>
+<tr>
+<td>Centralized DP-DL</td>
+<td>Demelius et al.[2]</td>
+<td>DP-SGD, privacy auditing</td>
+</tr>
+<tr>
+<td>DP in deep learning</td>
+<td>Pan et al.[3]</td>
+<td>지정 논문 원문 확보 필요</td>
+</tr>
+<tr>
+<td>Membership inference attacks</td>
+<td>Hu et al.[4]</td>
+<td>MI attack taxonomy</td>
+</tr>
+<tr>
+<td>Membership inference defenses</td>
+<td>Hu/Li Hu et al.[5]</td>
+<td>MI defense taxonomy, 원문 확보 필요</td>
+</tr>
+</tbody>
+</table>
+<h2 id="14">14. 발표용 요약</h2>
+<ul>
+<li>DP claim은 epsilon 하나로 충분하지 않다.</li>
+<li><code>epsilon_proxy</code>는 실제 epsilon 또는 formal DP guarantee가 아니다.</li>
+<li>W11 toy 실험은 outputs 기준으로 medium noise leakage proxy가 가장 낮았지만, high noise에서 MI proxy는 단조 개선되지 않았다.</li>
+<li>P03/P05는 대체 문헌 원문 상태이므로 최종 제출 전 원문 확보가 필요하다.</li>
+</ul>
+<h2 id="15">15. 참고문헌 검증표</h2>
+<table>
+<thead>
+<tr>
+<th>번호</th>
+<th>참고문헌</th>
+<th>DOI/URL</th>
+<th>상태</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[1]</td>
+<td>Blanco-Justicia et al., A Critical Review on the Use (and Misuse) of Differential Privacy in Machine Learning.</td>
+<td><code>https://doi.org/10.1145/3547139</code></td>
+<td>DOI 확인</td>
+</tr>
+<tr>
+<td>[2]</td>
+<td>Demelius et al., Recent Advances of Differential Privacy in Centralized Deep Learning.</td>
+<td><code>https://doi.org/10.1145/3712000</code></td>
+<td>DOI 확인, 강의 표기 대조 필요</td>
+</tr>
+<tr>
+<td>[3]</td>
+<td>Pan et al., Differential Privacy in Deep Learning: A Literature Survey. 단, 현재 로컬 PDF 대체 상태.</td>
+<td><code>https://doi.org/10.1016/j.neucom.2024.127663</code></td>
+<td>DOI 확인, 지정 논문 원문 확인 필요</td>
+</tr>
+<tr>
+<td>[4]</td>
+<td>Hu et al., Membership Inference Attacks on Machine Learning: A Survey.</td>
+<td><code>https://doi.org/10.1145/3523273</code></td>
+<td>DOI 확인</td>
+</tr>
+<tr>
+<td>[5]</td>
+<td>Hu/Li Hu et al., Defenses to Membership Inference Attacks: A Survey. 단, 현재 로컬 PDF 대체 상태.</td>
+<td><code>https://doi.org/10.1145/3620667</code></td>
+<td>DOI 확인, 지정 논문 원문 확인 필요</td>
+</tr>
+</tbody>
+</table>
+<h2 id="16">16. 자기 점검표</h2>
+<table>
+<thead>
+<tr>
+<th>점검 항목</th>
+<th>상태</th>
+<th>비고</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1장 한 문장 요약 작성</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>2장 학습 배경과 주차 목표 작성</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>AI 원리 70% 정리</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>보안 이슈 30% 정리</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>논문 5편 요약</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>논문 5편 비교표 보완</td>
+<td>완료 / 확인 필요</td>
+<td>P03/P05 대체 문헌 원문 상태 반영</td>
+</tr>
+<tr>
+<td>Research Track 5요소 작성</td>
+<td>완료</td>
+<td>연구문제, 위협모형, 평가방법, 재현성, 오픈문제</td>
+</tr>
+<tr>
+<td>P01 공식 ACM DOI 검증</td>
+<td>완료</td>
+<td><code>10.1145/3547139</code></td>
+</tr>
+<tr>
+<td>P02 공식 ACM DOI 검증</td>
+<td>완료 / 확인 필요</td>
+<td>강의자료 표기 대조 필요</td>
+</tr>
+<tr>
+<td>P03 지정 논문 원문 확보</td>
+<td>확인 필요</td>
+<td>현재 대체 문헌 원문</td>
+</tr>
+<tr>
+<td>P04 공식 ACM DOI 검증</td>
+<td>완료</td>
+<td><code>10.1145/3523273</code></td>
+</tr>
+<tr>
+<td>P05 지정 논문 원문 확보</td>
+<td>확인 필요</td>
+<td>현재 대체 문헌 원문</td>
+</tr>
+<tr>
+<td>실험 outputs 파일 존재 확인</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>실험 결과와 보고서 수치 일치</td>
+<td>완료</td>
+<td>outputs 기준</td>
+</tr>
+<tr>
+<td>epsilon_proxy 한계 명시</td>
+<td>완료</td>
+<td>formal accountant 아님</td>
+</tr>
+<tr>
+<td>KCI 논문 형식 전환 작성</td>
+<td>완료</td>
+<td>요약형</td>
+</tr>
+<tr>
+<td>SCI 논문 형식 전환 작성</td>
+<td>완료</td>
+<td>요약형</td>
+</tr>
+<tr>
+<td>본문 인용과 참고문헌 대응</td>
+<td>완료 / 확인 필요</td>
+<td>P03/P05 원문 확보 필요</td>
+</tr>
+<tr>
+<td>표·그림 번호 정리</td>
+<td>완료</td>
+<td>표 1-7, 그림 1</td>
+</tr>
+<tr>
+<td>AI 활용 고지 작성</td>
+<td>완료</td>
+<td>작성자 확인 필요</td>
+</tr>
+<tr>
+<td>PDF 저작권 위험 점검</td>
+<td>완료 / 조치 필요</td>
+<td>PDF 원문 Git 추적 해제 완료(로컬 파일 보존)</td>
+</tr>
+<tr>
+<td>최종 사람이 검토할 항목 표시</td>
+<td>완료</td>
+<td>제출 전 작성자 확인 항목 있음</td>
+</tr>
+</tbody>
+</table>
 </body>
 </html>

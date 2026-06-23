@@ -1,24 +1,16 @@
-# AI 활용 고지서
+# W02 AI 활용 고지 초안
 
-| 항목 | 작성 내용 |
+| 항목 | 내용 |
 |---|---|
-| 사용한 AI 도구명 | Codex, ChatGPT 계열 AI 도구 |
-| 사용 일자 | 2026-06-22 |
-| 사용 목적 | 논문 요약 보강, 개념 설명, 문장 구조화, 코드 작성, Docker 실행 검증, 발표자료 작성, KCI/SCI 섹션 보완, 참고문헌 DOI/URL 검증 보조 |
-| 주요 프롬프트 1 | W02 보고서 최종 보완 지시 |
-| 주요 프롬프트 2 | P02/P04 논문 판본 및 DOI 검증 요청 |
-| 주요 프롬프트 3 | KCI/SCI 논문 형식 전환 섹션 작성 요청 |
-| AI 산출물 반영 위치 | `03_weekly_reports/w02_optimization_data_poisoning/` 하위 Markdown, Python, HTML 파일 |
-| 본인 수정 내용 | 수업 지시서 기준 항목 배치, DOI/URL 검증 상태 분리, Docker 실행 결과 반영, 안전 범위 표시, PDF 저작권 위험 표시 |
-| 사실관계 검증 방법 | DOI/Crossref/출판사 DOI URL, arXiv 페이지, 로컬 PDF 메타데이터, 실행 로그, 수업자료 대조 |
-| 참고문헌 검증 방법 | 제목, 저자, 연도, 학술지, 권호, 쪽, DOI/URL 대조 |
-| 실험결과 처리 | `04_experiment/outputs/metrics_summary.csv`, `results.json`, `run_log.md`와 보고서/발표자료 수치 대조 |
-| 아직 검토 필요한 항목 | P02/P04 ACM Article 번호, P04 강의계획서 지정 제목과 현재 로컬 PDF의 동일 여부, 국내 참고문헌, PDF 원문 공개 저장소 보관 여부 |
-| 최종 책임 확인 | 최종 제출자는 원고의 내용, 인용, 실험결과, 연구윤리 책임을 확인해야 한다. |
+| 사용 도구명 | Codex, ChatGPT 계열 도구 |
+| 사용 일자 | 2026-06-23 |
+| 사용 목적 | 문헌 요약, 보고서 구조화, 안전한 toy/synthetic 실험 코드와 outputs 점검, 그래프 생성, 제출 체크리스트 보완 |
+| 주요 프롬프트 요약 | W02 제출 보고서 보완, 참고문헌 검증 상태 정리, `metrics_summary.csv` 기반 그래프 생성, HTML 재생성 |
+| AI 산출물 반영 위치 | `07_week_submission/w02_submission_report.md`, `07_week_submission/w02_submission_report.html`, `07_week_submission/assets/w02_metric_chart.png` |
+| 본인 수정 내용 | 문헌 검증 상태와 미확정 항목 구분, 실험 수치와 outputs 대조, 안전 범위 및 한계 표현 확인 |
+| 사실관계 검증 방법 | `01_papers/paper_list.md`, `01_papers/doi_check.md`, `05_references/doi_index.md`, `00_class_materials/weekly_paper_list.md` 대조 |
+| 참고문헌 검증 방법 | 제목, 저자, 연도, 학술지/학회, DOI/URL, 본문 인용번호와 참고문헌 목록 대응 확인 |
+| 실험결과 검증 방법 | `04_experiment/outputs/metrics_summary.csv`, `results.json`, `run_log.md`를 기준 파일로 사용 |
+| 최종 책임 확인 | AI 도구는 초안 보조에만 사용했으며 최종 제출자는 인용, 수치, 결론, 연구윤리 책임을 확인한다. |
 
-## 사용 한계와 책임 분리
-
-- AI가 작성한 문장은 제출 전 사람이 사실관계, 문체, 인용번호, 표/그림 번호를 검토해야 한다.
-- DOI/URL 검증은 접근 가능한 메타데이터 기준이며, 접근 제한이 있는 출판사 원문 페이지의 Article 번호는 최종 제출 전 추가 확인이 필요하다.
-- 실험 수치는 실행 로그와 outputs 파일에 존재하는 값만 사용한다.
-- 본 고지서는 최종 제출 확정 문서가 아니라 사람이 검토할 제출용 최종 초안의 연구윤리 보조 문서다.
+AI 도구는 문헌 요약, 코드 점검, 문장 구조화, 그래프 생성 보조에 사용하였다. 모든 DOI/URL, 실험 수치, 본문 인용, 결론은 작성자가 outputs 파일과 공식 문헌 정보를 대조하여 검증한다.

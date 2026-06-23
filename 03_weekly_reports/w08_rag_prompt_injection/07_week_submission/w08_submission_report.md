@@ -5,15 +5,16 @@
 | 항목 | 내용 |
 |---|---|
 | 주차 | W08 |
+| 작성자 | 박영세 |
+| 학번 | 26200122 |
 | 주제 | RAG·프롬프팅 프레임워크 & 프롬프트 인젝션 |
-| 문서 상태 | 제출용 최종 초안, 최종 제출 확정 아님 |
+| 문서 상태 | 제출용 보고서 |
 | 작성·보완일 | 2026-06-22 ~ 2026-06-23 |
 | 실험 근거 | `04_experiment/outputs/metrics_summary.csv`, `results.json`, `run_log.md` |
 
 ### 초록
 
 본 보고서는 RAG, GraphRAG, prompting framework의 기본 구조를 정리하고, 검색 문서와 graph evidence에 포함된 indirect prompt injection이 LLM 답변과 tool action에 미치는 위험을 분석한다. 문헌 5편을 통해 GraphRAG workflow, graph-based RAG 기능, prompting framework 계층, prompt injection taxonomy, 의료 LLM 취약성 사례를 비교하였다. 실습은 synthetic RAG 문서 기반 안전 toy 실험으로 수행했으며, rule-based toy evaluator를 사용해 실제 LLM/API 호출이나 실제 공격 재현 없이 source filter와 human approval gate의 평가 구조를 확인하였다. 수치는 실제 RAG 제품 성능이 아니라 평가 형식 검증용 결과로 해석한다.
-
 ## 1. 한 문장 요약
 
 RAG 보안은 retrieved context를 신뢰하기 전에 source, provenance, tool permission, human approval을 검증해야 하는 LLM application 보안 문제다[1][2][3][4][5].
@@ -111,9 +112,32 @@ P01/P02는 GraphRAG와 graph-based RAG 구조 문헌이고, P03은 prompting fra
 
 Poisoned document 조건의 ASR 0.575000은 실제 RAG 제품의 공격 성공률이 아니다. Human approval gate 결과도 실제 운영 방어 효과 보증으로 표현하지 않는다. 이 결과는 synthetic RAG document와 rule-based toy evaluator를 사용한 평가 형식 검증용 수치이며, 실제 LLM 보안 성능이나 실제 RAG 제품의 안전성으로 일반화하지 않는다.
 
+<!-- submission-metric-chart:start -->
+**그림 7. W08 metrics summary chart**
+
+![W08 metrics summary chart](assets/w08_metric_chart.png)
+
+출처: `04_experiment/outputs/metrics_summary.csv`. 이 그래프는 공개 toy/synthetic 산출물 기반이며 실제 공격 성능이나 운영 환경 성능으로 일반화하지 않는다.
+<!-- submission-metric-chart:end -->
+
 ## 9. AI 도구 활용 기록
 
-AI는 논문 요약 보강, DOI/URL 검증 보조, 개념 설명, 문장 구조화, synthetic RAG 실험 코드 작성, 발표자료 작성, KCI/SCI 섹션 보완에 사용되었다. 자세한 고지는 `05_ai_worklog/ai_disclosure_draft.md`에 기록하였다.
+AI 도구는 문헌 요약, 코드 점검, 문장 구조화, 그래프 생성 보조에 사용하였다. 모든 DOI/URL, 실험 수치, 본문 인용, 결론은 작성자가 outputs 파일과 로컬 참고문헌 검증표를 대조하여 검증한다.
+
+**표. W08 AI 도구 활용 및 검증 기록**
+
+| 항목 | 내용 |
+|---|---|
+| 사용 도구명 | Codex, ChatGPT 계열 도구 |
+| 사용 일자 | 2026-06-23 |
+| 사용 목적 | 문헌 요약 정리, 보고서 구조화, 안전한 toy/synthetic 실험 결과 표기 점검, 그래프 생성 보조, 제출 전 체크리스트 정리 |
+| 주요 프롬프트 요약 | 주차별 제출 보고서 보완, 참고문헌 검증표 정리, metrics_summary.csv 기반 그래프 생성, AI 활용 고지 작성 |
+| AI 산출물 반영 위치 | `07_week_submission/w08_submission_report.md`, `07_week_submission/assets/w08_metric_chart.png`, `05_ai_worklog/ai_disclosure_draft.md` |
+| 본인 수정 내용 | 주차별 문헌 상태 확인, 실험 수치와 outputs 대조, 안전 범위와 한계 문장 확인, 최종 제출 전 미확정 문헌 분리 |
+| 사실관계 검증 방법 | `01_papers/paper_list.md`, `01_papers/doi_check.md`, `05_references/doi_index.md`, 강의계획서 문헌표 대조 |
+| 참고문헌 검증 방법 | 제목, 저자, 연도, 학술지/학회, DOI/URL, 본문 인용번호와 참고문헌 목록 대응 확인 |
+| 실험결과 검증 방법 | `04_experiment/outputs/metrics_summary.csv`, `results.json`, `run_log.md`의 수치와 보고서 표기 대조 |
+| 최종 책임 확인 | AI 산출물은 초안 보조이며 최종 제출자는 원고 내용, 인용, 실험결과, 연구윤리 책임을 확인한다. |
 
 ## 10. 토론 질문
 
@@ -167,7 +191,7 @@ SCI형 구성은 background, problem, method, results, contribution, implication
 | [4] | Geng et al., *Prompt Injection Attacks on Large Language Models* | https://doi.org/10.32604/cmc.2025.074081 | DOI 확인 | Tianlei/Tongcheng 표기 확인 필요 |
 | [5] | Lee et al., *Vulnerability of Large Language Models to Prompt Injection When Providing Medical Advice* | https://doi.org/10.1001/jamanetworkopen.2025.49963 | DOI 확인 | 강의계획서 지정 제목과 동일 여부 확인 필요 |
 
-PDF 보관 정책 점검 결과, `01_papers/pdf/`의 PDF 5개는 `git ls-files` 기준 추적 중이다. public GitHub 저장소에는 원칙적으로 PDF 원문 대신 DOI/URL, 서지정보, 요약만 남기는 것이 안전하다. 사용자 승인 없이 PDF는 삭제하지 않는다.
+PDF 보관 정책 점검 결과, `01_papers/pdf/`의 논문 PDF 원문은 로컬 파일로 보존하되 Git 추적은 해제했다. public GitHub 저장소에는 출판사 PDF 원문 대신 DOI/URL, 서지정보, 요약만 남기는 정책을 적용한다.
 
 ## 16. 자기 점검표
 
@@ -184,5 +208,5 @@ PDF 보관 정책 점검 결과, `01_papers/pdf/`의 PDF 5개는 `git ls-files` 
 | KCI/SCI 섹션 작성 | 완료 |  |
 | 본문 인용과 참고문헌 대응 | 완료 / 확인 필요 | 서지 불일치 항목 확인 필요 |
 | AI 활용 고지 작성 | 완료 |  |
-| PDF 저작권 위험 점검 | 완료 / 확인 필요 | PDF 삭제는 사용자 승인 필요 |
-| 최종 사람이 검토할 항목 표시 | 완료 | 최종 제출 확정 아님 |
+| PDF 저작권 위험 점검 | 완료 / 확인 필요 | PDF Git 추적 해제와 보관 정책 문서화 우선 |
+| 최종 사람이 검토할 항목 표시 | 완료 | 제출 전 작성자 확인 항목 있음 |

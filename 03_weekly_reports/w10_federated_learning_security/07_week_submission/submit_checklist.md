@@ -1,37 +1,19 @@
-# 제출 체크리스트
+# W10 제출 체크리스트
 
-## 최종 자기 점검표
-
-| 점검 항목 | 상태 | 비고 |
+| 점검 항목 | 상태 | 근거/비고 |
 |---|---|---|
-| 1장 한 문장 요약 작성 | 완료 |  |
-| 2장 학습 배경과 주차 목표 작성 | 완료 |  |
-| AI 원리 70% 정리 | 완료 |  |
-| 보안 이슈 30% 정리 | 완료 |  |
-| 논문 5편 요약 | 완료 |  |
-| 논문 5편 비교표 보완 | 완료 | P01 수업자료 표기 차이, P04 Article 번호 검토 메모 포함 |
-| Research Track 5요소 작성 | 완료 | 연구문제, 위협모형, 평가방법, 재현성, 오픈문제 |
-| P01 DOI/URL 검증 | 완료 / 확인 필요 | DOI 10.1145/3678182 확인. 수업자료 CSUR 표기와 공식 TIST 표기 차이 사람 확인 필요 |
-| P02 DOI/URL 검증 | 완료 | DOI 10.1016/j.future.2020.10.007 |
-| P03 출판 DOI 검증 | 완료 | DOI 10.1016/j.inffus.2022.09.011, arXiv:2201.08135 |
-| P04 DOI/URL 검증 | 완료 / 확인 필요 | DOI 10.1145/3724113 확인. Article 번호 추가 확인 필요 |
-| P05 출판 DOI 검증 | 완료 | DOI 10.1016/j.engappai.2023.107166, arXiv:2303.02213 |
-| 실험 outputs 파일 존재 확인 | 완료 | `metrics_summary.csv`, `results.json`, `run_log.md` |
-| 실험 결과와 보고서 수치 일치 | 완료 | outputs 기준으로 통일 |
-| 발표자료 수치 일치 | 완료 | outputs 기준 수치와 대조 |
-| KCI 논문 형식 전환 작성 | 완료 | 제출 확정 전 국내 참고문헌 보완 필요 |
-| SCI 논문 형식 전환 작성 | 완료 | 초안 |
-| 본문 인용과 참고문헌 대응 | 완료 | [1]-[5] |
-| 표·그림 번호 정리 | 완료 | 표 1-7, 그림 1 |
-| AI 활용 고지 작성 | 완료 | `05_ai_worklog/ai_disclosure_draft.md` |
-| PDF 저작권 위험 점검 | 완료 / 확인 필요 | `01_papers/pdf/*.pdf`가 git 추적 중. 삭제는 사용자 승인 전 미수행 |
-| Docker/pyproject/config/code 정합성 점검 | 완료 | pyproject 의존성 `pyyaml`로 최소화. 로컬 실행, Docker build, docker compose run 확인 |
-| 최종 사람이 검토할 항목 표시 | 완료 | 제출 확정 아님 |
+| Markdown 제출보고서 | 완료 | 03_weekly_reports/w10_federated_learning_security/07_week_submission/w10_submission_report.md |
+| HTML 제출보고서 | 완료 | 03_weekly_reports/w10_federated_learning_security/07_week_submission/w10_submission_report.html |
+| metrics_summary.csv | 완료 | 03_weekly_reports/w10_federated_learning_security/04_experiment/outputs/metrics_summary.csv |
+| results.json | 완료 | 03_weekly_reports/w10_federated_learning_security/04_experiment/outputs/results.json |
+| run_log.md | 완료 | 03_weekly_reports/w10_federated_learning_security/04_experiment/outputs/run_log.md |
+| AI 활용 고지 | 완료 | 03_weekly_reports/w10_federated_learning_security/05_ai_worklog/ai_disclosure_draft.md |
+| metrics 기반 그래프 | 완료 | 생성 |
+| 참고문헌 검증표 | 완료 | 보고서 15장 |
+| 기말논문 연결 | 완료 | 보고서 11장 |
 
-## 제출 전 남은 확인
+## 제출 전 유의사항
 
-1. P01의 수업자료 `ACM Computing Surveys 57(2)` 표기와 공식 DOI/TIST 표기 차이를 교수자 제출본에서 어떻게 설명할지 최종 확인한다.
-2. P04의 Article 번호를 ACM 페이지에서 육안 확인한다. 현재 DOI 메타데이터는 pages 1-37을 제공하나 별도 Article 번호는 확인되지 않았다.
-3. Public GitHub 저장소에 PDF 원문을 유지할지 결정한다. 현재 PDF 5개는 `git ls-files` 기준 추적 중이므로 공개 전 삭제 또는 추적 해제가 필요할 수 있다.
-4. HTML 제출본과 발표자료를 브라우저에서 육안 확인한다.
-5. 국내 KCI 투고 형식으로 확장할 경우 국내 참고문헌과 학회지 양식을 추가 확인한다.
+- 그래프와 실험 수치는 `04_experiment/outputs/metrics_summary.csv`, `results.json`, `run_log.md` 기준으로 해석한다.
+- `확인 필요` 문헌은 핵심 근거로 일반화하지 않고 참고문헌 검증표 또는 한계 섹션에서만 다룬다.
+- 논문 PDF 원문은 public GitHub 추적 대상에서 제외하고 DOI/URL 중심으로 관리한다.

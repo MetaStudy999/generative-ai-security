@@ -5,82 +5,640 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>W09 제출용 보고서</title>
   <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.65; margin: 0; color: #172033; background: #f6f7f9; }
-    main { max-width: 1040px; margin: 0 auto; padding: 40px 20px 72px; background: #fff; }
-    h1 { font-size: 2.1rem; margin: 0 0 24px; }
-    h2 { margin-top: 34px; border-bottom: 2px solid #d8dee9; padding-bottom: 6px; }
-    table { border-collapse: collapse; width: 100%; margin: 14px 0 22px; font-size: 0.94rem; }
-    th, td { border: 1px solid #cfd6e4; padding: 9px 10px; vertical-align: top; }
-    th { background: #eaf0f8; }
-    code { background: #eef2f7; padding: 1px 4px; border-radius: 4px; }
-    pre { background: #f4f7fb; border: 1px solid #d8dee9; padding: 14px; overflow-x: auto; }
-    .note { background: #f2f6ff; border-left: 4px solid #3867d6; padding: 12px 14px; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.65; max-width: 1040px; margin: 32px auto; padding: 0 24px; color: #17202a; }
+    h1, h2, h3 { line-height: 1.25; }
+    table { border-collapse: collapse; width: 100%; margin: 18px 0; font-size: 0.95rem; }
+    th, td { border: 1px solid #d0d7de; padding: 7px 9px; vertical-align: top; }
+    th { background: #f6f8fa; }
+    code { background: #f6f8fa; padding: 0.1rem 0.25rem; border-radius: 4px; }
+    pre { background: #f6f8fa; padding: 16px; overflow-x: auto; border-radius: 6px; }
+    img { max-width: 100%; height: auto; border: 1px solid #d0d7de; border-radius: 6px; }
   </style>
 </head>
 <body>
-<main>
-  <h1>W09 제출용 보고서</h1>
+<h1 id="w09">W09 제출용 보고서</h1>
+<h2 id="0">0. 메타정보</h2>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>주차</td>
+<td>W09</td>
+</tr>
+<tr>
+<td>작성자</td>
+<td>박영세</td>
+</tr>
+<tr>
+<td>학번</td>
+<td>26200122</td>
+</tr>
+<tr>
+<td>보고서 제목</td>
+<td>심층강화학습(DRL) &amp; 사이버보안 적용·보상조작</td>
+</tr>
+<tr>
+<td>작성/보완일</td>
+<td>2026-06-22 초안, 2026-06-23 최종 보완</td>
+</tr>
+<tr>
+<td>문서 상태</td>
+<td>제출용 보고서</td>
+</tr>
+<tr>
+<td>관련 산출물</td>
+<td><code>03_weekly_reports/w09_drl_cybersecurity/</code></td>
+</tr>
+<tr>
+<td>실험 근거</td>
+<td><code>04_experiment/outputs/metrics_summary.csv</code>, <code>results.json</code>, <code>run_log.md</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="_1">초록</h2>
+<p>본 보고서는 DRL의 MDP, Q-learning, DQN, policy gradient, actor-critic, verification 개념을 사이버 방어 에이전트의 state/action/reward 설계 문제로 연결한다. 문헌 5편을 통해 DRL 원리, 안전중요 자동화, cyber-defense 적용, IDS/IPS 평가, DRL verification을 비교하고, synthetic cyber-defense state/action/reward 기반 안전 toy 실험으로 normal reward, manipulated reward, robust reward design 조건을 평가하였다. 결과는 보상조작이 true reward, Detection F1, safety를 악화시킬 수 있음을 보이나 실제 IDS/IPS 성능으로 일반화하지 않는다.</p>
+<p><strong>키워드:</strong> DRL, cyber defense, reward manipulation, reward misspecification, safety violation, policy robustness</p>
+<h2 id="1">1. 한 문장 요약</h2>
+<p>DRL 기반 사이버 방어 에이전트에서는 높은 observed reward가 실제 보안성, 낮은 safety violation, 높은 robustness를 보장하지 않는다.</p>
+<h2 id="2">2. 학습 배경과 주차 목표</h2>
+<p>W09는 W01~W08에서 다룬 AI 보안 평가축을 순차 의사결정형 보안 에이전트로 확장한다. W08까지는 데이터, prompt, context, model output, tool action의 위험을 주로 다루었다면, W09는 agent가 state를 관측하고 action을 선택하며 reward를 통해 policy를 업데이트하는 구조를 다룬다. 사이버보안에서는 DRL agent가 IDS/IPS, patching, isolation, escalation 같은 자동 대응을 수행할 수 있지만, reward manipulation이나 reward misspecification이 발생하면 높은 observed reward가 실제 보안성을 의미하지 않을 수 있다.</p>
+<p>이번 주 목표는 DQN, policy gradient, actor-critic, DRL verification의 기본 개념을 정리하고, DRL for cyber defense의 상태·행동·보상 설계 문제를 이해하며, Detection F1, safety violation rate, policy robustness를 포함한 최소 평가 프로토콜을 설계하는 것이다.</p>
+<h2 id="3-ai-70">3. AI 원리 70% 정리</h2>
+<p>DRL은 MDP, value function, policy optimization을 통해 순차 의사결정 문제를 학습하는 접근이다[1]. W09에서는 tabular Q-learning으로 개념을 안전하게 축소해 설명하되, DQN, policy gradient, actor-critic으로 확장 가능한 평가 구조를 남겼다.</p>
+<p>표 1. W09 핵심 개념과 보안 연결</p>
+<table>
+<thead>
+<tr>
+<th>개념</th>
+<th>핵심 의미</th>
+<th>보안 연결</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MDP</td>
+<td>state, action, reward 기반 의사결정</td>
+<td>cyber-defense state/action/reward</td>
+</tr>
+<tr>
+<td>Q-learning</td>
+<td>TD update로 행동가치 학습</td>
+<td>toy policy 학습</td>
+</tr>
+<tr>
+<td>DQN</td>
+<td>Q-function의 neural approximation</td>
+<td>향후 neural DRL 확장</td>
+</tr>
+<tr>
+<td>Policy gradient</td>
+<td>policy 직접 최적화</td>
+<td>자동 대응 확률 정책</td>
+</tr>
+<tr>
+<td>Actor-critic</td>
+<td>actor와 critic 결합</td>
+<td>성능/가치 평가 분리</td>
+</tr>
+<tr>
+<td>DRL verification</td>
+<td>safety specification 검토</td>
+<td>reward와 safety 분리</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-30">4. 보안 이슈 30% 정리</h2>
+<p>안전중요 자율 시스템에서 DRL은 시뮬레이션과 실제 배포 사이의 검증 문제가 중요하다[2]. 사이버보안 DRL 연구는 IDS, cyber-physical systems, game-theoretic defense 등 다양한 적용 영역을 포함한다[3]. RL 기반 cybersecurity 연구에서는 detection rate, precision, recall, F1 등 표준 탐지 지표를 함께 보고해야 한다[4]. DRL verification 연구는 높은 reward와 safety specification 만족이 별개임을 보여준다[5].</p>
+<p>Reward manipulation은 공격자 또는 환경 조작자가 보상 신호를 의도적으로 왜곡하는 경우다. Reward misspecification은 설계자가 실제 보안 목표를 잘못 반영한 보상함수 설계 오류다.</p>
+<h2 id="5-5">5. 논문 5편 요약</h2>
+<p>표 2. 관련 문헌 5편 요약</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">번호</th>
+<th>문헌</th>
+<th>역할</th>
+<th>검증 상태</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">[1]</td>
+<td>Arulkumaran et al., <em>Deep Reinforcement Learning: A Brief Survey</em></td>
+<td>DRL 기본 원리</td>
+<td>부분 검증: 로컬 PDF는 arXiv extended version</td>
+</tr>
+<tr>
+<td style="text-align: right;">[2]</td>
+<td>Kiran et al., <em>Deep Reinforcement Learning for Autonomous Driving: A Survey</em></td>
+<td>안전중요 자동화</td>
+<td>부분 검증: 로컬 PDF는 arXiv v2</td>
+</tr>
+<tr>
+<td style="text-align: right;">[3]</td>
+<td>Nguyen and Reddi, <em>Deep Reinforcement Learning for Cyber Security</em></td>
+<td>cyber-defense DRL</td>
+<td>확인 필요: 강의계획서 저자명 차이</td>
+</tr>
+<tr>
+<td style="text-align: right;">[4]</td>
+<td>Adawadkar and Kulkarni, <em>Cyber-security and reinforcement learning -- A brief survey</em></td>
+<td>IDS/IPS, IoT, IAM 지표</td>
+<td>확인 필요: 강의계획서 저자명 차이</td>
+</tr>
+<tr>
+<td style="text-align: right;">[5]</td>
+<td>Landers and Doryab, <em>Deep Reinforcement Learning Verification: A Survey</em></td>
+<td>DRL verification</td>
+<td>확인 필요: <code>H. Yan et al.</code>과 동일 여부</td>
+</tr>
+</tbody>
+</table>
+<p>주의: W09의 P05는 강의계획서 지정 저자명 <code>H. Yan et al.</code>과 현재 로컬 PDF 기준 <code>Matthew Landers; Afsaneh Doryab</code>가 다르므로, 동일 논문 여부와 최종 ACM 출판정보를 확인 필요 상태로 유지한다.</p>
+<h2 id="6-5">6. 논문 5편 비교표</h2>
+<p>P01은 원리, P02는 안전중요 자동화와 sim-to-real gap, P03/P04는 cyber defense와 IDS/IPS 적용, P05는 DRL verification과 safety specification을 담당한다. W09의 핵심 연결부는 “높은 observed reward가 높은 실제 보안성을 의미하지 않는다”는 점이다.</p>
+<table>
+<thead>
+<tr>
+<th>논문</th>
+<th>차별성</th>
+<th>내 논문 활용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P01</td>
+<td>value-based, policy-based, actor-critic survey</td>
+<td>DRL 이론 배경</td>
+</tr>
+<tr>
+<td>P02</td>
+<td>simulator, validation, safe RL</td>
+<td>자동 보안 대응의 안전성 유추</td>
+</tr>
+<tr>
+<td>P03</td>
+<td>cyber-defense DRL survey</td>
+<td>핵심 관련연구</td>
+</tr>
+<tr>
+<td>P04</td>
+<td>IDS/IPS, IoT, IAM RL survey</td>
+<td>Detection F1 근거</td>
+</tr>
+<tr>
+<td>P05</td>
+<td>DRL verification taxonomy</td>
+<td>safety violation, robustness 근거</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-research-track">7. Research Track 분석</h2>
+<p>표 3. W09 Research Track 요약</p>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>연구문제</td>
+<td>Reward manipulation은 DRL cyber-defense policy의 성능과 안전성에 어떤 영향을 주는가</td>
+</tr>
+<tr>
+<td>대상 시스템</td>
+<td>DRL-based cyber defense agent</td>
+</tr>
+<tr>
+<td>보호 자산</td>
+<td>state observation, reward function, policy, response action, security logs</td>
+</tr>
+<tr>
+<td>위협</td>
+<td>reward signal manipulation, state observation perturbation, unsafe automated response</td>
+</tr>
+<tr>
+<td>평가 지표</td>
+<td>average reward, observed reward, detection F1, safety violation rate, policy robustness</td>
+</tr>
+<tr>
+<td>재현성</td>
+<td>seed, config, script, CSV, JSON, run log</td>
+</tr>
+<tr>
+<td>제외 범위</td>
+<td>실제 시스템 침해, 실제 네트워크 공격, 개인정보, exploit 실행, 무단 스캔</td>
+</tr>
+</tbody>
+</table>
+<p>그림 1. DRL 기반 사이버 방어 에이전트 보상조작 평가 흐름</p>
+<pre><code class="language-text">Synthetic Cyber State
+  -&gt; Q-learning Policy
+  -&gt; Action Selection
+  -&gt; Reward Signal
+  -&gt; Policy Update
+  -&gt; Evaluation
+  -&gt; Reproducibility Evidence
+</code></pre>
+<h2 id="8">8. 실습 보고서</h2>
+<p>본 실습은 실제 IDS/IPS 제품이나 실제 네트워크 트래픽 기반 DRL 학습이 아니라 W09의 핵심인 보상조작 평가축을 안전하게 설명하기 위한 최소 toy protocol이다. 따라서 synthetic cyber-defense state/action/reward 환경과 tabular Q-learning을 사용하되, 평가 구조는 이후 DQN, actor-critic, safe RL, cyber-defense agent에도 확장 가능하도록 average reward, observed reward, detection F1, safety violation rate, policy robustness, perturbed performance, reproducibility evidence로 분리하였다.</p>
+<p>표 4. W09 실습 설계</p>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Environment</td>
+<td>Synthetic toy cyber-defense states</td>
+</tr>
+<tr>
+<td>State</td>
+<td>alert level, asset criticality, vulnerability</td>
+</tr>
+<tr>
+<td>Actions</td>
+<td>monitor, isolate, patch, escalate</td>
+</tr>
+<tr>
+<td>Algorithm</td>
+<td>Tabular Q-learning</td>
+</tr>
+<tr>
+<td>Conditions</td>
+<td>Normal reward, manipulated reward, robust reward design</td>
+</tr>
+<tr>
+<td>Train/Eval</td>
+<td>5000 train steps, 600 eval samples</td>
+</tr>
+<tr>
+<td>Seed</td>
+<td>42</td>
+</tr>
+<tr>
+<td>Outputs</td>
+<td><code>metrics_summary.csv</code>, <code>results.json</code>, <code>run_log.md</code></td>
+</tr>
+</tbody>
+</table>
+<p>표 5. W09 실습 결과</p>
+<table>
+<thead>
+<tr>
+<th>조건</th>
+<th style="text-align: right;">Average Reward</th>
+<th style="text-align: right;">Observed Reward</th>
+<th style="text-align: right;">Detection F1</th>
+<th style="text-align: right;">Safety Violation Rate</th>
+<th style="text-align: right;">Policy Robustness</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Normal reward</td>
+<td style="text-align: right;">1.085250</td>
+<td style="text-align: right;">1.085250</td>
+<td style="text-align: right;">0.840206</td>
+<td style="text-align: right;">0.011667</td>
+<td style="text-align: right;">0.838417</td>
+</tr>
+<tr>
+<td>Manipulated reward</td>
+<td style="text-align: right;">0.521167</td>
+<td style="text-align: right;">0.842000</td>
+<td style="text-align: right;">0.617512</td>
+<td style="text-align: right;">0.195000</td>
+<td style="text-align: right;">0.325000</td>
+</tr>
+<tr>
+<td>Robust reward design</td>
+<td style="text-align: right;">0.910833</td>
+<td style="text-align: right;">0.967083</td>
+<td style="text-align: right;">0.780952</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">0.709583</td>
+</tr>
+</tbody>
+</table>
+<p>이 결과는 synthetic toy cyber-defense state/action/reward simulation의 평가 형식 검증용 수치이며, 실제 IDS/IPS 제품, 실제 운영망, 실제 neural DRL policy의 보안 성능으로 일반화하지 않는다.</p>
+<!-- submission-metric-chart:start -->
+<p><strong>그림 7. W09 metrics summary chart</strong></p>
+<p><img alt="W09 metrics summary chart" src="assets/w09_metric_chart.png"></p>
+<p>출처: <code>04_experiment/outputs/metrics_summary.csv</code>. 이 그래프는 공개 toy/synthetic 산출물 기반이며 실제 공격 성능이나 운영 환경 성능으로 일반화하지 않는다.</p>
+<!-- submission-metric-chart:end -->
 
-  <h2>0. 메타정보</h2>
-  <table><tr><th>항목</th><th>내용</th></tr><tr><td>주차</td><td>W09</td></tr><tr><td>보고서 제목</td><td>심층강화학습(DRL) &amp; 사이버보안 적용·보상조작</td></tr><tr><td>작성/보완일</td><td>2026-06-22 초안, 2026-06-23 최종 보완</td></tr><tr><td>문서 상태</td><td>제출용 최종 초안, 사람 검토 전</td></tr><tr><td>실험 근거</td><td><code>04_experiment/outputs/metrics_summary.csv</code>, <code>results.json</code>, <code>run_log.md</code></td></tr></table>
-
-  <h2>초록</h2>
-  <p>본 보고서는 DRL의 MDP, Q-learning, DQN, policy gradient, actor-critic, verification 개념을 사이버 방어 에이전트의 state/action/reward 설계 문제로 연결한다. 문헌 5편을 통해 DRL 원리, 안전중요 자동화, cyber-defense 적용, IDS/IPS 평가, DRL verification을 비교하고, synthetic cyber-defense state/action/reward 기반 안전 toy 실험으로 normal reward, manipulated reward, robust reward design 조건을 평가하였다. 결과는 보상조작이 true reward, Detection F1, safety를 악화시킬 수 있음을 보이나 실제 IDS/IPS 성능으로 일반화하지 않는다.</p>
-
-  <h2>1. 한 문장 요약</h2>
-  <p>DRL 기반 사이버 방어 에이전트에서는 높은 observed reward가 실제 보안성, 낮은 safety violation, 높은 robustness를 보장하지 않는다.</p>
-
-  <h2>2. 학습 배경과 주차 목표</h2>
-  <p>W09는 W01~W08에서 다룬 AI 보안 평가축을 순차 의사결정형 보안 에이전트로 확장한다. 목표는 DQN, policy gradient, actor-critic, DRL verification의 기본 개념을 정리하고, reward manipulation과 reward misspecification을 구분하며, Detection F1, safety violation rate, policy robustness를 포함한 최소 평가 프로토콜을 설계하는 것이다.</p>
-
-  <h2>3. AI 원리 70% 정리</h2>
-  <p>DRL은 MDP, value function, policy optimization을 통해 순차 의사결정 문제를 학습한다[1]. W09는 tabular Q-learning으로 개념을 안전하게 축소해 설명한다.</p>
-  <table><caption>표 1. W09 핵심 개념과 보안 연결</caption><tr><th>개념</th><th>보안 연결</th></tr><tr><td>MDP/Q-learning</td><td>cyber-defense state/action/reward와 toy policy 학습</td></tr><tr><td>DQN/policy gradient/actor-critic</td><td>향후 neural DRL 확장 가능성</td></tr><tr><td>DRL verification</td><td>reward와 safety specification 분리</td></tr></table>
-
-  <h2>4. 보안 이슈 30% 정리</h2>
-  <p>안전중요 자율 시스템에서 DRL은 검증 문제가 중요하고[2], 사이버보안 DRL은 IDS와 game-theoretic defense 등 다양한 적용 영역을 포함한다[3]. RL 기반 cybersecurity 연구에서는 F1 등 표준 탐지 지표를 함께 보고해야 하며[4], DRL verification은 높은 reward와 safety 만족이 별개임을 보여준다[5].</p>
-
-  <h2>5. 논문 5편 요약</h2>
-  <table><caption>표 2. 관련 문헌 5편 요약</caption><tr><th>번호</th><th>문헌</th><th>역할</th><th>상태</th></tr><tr><td>[1]</td><td>Arulkumaran et al.</td><td>DRL 기본 원리</td><td>부분 검증</td></tr><tr><td>[2]</td><td>Kiran et al.</td><td>안전중요 자동화</td><td>부분 검증</td></tr><tr><td>[3]</td><td>Nguyen and Reddi</td><td>cyber-defense DRL</td><td>확인 필요</td></tr><tr><td>[4]</td><td>Adawadkar and Kulkarni</td><td>IDS/IPS, IoT, IAM 지표</td><td>확인 필요</td></tr><tr><td>[5]</td><td>Landers and Doryab</td><td>DRL verification</td><td>확인 필요</td></tr></table>
-  <p class="note">P05는 강의계획서 지정 저자명 H. Yan et al.과 현재 로컬 PDF 기준 Matthew Landers; Afsaneh Doryab가 다르므로 동일 논문 여부 확인이 필요하다.</p>
-
-  <h2>6. 논문 5편 비교표</h2>
-  <p>P01은 원리, P02는 안전중요 자동화, P03/P04는 cyber defense와 IDS/IPS 적용, P05는 DRL verification을 담당한다. 핵심 연결부는 높은 observed reward가 높은 실제 보안성을 의미하지 않는다는 점이다.</p>
-
-  <h2>7. Research Track 분석</h2>
-  <table><caption>표 3. W09 Research Track 요약</caption><tr><th>항목</th><th>내용</th></tr><tr><td>연구문제</td><td>Reward manipulation이 DRL cyber-defense policy의 성능과 안전성에 미치는 영향</td></tr><tr><td>대상 시스템</td><td>DRL-based cyber defense agent</td></tr><tr><td>평가 지표</td><td>average reward, observed reward, Detection F1, safety violation rate, policy robustness</td></tr><tr><td>제외 범위</td><td>실제 시스템 침해, 실제 네트워크 공격, 개인정보, exploit 실행, 무단 스캔</td></tr></table>
-  <p>그림 1. DRL 기반 사이버 방어 에이전트 보상조작 평가 흐름</p>
-  <pre>Synthetic Cyber State -> Q-learning Policy -> Action Selection
--> Reward Signal -> Policy Update -> Evaluation -> Reproducibility Evidence</pre>
-
-  <h2>8. 실습 보고서</h2>
-  <table><caption>표 4. W09 실습 설계</caption><tr><th>항목</th><th>내용</th></tr><tr><td>Environment</td><td>Synthetic toy cyber-defense states</td></tr><tr><td>Algorithm</td><td>Tabular Q-learning</td></tr><tr><td>Conditions</td><td>Normal reward, manipulated reward, robust reward design</td></tr><tr><td>Train/Eval</td><td>5000 train steps, 600 eval samples</td></tr><tr><td>Outputs</td><td>metrics_summary.csv, results.json, run_log.md</td></tr></table>
-  <table><caption>표 5. W09 실습 결과</caption><tr><th>조건</th><th>Average Reward</th><th>Observed Reward</th><th>Detection F1</th><th>Safety Violation Rate</th><th>Policy Robustness</th></tr><tr><td>Normal reward</td><td>1.085250</td><td>1.085250</td><td>0.840206</td><td>0.011667</td><td>0.838417</td></tr><tr><td>Manipulated reward</td><td>0.521167</td><td>0.842000</td><td>0.617512</td><td>0.195000</td><td>0.325000</td></tr><tr><td>Robust reward design</td><td>0.910833</td><td>0.967083</td><td>0.780952</td><td>0.000000</td><td>0.709583</td></tr></table>
-  <p class="note">이 결과는 synthetic toy cyber-defense state/action/reward simulation의 평가 형식 검증용 수치이며, 실제 IDS/IPS 제품, 실제 운영망, 실제 neural DRL policy의 보안 성능으로 일반화하지 않는다.</p>
-
-  <h2>9. AI 도구 활용 기록</h2>
-  <p>Codex와 ChatGPT 계열 AI 도구를 사용했으며, DOI/Crossref 메타데이터, 로컬 PDF 첫 페이지, CSV/JSON/run log로 검증했다.</p>
-
-  <h2>10. 토론 질문</h2>
-  <ol><li>Detection F1과 Safety Violation Rate 중 어떤 지표를 우선해야 하는가?</li><li>Reward manipulation과 reward misspecification은 어떻게 구분할 수 있는가?</li><li>Toy protocol을 실제 benchmark로 확장하려면 어떤 안전 장치가 필요한가?</li></ol>
-
-  <h2>11. 기말논문 연결</h2>
-  <p>추천 주제는 DRL 기반 사이버 방어 에이전트의 보상조작 위협과 안전성 평가 프레임워크이다.</p>
-
-  <h2>12. KCI 논문 형식 전환</h2>
-  <table><caption>표 6. KCI 논문 제목 후보</caption><tr><th>번호</th><th>국문 제목 후보</th><th>예상 기여</th></tr><tr><td>1</td><td>DRL 기반 사이버 방어 에이전트의 보상조작 위협과 안전성 평가 프레임워크 연구</td><td>reward integrity·safety 평가표</td></tr><tr><td>2</td><td>강화학습 기반 자동 보안 대응에서 보상함수 설계와 안전 위반율의 관계 분석</td><td>reward-safety trade-off</td></tr></table>
-
-  <h2>13. SCI 논문 형식 전환</h2>
-  <table><caption>표 7. SCI Related Work 축</caption><tr><th>연구축</th><th>대표 논문</th></tr><tr><td>DRL fundamentals</td><td>Arulkumaran et al.</td></tr><tr><td>Safety-critical DRL automation</td><td>Kiran et al.</td></tr><tr><td>DRL for cybersecurity</td><td>Nguyen and Reddi</td></tr><tr><td>RL for cybersecurity applications</td><td>Adawadkar and Kulkarni</td></tr><tr><td>DRL verification</td><td>Landers and Doryab 또는 강의계획서 P05</td></tr></table>
-
-  <h2>14. 발표용 요약</h2>
-  <p>Manipulated reward는 Average Reward 0.521167, Detection F1 0.617512, Safety Violation Rate 0.195000으로 기준 조건보다 악화되었다. Robust reward design은 safety violation을 0.000000으로 낮췄지만 F1 비용을 만들었다.</p>
-
-  <h2>15. 참고문헌 검증표</h2>
-  <p>[1]-[5]는 Markdown 보고서의 참고문헌 검증표와 대응한다. P03/P04/P05 저자명 차이는 확인 필요다. PDF 5개는 Git 추적 대상이므로 public GitHub 배포 전 삭제 또는 비공개 보관 전환이 필요하다.</p>
-
-  <h2>16. 자기 점검표</h2>
-  <p>16장 목차, 표 1-7, 그림 1, 실험 outputs, AI 활용 고지, PDF 보관 정책 점검을 반영했다. 최종 제출 확정은 사람 검토 뒤 진행한다.</p>
-</main>
+<h2 id="9-ai">9. AI 도구 활용 기록</h2>
+<p>AI 도구는 문헌 요약, 코드 점검, 문장 구조화, 그래프 생성 보조에 사용하였다. 모든 DOI/URL, 실험 수치, 본문 인용, 결론은 작성자가 outputs 파일과 로컬 참고문헌 검증표를 대조하여 검증한다.</p>
+<p><strong>표. W09 AI 도구 활용 및 검증 기록</strong></p>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>사용 도구명</td>
+<td>Codex, ChatGPT 계열 도구</td>
+</tr>
+<tr>
+<td>사용 일자</td>
+<td>2026-06-23</td>
+</tr>
+<tr>
+<td>사용 목적</td>
+<td>문헌 요약 정리, 보고서 구조화, 안전한 toy/synthetic 실험 결과 표기 점검, 그래프 생성 보조, 제출 전 체크리스트 정리</td>
+</tr>
+<tr>
+<td>주요 프롬프트 요약</td>
+<td>주차별 제출 보고서 보완, 참고문헌 검증표 정리, metrics_summary.csv 기반 그래프 생성, AI 활용 고지 작성</td>
+</tr>
+<tr>
+<td>AI 산출물 반영 위치</td>
+<td><code>07_week_submission/w09_submission_report.md</code>, <code>07_week_submission/assets/w09_metric_chart.png</code>, <code>05_ai_worklog/ai_disclosure_draft.md</code></td>
+</tr>
+<tr>
+<td>본인 수정 내용</td>
+<td>주차별 문헌 상태 확인, 실험 수치와 outputs 대조, 안전 범위와 한계 문장 확인, 최종 제출 전 미확정 문헌 분리</td>
+</tr>
+<tr>
+<td>사실관계 검증 방법</td>
+<td><code>01_papers/paper_list.md</code>, <code>01_papers/doi_check.md</code>, <code>05_references/doi_index.md</code>, 강의계획서 문헌표 대조</td>
+</tr>
+<tr>
+<td>참고문헌 검증 방법</td>
+<td>제목, 저자, 연도, 학술지/학회, DOI/URL, 본문 인용번호와 참고문헌 목록 대응 확인</td>
+</tr>
+<tr>
+<td>실험결과 검증 방법</td>
+<td><code>04_experiment/outputs/metrics_summary.csv</code>, <code>results.json</code>, <code>run_log.md</code>의 수치와 보고서 표기 대조</td>
+</tr>
+<tr>
+<td>최종 책임 확인</td>
+<td>AI 산출물은 초안 보조이며 최종 제출자는 원고 내용, 인용, 실험결과, 연구윤리 책임을 확인한다.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="10">10. 토론 질문</h2>
+<ol>
+<li>DRL 자동 대응에서 Detection F1과 Safety Violation Rate 중 어떤 지표를 우선해야 하는가?</li>
+<li>Reward manipulation과 reward misspecification은 관측 로그에서 어떻게 구분할 수 있는가?</li>
+<li>Toy protocol을 실제 cyber-defense benchmark로 확장하려면 어떤 안전 장치가 필요한가?</li>
+</ol>
+<h2 id="11">11. 기말논문 연결</h2>
+<p>추천 주제는 “DRL 기반 사이버 방어 에이전트의 보상조작 위협과 안전성 평가 프레임워크”이다. W09의 기여 후보는 reward integrity 위협모형, Detection F1/Safety Violation/Policy Robustness 평가표, seed/config/output 기반 재현성 구조이다.</p>
+<h2 id="12-kci">12. KCI 논문 형식 전환</h2>
+<p>표 6. KCI 논문 제목 후보</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">번호</th>
+<th>국문 제목 후보</th>
+<th>영문 제목 후보</th>
+<th>예상 기여</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td>DRL 기반 사이버 방어 에이전트의 보상조작 위협과 안전성 평가 프레임워크 연구</td>
+<td>A Safety Evaluation Framework for Reward Manipulation Threats in DRL-Based Cyber Defense Agents</td>
+<td>reward integrity·safety 평가표</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td>강화학습 기반 자동 보안 대응에서 보상함수 설계와 안전 위반율의 관계 분석</td>
+<td>An Analysis of Reward Design and Safety Violation Rate in Reinforcement Learning-Based Automated Security Response</td>
+<td>reward-safety trade-off 분석</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td>사이버보안 DRL 정책의 Detection F1, Safety Violation, Policy Robustness 통합 평가 연구</td>
+<td>A Multi-Metric Evaluation of Detection F1, Safety Violation, and Policy Robustness in Cybersecurity DRL Policies</td>
+<td>다중지표 평가 프로토콜</td>
+</tr>
+</tbody>
+</table>
+<p>추천 제목은 “DRL 기반 사이버 방어 에이전트의 보상조작 위협과 안전성 평가 프레임워크 연구”이다. 국문초록은 reward manipulation이 정책 성능과 안전성에 미치는 영향을 다중지표로 평가하고, 실제 공격/운영망 데이터 없이 synthetic toy protocol로 재현 가능한 보고 구조를 제시하는 방향이 적절하다. 국내 참고문헌 3편 이상은 아직 확인 필요다.</p>
+<h2 id="13-sci">13. SCI 논문 형식 전환</h2>
+<p>SCI 제목 후보는 “A Multi-Metric Safety Evaluation Framework for Reward Manipulation in DRL-Based Cyber Defense Agents”이다.</p>
+<p>표 7. SCI Related Work 축</p>
+<table>
+<thead>
+<tr>
+<th>연구축</th>
+<th>대표 논문</th>
+<th>역할</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DRL fundamentals</td>
+<td>Arulkumaran et al.</td>
+<td>MDP, Q-learning, DQN, policy gradient, actor-critic</td>
+</tr>
+<tr>
+<td>Safety-critical DRL automation</td>
+<td>Kiran et al.</td>
+<td>safe RL, validation, sim-to-real risk</td>
+</tr>
+<tr>
+<td>DRL for cybersecurity</td>
+<td>Nguyen and Reddi</td>
+<td>cyber defense, IDS, game-theoretic defense</td>
+</tr>
+<tr>
+<td>RL for cybersecurity applications</td>
+<td>Adawadkar and Kulkarni</td>
+<td>IDS/IPS, IoT, IAM, standard metrics</td>
+</tr>
+<tr>
+<td>DRL verification</td>
+<td>Landers and Doryab 또는 강의계획서 P05</td>
+<td>safety specification, robustness, policy verification</td>
+</tr>
+</tbody>
+</table>
+<p>Structured abstract는 Background, Problem, Method, Results, Contribution, Implications로 구성한다. 핵심 contribution은 true reward, observed reward, detection F1, safety violation rate, policy robustness, perturbed performance, reproducibility evidence를 분리하는 multi-metric evaluation structure이다. 한계는 tabular Q-learning, synthetic toy state, 단순화된 safety violation rule, P03/P04/P05 저자명 검증 필요성이다.</p>
+<h2 id="14">14. 발표용 요약</h2>
+<ul>
+<li>핵심 메시지: DRL cyber-defense agent는 reward를 잘못 믿으면 위험하다.</li>
+<li>실험 메시지: manipulated reward는 Average Reward 0.521167, Detection F1 0.617512, Safety Violation Rate 0.195000으로 기준 조건보다 악화되었다.</li>
+<li>안전 메시지: robust reward design은 toy setting에서 safety violation을 0.000000으로 낮췄지만 F1과 보상 비용을 만들었다.</li>
+<li>주의: 결과는 toy protocol 수치이며 실제 운영 성능 보증이 아니다.</li>
+</ul>
+<h2 id="15">15. 참고문헌 검증표</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">번호</th>
+<th>참고문헌</th>
+<th>DOI/URL</th>
+<th>상태</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">[1]</td>
+<td>Arulkumaran et al., <em>Deep Reinforcement Learning: A Brief Survey</em>, IEEE Signal Processing Magazine, 34(6), 26-38, 2017</td>
+<td>https://doi.org/10.1109/MSP.2017.2743240</td>
+<td>부분 검증</td>
+</tr>
+<tr>
+<td style="text-align: right;">[2]</td>
+<td>Kiran et al., <em>Deep Reinforcement Learning for Autonomous Driving: A Survey</em>, IEEE TITS, 23(6), 4909-4926, 2022</td>
+<td>https://doi.org/10.1109/TITS.2021.3054625</td>
+<td>부분 검증</td>
+</tr>
+<tr>
+<td style="text-align: right;">[3]</td>
+<td>Nguyen and Reddi, <em>Deep Reinforcement Learning for Cyber Security</em>, IEEE TNNLS, 34(8), 3779-3795, 2023</td>
+<td>https://doi.org/10.1109/TNNLS.2021.3121870</td>
+<td>확인 필요</td>
+</tr>
+<tr>
+<td style="text-align: right;">[4]</td>
+<td>Adawadkar and Kulkarni, <em>Cyber-security and reinforcement learning -- A brief survey</em>, Engineering Applications of Artificial Intelligence, 114, Article 105116, 2022</td>
+<td>https://doi.org/10.1016/j.engappai.2022.105116</td>
+<td>확인 필요</td>
+</tr>
+<tr>
+<td style="text-align: right;">[5]</td>
+<td>Landers and Doryab, <em>Deep Reinforcement Learning Verification: A Survey</em>, ACM Computing Surveys, 55(14s), Article 330, 31 pages, 2023</td>
+<td>https://doi.org/10.1145/3596444</td>
+<td>확인 필요</td>
+</tr>
+</tbody>
+</table>
+<p>PDF 보관 정책 점검 결과, <code>01_papers/pdf/</code>의 논문 PDF 원문은 로컬 파일로 보존하되 Git 추적은 해제했다. public GitHub 저장소에는 출판사 PDF 원문 대신 DOI/URL, 서지정보, 요약만 남기는 정책을 적용한다.</p>
+<h2 id="16">16. 자기 점검표</h2>
+<table>
+<thead>
+<tr>
+<th>점검 항목</th>
+<th>상태</th>
+<th>비고</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1장 한 문장 요약 작성</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>2장 학습 배경과 주차 목표 작성</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>AI 원리 70% 정리</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>보안 이슈 30% 정리</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>논문 5편 요약</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>논문 5편 비교표 보완</td>
+<td>완료 / 확인 필요</td>
+<td>P05 동일 여부 반영</td>
+</tr>
+<tr>
+<td>Research Track 5요소 작성</td>
+<td>완료</td>
+<td>연구문제, 위협모형, 평가방법, 재현성, 오픈문제</td>
+</tr>
+<tr>
+<td>P01 DOI/URL 검증</td>
+<td>완료</td>
+<td>arXiv extended version 메모</td>
+</tr>
+<tr>
+<td>P02 DOI/URL 검증</td>
+<td>완료</td>
+<td>arXiv v2/출판판 차이 메모</td>
+</tr>
+<tr>
+<td>P03 DOI/URL 검증</td>
+<td>완료 / 확인 필요</td>
+<td>저자명 표기 차이 확인</td>
+</tr>
+<tr>
+<td>P04 DOI/URL 검증</td>
+<td>완료 / 확인 필요</td>
+<td>저자명 표기 차이 확인</td>
+</tr>
+<tr>
+<td>P05 지정 논문 동일 여부 검증</td>
+<td>확인 필요</td>
+<td>H. Yan et al. vs Landers/Doryab</td>
+</tr>
+<tr>
+<td>실험 outputs 파일 존재 확인</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>실험 결과와 보고서 수치 일치</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>KCI 논문 형식 전환 작성</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>SCI 논문 형식 전환 작성</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>본문 인용과 참고문헌 대응</td>
+<td>완료 / 확인 필요</td>
+<td>P03/P04/P05 표기 차이</td>
+</tr>
+<tr>
+<td>표·그림 번호 정리</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>AI 활용 고지 작성</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>PDF 저작권 위험 점검</td>
+<td>완료 / 확인 필요</td>
+<td>PDF 원문 추적 중</td>
+</tr>
+<tr>
+<td>최종 사람이 검토할 항목 표시</td>
+<td>완료</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 </body>
 </html>

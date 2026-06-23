@@ -5,136 +5,628 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>W07 제출용 보고서</title>
   <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.6; margin: 0; color: #1f2937; background: #f8fafc; }
-    main { max-width: 1040px; margin: 0 auto; padding: 36px 20px 56px; background: #fff; }
-    h1, h2 { color: #111827; line-height: 1.25; }
-    h1 { font-size: 2rem; border-bottom: 3px solid #2563eb; padding-bottom: 12px; }
-    h2 { margin-top: 34px; font-size: 1.35rem; }
-    table { width: 100%; border-collapse: collapse; margin: 14px 0 24px; font-size: 0.94rem; }
-    th, td { border: 1px solid #d1d5db; padding: 8px 10px; vertical-align: top; }
-    th { background: #e5eefc; text-align: left; }
-    code, pre { background: #eef2ff; border-radius: 4px; }
-    code { padding: 1px 4px; }
-    pre { padding: 12px; overflow-x: auto; }
-    .note { background: #fef3c7; border-left: 4px solid #d97706; padding: 12px 14px; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.65; max-width: 1040px; margin: 32px auto; padding: 0 24px; color: #17202a; }
+    h1, h2, h3 { line-height: 1.25; }
+    table { border-collapse: collapse; width: 100%; margin: 18px 0; font-size: 0.95rem; }
+    th, td { border: 1px solid #d0d7de; padding: 7px 9px; vertical-align: top; }
+    th { background: #f6f8fa; }
+    code { background: #f6f8fa; padding: 0.1rem 0.25rem; border-radius: 4px; }
+    pre { background: #f6f8fa; padding: 16px; overflow-x: auto; border-radius: 6px; }
+    img { max-width: 100%; height: auto; border: 1px solid #d0d7de; border-radius: 6px; }
   </style>
 </head>
 <body>
-<main>
-  <h1>W07 제출용 보고서</h1>
+<h1 id="w07">W07 제출용 보고서</h1>
+<h2 id="_1">초록</h2>
+<p>본 보고서는 LLM의 pretraining, instruction tuning, alignment, benchmark evaluation을 AI 원리 관점에서 정리하고, prompt injection, privacy leakage, benchmark contamination, insecure code generation을 보안 평가 관점에서 분석한다. 문헌 5편을 LLM evaluation, LLM security/privacy, multimodal LLM, software security 축으로 비교하고, synthetic prompt category 기반 안전 toy 실험과 rule-based toy guard score simulator로 utility, answer rate, ASR, privacy leakage, refusal quality, over-refusal, code vulnerability rate를 기록하였다. 이 실험은 실제 LLM 보안 성능 주장이 아니라 재현 가능한 평가 보고 구조를 검증하기 위한 것이다.</p>
+<h2 id="0">0. 메타정보</h2>
+<ul>
+<li>주차: W07</li>
+<li>주제: LLM 학습·정렬·평가 &amp; LLM 보안·프라이버시</li>
+<li>문서 상태: 제출용 보고서</li>
+<li>실험 산출물: <code>04_experiment/outputs/metrics_summary.csv</code>, <code>results.json</code>, <code>run_log.md</code></li>
+<li>제출 상태: 제출 전 작성자 확인 항목 있음. 작성자 확인 필요</li>
+</ul>
+<p>| 학번 | 26200122 |
+| 보완일 | 2026-06-23 |</p>
+<h2 id="1">1. 한 문장 요약</h2>
+<p>LLM/RAG 보안 평가는 benchmark score나 ASR 하나로 끝나지 않으며, utility, answer rate, ASR, privacy leakage, refusal quality, over-refusal, code vulnerability rate, reproducibility evidence를 분리해 기록해야 한다.</p>
+<h2 id="2">2. 학습 배경과 주차 목표</h2>
+<p>W07는 W01-W06에서 다룬 AI 보안 평가축을 LLM 시스템으로 확장한다. LLM/RAG 시스템은 학습데이터, system prompt, user prompt, retrieval context, model output, code artifact, log, benchmark가 연결된 복합 시스템이므로 보안 평가도 단일 점수가 아니라 다중 지표로 수행해야 한다.</p>
+<p>이번 주 목표는 LLM 학습·정렬·평가 프레임워크를 이해하고, LLM 보안·프라이버시 위협과 방어 분류체계를 정리하며, multimodal LLM과 code LLM의 추가 공격면을 분석하고, 재현 가능한 최소 평가 프로토콜을 설계하는 것이다.</p>
+<h2 id="3-ai-70">3. AI 원리 70% 정리</h2>
+<p>표 1. W07 핵심 개념과 보안 연결</p>
+<table>
+<thead>
+<tr>
+<th>핵심 개념</th>
+<th>AI 원리</th>
+<th>보안 연결</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pretraining</td>
+<td>대규모 말뭉치에서 언어 분포 학습</td>
+<td>memorization, training data extraction</td>
+</tr>
+<tr>
+<td>Instruction tuning</td>
+<td>명령-응답 형식 학습</td>
+<td>공격 지시 민감성</td>
+</tr>
+<tr>
+<td>Alignment/RLHF</td>
+<td>안전 정책과 선호도 반영</td>
+<td>refusal quality, over-refusal</td>
+</tr>
+<tr>
+<td>Context window</td>
+<td>prompt와 retrieval context 결합</td>
+<td>prompt injection, prompt leakage</td>
+</tr>
+<tr>
+<td>Benchmark evaluation</td>
+<td>모델 능력 측정</td>
+<td>contamination, evaluation leakage</td>
+</tr>
+<tr>
+<td>Multimodal extension</td>
+<td>image-text context 결합</td>
+<td>multimodal prompt risk, hallucination</td>
+</tr>
+<tr>
+<td>Code generation</td>
+<td>code artifact 생성·수정</td>
+<td>insecure code generation</td>
+</tr>
+</tbody>
+</table>
+<p>LLM 평가는 benchmark score뿐 아니라 task coverage, human evaluation, contamination risk를 함께 고려해야 한다[1].</p>
+<h2 id="4-30">4. 보안 이슈 30% 정리</h2>
+<p>LLM 보안·프라이버시 연구는 jailbreak, prompt injection, data leakage, privacy disclosure 등 다양한 위험을 분류한다[2]. LLM은 보안 방어 도구가 될 수도 있지만 공격 자동화와 취약성의 원인이 될 수도 있다[3]. Multimodal LLM은 이미지·텍스트 context가 결합되므로 hallucination과 multimodal prompt risk가 추가된다[4]. Code LLM은 fuzzing, program repair, bug detection, bug triage를 지원하지만 insecure code generation 위험도 함께 평가해야 한다[5].</p>
+<p>그림 1. LLM/RAG 보안·프라이버시 평가 흐름</p>
+<pre><code class="language-text">User Prompt / System Prompt / Retrieval Context
+        ↓
+LLM or RAG System
+        ↓
+Clean Evaluation -&gt; Utility, Answer Rate
+        ↓
+Prompt Attack / Privacy-Risk Prompt
+        ↓
+Security Evaluation -&gt; ASR, Privacy Leakage, Refusal Quality
+        ↓
+Code Generation Context
+        ↓
+Code Security Evaluation -&gt; Code Vulnerability Rate, Over-refusal
+        ↓
+Reproducibility Evidence -&gt; seed, config, prompt categories, outputs, run_log
+</code></pre>
+<h2 id="5-5">5. 논문 5편 요약</h2>
+<p>표 2. 관련 문헌 5편 요약</p>
+<table>
+<thead>
+<tr>
+<th>번호</th>
+<th>문헌</th>
+<th>역할</th>
+<th>검증 상태</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[1]</td>
+<td>Chang et al., <em>A Survey on Evaluation of Large Language Models</em></td>
+<td>LLM evaluation framework</td>
+<td>DOI 확인, ACM TIST 15(3), Article 39. 강의계획서 venue 표기 확인 필요</td>
+</tr>
+<tr>
+<td>[2]</td>
+<td>Das et al., <em>Security and Privacy Challenges of Large Language Models: A Survey</em></td>
+<td>security/privacy challenge taxonomy</td>
+<td>ACM CSUR DOI 확인. Ankur Das 표기 확인 필요</td>
+</tr>
+<tr>
+<td>[3]</td>
+<td>Yao et al., <em>A survey on large language model security and privacy</em></td>
+<td>good/bad/ugly taxonomy</td>
+<td>HCC DOI 확인. AI Open 지정 논문과 동일 여부 확인 필요</td>
+</tr>
+<tr>
+<td>[4]</td>
+<td>Yin et al., <em>A survey on multimodal large language models</em></td>
+<td>MLLM architecture/evaluation</td>
+<td>NSR DOI 확인. Yongtao Yin 표기 확인 필요</td>
+</tr>
+<tr>
+<td>[5]</td>
+<td>Zhu et al., <em>When Software Security Meets Large Language Models</em></td>
+<td>software security와 code LLM 접점</td>
+<td>IEEE/CAA JAS DOI 확인. Shujun Li 표기 확인 필요</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-5">6. 논문 5편 비교표</h2>
+<p>표 2-1. 논문 5편 차별성 비교</p>
+<table>
+<thead>
+<tr>
+<th>논문</th>
+<th>차별성</th>
+<th>내 논문 활용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P01</td>
+<td>평가 프레임워크와 benchmark discipline 제공</td>
+<td>LLM/RAG 보안 평가축</td>
+</tr>
+<tr>
+<td>P02</td>
+<td>LLM 보안·프라이버시 공격과 방어 분류</td>
+<td>위협모형과 방어 가정</td>
+</tr>
+<tr>
+<td>P03</td>
+<td>보안 활용, 공격 활용, 모델 취약성의 양면성</td>
+<td>공격-방어-평가 연결표</td>
+</tr>
+<tr>
+<td>P04</td>
+<td>multimodal context와 hallucination 확장</td>
+<td>multimodal LLM 위험</td>
+</tr>
+<tr>
+<td>P05</td>
+<td>software security workflow와 code LLM 연결</td>
+<td>code vulnerability rate와 over-refusal</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-research-track">7. Research Track 분석</h2>
+<p>표 3. W07 Research Track 요약</p>
+<table>
+<thead>
+<tr>
+<th>요소</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>연구문제</td>
+<td>LLM/RAG 보안 평가에서 utility, ASR, leakage, refusal, code risk, reproducibility를 함께 측정하는 최소 프로토콜</td>
+</tr>
+<tr>
+<td>위협모형</td>
+<td>prompt, context, output, code artifact, log, benchmark를 보호 자산으로 설정</td>
+</tr>
+<tr>
+<td>평가방법</td>
+<td>synthetic prompt category 기반 안전 toy 실험</td>
+</tr>
+<tr>
+<td>재현성</td>
+<td>seed, config, outputs, run log 보존</td>
+</tr>
+<tr>
+<td>오픈문제</td>
+<td>실제 LLM/RAG/code LLM benchmark와 human review protocol 확장</td>
+</tr>
+</tbody>
+</table>
+<h2 id="8">8. 실습 보고서</h2>
+<p>본 실습은 실제 LLM/API 호출이나 실제 jailbreak 재현이 아니라 W07의 핵심인 LLM 보안 평가축을 안전하게 설명하기 위한 최소 toy protocol이다. 따라서 synthetic prompt category와 rule-based toy guard score simulator를 사용하되, 평가 구조는 이후 실제 LLM, RAG, code LLM, multimodal LLM 환경에도 확장 가능하도록 utility, answer rate, ASR, privacy leakage, refusal quality, over-refusal, code vulnerability rate, reproducibility evidence로 분리하였다.</p>
+<p>표 4. W07 실습 설계</p>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dataset</td>
+<td>Synthetic prompt categories</td>
+</tr>
+<tr>
+<td>Model/checker</td>
+<td>Rule-based toy guard score simulator</td>
+</tr>
+<tr>
+<td>Conditions</td>
+<td>Clean, prompt attack simulation, privacy-risk, code security</td>
+</tr>
+<tr>
+<td>Samples</td>
+<td>40 per condition</td>
+</tr>
+<tr>
+<td>Guard threshold</td>
+<td>0.55</td>
+</tr>
+<tr>
+<td>Seed</td>
+<td>42</td>
+</tr>
+<tr>
+<td>Output files</td>
+<td><code>metrics_summary.csv</code>, <code>results.json</code>, <code>run_log.md</code></td>
+</tr>
+</tbody>
+</table>
+<p>표 5. W07 실습 결과</p>
+<table>
+<thead>
+<tr>
+<th>조건</th>
+<th style="text-align: right;">Utility</th>
+<th style="text-align: right;">Answer rate</th>
+<th style="text-align: right;">ASR</th>
+<th style="text-align: right;">Privacy Leakage</th>
+<th style="text-align: right;">Refusal Quality</th>
+<th style="text-align: right;">Over-refusal</th>
+<th style="text-align: right;">Code vuln. rate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Clean prompts</td>
+<td style="text-align: right;">0.866746</td>
+<td style="text-align: right;">1.000000</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">해당 없음</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">0.000000</td>
+</tr>
+<tr>
+<td>Prompt attack simulation</td>
+<td style="text-align: right;">0.400908</td>
+<td style="text-align: right;">0.150000</td>
+<td style="text-align: right;">0.150000</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">0.850000</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">0.000000</td>
+</tr>
+<tr>
+<td>Privacy-risk prompts</td>
+<td style="text-align: right;">0.392926</td>
+<td style="text-align: right;">0.100000</td>
+<td style="text-align: right;">0.100000</td>
+<td style="text-align: right;">0.025000</td>
+<td style="text-align: right;">0.900000</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">0.000000</td>
+</tr>
+<tr>
+<td>Code security prompts</td>
+<td style="text-align: right;">0.678267</td>
+<td style="text-align: right;">0.650000</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">해당 없음</td>
+<td style="text-align: right;">0.350000</td>
+<td style="text-align: right;">0.200000</td>
+</tr>
+</tbody>
+</table>
+<p>이 결과는 synthetic prompt category와 rule-based toy guard score simulator를 사용한 평가 형식 검증용 수치이며, 실제 LLM의 보안 성능, 실제 jailbreak 성공률, 실제 개인정보 누출 가능성, 실제 코드 보안 품질로 일반화하지 않는다.</p>
+<!-- submission-metric-chart:start -->
+<p><strong>그림 7. W07 metrics summary chart</strong></p>
+<p><img alt="W07 metrics summary chart" src="assets/w07_metric_chart.png"></p>
+<p>출처: <code>04_experiment/outputs/metrics_summary.csv</code>. 이 그래프는 공개 toy/synthetic 산출물 기반이며 실제 공격 성능이나 운영 환경 성능으로 일반화하지 않는다.</p>
+<!-- submission-metric-chart:end -->
 
-  <h2>초록</h2>
-  <p>본 보고서는 LLM의 pretraining, instruction tuning, alignment, benchmark evaluation을 AI 원리 관점에서 정리하고, prompt injection, privacy leakage, benchmark contamination, insecure code generation을 보안 평가 관점에서 분석한다. 문헌 5편을 LLM evaluation, LLM security/privacy, multimodal LLM, software security 축으로 비교하고, synthetic prompt category 기반 안전 toy 실험과 rule-based toy guard score simulator로 utility, answer rate, ASR, privacy leakage, refusal quality, over-refusal, code vulnerability rate를 기록하였다.</p>
-
-  <h2>0. 메타정보</h2>
-  <ul>
-    <li>주차: W07</li>
-    <li>문서 상태: 제출용 최종 초안</li>
-    <li>실험 산출물: <code>metrics_summary.csv</code>, <code>results.json</code>, <code>run_log.md</code></li>
-    <li>제출 상태: 최종 제출 확정 아님. 사람 검토 필요</li>
-  </ul>
-
-  <h2>1. 한 문장 요약</h2>
-  <p>LLM/RAG 보안 평가는 utility, answer rate, ASR, privacy leakage, refusal quality, over-refusal, code vulnerability rate, reproducibility evidence를 분리해 기록해야 한다.</p>
-
-  <h2>2. 학습 배경과 주차 목표</h2>
-  <p>W07는 W01-W06의 AI 보안 평가축을 LLM/RAG, multimodal LLM, code LLM으로 확장한다. 목표는 LLM 학습·정렬·평가 프레임워크와 보안·프라이버시 위협 분류를 이해하고, 재현 가능한 최소 평가 프로토콜을 설계하는 것이다.</p>
-
-  <h2>3. AI 원리 70% 정리</h2>
-  <p>표 1. W07 핵심 개념과 보안 연결</p>
-  <table>
-    <tr><th>핵심 개념</th><th>AI 원리</th><th>보안 연결</th></tr>
-    <tr><td>Pretraining</td><td>대규모 말뭉치에서 언어 분포 학습</td><td>memorization, training data extraction</td></tr>
-    <tr><td>Instruction tuning</td><td>명령-응답 형식 학습</td><td>공격 지시 민감성</td></tr>
-    <tr><td>Alignment/RLHF</td><td>안전 정책과 선호도 반영</td><td>refusal quality, over-refusal</td></tr>
-    <tr><td>Context window</td><td>prompt와 retrieval context 결합</td><td>prompt injection, prompt leakage</td></tr>
-    <tr><td>Code generation</td><td>code artifact 생성·수정</td><td>insecure code generation</td></tr>
-  </table>
-
-  <h2>4. 보안 이슈 30% 정리</h2>
-  <p>LLM 보안·프라이버시 연구는 jailbreak, prompt injection, data leakage, privacy disclosure 등을 분류한다[2]. Multimodal LLM과 code LLM은 context와 code artifact까지 공격면을 넓힌다[4][5].</p>
-  <p>그림 1. LLM/RAG 보안·프라이버시 평가 흐름</p>
-  <pre>User/System Prompt + Retrieval Context
-  -> LLM or RAG System
-  -> Clean Evaluation: Utility, Answer Rate
-  -> Security Evaluation: ASR, Privacy Leakage, Refusal Quality
-  -> Code Security Evaluation: Code Vulnerability Rate, Over-refusal
-  -> Reproducibility Evidence: seed, config, outputs, run_log</pre>
-
-  <h2>5. 논문 5편 요약</h2>
-  <p>표 2. 관련 문헌 5편 요약</p>
-  <table>
-    <tr><th>번호</th><th>문헌</th><th>역할</th><th>검증 상태</th></tr>
-    <tr><td>[1]</td><td>Chang et al.</td><td>LLM evaluation framework</td><td>DOI 확인, ACM TIST. 강의계획서 venue 확인 필요</td></tr>
-    <tr><td>[2]</td><td>Das et al.</td><td>security/privacy challenge taxonomy</td><td>ACM CSUR DOI 확인. Ankur Das 표기 확인 필요</td></tr>
-    <tr><td>[3]</td><td>Yao et al.</td><td>good/bad/ugly taxonomy</td><td>HCC DOI 확인. AI Open 지정 논문 동일 여부 확인 필요</td></tr>
-    <tr><td>[4]</td><td>Yin et al.</td><td>MLLM architecture/evaluation</td><td>NSR DOI 확인. Yongtao Yin 표기 확인 필요</td></tr>
-    <tr><td>[5]</td><td>Zhu et al.</td><td>software security와 code LLM 접점</td><td>IEEE/CAA JAS DOI 확인. Shujun Li 표기 확인 필요</td></tr>
-  </table>
-
-  <h2>6. 논문 5편 비교표</h2>
-  <table>
-    <tr><th>논문</th><th>차별성</th><th>내 논문 활용</th></tr>
-    <tr><td>P01</td><td>평가 프레임워크</td><td>LLM/RAG 보안 평가축</td></tr>
-    <tr><td>P02</td><td>보안·프라이버시 분류</td><td>위협모형과 방어 가정</td></tr>
-    <tr><td>P03</td><td>LLM의 양면성</td><td>공격-방어-평가 연결표</td></tr>
-    <tr><td>P04</td><td>multimodal 확장</td><td>MLLM 위험</td></tr>
-    <tr><td>P05</td><td>code LLM 접점</td><td>code vulnerability rate</td></tr>
-  </table>
-
-  <h2>7. Research Track 분석</h2>
-  <p>표 3. W07 Research Track 요약</p>
-  <table>
-    <tr><th>요소</th><th>내용</th></tr>
-    <tr><td>연구문제</td><td>utility, ASR, leakage, refusal, code risk, reproducibility를 함께 측정하는 최소 프로토콜</td></tr>
-    <tr><td>위협모형</td><td>prompt, context, output, code artifact, log, benchmark를 보호 자산으로 설정</td></tr>
-    <tr><td>평가방법</td><td>synthetic prompt category 기반 안전 toy 실험</td></tr>
-    <tr><td>재현성</td><td>seed, config, outputs, run log 보존</td></tr>
-  </table>
-
-  <h2>8. 실습 보고서</h2>
-  <p>표 4. W07 실습 설계</p>
-  <table>
-    <tr><th>항목</th><th>내용</th></tr>
-    <tr><td>Dataset</td><td>Synthetic prompt categories</td></tr>
-    <tr><td>Model/checker</td><td>Rule-based toy guard score simulator</td></tr>
-    <tr><td>Conditions</td><td>Clean, prompt attack simulation, privacy-risk, code security</td></tr>
-    <tr><td>Samples</td><td>40 per condition</td></tr>
-    <tr><td>Guard threshold</td><td>0.55</td></tr>
-  </table>
-  <p>표 5. W07 실습 결과</p>
-  <table>
-    <tr><th>조건</th><th>Utility</th><th>Answer rate</th><th>ASR</th><th>Privacy Leakage</th><th>Refusal Quality</th><th>Over-refusal</th><th>Code vuln. rate</th></tr>
-    <tr><td>Clean prompts</td><td>0.866746</td><td>1.000000</td><td>0.000000</td><td>0.000000</td><td>해당 없음</td><td>0.000000</td><td>0.000000</td></tr>
-    <tr><td>Prompt attack simulation</td><td>0.400908</td><td>0.150000</td><td>0.150000</td><td>0.000000</td><td>0.850000</td><td>0.000000</td><td>0.000000</td></tr>
-    <tr><td>Privacy-risk prompts</td><td>0.392926</td><td>0.100000</td><td>0.100000</td><td>0.025000</td><td>0.900000</td><td>0.000000</td><td>0.000000</td></tr>
-    <tr><td>Code security prompts</td><td>0.678267</td><td>0.650000</td><td>0.000000</td><td>0.000000</td><td>해당 없음</td><td>0.350000</td><td>0.200000</td></tr>
-  </table>
-  <p class="note">이 결과는 synthetic prompt category와 rule-based toy guard score simulator를 사용한 평가 형식 검증용 수치이며, 실제 LLM의 보안 성능, 실제 jailbreak 성공률, 실제 개인정보 누출 가능성, 실제 코드 보안 품질로 일반화하지 않는다.</p>
-
-  <h2>9-14. AI 활용, 토론, 기말논문, KCI/SCI, 발표 요약</h2>
-  <p>AI 활용 고지는 <code>05_ai_worklog/ai_disclosure_draft.md</code>에 기록했다. KCI 추천 제목은 “LLM/RAG 기반 AI 시스템의 보안·프라이버시·재현성 평가 프레임워크 연구”이며, SCI 제목 후보는 “A Multi-Metric Security, Privacy, and Reproducibility Evaluation Framework for LLM/RAG-Based AI Systems”이다.</p>
-
-  <h2>15. 참고문헌 검증표</h2>
-  <table>
-    <tr><th>번호</th><th>DOI/URL</th><th>상태</th></tr>
-    <tr><td>[1]</td><td>10.1145/3641289</td><td>확인, venue 표기 확인 필요</td></tr>
-    <tr><td>[2]</td><td>10.1145/3712001</td><td>확인, Ankur Das 표기 확인 필요</td></tr>
-    <tr><td>[3]</td><td>10.1016/j.hcc.2024.100211</td><td>확인, AI Open 지정 논문 동일 여부 확인 필요</td></tr>
-    <tr><td>[4]</td><td>10.1093/nsr/nwae403</td><td>확인, Yongtao Yin 표기 확인 필요</td></tr>
-    <tr><td>[5]</td><td>10.1109/JAS.2024.124971</td><td>확인, Shujun Li 표기 확인 필요</td></tr>
-  </table>
-
-  <h2>16. 자기 점검표</h2>
-  <table>
-    <tr><th>점검 항목</th><th>상태</th></tr>
-    <tr><td>16장 구조 반영</td><td>완료</td></tr>
-    <tr><td>실험 outputs 존재 및 수치 일치</td><td>완료</td></tr>
-    <tr><td>KCI/SCI 섹션</td><td>완료</td></tr>
-    <tr><td>AI 활용 고지</td><td>완료</td></tr>
-    <tr><td>PDF 저작권 위험</td><td>조치 필요, PDF 삭제 미수행</td></tr>
-    <tr><td>최종 제출 확정</td><td>아님</td></tr>
-  </table>
-</main>
+<h2 id="9-ai">9. AI 도구 활용 기록</h2>
+<p>AI 도구는 문헌 요약, 코드 점검, 문장 구조화, 그래프 생성 보조에 사용하였다. 모든 DOI/URL, 실험 수치, 본문 인용, 결론은 작성자가 outputs 파일과 로컬 참고문헌 검증표를 대조하여 검증한다.</p>
+<p><strong>표. W07 AI 도구 활용 및 검증 기록</strong></p>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>사용 도구명</td>
+<td>Codex, ChatGPT 계열 도구</td>
+</tr>
+<tr>
+<td>사용 일자</td>
+<td>2026-06-23</td>
+</tr>
+<tr>
+<td>사용 목적</td>
+<td>문헌 요약 정리, 보고서 구조화, 안전한 toy/synthetic 실험 결과 표기 점검, 그래프 생성 보조, 제출 전 체크리스트 정리</td>
+</tr>
+<tr>
+<td>주요 프롬프트 요약</td>
+<td>주차별 제출 보고서 보완, 참고문헌 검증표 정리, metrics_summary.csv 기반 그래프 생성, AI 활용 고지 작성</td>
+</tr>
+<tr>
+<td>AI 산출물 반영 위치</td>
+<td><code>07_week_submission/w07_submission_report.md</code>, <code>07_week_submission/assets/w07_metric_chart.png</code>, <code>05_ai_worklog/ai_disclosure_draft.md</code></td>
+</tr>
+<tr>
+<td>본인 수정 내용</td>
+<td>주차별 문헌 상태 확인, 실험 수치와 outputs 대조, 안전 범위와 한계 문장 확인, 최종 제출 전 미확정 문헌 분리</td>
+</tr>
+<tr>
+<td>사실관계 검증 방법</td>
+<td><code>01_papers/paper_list.md</code>, <code>01_papers/doi_check.md</code>, <code>05_references/doi_index.md</code>, 강의계획서 문헌표 대조</td>
+</tr>
+<tr>
+<td>참고문헌 검증 방법</td>
+<td>제목, 저자, 연도, 학술지/학회, DOI/URL, 본문 인용번호와 참고문헌 목록 대응 확인</td>
+</tr>
+<tr>
+<td>실험결과 검증 방법</td>
+<td><code>04_experiment/outputs/metrics_summary.csv</code>, <code>results.json</code>, <code>run_log.md</code>의 수치와 보고서 표기 대조</td>
+</tr>
+<tr>
+<td>최종 책임 확인</td>
+<td>AI 산출물은 초안 보조이며 최종 제출자는 원고 내용, 인용, 실험결과, 연구윤리 책임을 확인한다.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="10">10. 토론 질문</h2>
+<ol>
+<li>LLM 보안 평가는 ASR과 over-refusal 사이에서 어떤 균형을 가져야 하는가?</li>
+<li>Privacy leakage와 prompt leakage는 별도 지표로 분리해야 하는가?</li>
+<li>Code LLM의 보안 평가는 취약 코드 생성률만으로 충분한가?</li>
+<li>Multimodal LLM의 visual context는 prompt injection 평가를 어떻게 바꾸는가?</li>
+</ol>
+<h2 id="11">11. 기말논문 연결</h2>
+<p>추천 주제는 “LLM/RAG 기반 AI 시스템의 보안·프라이버시·재현성 평가 프레임워크 연구”이다. W07의 실습 수치는 실제 모델 성능 주장이 아니라 논문 방법론의 reporting structure 예시로만 사용한다.</p>
+<h2 id="12-kci">12. KCI 논문 형식 전환</h2>
+<p>표 6. KCI 논문 제목 후보</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">번호</th>
+<th>국문 제목 후보</th>
+<th>영문 제목 후보</th>
+<th>연구방법</th>
+<th>예상 기여</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td>LLM/RAG 기반 AI 시스템의 보안·프라이버시·재현성 평가 프레임워크 연구</td>
+<td>A Security, Privacy, and Reproducibility Evaluation Framework for LLM/RAG-Based AI Systems</td>
+<td>문헌분석 + synthetic prompt 평가</td>
+<td>통합 평가표</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td>LLM 보안 평가에서 Utility, ASR, Refusal Quality, Over-refusal의 균형 연구</td>
+<td>A Study on Balancing Utility, Attack Success Rate, Refusal Quality, and Over-Refusal in LLM Security Evaluation</td>
+<td>toy guard score 실험 + 위협모형</td>
+<td>utility-security trade-off 평가</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td>Code LLM의 취약 코드 생성 위험과 재현성 평가체계 연구</td>
+<td>A Reproducible Evaluation Framework for Vulnerable Code Generation Risk in Code LLMs</td>
+<td>문헌분석 + synthetic score 평가</td>
+<td>code vulnerability rate·over-refusal 동시 기록</td>
+</tr>
+</tbody>
+</table>
+<p>추천 최종 제목은 “LLM/RAG 기반 AI 시스템의 보안·프라이버시·재현성 평가 프레임워크 연구”이다. 국내 논문화 전에는 국내 참고문헌 3편 이상, KCI 양식, 그림·표 번호, AI 활용 고지, PDF 저작권 상태를 추가 확인해야 한다.</p>
+<h2 id="13-sci">13. SCI 논문 형식 전환</h2>
+<p>SCI 제목 후보는 “A Multi-Metric Security, Privacy, and Reproducibility Evaluation Framework for LLM/RAG-Based AI Systems”이다.</p>
+<p>표 7. SCI Related Work 축</p>
+<table>
+<thead>
+<tr>
+<th>연구축</th>
+<th>대표 논문</th>
+<th>역할</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LLM evaluation</td>
+<td>Chang et al.</td>
+<td>benchmark, evaluation taxonomy, contamination risk</td>
+</tr>
+<tr>
+<td>LLM security/privacy challenges</td>
+<td>Das et al.</td>
+<td>privacy, jailbreak, leakage, defense taxonomy</td>
+</tr>
+<tr>
+<td>LLM security/privacy taxonomy</td>
+<td>Yao et al.</td>
+<td>good/bad/ugly taxonomy and attack surface</td>
+</tr>
+<tr>
+<td>Multimodal LLMs</td>
+<td>Yin et al.</td>
+<td>MLLM architecture, evaluation, hallucination, multimodal risk</td>
+</tr>
+<tr>
+<td>Software security and LLMs</td>
+<td>Zhu et al.</td>
+<td>code generation, fuzzing, repair, bug triage, vulnerability risk</td>
+</tr>
+</tbody>
+</table>
+<p>Structured abstract의 핵심은 background, problem, method, results, contribution, implications로 나누어 작성한다. 결과는 clean prompts의 높은 utility, prompt attack simulation의 nonzero toy ASR, privacy-risk prompts의 낮은 synthetic leakage, code security prompts의 code risk와 over-refusal 동시 기록으로 요약하되 실제 LLM 성능으로 해석하지 않는다.</p>
+<h2 id="14">14. 발표용 요약</h2>
+<ul>
+<li>핵심 메시지: LLM 보안 평가는 utility, ASR, privacy leakage, refusal quality, over-refusal, code vulnerability rate, reproducibility evidence를 함께 기록해야 한다.</li>
+<li>실험 메시지: W07 수치는 toy protocol 검증값이며 실제 jailbreak 성공률이나 개인정보 누출 확률이 아니다.</li>
+<li>문헌 메시지: P01은 평가, P02/P03은 security/privacy taxonomy, P04는 multimodal 확장, P05는 code LLM 접점을 제공한다.</li>
+</ul>
+<h2 id="15">15. 참고문헌 검증표</h2>
+<p>표 8. 참고문헌 검증표</p>
+<table>
+<thead>
+<tr>
+<th>번호</th>
+<th>참고문헌</th>
+<th>DOI/URL</th>
+<th>상태</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[1]</td>
+<td>Yupeng Chang et al., <em>A Survey on Evaluation of Large Language Models</em>, ACM TIST 15(3), Article 39, 2024</td>
+<td><code>https://doi.org/10.1145/3641289</code></td>
+<td>DOI 확인, 강의계획서 venue 표기 확인 필요</td>
+</tr>
+<tr>
+<td>[2]</td>
+<td>Badhan Chandra Das, M. Hadi Amini, Yanzhao Wu, <em>Security and Privacy Challenges of Large Language Models: A Survey</em>, ACM CSUR 57(6), 2025</td>
+<td><code>https://doi.org/10.1145/3712001</code></td>
+<td>DOI 확인, Ankur Das 표기 확인 필요</td>
+</tr>
+<tr>
+<td>[3]</td>
+<td>Yifan Yao et al., <em>A survey on large language model (LLM) security and privacy: The Good, The Bad, and The Ugly</em>, HCC 4(2), 2024</td>
+<td><code>https://doi.org/10.1016/j.hcc.2024.100211</code></td>
+<td>DOI 확인, AI Open 지정 논문 동일 여부 확인 필요</td>
+</tr>
+<tr>
+<td>[4]</td>
+<td>Shukang Yin et al., <em>A survey on multimodal large language models</em>, NSR 11(12), 2024</td>
+<td><code>https://doi.org/10.1093/nsr/nwae403</code></td>
+<td>DOI 확인, Yongtao Yin 표기 확인 필요</td>
+</tr>
+<tr>
+<td>[5]</td>
+<td>Xiaogang Zhu et al., <em>When Software Security Meets Large Language Models: A Survey</em>, IEEE/CAA JAS 12(2), 2025</td>
+<td><code>https://doi.org/10.1109/JAS.2024.124971</code></td>
+<td>DOI 확인, Shujun Li 표기 확인 필요</td>
+</tr>
+</tbody>
+</table>
+<h2 id="16">16. 자기 점검표</h2>
+<p>표 9. 최종 자기 점검표</p>
+<table>
+<thead>
+<tr>
+<th>점검 항목</th>
+<th>상태</th>
+<th>비고</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1장 한 문장 요약 작성</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>2장 학습 배경과 주차 목표 작성</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>AI 원리 70% 정리</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>보안 이슈 30% 정리</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>논문 5편 요약</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>논문 5편 비교표 보완</td>
+<td>완료 / 확인 필요</td>
+<td>P02-P05 동일 여부 반영</td>
+</tr>
+<tr>
+<td>Research Track 5요소 작성</td>
+<td>완료</td>
+<td>연구문제, 위협모형, 평가방법, 재현성, 오픈문제</td>
+</tr>
+<tr>
+<td>P01 DOI/URL 검증</td>
+<td>완료 / 확인 필요</td>
+<td>ACM TIST 확인, 강의계획서 표기 차이</td>
+</tr>
+<tr>
+<td>P02 지정 논문 동일 여부 검증</td>
+<td>완료 / 확인 필요</td>
+<td>ACM CSUR DOI 확인, Ankur Das 표기 확인 필요</td>
+</tr>
+<tr>
+<td>P03 지정 논문 동일 여부 검증</td>
+<td>확인 필요</td>
+<td>AI Open 지정 논문과 현 로컬 PDF 차이</td>
+</tr>
+<tr>
+<td>P04 지정 논문 동일 여부 검증</td>
+<td>완료 / 확인 필요</td>
+<td>NSR DOI 확인, Yongtao Yin 표기 확인 필요</td>
+</tr>
+<tr>
+<td>P05 지정 논문 동일 여부 검증</td>
+<td>완료 / 확인 필요</td>
+<td>DOI 확인, Shujun Li 표기 확인 필요</td>
+</tr>
+<tr>
+<td>실험 outputs 파일 존재 확인</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>실험 결과와 보고서 수치 일치</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>KCI 논문 형식 전환 작성</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>SCI 논문 형식 전환 작성</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>본문 인용과 참고문헌 대응</td>
+<td>완료 / 확인 필요</td>
+<td>[1]-[5] 대응</td>
+</tr>
+<tr>
+<td>표·그림 번호 정리</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>AI 활용 고지 작성</td>
+<td>완료</td>
+<td></td>
+</tr>
+<tr>
+<td>PDF 저작권 위험 점검</td>
+<td>완료 / 조치 필요</td>
+<td>PDF 원문 Git 추적 해제 완료(로컬 파일 보존)</td>
+</tr>
+<tr>
+<td>최종 사람이 검토할 항목 표시</td>
+<td>완료</td>
+<td>제출 전 작성자 확인 항목 있음</td>
+</tr>
+</tbody>
+</table>
 </body>
 </html>

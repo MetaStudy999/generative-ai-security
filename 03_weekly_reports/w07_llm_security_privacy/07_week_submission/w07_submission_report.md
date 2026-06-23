@@ -8,10 +8,12 @@
 
 - 주차: W07
 - 주제: LLM 학습·정렬·평가 & LLM 보안·프라이버시
-- 문서 상태: 제출용 최종 초안
+- 문서 상태: 제출용 보고서
 - 실험 산출물: `04_experiment/outputs/metrics_summary.csv`, `results.json`, `run_log.md`
-- 제출 상태: 최종 제출 확정 아님. 사람 검토 필요
+- 제출 상태: 제출 전 작성자 확인 항목 있음. 작성자 확인 필요
 
+| 학번 | 26200122 |
+| 보완일 | 2026-06-23 |
 ## 1. 한 문장 요약
 
 LLM/RAG 보안 평가는 benchmark score나 ASR 하나로 끝나지 않으며, utility, answer rate, ASR, privacy leakage, refusal quality, over-refusal, code vulnerability rate, reproducibility evidence를 분리해 기록해야 한다.
@@ -125,9 +127,32 @@ Reproducibility Evidence -> seed, config, prompt categories, outputs, run_log
 
 이 결과는 synthetic prompt category와 rule-based toy guard score simulator를 사용한 평가 형식 검증용 수치이며, 실제 LLM의 보안 성능, 실제 jailbreak 성공률, 실제 개인정보 누출 가능성, 실제 코드 보안 품질로 일반화하지 않는다.
 
+<!-- submission-metric-chart:start -->
+**그림 7. W07 metrics summary chart**
+
+![W07 metrics summary chart](assets/w07_metric_chart.png)
+
+출처: `04_experiment/outputs/metrics_summary.csv`. 이 그래프는 공개 toy/synthetic 산출물 기반이며 실제 공격 성능이나 운영 환경 성능으로 일반화하지 않는다.
+<!-- submission-metric-chart:end -->
+
 ## 9. AI 도구 활용 기록
 
-Codex를 사용해 로컬 파일 점검, 문헌 요약 구조화, DOI/URL 검증 보조, PDF 기준 서지정보 보정, synthetic 실험 코드 작성과 실행, 제출용 보고서 및 발표자료 보완을 수행했다. 세부 고지는 `05_ai_worklog/ai_disclosure_draft.md`에 기록하였다.
+AI 도구는 문헌 요약, 코드 점검, 문장 구조화, 그래프 생성 보조에 사용하였다. 모든 DOI/URL, 실험 수치, 본문 인용, 결론은 작성자가 outputs 파일과 로컬 참고문헌 검증표를 대조하여 검증한다.
+
+**표. W07 AI 도구 활용 및 검증 기록**
+
+| 항목 | 내용 |
+|---|---|
+| 사용 도구명 | Codex, ChatGPT 계열 도구 |
+| 사용 일자 | 2026-06-23 |
+| 사용 목적 | 문헌 요약 정리, 보고서 구조화, 안전한 toy/synthetic 실험 결과 표기 점검, 그래프 생성 보조, 제출 전 체크리스트 정리 |
+| 주요 프롬프트 요약 | 주차별 제출 보고서 보완, 참고문헌 검증표 정리, metrics_summary.csv 기반 그래프 생성, AI 활용 고지 작성 |
+| AI 산출물 반영 위치 | `07_week_submission/w07_submission_report.md`, `07_week_submission/assets/w07_metric_chart.png`, `05_ai_worklog/ai_disclosure_draft.md` |
+| 본인 수정 내용 | 주차별 문헌 상태 확인, 실험 수치와 outputs 대조, 안전 범위와 한계 문장 확인, 최종 제출 전 미확정 문헌 분리 |
+| 사실관계 검증 방법 | `01_papers/paper_list.md`, `01_papers/doi_check.md`, `05_references/doi_index.md`, 강의계획서 문헌표 대조 |
+| 참고문헌 검증 방법 | 제목, 저자, 연도, 학술지/학회, DOI/URL, 본문 인용번호와 참고문헌 목록 대응 확인 |
+| 실험결과 검증 방법 | `04_experiment/outputs/metrics_summary.csv`, `results.json`, `run_log.md`의 수치와 보고서 표기 대조 |
+| 최종 책임 확인 | AI 산출물은 초안 보조이며 최종 제출자는 원고 내용, 인용, 실험결과, 연구윤리 책임을 확인한다. |
 
 ## 10. 토론 질문
 
@@ -211,5 +236,5 @@ Structured abstract의 핵심은 background, problem, method, results, contribut
 | 본문 인용과 참고문헌 대응 | 완료 / 확인 필요 | [1]-[5] 대응 |
 | 표·그림 번호 정리 | 완료 |  |
 | AI 활용 고지 작성 | 완료 |  |
-| PDF 저작권 위험 점검 | 완료 / 조치 필요 | PDF 5개 git 추적 중, 삭제 미수행 |
-| 최종 사람이 검토할 항목 표시 | 완료 | 최종 제출 확정 아님 |
+| PDF 저작권 위험 점검 | 완료 / 조치 필요 | PDF 원문 Git 추적 해제 완료(로컬 파일 보존) |
+| 최종 사람이 검토할 항목 표시 | 완료 | 제출 전 작성자 확인 항목 있음 |

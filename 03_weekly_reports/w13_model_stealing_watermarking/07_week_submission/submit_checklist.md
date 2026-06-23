@@ -1,34 +1,19 @@
-# 제출 체크리스트
+# W13 제출 체크리스트
 
-| 점검 항목 | 상태 | 비고 |
+| 점검 항목 | 상태 | 근거/비고 |
 |---|---|---|
-| 1장 한 문장 요약 작성 | 완료 |  |
-| 2장 학습 배경과 주차 목표 작성 | 완료 |  |
-| AI 원리 70% 정리 | 완료 |  |
-| 보안 이슈 30% 정리 | 완료 |  |
-| 논문 5편 요약 | 완료 / 확인 필요 | DOI/원문 세부 대조 필요 |
-| 논문 5편 비교표 보완 | 완료 / 확인 필요 | P02/P05 대체 PDF 상태 반영 |
-| Research Track 5요소 작성 | 완료 | 연구문제, 위협모형, 평가방법, 재현성, 오픈문제 |
-| P01 공식 DOI 검증 | 완료 | DOI `10.1145/3595292`, ACM CSUR 55(14s), 1-41 |
-| P02 지정 논문 원문 확보 | 확인 필요 | 현재 `SUBSTITUTE` PDF |
-| P03 DOI/URL 검증 | 완료 / 확인 필요 | DOI `10.1016/j.neucom.2021.07.051`, 강의계획서 표기 차이 |
-| P04 IEEE TIFS DOI 검증 | 완료 | DOI `10.1109/TIFS.2025.3530691`, IEEE TIFS 20, 1767-1782 |
-| P05 지정 논문 원문 확보 | 확인 필요 | 지정 후보 DOI `10.1145/3615336`, 로컬 `SUBSTITUTE` PDF |
-| 실험 outputs 파일 존재 확인 | 완료 | `metrics_summary.csv`, `results.json`, `run_log.md` |
-| 실험 결과와 보고서 수치 일치 | 완료 | outputs 기준 |
-| false positive 해석 보완 | 완료 | 0.600000 한계 명시 |
-| KCI 논문 형식 전환 작성 | 완료 |  |
-| SCI 논문 형식 전환 작성 | 완료 |  |
-| 본문 인용과 참고문헌 대응 | 완료 / 확인 필요 | P02/P05 원문 확인 필요 |
-| 표·그림 번호 정리 | 완료 | 표 1-8, 그림 1 |
-| AI 활용 고지 작성 | 완료 | `05_ai_worklog/ai_disclosure_draft.md` |
-| PDF 저작권 위험 점검 | 완료 / 조치 필요 | PDF 5개가 이미 git 추적 대상, 삭제는 미수행 |
-| 최종 사람이 검토할 항목 표시 | 완료 | 제출 확정 아님 |
+| Markdown 제출보고서 | 완료 | 03_weekly_reports/w13_model_stealing_watermarking/07_week_submission/w13_submission_report.md |
+| HTML 제출보고서 | 완료 | 03_weekly_reports/w13_model_stealing_watermarking/07_week_submission/w13_submission_report.html |
+| metrics_summary.csv | 완료 | 03_weekly_reports/w13_model_stealing_watermarking/04_experiment/outputs/metrics_summary.csv |
+| results.json | 완료 | 03_weekly_reports/w13_model_stealing_watermarking/04_experiment/outputs/results.json |
+| run_log.md | 완료 | 03_weekly_reports/w13_model_stealing_watermarking/04_experiment/outputs/run_log.md |
+| AI 활용 고지 | 완료 | 03_weekly_reports/w13_model_stealing_watermarking/05_ai_worklog/ai_disclosure_draft.md |
+| metrics 기반 그래프 | 완료 | 생성 |
+| 참고문헌 검증표 | 완료 | 보고서 15장 |
+| 기말논문 연결 | 완료 | 보고서 11장 |
 
-## 최종 제출 전 사람이 반드시 확인할 항목
+## 제출 전 유의사항
 
-1. P02 지정 논문 원문 또는 공식 출판 페이지 확보 여부.
-2. P03 강의계획서의 `Feng Li et al.` 표기와 현재 Li/Wang/Barni 논문 동일 여부.
-3. P05 강의계획서의 `Cheng Zhang` 표기와 공식 `Chenhan Zhang` 논문 동일 여부.
-4. public GitHub 저장소에서 PDF 원문 5개를 삭제하거나 비공개 보관할지 여부.
-5. AI 활용 고지와 참고문헌 검증표를 최종 제출자 명의로 확정할지 여부.
+- 그래프와 실험 수치는 `04_experiment/outputs/metrics_summary.csv`, `results.json`, `run_log.md` 기준으로 해석한다.
+- `확인 필요` 문헌은 핵심 근거로 일반화하지 않고 참고문헌 검증표 또는 한계 섹션에서만 다룬다.
+- 논문 PDF 원문은 public GitHub 추적 대상에서 제외하고 DOI/URL 중심으로 관리한다.

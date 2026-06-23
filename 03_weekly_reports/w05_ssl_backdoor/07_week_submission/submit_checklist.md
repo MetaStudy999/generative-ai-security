@@ -1,35 +1,19 @@
 # W05 제출 체크리스트
 
-## 최종 자기 점검표
-
-| 점검 항목 | 상태 | 비고 |
+| 점검 항목 | 상태 | 근거/비고 |
 |---|---|---|
-| 1장 한 문장 요약 작성 | 완료 |  |
-| 2장 학습 배경과 주차 목표 작성 | 완료 |  |
-| AI 원리 70% 정리 | 완료 |  |
-| 보안 이슈 30% 정리 | 완료 |  |
-| 논문 5편 요약 | 완료 |  |
-| 논문 5편 비교표 보완 | 완료 / 확인 필요 | P01-P05 차별성 반영 |
-| Research Track 5요소 작성 | 완료 | 연구문제, 위협모형, 평가방법, 재현성, 오픈문제 |
-| P01 IEEE TPAMI DOI 검증 | 완료 | `10.1109/TPAMI.2024.3415112` |
-| P02 지정 논문 동일 여부 검증 | 확인 필요 | 현재 로컬 PDF는 추천 시스템 SSL survey |
-| P03 제목/출판정보 검증 | 완료 / 확인 필요 | DOI 확인, Article 번호 확인 필요 |
-| P04 제목/출판정보 검증 | 완료 / 확인 필요 | DOI 확인, 강의계획서 제목/저자 표기 차이 확인 필요 |
-| P05 DOI/URL 검증 | 완료 / 확인 필요 | DOI 확인, 강의계획서 `Z. Jin` 표기 확인 필요 |
-| 실험 outputs 파일 존재 확인 | 완료 | `metrics_summary.csv`, `results.json`, `run_log.md` 존재 |
-| 실험 결과와 보고서 수치 일치 | 완료 | outputs 기준 |
-| KCI 논문 형식 전환 작성 | 완료 |  |
-| SCI 논문 형식 전환 작성 | 완료 |  |
-| 본문 인용과 참고문헌 대응 | 완료 / 확인 필요 | P02/P03/P04 검증 메모 유지 |
-| 표·그림 번호 정리 | 완료 | 표 1-7, 그림 1 |
-| AI 활용 고지 작성 | 완료 | `05_ai_worklog/ai_disclosure_draft.md` |
-| PDF 저작권 위험 점검 | 완료 / 확인 필요 | PDF 5개 Git 추적 중, 삭제는 미수행 |
-| 최종 사람이 검토할 항목 표시 | 완료 | 최종 제출 확정 아님 |
+| Markdown 제출보고서 | 완료 | 03_weekly_reports/w05_ssl_backdoor/07_week_submission/w05_submission_report.md |
+| HTML 제출보고서 | 완료 | 03_weekly_reports/w05_ssl_backdoor/07_week_submission/w05_submission_report.html |
+| metrics_summary.csv | 완료 | 03_weekly_reports/w05_ssl_backdoor/04_experiment/outputs/metrics_summary.csv |
+| results.json | 완료 | 03_weekly_reports/w05_ssl_backdoor/04_experiment/outputs/results.json |
+| run_log.md | 완료 | 03_weekly_reports/w05_ssl_backdoor/04_experiment/outputs/run_log.md |
+| AI 활용 고지 | 완료 | 03_weekly_reports/w05_ssl_backdoor/05_ai_worklog/ai_disclosure_draft.md |
+| metrics 기반 그래프 | 완료 | 생성 |
+| 참고문헌 검증표 | 완료 | 보고서 15장 |
+| 기말논문 연결 | 완료 | 보고서 11장 |
 
-## 제출 전 사람 검토 필수 항목
+## 제출 전 유의사항
 
-1. P02가 강의계획서 지정 일반 SSL survey인지 또는 대체 문헌인지 확인한다.
-2. P03 ACM Article 번호와 강의계획서 제목 차이를 확인한다.
-3. P04 강의계획서 제목/저자 표기와 현재 로컬 PDF의 동일 논문 여부를 확인한다.
-4. P05 강의계획서 `Z. Jin` 표기가 출판사 첫 저자 `Ling-Xin Jin`과 어떻게 대응되는지 확인한다.
-5. public GitHub 저장소라면 `01_papers/pdf/*.pdf` 추적 해제 또는 삭제가 필요하다.
+- 그래프와 실험 수치는 `04_experiment/outputs/metrics_summary.csv`, `results.json`, `run_log.md` 기준으로 해석한다.
+- `확인 필요` 문헌은 핵심 근거로 일반화하지 않고 참고문헌 검증표 또는 한계 섹션에서만 다룬다.
+- 논문 PDF 원문은 public GitHub 추적 대상에서 제외하고 DOI/URL 중심으로 관리한다.

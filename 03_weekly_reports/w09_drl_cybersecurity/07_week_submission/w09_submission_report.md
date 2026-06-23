@@ -5,9 +5,11 @@
 | 항목 | 내용 |
 |---|---|
 | 주차 | W09 |
+| 작성자 | 박영세 |
+| 학번 | 26200122 |
 | 보고서 제목 | 심층강화학습(DRL) & 사이버보안 적용·보상조작 |
 | 작성/보완일 | 2026-06-22 초안, 2026-06-23 최종 보완 |
-| 문서 상태 | 제출용 최종 초안, 사람 검토 전 |
+| 문서 상태 | 제출용 보고서 |
 | 관련 산출물 | `03_weekly_reports/w09_drl_cybersecurity/` |
 | 실험 근거 | `04_experiment/outputs/metrics_summary.csv`, `results.json`, `run_log.md` |
 
@@ -16,7 +18,6 @@
 본 보고서는 DRL의 MDP, Q-learning, DQN, policy gradient, actor-critic, verification 개념을 사이버 방어 에이전트의 state/action/reward 설계 문제로 연결한다. 문헌 5편을 통해 DRL 원리, 안전중요 자동화, cyber-defense 적용, IDS/IPS 평가, DRL verification을 비교하고, synthetic cyber-defense state/action/reward 기반 안전 toy 실험으로 normal reward, manipulated reward, robust reward design 조건을 평가하였다. 결과는 보상조작이 true reward, Detection F1, safety를 악화시킬 수 있음을 보이나 실제 IDS/IPS 성능으로 일반화하지 않는다.
 
 **키워드:** DRL, cyber defense, reward manipulation, reward misspecification, safety violation, policy robustness
-
 ## 1. 한 문장 요약
 
 DRL 기반 사이버 방어 에이전트에서는 높은 observed reward가 실제 보안성, 낮은 safety violation, 높은 robustness를 보장하지 않는다.
@@ -127,9 +128,32 @@ Synthetic Cyber State
 
 이 결과는 synthetic toy cyber-defense state/action/reward simulation의 평가 형식 검증용 수치이며, 실제 IDS/IPS 제품, 실제 운영망, 실제 neural DRL policy의 보안 성능으로 일반화하지 않는다.
 
+<!-- submission-metric-chart:start -->
+**그림 7. W09 metrics summary chart**
+
+![W09 metrics summary chart](assets/w09_metric_chart.png)
+
+출처: `04_experiment/outputs/metrics_summary.csv`. 이 그래프는 공개 toy/synthetic 산출물 기반이며 실제 공격 성능이나 운영 환경 성능으로 일반화하지 않는다.
+<!-- submission-metric-chart:end -->
+
 ## 9. AI 도구 활용 기록
 
-Codex와 ChatGPT 계열 AI 도구를 사용해 문헌 요약 보강, DOI/URL 검증 보조, 개념 설명, 문장 구조화, synthetic DRL cyber-defense 실험 코드 작성, 발표자료 작성, KCI/SCI 섹션 보완을 수행했다. 사실관계는 DOI/Crossref 메타데이터, 로컬 PDF 첫 페이지, `pdftotext`, CSV/JSON/run log와 대조했다. 최종 책임은 제출자가 확인해야 한다.
+AI 도구는 문헌 요약, 코드 점검, 문장 구조화, 그래프 생성 보조에 사용하였다. 모든 DOI/URL, 실험 수치, 본문 인용, 결론은 작성자가 outputs 파일과 로컬 참고문헌 검증표를 대조하여 검증한다.
+
+**표. W09 AI 도구 활용 및 검증 기록**
+
+| 항목 | 내용 |
+|---|---|
+| 사용 도구명 | Codex, ChatGPT 계열 도구 |
+| 사용 일자 | 2026-06-23 |
+| 사용 목적 | 문헌 요약 정리, 보고서 구조화, 안전한 toy/synthetic 실험 결과 표기 점검, 그래프 생성 보조, 제출 전 체크리스트 정리 |
+| 주요 프롬프트 요약 | 주차별 제출 보고서 보완, 참고문헌 검증표 정리, metrics_summary.csv 기반 그래프 생성, AI 활용 고지 작성 |
+| AI 산출물 반영 위치 | `07_week_submission/w09_submission_report.md`, `07_week_submission/assets/w09_metric_chart.png`, `05_ai_worklog/ai_disclosure_draft.md` |
+| 본인 수정 내용 | 주차별 문헌 상태 확인, 실험 수치와 outputs 대조, 안전 범위와 한계 문장 확인, 최종 제출 전 미확정 문헌 분리 |
+| 사실관계 검증 방법 | `01_papers/paper_list.md`, `01_papers/doi_check.md`, `05_references/doi_index.md`, 강의계획서 문헌표 대조 |
+| 참고문헌 검증 방법 | 제목, 저자, 연도, 학술지/학회, DOI/URL, 본문 인용번호와 참고문헌 목록 대응 확인 |
+| 실험결과 검증 방법 | `04_experiment/outputs/metrics_summary.csv`, `results.json`, `run_log.md`의 수치와 보고서 표기 대조 |
+| 최종 책임 확인 | AI 산출물은 초안 보조이며 최종 제출자는 원고 내용, 인용, 실험결과, 연구윤리 책임을 확인한다. |
 
 ## 10. 토론 질문
 
@@ -186,7 +210,7 @@ Structured abstract는 Background, Problem, Method, Results, Contribution, Impli
 | [4] | Adawadkar and Kulkarni, *Cyber-security and reinforcement learning -- A brief survey*, Engineering Applications of Artificial Intelligence, 114, Article 105116, 2022 | https://doi.org/10.1016/j.engappai.2022.105116 | 확인 필요 |
 | [5] | Landers and Doryab, *Deep Reinforcement Learning Verification: A Survey*, ACM Computing Surveys, 55(14s), Article 330, 31 pages, 2023 | https://doi.org/10.1145/3596444 | 확인 필요 |
 
-PDF 보관 정책 점검 결과, `01_papers/pdf/`의 PDF 5개는 Git 추적 대상이다. public GitHub 저장소에는 원칙적으로 PDF 원문 대신 DOI/URL, 서지정보, 요약만 남겨야 하며, 사용자 승인 없이 PDF를 삭제하지 않았다.
+PDF 보관 정책 점검 결과, `01_papers/pdf/`의 논문 PDF 원문은 로컬 파일로 보존하되 Git 추적은 해제했다. public GitHub 저장소에는 출판사 PDF 원문 대신 DOI/URL, 서지정보, 요약만 남기는 정책을 적용한다.
 
 ## 16. 자기 점검표
 

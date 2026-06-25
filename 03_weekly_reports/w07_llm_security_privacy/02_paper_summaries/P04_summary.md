@@ -15,7 +15,7 @@
 | 로컬 PDF | `01_papers/pdf/04_Yin_et_al_2024_Multimodal_LLMs_Survey.pdf` |
 | 검증 상태 | W07 `paper_list.md`와 `download_source.md` 기준 공식 DOI 확인. 강의계획서에는 `Yongtao Yin et al.`로 표기되어 있으나, repo의 공식 확인 정보는 `Shukang Yin et al.`임 |
 | PDF 확인 메모 | repo의 PDF 폴더에 P04 관련 PDF blob이 존재함을 확인했다. 요약은 로컬 PDF 경로와 W07 `paper_list.md`, `download_source.md`의 공식 DOI/arXiv 메타데이터 기준으로 보완했다. |
-| 수식 호환성 | GitHub 수식 렌더링 오류 방지를 위해 `\operatorname`을 사용하지 않고, `\mathrm{...}` 또는 짧은 변수명 중심으로 작성했다. 긴 영문 subscript는 렌더링 오류를 줄이기 위해 짧은 변수명과 표 설명으로 분리했다. |
+| 수식 호환성 | GitHub 수식 렌더링 오류 방지를 위해 `\operatorname`을 사용하지 않고, `\mathrm{...}` 또는 짧은 변수명 중심으로 작성했다. 특히 `y_{<t}`처럼 GitHub에서 brace 오류를 낼 수 있는 표현은 `y_{1:t-1}`로 바꿨다. |
 | 핵심 근거 사용 가능 여부 | 가능. W07의 text-only LLM 보안을 multimodal LLM 보안으로 확장하는 핵심 문헌으로 사용 |
 
 ---
@@ -75,14 +75,14 @@
 시각 입력은 visual encoder와 projector를 거쳐 LLM이 처리할 수 있는 표현으로 변환된다.
 
 $$
-h_v=P_\phi(E_v(x_v))
+h_v=P_{\phi}(E_v(x_v))
 $$
 
 | 기호 | 의미 |
 |---|---|
 | $x_v$ | 이미지, 비디오, 문서 캡처 등 시각 입력 |
 | $E_v$ | visual encoder |
-| $P_\phi$ | projector 또는 modality alignment module |
+| $P_{\phi}$ | projector 또는 modality alignment module |
 | $h_v$ | LLM context에 주입되는 visual representation |
 
 ### 보안적 의미
@@ -96,15 +96,15 @@ $$
 MLLM 출력은 텍스트 prompt와 시각 표현을 함께 조건으로 사용한다.
 
 $$
-y_t\sim p_\theta(y_t\mid h_v,x_{text},y_{<t})
+y_t \sim p_{\theta}\left(y_t \mid h_v, z, y_{1:t-1}\right)
 $$
 
 | 기호 | 의미 |
 |---|---|
 | $y_t$ | 생성되는 token |
 | $h_v$ | 시각 표현 |
-| $x_{text}$ | 사용자 prompt 또는 system instruction |
-| $y_{<t}$ | 이전 생성 token |
+| $z$ | 사용자 prompt 또는 system instruction |
+| $y_{1:t-1}$ | 이전 생성 token sequence |
 
 ### 보안적 의미
 
@@ -136,13 +136,13 @@ Grounding 실패는 hallucination과 연결된다. 의료 이미지, 계약서, 
 시각 입력을 이용해 안전정책을 우회하는 공격 성공률은 다음처럼 평가할 수 있다.
 
 $$
-ASR_{visual}=\frac{1}{N}\sum_{i=1}^{N}\mathbf{1}\left[f_\theta(x_{v,i}^{test},x_{text,i})\in Y_{unsafe}\right]
+ASR_{visual}=\frac{1}{N}\sum_{i=1}^{N}\mathbf{1}\left[f_{\theta}(x_{v,i}^{test},z_i)\in Y_{unsafe}\right]
 $$
 
 | 기호 | 의미 |
 |---|---|
 | $x_{v,i}^{test}$ | 안전성 평가용 toy 시각 입력 |
-| $x_{text,i}$ | 함께 제공되는 텍스트 prompt |
+| $z_i$ | 함께 제공되는 텍스트 prompt |
 | $Y_{unsafe}$ | 위험 또는 정책 위반 응답 집합 |
 
 ### 보안적 의미
@@ -156,13 +156,13 @@ $$
 이미지나 문서 속 민감정보가 출력으로 재노출되는 비율이다.
 
 $$
-OCRLeakage=\frac{N_{ocr\ leak}}{N_{ocr\ risk}}
+OCRLeakage=\frac{N_{ol}}{N_{or}}
 $$
 
 | 기호 | 의미 |
 |---|---|
-| $N_{ocr\ risk}$ | 민감정보가 포함된 synthetic OCR/privacy-risk 평가 입력 수 |
-| $N_{ocr\ leak}$ | 민감정보가 출력 또는 로그에 노출된 사례 수 |
+| $N_{or}$ | 민감정보가 포함된 synthetic OCR/privacy-risk 평가 입력 수 |
+| $N_{ol}$ | 민감정보가 출력 또는 로그에 노출된 사례 수 |
 
 ### 보안적 의미
 
@@ -175,7 +175,7 @@ $$
 시각 representation과 텍스트 representation의 의미 일관성을 측정한다.
 
 $$
-AlignConsistency=\frac{1}{N}\sum_{i=1}^{N}\mathrm{sim}(h_{v}^{(i)},h_{t}^{(i)})
+AlignConsistency=\frac{1}{N}\sum_{i=1}^{N}\mathrm{sim}(h_v^{(i)},h_t^{(i)})
 $$
 
 | 기호 | 의미 |
@@ -271,7 +271,7 @@ MLLM 보안은 text prompt만 검사해서는 충분하지 않다. 이미지·OC
 | Security evaluation | ASR_visual, OCRLeakage, OCR injection 여부, unsafe tool call 여부 |
 | Review | human review rubric, 판정 기준, 실패 사례 |
 | Evidence | image hash, OCR log, prompt/output log, config, metric table |
-| GitHub math | `\operatorname` 사용 금지, 짧은 변수명과 `\mathrm{...}` 형태 사용 |
+| GitHub math | `\operatorname` 사용 금지, `y_{<t}` 대신 `y_{1:t-1}` 사용, 짧은 변수명과 `\mathrm{...}` 형태 사용 |
 
 ---
 
@@ -332,6 +332,9 @@ P04는 W07의 멀티모달 LLM 확장 핵심 문헌이다. Text-only LLM 보안 
 
 | 피해야 할 표현 | 권장 표현 |
 |---|---|
+| `y_{<t}` | `y_{1:t-1}` |
+| `x_{text}` | `z` 또는 표에서 설명한 짧은 변수명 |
+| `N_{ocr\ leak}` | `N_{ol}`처럼 짧은 변수명 사용 후 표에서 의미 설명 |
 | `\operatorname{softmax}` | `\mathrm{softmax}` |
 | `\operatorname{sim}` | `\mathrm{sim}` |
 | 긴 영문 subscript | 짧은 변수명 사용 후 표에서 의미 설명 |

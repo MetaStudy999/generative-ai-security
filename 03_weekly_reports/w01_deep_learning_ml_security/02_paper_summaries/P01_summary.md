@@ -113,7 +113,7 @@ $$
 입력에 대한 손실 gradient는 모델 예측을 바꾸는 방향을 알려줄 수 있다.
 
 $$
-x^{adv}=x+\epsilon\cdot\operatorname{sign}\left(\nabla_x\ell(f_{\theta}(x),y)\right)
+x^{adv}=x+\epsilon\cdot\mathrm{sign}\left(\nabla_x\ell(f_{\theta}(x),y)\right)
 $$
 
 ### 보안적 의미
